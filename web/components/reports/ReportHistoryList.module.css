@@ -5,10 +5,68 @@
 .summary {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
+    align-items: center;
+    gap: 0.5rem 1rem;
     margin: -1rem 0 0;
     color: hsl(var(--text-muted));
     font: var(--type-small);
+}
+.summary p { margin: 0; }
+
+/* The pass as sheets: one for each report left, the way pricing draws it. */
+.sheets { flex: none; }
+
+/* The latest report: the same parts as a row, set larger, with the two things a returning person does next. */
+.latest {
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.25rem;
+}
+
+.latestHead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+}
+
+.latestLabel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.125rem 1rem;
+    margin: 0;
+    padding-top: 0.25rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.latestWhen { color: hsl(var(--text-muted)); font-weight: var(--weight-body); }
+
+.latestVerdict {
+    max-width: 34ch;
+    margin: 0.75rem 0 0;
+    font: var(--weight-body) var(--type-title-size) / var(--type-title-leading) var(--font-editorial);
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+}
+
+.latest .name { margin-top: 0.75rem; }
+.latest .meta { margin-top: 0.875rem; }
+
+.latestActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.earlierTitle {
+    margin: 0 0 0.75rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
 }
 
 .list {
@@ -86,6 +144,26 @@
     overflow-wrap: anywhere;
 }
 
+/* Where the report stands: lines answered, and the change since the last report for the same role. Plain
+   words in ink; the pen marks the two good states, a full set of answers and a score that went up. */
+.standing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem 1.25rem;
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+}
+.standing [data-done], .standing [data-up] { color: hsl(var(--pen)); font-weight: var(--weight-control); }
+
+.revise {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-top: 0.125rem;
+    font: var(--type-small);
+}
+
 .actions {
     display: flex;
     align-items: center;
@@ -112,6 +190,8 @@
 .emptyBody { max-width: 52ch; margin: 0.5rem 0 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
 
 @media (max-width: 720px) {
+    .latestVerdict { font-size: var(--type-verdict-lead-size); line-height: var(--type-verdict-lead-leading); }
+    .latestActions > * { flex: 1 1 auto; }
     .row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 1rem; padding: 1.25rem 0; }
     .when { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; padding-top: 0; }
     .date { margin: 0; }

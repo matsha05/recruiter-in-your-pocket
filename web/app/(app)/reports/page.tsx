@@ -9,6 +9,8 @@ import { launchFlags } from "@/lib/launch/flags";
 import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { splitVerdict } from "@/lib/reports/report-opening";
+import { lineProgress, scoreChanges } from "@/lib/reports/report-history";
+import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
 function verdictLine(value: unknown): string | null {
@@ -40,7 +42,8 @@ export default async function ReportsPage() {
     .from("reports")
     // The row leads with the report's own one-sentence verdict (Nov 11, 2026), read out of the stored report: the
     // worklist report's `verdict`, or the earlier report's first impression.
-    .select("id, score, score_label, resume_preview, name, target_role, created_at, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway")
+    // The cards and the kept answers ride along so a row can say how many lines are answered (lib/reports/report-history.ts).
+    .select("id, score, score_label, resume_preview, name, target_role, created_at, line_answers, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway, cards:report_json->cards")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(51);
@@ -51,6 +54,24 @@ export default async function ReportsPage() {
 
   const hasMoreReports = (reports?.length || 0) > 50;
   const items = (reports || []).slice(0, 50);
+
+  // The change since the person's previous report for the same role, across the rows the page shows.
+  const changes = scoreChanges(items.map((report) => ({
+    id: report.id,
+    score: report.score,
+    targetRole: report.target_role,
+    createdAt: report.created_at,
+    isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
+  })));
+
+  // The pass, for the line above the list: how many reports are left and the day it ends. A failed read leaves
+  // the line to what the signed-in session already knows.
+  const { data: passes } = await supabase
+    .from("passes")
+    .select("tier, uses_remaining, expires_at, revoked_at, revocation_reason")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false });
+  const activePass = (passes || []).find((pass) => isPassActive(pass) && !isUnlimitedPassTier(pass.tier)) ?? null;
 
   return (
     <section className="flex-1 bg-background">
@@ -108,10 +129,13 @@ export default async function ReportsPage() {
           </div>
         ) : (
           <ReportHistoryList
+            pass={activePass ? { usesLeft: Number(activePass.uses_remaining || 0), expiresAt: activePass.expires_at } : null}
             initialReports={items.map((report) => ({
               id: report.id,
               score: report.score,
               isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
+              progress: lineProgress(report.cards, report.line_answers),
+              change: changes.get(report.id) ?? null,
               // An earlier report's first impression runs two or three sentences; its row shows the first, the way
               // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
               verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),
