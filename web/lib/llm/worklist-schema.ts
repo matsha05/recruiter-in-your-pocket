@@ -54,6 +54,16 @@ export const WorklistCardSchema = z.object({
 });
 export type WorklistCard = z.infer<typeof WorklistCardSchema>;
 
+/**
+ * Tailoring to a posting (Nov 10, 2026): lines already on the resume that answer the posting and sit too low
+ * ("lead"), and lines the posting doesn't ask about, for a resume that needs the room ("trim"). Each quotes a
+ * resume line word for word, like a card. Optional with no default, so a report saved before them parses to the
+ * same object.
+ */
+export const MAX_POSTING_MOVES = 3;
+const PostingMoveSchema = z.object({ line: text(MAX_LINE_LENGTH), why: text(320) });
+export type PostingMove = z.infer<typeof PostingMoveSchema>;
+
 export const WorklistFitSchema = z.object({
   roles: z.array(text(80)).max(4),
   /**
@@ -67,6 +77,8 @@ export const WorklistFitSchema = z.object({
   posting: z.object({
     summary: optionalText(600),
     missing: z.array(text(120)).max(6),
+    lead: z.array(PostingMoveSchema).max(MAX_POSTING_MOVES).optional(),
+    trim: z.array(PostingMoveSchema).max(MAX_POSTING_MOVES).optional(),
   }),
 });
 
@@ -104,6 +116,18 @@ export type WorklistReport = z.infer<typeof WorklistReportSchema>;
 
 const stringValue = { type: "string" } as const;
 const nonEmptyString = { type: "string", minLength: 1 } as const;
+
+const POSTING_MOVES_JSON_SCHEMA = {
+  type: "array",
+  minItems: 0,
+  maxItems: MAX_POSTING_MOVES,
+  items: {
+    type: "object",
+    properties: { line: { type: "string", minLength: 1, maxLength: MAX_LINE_LENGTH }, why: nonEmptyString },
+    required: ["line", "why"],
+    additionalProperties: false,
+  },
+} as const;
 
 /** The contract in the JSON Schema subset OpenAI Structured Outputs accepts. Keep it aligned with resume_v3.txt. */
 export const WORKLIST_REPORT_JSON_SCHEMA = {
@@ -144,8 +168,10 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
           properties: {
             summary: stringValue,
             missing: { type: "array", minItems: 0, maxItems: 6, items: nonEmptyString },
+            lead: POSTING_MOVES_JSON_SCHEMA,
+            trim: POSTING_MOVES_JSON_SCHEMA,
           },
-          required: ["summary", "missing"],
+          required: ["summary", "missing", "lead", "trim"],
           additionalProperties: false,
         },
       },

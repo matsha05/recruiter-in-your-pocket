@@ -1,0 +1,78 @@
+{
+  "id": "backend-senior-backend-posting",
+  "resume": "fr01_backend_ic_senior.txt",
+  "posting": "posting_senior_backend.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 1,
+    "trim": 0
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with strong backend results and a few unshown responsibilities for Cobalt Pay.",
+    "write_up": [
+      "Your payments work is exceptionally well matched to the core engineering in this role! At Lumen Ledger, you built a Go payouts service, migrated the ledger and made the balance API faster. The results come with the technical work behind them, so a recruiter doesn't have to guess what you contributed.",
+      "The balance API line is the model: it names the service, the change in latency and the architecture behind it. Your progression from Northgate to Harborview to a senior payments role is easy to follow, and your current title is backed by the work.",
+      "For senior backend payments roles generally, your resume is not likely to be what holds you back. For Cobalt Pay, add any real experience with the responsibilities not yet shown, especially reconciliation and on-call ownership. Competition for the role matters too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One concrete piece of work would make this earlier role more useful.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What work did you do on the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Lumen Ledger, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before and after, then shows the design choice you made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Lumen Ledger, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role one level above senior, a wider technical decision would show how you shaped work beyond the migration itself.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, making [a wider technical decision]",
+        "question": "Did you make a wider technical decision connected to this migration, and what was it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current role point to senior backend work, with Go, PostgreSQL and payments systems at the center.",
+      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "Your payouts service and ledger migration are particularly relevant to Cobalt Pay's money-movement work. Keep those accomplishments prominent, and add further responsibilities only where you can describe work you actually did.",
+      "posting": {
+        "summary": "Senior backend role building and running reliable money-movement services, with Go, PostgreSQL, Kafka and payments experience.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ],
+        "lead": [
+          {
+            "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
+            "why": "This directly answers the posting's ask for experience with event-driven systems such as Kafka. Consider moving it to the first line under Harborview."
+          }
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  }
+}

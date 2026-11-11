@@ -243,6 +243,16 @@ export const POSTING_MISSING_LABEL = "What the posting asks for that your resume
 export const POSTING_MISSING_HOW = "If you've done it, say where. If you haven't, leave it out.";
 
 /**
+ * Tailoring to the posting (Nov 10, 2026): lines already on the resume that answer it and sit too low, and lines
+ * it doesn't ask about, when the resume needs the room. Both are for this posting only, and neither changes a
+ * word: the person moves or trims in their own file.
+ */
+export const POSTING_LEAD_LABEL = "Move these up for this posting";
+export const POSTING_LEAD_HOW = "They're already on your resume, further down than this posting needs.";
+export const POSTING_TRIM_LABEL = "Trim these first if you need the room";
+export const POSTING_TRIM_HOW = "Good lines this posting doesn't ask about. Keep them for the next one.";
+
+/**
  * The job the score was judged for and the level a recruiter would put the person at (prompt FIT, Nov 7, 2026):
  * the first thing a recruiter decides, so it sits with the score instead of under the cards. With a posting,
  * the posting's title is the second role.

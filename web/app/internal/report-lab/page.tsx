@@ -136,6 +136,24 @@ function loadLinkedInFixtures(root: string): LabFixture[] {
   });
 }
 
+// Tailoring to a posting (Nov 10, 2026; docs/audits/2026-11-posting-tailoring/): the resume prompt's reads of the
+// first-read wave's synthetic resume-and-posting pairs, as scripts/run-posting-reads.ts saved them from the live model.
+function loadTailoringFixtures(root: string): LabFixture[] {
+  const outDir = path.join(root, "..", "docs/audits/2026-11-posting-tailoring/outputs");
+  const inputs = path.join(root, "..", "docs/audits/2026-11-first-read/resumes");
+  if (!fs.existsSync(outDir)) return [];
+  return fs.readdirSync(outDir).filter((name) => name.endsWith(".json")).sort().map((name) => {
+    const record = JSON.parse(fs.readFileSync(path.join(outDir, name), "utf8"));
+    const resumePath = path.join(inputs, String(record.resume || ""));
+    return {
+      id: `tailor-${record.id}`,
+      label: `tailor · ${String(record.id).replace(/-/gu, " ")} · ${record.report.score}`,
+      report: record.report,
+      resumeText: record.resume && fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined,
+    };
+  });
+}
+
 // Real production-prompt outputs (synthetic golden resumes), as the eval harness saved them.
 function loadFixtures(): LabFixture[] {
   const root = process.cwd();
@@ -216,7 +234,7 @@ function loadFixtures(): LabFixture[] {
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
   // The worklist fixtures lead: they are the report the route writes now; the rest are the v2 shape saved reports keep.
-  return [...loadWorklistFixtures(root), ...loadLinkedInFixtures(root), ...fixtures];
+  return [...loadWorklistFixtures(root), ...loadLinkedInFixtures(root), ...loadTailoringFixtures(root), ...fixtures];
 }
 
 export default async function ReportLabPage({ searchParams }: { searchParams: Promise<{ fixture?: string; as?: string }> }) {

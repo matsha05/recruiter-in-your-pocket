@@ -1,0 +1,76 @@
+{
+  "id": "backend-manager-posting",
+  "resume": "fr01_backend_ic_senior.txt",
+  "posting": "posting_engineering_manager.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 2,
+    "trim": 0
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Strong senior backend experience, but the management track Cobalt Pay requires isn't shown.",
+    "write_up": [
+      "Cobalt Pay is hiring an engineering manager, while your resume shows a senior backend engineer who mentors others. Your payouts and ledger work is directly relevant, but a recruiter can't see the direct-report management the role requires. I'm reading your resume for Senior Backend Engineer, where it makes a much stronger case.",
+      "Your balance API line is a great model: it names the latency problem, the change you made, and the before and after. The rest of the Lumen Ledger role also makes your work tangible, from payout volume to a zero-downtime ledger migration. Your experience leads, and the dates are easy to follow.",
+      "For senior backend roles, this is a strong resume and is unlikely to be the thing holding you back. For Cobalt Pay, move your mentoring and incident-review work higher, and add direct management work if you've done it. The role's requirements and the competition for it will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. You give the recruiter the technical decision and a clear measure of what changed, without making them guess how the two connect.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 5",
+        "line": "Mentor two mid-level engineers through code review and design docs",
+        "cannot_tell": "For a manager role, direct-report responsibilities would show a step beyond mentoring. Add them only if you've held them.",
+        "example": "Mentor two mid-level engineers through code review and design docs; [management responsibilities] for [number] direct reports",
+        "question": "Have you managed engineers directly, and if so, what were your responsibilities?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current role center on senior backend work in payouts, the ledger and payments operations.",
+      "level": "senior, leads technical projects and mentors two mid-level engineers",
+      "note": "Your payouts, ledger migration, mentoring and incident-review work match the team's work. Bring the mentoring and operations lines higher for this application, and add management responsibilities only if you've held them.",
+      "posting": {
+        "summary": "The role leads a payments engineering team, with responsibility for people management, the roadmap and reliable operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "A record of growing engineers into senior roles",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "Build relationships with Finance, Risk and Support"
+        ],
+        "lead": [
+          {
+            "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+            "why": "The posting asks for incident reviews and on-call health. Move this line into the first three bullets of the Lumen Ledger role."
+          },
+          {
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "The role asks you to grow and coach engineers. Move this line higher in the Lumen Ledger role so that work isn't the last thing a recruiter sees there."
+          }
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  }
+}

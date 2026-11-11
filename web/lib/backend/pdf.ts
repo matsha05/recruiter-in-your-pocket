@@ -9,7 +9,7 @@ import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
 import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
-import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_LEAD_HOW, POSTING_LEAD_LABEL, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -91,6 +91,11 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   // The first pass, as on the web report (Nov 7, 2026): a line written to screening software, then which job,
   // what level and the posting, each with its reason, then the posting's fit.
   const read = worklistReadFor(worklist);
+  // Tailoring to the posting, as the report shows it: the lines to move up, then the lines to trim, each with its reason.
+  const movesHtml = (label: string, how: string, moves: Array<{ line: string; why: string }> | undefined) => moves?.length
+    ? `<div class="label">${escapeHtml(label)}</div><div class="how">${escapeHtml(how)}</div><ul>${moves.map((move) => `<li>${escapeHtml(move.line)}<br><span class="note">${escapeHtml(move.why)}</span></li>`).join("")}</ul>`
+    : "";
+  const postingMoves = movesHtml(POSTING_LEAD_LABEL, POSTING_LEAD_HOW, worklist.fit.posting.lead) + movesHtml(POSTING_TRIM_LABEL, POSTING_TRIM_HOW, worklist.fit.posting.trim);
   const level = worklistLevelParts(read.level, read.role);
   const screener = worklist.screener_text ?? [];
   const sortCell = (question: string, answer: string, why?: string | null) =>
@@ -107,9 +112,10 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
         ${level ? sortCell("What level?", level.level, level.because) : ""}
         ${read.hasPosting ? sortCell("Your posting", read.postingRole || "The job you added") : ""}
       </div>` : ""}
-      ${read.hasPosting && (fit.note || fit.posting.missing.length) ? `<div class="posting-fit">
+      ${read.hasPosting && (fit.note || fit.posting.missing.length || postingMoves) ? `<div class="posting-fit">
         ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}
         ${fit.posting.missing.length ? `<div class="label">${escapeHtml(POSTING_MISSING_LABEL)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(POSTING_MISSING_HOW)}</div>` : ""}
+        ${postingMoves}
       </div>` : ""}
     </div>` : "";
 

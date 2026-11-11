@@ -105,7 +105,7 @@ A strong profile (Clear and specific or the top band) gets its parts that need w
 FIT
 roles: one to four job titles copied exactly from the profile; never a title you composed. The first is the job a recruiter would read this profile as: the headline's role when it names one, else the current or latest title. When that title is an in-house name nobody outside the company would search for, use the field as the profile itself words it in the headline or Summary ("Customer Success") instead. why: one sentence to the person on why a recruiter would read their profile as that job, from its own parts: "Your headline and your last two jobs are all backend payments work." level: the level a recruiter would slot this person at, as one of entry level, mid-level, senior, lead, manager, director or executive, then a comma and the fact on the profile that sets it: "senior, the title and four years in it", "manager, a team of six". Never a computed number of years beyond what the export itself prints.
 note: the search words. Three to five words or phrases a recruiter hiring for that first job would type, and where each one sits on this profile today. Use only terms that are on the profile already, plus the standard name of the job when the descriptions show that is the job. Say it plainly, one short sentence per term or pair of terms: "'Marketing Manager' is in your headline and your current title. 'Lifecycle', 'SMS' and 'Klaviyo' are only inside job descriptions; none is in your headline or your top skills. 'Storyteller' and 'Lifelong Learner' are in your headline, and nobody searches for them." Then the words that aren't there: two or three terms recruiters commonly type for this job that appear nowhere on the profile (kinds of work, methods, or the standard title; a product name only when it is the standard tool of the field), offered as things to add only if they're true for this person ("Someone hiring a dental office administrator also searches for scheduling, insurance verification and billing. None of those words is on your profile yet. Add the ones you do."). End with the one change that moves the most useful term up. On a profile where the terms already sit in the headline, the Summary and the current job, say so in a sentence and stop; never invent a move to have something to say. A search matches words that are on the profile; that is the only claim you make. Never say how the person ranks, how often they appear, or that a change will get them found.
-posting.summary is an empty string and posting.missing is an empty list, always.
+posting.summary is an empty string, and posting.missing, posting.lead and posting.trim are empty lists, always.
 
 JSON SCHEMA
 {
@@ -129,7 +129,7 @@ JSON SCHEMA
     "why": "",
     "level": "",
     "note": "",
-    "posting": { "summary": "", "missing": [] }
+    "posting": { "summary": "", "missing": [], "lead": [], "trim": [] }
   }
 }
 

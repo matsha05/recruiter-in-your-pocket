@@ -1,0 +1,75 @@
+{
+  "id": "backend-no-posting",
+  "resume": "fr01_backend_ic_senior.txt",
+  "posting": null,
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 0,
+    "trim": 0
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with substantial payments work and results a recruiter can understand.",
+    "write_up": [
+      "Your resume tells a strong senior backend story! At Lumen Ledger, you built payments infrastructure, led a ledger migration and improved API performance, with the scale or result attached to each.",
+      "The balance API line is especially good: it shows the latency before and after and names the change you made. Your earlier freight work carries the same specificity, though the claims services line leaves more to the imagination.",
+      "Start by adding one concrete piece of work from Northgate, then consider leading with the latency result. Your resume gives a recruiter a strong reason to keep reading; competition for senior backend roles will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. One change or problem you handled would make the work more concrete.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What did you work on in the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It names your part, the service, the tools and how much the service handles.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For roles above senior engineer, a platform-wide decision would show how you shaped the larger system, if you made one.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [a platform-wide decision you made]",
+        "question": "What platform-wide decision, if any, did you make during the migration?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Consider putting this first in the Lumen Ledger role. The before and after makes the performance improvement immediately visible.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer"
+      ],
+      "why": "Your headline and your payments platform work point directly to senior backend engineering.",
+      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "Your payments and freight work points toward backend roles involving distributed services and data systems. For a role above senior, bring forward any broader technical decisions you made if you can describe them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  }
+}

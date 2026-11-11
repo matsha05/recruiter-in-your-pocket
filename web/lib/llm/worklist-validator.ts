@@ -10,7 +10,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type WorklistCard, type WorklistReport } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -61,6 +61,26 @@ function normaliseCard(card: WorklistCard): WorklistCard {
   };
 }
 
+/**
+ * The posting's moves, held to the resume: a line that isn't on it word for word, or that sits on it more than
+ * once, is dropped, never repaired, because the lists are optional and a wrong quote is worse than none. A line
+ * may be moved up or trimmed, never both; without a posting there are no moves.
+ */
+function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string | undefined, taken: string[]): PostingMove[] {
+  const kept: PostingMove[] = [];
+  for (const move of moves ?? []) {
+    let line = move.line.replace(/\s+/gu, " ").trim();
+    if (resumeText) {
+      const resolved = resolveCardLine(line, resumeText);
+      if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
+      if (resolved.status === "resolved") line = resolved.line;
+    }
+    if ([...taken, ...kept.map((item) => item.line)].some((other) => sameCardLine(other, line))) continue;
+    kept.push({ line, why: normaliseProse(move.why) });
+  }
+  return kept;
+}
+
 function proseFields(report: WorklistReport): Array<{ path: string; value: string }> {
   const fields: Array<{ path: string; value: string }> = [{ path: "verdict", value: report.verdict }];
   report.write_up.forEach((paragraph, index) => fields.push({ path: `write_up[${index}]`, value: paragraph }));
@@ -72,7 +92,13 @@ function proseFields(report: WorklistReport): Array<{ path: string; value: strin
   });
   fields.push({ path: "fit.note", value: report.fit.note }, { path: "fit.level", value: report.fit.level }, { path: "fit.posting.summary", value: report.fit.posting.summary });
   if (report.fit.why) fields.push({ path: "fit.why", value: report.fit.why });
+  (report.fit.posting.lead ?? []).forEach((move, index) => fields.push({ path: `fit.posting.lead[${index}].why`, value: move.why }));
+  (report.fit.posting.trim ?? []).forEach((move, index) => fields.push({ path: `fit.posting.trim[${index}].why`, value: move.why }));
   return fields;
+}
+
+function isMockRun() {
+  return ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
 }
 
 export function validateWorklistPayload(obj: unknown, resumeText?: string, options: ValidationOptions = {}): WorklistReport {
@@ -98,13 +124,23 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     },
   };
 
+  // Tailoring exists only with a posting. An empty list is left off, so a report without moves keeps its old shape.
+  {
+    const { lead: draftLead, trim: draftTrim, ...posting } = report.fit.posting;
+    const hasPosting = Boolean(posting.summary);
+    const groundingText = isMockRun() && !options.forceGrounding ? undefined : resumeText;
+    const lead = hasPosting ? groundPostingMoves(draftLead, groundingText, []) : [];
+    const trim = hasPosting ? groundPostingMoves(draftTrim, groundingText, lead.map((move) => move.line)) : [];
+    report.fit = { ...report.fit, posting: { ...posting, ...(lead.length ? { lead } : {}), ...(trim.length ? { trim } : {}) } };
+  }
+
   const issues: WorklistValidationIssue[] = [];
   if (sourceTagLeak(JSON.stringify(report))) issues.push({ path: "response", message: "exposes a SOURCE catalog tag" });
   for (const field of proseFields(report)) {
     for (const phrase of bannedPhrasesIn(field.value)) issues.push({ path: field.path, message: `uses the retired phrase "${phrase}"` });
   }
 
-  const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
+  const isMockOpenAI = isMockRun();
   const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
 
   if (resumeText && shouldGround) {
