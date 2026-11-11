@@ -16273,7 +16273,7 @@
     {
       "text": "All comparisons",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 39,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16290,7 +16290,7 @@
     {
       "text": "’s prices read on",
       "kind": "jsx-text",
-      "line": 47,
+      "line": 49,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16307,7 +16307,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 49,
+      "line": 51,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16324,7 +16324,7 @@
     {
       "text": "Side by side",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 56,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16341,7 +16341,7 @@
     {
       "text": "What we compared",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 60,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16358,7 +16358,7 @@
     {
       "text": "See it on your own resume",
       "kind": "attr:aria-label",
-      "line": 83,
+      "line": 85,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16375,7 +16375,7 @@
     {
       "text": "See what a recruiter would question on yours.",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 87,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16392,7 +16392,7 @@
     {
       "text": "The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass.",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 89,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16409,7 +16409,7 @@
     {
       "text": "See a complete report on a fictional resume",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 89,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16426,7 +16426,7 @@
     {
       "text": "before you run yours.",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 89,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16443,7 +16443,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 92,
+      "line": 94,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16460,7 +16460,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 112,
+      "line": 114,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16477,7 +16477,7 @@
     {
       "text": "Other comparisons",
       "kind": "jsx-text",
-      "line": 122,
+      "line": 124,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16494,7 +16494,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 135,
+      "line": 137,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16511,7 +16511,7 @@
     {
       "text": "We read",
       "kind": "jsx-text",
-      "line": 137,
+      "line": 139,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16528,7 +16528,7 @@
     {
       "text": "’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email",
       "kind": "jsx-text",
-      "line": 137,
+      "line": 139,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16545,7 +16545,7 @@
     {
       "text": "and we’ll fix it.",
       "kind": "jsx-text",
-      "line": 138,
+      "line": 140,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16562,7 +16562,7 @@
     {
       "text": ", on",
       "kind": "jsx-text",
-      "line": 143,
+      "line": 145,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16579,7 +16579,7 @@
     {
       "text": "’s free tier.",
       "kind": "jsx-text",
-      "line": 143,
+      "line": 145,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16596,7 +16596,7 @@
     {
       "text": "That is what each one said, not a verdict on which is better.",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 147,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16613,7 +16613,7 @@
     {
       "text": "We haven’t run",
       "kind": "jsx-text",
-      "line": 149,
+      "line": 151,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16630,7 +16630,7 @@
     {
       "text": "on the same resume, so this page compares what each one sells, not the quality of what comes back.",
       "kind": "jsx-text",
-      "line": 149,
+      "line": 151,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16647,7 +16647,7 @@
     {
       "text": "See what they see in yours.",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 157,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16664,7 +16664,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 158,
+      "line": 160,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
