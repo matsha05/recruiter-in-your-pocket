@@ -138,7 +138,8 @@ export default function AnalysisScanning({
     const isLive = stage !== undefined;
     const liveStage: WaitStage = stage ?? "sending";
     const currentIndex = stepIndexFor(liveStage);
-    const nowLabel = liveStage === "retrying" ? "Starting over" : WAIT_STEPS[currentIndex].now;
+    // The steps are worded for a resume; a profile review says "profile" in the same places.
+    const nowLabel = liveStage === "retrying" ? "Starting over" : WAIT_STEPS[currentIndex].now.replace("resume", subject);
 
     const lines = useMemo(() => (mode === "resume" && resumeText?.trim() ? sheetLines(resumeText) : []), [mode, resumeText]);
     // The pen's line is a function of the stage: the name at the start, the last line of text at the end.
@@ -162,7 +163,7 @@ export default function AnalysisScanning({
             <section className={styles.content} aria-labelledby="analysis-title" aria-busy="true">
                 <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
                     {isSlow
-                        ? `Still working on your ${subject} report. You can keep waiting, retry, or stop.`
+                        ? `Still working on your ${mode === "linkedin" ? "profile review" : "resume report"}. You can keep waiting, retry, or stop.`
                         : isLive
                             ? `${nowLabel}.`
                             : `Reading your ${subject}. This usually takes under two minutes.`}
