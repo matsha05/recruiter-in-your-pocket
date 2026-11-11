@@ -1,4 +1,5 @@
-/* The footer: one row on the site's column, then one quiet line (Nov 10, 2026). */
+/* The footer: one row on the site's column, then one quiet line (Nov 10, 2026), on the inverted band (Nov 11). Its
+   colors are the band's tokens (globals.css, .riyp-inverted). */
 
 .footer {
     position: relative;

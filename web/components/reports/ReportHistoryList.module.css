@@ -46,7 +46,7 @@
 
 .open {
     display: block;
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     color: hsl(var(--text-strong));
     text-decoration: none;
 }

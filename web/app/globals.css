@@ -55,7 +55,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 150 10.5% 7.5%;
 
-    --primary: 150 10.5% 7.5%;
+    /* The main action wears the pen (Matt, Nov 11, 2026): the same green as the sheets that got called back.
+       Secondary actions stay ink outlines. */
+    --primary: 160 48.8% 23.7%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 75 8.7% 91%;
@@ -87,6 +89,8 @@
     /* Highlighter system (Oct 30, 2026): ink for actions, pen for the recruiter's notes and links, highlighter yellow for the Critical Miss. --brass is now the deep olive ink used on yellow.
        The older aqua names below are aliases so existing utilities pick up the pen. */
     --pen: 160 48.8% 23.7%;
+    /* The pen at a deeper value: the ground of an inverted band (the homepage close and the footer). */
+    --pen-deep: 160 48.8% 16%;
     --pen-strong: 160 40% 32%;
     --pen-tint: 155 25% 92%;
     /* A recruiter's desk of pens (Oct 31, 2026). Blue ink is the candidate's own work and numbers;
@@ -1423,4 +1427,32 @@ section {
    Tailwind 3 composes font-variant-numeric from these variables, so this overrides the utility once. */
 .tabular-nums {
   --tw-numeric-spacing: proportional-nums;
+}
+
+/* An inverted band (Nov 11, 2026): the deep pen as the ground, with the tokens a surface reads redefined on it, so
+   text, hairlines, links, the wordmark's "in", focus rings and the main button all follow without a rule of their
+   own. Tokens that point at another token are restated here because a custom property resolves where it is declared.
+   Used for the homepage close and the site footer; nowhere inside the report. */
+.riyp-inverted {
+  --background: var(--pen-deep);
+  --surface-page: var(--pen-deep);
+  --foreground: 0 0% 100%;
+  --text-strong: 0 0% 100%;
+  --ink: 0 0% 100%;
+  --muted-foreground: 150 22% 82%;
+  --text-muted: 150 22% 82%;
+  --line: 158 34% 27%;
+  --border: 158 34% 27%;
+  --pen: 153 43% 72%;
+  --pen-strong: 153 43% 82%;
+  --brand: 153 43% 72%;
+  --ring: 0 0% 100%;
+  --link-line: 153 43% 72% / 0.5;
+  --link-line-quiet: 0 0% 100% / 0.3;
+  --primary: 0 0% 100%;
+  --primary-foreground: var(--pen-deep);
+  --paper-sheet: 158 34% 26%;
+  --paper-edge: 158 30% 34%;
+  background: hsl(var(--pen-deep));
+  color: hsl(var(--foreground));
 }

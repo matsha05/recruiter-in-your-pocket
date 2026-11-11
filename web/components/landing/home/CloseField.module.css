@@ -1,15 +1,26 @@
-/* The close: the pile again, pale, and one sheet outlined (components/materials/Pile). */
+/* The close: the pile again on the deep pen (Nov 11, 2026), dim, and one sheet outlined (components/materials/Pile).
+   A full-width band that runs into the footer, so the page ends on one ground. */
+
+.band {
+    margin-top: var(--beat);
+    padding-block: 6rem;
+    scroll-margin-top: 4.5rem;
+}
 
 .inner {
     display: grid;
     grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
     gap: 3rem 5rem;
     align-items: center;
+    max-width: var(--marketing-content);
+    margin: 0 auto;
+    padding-inline: var(--marketing-gutter);
 }
 .copy { display: grid; gap: 2rem; justify-items: start; }
 .title { margin: 0; max-width: 14ch; font: var(--type-headline); letter-spacing: var(--tracking-headline); text-wrap: balance; }
 
 @media (max-width: 900px) {
+    .band { padding-block: 4rem; }
     .inner { grid-template-columns: 1fr; }
     .pile { order: -1; }
 }
