@@ -1,10 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "@phosphor-icons/react";
 import { PenCircle, PenUnderline } from "@/components/materials/Pen";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import styles from "./ReadBeat.module.css";
 
@@ -12,8 +9,10 @@ import styles from "./ReadBeat.module.css";
  * The second beat (Matt, Nov 4, 2026): the read, in the time it takes to read the sentence. The recruiter's
  * green pen draws a line under the headline at reading pace, starting when a third of the section is in
  * view. When it reaches the end, the two choices a recruiter has appear where the pen stopped, and the pen
- * circles Reject in red: the one red mark on the site, spent on the decision. The ending and the button are on the
- * page from the start (Nov 10, 2026), so the section is never a blank band while the pen runs.
+ * circles Reject in red: the one red mark on the site, spent on the decision. The ending is on the page from
+ * the start (Nov 10, 2026), so the section is never a blank band while the pen runs. It carries no button
+ * (Matt, Nov 11, 2026): the hero's is one scroll up and the header's is still on screen, and this section's job
+ * is to show the read, not to ask again.
  * Under reduced motion everything is simply there.
  */
 const HEADLINE = "By the time you finish reading this sentence, a recruiter has finished reading your resume.";
@@ -84,13 +83,6 @@ export function ReadBeat() {
                 <p className={styles.ending}>
                     {ENDING.map((sentence) => <span key={sentence} className={styles.sentence}>{sentence}</span>)}
                 </p>
-                <div className={styles.actions}>
-                    <Button asChild size="lg">
-                        <Link href="/workspace" data-analytics-cta="read_report">
-                            Get your free report <ArrowRight weight="bold" aria-hidden="true" />
-                        </Link>
-                    </Button>
-                </div>
             </div>
         </section>
     );
