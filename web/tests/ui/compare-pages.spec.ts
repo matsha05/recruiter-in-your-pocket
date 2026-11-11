@@ -47,7 +47,10 @@ test.describe("comparison pages", () => {
     test(`${route} quotes the tool's own prices, links the research, and has no serious a11y violations`, async ({ page }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
       await expect(page.locator("[data-visual-anchor='comparison']")).toBeVisible();
-      await expect(page.getByRole("heading", { level: 1 })).toContainText("vs Recruiter in Your Pocket");
+      // The search title is the query; the h1 is the hook (docs/copy-system.md §8).
+      await expect(page).toHaveTitle(/ vs Recruiter in Your Pocket/);
+      await expect(page.getByRole("heading", { level: 1 })).not.toContainText("vs Recruiter in Your Pocket");
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText(/\S{3,}/);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://www.recruiterinyourpocket.com${route}`);
 
       // The side-by-side table has both columns, and the price row is there.

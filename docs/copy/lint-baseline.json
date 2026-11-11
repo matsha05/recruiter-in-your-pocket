@@ -1,6 +1,6 @@
 {
   "note": "Strings the copy lint's pattern checks flag but the gate doesn't block yet: known debt, to be worked down. Regenerate only to remove fixed entries or to keep a flagged string on purpose, and say why in the PR (docs/promptops/shipping-gate.md, Copy).",
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "entries": [
     {
       "text": "The extension reloaded. Refresh the page.",
@@ -193,7 +193,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:161"
+      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:159"
     },
     {
       "text": "When a line says what you did but not what changed, it gets a card. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.",
@@ -233,7 +233,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:73"
     },
     {
       "text": "says what changed, how you measured it, and what you did to get there",
@@ -241,7 +241,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:73"
     },
     {
       "text": "the cash, the bonus, and the equity separated",
@@ -249,7 +249,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:85"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:83"
     },
     {
       "text": ". Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.",
@@ -257,7 +257,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:91"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:89"
     },
     {
       "text": "Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it.",
@@ -265,7 +265,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:99"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:97"
     },
     {
       "text": "what changed, how you measured it, and what you did to get there",
@@ -281,7 +281,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/social-screening/page.tsx:83"
+      "where": "web/app/(editorial)/research/social-screening/page.tsx:81"
     },
     {
       "text": "It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed:",
@@ -289,7 +289,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:70"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:65"
     },
     {
       "text": "Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards.",
@@ -297,7 +297,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:85"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:80"
     },
     {
       "text": "When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.",
@@ -370,14 +370,6 @@
         "colon_fragment"
       ],
       "where": "web/app/(marketing)/help/page.tsx:7"
-    },
-    {
-      "text": "See what a recruiter sees: free resume report",
-      "moment": "marketing",
-      "tics": [
-        "colon_fragment"
-      ],
-      "where": "web/app/(marketing)/page.tsx:8"
     },
     {
       "text": "Failed to fetch analytics",
@@ -505,7 +497,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:158"
+      "where": "web/components/compare/comparisons.tsx:164"
     },
     {
       "text": "Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the lines it carded the first time are off the list.",
@@ -513,7 +505,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:170"
+      "where": "web/components/compare/comparisons.tsx:176"
     },
     {
       "text": "what changed, how you measured it, and what you did to get there",
@@ -521,7 +513,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/components/compare/comparisons.tsx:370"
+      "where": "web/components/compare/comparisons.tsx:380"
     },
     {
       "text": "Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again.",
@@ -529,7 +521,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:519"
+      "where": "web/components/compare/comparisons.tsx:531"
     },
     {
       "text": "Ours led with the resume’s own numbers, put one line first with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day, on the report as it ran then; the report now cards every line a recruiter trips on, not one.",
@@ -538,7 +530,7 @@
         "coined_word",
         "invented_number"
       ],
-      "where": "web/components/compare/comparisons.tsx:53"
+      "where": "web/components/compare/comparisons.tsx:57"
     },
     {
       "text": "What it won’t do: design the page, write a resume from a job title, or build you a website.",
@@ -546,7 +538,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:616"
+      "where": "web/components/compare/comparisons.tsx:630"
     },
     {
       "text": ": Free at $0 with four basic resume templates, four matching cover letter templates, one basic website template, 20,000 pre-written phrases, 1,500 resume examples, and unlimited downloads; Monthly at $24; Quarterly at $54 every three months, shown as $18 a month; and Yearly at $96 every twelve months, shown as $8 a month and marked as a 25% saving. The paid plans share one feature list: 40 resume and 40 cover letter templates, all colors and typefaces, the AI Writer, the ATS Resume Checker, Career Map, LinkedIn and PDF import, the mobile apps, seven personal website templates, priority support, and a 14-day money-back guarantee. A human grammar correction is $30 per resume. Students who verify with ISIC, ITIC, or UNiDAYS get Premium free.",
@@ -554,7 +546,7 @@
       "tics": [
         "internal_term"
       ],
-      "where": "web/components/compare/comparisons.tsx:625"
+      "where": "web/components/compare/comparisons.tsx:639"
     },
     {
       "text": "Pricing (plans, prices, and what each includes)",
@@ -562,7 +554,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/components/compare/comparisons.tsx:645"
+      "where": "web/components/compare/comparisons.tsx:659"
     },
     {
       "text": ": Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee.",
@@ -570,7 +562,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:743"
+      "where": "web/components/compare/comparisons.tsx:759"
     },
     {
       "text": "Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report cards a line, trust the card: it’s the question a recruiter would ask.",
@@ -578,7 +570,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:755"
+      "where": "web/components/compare/comparisons.tsx:771"
     },
     {
       "text": "doesn’t touch the design. It reads the words on the resume you have the way a recruiter would, free for the first report. If the look of the page is what you’re after, Enhancv is built for that. If you want to know whether the words hold up, start here.",
@@ -586,7 +578,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:783"
+      "where": "web/components/compare/comparisons.tsx:801"
     },
     {
       "text": "Enhancv is a resume builder for people who want the page to look designed: hundreds of templates, drag-and-drop sections, and content suggestions, free for seven days with its branding on the PDF, then from $16.50 a month on a six-month plan.",
@@ -594,7 +586,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:783"
+      "where": "web/components/compare/comparisons.tsx:801"
     },
     {
       "text": "What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report.",
@@ -602,7 +594,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/components/compare/comparisons.tsx:848"
+      "where": "web/components/compare/comparisons.tsx:866"
     },
     {
       "text": "We couldn't load this saved job. Please try again.",
@@ -834,7 +826,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/lib/billing/pricing.ts:39"
+      "where": "web/lib/billing/pricing.ts:46"
     },
     {
       "text": "$29 once. Good for 90 days. No automatic renewal.",
@@ -842,7 +834,7 @@
       "tics": [
         "punch_fragments"
       ],
-      "where": "web/lib/billing/pricing.ts:54"
+      "where": "web/lib/billing/pricing.ts:61"
     },
     {
       "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs when you request one. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",

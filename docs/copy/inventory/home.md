@@ -9,7 +9,7 @@ Routes: `/`, `/methodology`, `/research/career-breaks`. Strings: 66 (60 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | marketing | `web/app/(marketing)/page.tsx:5` | const | A free resume report that shows what a recruiter takes from your resume, the lines they’d stop on, and what to add to each one before you apply. |
-| 2 | marketing | `web/app/(marketing)/page.tsx:8` | const | See what a recruiter sees: free resume report |
+| 2 | marketing | `web/app/(marketing)/page.tsx:8` | const | You’re qualified. Your resume isn’t saying so. |
 | 3 | marketing | `web/app/(marketing)/page.tsx:9` | const | See what a recruiter sees, line by line. Your first report is free. No account or card. |
 | 4 | marketing | `web/app/(marketing)/page.tsx:14` | key:alt | 244 people applied for the job you wanted. A pile of 244 sheets of paper, eighteen of them green: the ones who got called back. |
 | 5 | marketing | `web/app/(marketing)/page.tsx:55` | key:description | {FREE_REPORT_ENTITLEMENT.p…} {FREE_REPORT_ENTITLEMENT.b…} No account required. |

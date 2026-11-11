@@ -14,10 +14,10 @@ type UnlockExpectation = Readonly<{
 
 // The title is the only thing that changes with the section; the list and price are the same every time.
 const EXPECTED_UNLOCK_COPY = {
-  evidence_ledger: { title: "Check your revised resume" },
-  bullet_upgrades: { title: "See what your edits changed" },
-  missing_wins: { title: "Check the details you add" },
-  job_alignment: { title: "Read it against another role" },
+  evidence_ledger: { title: "Don’t send the revision blind." },
+  bullet_upgrades: { title: "You changed the lines. Find out if it worked." },
+  missing_wins: { title: "You added the details. See what a recruiter makes of them." },
+  job_alignment: { title: "Another job will read this resume differently." },
   export_pdf: { title: "PDFs come with a signed-in report" },
 } as const satisfies Record<UnlockSection, UnlockExpectation>;
 
