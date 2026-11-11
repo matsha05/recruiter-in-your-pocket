@@ -55,6 +55,33 @@ test("the report opens on the score, the rung, the verdict and the write-up, the
   await expect(page.getByTestId("report-next-step").getByRole("button", { name: /Compare my revision/ })).toBeVisible();
 });
 
+test("filled lines are gathered after the cards, as written and as they read now, with one button to copy them all", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await runReport(page, { signedIn: false });
+  // Nothing is finished yet, so there is no sheet.
+  await expect(page.getByTestId("finished-lines")).toHaveCount(0);
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const blanks = card.getByTestId("worklist-blank");
+  for (let index = 0; index < lineLabels.length; index += 1) await blanks.nth(index).fill(`answer ${index + 1}`);
+  const sheet = page.getByTestId("finished-lines");
+  await expect(sheet).toBeVisible();
+  await expect(sheet.getByRole("heading", { level: 2 })).toHaveText("Your finished lines.");
+  const row = sheet.getByTestId("finished-line");
+  await expect(row).toHaveCount(1);
+  // The line as written, then the line with the person's own words in it.
+  await expect(row).toContainText(mock.cards[lineCard].line);
+  await expect(row).toContainText("answer 1");
+  await expect(row).not.toContainText("[");
+  await sheet.getByTestId("finished-copy-all").click();
+  await expect(sheet.getByTestId("finished-copy-all")).toContainText("Copied");
+  const clipboard = await page.evaluate(() => navigator.clipboard.readText());
+  expect(clipboard).toContain("answer 1");
+  expect(clipboard).not.toContain("[");
+  // Emptying a blank takes the line back off the sheet.
+  await blanks.first().fill("");
+  await expect(page.getByTestId("finished-lines")).toHaveCount(0);
+});
+
 test("the answers fill the blanks word for word, Copy waits for every blank, and a signed-in report keeps them", async ({ page }) => {
   const stored: unknown[] = [];
   await page.route(`**/api/reports/${REPORT_ID}/answers`, async (route) => {

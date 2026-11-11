@@ -15,6 +15,7 @@ import { ResearchReceipts } from "../ResearchReceipts";
 import type { ReportData } from "../ReportTypes";
 import { ScoreBand } from "../markup/ScoreBand";
 import shared from "../markup/MarkedReport.module.css";
+import { FinishedLines, type FinishedLine } from "./FinishedLines";
 import { FirstPass } from "./FirstPass";
 import { WorklistCard, type CardState } from "./WorklistCard";
 import { WorklistComparison } from "./WorklistComparison";
@@ -83,6 +84,19 @@ export function WorklistReport({
   const onStateChange = useCallback((index: number, state: CardState) => {
     setStates((current) => (current[index] === state ? current : { ...current, [index]: state }));
   }, []);
+  // Each filled line with its answers, for the finished-lines sheet after the cards.
+  const [finished, setFinished] = useState<Record<number, FinishedLine>>({});
+  const onLineChange = useCallback((index: number, line: FinishedLine | null) => {
+    setFinished((current) => {
+      if (!line) {
+        if (!(index in current)) return current;
+        const next = { ...current };
+        delete next[index];
+        return next;
+      }
+      return current[index]?.line === line.line ? current : { ...current, [index]: line };
+    });
+  }, []);
   const fillable = report.cards.flatMap((card, index) => (card.kind !== "keep" && /\[[^\]]*\]/u.test(card.example) ? [index] : []));
   const filled = fillable.filter((index) => states[index] === "filled");
   const allAddressed = fillable.length > 0 && filled.length === fillable.length;
@@ -138,6 +152,7 @@ export function WorklistReport({
                 initial={storedLineAnswers?.[String(index)]}
                 onPersist={persist}
                 onStateChange={onStateChange}
+                onLineChange={onLineChange}
               />
             ))}
           </ol>
@@ -164,6 +179,7 @@ export function WorklistReport({
                 initial={storedLineAnswers?.[String(index)]}
                 onPersist={persist}
                 onStateChange={onStateChange}
+                onLineChange={onLineChange}
               />
             ))}
           </ol>
@@ -199,6 +215,8 @@ export function WorklistReport({
           {report.lifted_by_employer && <p>{isProfile ? "A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work." : "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work."}</p>}
         </div>
       </details>
+
+      <FinishedLines cards={report.cards} finished={finished} document={document} />
 
       <ReportEnding
         document={document}
