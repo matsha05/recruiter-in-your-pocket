@@ -72,7 +72,7 @@
 }
 
 .weak { color: hsl(var(--text-muted)); }
-.strong { color: hsl(var(--text-strong)); font-weight: 500; }
+.strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 .exampleNote { color: hsl(var(--text-muted)); font: var(--type-label); }
 
 .figure { margin-top: 2rem; }

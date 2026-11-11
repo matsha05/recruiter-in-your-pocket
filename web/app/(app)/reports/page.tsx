@@ -8,6 +8,7 @@ import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { launchFlags } from "@/lib/launch/flags";
 import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
+import { splitVerdict } from "@/lib/reports/report-opening";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
 function verdictLine(value: unknown): string | null {
@@ -111,7 +112,9 @@ export default async function ReportsPage() {
               id: report.id,
               score: report.score,
               isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
-              verdict: verdictLine(report.verdict || report.first_impression || report.takeaway),
+              // An earlier report's first impression runs two or three sentences; its row shows the first, the way
+              // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
+              verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),
               name: report.name,
               targetRole: report.target_role,
               createdAt: report.created_at,

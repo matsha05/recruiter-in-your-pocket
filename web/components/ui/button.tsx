@@ -8,7 +8,7 @@ import { CircleNotch } from "@phosphor-icons/react"
 import { ActionFeedback } from "./action-feedback"
 
 /**
- * The one Button (Highlighter 1.1). Three sizes (44, 48, 60) and three variants: an ink primary,
+ * The one Button (Highlighter 1.1). Three sizes (44, 48, 60) and three variants: a pen-green primary (Nov 11, 2026; ink before),
  * an outlined secondary, and a quiet text action. Deleting uses the outlined destructive variant, and the final
  * irreversible confirm uses destructiveFinal, the only filled red button.
  * Every variant shares the press grammar: a fast color change on hover and a 0.98 press.

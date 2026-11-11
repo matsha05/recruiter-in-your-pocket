@@ -17,7 +17,8 @@ function validateCanonicalPalette(globalsSource) {
     "--card": "ffffff",
     "--secondary": "e9eae6",
     "--foreground": "111513",
-    "--primary": "111513",
+    // The main action wears the pen since Nov 11, 2026 (design-system.md §4).
+    "--primary": "1f5a46",
     "--text-muted": "5a605c",
     "--muted-foreground": "5a605c",
     // Oct 30, 2026: aqua retired; the pen is the one accent and brass marks the Critical Miss.

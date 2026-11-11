@@ -126,6 +126,12 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | --- | --- | --- | --- | --- |
 | 1 | report | `web/components/workspace/report/markup/ScoreBand.tsx:18` | attr:aria-label | {band.name}, band {current + 1} of {scale.length} |
 
+## /reports, /reports/[id], /sample-report, /workspace
+
+| # | Moment | Where | Kind | String |
+| --- | --- | --- | --- | --- |
+| 1 | report | `web/lib/reports/report-opening.ts:90` | return | read in {remainder} s |
+
 ## /reports/[id], /sample-report, /workspace
 
 | # | Moment | Where | Kind | String |
@@ -299,12 +305,11 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 167 | pricing | `web/components/workspace/UnlockBanner.tsx:112` | attr:aria-label | Dismiss banner |
 | 168 | report | `web/lib/reports/anonymous-report-recovery-client.ts:18` | const | Your report may still be finishing. Keep this tab open and it will appear here. |
 | 169 | report | `web/lib/reports/anonymous-report-recovery-client.ts:20` | const | We couldn't load your report yet. It's still linked to this browser, so refresh in a minute to try again. |
-| 170 | report | `web/lib/reports/report-opening.ts:90` | return | read in {remainder} s |
-| 171 | report | `web/lib/reports/saved-report-revision.ts:44` | return | This comparison link is incomplete. Open a saved report and choose Compare my revision. |
-| 172 | report | `web/lib/reports/saved-report-revision.ts:45` | return | Sign in to the account that saved this report, then try again. |
-| 173 | report | `web/lib/reports/saved-report-revision.ts:46` | return | This report was deleted or is not available to this account. Choose another saved report or start a new one. |
-| 174 | report | `web/lib/reports/saved-report-revision.ts:47` | return | This saved report cannot be used for comparison. Start a new report with your current resume. |
-| 175 | report | `web/lib/reports/saved-report-revision.ts:48` | return | We could not load the original report for comparison. Try again or start a new report. |
+| 170 | report | `web/lib/reports/saved-report-revision.ts:44` | return | This comparison link is incomplete. Open a saved report and choose Compare my revision. |
+| 171 | report | `web/lib/reports/saved-report-revision.ts:45` | return | Sign in to the account that saved this report, then try again. |
+| 172 | report | `web/lib/reports/saved-report-revision.ts:46` | return | This report was deleted or is not available to this account. Choose another saved report or start a new one. |
+| 173 | report | `web/lib/reports/saved-report-revision.ts:47` | return | This saved report cannot be used for comparison. Start a new report with your current resume. |
+| 174 | report | `web/lib/reports/saved-report-revision.ts:48` | return | We could not load the original report for comparison. Try again or start a new report. |
 
 ## /sample-report, /workspace
 

@@ -53,7 +53,7 @@
     padding: 1.5rem 1.5rem 1.75rem;
     color: hsl(var(--text-strong));
     text-decoration: none;
-    transition: border-color 160ms ease;
+    transition: border-color var(--duration-fast) var(--ease);
 }
 
 .pillar:hover { border-color: hsl(var(--text-strong)); }
@@ -78,7 +78,7 @@
     width: 1.125rem;
     height: 1.125rem;
     color: hsl(var(--text-muted));
-    transition: transform 160ms ease, color 160ms ease;
+    transition: transform var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
 }
 
 .pillar:hover .arrow { transform: translateX(2px); color: hsl(var(--text-strong)); }
