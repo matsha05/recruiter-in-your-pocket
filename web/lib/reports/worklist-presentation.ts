@@ -248,6 +248,22 @@ export function fitHeading(report: Pick<WorklistReport, "fit">) {
   return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
 }
 
+/**
+ * The finished lines (components/workspace/report/worklist/FinishedLines.tsx): every line the person filled in,
+ * as written and as it reads now, with one button to copy them all.
+ */
+export function finishedLinesWording(document: "resume" | "linkedin" = "resume") {
+  const profile = document === "linkedin";
+  return {
+    title: "Your finished lines.",
+    lead: profile
+      ? "Each one is your own text with your answers in, in the order your profile shows them. The blue words are the ones you added."
+      : "Each one is your own line with your answers in, in resume order. The blue words are the ones you added.",
+    copyOne: "Copy the line",
+    copyAll: (count: number) => `Copy all ${count} lines`,
+  };
+}
+
 /** The requirements table on a posting read: what the posting asks for, and the resume line that answers each. */
 export const POSTING_TABLE_LABEL = "What this posting asks for";
 export const POSTING_COVERED_LABEL = "Your resume answers it here";

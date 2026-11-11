@@ -553,6 +553,33 @@
     font: var(--type-small);
 }
 
+/* ---------- The finished lines: each filled line as written and as it reads now, then one button for all ---------- */
+
+.finishedList {
+    display: grid;
+    gap: 1.5rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.finishedList li {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.finishedBefore {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+    text-decoration-line: line-through;
+    text-decoration-color: hsl(var(--muted-foreground) / 0.5);
+    text-wrap: pretty;
+}
+
+.finished .tools {
+    margin-top: 1.5rem;
+}
+
 /* ---------- A posting's requirements: each must-have, with the line that answers it or the plain fact that none does ---------- */
 
 .requirements {
