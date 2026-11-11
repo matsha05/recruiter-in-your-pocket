@@ -3,7 +3,7 @@
   "resume": "fr01_backend_ic_senior.txt",
   "posting": null,
   "model": "gpt-6.1-terra",
-  "today": "2026-11-11",
+  "today": "2026-11-07",
   "repaired": false,
   "firstError": null,
   "drafted": {
@@ -11,34 +11,34 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 6942,
-    "tokens_out": 1629,
-    "cost_estimate_usd": 0.01682175
+    "tokens_in": 7032,
+    "tokens_out": 1307,
+    "cost_estimate_usd": 0.00798505
   },
   "report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 89,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer whose payments work comes with scale and measurable results.",
+    "verdict": "A senior backend engineer with substantial payments work and results a recruiter can follow.",
     "write_up": [
-      "This is a strong senior backend resume! At Lumen Ledger, you show how you built payments infrastructure, migrated the ledger and improved API performance. A recruiter can connect the technical choices to the scale of the work and what changed.",
-      "The balance API line is a model: it names the latency problem, the change you made and the before-and-after numbers. The move from insurance to freight technology to payments is easy to follow, and your current role backs up your senior headline.",
-      "Your resume isn't likely to be the thing holding you back on its own. Competition for a particular job will still matter. I'd add one concrete detail to the older Northgate role, then consider whether your ledger migration can also show a broader technical decision."
+      "This is a strong senior backend resume! At Lumen Ledger, you show payments infrastructure work at scale, then explain how you migrated the ledger and made the balance API faster. A recruiter can see both the systems you built and what changed.",
+      "The balance API line is a model: it gives the starting and ending latency and names the technical change. Your progression from insurance to freight to payments is easy to follow. The oldest role is thinner, but it doesn't obscure your recent work.",
+      "Let's give the claims intake line a little more substance, then consider adding a broader technical decision from the ledger migration for roles above senior. Your resume isn't likely to be the thing standing between you and a callback; the competition for a particular role and a referral can still matter."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Software Engineer, Northgate Insurance, line 1",
         "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. One change you made would give them something concrete to take away.",
-        "example": "Maintained the claims intake services in Java by [changes made]",
-        "question": "What changes did you make to the claims intake services?"
+        "cannot_tell": "Maintained could cover several kinds of work. A recruiter can't tell what you changed in the claims services.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What work did you do on the claims intake services?"
       },
       {
         "kind": "keep",
         "where": "Senior Software Engineer, Payments Platform, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. It gives the reader a precise performance measure and ties it to a technical choice you made.",
+        "cannot_tell": "Keep this as a model. It puts a measurable improvement next to the engineering choice that produced it.",
         "example": "",
         "question": ""
       },
@@ -46,18 +46,27 @@
         "kind": "upgrade",
         "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For a role above senior engineer, a recruiter will also look for technical direction across teams. If this migration involved a broader architectural decision, your part in it could strengthen the story.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, with [cross-team architectural decision and your role]",
-        "question": "Was there a cross-team architectural decision behind the migration, and what was your part in it?"
+        "cannot_tell": "For a role above senior, a broader technical decision behind this migration would show how you shaped the system.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [a broader technical decision you made]",
+        "question": "What broader technical decision did you make for the ledger migration, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 4",
+        "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+        "cannot_tell": "A change adopted after an incident review would show what the platform group took forward from that work.",
+        "example": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group, leading to [change adopted]",
+        "question": "What change, if any, followed the incident reviews?"
       }
     ],
     "fit": {
       "roles": [
-        "Senior Backend Engineer"
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
       ],
-      "why": "Your headline and current payments role point to senior backend work in services, databases and distributed systems.",
+      "why": "Your headline and recent work both point to senior backend engineering, particularly payments services and data infrastructure.",
       "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your experience points toward senior backend roles, particularly those involving payments or high-volume services. The freight work also shows you can bring API and event-driven experience beyond payments.",
+      "note": "Your experience points toward backend roles working on payments and distributed systems. The payouts service, ledger migration and balance API give you distinct work to lead with.",
       "posting": {
         "summary": "",
         "missing": []
@@ -67,6 +76,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 89
   }
 }

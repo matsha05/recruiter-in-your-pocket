@@ -1,0 +1,248 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:00:31.243Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8508,
+        "completion_tokens": 1412,
+        "total_tokens": 9920,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 2389,
+        "reasoning_tokens": 733
+      },
+      "cost_usd": 0.01035505,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24128
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive whose resume connects leadership, campaigns and launches to business results.",
+    "write_up": [
+      "This is a strong executive marketing resume! From NexGen through Novara, you show the teams and budgets you led alongside changes in leads, revenue and customer acquisition. A recruiter can follow both your progression and what your work accomplished.",
+      "The customer advocacy line at Viridian is a good model: it names the program you led and connects it to retention and upsell revenue. Your current role leads with the organization, budget and business you serve, so a recruiter doesn't have to guess how much you oversee.",
+      "Your resume isn't likely to be the thing standing between you and a callback. Competition for executive roles still matters. If you've made decisions beyond marketing, adding one could show what you bring to an even broader executive role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "- I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It names the program, your part in launching it and two business measures over a stated period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader executive role, a decision beyond marketing would show how you shape the company as a whole.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "- Strategic Marketing Leadership",
+        "cannot_tell": "Trim this broad skills line if you need room. Your Novara role already shows your marketing leadership in action.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your leadership of Novara's global marketing organization point to Chief Marketing Officer roles.",
+      "level": "executive, leads a 45-person global marketing organization and manages a $25M annual budget",
+      "note": "Your experience points toward executive marketing roles at technology companies. Your work spans demand generation, brand, launches and customer retention.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive whose resume connects leadership, campaigns and launches to business results.",
+    "write_up": [
+      "This is a strong executive marketing resume! From NexGen through Novara, you show the teams and budgets you led alongside changes in leads, revenue and customer acquisition. A recruiter can follow both your progression and what your work accomplished.",
+      "The customer advocacy line at Viridian is a good model: it names the program you led and connects it to retention and upsell revenue. Your current role leads with the organization, budget and business you serve, so a recruiter doesn't have to guess how much you oversee.",
+      "Your resume isn't likely to be the thing standing between you and a callback. Competition for executive roles still matters. If you've made decisions beyond marketing, adding one could show what you bring to an even broader executive role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It names the program, your part in launching it and two business measures over a stated period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader executive role, a decision beyond marketing would show how you shape the company as a whole.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Strategic Marketing Leadership",
+        "cannot_tell": "Trim this broad skills line if you need room. Your Novara role already shows your marketing leadership in action.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your leadership of Novara's global marketing organization point to Chief Marketing Officer roles.",
+      "level": "executive, leads a 45-person global marketing organization and manages a $25M annual budget",
+      "note": "Your experience points toward executive marketing roles at technology companies. Your work spans demand generation, brand, launches and customer retention.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive whose resume connects leadership, campaigns and launches to business results.",
+    "write_up": [
+      "This is a strong executive marketing resume! From NexGen through Novara, you show the teams and budgets you led alongside changes in leads, revenue and customer acquisition. A recruiter can follow both your progression and what your work accomplished.",
+      "The customer advocacy line at Viridian is a good model: it names the program you led and connects it to retention and upsell revenue. Your current role leads with the organization, budget and business you serve, so a recruiter doesn't have to guess how much you oversee.",
+      "Your resume isn't likely to be the thing standing between you and a callback. Competition for executive roles still matters. If you've made decisions beyond marketing, adding one could show what you bring to an even broader executive role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It names the program, your part in launching it and two business measures over a stated period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader executive role, a decision beyond marketing would show how you shape the company as a whole.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Strategic Marketing Leadership",
+        "cannot_tell": "Trim this broad skills line if you need room. Your Novara role already shows your marketing leadership in action.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your leadership of Novara's global marketing organization point to Chief Marketing Officer roles.",
+      "level": "executive, leads a 45-person global marketing organization and manages a $25M annual budget",
+      "note": "Your experience points toward executive marketing roles at technology companies. Your work spans demand generation, brand, launches and customer retention.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive whose resume connects leadership, campaigns and launches to business results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "blanks": 1,
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Strategic Marketing Leadership",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your leadership of Novara's global marketing organization point to Chief Marketing Officer roles.",
+      "level": "executive, leads a 45-person global marketing organization and manages a $25M annual budget",
+      "note": "Your experience points toward executive marketing roles at technology companies. Your work spans demand generation, brand, launches and customer retention.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01035505,
+  "latency_ms": 24130
+}

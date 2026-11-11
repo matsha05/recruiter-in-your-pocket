@@ -18,12 +18,24 @@ const WEB_ROOT = path.resolve(__dirname, "..");
 const INPUTS = path.resolve(WEB_ROOT, "../docs/audits/2026-11-first-read/resumes");
 // A two-page resume with lines no payments posting asks about, so "trim" has something to find.
 const LONG = "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt";
+const LIVE_JUDGMENT = "../../2026-11-live-judgment/resumes";
+const BLIND_PICK = "../../../../tests/resumes/blindpick";
 const CASES: Array<{ id: string; resume: string; posting: string | null }> = [
     { id: "backend-senior-backend-posting", resume: "fr01_backend_ic_senior.txt", posting: "posting_senior_backend.txt" },
     { id: "backend-manager-posting", resume: "fr01_backend_ic_senior.txt", posting: "posting_engineering_manager.txt" },
     { id: "marketing-hubspot-posting", resume: "fr02_marketing_coordinator_skills.txt", posting: "posting_marketing_hubspot.txt" },
     { id: "backend-no-posting", resume: "fr01_backend_ic_senior.txt", posting: null },
     { id: "long-backend-senior-backend-posting", resume: LONG, posting: "posting_senior_backend.txt" },
+    { id: "long-backend-manager-posting", resume: LONG, posting: "posting_engineering_manager.txt" },
+    // Other fields, so the judged check (scripts/judge-posting-reads.ts) isn't a software-only read.
+    { id: "nurse-nursing-posting", resume: "fr05_nurse_no_units.txt", posting: `${LIVE_JUDGMENT}/h5_nursing_posting.txt` },
+    { id: "csm-csm-posting", resume: `${BLIND_PICK}/synth_bp_customer_success_manager_1.txt`, posting: `${LIVE_JUDGMENT}/b_posting_customer_success_manager.txt` },
+    // Adjacent field: some requirements are answered, most aren't.
+    { id: "account-executive-csm-posting", resume: "fr03_account_executive_quota.txt", posting: `${LIVE_JUDGMENT}/b_posting_customer_success_manager.txt` },
+    // Mismatches: nothing on the resume answers the posting, so "lead" should stay short or empty.
+    { id: "analyst-nursing-posting", resume: `${LIVE_JUDGMENT}/h5_data_analyst.txt`, posting: `${LIVE_JUDGMENT}/h5_nursing_posting.txt` },
+    { id: "finance-hubspot-posting", resume: "fr04_financial_analyst_frames.txt", posting: "posting_marketing_hubspot.txt" },
+    { id: "operations-director-manager-posting", resume: "fr06_senior_director_duties.txt", posting: "posting_engineering_manager.txt" },
 ];
 
 type Resolver = { _resolveFilename: (request: string, ...rest: unknown[]) => string };

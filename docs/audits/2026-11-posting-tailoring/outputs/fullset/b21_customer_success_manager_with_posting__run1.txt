@@ -1,0 +1,43 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0120; 37.1s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+Mid-market customer success experience with a 48-account book, but renewal results and VP-level QBRs aren't shown.
+
+## Write-up
+Your resume shows a move from payroll support into customer success at Brightline Payroll Software, with a mid-market book and work from onboarding through renewal. A recruiter could move it forward with questions, but for this posting, the missing renewal numbers make it difficult to compare your work with the retention targets.
+
+The 48-account line is a strong model: it names the customers you manage and how many are in your book. Your 94% customer satisfaction score across 2021 also gives the earlier support role a concrete result.
+
+Start with the at-risk account line. Add your part in the renewal strategy and any results against targets you can substantiate. Then show what you do when payroll runs fail. For this posting, make your Sales partnership easy to find and add the seniority of your QBR contacts if you can.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this. It gives a recruiter a concrete picture of your book and the industries you serve.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Your partnership with Sales is relevant here, but a recruiter can't tell what you contributed or how the renewals performed against a target.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result] against [target]
+   question: What did you contribute to the strategy, and what renewal result and target can you share?
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: The payroll failures make the issue clear, but handling an escalation could mean several things. Your part and what happened next would show how you work with those teams.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [what happened]
+   question: What do you do during these escalations, and what happens as a result?
+4. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: A recruiter can see how clients reached you, but not what they needed or how you helped them.
+   example: Answered client questions by phone and email about [types of questions], [what you did to address them]
+   question: What kinds of questions did clients ask, and how did you address them?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: mid-level, manages a book of 48 mid-market accounts
+Note: Your payroll software work, quarterly reviews and Sales partnership are relevant to this role. The posting's book is larger than the one you describe, so keep your account count prominent and add the value of your book if you can share it.
+Posting: A mid-market customer success role owning renewals and expansion, onboarding, executive reviews and data-led account management.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","a BI tool such as Looker","Experience running QBRs with VP-level sponsors"]

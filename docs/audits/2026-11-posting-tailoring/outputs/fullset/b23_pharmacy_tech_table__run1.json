@@ -1,0 +1,285 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:01:31.157Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7014,
+        "completion_tokens": 2073,
+        "total_tokens": 9087,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 1218
+      },
+      "cost_usd": 0.01179255,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 35628
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail work, backed by clear measures.",
+    "write_up": [
+      "Your resume is strong because it shows both the pharmacy work and how much of it you handle! A recruiter sees a certified technician who moved from RiteCare into inpatient pharmacy at Sutter Valley, with sterile compounding and dispensing cabinet experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows that stockout reports fell from 9 to 2 per week in 2024. Your roles and dates are easy to follow, though the separate duties section makes a recruiter look back to match work with each job.",
+      "Let's put each duty under its role and explain what you checked when verifying prescriptions. Your resume is unlikely to be what holds you back; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Roles and dates are listed separately from duties and results.",
+        "cannot_tell": "A recruiter has to move between sections to match each job with its work. Putting the duties under their roles keeps the dates, employer and pharmacy work together.",
+        "example": "",
+        "question": "Can you place each duty and result under the job it describes?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription line",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter can see that you filled and verified prescriptions, but not which checks you performed or how the final check worked. Those details matter in a pharmacy role.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you verified]; final check by [who performed the final check]",
+        "question": "What did you verify on prescriptions, and who performed the final check?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a concrete responsibility with a change a recruiter can understand without guessing what the measure means.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II\tTrain new technicians on sterile compounding\t5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show more of how you guide the work.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023; [a decision you made about training or workflow]",
+        "question": "What decision, if any, did you make about training or workflow?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent roles cover inpatient and retail pharmacy work.",
+      "level": "mid-level, inpatient and retail pharmacy experience with sterile compounding certification",
+      "note": "Your recent work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your retail experience also gives you a credible story for pharmacy work involving prescriptions and insurance.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail work, backed by clear measures.",
+    "write_up": [
+      "Your resume is strong because it shows both the pharmacy work and how much of it you handle! A recruiter sees a certified technician who moved from RiteCare into inpatient pharmacy at Sutter Valley, with sterile compounding and dispensing cabinet experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows that stockout reports fell from 9 to 2 per week in 2024. Your roles and dates are easy to follow, though the separate duties section makes a recruiter look back to match work with each job.",
+      "Let's put each duty under its role and explain what you checked when verifying prescriptions. Your resume is unlikely to be what holds you back; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Roles and dates are listed separately from duties and results.",
+        "cannot_tell": "A recruiter has to move between sections to match each job with its work. Putting the duties under their roles keeps the dates, employer and pharmacy work together.",
+        "example": "",
+        "question": "Can you place each duty and result under the job it describes?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription line",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter can see that you filled and verified prescriptions, but not which checks you performed or how the final check worked. Those details matter in a pharmacy role.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you verified]; final check by [who performed the final check]",
+        "question": "What did you verify on prescriptions, and who performed the final check?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a concrete responsibility with a change a recruiter can understand without guessing what the measure means.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show more of how you guide the work.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023; [a decision you made about training or workflow]",
+        "question": "What decision, if any, did you make about training or workflow?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent roles cover inpatient and retail pharmacy work.",
+      "level": "mid-level, inpatient and retail pharmacy experience with sterile compounding certification",
+      "note": "Your recent work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your retail experience also gives you a credible story for pharmacy work involving prescriptions and insurance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail work, backed by clear measures.",
+    "write_up": [
+      "Your resume is strong because it shows both the pharmacy work and how much of it you handle! A recruiter sees a certified technician who moved from RiteCare into inpatient pharmacy at Sutter Valley, with sterile compounding and dispensing cabinet experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows that stockout reports fell from 9 to 2 per week in 2024. Your roles and dates are easy to follow, though the separate duties section makes a recruiter look back to match work with each job.",
+      "Let's put each duty under its role and explain what you checked when verifying prescriptions. Your resume is unlikely to be what holds you back; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Roles and dates are listed separately from duties and results.",
+        "cannot_tell": "A recruiter has to move between sections to match each job with its work. Putting the duties under their roles keeps the dates, employer and pharmacy work together.",
+        "example": "",
+        "question": "Can you place each duty and result under the job it describes?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription line",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter can see that you filled and verified prescriptions, but not which checks you performed or how the final check worked. Those details matter in a pharmacy role.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you verified]; final check by [who performed the final check]",
+        "question": "What did you verify on prescriptions, and who performed the final check?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a concrete responsibility with a change a recruiter can understand without guessing what the measure means.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show more of how you guide the work.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023; [a decision you made about training or workflow]",
+        "question": "What decision, if any, did you make about training or workflow?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent roles cover inpatient and retail pharmacy work.",
+      "level": "mid-level, inpatient and retail pharmacy experience with sterile compounding certification",
+      "note": "Your recent work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your retail experience also gives you a credible story for pharmacy work involving prescriptions and insurance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail work, backed by clear measures.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Roles and dates are listed separately from duties and results.",
+        "blanks": 0,
+        "question": "Can you place each duty and result under the job it describes?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription line",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "blanks": 2,
+        "question": "What did you verify on prescriptions, and who performed the final check?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "blanks": 1,
+        "question": "What decision, if any, did you make about training or workflow?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "structure": 1,
+      "line": 1,
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent roles cover inpatient and retail pharmacy work.",
+      "level": "mid-level, inpatient and retail pharmacy experience with sterile compounding certification",
+      "note": "Your recent work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your retail experience also gives you a credible story for pharmacy work involving prescriptions and insurance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01179255,
+  "latency_ms": 35630
+}

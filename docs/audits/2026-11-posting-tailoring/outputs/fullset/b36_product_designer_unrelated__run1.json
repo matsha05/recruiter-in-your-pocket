@@ -1,0 +1,342 @@
+{
+  "case_id": "b36_product_designer_unrelated",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Current job outside the field.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+  "resume_sha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:02:51.295Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6767,
+        "completion_tokens": 1940,
+        "total_tokens": 8707,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 648,
+        "reasoning_tokens": 863
+      },
+      "cost_usd": 0.0108188,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 32764
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work is easy to follow, but its results and recent design activity are unclear.",
+    "write_up": [
+      "You’re a product designer who worked on fitness apps at Loop Fitness and client projects at Brightpath Studio, and you’re now a barista at Ferry Street Coffee. It’s common for design resumes to list deliverables without saying what changed. Here, that makes it harder to stand out against other product designers.",
+      "Your best model is the line about creating Loop Fitness’s first design system in Figma: it names what you made and the tool you used. Your current job accounts for your time, but the latest dated design role ended in February 2024, so a recruiter can’t see whether you’ve done any design work since.",
+      "Let’s start with the Loop Fitness booking flow and show what you designed and what happened after launch, if you can substantiate it. Then add the decisions that came from your usability tests. If you’ve done design projects or study since Loop Fitness, date and include those too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Recent design work",
+        "line": "The latest dated Product Designer role ended February 2024; the Barista role is current.",
+        "cannot_tell": "A recruiter can see what you’re doing now, but not whether you’ve kept working on design. Recent projects or study could show where your design work stands today.",
+        "example": "",
+        "question": "Have you done any design projects, freelance work or study since February 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 1",
+        "line": "- Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "The apps and flow are clear, but a recruiter can’t tell which parts of booking you designed or what changed after launch.",
+        "example": "Designed [booking steps] in the class booking flow for the iOS and Android apps, resulting in [what changed]",
+        "question": "Which booking steps did you design, and what happened after they launched?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 2",
+        "line": "- Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release rhythm are there, but your contribution to those releases isn’t. A recruiter needs to know what you brought to the work.",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, Loop Fitness, line 3",
+        "line": "- Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you direct ownership of a named deliverable, so nobody has to guess what you made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 4",
+        "line": "- Ran usability tests with members before launches",
+        "cannot_tell": "Running the tests is useful product design work. What you tested and what you learned would show how the tests informed a launch.",
+        "example": "Ran usability tests with members on [feature] before launches and used [finding] to inform [design decision]",
+        "question": "What did you test with members, and which finding informed a design decision?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, Brightpath Studio, line 2",
+        "line": "- Made prototypes for client presentations",
+        "cannot_tell": "A recruiter can tell you made prototypes, but not what they showed clients or what the presentations were meant to decide.",
+        "example": "Made prototypes of [design] for client presentations to inform [decision]",
+        "question": "What did the prototypes show, and what decisions were the presentations meant to inform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline names product design, and your Loop Fitness and Brightpath Studio roles describe app and web design work.",
+      "level": "mid-level, held a Product Designer role after a Junior Product Designer role",
+      "note": "Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your portfolio is a useful place to show the booking flow and the decisions behind it.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work is easy to follow, but its results and recent design activity are unclear.",
+    "write_up": [
+      "You’re a product designer who worked on fitness apps at Loop Fitness and client projects at Brightpath Studio, and you’re now a barista at Ferry Street Coffee. It’s common for design resumes to list deliverables without saying what changed. Here, that makes it harder to stand out against other product designers.",
+      "Your best model is the line about creating Loop Fitness’s first design system in Figma: it names what you made and the tool you used. Your current job accounts for your time, but the latest dated design role ended in February 2024, so a recruiter can’t see whether you’ve done any design work since.",
+      "Let’s start with the Loop Fitness booking flow and show what you designed and what happened after launch, if you can substantiate it. Then add the decisions that came from your usability tests. If you’ve done design projects or study since Loop Fitness, date and include those too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Recent design work",
+        "line": "The latest dated Product Designer role ended February 2024; the Barista role is current.",
+        "cannot_tell": "A recruiter can see what you’re doing now, but not whether you’ve kept working on design. Recent projects or study could show where your design work stands today.",
+        "example": "",
+        "question": "Have you done any design projects, freelance work or study since February 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "The apps and flow are clear, but a recruiter can’t tell which parts of booking you designed or what changed after launch.",
+        "example": "Designed [booking steps] in the class booking flow for the iOS and Android apps, resulting in [what changed]",
+        "question": "Which booking steps did you design, and what happened after they launched?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release rhythm are there, but your contribution to those releases isn’t. A recruiter needs to know what you brought to the work.",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, Loop Fitness, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you direct ownership of a named deliverable, so nobody has to guess what you made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "Running the tests is useful product design work. What you tested and what you learned would show how the tests informed a launch.",
+        "example": "Ran usability tests with members on [feature] before launches and used [finding] to inform [design decision]",
+        "question": "What did you test with members, and which finding informed a design decision?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, Brightpath Studio, line 2",
+        "line": "Made prototypes for client presentations",
+        "cannot_tell": "A recruiter can tell you made prototypes, but not what they showed clients or what the presentations were meant to decide.",
+        "example": "Made prototypes of [design] for client presentations to inform [decision]",
+        "question": "What did the prototypes show, and what decisions were the presentations meant to inform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline names product design, and your Loop Fitness and Brightpath Studio roles describe app and web design work.",
+      "level": "mid-level, held a Product Designer role after a Junior Product Designer role",
+      "note": "Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your portfolio is a useful place to show the booking flow and the decisions behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work is easy to follow, but its results and recent design activity are unclear.",
+    "write_up": [
+      "You’re a product designer who worked on fitness apps at Loop Fitness and client projects at Brightpath Studio, and you’re now a barista at Ferry Street Coffee. It’s common for design resumes to list deliverables without saying what changed. Here, that makes it harder to stand out against other product designers.",
+      "Your best model is the line about creating Loop Fitness’s first design system in Figma: it names what you made and the tool you used. Your current job accounts for your time, but the latest dated design role ended in February 2024, so a recruiter can’t see whether you’ve done any design work since.",
+      "Let’s start with the Loop Fitness booking flow and show what you designed and what happened after launch, if you can substantiate it. Then add the decisions that came from your usability tests. If you’ve done design projects or study since Loop Fitness, date and include those too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Recent design work",
+        "line": "The latest dated Product Designer role ended February 2024; the Barista role is current.",
+        "cannot_tell": "A recruiter can see what you’re doing now, but not whether you’ve kept working on design. Recent projects or study could show where your design work stands today.",
+        "example": "",
+        "question": "Have you done any design projects, freelance work or study since February 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "The apps and flow are clear, but a recruiter can’t tell which parts of booking you designed or what changed after launch.",
+        "example": "Designed [booking steps] in the class booking flow for the iOS and Android apps, resulting in [what changed]",
+        "question": "Which booking steps did you design, and what happened after they launched?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release rhythm are there, but your contribution to those releases isn’t. A recruiter needs to know what you brought to the work.",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, Loop Fitness, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you direct ownership of a named deliverable, so nobody has to guess what you made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "Running the tests is useful product design work. What you tested and what you learned would show how the tests informed a launch.",
+        "example": "Ran usability tests with members on [feature] before launches and used [finding] to inform [design decision]",
+        "question": "What did you test with members, and which finding informed a design decision?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, Brightpath Studio, line 2",
+        "line": "Made prototypes for client presentations",
+        "cannot_tell": "A recruiter can tell you made prototypes, but not what they showed clients or what the presentations were meant to decide.",
+        "example": "Made prototypes of [design] for client presentations to inform [decision]",
+        "question": "What did the prototypes show, and what decisions were the presentations meant to inform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline names product design, and your Loop Fitness and Brightpath Studio roles describe app and web design work.",
+      "level": "mid-level, held a Product Designer role after a Junior Product Designer role",
+      "note": "Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your portfolio is a useful place to show the booking flow and the decisions behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work is easy to follow, but its results and recent design activity are unclear.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 153,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Recent design work",
+        "line": "The latest dated Product Designer role ended February 2024; the Barista role is current.",
+        "blanks": 0,
+        "question": "Have you done any design projects, freelance work or study since February 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "blanks": 2,
+        "question": "Which booking steps did you design, and what happened after they launched?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "blanks": 1,
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, Loop Fitness, line 3",
+        "line": "Created the app's first design system in Figma",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, Loop Fitness, line 4",
+        "line": "Ran usability tests with members before launches",
+        "blanks": 3,
+        "question": "What did you test with members, and which finding informed a design decision?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, Brightpath Studio, line 2",
+        "line": "Made prototypes for client presentations",
+        "blanks": 2,
+        "question": "What did the prototypes show, and what decisions were the presentations meant to inform?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "structure": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline names product design, and your Loop Fitness and Brightpath Studio roles describe app and web design work.",
+      "level": "mid-level, held a Product Designer role after a Junior Product Designer role",
+      "note": "Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your portfolio is a useful place to show the booking flow and the decisions behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0108188,
+  "latency_ms": 32766
+}

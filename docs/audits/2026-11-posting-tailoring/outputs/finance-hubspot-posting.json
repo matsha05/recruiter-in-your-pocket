@@ -1,0 +1,95 @@
+{
+  "id": "finance-hubspot-posting",
+  "resume": "fr04_financial_analyst_frames.txt",
+  "posting": "posting_marketing_hubspot.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 0,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 6956,
+    "tokens_out": 1680,
+    "cost_estimate_usd": 0.00961465
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A financial analyst’s resume aimed at a marketing operations role that asks for different experience and tools.",
+    "write_up": [
+      "This marketing operations job is a different track from your finance experience. I read your resume for Financial Analyst roles: your corporate FP&A and banking work give a recruiter a clear reason to move it forward, with a few questions about how you achieved your results.",
+      "The headcount model line is your best model. It names Adaptive Planning, what you rebuilt and the spreadsheets it replaced. Your most prominent figures are strong, but they leave out the work behind them.",
+      "Start with the savings and forecast lines at Piedmont. Add the method and the part of the business involved, then do the same for reporting efficiency and month-end automation. For Tallgrass, bring forward any real campaign work you can substantiate; finance reporting alone doesn't establish marketing operations experience."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
+        "line": "Identified $1.2M in savings",
+        "cannot_tell": "A recruiter can see the amount, but not where you found it or how. Those details would show the finance work behind the figure.",
+        "example": "Identified $1.2M in savings in [area] using [method]",
+        "question": "Where did you identify the savings, and how did you find them?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
+        "line": "Improved forecast accuracy by 18%",
+        "cannot_tell": "The improvement is concrete, but the forecast and your approach aren't named. A recruiter will want to know what you changed.",
+        "example": "Improved accuracy of [forecast] by 18% using [method]",
+        "question": "Which forecast improved, and what did you do to improve it?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
+        "line": "Increased reporting efficiency by 40%",
+        "cannot_tell": "The figure gives a recruiter a reason to look closer, but it doesn't say which reporting process changed or how the increase was measured.",
+        "example": "Increased efficiency of [reporting process] by 40% using [method], measured by [measure]",
+        "question": "Which reporting process did you change, how did you change it, and how was the increase measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Carolina Regional Bank, line 3",
+        "line": "Grew automation of month-end tasks",
+        "cannot_tell": "A recruiter can't tell which tasks you automated or what you used. That matters alongside the reporting work in your current role.",
+        "example": "Grew automation of [month-end tasks] using [method], resulting in [what changed]",
+        "question": "Which month-end tasks did you automate, how did you do it, and what changed?"
+      },
+      {
+        "kind": "keep",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
+        "line": "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
+        "cannot_tell": "Keep this as a model: it gives the recruiter a named deliverable and shows what was in place before your work.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Financial Analyst",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and both jobs point to financial analysis, including FP&A, forecasting and branch profitability reporting.",
+      "level": "mid-level, current corporate FP&A role and an earlier Financial Analyst role",
+      "note": "Your reporting and dashboard tools give you a foundation relevant to the reporting side of Tallgrass's work. If you have campaign or marketing systems experience, add only the work you can substantiate.",
+      "posting": {
+        "summary": "Tallgrass wants a marketing operations coordinator to run campaigns, maintain lead data, report on performance and support events.",
+        "missing": [
+          "2+ years in marketing for a B2B company",
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "Working knowledge of Salesforce",
+          "Comfortable with Google Analytics 4 and building simple reports",
+          "a record of running campaigns on deadline"
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  }
+}

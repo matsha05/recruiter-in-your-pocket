@@ -1,0 +1,35 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0093; 27.2s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A store manager with strong results, but the two-store turnaround claim needs backing.
+
+## Write-up
+Your resume tells a compelling story of growth at Carolina Home & Garden, from Department Supervisor to Store Manager. The sales, turnover and shrink figures make your current work concrete. The one claim a recruiter can't connect to the jobs yet is the turnaround of two stores.
+
+The turnover line is a great model: it names the scheduling change and shows the before and after. Your progression is easy to follow, and your current store's sales and staffing figures show the responsibility you hold.
+
+Start with the headline. If you can show what changed at the other store, add it under that role. If not, lead with the results from your current store. Then give the customer satisfaction ranking a little more context about your work.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your current role has strong results, but a recruiter can't tell what changed at the other store. That makes the two-store claim difficult to connect to your experience.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [other store's turnaround result].
+   question: Which other store did you turn around, and what measurable change shows it?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It pairs a decision you made with a result a recruiter can compare.
+3. [line] Store Manager, line 4
+   line: "Ranked 3rd of 60 stores on the 2025 customer satisfaction survey"
+   can't tell: That's a strong ranking, but a recruiter can't tell what you did to support customer satisfaction at the store.
+   example: Ranked 3rd of 60 stores on the 2025 customer satisfaction survey after [your work on customer satisfaction].
+   question: What did you do to support customer satisfaction at the store?
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager","Department Supervisor"]
+Level: manager, runs a $9.4M store with 42 employees
+Note: Your progression within Carolina Home & Garden points to store management roles. The sales, turnover and shrink results give you a solid starting point for that story.

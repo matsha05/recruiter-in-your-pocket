@@ -1,0 +1,279 @@
+{
+  "case_id": "b08_warehouse_supervisor",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+  "resume_sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+  "resume_words": 173,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:00:03.004Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6840,
+        "completion_tokens": 1509,
+        "total_tokens": 8349,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 721,
+        "reasoning_tokens": 731
+      },
+      "cost_usd": 0.00875505,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25687
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on shift performance.",
+    "write_up": [
+      "Your resume tells a clear story from Order Picker to Shift Supervisor at Sierra Freight Distribution. A recruiter can see the work you oversee and how many associates are on your shift, but will still have questions about how the operation performed.",
+      "Your strongest line is the one about supervising 35 associates across picking, packing, and loading. It gives a recruiter both the team and its work in one pass. The dated roles also make your progression easy to follow, and your warehouse certifications and Manhattan WMS experience fit the work.",
+      "Start with labor scheduling in the Shift Supervisor role: add the order volume you planned for and a result if you can substantiate one. Then show what you covered for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, Outbound Operations, line 1",
+        "line": "- Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It names your responsibility and shows what the associates handle, without making the recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, Outbound Operations, line 2",
+        "line": "- Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see the scheduling work, but not the volume you plan around or how the shift performed. Those details would make your operating responsibility more concrete.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] orders, with [result]",
+        "question": "What daily order volume did you plan for, and what result can you substantiate?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "- Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but a recruiter can't tell which work you took on in that role.",
+        "example": "Covered for the supervisor during vacations, overseeing [work covered]",
+        "question": "What work did you oversee while covering for the supervisor?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "- Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful project to include, but helped leaves your part open to guesswork.",
+        "example": "Helped roll out handheld scanners on the pick floor, handling [rollout task]",
+        "question": "What did you handle during the scanner rollout?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your current role supervises outbound associates, and your earlier distribution roles show how you moved into that work.",
+      "level": "manager, supervises a night shift of 35 associates",
+      "note": "Your experience points toward distribution and warehouse supervision. The certifications and Manhattan WMS experience add useful context for those roles.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on shift performance.",
+    "write_up": [
+      "Your resume tells a clear story from Order Picker to Shift Supervisor at Sierra Freight Distribution. A recruiter can see the work you oversee and how many associates are on your shift, but will still have questions about how the operation performed.",
+      "Your strongest line is the one about supervising 35 associates across picking, packing, and loading. It gives a recruiter both the team and its work in one pass. The dated roles also make your progression easy to follow, and your warehouse certifications and Manhattan WMS experience fit the work.",
+      "Start with labor scheduling in the Shift Supervisor role: add the order volume you planned for and a result if you can substantiate one. Then show what you covered for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, Outbound Operations, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It names your responsibility and shows what the associates handle, without making the recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, Outbound Operations, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see the scheduling work, but not the volume you plan around or how the shift performed. Those details would make your operating responsibility more concrete.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] orders, with [result]",
+        "question": "What daily order volume did you plan for, and what result can you substantiate?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but a recruiter can't tell which work you took on in that role.",
+        "example": "Covered for the supervisor during vacations, overseeing [work covered]",
+        "question": "What work did you oversee while covering for the supervisor?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful project to include, but helped leaves your part open to guesswork.",
+        "example": "Helped roll out handheld scanners on the pick floor, handling [rollout task]",
+        "question": "What did you handle during the scanner rollout?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your current role supervises outbound associates, and your earlier distribution roles show how you moved into that work.",
+      "level": "manager, supervises a night shift of 35 associates",
+      "note": "Your experience points toward distribution and warehouse supervision. The certifications and Manhattan WMS experience add useful context for those roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on shift performance.",
+    "write_up": [
+      "Your resume tells a clear story from Order Picker to Shift Supervisor at Sierra Freight Distribution. A recruiter can see the work you oversee and how many associates are on your shift, but will still have questions about how the operation performed.",
+      "Your strongest line is the one about supervising 35 associates across picking, packing, and loading. It gives a recruiter both the team and its work in one pass. The dated roles also make your progression easy to follow, and your warehouse certifications and Manhattan WMS experience fit the work.",
+      "Start with labor scheduling in the Shift Supervisor role: add the order volume you planned for and a result if you can substantiate one. Then show what you covered for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, Outbound Operations, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It names your responsibility and shows what the associates handle, without making the recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, Outbound Operations, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see the scheduling work, but not the volume you plan around or how the shift performed. Those details would make your operating responsibility more concrete.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] orders, with [result]",
+        "question": "What daily order volume did you plan for, and what result can you substantiate?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but a recruiter can't tell which work you took on in that role.",
+        "example": "Covered for the supervisor during vacations, overseeing [work covered]",
+        "question": "What work did you oversee while covering for the supervisor?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful project to include, but helped leaves your part open to guesswork.",
+        "example": "Helped roll out handheld scanners on the pick floor, handling [rollout task]",
+        "question": "What did you handle during the scanner rollout?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your current role supervises outbound associates, and your earlier distribution roles show how you moved into that work.",
+      "level": "manager, supervises a night shift of 35 associates",
+      "note": "Your experience points toward distribution and warehouse supervision. The certifications and Manhattan WMS experience add useful context for those roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on shift performance.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, Outbound Operations, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, Outbound Operations, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "blanks": 2,
+        "question": "What daily order volume did you plan for, and what result can you substantiate?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "blanks": 1,
+        "question": "What work did you oversee while covering for the supervisor?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "blanks": 1,
+        "question": "What did you handle during the scanner rollout?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your current role supervises outbound associates, and your earlier distribution roles show how you moved into that work.",
+      "level": "manager, supervises a night shift of 35 associates",
+      "note": "Your experience points toward distribution and warehouse supervision. The certifications and Manhattan WMS experience add useful context for those roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00875505,
+  "latency_ms": 25692
+}

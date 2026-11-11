@@ -1,0 +1,35 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0090; 24.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior outpatient physical therapist whose patient work, programs and mentoring are easy to see.
+
+## Write-up
+This is a strong resume! You show the patients you treat at North Loop Sports Rehab, the return-to-run program you built and the therapists you mentor. A recruiter can see both your clinical work and your contribution beyond daily appointments.
+
+The return-to-run line is a great model: it names what you built and how many patients completed it. Your Minnesota license and DPT are easy to find. The patient-reported function scores are promising, though a recruiter can't tell which measure you used or what counted as improvement.
+
+Start by adding that detail to the scores, then consider bringing the return-to-run program to the top of your current role. Your resume is unlikely to be the thing holding you back; the fit and competitiveness of a particular opening still matter.
+
+## Cards (3; {"line":1,"upgrade":2}); severity off; added []
+1. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: A recruiter can't tell which function measure you used or what counted as improvement. Those details help put the 92% in context.
+   example: In 2025, 92% of discharged patients improved their patient-reported function scores on [measure], with improvement defined as [definition]
+   question: Which measure did you use, and what counted as an improvement?
+2. [upgrade] Senior Physical Therapist, line 3
+   line: "Mentor 2 newer therapists and set the PT aide schedule"
+   can't tell: For a manager role, decisions about the team or service would show how your responsibilities extend beyond mentoring and scheduling.
+   example: Mentor 2 newer therapists and set the PT aide schedule; made [decision you made] for [team or service]
+   question: What decisions have you made for the team or service, if any?
+3. [upgrade] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Move this above the patient-volume line. The program you built gives a recruiter a distinctive example of your work right away.
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: senior, mentors 2 newer therapists and sets the PT aide schedule
+Note: Your experience points toward senior outpatient orthopedic and sports rehabilitation roles. If you want a manager role, add any team or service decisions you've made.

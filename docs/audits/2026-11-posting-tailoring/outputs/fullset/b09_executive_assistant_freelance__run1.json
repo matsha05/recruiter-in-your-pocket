@@ -1,0 +1,346 @@
+{
+  "case_id": "b09_executive_assistant_freelance",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt",
+  "resume_sha256": "e2e2776e0968eb25004b7dc286763468c2274764a27e8f532dc243a3233d07c3",
+  "resume_words": 163,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:00:04.224Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6814,
+        "completion_tokens": 1668,
+        "total_tokens": 8482,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 695,
+        "reasoning_tokens": 619
+      },
+      "cost_usd": 0.00951755,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27014
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "Executive assistant experience with founders and a CEO, with a few duties and an earlier gap to explain.",
+    "write_up": [
+      "Your resume points to executive assistant work: you supported the CEO at Parkway Logistics and now work independently with founders. A recruiter can see the people and work you support, though a few duties need more detail to show what was yours.",
+      "The leadership offsite line is a good model: it names the event, your role in it and the attendee count. Your progression at Parkway is easy to follow, but the time between leaving Parkway and starting freelance work is unaccounted for.",
+      "Start with the freelance investor meetings, then add the details behind your board work and CEO liaison duties. If there's something you can honestly share about the time between roles, a dated line will answer a question a recruiter may otherwise carry through the rest of your resume."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The time between June 2023 and February 2025 is not accounted for.",
+        "cannot_tell": "A recruiter can't tell what you were doing between Parkway and your freelance work. If you were caregiving, studying, volunteering, traveling or taking a career break, you can say so plainly. Include freelance or consulting work only if it was real.",
+        "example": "June 2023 - [end date]  [what you did]",
+        "question": "What were you doing during that time, and which dates can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Executive Assistant, line 3",
+        "line": "- Coordinate investor meeting logistics across time zones",
+        "cannot_tell": "The meetings are clear, but the logistics could mean several different things. Name the parts you handle and how often the meetings happen.",
+        "example": "Coordinate investor meeting logistics across time zones, including [logistics handled], for [number] meetings [time period]",
+        "question": "Which logistics do you handle, and how often do you coordinate these meetings?"
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 2",
+        "line": "- Prepared materials for quarterly board meetings",
+        "cannot_tell": "A recruiter can see the meeting cadence, but not what went into the materials or which parts you prepared.",
+        "example": "Prepared [materials] for quarterly board meetings, including [your work]",
+        "question": "What materials did you prepare, and what did that work involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "Executive Assistant to the CEO, line 3",
+        "line": "- Planned the annual leadership offsite for 40 attendees",
+        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete event and shows how many people attended.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 4",
+        "line": "- Served as the point of contact between the CEO and department heads",
+        "cannot_tell": "Being the point of contact doesn't show what you handled between the CEO and department heads. The topics and your responsibilities will make that work concrete.",
+        "example": "Served as the point of contact between the CEO and department heads on [topics], handling [responsibilities]",
+        "question": "What did you handle between the CEO and department heads, and on which topics?"
+      },
+      {
+        "kind": "line",
+        "where": "Administrative Assistant, line 1",
+        "line": "- Supported the operations team with scheduling and filing",
+        "cannot_tell": "The operations team is named, but the scheduling and filing could cover many kinds of work. What did you schedule and maintain?",
+        "example": "Supported the operations team by scheduling [what you scheduled] and filing [records]",
+        "question": "What did you schedule, and what records did you file?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Freelance Executive Assistant",
+        "Executive Assistant to the CEO"
+      ],
+      "why": "Your current work supports three founders, and your previous role supported the CEO at Parkway Logistics.",
+      "level": "mid-level, supports founders independently and previously supported a CEO",
+      "note": "Your experience points toward executive assistant roles supporting senior leaders or founders. The board meeting and offsite work gives you useful examples beyond calendar and travel management.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "Executive assistant experience with founders and a CEO, with a few duties and an earlier gap to explain.",
+    "write_up": [
+      "Your resume points to executive assistant work: you supported the CEO at Parkway Logistics and now work independently with founders. A recruiter can see the people and work you support, though a few duties need more detail to show what was yours.",
+      "The leadership offsite line is a good model: it names the event, your role in it and the attendee count. Your progression at Parkway is easy to follow, but the time between leaving Parkway and starting freelance work is unaccounted for.",
+      "Start with the freelance investor meetings, then add the details behind your board work and CEO liaison duties. If there's something you can honestly share about the time between roles, a dated line will answer a question a recruiter may otherwise carry through the rest of your resume."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The time between June 2023 and February 2025 is not accounted for.",
+        "cannot_tell": "A recruiter can't tell what you were doing between Parkway and your freelance work. If you were caregiving, studying, volunteering, traveling or taking a career break, you can say so plainly. Include freelance or consulting work only if it was real.",
+        "example": "June 2023 - [end date] [what you did]",
+        "question": "What were you doing during that time, and which dates can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Executive Assistant, line 3",
+        "line": "Coordinate investor meeting logistics across time zones",
+        "cannot_tell": "The meetings are clear, but the logistics could mean several different things. Name the parts you handle and how often the meetings happen.",
+        "example": "Coordinate investor meeting logistics across time zones, including [logistics handled], for [number] meetings [time period]",
+        "question": "Which logistics do you handle, and how often do you coordinate these meetings?"
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 2",
+        "line": "Prepared materials for quarterly board meetings",
+        "cannot_tell": "A recruiter can see the meeting cadence, but not what went into the materials or which parts you prepared.",
+        "example": "Prepared [materials] for quarterly board meetings, including [your work]",
+        "question": "What materials did you prepare, and what did that work involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "Executive Assistant to the CEO, line 3",
+        "line": "Planned the annual leadership offsite for 40 attendees",
+        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete event and shows how many people attended.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 4",
+        "line": "Served as the point of contact between the CEO and department heads",
+        "cannot_tell": "Being the point of contact doesn't show what you handled between the CEO and department heads. The topics and your responsibilities will make that work concrete.",
+        "example": "Served as the point of contact between the CEO and department heads on [topics], handling [responsibilities]",
+        "question": "What did you handle between the CEO and department heads, and on which topics?"
+      },
+      {
+        "kind": "line",
+        "where": "Administrative Assistant, line 1",
+        "line": "Supported the operations team with scheduling and filing",
+        "cannot_tell": "The operations team is named, but the scheduling and filing could cover many kinds of work. What did you schedule and maintain?",
+        "example": "Supported the operations team by scheduling [what you scheduled] and filing [records]",
+        "question": "What did you schedule, and what records did you file?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Freelance Executive Assistant",
+        "Executive Assistant to the CEO"
+      ],
+      "why": "Your current work supports three founders, and your previous role supported the CEO at Parkway Logistics.",
+      "level": "mid-level, supports founders independently and previously supported a CEO",
+      "note": "Your experience points toward executive assistant roles supporting senior leaders or founders. The board meeting and offsite work gives you useful examples beyond calendar and travel management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "Executive assistant experience with founders and a CEO, with a few duties and an earlier gap to explain.",
+    "write_up": [
+      "Your resume points to executive assistant work: you supported the CEO at Parkway Logistics and now work independently with founders. A recruiter can see the people and work you support, though a few duties need more detail to show what was yours.",
+      "The leadership offsite line is a good model: it names the event, your role in it and the attendee count. Your progression at Parkway is easy to follow, but the time between leaving Parkway and starting freelance work is unaccounted for.",
+      "Start with the freelance investor meetings, then add the details behind your board work and CEO liaison duties. If there's something you can honestly share about the time between roles, a dated line will answer a question a recruiter may otherwise carry through the rest of your resume."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The time between June 2023 and February 2025 is not accounted for.",
+        "cannot_tell": "A recruiter can't tell what you were doing between Parkway and your freelance work. If you were caregiving, studying, volunteering, traveling or taking a career break, you can say so plainly. Include freelance or consulting work only if it was real.",
+        "example": "June 2023 - [end date] [what you did]",
+        "question": "What were you doing during that time, and which dates can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Executive Assistant, line 3",
+        "line": "Coordinate investor meeting logistics across time zones",
+        "cannot_tell": "The meetings are clear, but the logistics could mean several different things. Name the parts you handle and how often the meetings happen.",
+        "example": "Coordinate investor meeting logistics across time zones, including [logistics handled], for [number] meetings [time period]",
+        "question": "Which logistics do you handle, and how often do you coordinate these meetings?"
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 2",
+        "line": "Prepared materials for quarterly board meetings",
+        "cannot_tell": "A recruiter can see the meeting cadence, but not what went into the materials or which parts you prepared.",
+        "example": "Prepared [materials] for quarterly board meetings, including [your work]",
+        "question": "What materials did you prepare, and what did that work involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "Executive Assistant to the CEO, line 3",
+        "line": "Planned the annual leadership offsite for 40 attendees",
+        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete event and shows how many people attended.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 4",
+        "line": "Served as the point of contact between the CEO and department heads",
+        "cannot_tell": "Being the point of contact doesn't show what you handled between the CEO and department heads. The topics and your responsibilities will make that work concrete.",
+        "example": "Served as the point of contact between the CEO and department heads on [topics], handling [responsibilities]",
+        "question": "What did you handle between the CEO and department heads, and on which topics?"
+      },
+      {
+        "kind": "line",
+        "where": "Administrative Assistant, line 1",
+        "line": "Supported the operations team with scheduling and filing",
+        "cannot_tell": "The operations team is named, but the scheduling and filing could cover many kinds of work. What did you schedule and maintain?",
+        "example": "Supported the operations team by scheduling [what you scheduled] and filing [records]",
+        "question": "What did you schedule, and what records did you file?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Freelance Executive Assistant",
+        "Executive Assistant to the CEO"
+      ],
+      "why": "Your current work supports three founders, and your previous role supported the CEO at Parkway Logistics.",
+      "level": "mid-level, supports founders independently and previously supported a CEO",
+      "note": "Your experience points toward executive assistant roles supporting senior leaders or founders. The board meeting and offsite work gives you useful examples beyond calendar and travel management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "presentation": {
+    "score": 75,
+    "band": "Mostly clear",
+    "model_score": 75,
+    "lifted_by_employer": false,
+    "verdict": "Executive assistant experience with founders and a CEO, with a few duties and an earlier gap to explain.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The time between June 2023 and February 2025 is not accounted for.",
+        "blanks": 2,
+        "question": "What were you doing during that time, and which dates can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Executive Assistant, line 3",
+        "line": "Coordinate investor meeting logistics across time zones",
+        "blanks": 3,
+        "question": "Which logistics do you handle, and how often do you coordinate these meetings?"
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 2",
+        "line": "Prepared materials for quarterly board meetings",
+        "blanks": 2,
+        "question": "What materials did you prepare, and what did that work involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "Executive Assistant to the CEO, line 3",
+        "line": "Planned the annual leadership offsite for 40 attendees",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Executive Assistant to the CEO, line 4",
+        "line": "Served as the point of contact between the CEO and department heads",
+        "blanks": 2,
+        "question": "What did you handle between the CEO and department heads, and on which topics?"
+      },
+      {
+        "kind": "line",
+        "where": "Administrative Assistant, line 1",
+        "line": "Supported the operations team with scheduling and filing",
+        "blanks": 2,
+        "question": "What did you schedule, and what records did you file?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "dates": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Freelance Executive Assistant",
+        "Executive Assistant to the CEO"
+      ],
+      "why": "Your current work supports three founders, and your previous role supported the CEO at Parkway Logistics.",
+      "level": "mid-level, supports founders independently and previously supported a CEO",
+      "note": "Your experience points toward executive assistant roles supporting senior leaders or founders. The board meeting and offsite work gives you useful examples beyond calendar and travel management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00951755,
+  "latency_ms": 27017
+}

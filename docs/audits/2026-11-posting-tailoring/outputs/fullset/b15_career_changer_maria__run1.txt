@@ -1,0 +1,55 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0132; 41.9s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A math teacher's resume with practical analytics projects, but no specific target job named.
+
+## Write-up
+You’re a Mathematics Teacher moving toward data analytics, with classroom data work and bootcamp projects using Python, SQL and Tableau. I read your resume for that analytics move. The work is there, but a recruiter has to piece it together from teaching duties and a separate projects section.
+
+Your Student Performance Dashboard is the best model: it names the Excel dashboard and what it tracked, then says the math department used it to decide which units needed re-teaching. Your summary says you’re transitioning into analytics, but it doesn’t name the job you want.
+
+Start with the Lake Travis assessment and department data lines. Add the decisions or findings you can name, then bring your strongest data projects closer to the top for analytics applications. Keep the teaching work that shows how you used data with others.
+
+## Cards (7; {"line":5,"structure":1,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: A recruiter can't tell what data work you want to do from this sentence. Your projects give you something more concrete to lead with.
+   example: Mathematics Teacher transitioning into [target job title], with experience analyzing student assessment data and creating a Tableau dashboard showing affordability trends by zip code
+   question: Which analytics job title are you targeting?
+2. [structure] Structure
+   line: "Your resume names a transition into data analytics but not a target job title."
+   can't tell: Teaching and analytics both have a place on your resume, but a recruiter has to guess which analytics job you want. Name the role so the projects and skills have a clear destination.
+   question: Which analytics job are you applying for?
+3. [line] Mathematics Teacher, line 2
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can't tell what you built or how you used it. One named part of the curriculum would make this work more concrete.
+   example: Developed and implemented [curriculum or lesson] aligned with state standards for [students or course]
+   question: What part of the curriculum did you develop, and for which students or course?
+4. [line] Mathematics Teacher, line 3
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: This is useful analytics work, but the learning gaps and instructional changes are still unnamed. A concrete example would connect the analysis to a decision.
+   example: Analyzed student assessment data to identify [learning gap] and adjusted instruction by [instructional change]
+   question: What learning gap did you identify, and how did you adjust instruction?
+5. [line] Mathematics Teacher, line 4
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The Data Lead work is relevant to your transition, but a recruiter can't tell what you compiled or how the department used it.
+   example: Served as Math Department Data Lead, compiling benchmark results on [measures] for department meetings to inform [decision or discussion]
+   question: Which benchmark measures did you compile, and what decision or discussion did they inform?
+6. [line] Middle School Math Teacher, line 3
+   line: "Participated in professional learning communities"
+   can't tell: Participation alone doesn't say what you contributed. Name the work you did with the group, or give that space to your data projects.
+   example: Participated in professional learning communities by [contribution]
+   question: What did you contribute to the professional learning communities?
+7. [keep] Student Performance Dashboard, line 1
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It gives the tool, the measures and the period covered, and the next line connects it to a department decision.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: entry level, analytics bootcamp and data projects
+Note: Your dashboard projects and teaching data work give you material for an entry-level analytics resume. Name the job you want and put the most relevant data work where a recruiter will find it quickly.

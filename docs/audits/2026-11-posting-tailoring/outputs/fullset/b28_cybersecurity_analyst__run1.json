@@ -1,0 +1,217 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:02:04.068Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6803,
+        "completion_tokens": 1406,
+        "total_tokens": 8209,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 684,
+        "reasoning_tokens": 848
+      },
+      "cost_usd": 0.0081938,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25591
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and incident response work backed by measurable results.",
+    "write_up": [
+      "Your resume is strong because it connects detection engineering to a measurable reduction in false positives! A recruiter sees a move from monitoring client environments at Northgate to building detections and leading incident response at Capital Ridge Bank.",
+      "The Splunk detection line is the model: it names the work, the framework, and the 35% reduction in false-positive alerts. Your incident response line also puts a useful measure beside the work, showing median containment time falling from 9 hours to 3.",
+      "Your resume makes a strong case on its own. For a lead role, consider adding any detection or response direction you've set beyond mentoring. Competition for the particular role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model for the rest. It brings the tool, the framework, the amount of work and the change together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Security Analyst, line 5",
+        "line": "- Mentor 2 analysts on the night rotation",
+        "cannot_tell": "For a lead role, a recruiter will look for how you've set detection or response direction beyond mentoring.",
+        "example": "Mentor 2 analysts on the night rotation; [detection or response direction you set]",
+        "question": "What detection or response direction have you set beyond mentoring, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response"
+      ],
+      "why": "Your current role combines Splunk detection rules, incident response, automation and analyst mentoring.",
+      "level": "senior, leads incident response and mentors 2 analysts",
+      "note": "Your experience points toward senior detection and response roles in financial services. Your earlier work across client environments also shows security operations experience outside a bank.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and incident response work backed by measurable results.",
+    "write_up": [
+      "Your resume is strong because it connects detection engineering to a measurable reduction in false positives! A recruiter sees a move from monitoring client environments at Northgate to building detections and leading incident response at Capital Ridge Bank.",
+      "The Splunk detection line is the model: it names the work, the framework, and the 35% reduction in false-positive alerts. Your incident response line also puts a useful measure beside the work, showing median containment time falling from 9 hours to 3.",
+      "Your resume makes a strong case on its own. For a lead role, consider adding any detection or response direction you've set beyond mentoring. Competition for the particular role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model for the rest. It brings the tool, the framework, the amount of work and the change together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Security Analyst, line 5",
+        "line": "Mentor 2 analysts on the night rotation",
+        "cannot_tell": "For a lead role, a recruiter will look for how you've set detection or response direction beyond mentoring.",
+        "example": "Mentor 2 analysts on the night rotation; [detection or response direction you set]",
+        "question": "What detection or response direction have you set beyond mentoring, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response"
+      ],
+      "why": "Your current role combines Splunk detection rules, incident response, automation and analyst mentoring.",
+      "level": "senior, leads incident response and mentors 2 analysts",
+      "note": "Your experience points toward senior detection and response roles in financial services. Your earlier work across client environments also shows security operations experience outside a bank.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and incident response work backed by measurable results.",
+    "write_up": [
+      "Your resume is strong because it connects detection engineering to a measurable reduction in false positives! A recruiter sees a move from monitoring client environments at Northgate to building detections and leading incident response at Capital Ridge Bank.",
+      "The Splunk detection line is the model: it names the work, the framework, and the 35% reduction in false-positive alerts. Your incident response line also puts a useful measure beside the work, showing median containment time falling from 9 hours to 3.",
+      "Your resume makes a strong case on its own. For a lead role, consider adding any detection or response direction you've set beyond mentoring. Competition for the particular role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model for the rest. It brings the tool, the framework, the amount of work and the change together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Security Analyst, line 5",
+        "line": "Mentor 2 analysts on the night rotation",
+        "cannot_tell": "For a lead role, a recruiter will look for how you've set detection or response direction beyond mentoring.",
+        "example": "Mentor 2 analysts on the night rotation; [detection or response direction you set]",
+        "question": "What detection or response direction have you set beyond mentoring, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response"
+      ],
+      "why": "Your current role combines Splunk detection rules, incident response, automation and analyst mentoring.",
+      "level": "senior, leads incident response and mentors 2 analysts",
+      "note": "Your experience points toward senior detection and response roles in financial services. Your earlier work across client environments also shows security operations experience outside a bank.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and incident response work backed by measurable results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 112,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Security Analyst, line 5",
+        "line": "Mentor 2 analysts on the night rotation",
+        "blanks": 1,
+        "question": "What detection or response direction have you set beyond mentoring, if any?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response"
+      ],
+      "why": "Your current role combines Splunk detection rules, incident response, automation and analyst mentoring.",
+      "level": "senior, leads incident response and mentors 2 analysts",
+      "note": "Your experience points toward senior detection and response roles in financial services. Your earlier work across client environments also shows security operations experience outside a bank.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0081938,
+  "latency_ms": 25593
+}

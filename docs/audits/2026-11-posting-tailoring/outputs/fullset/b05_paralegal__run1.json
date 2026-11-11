@@ -1,0 +1,217 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T15:59:36.988Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6796,
+        "completion_tokens": 1258,
+        "total_tokens": 8054,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 667
+      },
+      "cost_usd": 0.00744505,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24865
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal whose production and trial work is easy to understand, with one workload question.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike on commercial contract and employment cases, after personal injury work at Summit Legal Group. A recruiter can follow the work from discovery through trial, and the production volume shows how much you handle.",
+      "The Relativity production line is the model: it names your responsibility, the tool, and the volume. Your current role also shows jury trial support, and Experience is in the right place above Education.",
+      "Let's make the deadline line as useful as the rest of the Harlan & Pike role. Add the number of cases and the kinds of deadlines you track, if you can substantiate them. The named discovery and trial work can stay as it is."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "- Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you track them for or which deadlines are involved. That would show more of the workload alongside your production and trial work.",
+        "example": "Track court deadlines in the firm's docketing system for [number] cases, including [types of deadlines]",
+        "question": "How many cases do you track deadlines for, and what kinds of deadlines are they?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the production work without making them guess which platform you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current title and your discovery, document production, and trial preparation work point to senior litigation paralegal roles.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward commercial and employment litigation work. The earlier personal injury role adds another kind of case to that story.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal whose production and trial work is easy to understand, with one workload question.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike on commercial contract and employment cases, after personal injury work at Summit Legal Group. A recruiter can follow the work from discovery through trial, and the production volume shows how much you handle.",
+      "The Relativity production line is the model: it names your responsibility, the tool, and the volume. Your current role also shows jury trial support, and Experience is in the right place above Education.",
+      "Let's make the deadline line as useful as the rest of the Harlan & Pike role. Add the number of cases and the kinds of deadlines you track, if you can substantiate them. The named discovery and trial work can stay as it is."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you track them for or which deadlines are involved. That would show more of the workload alongside your production and trial work.",
+        "example": "Track court deadlines in the firm's docketing system for [number] cases, including [types of deadlines]",
+        "question": "How many cases do you track deadlines for, and what kinds of deadlines are they?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the production work without making them guess which platform you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current title and your discovery, document production, and trial preparation work point to senior litigation paralegal roles.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward commercial and employment litigation work. The earlier personal injury role adds another kind of case to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal whose production and trial work is easy to understand, with one workload question.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike on commercial contract and employment cases, after personal injury work at Summit Legal Group. A recruiter can follow the work from discovery through trial, and the production volume shows how much you handle.",
+      "The Relativity production line is the model: it names your responsibility, the tool, and the volume. Your current role also shows jury trial support, and Experience is in the right place above Education.",
+      "Let's make the deadline line as useful as the rest of the Harlan & Pike role. Add the number of cases and the kinds of deadlines you track, if you can substantiate them. The named discovery and trial work can stay as it is."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you track them for or which deadlines are involved. That would show more of the workload alongside your production and trial work.",
+        "example": "Track court deadlines in the firm's docketing system for [number] cases, including [types of deadlines]",
+        "question": "How many cases do you track deadlines for, and what kinds of deadlines are they?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the production work without making them guess which platform you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current title and your discovery, document production, and trial preparation work point to senior litigation paralegal roles.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward commercial and employment litigation work. The earlier personal injury role adds another kind of case to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal whose production and trial work is easy to understand, with one workload question.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "blanks": 2,
+        "question": "How many cases do you track deadlines for, and what kinds of deadlines are they?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current title and your discovery, document production, and trial preparation work point to senior litigation paralegal roles.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward commercial and employment litigation work. The earlier personal injury role adds another kind of case to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00744505,
+  "latency_ms": 24883
+}

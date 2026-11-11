@@ -1,0 +1,80 @@
+{
+  "id": "analyst-nursing-posting",
+  "resume": "../../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+  "posting": "../../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 0,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 7130,
+    "tokens_out": 1696,
+    "cost_estimate_usd": 0.00883935
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but this registered nurse role requires clinical credentials and experience it doesn't show.",
+    "write_up": [
+      "This posting is for a registered nurse, while your resume tells a strong data analyst story. At Carolina Home Goods and Piedmont Insurance Services, you've worked with sales, merchandising and insurance data, not the patient care described here. I'm scoring your resume for Data Analyst roles, where the work and its results are easy to follow.",
+      "The markdown analysis is a great model: it names the 2,100 SKUs you analyzed and the two categories where the merchandising team adopted your recommendation. Your SQL reporting line also shows a clear change from a 3-day manual process to an automated one.",
+      "For data analyst jobs, your resume is unlikely to be the main obstacle; competition for the role still matters. For this nursing posting, add any clinical training and credentials you have but haven't listed. Otherwise, explore nursing education and licensing before applying."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 3",
+        "line": "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories",
+        "cannot_tell": "Keep this as a model. It connects your analysis to a recommendation and tells us what the merchandising team did with it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "For a senior analyst role, a recruiter will look for how your analysis informed broader decisions. Add that connection if you can substantiate it.",
+        "example": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month, informing [broader decision]",
+        "question": "Did any of these analyses inform a broader decision, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Move this above the dashboard line. The shift from a 3-day manual report to an automated one gives a recruiter a strong reason to keep reading.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "why": "Your headline and current role both point to data analysis, with SQL, Power BI and reporting work throughout.",
+      "level": "mid-level, current Data Analyst role and earlier Junior Analyst role",
+      "note": "Your reporting and data reconciliation work shows care with information, though it doesn't establish clinical practice. If you have relevant nursing training or credentials not listed, add them before using this resume for the posting.",
+      "posting": {
+        "summary": "The role calls for licensed medical-surgical nursing, patient care and EHR documentation on a night shift.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  }
+}

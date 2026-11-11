@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0074; 24.9s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A senior litigation paralegal whose production and trial work is easy to understand, with one workload question.
+
+## Write-up
+Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike on commercial contract and employment cases, after personal injury work at Summit Legal Group. A recruiter can follow the work from discovery through trial, and the production volume shows how much you handle.
+
+The Relativity production line is the model: it names your responsibility, the tool, and the volume. Your current role also shows jury trial support, and Experience is in the right place above Education.
+
+Let's make the deadline line as useful as the rest of the Harlan & Pike role. Add the number of cases and the kinds of deadlines you track, if you can substantiate them. The named discovery and trial work can stay as it is.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Senior Litigation Paralegal, line 5
+   line: "Track court deadlines in the firm's docketing system"
+   can't tell: A recruiter can see that you track deadlines, but not how many cases you track them for or which deadlines are involved. That would show more of the workload alongside your production and trial work.
+   example: Track court deadlines in the firm's docketing system for [number] cases, including [types of deadlines]
+   question: How many cases do you track deadlines for, and what kinds of deadlines are they?
+2. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. It gives a recruiter a concrete sense of the production work without making them guess which platform you use.
+
+## Fit
+Roles: ["Senior Litigation Paralegal"]
+Level: senior, supports four partners and manages document productions
+Note: Your experience points toward commercial and employment litigation work. The earlier personal injury role adds another kind of case to that story.

@@ -1,0 +1,40 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0118; 35.6s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A certified pharmacy technician with substantial inpatient and retail work, backed by clear measures.
+
+## Write-up
+Your resume is strong because it shows both the pharmacy work and how much of it you handle! A recruiter sees a certified technician who moved from RiteCare into inpatient pharmacy at Sutter Valley, with sterile compounding and dispensing cabinet experience.
+
+The cabinet restocking line is a great model: it names the six nursing units and shows that stockout reports fell from 9 to 2 per week in 2024. Your roles and dates are easy to follow, though the separate duties section makes a recruiter look back to match work with each job.
+
+Let's put each duty under its role and explain what you checked when verifying prescriptions. Your resume is unlikely to be what holds you back; competition for a particular job still matters.
+
+## Cards (4; {"structure":1,"line":1,"keep":1,"upgrade":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Roles and dates are listed separately from duties and results."
+   can't tell: A recruiter has to move between sections to match each job with its work. Putting the duties under their roles keeps the dates, employer and pharmacy work together.
+   question: Can you place each duty and result under the job it describes?
+2. [line] Pharmacy Technician, prescription line
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: A recruiter can see that you filled and verified prescriptions, but not which checks you performed or how the final check worked. Those details matter in a pharmacy role.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you verified]; final check by [who performed the final check]
+   question: What did you verify on prescriptions, and who performed the final check?
+3. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It pairs a concrete responsibility with a change a recruiter can understand without guessing what the measure means.
+4. [upgrade] Pharmacy Technician II, training
+   line: "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023"
+   can't tell: For a lead role, a decision you made about training or workflow would show more of how you guide the work.
+   example: Train new technicians on sterile compounding; 5 trained since 2023; [a decision you made about training or workflow]
+   question: What decision, if any, did you make about training or workflow?
+
+## Fit
+Roles: ["Certified Pharmacy Technician (CPhT)","Pharmacy Technician II"]
+Level: mid-level, inpatient and retail pharmacy experience with sterile compounding certification
+Note: Your recent work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your retail experience also gives you a credible story for pharmacy work involving prescriptions and insurance.

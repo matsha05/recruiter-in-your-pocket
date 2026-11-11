@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0080; 25.4s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mathematics teacher with clear classroom work and a developing digital learning portfolio.
+
+## Write-up
+Your resume points to mathematics teaching at Cedar Creek High School and Pinewood Middle School, with digital learning design growing alongside it. I read it for a Mathematics Teacher role: the classroom work is easy to place, though a few leadership activities need more detail.
+
+The line about Algebra II and AP Statistics is a strong model because it names both subjects, the sections and the student range. Your Canvas module also gives a recruiter a concrete example of learning design, and your certificate is clearly marked as in progress.
+
+Let's start with the professional learning community and math team. Add what you led or coached in each, then use the Canvas module and your portfolio to show more of your design work when it's relevant to the job.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Cedar Creek High School, professional learning community
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the community, but not what the group works on or what you do together. Those details would show what your leadership looks like beyond the classroom.
+   example: Lead the math department's professional learning community on [topics] through [activities]
+   question: What topics does the community work on, and what activities do you lead?
+2. [line] Cedar Creek High School, math team
+   line: "Coach the school's math team"
+   can't tell: Coaching the math team is useful work, but a recruiter can't tell how you prepare students or what the team works toward.
+   example: Coach the school's math team through [coaching activities] focused on [goals]
+   question: How do you coach the team, and what does it work toward?
+3. [keep] Cedar Creek High School, teaching
+   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
+   can't tell: Keep this as a model for the other lines: it puts your teaching assignment and the students you work with together.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: mid-level, current Mathematics Teacher role and earlier classroom teaching
+Note: Your experience points most directly to mathematics teaching. The Canvas module, portfolio and certificate in progress also give you material to build on for learning design work.

@@ -1,0 +1,376 @@
+{
+  "case_id": "b06_staff_accountant",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+  "resume_sha256": "5ffd1542f9efd3cfd81adbb3bf5a41f679b5c13e4c013d509922f301a1d5ca53",
+  "resume_words": 98,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T15:59:59.526Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6646,
+        "completion_tokens": 1821,
+        "total_tokens": 8467,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 527,
+        "reasoning_tokens": 642
+      },
+      "cost_usd": 0.01007255,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29388
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A Staff Accountant with a clear progression, but too little detail about the accounting work.",
+    "write_up": [
+      "You moved from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, and your resume points clearly toward staff accounting. It's common to describe accounting work as a list of duties, but this version won't stand out in a pile: a recruiter can't tell how much work you handle or what your close involves.",
+      "The line about preparing journal entries and account reconciliations is the best model because it names two concrete pieces of accounting work. Your dates, accounting degree and systems are easy to find; what's missing is a sense of the work behind those tools.",
+      "Let's start with the month-end close line in your current role. Add the tasks you handle and a measure you can support, then do the same for the audit and fixed asset work. A short description of Rivermark can also give a recruiter context for the business."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Rivermark Building Supply",
+        "line": "The resume does not describe Rivermark Building Supply's business or size.",
+        "cannot_tell": "A recruiter may not know the business behind your accounting work. A short description can put the role in context.",
+        "example": "Rivermark Building Supply, Sacramento, CA | [business description] | [size measure]",
+        "question": "How would you describe the business and its size using information you can share?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "- Responsible for month-end close tasks",
+        "cannot_tell": "Month-end close is central to this role, but a recruiter can't tell which tasks are yours or how much you handle.",
+        "example": "Responsible for month-end close tasks, including [tasks] for [accounts or entities]",
+        "question": "Which close tasks do you handle, and what accounts or entities do they cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "- Prepare journal entries and account reconciliations",
+        "cannot_tell": "This names the work, but not the accounts or how much of it you handle. Those details would give a recruiter a better sense of your day-to-day accounting.",
+        "example": "Prepare journal entries and account reconciliations for [account types], handling [number] [entries or reconciliations] per [period]",
+        "question": "Which accounts do you work on, and how many entries or reconciliations do you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "- Assist with the annual audit",
+        "cannot_tell": "Assisting could mean several different things. A recruiter can't tell what you prepare or provide for the audit.",
+        "example": "Assist with the annual audit by preparing [audit materials] for [who receives them]",
+        "question": "What do you prepare for the annual audit, and who receives it?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 4",
+        "line": "- Maintain fixed asset schedules",
+        "cannot_tell": "The schedules are named, but a recruiter can't tell what they cover or how many assets you track.",
+        "example": "Maintain fixed asset schedules for [number] assets, including [schedule details]",
+        "question": "How many assets do the schedules cover, and what details do you maintain?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "- Process accounts payable when needed",
+        "cannot_tell": "A recruiter can't tell how often you step in or how much payable work you handle when you do.",
+        "example": "Process accounts payable when needed, handling [number] [invoices or payments] per [period]",
+        "question": "When you handle accounts payable, how many invoices or payments do you typically process, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "- Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would show how much of the payable workload you handled.",
+        "example": "Entered [number] vendor invoices per [period]",
+        "question": "About how many vendor invoices did you enter in a typical week or month?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your headline and current role both name Staff Accountant, with earlier accounts payable work at the same employer.",
+      "level": "mid-level, current Staff Accountant role following an Accounts Payable Clerk role",
+      "note": "Your accounting degree and work across close, reconciliations, audit support and fixed assets point toward staff accounting. Adding the scale of that work will help a recruiter distinguish it from a basic duty list.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A Staff Accountant with a clear progression, but too little detail about the accounting work.",
+    "write_up": [
+      "You moved from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, and your resume points clearly toward staff accounting. It's common to describe accounting work as a list of duties, but this version won't stand out in a pile: a recruiter can't tell how much work you handle or what your close involves.",
+      "The line about preparing journal entries and account reconciliations is the best model because it names two concrete pieces of accounting work. Your dates, accounting degree and systems are easy to find; what's missing is a sense of the work behind those tools.",
+      "Let's start with the month-end close line in your current role. Add the tasks you handle and a measure you can support, then do the same for the audit and fixed asset work. A short description of Rivermark can also give a recruiter context for the business."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Rivermark Building Supply",
+        "line": "The resume does not describe Rivermark Building Supply's business or size.",
+        "cannot_tell": "A recruiter may not know the business behind your accounting work. A short description can put the role in context.",
+        "example": "Rivermark Building Supply, Sacramento, CA | [business description] | [size measure]",
+        "question": "How would you describe the business and its size using information you can share?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "cannot_tell": "Month-end close is central to this role, but a recruiter can't tell which tasks are yours or how much you handle.",
+        "example": "Responsible for month-end close tasks, including [tasks] for [accounts or entities]",
+        "question": "Which close tasks do you handle, and what accounts or entities do they cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "cannot_tell": "This names the work, but not the accounts or how much of it you handle. Those details would give a recruiter a better sense of your day-to-day accounting.",
+        "example": "Prepare journal entries and account reconciliations for [account types], handling [number] [entries or reconciliations] per [period]",
+        "question": "Which accounts do you work on, and how many entries or reconciliations do you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "cannot_tell": "Assisting could mean several different things. A recruiter can't tell what you prepare or provide for the audit.",
+        "example": "Assist with the annual audit by preparing [audit materials] for [who receives them]",
+        "question": "What do you prepare for the annual audit, and who receives it?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 4",
+        "line": "Maintain fixed asset schedules",
+        "cannot_tell": "The schedules are named, but a recruiter can't tell what they cover or how many assets you track.",
+        "example": "Maintain fixed asset schedules for [number] assets, including [schedule details]",
+        "question": "How many assets do the schedules cover, and what details do you maintain?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "cannot_tell": "A recruiter can't tell how often you step in or how much payable work you handle when you do.",
+        "example": "Process accounts payable when needed, handling [number] [invoices or payments] per [period]",
+        "question": "When you handle accounts payable, how many invoices or payments do you typically process, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would show how much of the payable workload you handled.",
+        "example": "Entered [number] vendor invoices per [period]",
+        "question": "About how many vendor invoices did you enter in a typical week or month?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your headline and current role both name Staff Accountant, with earlier accounts payable work at the same employer.",
+      "level": "mid-level, current Staff Accountant role following an Accounts Payable Clerk role",
+      "note": "Your accounting degree and work across close, reconciliations, audit support and fixed assets point toward staff accounting. Adding the scale of that work will help a recruiter distinguish it from a basic duty list.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A Staff Accountant with a clear progression, but too little detail about the accounting work.",
+    "write_up": [
+      "You moved from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, and your resume points clearly toward staff accounting. It's common to describe accounting work as a list of duties, but this version won't stand out in a pile: a recruiter can't tell how much work you handle or what your close involves.",
+      "The line about preparing journal entries and account reconciliations is the best model because it names two concrete pieces of accounting work. Your dates, accounting degree and systems are easy to find; what's missing is a sense of the work behind those tools.",
+      "Let's start with the month-end close line in your current role. Add the tasks you handle and a measure you can support, then do the same for the audit and fixed asset work. A short description of Rivermark can also give a recruiter context for the business."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Rivermark Building Supply",
+        "line": "The resume does not describe Rivermark Building Supply's business or size.",
+        "cannot_tell": "A recruiter may not know the business behind your accounting work. A short description can put the role in context.",
+        "example": "Rivermark Building Supply, Sacramento, CA | [business description] | [size measure]",
+        "question": "How would you describe the business and its size using information you can share?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "cannot_tell": "Month-end close is central to this role, but a recruiter can't tell which tasks are yours or how much you handle.",
+        "example": "Responsible for month-end close tasks, including [tasks] for [accounts or entities]",
+        "question": "Which close tasks do you handle, and what accounts or entities do they cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "cannot_tell": "This names the work, but not the accounts or how much of it you handle. Those details would give a recruiter a better sense of your day-to-day accounting.",
+        "example": "Prepare journal entries and account reconciliations for [account types], handling [number] [entries or reconciliations] per [period]",
+        "question": "Which accounts do you work on, and how many entries or reconciliations do you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "cannot_tell": "Assisting could mean several different things. A recruiter can't tell what you prepare or provide for the audit.",
+        "example": "Assist with the annual audit by preparing [audit materials] for [who receives them]",
+        "question": "What do you prepare for the annual audit, and who receives it?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 4",
+        "line": "Maintain fixed asset schedules",
+        "cannot_tell": "The schedules are named, but a recruiter can't tell what they cover or how many assets you track.",
+        "example": "Maintain fixed asset schedules for [number] assets, including [schedule details]",
+        "question": "How many assets do the schedules cover, and what details do you maintain?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "cannot_tell": "A recruiter can't tell how often you step in or how much payable work you handle when you do.",
+        "example": "Process accounts payable when needed, handling [number] [invoices or payments] per [period]",
+        "question": "When you handle accounts payable, how many invoices or payments do you typically process, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would show how much of the payable workload you handled.",
+        "example": "Entered [number] vendor invoices per [period]",
+        "question": "About how many vendor invoices did you enter in a typical week or month?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your headline and current role both name Staff Accountant, with earlier accounts payable work at the same employer.",
+      "level": "mid-level, current Staff Accountant role following an Accounts Payable Clerk role",
+      "note": "Your accounting degree and work across close, reconciliations, audit support and fixed assets point toward staff accounting. Adding the scale of that work will help a recruiter distinguish it from a basic duty list.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A Staff Accountant with a clear progression, but too little detail about the accounting work.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 145,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Rivermark Building Supply",
+        "line": "The resume does not describe Rivermark Building Supply's business or size.",
+        "blanks": 2,
+        "question": "How would you describe the business and its size using information you can share?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "blanks": 2,
+        "question": "Which close tasks do you handle, and what accounts or entities do they cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "blanks": 4,
+        "question": "Which accounts do you work on, and how many entries or reconciliations do you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "blanks": 2,
+        "question": "What do you prepare for the annual audit, and who receives it?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 4",
+        "line": "Maintain fixed asset schedules",
+        "blanks": 2,
+        "question": "How many assets do the schedules cover, and what details do you maintain?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "blanks": 3,
+        "question": "When you handle accounts payable, how many invoices or payments do you typically process, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "blanks": 2,
+        "question": "About how many vendor invoices did you enter in a typical week or month?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "structure": 1,
+      "line": 6
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your headline and current role both name Staff Accountant, with earlier accounts payable work at the same employer.",
+      "level": "mid-level, current Staff Accountant role following an Accounts Payable Clerk role",
+      "note": "Your accounting degree and work across close, reconciliations, audit support and fixed assets point toward staff accounting. Adding the scale of that work will help a recruiter distinguish it from a basic duty list.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01007255,
+  "latency_ms": 29392
+}

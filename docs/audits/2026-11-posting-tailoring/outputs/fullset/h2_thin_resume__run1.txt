@@ -1,0 +1,55 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0097; 30.1s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with useful tools, but too little detail about the reporting and dashboard work.
+
+## Write-up
+Your resume points toward data analytics: you interned at Great Lakes Credit Union and manage finances for the Michigan Data Science Club. It's common for an internship resume to list tasks without much detail, but that makes it harder to stand out among other applicants who know the same tools.
+
+The member survey line is your best model. It names the data you worked on and the tools you used, so a recruiter can picture the assignment. Education is a sensible place to start while you're still pursuing your degree.
+
+Let's start with the credit union role. Add your part in the weekly reports, what the dashboard tracked, and what you presented. Then give the club budget and speaker events the same treatment.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "Great Lakes Credit Union's membership size isn't stated."
+   can't tell: A recruiter can see it was a credit union, but not how many members it served. If you know the figure, a short description beneath the employer name could give your analytics work more context.
+   question: Can you confirm how many members the credit union served during your internship?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted leaves your part open. A recruiter can't tell what you did for the reports or what they covered.
+   example: Assisted the analytics team with weekly reporting by [your work] on [what the reports tracked]
+   question: What did you do for the weekly reports, and what did they track?
+3. [keep] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: Keep this as a model: the action, the material and the tools are all there without extra filler.
+4. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: The tool and audience are clear, but the dashboard's subject isn't. What it tracked would show a recruiter the kind of marketing question you worked on.
+   example: Built a dashboard in Tableau for the marketing team to track [measures]
+   question: What did the dashboard track for the marketing team?
+5. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A recruiter can't tell what you found or which work the findings came from. Name the finding so the presentation has a clear subject.
+   example: Presented findings on [subject and finding] to the team at the end of the internship
+   question: What did you present, and what was the main finding?
+6. [line] Treasurer, line 1
+   line: "Manage the club budget and reimbursements"
+   can't tell: This shows real financial responsibility, but not how much money you manage. The budget amount would help a recruiter understand the work.
+   example: Manage the club budget of [budget amount] and reimbursements
+   question: What is the club budget you manage?
+7. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: Help could mean several different jobs. Name your part in the monthly events so a recruiter knows what you handle.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you handle when organizing the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: entry level, one data analytics internship
+Note: Your internship and coursework point toward data analytics internships or other entry-level analytics work. The club treasurer role adds financial responsibility alongside that experience.

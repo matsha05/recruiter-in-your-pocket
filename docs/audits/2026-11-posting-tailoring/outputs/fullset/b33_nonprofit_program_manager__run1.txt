@@ -1,0 +1,37 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0105; 36.8s
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A youth workforce program manager whose team is clear, but whose program results are still missing.
+
+## Write-up
+Your resume tells a consistent story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow the work, but has to guess how many students and employers the programs reach.
+
+The supervision line is your best model: it names both groups you manage and gives their numbers. Your promotion is easy to follow, and your current role sits where a recruiter will see it first.
+
+Let's start with the summer jobs program. Add the number of students placed and any results you can substantiate, then show what your staff handle and how many employer partners you recruit.
+
+## Cards (3; {"line":3}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: A recruiter can see the program you manage, but not how many students it places or what happens after placement. Those details matter for a youth workforce role.
+   example: Manage a summer jobs program placing [number] high school students with local employers [time period], with [program result]
+   question: How many students did the program place, over what period, and what results can you document?
+2. [line] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. That matters when comparing program management roles.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [work handled]
+   question: What do the coordinators and seasonal staff handle?
+3. [line] Program Manager, Youth Workforce, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: Recruiting employer partners is relevant to the summer jobs program, but the number you bring on isn't shown.
+   example: Recruit and onboard [number] employer partners [time period]
+   question: How many employer partners have you recruited and onboarded, and over what period?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce"]
+Level: manager, supervises 4 program coordinators and 20 seasonal staff
+Note: Your experience points toward nonprofit youth workforce program management, particularly roles involving employer partnerships and grant reporting. The move from coordinator to manager also shows growing responsibility at Harbor Pathways.

@@ -1,0 +1,252 @@
+{
+  "case_id": "b03_welder",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_welder.txt",
+  "resume_sha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8",
+  "resume_words": 195,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T15:59:36.988Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6961,
+        "completion_tokens": 1456,
+        "total_tokens": 8417,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 842,
+        "reasoning_tokens": 757
+      },
+      "cost_usd": 0.0086413,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25997
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter with specific inspection results, pipe experience, and relevant certifications.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! At Maumee Steel Fabricators, you name the structures, welding processes, fit-up tolerance, and inspection results. Your earlier pipe work and certifications round out the story.",
+      "The Riverfront Tower line is the model: it names the job, the third-party inspections, and about 900 welds. A recruiter can see what was inspected without guessing. Your experience and certifications are also easy to find.",
+      "Add the work you handled during plant shutdowns, then consider moving the Riverfront Tower result to the top of the Maumee role. Your resume gives a recruiter plenty to work with; the competition for a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "- Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what you handled during the shutdowns. The work itself is more useful than the hours alone.",
+        "example": "Worked nights and weekends on plant shutdowns, handling [work performed]",
+        "question": "What work did you handle during the plant shutdowns?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 4",
+        "line": "- Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "For a lead role, a recruiter would also look for responsibilities directing shop work. Add one if you've had it.",
+        "example": "Train new hires on the shop's fit-up and tacking procedures; [a responsibility for directing shop work]",
+        "question": "Have you had a responsibility for directing shop work beyond training new hires, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 3",
+        "line": "- Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "This is your strongest result. Move it ahead of the general structural welding line so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, backed by inspection results and structural steel certifications.",
+      "level": "senior, 6G pipe certification and trains new hires",
+      "note": "Your resume points toward structural welding and fit-up, with pipe welding as another established direction. For a lead position, add any responsibility you've had for directing shop work.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter with specific inspection results, pipe experience, and relevant certifications.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! At Maumee Steel Fabricators, you name the structures, welding processes, fit-up tolerance, and inspection results. Your earlier pipe work and certifications round out the story.",
+      "The Riverfront Tower line is the model: it names the job, the third-party inspections, and about 900 welds. A recruiter can see what was inspected without guessing. Your experience and certifications are also easy to find.",
+      "Add the work you handled during plant shutdowns, then consider moving the Riverfront Tower result to the top of the Maumee role. Your resume gives a recruiter plenty to work with; the competition for a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what you handled during the shutdowns. The work itself is more useful than the hours alone.",
+        "example": "Worked nights and weekends on plant shutdowns, handling [work performed]",
+        "question": "What work did you handle during the plant shutdowns?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 4",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "For a lead role, a recruiter would also look for responsibilities directing shop work. Add one if you've had it.",
+        "example": "Train new hires on the shop's fit-up and tacking procedures; [a responsibility for directing shop work]",
+        "question": "Have you had a responsibility for directing shop work beyond training new hires, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "This is your strongest result. Move it ahead of the general structural welding line so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, backed by inspection results and structural steel certifications.",
+      "level": "senior, 6G pipe certification and trains new hires",
+      "note": "Your resume points toward structural welding and fit-up, with pipe welding as another established direction. For a lead position, add any responsibility you've had for directing shop work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter with specific inspection results, pipe experience, and relevant certifications.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! At Maumee Steel Fabricators, you name the structures, welding processes, fit-up tolerance, and inspection results. Your earlier pipe work and certifications round out the story.",
+      "The Riverfront Tower line is the model: it names the job, the third-party inspections, and about 900 welds. A recruiter can see what was inspected without guessing. Your experience and certifications are also easy to find.",
+      "Add the work you handled during plant shutdowns, then consider moving the Riverfront Tower result to the top of the Maumee role. Your resume gives a recruiter plenty to work with; the competition for a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what you handled during the shutdowns. The work itself is more useful than the hours alone.",
+        "example": "Worked nights and weekends on plant shutdowns, handling [work performed]",
+        "question": "What work did you handle during the plant shutdowns?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 4",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "For a lead role, a recruiter would also look for responsibilities directing shop work. Add one if you've had it.",
+        "example": "Train new hires on the shop's fit-up and tacking procedures; [a responsibility for directing shop work]",
+        "question": "Have you had a responsibility for directing shop work beyond training new hires, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "This is your strongest result. Move it ahead of the general structural welding line so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, backed by inspection results and structural steel certifications.",
+      "level": "senior, 6G pipe certification and trains new hires",
+      "note": "Your resume points toward structural welding and fit-up, with pipe welding as another established direction. For a lead position, add any responsibility you've had for directing shop work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter with specific inspection results, pipe experience, and relevant certifications.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 112,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "blanks": 1,
+        "question": "What work did you handle during the plant shutdowns?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 4",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "blanks": 1,
+        "question": "Have you had a responsibility for directing shop work beyond training new hires, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, backed by inspection results and structural steel certifications.",
+      "level": "senior, 6G pipe certification and trains new hires",
+      "note": "Your resume points toward structural welding and fit-up, with pipe welding as another established direction. For a lead position, add any responsibility you've had for directing shop work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0086413,
+  "latency_ms": 26014
+}

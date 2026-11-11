@@ -3,42 +3,42 @@
   "resume": "fr01_backend_ic_senior.txt",
   "posting": "posting_senior_backend.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-11",
+  "today": "2026-11-07",
   "repaired": false,
   "firstError": null,
   "drafted": {
-    "lead": 1,
+    "lead": 2,
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7264,
-    "tokens_out": 1675,
-    "cost_estimate_usd": 0.01745425
+    "tokens_in": 7354,
+    "tokens_out": 1854,
+    "cost_estimate_usd": 0.01846175
   },
   "report": {
     "contract_version": "v3",
-    "score": 89,
+    "score": 88,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer with substantial payments experience and production results that fit money movement.",
+    "verdict": "A senior backend engineer with payments, ledger and production migration work that fits much of Cobalt Pay's role.",
     "write_up": [
-      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you connect payments infrastructure to transaction volume, a zero-downtime migration and a substantial latency reduction. That gives a recruiter more than a list of technologies.",
-      "The balance API line is a great model: it names the problem, the change you made and the before-and-after result. Your headline fits the work, and your experience leads your education. The older Northgate role could say a little more about what maintaining the services involved.",
-      "For Cobalt Pay, keep the payouts and ledger work prominent, and bring the event-driven billing example forward. Add any direct on-call ownership, design review leadership or partnership work only if you did it. Your resume is unlikely to be the thing holding you back; competition for the role will matter too."
+      "Your resume tells a strong story: you build payment services at Lumen Ledger, after backend work in freight and insurance. The payouts service, ledger migration and balance API improvements give a recruiter concrete reasons to consider you for a senior backend role.",
+      "The balance API line is a great model: it names the latency before and after and explains what you changed. Your experience is also easy to follow, with recent payments work leading the resume. Cobalt Pay will still look for details about your role in on-call, design reviews and financial controls.",
+      "Start by tailoring the Lumen Ledger section to those responsibilities where you have firsthand experience. Then add detail to the older claims service line. Your resume is strong as it stands; the match to Cobalt Pay's remaining requirements and how competitive the role is will also matter."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Software Engineer, Northgate Insurance, line 1",
         "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. One concrete change or problem you handled would give this earlier role more substance.",
-        "example": "Maintained the claims intake services in Java, including [a change you made or problem you handled]",
-        "question": "What change or problem did you handle in the claims intake services?"
+        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. A concrete change would show more of your Java work.",
+        "example": "Maintained the claims intake services in Java by [work you did]",
+        "question": "What work did you do on the claims intake services?"
       },
       {
         "kind": "keep",
         "where": "Senior Software Engineer, Payments Platform, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. It gives a recruiter the technical choice and the measured result together, without making them guess what improved.",
+        "cannot_tell": "Keep this as a model. The API, the change and the two latency figures give a recruiter something concrete to remember.",
         "example": "",
         "question": ""
       },
@@ -46,9 +46,9 @@
         "kind": "upgrade",
         "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For a role above senior engineer, the technical decisions behind a migration and the teams affected can show how far your leadership reached.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, making [a decision you made] for [teams affected]",
-        "question": "What decision did you make for the migration, and which teams did it affect?"
+        "cannot_tell": "For a role one level above senior, a recruiter will look for technical decisions that reach beyond one migration. Add one if you made it.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, making [a decision you made] affecting [systems or teams]",
+        "question": "What decision did you make during the migration that affected other systems or teams?"
       }
     ],
     "fit": {
@@ -56,9 +56,9 @@
         "Senior Backend Engineer",
         "Senior Backend Engineer, Money Movement"
       ],
-      "why": "Your headline and current role center on backend payments services, ledger infrastructure and production reliability.",
-      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your payouts service, ledger migration and latency work map closely to the money movement work. Bring your event-driven billing example forward and add relevant work your resume leaves out, if you did it.",
+      "why": "Your headline and current role point to senior backend work, with Go payouts, a ledger migration and production reliability improvements.",
+      "level": "senior, leads a ledger migration and mentors two engineers",
+      "note": "The Go payouts service and PostgreSQL ledger work are especially relevant to Cobalt Pay. Put your most relevant firsthand responsibilities near those results so a recruiter can see the connection quickly.",
       "posting": {
         "summary": "Cobalt Pay seeks a senior backend engineer to build and operate payment services, lead technical work and partner on financial controls.",
         "missing": [
@@ -68,8 +68,12 @@
         ],
         "lead": [
           {
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "This answers the posting's ask to mentor engineers on the team. Move it above the runbooks line in the Lumen Ledger role."
+          },
+          {
             "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
-            "why": "This directly answers the posting's ask for event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
+            "why": "This directly answers the ask for experience with event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
           }
         ]
       }
@@ -78,6 +82,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 89
+    "content_score": 88
   }
 }

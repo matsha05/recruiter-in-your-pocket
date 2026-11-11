@@ -1,0 +1,1569 @@
+{
+  "totals": {
+    "compared": 49,
+    "candidate_preferred": 18,
+    "candidate_clear": 11,
+    "shipped_preferred": 17,
+    "shipped_clear": 9,
+    "ties": 14,
+    "candidate_reports_flagged_in_both_orders": 1,
+    "shipped_reports_flagged_in_both_orders": 1,
+    "errors": 0,
+    "not_compared": [
+      "h4a_academic_cv_15_pages"
+    ],
+    "stopped_on_budget": false,
+    "judge_model": "gpt-6.1-sol",
+    "judge_calls": 98,
+    "judge_cost_usd": 0.713008,
+    "shipped_dir": "../docs/audits/2026-11-first-read/outputs/upgrades3/fullset",
+    "candidate_dir": "../docs/audits/2026-11-posting-tailoring/outputs/fullset"
+  },
+  "rows": [
+    {
+      "case_id": "b01_icu_nurse",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports keep the quantified direct-care line as the model and target the same two unclear contributions: sepsis committee membership and participation in rapid response calls. Their write-ups, examples, and questions are equally grounded and ask for essentially the same missing facts."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports keep the patient-assignment line as the model and ask for the same missing details on sepsis committee membership and rapid response calls. Their write-ups, examples, and questions are comparably grounded and specific; the wording differences do not materially change the guidance."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b02_teacher",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both correctly make “Served on the school's positive behavior support committee” the only line needing work, retain the family literacy night as a model, and treat the strong current-role bullets as optional polish. Their write-ups identify the same teaching story and reading-growth standout, with no material difference in grounding or usefulness."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both correctly flag only “Served on the school's positive behavior support committee” as needing work and keep the family literacy night line as a model. Their write-ups identify the same teaching story and reading-growth standout; the differently ordered optional upgrades do not materially distinguish them."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b03_welder",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports correctly flag “Worked nights and weekends on plant shutdowns” and identify the Riverfront Tower inspection result as the model. The second write-up is slightly more focused on this page’s recruiting story and practical presentation, while the first spends more space on generic callback advice and possible lead-role responsibilities."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports identify “Worked nights and weekends on plant shutdowns” as the only line needing work, ask for the missing duties, and treat the training and inspection changes as optional upgrades. Both write-ups name Riverfront Tower as the model; the second report’s additional keep card for the 1/16-inch fit-up tolerance does not materially change the assessment."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b04_retail_store_manager",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "Both reports correctly flag the unsupported second turnaround in the headline and identify the turnover bullet as a model. The second adds unnecessary work on “Ranked 3rd of 60 stores on the 2025 customer satisfaction survey,” which already provides a concrete, dated result with comparative scale; on this strong page, that padding loses."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report manufactures work on “Ranked 3rd of 60 stores on the 2025 customer satisfaction survey,” which already names a concrete result, comparison group and year. The second correctly focuses on the unsupported second-store turnaround claim without requiring optional polish on that strong ranking line."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b05_paralegal",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "Both reports select the same deadline-tracking line and correctly keep the Relativity production line as the model. The second report’s example asks for concrete workload details—case count and deadline types—where the first’s “[action taken on deadlines]” is less specific and seeks duties beyond those described."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "Both reports flag only the court-deadlines line and keep the Relativity production line as the model. The first gives concrete blanks for caseload and deadline types, while the second's “[action taken on deadlines]” is less specific and seeks additional duties rather than clarifying the work already named."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b06_staff_accountant",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report covers the vague lines “Matched purchase orders to receipts” and “Answered vendor questions about payments,” asking for discrepancy handling and the payment issues addressed. The second report omits both; on this duty-heavy page, those missing cards matter more than the reports’ minor wording differences."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "On this duty-heavy page, the first report stops at “Entered vendor invoices,” leaving the remaining Accounts Payable Clerk bullets unexamined. The second covers them, especially the vague “Answered vendor questions about payments,” asking for the issues handled and actions taken."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b07_account_executive",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "With the same card set, the first report offers slightly more complete examples: “Booked meetings for three account executives” gains a reporting period, and the revenue example includes the additional period requested. The second report asks for another period’s attainment without providing a place for it in the example."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W5",
+            "rationale": "The card sets are effectively the same, but the second report better aligns its questions with its blanks: its revenue example includes the additional period requested, whereas the first asks for another period’s attainment without providing a corresponding blank. For “Booked meetings for three account executives,” the second also asks for a time period, making the meeting count more interpretable."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b08_warehouse_supervisor",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports cover the same lines, but the second places the keep card for “Supervise a night shift of 35 associates” before the scheduling and Lead Associate cards, following page order. The first puts that opening bullet last."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "Both reports select the same lines, but the first follows resume order: the 35-associate keep line, labor scheduling, supervisor coverage, then the scanner rollout. The second moves the keep line to the end; with otherwise matching card sets, reading order decides."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b09_executive_assistant_freelance",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report covers “Prepared materials for quarterly board meetings,” which leaves the materials and the candidate’s contribution unspecified; the first leaves that vague line untouched. Both otherwise address the unexplained time between roles, investor logistics, CEO liaison duties, and operations scheduling and filing."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report covers “Prepared materials for quarterly board meetings,” which leaves both the materials and Nicole’s contribution unclear; the second omits it. Its card asks for those missing facts rather than manufacturing a need for a number."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b10_it_support_recent_grad",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report catches the unnamed “ticketing systems” in Skills and asks for the actual system, a useful missing tool detail on this thin IT-support resume. The first report leaves that line unaddressed while otherwise covering essentially the same work."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report addresses the unnamed “ticketing systems” in Skills, asking which system Daniel used; the second leaves that concrete software question unresolved on an otherwise under-detailed page. Both cover the main experience bullets and structural problems, but the first has the more complete worklist."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b11_recent_grad_bad",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W5",
+            "rationale": "Both reports cover the same needed lines and structural problems in the same order, with similarly grounded write-ups. The second headline card asks “what title did you hold?” even though Marketing Intern is already stated; the first asks only for the missing marketing work."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports identify the same necessary cards and use the dairy-farm research line as the model. The first write-up more clearly gives the recruiter's initial reading—internship-level marketing experience beneath an overstated manager headline—and explicitly recommends moving Experience above Education."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b12_coo_executive_two_page",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report manufactures required work on “Reduced patient wait time to third available appointment from 21 days to 6 across primary care,” which already identifies the work, scope, and measured result. On this strong resume, the second report appropriately limits its suggestions to optional upgrades."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report manufactures required work on “Reduced patient wait time to third available appointment from 21 days to 6 across primary care,” a line that already names the work and quantifies the result. On this strong resume, the first report correctly keeps further suggestions optional rather than treating a missing explanation of method as a deficiency."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b13_marketing_vp_elite",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report addresses “Budget & P&L Management ($25M+),” distinguishing the documented budget responsibility from unexplained P&L ownership; the second leaves that claim unexamined. Its questions about “channel sales effectiveness” and “sales productivity” also seek definitions of ambiguous measures, rather than manufacturing demands for more numbers."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report manufactures required work on the quarterly business review and sales enablement bullets: both already name the work, counterparts and results, so further measurement detail is optional polish on this strong page. Its reasonable P&L clarification does not outweigh that padding; the first report appropriately keeps its suggestions optional."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b14_teacher_to_instructional_designer",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "The first report correctly puts the missing-target card first: the headline combines classroom teaching with digital learning design without naming the job sought. The second report assumes a Mathematics Teacher target and leaves that structural ambiguity unaddressed."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "The second report correctly puts the missing target-role card first: the headline combines classroom teaching and digital learning design without naming which job this version seeks. The first report assumes Mathematics Teacher and leaves that structural ambiguity unaddressed, despite offering useful coverage of the math-team coaching line."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b15_career_changer_maria",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [
+              "Developed and implemented [curriculum or lesson] aligned with state standards for [students or course]"
+            ],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The second report asks for “[students or course]” even though the preceding teaching bullet identifies Algebra II and AP Statistics and approximately 150 students across six periods. The first report’s curriculum example asks only for the missing unit or teaching resource, without reopening facts already supplied."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report also addresses “Presented findings to a panel of instructors and peers,” which names the audience but leaves the housing analysis’s actual finding unstated. Its card asks for that missing conclusion; the first report leaves the line untouched."
+          }
+        }
+      ],
+      "candidate_unsupported": [
+        "Developed and implemented [curriculum or lesson] aligned with state standards for [students or course]"
+      ],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b16_career_changer_bad",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "The card sets are effectively the same, but the second report’s freelance dates example preserves “Remote” and explicitly accommodates ongoing work. It also supplies a usable bracketed example for the Saguaro Market description card, which the first report leaves without an example."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "With essentially identical card sets, the first report has slightly more complete examples: its freelance dates example preserves “Remote” and explicitly allows “Present,” and its Saguaro Market context card includes a fillable example. The second omits that structural example and adds a broad “shift responsibilities” blank to the supervision bullet."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b17_hr_generalist_career_break",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports flag the same problems, but the first keeps the cards in page order: “Ran new hire orientation every two weeks” comes before “Kept personnel files and HRIS records up to date.” The second reverses those cards; with otherwise matching card sets, reading order decides."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports identify the same issues, but the second follows page order by placing the keep card for “Ran new hire orientation every two weeks” before the personnel-files and HRIS card. The first moves that keep card to the end; with identical card sets, reading order decides."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b18_military_to_civilian",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [
+              "The subject would connect this work to the maintenance jobs you're targeting."
+            ],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The first report's card on “Trained 9 junior mechanics” says Luis is targeting maintenance jobs, but the resume names supply chain or operations supervisor roles. The second report avoids that unsupported characterization while covering the same lines."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [
+              "The subject would connect this work to the maintenance jobs you're targeting."
+            ],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The second report says Ortega is targeting maintenance jobs, but the resume explicitly targets supply chain or operations supervisor roles. The first report makes no equivalent unsupported claim; both identify the same lines for substantive work."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": [
+        "The subject would connect this work to the maintenance jobs you're targeting.",
+        "The subject would connect this work to the maintenance jobs you're targeting."
+      ]
+    },
+    {
+      "case_id": "b19_non_native_english",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W2",
+            "rationale": "Both reports address the vague month-end assistance and the work behind leading three junior accountants. The first also reasonably asks what the candidate handled in “Work with external auditor for year end audit, no major finding in 5 years”: the outcome is concrete, but the candidate’s contribution remains unclear."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W2",
+            "rationale": "Both reports appropriately question “Help the controller for month end closing” and the bare team-leadership line. On this otherwise specific page, the second report’s additional audit card is closer to optional polish: that line already names the counterpart, the year-end audit, and five years without major findings."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b20_customer_success_manager",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports flag the same three lines needing work, but the second presents its cards in resume order, placing the onboarding-checklist keep card between renewals and escalations. The first moves its account-book keep card to the end, after the earlier Account Coordinator role."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports flag the same three lines for revision, but the first keeps its cards in resume order: renewal strategy, onboarding checklist, payroll escalations, then client questions. The second places its keep card for “Manage a book of 48 mid-market accounts” after the Account Coordinator card, breaking page order."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b21_customer_success_manager_with_posting",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report manufactures work on “Built an onboarding checklist now used by the whole CS team,” which already names the deliverable and its adoption. The second is more selective while still addressing the unclear Sales renewal contribution and generic “Answered client questions by phone and email” line."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report manufactures required work on “Built an onboarding checklist now used by the whole CS team,” which already names the deliverable and its adoption. The first more appropriately targets unclear contributions in the renewal-strategy and escalation lines rather than requiring extra detail on that strong bullet."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b22_office_manager_paragraphs",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports identify the same paragraph-formatting problem and request the same missing details about vendor contracts and the insurance claims aging report. Both ground their write-ups in the six-attorney office and use the QuickBooks billing line as the model, with no meaningful difference in their examples or questions."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports identify the same paragraph-format issue and ask for the same missing detail in “handle vendor contracts” and “worked the insurance claims aging report.” Both write-ups ground the office-management story in the current role and point to the QuickBooks billing line as the model; the wording differences do not materially change the advice."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b23_pharmacy_tech_table",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "Both reports identify the same structural problem and appropriately limit required line edits to “Filled and verified prescriptions.” The second report’s example more usefully distinguishes what Robert checked from who performed the final check, resolving the ambiguity without assuming either answer."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "Both reports identify the same structural issue and prescription-verification ambiguity without manufacturing required work. The first report’s example for “Filled and verified prescriptions” more fully resolves that ambiguity by distinguishing the applicant’s checks from who performed the final check."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b24_physical_therapist_strong",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "The first write-up more specifically connects the outpatient orthopedic story to the current caseload and the hospital’s orthopedic, neurological, and fall-prevention work. Both appropriately use “Built a return-to-run program that 85 patients completed in 2025” as the model and focus required work on the patient-reported function result, so the preference is narrow."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both appropriately focus the work on the patient-reported function result and identify the return-to-run bullet as the model. The second write-up gives a slightly fuller recruiter read by connecting the earlier hospital role’s orthopedic, neurological, and fall-prevention work to the current outpatient practice."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b25_fpa_analyst_strong",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "The second write-up gives a slightly sharper first-pass account by connecting the division budget, forecasting, pricing, and presentations to finance and brand leaders, then explaining why the forecast-error line is a model. Both reasonably treat the budget-decision addition and bullet reordering as optional upgrades rather than necessary work."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [
+              "The pricing line is a great model for the rest: it names the products you work on and gives the pricing review a dollar result."
+            ],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The second report says the pricing line names the products, but it gives only their count—“60 products”—without identifying them. The first report accurately describes the forecast line’s before-and-after error rates."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": [
+        "The pricing line is a great model for the rest: it names the products you work on and gives the pricing review a dollar result."
+      ]
+    },
+    {
+      "case_id": "b26_construction_pm_strong",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports identify the same missing detail behind “Kept change orders under 3%,” keep the subcontractor-bids line as a model, and treat the other suggestions as optional upgrades. Both write-ups ground their praise in the $14M grocery-store delivery, with no material difference in coverage or usefulness."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports flag the same change-order line, retain the subcontractor bids-and-buyout line as a model, and treat the other suggestions as optional upgrades. Both write-ups ground their assessment in the $14M grocery build and identify the same remaining question, with no material difference in coverage or usefulness."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b27_backend_engineer_senior",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report manufactures required work on “Added observability with OpenTelemetry and Grafana dashboards for the billing team,” which already names the work, tools, deliverable, and audience. On this strong resume, the second report correctly confines its suggestions to optional upgrades."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report manufactures required work on “Added observability with OpenTelemetry and Grafana dashboards for the billing team,” which already names the work, tools, deliverable and counterpart. On this strong resume, the first report appropriately limits its suggestions to optional upgrades."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b28_cybersecurity_analyst",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both appropriately keep the 140+ Splunk detections line as the model and treat additions to the mentoring line as optional polish. The second write-up gives a more page-specific recruiter read by tracing the move from Northgate monitoring to Capital Ridge detection and response, including the containment-time improvement from 9 hours to 3."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports appropriately keep the Splunk detection line as the model and treat additions to the mentoring line as optional polish. The first write-up gives a more page-specific account of the progression from monitoring to detection and incident response, including the containment-time improvement, while the second drifts into generic reassurance about competition and referrals."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b29_mechanical_engineer",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report manufactures work on the supplier line, which already names the counterparts, locations, and technical activities; the first appropriately keeps it as a model. The first instead addresses the less specific tolerance stack-ups and FEA line, asking which components and design decisions were involved."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W2",
+            "rationale": "The second report better distinguishes the concrete supplier line, which names counterparts and shared work, from “Run tolerance stack-ups and FEA on load-bearing components,” where the components and decisions informed remain unclear. Its card set addresses that missing engineering detail rather than asking for another explanation of the already-specific supplier work."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b30_social_worker",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "Both reports cover the vague caseload, assessment, service-coordination, reporting, and benefits lines. The second adds an unnecessary structural card asking what kind of organization Cuyahoga Family Partners is, although the role and child-protective-services bullet already establish the work's context."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report adds an unnecessary structural card for describing Cuyahoga Family Partners, although the role and child protective services caseload already place the work. The second covers the same substantive weak lines without that extra requirement."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b31_kitchen_manager",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "The card sets and write-ups are substantially equivalent, but the first report gives more useful examples for “Ran the line on busy weekend shifts” and “Helped plan seasonal menu changes.” Guest volume makes “busy” concrete, and naming a menu change alongside the candidate’s contribution better illustrates the work."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W4",
+            "rationale": "With essentially the same card coverage, the second report gives more concrete examples for “Ran the line on busy weekend shifts” and “Helped plan seasonal menu changes,” asking for service volume and a named menu change. The first report's blanks for service responsibilities and contribution are reasonable but less specific."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b32_logistics_dispatcher",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports cover the same lines, asking for dispatch scale, examples of road issues, TMS tasks, safety responsibilities, and paperwork details without inventing facts. Both also identify “Track loads and update customers on delivery status” as the model line; their differences in examples and wording do not create a meaningful advantage."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports cover the same structural issue and duty lines, recognize McLeod TMS in Skills, and identify “Track loads and update customers on delivery status” as the model. Their differences—assignment process versus loads or routes, and paperwork actions versus purpose—are equally reasonable ways to make the same work concrete."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b33_nonprofit_program_manager",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report addresses the unspecified outcomes in “Track participant outcomes in Salesforce,” which the second leaves untouched. The second instead cards “Recruit and onboard employer partners” solely for missing numbers, although that line already names the work and counterpart."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W2",
+            "rationale": "The second report addresses “Track participant outcomes in Salesforce,” where the actual outcomes remain unspecified, while also covering employer reach in its summer-jobs card. The first instead adds a separate count-focused card to “Recruit and onboard employer partners,” which already names the work and counterpart, making its coverage less useful."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b34_bank_branch_manager_gap",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports flag the unexplained time after December 2024, keep the deposit-growth line as the model, and request essentially the same details for audits and escalated complaints. Their write-ups, examples and questions are materially equivalent, and both leave the same other bullets untouched."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports identify the unexplained time after December 2024, keep the deposit-growth line as the model, and request essentially the same details for audits and escalated complaints. Their write-ups, examples and questions are substantively equivalent."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b35_marketing_coordinator_gap",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports identify the same lines and the unexplained time after March 2024, but the second places the weekly email calendar keep card before the social-post and reporting cards, following resume order. The first moves that first-bullet model to the end; with otherwise matching card sets, reading order decides."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "Both reports select the same lines, but the first follows reading order: dates, the weekly email-calendar keep card, then the remaining bullets. The second places that keep card after the Marketing Assistant bullets, so the explicit reading-order rule favors the first."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b36_product_designer_unrelated",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W3",
+            "rationale": "The second report manufactures a structural work item with “Recent design work,” even though the current Barista role accounts for the time since Loop Fitness. The first correctly treats the timeline as accounted for rather than requiring additional design projects or study."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report covers the vague Brightpath line, “Designed marketing sites and app screens for agency clients,” which the first leaves untouched. The first instead adds a recent-design-activity card even though the current barista role accounts for the timeline; that is not a structural problem the resume needs to fix."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b37_marketing_director_bad",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "With essentially the same work-card coverage, the first write-up opens more directly with this resume’s title-versus-duties mismatch rather than a general observation. Its choice of “Wrote product descriptions for 40 candle scents on the website” also gives a useful model within the role it asks the candidate to clarify."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W5",
+            "rationale": "The card sets are effectively the same, but the first report asks, “Which kind of job are you applying for now?” The second restricts that question to marketing even though the resume’s marketing, data-entry and laboratory roles leave the intended direction unresolved."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b38_layoff_gap_james",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report covers the vague “Owned the marketing funnel” and “Launched ABM program” lines that the first leaves untouched. Its cards ask what the funnel work and ABM activities actually involved, rather than merely demanding numbers from otherwise complete bullets."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report addresses the unexplained work behind “Launched ABM program targeting enterprise accounts” and “Owned the marketing funnel from awareness to MQL, partnering closely with Sales”; the second skips both. On this detail-light page, those omissions matter more than the second report’s refinements to the consulting examples."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b39_new_grad_daniel",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report addresses “Provided technical support to students and faculty for hardware and software issues,” asking which issues the candidate actually handled; the second leaves that broad duty without a card. On this detail-light page, that additional coverage matters more than the reports’ otherwise similar write-ups and examples."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The second report covers “Provided technical support to students and faculty for hardware and software issues,” asking which issues Daniel handled; the first leaves that broad duty unaddressed. On this detail-light page, that additional, warranted card makes the second report more complete."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "b40_senior_ic_wei",
+      "result": "shipped",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [
+              "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]"
+            ],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The second report asks for the team's work as a missing fact, although the line names ledger and settlement and the following bullets describe that work. The first report's corresponding card asks only for the unstated team size."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [
+              "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]"
+            ],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The first report asks for the team's work as a missing fact, although the quoted line names ledger and settlement and the surrounding bullets describe that work. The second report's corresponding card asks only for the genuinely unstated team size."
+          }
+        }
+      ],
+      "candidate_unsupported": [
+        "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]",
+        "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]"
+      ],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h1_bad_resume",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [
+              "June 2023 - Present [what you did]"
+            ],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "V",
+            "rationale": "The second report's dates example supplies “Present” outside a bracket, although the resume establishes no activity continuing to the present. The first report leaves the unknown end date bracketed."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both address the unsupported Marketing Manager objective, missing dates and the same vague QuickStop duties, while leaving most later roles untouched. The first covers “Used a forklift” and the second covers “Followed all saftey procedures”; each leaves a similarly underdeveloped warehouse line unaddressed, with no decisive advantage elsewhere."
+          }
+        }
+      ],
+      "candidate_unsupported": [
+        "June 2023 - Present [what you did]"
+      ],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h2_thin_resume",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "The card sets are essentially the same, but the second write-up opens with this applicant’s story—data analytics at Great Lakes Credit Union and finances for the Michigan Data Science Club—rather than a general observation about internship resumes. Both correctly identify the member-survey cleaning line as the model and explain why Education belongs near the top."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "With essentially the same card coverage, the first write-up more immediately gives this page's story by connecting the Great Lakes Credit Union internship and Michigan Data Science Club finances. Both identify “Cleaned member survey data in Excel and SQL” as the model, but the second opens with general internship advice rather than this candidate."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h3_strong_resume",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both correctly treat this as a strong resume, identify a specific model line, and limit suggestions to optional upgrades rather than manufactured work. Choosing the invoice-disputes line versus the payment-failure line as the model, and recommending either payment failures or Northwind Pay as the opening result, are equally reasonable editorial choices."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports correctly treat this as a strong resume, offering only optional upgrades to the roadmap line and bullet order rather than manufacturing required work. The payment-failure and invoice-disputes lines are both sound models, and the different choices of opening achievement do not establish a meaningful advantage."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h4b_academic_cv_under_cap",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W4",
+            "rationale": "Both reports identify the same structural issue and recurring publication citations, and both keep the MB 310 redesign as the model. The first report’s citation example specifies authors, year, title, journal, volume, issue and pages, making the requested correction more concrete than the second report’s generic “[Complete published citation]” blank."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports identify the same publication concern, section-order problem, and MB 310 model line. The second write-up gives a slightly fuller read of this particular page by noticing that the long publication and talk lists also bury the strong teaching and mentoring sections, with appropriately conditional advice about moving them forward."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h4c_one_paragraph",
+      "result": "candidate",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "With essentially identical cards, the second write-up more directly pairs the warehouse-to-dispatch progression with the recruiter's first hesitation: what produced the 91% to 96% improvement. It also grounds its model-line praise in “18 drivers across two depots” and avoids the first report's generic closing about competition for openings."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "The first write-up identifies the recruiter’s hesitation about the 91%–96% improvement earlier and explicitly anchors its model line in “18 drivers across two depots.” The card sets, examples, and questions are otherwise effectively equivalent."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h5_mismatched_posting",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both identify the SQL-model bullet as the model and the ad hoc analyses as the line needing detail. The first write-up is more page-specific: it explicitly recommends elevating the markdown-timing analysis and explains that the nursing application lacks the clinical qualifications shown in the posting, while the second adds generic commentary about competition."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both identify the same ad hoc analyses line for work and the SQL model line as the example to follow. The second write-up more clearly explains the missing clinical qualifications for this nursing posting and names the markdown analysis as the specific line worth moving higher."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "h6_unverifiable_claim",
+      "result": "candidate",
+      "strength": "clear",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "Both reports cover the vague work bullets, but the first adds a separate company-description card that duplicates the context and scale requested for “Led a team of 40” and “Oversaw daily fulfillment operations.” The second avoids that padding and more usefully asks for the missing headcount in “Led a small team on the sorting line.”"
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "clear",
+            "deciding": "W2",
+            "rationale": "The first report covers every vague bullet without adding the second report’s redundant company-description card, whose fulfillment scope and scale questions are already covered by the operations cards. On “Led a small team on the sorting line,” the first also asks for the missing team size, while the second leaves “small” unresolved."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "t1_google_engineer_maya",
+      "result": "shipped",
+      "strength": "slight",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "first",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports correctly card all four vague Google bullets and keep the dashboard-latency line as the model. The first write-up gives a slightly more page-specific first-pass story by naming the ingestion work and migration at Harborview, and explicitly notes that the experience and education are easy to follow."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both reports cover the same four vague Google bullets and correctly keep the Harborview latency bullet as the model. The second write-up more clearly captures this page’s progression—from ingestion and migration work at Harborview to an unclear current Google role—rather than opening with a more general description of backend experience."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    },
+    {
+      "case_id": "t2_logos_operations_robert",
+      "result": "tie",
+      "strength": "none",
+      "orders": [
+        {
+          "candidate_is": "second",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "second",
+            "strength": "slight",
+            "deciding": "W1",
+            "rationale": "Both cover the same four vague Brightline bullets and correctly keep the Google forecast-to-delivery line as the model. The second write-up gives a slightly sharper first-pass story by tracing Dell supply chain work through Google capacity planning to terminal operations, making the contrast with the thin current role more specific."
+          }
+        },
+        {
+          "candidate_is": "first",
+          "verdict": {
+            "first_unsupported": [],
+            "second_unsupported": [],
+            "winner": "no_real_difference",
+            "strength": "none",
+            "deciding": "none",
+            "rationale": "Both reports cover the same four vague Brightline bullets in page order, with grounded examples and questions that fill the missing details. Both also identify the Google forecast-to-delivery bullet as the model and give essentially the same page-specific assessment."
+          }
+        }
+      ],
+      "candidate_unsupported": [],
+      "shipped_unsupported": []
+    }
+  ]
+}

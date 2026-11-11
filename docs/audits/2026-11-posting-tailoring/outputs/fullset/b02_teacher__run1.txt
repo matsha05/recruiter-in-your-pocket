@@ -1,0 +1,38 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0092; 28.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A certified elementary teacher with classroom results and grade-level leadership a recruiter can readily see.
+
+## Write-up
+Your resume makes a strong case for 4th Grade Teacher roles: you show the classroom you teach, reading growth, and the work you do with other teachers. The numbers give a recruiter something concrete to carry away!
+
+The reading assessment line is your best: it names the measure, the starting point, and the improvement over three years. Your certification and English Language Learner endorsement also sit where a recruiter can find them. The family literacy night line is another good model for naming the work and who it reached.
+
+Add what you contributed to the behavior support committee, then consider moving the reading result to the top of your current role. Your resume isn't likely to be the thing standing between you and a callback; how competitive a teaching opening is matters too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see which committee you joined, but not what you contributed to its work. Name a task or decision you were part of.
+   example: Served on the school's positive behavior support committee and contributed [what you contributed]
+   question: What did you contribute to the committee?
+2. [keep] 2nd Grade Teacher, line 2
+   line: "Coordinated the school's family literacy night, attended by 140 families in 2019"
+   can't tell: Keep this as a model. It gives your role, the event, and its attendance without making a recruiter guess.
+3. [upgrade] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Consider moving this above the classroom description. The reading growth is your strongest result and would give a recruiter a compelling first detail.
+4. [upgrade] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: For a role leading beyond your own classroom, a grade-level decision you guided would show more of your leadership.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings, guiding [grade-level decision]
+   question: What grade-level decision did you guide through the team's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: senior, leads a grade-level team of 4 teachers
+Note: Your classroom teaching, curriculum pilot, and team planning point toward experienced elementary teaching roles. The team and curriculum work also give you a foundation for roles with broader instructional responsibilities.

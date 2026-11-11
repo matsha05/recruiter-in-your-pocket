@@ -1,0 +1,30 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0084; 26.4s
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A senior FP&A analyst with a substantial budget and measurable forecasting and pricing work.
+
+## Write-up
+This is a strong FP&A resume: your work at Lakeshore Foods connects a division budget with forecasting, pricing and conversations with finance and brand leaders. A recruiter can see both the work you own and the numbers that matter.
+
+The forecast line is a model for the rest: it names what you built and shows the error rate before and after. Your earlier Power BI automation also makes its benefit easy to understand. Experience leads Education, and your current role is easy to find.
+
+Your resume isn't likely to be the reason you don't get a call back. For a more senior move, add a budgeting decision you made across the division if you can substantiate one. The competition for the role will matter too.
+
+## Cards (2; {"upgrade":2}); severity off; added []
+1. [upgrade] Senior Financial Analyst, FP&A, line 1
+   line: "Own the $240M annual operating budget for the snacks division"
+   can't tell: For a manager-level role, a budgeting decision made across the division would add to the picture of your responsibilities.
+   example: Own the $240M annual operating budget for the snacks division and [a budgeting decision you made across the division]
+   question: What budgeting decision did you make across the division, if any?
+2. [upgrade] Senior Financial Analyst, FP&A, line 2
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Consider moving this above the budget line so your measured forecasting result leads the role. Keep the budget line close behind it.
+
+## Fit
+Roles: ["Senior Financial Analyst, FP&A"]
+Level: senior, owns the snacks division's $240M annual operating budget
+Note: Your experience points toward senior FP&A work in consumer brands. The forecast and pricing work give you strong examples to lead with.

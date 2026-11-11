@@ -1,0 +1,118 @@
+{
+  "id": "operations-director-manager-posting",
+  "resume": "fr06_senior_director_duties.txt",
+  "posting": "posting_engineering_manager.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 0,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 7082,
+    "tokens_out": 2343,
+    "cost_estimate_usd": 0.01308715
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 63,
+    "lifted_by_employer": false,
+    "verdict": "This payments engineering manager role asks for a technical track your operations resume doesn't show.",
+    "write_up": [
+      "The Cobalt Pay role is on a different track from your resume: it calls for backend engineering and management of engineers, while your work is in field service operations. I'm reading your resume for senior operations leadership. It's common for resumes at this level to list responsibilities without the numbers behind them, but that makes it tough to stand out when a recruiter needs to compare the remit and results.",
+      "Your line about reporting to the COO and partnering with Finance on the annual operating plan gives a recruiter a useful picture of who you worked with and on what. Your progression at Northstar is easy to follow, but the current role doesn't show the budget, team numbers or changes a senior operations recruiter will look for.",
+      "Let's start with your Senior Director role: add the remit you can confirm, then name an initiative and what changed. For Cobalt Pay, lead with your management and Finance partnership, but only add engineering experience if you've actually done it."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Northstar Home Services",
+        "line": "Northstar Home Services has no company description.",
+        "cannot_tell": "A recruiter may not know the business or how far its services reach. A short company description could give the operations work context.",
+        "example": "",
+        "question": "What services does Northstar provide, and what can you share about its reach?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 1",
+        "line": "Responsible for field operations, dispatch and customer care across the Upper Midwest",
+        "cannot_tell": "The functions and region are clear, but a senior operations recruiter can't tell what budget or P&L came with the remit.",
+        "example": "Responsible for field operations, dispatch and customer care across the Upper Midwest, with [budget or P&L]",
+        "question": "What budget or P&L were you responsible for, if any?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 3",
+        "line": "Oversaw vendor management and fleet",
+        "cannot_tell": "A recruiter can't tell what the vendors provided or how large the fleet was. Those details would show what you oversaw.",
+        "example": "Oversaw vendor management for [vendor services] and a fleet of [number] [fleet assets]",
+        "question": "What did the vendors provide, and how large was the fleet?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 4",
+        "line": "Led operational strategy and continuous improvement initiatives",
+        "cannot_tell": "The initiatives aren't named, so a recruiter can't tell what you led or what changed. Pick one you can describe.",
+        "example": "Led [operational strategy or continuous improvement initiative], resulting in [what changed]",
+        "question": "Which initiative did you lead, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 5",
+        "line": "Managed managers across multiple regions",
+        "cannot_tell": "Managing managers is important at this level, but the number and their work are missing.",
+        "example": "Managed [number] managers across multiple regions who [what the managers oversaw]",
+        "question": "How many managers did you manage, and what did they oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 3",
+        "line": "Improved first-time fix rate",
+        "cannot_tell": "This names a useful service measure, but it doesn't say how much it improved or what you did.",
+        "example": "Improved first-time fix rate from [starting rate] to [ending rate] by [action]",
+        "question": "What were the starting and ending rates, and what did you do to improve them?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Ran daily operations for the service department",
+        "cannot_tell": "A recruiter can't tell which parts of the service department's daily work you ran. Name the work that was yours.",
+        "example": "Ran daily operations for the service department, including [operational responsibilities]",
+        "question": "Which daily service department responsibilities did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Director, Operations, line 2",
+        "line": "Reported to the COO and partnered with Finance on the annual operating plan",
+        "cannot_tell": "Keep the named planning work and the people you worked with. That combination gives the rest of your responsibilities a useful model.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Operations Leader",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and your Northstar roles point to leadership of field operations, dispatch and customer care.",
+      "level": "director, current Senior Director role managing managers across multiple regions",
+      "note": "Your management experience and partnership with Finance are relevant parts of the Cobalt Pay role. Put those details where a recruiter can find them, and add any technical work only if it reflects your actual experience.",
+      "posting": {
+        "summary": "Cobalt Pay seeks an engineering manager to lead backend engineers responsible for payouts and the ledger.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "5+ years of backend engineering before moving into management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 63
+  }
+}

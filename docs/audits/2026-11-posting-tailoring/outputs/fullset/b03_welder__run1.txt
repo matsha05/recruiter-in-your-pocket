@@ -1,0 +1,35 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0086; 26.0s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A welder and fitter with specific inspection results, pipe experience, and relevant certifications.
+
+## Write-up
+Your resume makes a strong case for Welder / Fitter work! At Maumee Steel Fabricators, you name the structures, welding processes, fit-up tolerance, and inspection results. Your earlier pipe work and certifications round out the story.
+
+The Riverfront Tower line is the model: it names the job, the third-party inspections, and about 900 welds. A recruiter can see what was inspected without guessing. Your experience and certifications are also easy to find.
+
+Add the work you handled during plant shutdowns, then consider moving the Riverfront Tower result to the top of the Maumee role. Your resume gives a recruiter plenty to work with; the competition for a particular job will matter too.
+
+## Cards (3; {"line":1,"upgrade":2}); severity off; added []
+1. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule is clear, but a recruiter can't tell what you handled during the shutdowns. The work itself is more useful than the hours alone.
+   example: Worked nights and weekends on plant shutdowns, handling [work performed]
+   question: What work did you handle during the plant shutdowns?
+2. [upgrade] Welder / Fitter, line 4
+   line: "Train new hires on the shop's fit-up and tacking procedures"
+   can't tell: For a lead role, a recruiter would also look for responsibilities directing shop work. Add one if you've had it.
+   example: Train new hires on the shop's fit-up and tacking procedures; [a responsibility for directing shop work]
+   question: Have you had a responsibility for directing shop work beyond training new hires, and what was it?
+3. [upgrade] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: This is your strongest result. Move it ahead of the general structural welding line so a recruiter sees it first.
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: senior, 6G pipe certification and trains new hires
+Note: Your resume points toward structural welding and fit-up, with pipe welding as another established direction. For a lead position, add any responsibility you've had for directing shop work.

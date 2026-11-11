@@ -1,0 +1,248 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:00:28.919Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7828,
+        "completion_tokens": 1148,
+        "total_tokens": 8976,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 465
+      },
+      "cost_usd": 0.00818505,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20443
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results, and executive responsibilities are easy to follow.",
+    "write_up": [
+      "This is a strong executive resume! Your progression from clinic operations to COO is backed by practice growth, margin improvement, and the operating changes behind them. A recruiter can see both how much you lead and what changed.",
+      "The new-practice integration line is a great model: it gives the starting point, the improvement, and the playbook you standardized. Your current remit, board reporting, and earlier healthcare leadership are easy to find.",
+      "Your resume isn't what stands between you and a call back; competition for a particular role matters too. If you're aiming for a CEO role next, add a company-wide decision you made and what followed, if you can share it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It ties a change in integration time to the work you led, without making a recruiter guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "- Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, a company-wide decision and what followed would show how you shape the business beyond owning the plan.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; made [company-wide decision], resulting in [what changed]",
+        "question": "Which company-wide decision did you make as part of the operating plan, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "- Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "This is your strongest growth result. Consider moving it above the remit line, while keeping your remit immediately after it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both point to COO work in multi-site healthcare, with operating and financial responsibilities.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points to executive operating roles in multi-site healthcare. The board and advisory work adds another dimension to that story.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results, and executive responsibilities are easy to follow.",
+    "write_up": [
+      "This is a strong executive resume! Your progression from clinic operations to COO is backed by practice growth, margin improvement, and the operating changes behind them. A recruiter can see both how much you lead and what changed.",
+      "The new-practice integration line is a great model: it gives the starting point, the improvement, and the playbook you standardized. Your current remit, board reporting, and earlier healthcare leadership are easy to find.",
+      "Your resume isn't what stands between you and a call back; competition for a particular role matters too. If you're aiming for a CEO role next, add a company-wide decision you made and what followed, if you can share it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It ties a change in integration time to the work you led, without making a recruiter guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, a company-wide decision and what followed would show how you shape the business beyond owning the plan.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; made [company-wide decision], resulting in [what changed]",
+        "question": "Which company-wide decision did you make as part of the operating plan, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "This is your strongest growth result. Consider moving it above the remit line, while keeping your remit immediately after it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both point to COO work in multi-site healthcare, with operating and financial responsibilities.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points to executive operating roles in multi-site healthcare. The board and advisory work adds another dimension to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results, and executive responsibilities are easy to follow.",
+    "write_up": [
+      "This is a strong executive resume! Your progression from clinic operations to COO is backed by practice growth, margin improvement, and the operating changes behind them. A recruiter can see both how much you lead and what changed.",
+      "The new-practice integration line is a great model: it gives the starting point, the improvement, and the playbook you standardized. Your current remit, board reporting, and earlier healthcare leadership are easy to find.",
+      "Your resume isn't what stands between you and a call back; competition for a particular role matters too. If you're aiming for a CEO role next, add a company-wide decision you made and what followed, if you can share it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It ties a change in integration time to the work you led, without making a recruiter guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, a company-wide decision and what followed would show how you shape the business beyond owning the plan.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; made [company-wide decision], resulting in [what changed]",
+        "question": "Which company-wide decision did you make as part of the operating plan, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "This is your strongest growth result. Consider moving it above the remit line, while keeping your remit immediately after it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both point to COO work in multi-site healthcare, with operating and financial responsibilities.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points to executive operating roles in multi-site healthcare. The board and advisory work adds another dimension to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results, and executive responsibilities are easy to follow.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 111,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "blanks": 2,
+        "question": "Which company-wide decision did you make as part of the operating plan, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both point to COO work in multi-site healthcare, with operating and financial responsibilities.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points to executive operating roles in multi-site healthcare. The board and advisory work adds another dimension to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00818505,
+  "latency_ms": 20445
+}
