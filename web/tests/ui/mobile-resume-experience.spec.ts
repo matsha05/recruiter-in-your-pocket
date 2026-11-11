@@ -73,7 +73,13 @@ for (const width of [320, 390]) {
       const preview = page.getByTestId("workspace-read-preview");
       await expect(preview).toContainText("What we read");
       await expect(preview).toContainText(`${parsed.split(/\s+/).length} words`);
+      // What came out of the file, before a report is spent: this text has a heading and nothing else we look for.
+      await expect(page.getByTestId("workspace-read-summary")).toContainText("5 things we looked for aren't in the text.");
       await preview.locator("summary").click();
+      const findings = page.getByTestId("workspace-read-findings");
+      await expect(findings.locator("li[data-state='found']")).toHaveText(["An Experience section"]);
+      await expect(findings.locator("li[data-state='missing']")).toHaveCount(5);
+      await expect(findings).toContainText("No email address");
       await expect(preview.getByLabel("Text we read from your file")).toContainText("Ran the weekly launch review");
       await expect(page.getByTestId("workspace-privacy-line")).toContainText("We don’t store the resume or opt it into model training.");
       await expect(page.getByTestId("workspace-privacy-line").getByRole("link", { name: "How we handle your data" })).toHaveAttribute("href", "/privacy");

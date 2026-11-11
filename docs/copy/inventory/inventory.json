@@ -1,16 +1,16 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 428,
-    "files_with_copy": 259,
-    "strings": 2974,
-    "unique_strings": 2477
+    "files_scanned": 429,
+    "files_with_copy": 260,
+    "strings": 2994,
+    "unique_strings": 2496
   },
   "by_moment": {
     "research": 990,
     "account": 459,
     "marketing": 410,
-    "report": 285,
+    "report": 305,
     "pricing": 217,
     "upload": 124,
     "legal": 111,
@@ -32332,7 +32332,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 148,
+      "line": 149,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32344,7 +32344,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 152,
+      "line": 153,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32356,7 +32356,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 153,
+      "line": 154,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32368,7 +32368,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 159,
+      "line": 160,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32380,7 +32380,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 160,
+      "line": 161,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32392,7 +32392,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 160,
+      "line": 161,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32404,7 +32404,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 176,
+      "line": 181,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32416,7 +32416,7 @@
     {
       "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 180,
+      "line": 185,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32428,7 +32428,7 @@
     {
       "text": "Open your profile",
       "kind": "jsx-text",
-      "line": 181,
+      "line": 186,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32440,7 +32440,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 191,
+      "line": 196,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32452,7 +32452,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 210,
+      "line": 215,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32464,7 +32464,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 212,
+      "line": 217,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32476,7 +32476,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 213,
+      "line": 218,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32488,7 +32488,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 233,
+      "line": 238,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32500,7 +32500,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 240,
+      "line": 245,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32512,7 +32512,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 243,
+      "line": 248,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32524,7 +32524,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 257,
+      "line": 262,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32536,7 +32536,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 257,
+      "line": 262,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32548,7 +32548,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 257,
+      "line": 262,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32560,7 +32560,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 267,
+      "line": 272,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32572,7 +32572,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 282,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32584,7 +32584,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 282,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32596,7 +32596,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 280,
+      "line": 298,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32608,7 +32608,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 301,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32620,7 +32620,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 301,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32632,7 +32632,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 298,
+      "line": 316,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32644,7 +32644,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 302,
+      "line": 320,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32656,7 +32656,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 312,
+      "line": 330,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32668,7 +32668,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 316,
+      "line": 334,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32680,7 +32680,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 347,
+      "line": 365,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32692,7 +32692,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 347,
+      "line": 365,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32704,7 +32704,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 355,
+      "line": 373,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32716,7 +32716,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 363,
+      "line": 381,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32728,7 +32728,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 378,
+      "line": 396,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -39878,6 +39878,246 @@
       "kind": "call:ClientActionError",
       "line": 33,
       "file": "web/lib/reports/client-report-save.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Software that screens resumes, and a recruiter's search, work from the words in your file, not how it looks. This is what came out of yours.",
+      "kind": "const",
+      "line": 20,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "An email address",
+      "kind": "key:label",
+      "line": 50,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No email address",
+      "kind": "key:label",
+      "line": 50,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "A phone number",
+      "kind": "key:label",
+      "line": 51,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No phone number",
+      "kind": "key:label",
+      "line": 51,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "An Experience section",
+      "kind": "key:label",
+      "line": 52,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No Experience heading",
+      "kind": "key:label",
+      "line": 52,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "An Education section",
+      "kind": "key:label",
+      "line": 53,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No Education heading",
+      "kind": "key:label",
+      "line": 53,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "A Skills section",
+      "kind": "key:label",
+      "line": 54,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No Skills heading",
+      "kind": "key:label",
+      "line": 54,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "{ranges} dated jobs or courses",
+      "kind": "key:label",
+      "line": 58,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "No date ranges",
+      "kind": "key:label",
+      "line": 59,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Some characters didn't come through",
+      "kind": "key:label",
+      "line": 64,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Some characters didn't come through",
+      "kind": "key:label",
+      "line": 65,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "A word came out one letter at a time",
+      "kind": "key:label",
+      "line": 66,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "{problem.label}. Check the text below.",
+      "kind": "key:text",
+      "line": 74,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "{missing.length} things we looked for aren't in the text. Check the list below.",
+      "kind": "key:text",
+      "line": 77,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "{names.slice(0, -1).join(\"…} or {names[names.length - 1]}",
+      "kind": "const",
+      "line": 80,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Everything we looked for came through.",
+      "kind": "key:text",
+      "line": 83,
+      "file": "web/lib/reports/file-read.ts",
       "routes": [
         "/sample-report",
         "/workspace"
