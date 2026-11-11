@@ -313,7 +313,7 @@ export default function InputPanel({
                             </span>
                         </p>
 
-                        {!isProfile && <div className={styles.jobSection}>
+                        <div className={styles.jobSection}>
                             <button
                                 type="button"
                                 data-testid="workspace-role-toggle"
@@ -344,7 +344,7 @@ export default function InputPanel({
                                     />
                                 </div>
                             )}
-                        </div>}
+                        </div>
 
                         <Button
                             data-testid="workspace-run-report"

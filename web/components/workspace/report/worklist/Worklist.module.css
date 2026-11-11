@@ -553,6 +553,58 @@
     font: var(--type-small);
 }
 
+/* ---------- A profile's parts: every part once, with how it stands ---------- */
+
+.parts {
+    margin-bottom: 2rem;
+}
+
+.partsLabel {
+    color: hsl(var(--text-strong));
+    font: var(--type-label);
+}
+
+.parts ul {
+    margin-top: 0.5rem;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.parts li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+    font: var(--type-small);
+}
+
+.partName {
+    min-width: 0;
+    color: hsl(var(--text-strong));
+    font-weight: var(--weight-label);
+    text-wrap: pretty;
+}
+
+.partDetail {
+    margin-left: 0.5rem;
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+}
+
+.partStatus {
+    flex: none;
+    color: hsl(var(--muted-foreground));
+}
+
+/* The marker goes on what needs the person's attention, as it does on a card's line. */
+.parts li[data-status="needs_work"] .partStatus,
+.parts li[data-status="empty"] .partStatus {
+    padding-inline: 0.25rem;
+    background: hsl(var(--marker) / 0.7);
+    color: hsl(var(--text-strong));
+}
+
 /* ---------- Fit ---------- */
 
 .fitGrid {

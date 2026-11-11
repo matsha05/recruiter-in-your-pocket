@@ -9,7 +9,7 @@ import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
 import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
-import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_LEAD_HOW, POSTING_LEAD_LABEL, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, PART_STATUS_LABEL, PARTS_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, wordingFor, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -95,7 +95,13 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const movesHtml = (label: string, how: string, moves: Array<{ line: string; why: string }> | undefined) => moves?.length
     ? `<div class="label">${escapeHtml(label)}</div><div class="how">${escapeHtml(how)}</div><ul>${moves.map((move) => `<li>${escapeHtml(move.line)}<br><span class="note">${escapeHtml(move.why)}</span></li>`).join("")}</ul>`
     : "";
-  const postingMoves = movesHtml(POSTING_LEAD_LABEL, POSTING_LEAD_HOW, worklist.fit.posting.lead) + movesHtml(POSTING_TRIM_LABEL, POSTING_TRIM_HOW, worklist.fit.posting.trim);
+  // A resume and a profile word the posting's lists differently (lib/reports/worklist-presentation.ts).
+  const postingWording = wordingFor(worklist);
+  // A profile review's parts, as the report shows them: every part once, with how it stands.
+  const partsHtml = worklist.parts?.length
+    ? `<div class="posting-fit"><div class="label">${escapeHtml(PARTS_LABEL)}</div><ul>${worklist.parts.map((part) => `<li>${escapeHtml(part.name)}${part.detail ? `, ${escapeHtml(part.detail)}` : ""}: <span class="note">${escapeHtml(PART_STATUS_LABEL[part.status])}</span></li>`).join("")}</ul></div>`
+    : "";
+  const postingMoves = movesHtml(postingWording.postingLeadLabel, postingWording.postingLeadHow, worklist.fit.posting.lead) + movesHtml(POSTING_TRIM_LABEL, POSTING_TRIM_HOW, worklist.fit.posting.trim);
   const level = worklistLevelParts(read.level, read.role);
   const screener = worklist.screener_text ?? [];
   const sortCell = (question: string, answer: string, why?: string | null) =>
@@ -114,7 +120,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       </div>` : ""}
       ${read.hasPosting && (fit.note || fit.posting.missing.length || postingMoves) ? `<div class="posting-fit">
         ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}
-        ${fit.posting.missing.length ? `<div class="label">${escapeHtml(POSTING_MISSING_LABEL)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(POSTING_MISSING_HOW)}</div>` : ""}
+        ${fit.posting.missing.length ? `<div class="label">${escapeHtml(postingWording.postingMissingLabel)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(postingWording.postingMissingHow)}</div>` : ""}
         ${postingMoves}
       </div>` : ""}
     </div>` : "";
@@ -153,6 +159,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   <section class="section priority-section">
     <div class="section-kicker">${work.length === 0 ? "Before you send it" : "Lines that need work"}</div>
     <div class="section-header"><h2>${escapeHtml(heading)}</h2>${work.length === 0 ? '<p class="count-lead">Send it. Then read it against the posting you\'re going for.</p>' : ""}</div>
+    ${partsHtml}
     ${worklist.cards.filter((card) => card.kind !== "upgrade").map(cardHtml).join("")}
     ${work.length > 0 ? '<p class="unlisted">Lines not listed are fine as written.</p>' : ""}
   </section>

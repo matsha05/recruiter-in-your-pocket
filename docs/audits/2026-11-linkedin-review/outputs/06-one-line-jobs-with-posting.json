@@ -1,0 +1,120 @@
+{
+  "file": "02-one-line-jobs.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "seconds": 27,
+  "report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer in payments, with a strong ledger project but little about the work in each job.",
+    "write_up": [
+      "You're a senior backend engineer working on payouts and ledger services, with a Go reconciliation project. It's common to see a job described in one line and an earlier one left blank, but a recruiter may move on without knowing what you did in either role.",
+      "The ledger-recon project is the model: it names the library, the language, 1,200 GitHub stars and use by three payment companies. That work belongs much higher in the About section.",
+      "Start with the Northwind Pay job: say what you worked on within payouts and ledger services, and what changed. Then bring ledger-recon into the About and headline, and fill in the Kestrel Labs job. A recruiter can then assess your payments work without guessing what sits behind the titles."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Senior Backend Engineer at Northwind Pay",
+        "cannot_tell": "This headline repeats your job title but leaves out the payments work. Payouts and ledger services give a recruiter a better reason to look closer.",
+        "example": "Senior Backend Engineer | Payouts and ledger services | Go, PostgreSQL",
+        "question": "What part of the payouts or ledger work is most central to your job?"
+      },
+      {
+        "kind": "line",
+        "where": "About",
+        "line": "Passionate engineer with a track record of delivering scalable solutions. I enjoy hard problems and working with great teams.",
+        "cannot_tell": "This could be almost any engineer's About. Your ledger-recon project names the work and the companies using it, so let's bring that up here.",
+        "example": "I work on payouts and ledger services. My project, ledger-recon, is an open-source ledger reconciliation library in Go, used by three payment companies and with 1,200 GitHub stars.",
+        "question": "What work did you personally do on ledger-recon?"
+      },
+      {
+        "kind": "line",
+        "where": "Northwind Pay, description",
+        "line": "Worked on payouts and ledger services.",
+        "cannot_tell": "This names the services, but not your work on them. Someone searching for payment services, reliability or production systems has only this one line to go on under your current job.",
+        "example": "Worked on payouts and ledger services, [what you built or changed] for [who uses it].",
+        "question": "What did you build or change in the payouts or ledger services, and who uses it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Kestrel Labs, description",
+        "line": "The Software Engineer job at Kestrel Labs has no description.",
+        "cannot_tell": "The Kestrel Labs job leaves a recruiter guessing about your work there. Terms such as backend systems, services and production systems have nothing under this job to match.",
+        "example": "[What you built or maintained: services, applications, or infrastructure] using [languages or tools], for [who used it].",
+        "question": "At Kestrel Labs, did you build services, applications or infrastructure, and what languages or tools did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "Projects, ledger-recon",
+        "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
+        "cannot_tell": "Keep this as the model. It names the library's purpose and language, then tells a recruiter who uses it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your current title and payouts and ledger services work point to senior backend engineering in payments.",
+      "level": "senior, the Senior Backend Engineer title at Northwind Pay",
+      "note": "'Senior Backend Engineer' is in your headline and current title. 'Payouts' is in the Northwind Pay description; 'Go' and 'reconciliation' are in the project description. 'PostgreSQL' and 'Kafka' are among your top skills. The posting's title belongs in the headline if it describes your role; idempotent, event-driven systems, reliability, on-call, technical design reviews and double-entry accounting belong in the Northwind Pay description. Add them only if they describe your work. Start by moving payouts and ledger services into the headline.",
+      "posting": {
+        "summary": "The role is for a senior backend engineer working on money movement, payouts, ledger services and reliability.",
+        "missing": [
+          "Senior Backend Engineer, Money Movement",
+          "idempotent",
+          "event-driven systems",
+          "reliability",
+          "on-call",
+          "technical design reviews"
+        ],
+        "lead": [
+          {
+            "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
+            "why": "This answers the posting's asks for Go and reconciliation. Bring it into the first lines of your About."
+          }
+        ]
+      }
+    },
+    "parts": [
+      {
+        "name": "Headline",
+        "detail": "",
+        "status": "needs_work"
+      },
+      {
+        "name": "About",
+        "detail": "",
+        "status": "needs_work"
+      },
+      {
+        "name": "Northwind Pay",
+        "detail": "Senior Backend Engineer",
+        "status": "needs_work"
+      },
+      {
+        "name": "Kestrel Labs",
+        "detail": "Software Engineer",
+        "status": "empty"
+      },
+      {
+        "name": "Top skills",
+        "detail": "",
+        "status": "fine"
+      }
+    ],
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68,
+    "document": "linkedin"
+  }
+}

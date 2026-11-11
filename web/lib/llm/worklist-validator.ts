@@ -10,7 +10,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -101,6 +101,30 @@ function isMockRun() {
   return ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
 }
 
+const FIXED_PARTS = new Set(["headline", "about", "top skills", "education"]);
+const flat = (value: string) => value.toLowerCase().replace(/[\u2018\u2019]/gu, "'").replace(/\s+/gu, " ").trim();
+
+function groundProfileParts(parts: ProfilePart[], sourceText: string | undefined, cards: WorklistCard[]): ProfilePart[] {
+  const source = sourceText ? flat(sourceText) : null;
+  const seen = new Set<string>();
+  const kept: ProfilePart[] = [];
+  for (const draft of parts) {
+    const part = { name: normaliseProse(draft.name), detail: normaliseProse(draft.detail), status: draft.status };
+    const fixed = FIXED_PARTS.has(flat(part.name));
+    if (fixed) part.detail = "";
+    else if (source && (!source.includes(flat(part.name)) || (part.detail && !source.includes(flat(part.detail))))) continue;
+    const key = `${flat(part.name)}|${flat(part.detail)}`;
+    if (!part.name || seen.has(key)) continue;
+    seen.add(key);
+    const carded = cards.some((card) => WORK_KINDS.has(card.kind) && flat(card.where).startsWith(flat(part.name))
+      // Two jobs at one employer: the card names which, by title, when it can.
+      && (!part.detail || !cards.some((other) => other !== card && flat(other.where).startsWith(flat(part.name))) || flat(card.where).includes(flat(part.detail)) || flat(card.line).includes(flat(part.detail))));
+    if (carded && part.status === "fine") part.status = "needs_work";
+    kept.push(part);
+  }
+  return kept;
+}
+
 export function validateWorklistPayload(obj: unknown, resumeText?: string, options: ValidationOptions = {}): WorklistReport {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
@@ -132,6 +156,14 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     const lead = hasPosting ? groundPostingMoves(draftLead, groundingText, []) : [];
     const trim = hasPosting ? groundPostingMoves(draftTrim, groundingText, lead.map((move) => move.line)) : [];
     report.fit = { ...report.fit, posting: { ...posting, ...(lead.length ? { lead } : {}), ...(trim.length ? { trim } : {}) } };
+  }
+
+  // A profile's parts: names and titles are checked against the profile; a part that isn't on it is dropped,
+  // and a part a card says needs work is never shown as fine.
+  if (report.parts) {
+    const parts = groundProfileParts(report.parts, isMockRun() && !options.forceGrounding ? undefined : resumeText, report.cards);
+    if (parts.length >= 3) report.parts = parts;
+    else delete report.parts;
   }
 
   const issues: WorklistValidationIssue[] = [];

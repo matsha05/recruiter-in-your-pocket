@@ -61,7 +61,12 @@ async function main() {
     const mode = "resume" as const;
     const model = resolveOpenAIModel(mode);
     const systemPrompt = await loadPromptForMode("linkedin_v3");
-    const none = resolveEffectiveJobDescription("");
+    // RIYP_LINKEDIN_POSTING: a posting file to read every profile against, as the route does when one is sent.
+    const postingFile = process.env.RIYP_LINKEDIN_POSTING;
+    const none = resolveEffectiveJobDescription(postingFile ? readFileSync(postingFile, "utf8") : "");
+    const { LINKEDIN_REPORT_RESPONSE_FORMAT } = await import("../lib/llm/worklist-schema");
+    const response_format = LINKEDIN_REPORT_RESPONSE_FORMAT;
+    const validationOptions = { ...none.validationOptions, forceGrounding: true };
     const files = readdirSync(FIXTURES).filter((name) => name.endsWith(".txt") && name.includes(filter)).sort();
     console.log(`Running ${files.length} profile(s) with ${model}; prompt ${sha256(systemPrompt).slice(0, 12)}.`);
 
@@ -72,12 +77,12 @@ async function main() {
         const profileText = sanitization.sanitizedText;
         const ctx = { request_id: `linkedin-review-${file}-${Date.now()}`, route: "scripts/run-linkedin-reviews" };
         const startedAt = Date.now();
-        const initial = await runJson<unknown>({ ctx, task: "resume_feedback", mode, model, prompt_version: "linkedin_v3", schema_version: "report_v3", messages });
+        const initial = await runJson<unknown>({ ctx, task: "resume_feedback", mode, model, prompt_version: "linkedin_v3", schema_version: "report_v3", messages, response_format });
         let payload: unknown;
         let repaired = false;
         let firstError: string | null = null;
         try {
-            payload = ensureLayoutAndContentFields(validateWorklistPayload(initial.parsed, profileText, { forceGrounding: true }));
+            payload = ensureLayoutAndContentFields(validateWorklistPayload(initial.parsed, profileText, validationOptions));
         } catch (error) {
             firstError = (error as Error).message;
             if (!isRepairableResumeResponseError(error)) throw error;
@@ -85,9 +90,10 @@ async function main() {
                 ctx, task: "resume_feedback", mode, model, prompt_version: "linkedin_v3_repair",
                 reasoning_effort: resolveResumeRepairReasoningEffort(model), schema_version: "report_v3",
                 messages: buildWorklistRepairMessages(messages, initial.raw, error as Error),
+                response_format,
             });
             try {
-                payload = ensureLayoutAndContentFields(validateWorklistPayload(repair.parsed, profileText, { forceGrounding: true }));
+                payload = ensureLayoutAndContentFields(validateWorklistPayload(repair.parsed, profileText, validationOptions));
                 repaired = true;
             } catch (repairError) {
                 await writeFile(path.join(outputDir, file.replace(/\.txt$/u, ".failed.json")), `${JSON.stringify({ file, firstError, repairError: (repairError as Error).message, issues: (repairError as { details?: unknown }).details ?? null, initial: initial.parsed, repair: repair.parsed }, null, 2)}\n`);

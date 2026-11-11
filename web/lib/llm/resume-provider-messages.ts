@@ -45,7 +45,8 @@ export function buildResumeProviderMessages(input: {
     ? `${baseTone}\n\n${input.systemPrompt}`
     : input.systemPrompt;
 
-  if (input.effectiveJobDescription.hasValue) systemPrompt += JOB_ALIGNMENT_CONTEXT;
+  // The profile prompt carries its own posting rules (WITH A JOB POSTING); the block below is the resume's.
+  if (input.effectiveJobDescription.hasValue && input.document !== "linkedin") systemPrompt += JOB_ALIGNMENT_CONTEXT;
   systemPrompt += INJECTION_RESISTANCE_SUFFIX;
 
   let userPrompt: string;

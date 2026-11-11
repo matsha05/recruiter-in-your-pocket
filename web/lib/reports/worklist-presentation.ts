@@ -33,6 +33,11 @@ export interface ReportWording {
   /** The section after the cards: where the experience points (a resume), or the words a recruiter would search (a profile). */
   fitTitle: string;
   fitListLabel: string;
+  /** With a posting: what it asks for that isn't here, and what is here but buried. */
+  postingMissingLabel: string;
+  postingMissingHow: string;
+  postingLeadLabel: string;
+  postingLeadHow: string;
 }
 
 const RESUME_WORDING: ReportWording = {
@@ -53,6 +58,10 @@ const RESUME_WORDING: ReportWording = {
   sourceAdvice: null,
   fitTitle: "Roles your experience points toward.",
   fitListLabel: "Roles to consider",
+  postingMissingLabel: "What the posting asks for that your resume doesn't show",
+  postingMissingHow: "If you've done it, say where. If you haven't, leave it out.",
+  postingLeadLabel: "Move these up for this posting",
+  postingLeadHow: "They're already on your resume, further down than this posting needs.",
 };
 
 const PROFILE_WORDING: ReportWording = {
@@ -72,6 +81,10 @@ const PROFILE_WORDING: ReportWording = {
   sourceLimits: "LinkedIn's PDF leaves out your photo, your banner, your recommendations and your full skills list, so this review says nothing about them.",
   fitTitle: "The words a recruiter would search for.",
   fitListLabel: "Titles on your profile",
+  postingMissingLabel: "Words from this posting that aren't on your profile",
+  postingMissingHow: "A search for this job can't match a word that isn't there. Add the ones that describe your work, and leave out the rest.",
+  postingLeadLabel: "Bring these forward for this posting",
+  postingLeadHow: "They're already on your profile, where a recruiter reaches them late.",
   sourceAdvice: "It also can't show whether the green Open to Work frame is on your photo. Our advice: leave the frame off and use the recruiters-only setting. Recruiters who filter for people who are looking will still see you, and your photo won't lead with the search.",
 };
 
@@ -234,6 +247,14 @@ export function hasRoleSection(report: Pick<WorklistReport, "fit">) {
 export function fitHeading(report: Pick<WorklistReport, "fit">) {
   return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
 }
+
+/** The profile's parts and how each stands (lib/llm/worklist-schema.ts, ProfilePartSchema). */
+export const PARTS_LABEL = "Your whole profile, part by part";
+export const PART_STATUS_LABEL: Record<"fine" | "needs_work" | "empty", string> = {
+  fine: "Fine as written",
+  needs_work: "Needs work",
+  empty: "Nothing here yet",
+};
 
 export const POSTING_MISSING_LABEL = "What the posting asks for that your resume doesn't show";
 /**
