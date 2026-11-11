@@ -35,6 +35,15 @@
 .readPreview .lengthGuard { margin: 0 1rem 0.75rem; }
 .readSummary { display: flex; min-height: 3.5rem; align-items: center; gap: 0.75rem; padding: 0.625rem 1rem; border-radius: 0.75rem; cursor: pointer; list-style: none; }
 .readSummary::-webkit-details-marker { display: none; }
+/* What came out of the file: the plain findings above the text itself. The marker goes on what to look at. */
+.readFindings { margin: 0 1rem 0.75rem; }
+.readNote { color: hsl(var(--muted-foreground)); font: var(--type-small); text-wrap: pretty; }
+.readFindings ul { display: grid; gap: 0.25rem; margin-top: 0.5rem; font: var(--type-small); color: hsl(var(--text-strong)); }
+.readFindings li { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; align-items: baseline; }
+.readFindings li[data-state="found"] { color: hsl(var(--muted-foreground)); }
+.readFindings li[data-state="missing"] > span:first-child,
+.readFindings li[data-state="problem"] > span:first-child { padding-inline: 0.25rem; background: hsl(var(--marker) / 0.7); }
+.readExcerpt { color: hsl(var(--muted-foreground)); overflow-wrap: anywhere; }
 .readText { max-height: 16rem; overflow: auto; margin: 0 1rem; border-radius: 0.625rem; padding: 0.75rem 1rem; background: hsl(var(--surface-proof)); color: hsl(var(--text-strong)); white-space: pre-wrap; overflow-wrap: anywhere; font: var(--type-small); }
 .readText:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
 .readPreview .textAction { margin: 0.5rem 0.5rem 0.5rem; }

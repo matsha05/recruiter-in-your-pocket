@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import {
     ArrowRight,
     CaretDown,
@@ -17,6 +17,7 @@ import { MIN_RESUME_CHARS } from "@/lib/resume-input";
 import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED } from "@/lib/reports/posting-read-terms";
 import type { ResumeOnFileState } from "./hooks/useResumeOnFile";
 import { cn } from "@/lib/utils";
+import { FILE_READ_NOTE, fileReadFindings, fileReadSummary } from "@/lib/reports/file-read";
 import styles from "./InputPanel.module.css";
 
 interface InputPanelProps {
@@ -164,6 +165,10 @@ export default function InputPanel({
     const hasContent = Boolean(fileName || resumeText.length > 0);
     const wordCount = charCount > 0 ? resumeText.trim().split(/\s+/).length : 0;
     const showReadPreview = Boolean(fileName && !showPaste && charCount > 0);
+    // What came out of the file, before a report is spent on it (lib/reports/file-read.ts). A profile export has
+    // its own shape and its own check, so this is for a resume file only.
+    const readFindings = useMemo(() => (showReadPreview && !isProfile && !isTooShort ? fileReadFindings(resumeText) : []), [isProfile, isTooShort, resumeText, showReadPreview]);
+    const readSummary = readFindings.length > 0 ? fileReadSummary(readFindings) : null;
 
     return (
         <div
@@ -265,8 +270,8 @@ export default function InputPanel({
                                 <summary className={cn(styles.readSummary, "focus-ring riyp-surface-link")}>
                                     <span className="min-w-0 flex-1">
                                         <span className="block text-sm font-semibold text-foreground">What we read</span>
-                                        <span className="mt-0.5 block text-sm text-muted-foreground">
-                                            {wordCount} {wordCount === 1 ? "word" : "words"}
+                                        <span className="mt-0.5 block text-sm text-muted-foreground" data-testid="workspace-read-summary" data-tone={readSummary?.tone}>
+                                            {wordCount} {wordCount === 1 ? "word" : "words"}{readSummary ? `. ${readSummary.text}` : ""}
                                         </span>
                                     </span>
                                     <CaretDown data-affordance className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
@@ -276,6 +281,19 @@ export default function InputPanel({
                                         <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                                         <span>{isProfile ? `We could only read ${charCount} characters, and we need at least ${MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.` : `We could only read ${charCount} characters, and we need at least ${MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.`}</span>
                                     </p>
+                                )}
+                                {readFindings.length > 0 && (
+                                    <div className={styles.readFindings} data-testid="workspace-read-findings">
+                                        <p className={styles.readNote}>{FILE_READ_NOTE}</p>
+                                        <ul>
+                                            {readFindings.map((finding) => (
+                                                <li key={finding.id} data-state={finding.state}>
+                                                    <span>{finding.label}</span>
+                                                    {finding.excerpt && <span className={styles.readExcerpt}>{finding.excerpt}</span>}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 )}
                                 <pre className={styles.readText} tabIndex={0} aria-label="Text we read from your file">{resumeText.trim()}</pre>
                                 {!isProfile && <button type="button" data-testid="workspace-edit-read-text" onClick={handleEditReadText} className={styles.textAction}>
