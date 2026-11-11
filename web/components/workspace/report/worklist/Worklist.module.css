@@ -37,7 +37,8 @@
 
 /* The number, kept (brief decision 10): where in the rung the page sits. */
 .score {
-    font: var(--weight-display) 2.75rem / 1 var(--font-display);
+    --report-score-size: 2.75rem;
+    font: var(--weight-display) var(--report-score-size) / 1 var(--font-display);
     letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
 }
@@ -471,7 +472,7 @@
 .blankArea:focus-visible {
     border-bottom-color: hsl(var(--blue-ink));
     background: hsl(var(--blue-ink) / 0.06);
-    border-radius: 3px 3px 0 0;
+    border-radius: 0;
     outline: 2px solid hsl(var(--blue-ink));
     outline-offset: 1px;
 }
@@ -598,7 +599,7 @@
     }
 
     .score {
-        font-size: 3.25rem;
+        --report-score-size: 3.25rem;
     }
 
     .verdict {

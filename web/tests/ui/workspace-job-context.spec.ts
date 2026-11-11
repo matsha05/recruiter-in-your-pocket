@@ -1,4 +1,4 @@
-import { expect, test, type Page, type Route } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { ResumeFeedbackResponseSchema } from "../../lib/validation/schemas";
 import { schemaValidReport } from "../helpers/report-fidelity-fixture";
 
@@ -8,7 +8,6 @@ const JOB_A = {
   company: "Company A",
   jobDescription: "Lead cross-functional programs, coordinate launches, improve operations, and communicate progress to stakeholders.",
 };
-const JOB_B = { ...JOB_A, id: "22222222-2222-4222-8222-222222222222", title: "Program Manager B", company: "Company B" };
 const RESUME_TEXT = "Alex Rivera\nProgram Manager\nLed cross-functional launches with product, operations, and support teams. Built review cadences and improved launch checklists. Coordinated stakeholder updates and clarified ownership across teams.";
 const COMPLETE_REPORT = ResumeFeedbackResponseSchema.parse(schemaValidReport);
 
@@ -25,63 +24,47 @@ async function pasteAndRun(page: Page) {
   await expect(page.locator("#section-first-impression h1")).toBeVisible();
 }
 
-test.describe("workspace saved-job context", () => {
-  test("a saved-job report can be revised without attaching the new report to its old job", async ({ page }) => {
-    await mockFreeStatus(page);
-    await page.route(`**/api/extension/saved-jobs/${JOB_A.id}`, (route) => route.fulfill({
-      json: { success: true, data: JOB_A },
-    }));
-    const submissions: Array<{ savedJobId?: string; jobDescription?: string; recovery_id?: string }> = [];
-    await page.route("**/api/resume-feedback-stream", async (route) => {
-      const body = route.request().postDataJSON();
-      submissions.push(body);
-      await route.fulfill({
-        headers: { "content-type": "text/event-stream", "cache-control": "no-cache" },
-        body: [
-          JSON.stringify({ type: "meta", request_id: "job-context-test", access: "free_full", access_tier: "free_full", user: null, has_job_description: Boolean(body.jobDescription), recovery_id: body.recovery_id }),
-          JSON.stringify({ type: "complete", ok: true, data: COMPLETE_REPORT, report_id: null, report_receipt: null, recovery_id: body.recovery_id, operation_id: null, free_run_index: 1, free_uses_remaining: 1 }),
-          "",
-        ].join("\n"),
+// These tests run against the production-default build, where the extension is held back.
+// Enabled saved-job lifecycle cases live in workspace-handoffs.spec.ts, whose component
+// harness explicitly sets extensionSync and its allowed origin without changing this build.
+test.describe("launch workspace keeps extension context held back", () => {
+  for (const [name, query] of [
+    ["saved-job links", `job=${JOB_A.id}`],
+    ["local extension captures", new URLSearchParams({ source: "extension-local", title: JOB_A.title, company: JOB_A.company, jd: JOB_A.jobDescription }).toString()],
+  ]) {
+    test(`${name} load no context and still allow a manually entered posting`, async ({ page }) => {
+      await mockFreeStatus(page);
+      let contextRequests = 0;
+      await page.route("**/api/extension/**", (route) => {
+        contextRequests += 1;
+        return route.fulfill({ json: { success: true, data: JOB_A } });
       });
+      await page.route("**/api/user/default-resume**", (route) => {
+        contextRequests += 1;
+        return route.fulfill({ json: { success: true, data: { resumeText: "An old saved resume" } } });
+      });
+      const submissions: Array<{ savedJobId?: string; jobDescription?: string }> = [];
+      await page.route("**/api/resume-feedback-stream", async (route) => {
+        const body = route.request().postDataJSON();
+        submissions.push(body);
+        await route.fulfill({
+          headers: { "content-type": "text/event-stream", "cache-control": "no-cache" },
+          body: `${JSON.stringify({ type: "complete", ok: true, data: COMPLETE_REPORT, report_id: null, report_receipt: null, operation_id: body.recovery_id, free_uses_remaining: 1 })}\n`,
+        });
+      });
+
+      await page.goto(`/workspace?${query}`);
+      await expect(page.getByTestId("workspace-run-report")).toBeVisible();
+      await expect(page.getByText(JOB_A.title, { exact: true })).toHaveCount(0);
+      await page.getByTestId("workspace-role-toggle").click();
+      await expect(page.getByTestId("workspace-job-description")).toHaveValue("");
+      const manualPosting = "Lead launch programs and coordinate product, operations, and support teams.";
+      await page.getByTestId("workspace-job-description").fill(manualPosting);
+      await pasteAndRun(page);
+      expect(submissions).toHaveLength(1);
+      expect(submissions[0].savedJobId).toBeUndefined();
+      expect(submissions[0].jobDescription).toBe(manualPosting);
+      expect(contextRequests, "held-back entry links must never fetch saved context or overwrite candidate input").toBe(0);
     });
-
-    await page.goto(`/workspace?job=${JOB_A.id}`);
-    await expect(page.getByText(JOB_A.title, { exact: true })).toBeVisible();
-    await expect(page.getByTestId("workspace-job-description")).toHaveValue(JOB_A.jobDescription);
-    await pasteAndRun(page);
-    expect(submissions[0].savedJobId).toBe(JOB_A.id);
-
-    await page.getByRole("button", { name: "Compare my revision", exact: true }).click();
-    await expect(page).toHaveURL(/\/workspace\?revision=1$/);
-    await expect(page.getByText(JOB_A.title, { exact: true })).toHaveCount(0);
-    await page.getByTestId("workspace-paste-mode").click();
-    await expect(page.getByTestId("workspace-resume-text")).toHaveValue("");
-    await page.getByTestId("workspace-resume-text").fill(`${RESUME_TEXT}\nRevised with clearer examples.`);
-    await expect(page.getByTestId("workspace-run-report")).toContainText("Compare my revision");
-    await page.getByTestId("workspace-run-report").click();
-    await expect(page.locator("#section-first-impression h1")).toBeVisible();
-    expect(submissions).toHaveLength(2);
-    expect(submissions[1].savedJobId).toBeUndefined();
-    expect(submissions[1].jobDescription).toBeUndefined();
-  });
-
-  test("late saved-job replies cannot restore context after client navigation", async ({ page }) => {
-    await mockFreeStatus(page);
-    let firstRequest: Route | undefined;
-    await page.route(`**/api/extension/saved-jobs/${JOB_A.id}`, (route) => { firstRequest = route; });
-    await page.route(`**/api/extension/saved-jobs/${JOB_B.id}`, (route) => route.fulfill({
-      json: { success: true, data: JOB_B },
-    }));
-
-    await page.goto(`/workspace?job=${JOB_A.id}`);
-    await expect.poll(() => Boolean(firstRequest)).toBe(true);
-    await page.evaluate((jobId) => window.history.pushState(null, "", `/workspace?job=${jobId}`), JOB_B.id);
-    await expect(page.getByText(JOB_B.title, { exact: true })).toBeVisible();
-    await firstRequest!.fulfill({ json: { success: true, data: JOB_A } });
-    await expect(page.getByText(JOB_A.title, { exact: true })).toHaveCount(0);
-    await expect(page.getByText(JOB_B.title, { exact: true })).toBeVisible();
-
-    await page.evaluate(() => window.history.pushState(null, "", "/workspace"));
-    await expect(page.getByText(JOB_B.title, { exact: true })).toHaveCount(0);
-  });
+  }
 });

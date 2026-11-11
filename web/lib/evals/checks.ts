@@ -159,6 +159,17 @@ function checkDiscouragedPhrases(
 // HUMAN COPY CHECK
 // ============================================
 
+/** A shared question/condition opener is grammar, when each continuation asks or describes a different thing. */
+function hasDistinctParallelContinuations(value: string, phrase: string) {
+    if (!/^(?:what (?:did|do|does|will|can|would|could) (?:you|they|we)|if (?:you|they|we|i) [a-z]+|(?:you|they|we|i) (?:can|could|should|would|may|might) [a-z]+)$/.test(phrase)) return false;
+    const starts = Array.from(value.toLowerCase().matchAll(new RegExp(`\\b${escapeRegExp(phrase).replace(/ /g, "\\s+")}\\b`, "g")));
+    const heads = starts.map((match) => {
+        const continuation = value.slice((match.index ?? 0) + match[0].length).toLowerCase().split(/[,;.!?]/, 1)[0];
+        return continuation.match(/^\s*(?:(?:a|an|the)\s+)?([a-z][a-z'-]*)\b/)?.[1];
+    });
+    return heads.length > 1 && heads.every(Boolean) && new Set(heads).size === heads.length;
+}
+
 export function findMechanicalCopyIssues(output: unknown): string[] {
     const prose: Array<{ path: string; value: string }> = [];
 
@@ -202,11 +213,18 @@ export function findMechanicalCopyIssues(output: unknown): string[] {
         }
 
         const normalized = item.value.toLowerCase().replace(/[^a-z0-9' -]+/g, " ").replace(/\s+/g, " ").trim();
-        const repeatedClause = normalized.match(/\b([a-z][a-z'-]+(?:\s+[a-z][a-z'-]+){2,5})\b.{0,140}\b\1\b/i)?.[1];
+        const repetitionPattern = /\b([a-z][a-z'-]+(?:\s+[a-z][a-z'-]+){2,5})\b.{0,140}\b\1\b/i;
+        let substantiveCopy = normalized;
+        let repeatedClause = substantiveCopy.match(repetitionPattern)?.[1];
+        while (repeatedClause && hasDistinctParallelContinuations(item.value, repeatedClause)) {
+            // Still inspect the substantive words; different openers must not hide a repeated observation.
+            substantiveCopy = substantiveCopy.replace(new RegExp(`\\b${escapeRegExp(repeatedClause)}\\b`, "g"), "");
+            repeatedClause = substantiveCopy.match(repetitionPattern)?.[1];
+        }
         const trailingWord = repeatedClause?.split(/\s+/).at(-1);
         const isProgressionPhrase = Boolean(trailingWord && ["to", "from", "through", "into"].includes(trailingWord));
         const isRepeatedRoleOrDomainLabel = Boolean(trailingWord && [
-            "manager", "director", "executive", "engineer", "designer", "recruiter",
+            "manager", "director", "executive", "engineer", "designer", "recruiter", "supervisor", "generalist",
             "hiring", "recruiting",
         ].includes(trailingWord));
         const repeatedMetricLabel = repeatedClause ? Array.from(normalized.matchAll(new RegExp(`\\b${escapeRegExp(repeatedClause)}\\b`, "g"))) : [];

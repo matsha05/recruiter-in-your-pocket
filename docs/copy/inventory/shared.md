@@ -367,7 +367,7 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | shared | `web/components/providers/AuthProvider.tsx:224` (80 routes) | call:toast.error | We couldn't sign you out. Try again. |
+| 1 | shared | `web/components/providers/AuthProvider.tsx:232` (80 routes) | call:toast.error | We couldn't sign you out. Try again. |
 
 ## web/components/research/AnswerArticle.tsx
 
@@ -536,42 +536,42 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/lib/reports/report-presentation.ts:34` (10 routes) | return | Here's where to start. |
-| 2 | report | `web/lib/reports/report-presentation.ts:35` (10 routes) | return | Fix this first. |
-| 3 | report | `web/lib/reports/report-presentation.ts:36` (10 routes) | return | Fix these two first. |
-| 4 | report | `web/lib/reports/report-presentation.ts:37` (10 routes) | return | Fix these three first. |
-| 5 | report | `web/lib/reports/report-presentation.ts:94` (10 routes) | key:title | The question they'd ask. |
-| 6 | report | `web/lib/reports/report-presentation.ts:95` (10 routes) | key:lead | Not a reason to pass on you. Worth a sentence before you send it. |
-| 7 | report | `web/lib/reports/report-presentation.ts:99` (10 routes) | const | Worth tightening. |
-| 8 | report | `web/lib/reports/report-presentation.ts:113` (10 routes) | key:title | More than three problems. Here are the three that matter most. |
-| 9 | report | `web/lib/reports/report-presentation.ts:114` (10 routes) | key:lead | Any one of them could cost you the interview on its own. Start with the first. |
-| 10 | report | `web/lib/reports/report-presentation.ts:118` (10 routes) | key:title | One problem to fix first. |
-| 11 | report | `web/lib/reports/report-presentation.ts:118` (10 routes) | key:lead | It's the one most likely to cost you the interview. |
-| 12 | report | `web/lib/reports/report-presentation.ts:119` (10 routes) | key:title | Two problems. Start with this one. |
-| 13 | report | `web/lib/reports/report-presentation.ts:119` (10 routes) | key:lead | Either one could cost you the interview on its own. |
-| 14 | report | `web/lib/reports/report-presentation.ts:120` (10 routes) | key:title | Three problems. Start with this one. |
-| 15 | report | `web/lib/reports/report-presentation.ts:120` (10 routes) | key:lead | Any one of them could cost you the interview on its own. |
-| 16 | report | `web/lib/reports/report-presentation.ts:139` (10 routes) | return | The question they'd ask |
-| 17 | report | `web/lib/reports/report-presentation.ts:142` (10 routes) | return | Fix {index + 1} |
+| 1 | report | `web/lib/reports/report-presentation.ts:34` (86 routes) | return | Here's where to start. |
+| 2 | report | `web/lib/reports/report-presentation.ts:35` (86 routes) | return | Fix this first. |
+| 3 | report | `web/lib/reports/report-presentation.ts:36` (86 routes) | return | Fix these two first. |
+| 4 | report | `web/lib/reports/report-presentation.ts:37` (86 routes) | return | Fix these three first. |
+| 5 | report | `web/lib/reports/report-presentation.ts:94` (86 routes) | key:title | The question they'd ask. |
+| 6 | report | `web/lib/reports/report-presentation.ts:95` (86 routes) | key:lead | Not a reason to pass on you. Worth a sentence before you send it. |
+| 7 | report | `web/lib/reports/report-presentation.ts:99` (86 routes) | const | Worth tightening. |
+| 8 | report | `web/lib/reports/report-presentation.ts:113` (86 routes) | key:title | More than three problems. Here are the three that matter most. |
+| 9 | report | `web/lib/reports/report-presentation.ts:114` (86 routes) | key:lead | Any one of them could cost you the interview on its own. Start with the first. |
+| 10 | report | `web/lib/reports/report-presentation.ts:118` (86 routes) | key:title | One problem to fix first. |
+| 11 | report | `web/lib/reports/report-presentation.ts:118` (86 routes) | key:lead | It's the one most likely to cost you the interview. |
+| 12 | report | `web/lib/reports/report-presentation.ts:119` (86 routes) | key:title | Two problems. Start with this one. |
+| 13 | report | `web/lib/reports/report-presentation.ts:119` (86 routes) | key:lead | Either one could cost you the interview on its own. |
+| 14 | report | `web/lib/reports/report-presentation.ts:120` (86 routes) | key:title | Three problems. Start with this one. |
+| 15 | report | `web/lib/reports/report-presentation.ts:120` (86 routes) | key:lead | Any one of them could cost you the interview on its own. |
+| 16 | report | `web/lib/reports/report-presentation.ts:139` (86 routes) | return | The question they'd ask |
+| 17 | report | `web/lib/reports/report-presentation.ts:142` (86 routes) | return | Fix {index + 1} |
 
 ## web/lib/reports/revised-line.ts
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | rewrite | `web/lib/reports/revised-line.ts:189` (8 routes) | return | {quote(refusal.tokens)} isn't in your line or your answers. If it's true, add it as an answer first. |
-| 2 | rewrite | `web/lib/reports/revised-line.ts:195` (8 routes) | return | {quote(refusal.tokens)} from your line is missing. Put it back, or keep the line as it was. |
-| 3 | rewrite | `web/lib/reports/revised-line.ts:197` (8 routes) | return | We can't tell which part of your line the new words belong to. Use my exact words, or add them as an answer. |
-| 4 | rewrite | `web/lib/reports/revised-line.ts:199` (8 routes) | return | This line can't be checked against your resume here. Paste your resume back in to work on it. |
+| 1 | rewrite | `web/lib/reports/revised-line.ts:189` (85 routes) | return | {quote(refusal.tokens)} isn't in your line or your answers. If it's true, add it as an answer first. |
+| 2 | rewrite | `web/lib/reports/revised-line.ts:195` (85 routes) | return | {quote(refusal.tokens)} from your line is missing. Put it back, or keep the line as it was. |
+| 3 | rewrite | `web/lib/reports/revised-line.ts:197` (85 routes) | return | We can't tell which part of your line the new words belong to. Use my exact words, or add them as an answer. |
+| 4 | rewrite | `web/lib/reports/revised-line.ts:199` (85 routes) | return | This line can't be checked against your resume here. Paste your resume back in to work on it. |
 
 ## web/lib/reports/score-band.ts
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/lib/reports/score-band.ts:32` (13 routes) | key:anchor | The jobs are listed. A reader can't tell what you did in them or what you've done since. |
-| 2 | report | `web/lib/reports/score-band.ts:33` (13 routes) | key:anchor | The jobs are easy to follow. What you did in them mostly isn't. |
-| 3 | report | `web/lib/reports/score-band.ts:34` (13 routes) | key:anchor | Most lines show what you did. A few leave your part or the result unclear. |
-| 4 | report | `web/lib/reports/score-band.ts:35` (13 routes) | key:anchor | Lines say what you did and what changed because of it. |
-| 5 | report | `web/lib/reports/score-band.ts:64` (13 routes) | key:anchor | Every line says what you did and what changed. There's nothing here a recruiter would stop on. |
+| 1 | report | `web/lib/reports/score-band.ts:32` (86 routes) | key:anchor | The jobs are listed. A reader can't tell what you did in them or what you've done since. |
+| 2 | report | `web/lib/reports/score-band.ts:33` (86 routes) | key:anchor | The jobs are easy to follow. What you did in them mostly isn't. |
+| 3 | report | `web/lib/reports/score-band.ts:34` (86 routes) | key:anchor | Most lines show what you did. A few leave your part or the result unclear. |
+| 4 | report | `web/lib/reports/score-band.ts:35` (86 routes) | key:anchor | Lines say what you did and what changed because of it. |
+| 5 | report | `web/lib/reports/score-band.ts:64` (86 routes) | key:anchor | Every line says what you did and what changed. There's nothing here a recruiter would stop on. |
 
 ## web/lib/resume-input.ts
 
@@ -583,20 +583,20 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/lib/score-utils.ts:42` (21 routes) | return | Clear and specific |
-| 2 | report | `web/lib/score-utils.ts:43` (21 routes) | return | Mostly clear |
-| 3 | report | `web/lib/score-utils.ts:44` (21 routes) | return | Needs more context |
-| 4 | report | `web/lib/score-utils.ts:57` (21 routes) | return | Ready to send |
-| 5 | report | `web/lib/score-utils.ts:89` (21 routes) | key:label | Excellent Fit |
-| 6 | report | `web/lib/score-utils.ts:93` (21 routes) | key:description | Near-perfect alignment with requirements |
-| 7 | report | `web/lib/score-utils.ts:96` (21 routes) | key:label | Strong Match |
-| 8 | report | `web/lib/score-utils.ts:100` (21 routes) | key:description | Good alignment with minor gaps |
-| 9 | report | `web/lib/score-utils.ts:103` (21 routes) | key:label | Plausible Fit |
-| 10 | report | `web/lib/score-utils.ts:107` (21 routes) | key:description | Reasonable alignment, some gaps |
-| 11 | report | `web/lib/score-utils.ts:110` (21 routes) | key:label | Career Stretch |
-| 12 | report | `web/lib/score-utils.ts:114` (21 routes) | key:description | Different domain or missing key requirements |
-| 13 | report | `web/lib/score-utils.ts:117` (21 routes) | key:label | Not a Match |
-| 14 | report | `web/lib/score-utils.ts:121` (21 routes) | key:description | Fundamentally different role |
+| 1 | report | `web/lib/score-utils.ts:42` (93 routes) | return | Clear and specific |
+| 2 | report | `web/lib/score-utils.ts:43` (93 routes) | return | Mostly clear |
+| 3 | report | `web/lib/score-utils.ts:44` (93 routes) | return | Needs more context |
+| 4 | report | `web/lib/score-utils.ts:57` (93 routes) | return | Ready to send |
+| 5 | report | `web/lib/score-utils.ts:89` (93 routes) | key:label | Excellent Fit |
+| 6 | report | `web/lib/score-utils.ts:93` (93 routes) | key:description | Near-perfect alignment with requirements |
+| 7 | report | `web/lib/score-utils.ts:96` (93 routes) | key:label | Strong Match |
+| 8 | report | `web/lib/score-utils.ts:100` (93 routes) | key:description | Good alignment with minor gaps |
+| 9 | report | `web/lib/score-utils.ts:103` (93 routes) | key:label | Plausible Fit |
+| 10 | report | `web/lib/score-utils.ts:107` (93 routes) | key:description | Reasonable alignment, some gaps |
+| 11 | report | `web/lib/score-utils.ts:110` (93 routes) | key:label | Career Stretch |
+| 12 | report | `web/lib/score-utils.ts:114` (93 routes) | key:description | Different domain or missing key requirements |
+| 13 | report | `web/lib/score-utils.ts:117` (93 routes) | key:label | Not a Match |
+| 14 | report | `web/lib/score-utils.ts:121` (93 routes) | key:description | Fundamentally different role |
 
 ## web/lib/seo/share-cards.ts
 

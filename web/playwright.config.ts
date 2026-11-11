@@ -1,4 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
+import { localTestPort } from "./scripts/local-test-port.cjs";
+
+const skipLocalServer = process.env.PLAYWRIGHT_SKIP_WEB_SERVER === "1";
+const localPort = skipLocalServer ? 3100 : localTestPort(process.env.RIYP_LOCAL_TEST_PORT);
+const localBaseUrl = `http://127.0.0.1:${localPort}`;
 
 export default defineConfig({
   testDir: "./tests/ui",
@@ -7,23 +12,24 @@ export default defineConfig({
     timeout: 10_000,
   },
   use: {
-    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || "http://127.0.0.1:3100",
+    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || localBaseUrl,
     headless: true,
     viewport: { width: 1440, height: 900 },
     trace: "retain-on-failure",
   },
-  webServer: process.env.PLAYWRIGHT_SKIP_WEB_SERVER === "1" ? undefined : {
+  webServer: skipLocalServer ? undefined : {
     command: `"${process.execPath}" scripts/launch-smoke-server.cjs`,
-    url: "http://127.0.0.1:3100",
+    url: localBaseUrl,
     reuseExistingServer: false,
     timeout: 240_000,
     env: {
       ...process.env,
+      RIYP_LOCAL_TEST_PORT: String(localPort),
       FORCE_NEXT_BUILD: process.env.FORCE_NEXT_BUILD || "1",
       USE_MOCK_OPENAI: process.env.USE_MOCK_OPENAI || "1",
       SKIP_DB_READY_CHECK: process.env.SKIP_DB_READY_CHECK || "1",
       SESSION_SECRET: process.env.SESSION_SECRET || "playwright-session-secret",
-      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://127.0.0.1:3100",
+      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || localBaseUrl,
       NEXT_PUBLIC_ENABLE_ANALYTICS: process.env.NEXT_PUBLIC_ENABLE_ANALYTICS || "false",
       NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK || "false",
       NEXT_PUBLIC_ENABLE_EXTENSION_SYNC: process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC || "false",

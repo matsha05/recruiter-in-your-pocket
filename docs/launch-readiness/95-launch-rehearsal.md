@@ -1,6 +1,6 @@
 # RIYP Solo Launch Rehearsal
 
-**Last updated:** August 10, 2026
+**Last updated:** November 10, 2026 (current pass duration corrected; historical records retained)
 **Tester:** Matt Shaw
 **Status:** Reusable runbook with historical production records
 
@@ -49,7 +49,7 @@ Pass when account state is predictable and no report appears under the wrong ide
 ## 4. Job Search Pass Purchase
 
 - Reach the paywall through normal use.
-- Confirm the modal shows one $29 Job Search Pass with five reports, 30-day expiration, and no renewal.
+- Confirm the modal shows one $29 Job Search Pass with five reports, 90-day expiration, and no renewal.
 - Complete Stripe test checkout.
 - Confirm access unlocks once, even if the webhook is replayed three times.
 - Retry the webhook after a simulated transient failure.

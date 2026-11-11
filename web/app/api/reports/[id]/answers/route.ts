@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { hashForLogs, logWarn } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { isReportId, LINE_ANSWER_LIMITS, mergeLineAnswers, parseLineAnswersPatch } from "@/lib/reports/line-answers";
+import { isReportId, LINE_ANSWER_LIMITS, parseLineAnswersPatch, parseStoredLineAnswers } from "@/lib/reports/line-answers";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 
@@ -48,7 +48,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
   // Ownership through the reader's own session (the owner-only select policy), then the write.
   const { data: owned, error: ownError } = await supabase
     .from("reports")
-    .select("id, line_answers")
+    .select("id")
     .eq("id", reportId)
     .eq("user_id", user.id)
     .maybeSingle();
@@ -60,11 +60,21 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
 
   const admin = createSupabaseAdminClient();
   if (!admin) return json({ ok: false, errorCode: "SAVE_UNAVAILABLE", message: "Answers can't be kept right now. Your line still works here." }, 503);
-  const lineAnswers = mergeLineAnswers(owned.line_answers, patch);
-  const { error } = await admin.from("reports").update({ line_answers: lineAnswers }).eq("id", reportId).eq("user_id", user.id);
+  // The database changes only this card on the current row. A browser queue cannot protect
+  // independent cards or tabs from replacing each other's answers with an older snapshot.
+  const { data: updated, error } = await admin.rpc("update_report_line_answers", {
+    p_report_id: reportId,
+    p_user_id: user.id,
+    p_fix_index: patch.fix_index,
+    p_answers: patch.answers,
+    p_line: patch.line,
+    p_source: patch.source,
+  });
   if (error) {
     logWarn({ msg: "line_answers.store_failed", supabase: { table: "reports", op: "update", error_code: String(error.code || "unknown") } });
     return json({ ok: false, errorCode: "SAVE_FAILED", message: "We couldn't keep that answer. Try again." }, 500);
   }
-  return json({ ok: true, lineAnswers }, 200);
+  // The report may have been deleted after the owner check. Never acknowledge a write to no row.
+  if (updated === null) return json({ ok: false, errorCode: "REPORT_NOT_FOUND", message: "This report isn't in your account." }, 404);
+  return json({ ok: true, lineAnswers: parseStoredLineAnswers(updated) || {} }, 200);
 }

@@ -1,6 +1,6 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-11-01
+**Last Updated:** 2026-11-10
 **Status:** ENFORCED; bounded model proof passes, hosted release gates remain separate
 
 ---
@@ -10,6 +10,14 @@
 > **Prompt changes cannot ship to production unless the eval harness passes.**
 
 This is a non-negotiable quality gate that protects the core value of RIYP: reliable, evidence-backed analysis.
+
+### Current v3 readiness reconciliation — November 10
+
+The active `resume_v3` prompt is `15dff271…`. Its November 7 `upgrades3` records have now been replayed without new provider calls: all 59 report-producing records pass the current production validator, using four original saved repairs. The oversized sixtieth request is refused before a call. Of those reports, 28 resume-only scenarios across 28 unique resumes match pre-existing calibration fixtures by exact source bytes; all 28 pass the unchanged score ranges and worklist checks. Thirty-one uncalibrated or posting-variant reports stay outside the readiness denominator; their source/copy checks retain two no-blank warnings.
+
+The prior 24 PASS / 4 WARN / 0 FAIL replay is retained. The four warnings were mechanical detector false positives on repeated factual role titles and parallel grammatical openers with distinct continuations. Narrow detector corrections preserve paired controls for genuinely repeated questions, conditions, advice and full sentences. Prompts, source outputs, score ranges and the runtime threshold (at least eight cases, 90% PASS, zero FAIL) are unchanged.
+
+The current runtime bundle now identifies this source-backed v3 cohort instead of the October 31 v2 cohort. This is a bounded saved-output replay, not a fresh full golden/smoke suite or a hosted journey pass. The [current summary](../../tests/fixtures/results/summary_latest_live.md) discloses every included case, excluded case, warning, source hash and validator/check fingerprint; [the October 31 summary](../../tests/fixtures/results/summary_historical_2026-10-31.md) remains historical. `node web/scripts/run-ts-test.cjs web/tests/worklist-readiness-replay.test.ts` reproduces the full receipt and fails on any source/validator error, including cases outside the calibrated denominator. Exact final-candidate checks and the hosted customer journey remain separate release requirements.
 
 ---
 

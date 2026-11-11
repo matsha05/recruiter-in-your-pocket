@@ -58,11 +58,18 @@ async function run() {
   const originalLoad = runtimeModule._load;
   const originalFetch = global.fetch;
   let harness = createHookHarness();
+  let extensionEnabled = false;
   runtimeModule._load = function loadWithHookRuntime(request, parent, isMain) {
     if (request === "react") return {
       useRef: <T>(value: T) => harness.react.useRef(value),
       useCallback: <T>(value: T) => harness.react.useCallback(value),
       useEffect: (callback: () => void | (() => void), dependencies: unknown[]) => harness.react.useEffect(callback, dependencies),
+    };
+    if (request === "@/lib/launch/flags") return {
+      isLaunchFlagEnabled: (name: string) => {
+        assert.equal(name, "extensionSync");
+        return extensionEnabled;
+      },
     };
     return originalLoad(request, parent, isMain);
   };
@@ -100,6 +107,23 @@ async function run() {
   const currentJob = (): LoadedJobContext | null => state.job;
 
   try {
+    // Held-back extension entry points must not fetch context or touch a resume/posting.
+    // The flag dependency is explicit so these lifecycle tests never depend on shell env.
+    reset(`job=${jobA.id}`, true);
+    state!.resume = "Resume the candidate pasted";
+    state!.description = "Posting the candidate pasted";
+    render();
+    await nextTurn();
+    assert.equal(requests!.length, 0, "a held-back saved-job link must not fetch the job or default resume");
+    assert.deepEqual(state!, { resume: "Resume the candidate pasted", description: "Posting the candidate pasted", job: null, skipSample: false });
+
+    reset("source=extension-local&title=Local+role&company=Local+company&jd=Local+description", true);
+    render();
+    await nextTurn();
+    assert.equal(requests!.length, 0, "a held-back local capture must not hydrate the default resume");
+    assert.deepEqual(state!, { resume: "", description: "", job: null, skipSample: false }, "a held-back local capture must not populate context");
+
+    extensionEnabled = true;
     reset(`job=${jobA.id}`, true);
     let controls = render();
     requests![0].reply.resolve(response(jobA));

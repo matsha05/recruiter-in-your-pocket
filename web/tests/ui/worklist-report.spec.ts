@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import { MOCK_WORKLIST_REPORT } from "../../lib/backend/mock-worklist-report";
 import { blankLabels } from "../../lib/reports/worklist-presentation";
+import { LINE_ANSWER_LIMITS, parseLineAnswersPatch, type LineAnswersPatch, type StoredLineAnswersByFix } from "../../lib/reports/line-answers";
 import { installSignedInSession } from "./signed-in-session";
 
 // The worklist report (Matt, Nov 5, 2026): the score and its rung, the verdict, the write-up, then one card per
@@ -12,7 +13,7 @@ const mock = MOCK_WORKLIST_REPORT;
 const lineCard = mock.cards.findIndex((card) => card.kind === "line");
 const lineLabels = blankLabels(mock.cards[lineCard].example);
 
-async function runReport(page: Page, options: { signedIn: boolean; reportId?: string; data?: Record<string, unknown> }) {
+async function runReport(page: Page, options: { signedIn: boolean; reportId?: string; receipt?: string; data?: Record<string, unknown> }) {
   if (options.signedIn) await installSignedInSession(page, { freeUsesLeft: 1 });
   else {
     await page.route("**/auth/v1/user", (route) => route.fulfill({ status: 401, json: { message: "Auth session missing" } }));
@@ -20,7 +21,7 @@ async function runReport(page: Page, options: { signedIn: boolean; reportId?: st
   }
   await page.route("**/api/resume-feedback-stream", (route) => route.fulfill({
     headers: { "content-type": "text/event-stream", "cache-control": "no-cache" },
-    body: `${JSON.stringify({ type: "complete", ok: true, data: { ...mock, score_label: "Needs more context", ...options.data }, report_id: options.reportId ?? null, report_receipt: null, operation_id: route.request().postDataJSON().recovery_id, free_uses_remaining: 0 })}\n`,
+    body: `${JSON.stringify({ type: "complete", ok: true, data: { ...mock, score_label: "Needs more context", ...options.data }, report_id: options.reportId ?? null, report_receipt: options.receipt ?? null, operation_id: route.request().postDataJSON().recovery_id, free_uses_remaining: 0 })}\n`,
   }));
   await page.goto("/workspace", { waitUntil: "domcontentloaded" });
   await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
@@ -104,6 +105,304 @@ test("a saved report reopened elsewhere fills the blanks from the kept answers",
   await expect(card).toContainText("Filled in");
   await expect(card.getByTestId("worklist-kept")).toContainText("Kept with this report");
   await expect(page.getByTestId("report-save-version")).toHaveCount(0);
+});
+
+test("answers entered before saving the report are kept when it receives its saved id", async ({ page }) => {
+  const patches: LineAnswersPatch[] = [];
+  const stored: StoredLineAnswersByFix = {};
+  await page.route(/\/api\/reports(?:\/recovery)?$/, (route) => {
+    if (route.request().method() !== "POST") return route.fallback();
+    return route.fulfill({ json: { ok: true, reportId: REPORT_ID } });
+  });
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    const patch = route.request().postDataJSON() as LineAnswersPatch;
+    patches.push(patch);
+    stored[String(patch.fix_index)] = { ...patch, updated_at: "2026-11-10T04:00:00.000Z" };
+    return route.fulfill({ json: { ok: true } });
+  });
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => route.fulfill({ json: {
+    ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored,
+  } }));
+  await runReport(page, { signedIn: true, receipt: "receipt-for-this-report" });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  await card.getByTestId("worklist-blank").first().fill("12");
+  await expect(card.getByTestId("worklist-kept")).toHaveCount(0);
+  await page.getByTestId("report-save-version-button").click();
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(patches).toHaveLength(1);
+  expect(patches[0].answers).toContainEqual({ question: lineLabels[0], kind: "answered", text: "12" });
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  await expect(card.getByTestId("worklist-blank").first()).toHaveValue("12");
+});
+
+for (const width of [1440, 390]) {
+  test(`clearing the last saved answer stays cleared after reopening at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await installSignedInSession(page, { freeUsesLeft: 0 });
+    let stored: StoredLineAnswersByFix = { [String(lineCard)]: {
+      answers: [{ question: lineLabels[0], kind: "answered", text: "12" }],
+      line: null, source: "literal", updated_at: "2026-11-10T04:00:00.000Z",
+    } };
+    const patches: LineAnswersPatch[] = [];
+    await page.route(`**/api/reports/${REPORT_ID}`, (route) => route.fulfill({ json: {
+      ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored,
+    } }));
+    await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+      const patch = route.request().postDataJSON() as LineAnswersPatch;
+      patches.push(patch);
+      if (patch.answers.length === 0) stored = {};
+      return route.fulfill({ json: { ok: true } });
+    });
+    await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+    const card = page.getByTestId("worklist-card").nth(lineCard);
+    const answer = card.getByTestId("worklist-blank").first();
+    await expect(answer).toHaveValue("12");
+    await answer.fill("");
+    await expect(card.getByTestId("worklist-kept")).toContainText("Keeping this with your report");
+    await expect.poll(() => patches.length).toBe(1);
+    expect(patches[0]).toEqual({ fix_index: lineCard, answers: [], line: null, source: "literal" });
+    await expect(card.getByTestId("worklist-kept")).toHaveText("Cleared from this report.");
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await expect(answer).toHaveValue("");
+    await expect(card.getByTestId("worklist-kept")).toHaveCount(0);
+  });
+}
+
+test("a failed answer save can be retried without changing the answer", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  const patches: LineAnswersPatch[] = [];
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    patches.push(route.request().postDataJSON() as LineAnswersPatch);
+    return route.fulfill({ status: patches.length === 1 ? 503 : 200, json: { ok: patches.length > 1 } });
+  });
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const answer = card.getByTestId("worklist-blank").first();
+  await answer.fill("12");
+  await expect(card.getByTestId("worklist-kept")).toContainText("We couldn't save these changes.");
+  await expect(answer).toHaveValue("12");
+  await card.getByRole("button", { name: "Try saving again", exact: true }).click();
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(patches).toHaveLength(2);
+  expect(patches[1]).toEqual(patches[0]);
+  await expect(card.getByRole("button", { name: "Try saving again", exact: true })).toHaveCount(0);
+});
+
+test("answers at the field limit remain saved when their combined line exceeds its storage limit", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  const cardIndex = mock.cards.findIndex((card) => blankLabels(card.example).length >= 3);
+  const patches: LineAnswersPatch[] = [];
+  const stored: StoredLineAnswersByFix = {};
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    const patch = parseLineAnswersPatch(route.request().postDataJSON());
+    if (!patch) return route.fulfill({ status: 400, json: { ok: false } });
+    patches.push(patch);
+    stored[String(patch.fix_index)] = { ...patch, updated_at: "2026-11-10T04:00:00.000Z" };
+    return route.fulfill({ json: { ok: true } });
+  });
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => route.fulfill({ json: {
+    ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored,
+  } }));
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  const card = page.getByTestId("worklist-card").nth(cardIndex);
+  const blanks = card.getByTestId("worklist-blank");
+  const count = await blanks.count();
+  const answer = "a".repeat(LINE_ANSWER_LIMITS.text);
+  for (let index = 0; index < count; index += 1) await blanks.nth(index).fill(answer);
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  const saved = patches.at(-1)!;
+  expect(saved.answers).toHaveLength(count);
+  expect(saved.line).toBeNull();
+  await expect(card.getByTestId("worklist-copy")).toBeVisible();
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  for (let index = 0; index < count; index += 1) await expect(blanks.nth(index)).toHaveValue(answer);
+  await expect(card.getByTestId("worklist-copy")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
+});
+
+test("a later clear waits for an in-flight answer save and only the clear is acknowledged", async ({ page }) => {
+  let finishFirst!: () => void;
+  const firstResponse = new Promise<void>((resolve) => { finishFirst = resolve; });
+  const patches: LineAnswersPatch[] = [];
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, async (route) => {
+    patches.push(route.request().postDataJSON() as LineAnswersPatch);
+    if (patches.length === 1) await firstResponse;
+    await route.fulfill({ json: { ok: true } });
+  });
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const answer = card.getByTestId("worklist-blank").first();
+  await answer.fill("12");
+  await expect.poll(() => patches.length).toBe(1);
+  await answer.fill("");
+  // Exceed the debounce while the earlier write is deliberately held open.
+  await page.waitForTimeout(1700);
+  expect(patches).toHaveLength(1);
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Keeping this with your report…");
+  finishFirst();
+  await expect.poll(() => patches.length).toBe(2);
+  expect(patches[1]).toEqual({ fix_index: lineCard, answers: [], line: null, source: "literal" });
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Cleared from this report.");
+});
+
+test("leaving an answer unknown exposes save failures and filling it in again clears that choice", async ({ page }) => {
+  const patches: LineAnswersPatch[] = [];
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    patches.push(route.request().postDataJSON() as LineAnswersPatch);
+    return route.fulfill({ status: patches.length === 1 ? 503 : 200, json: { ok: patches.length > 1 } });
+  });
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  await card.getByRole("button", { name: "I don't know yet", exact: true }).click();
+  await expect(card.getByTestId("worklist-kept")).toContainText("We couldn't save these changes.");
+  await card.getByRole("button", { name: "Try saving again", exact: true }).click();
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(patches[1].answers).toEqual(lineLabels.map((question) => ({ question, kind: "unknown" })));
+  await card.getByRole("button", { name: "Fill it in after all", exact: true }).click();
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Cleared from this report.");
+  expect(patches[2]).toEqual({ fix_index: lineCard, answers: [], line: null, source: "literal" });
+  await expect(card.getByTestId("worklist-blank").first()).toHaveValue("");
+});
+
+async function warnsBeforeLeaving(page: Page) {
+  return page.evaluate(() => {
+    const event = new Event("beforeunload", { cancelable: true });
+    window.dispatchEvent(event);
+    return event.defaultPrevented;
+  });
+}
+
+test("client navigation flushes a saved answer before its debounce expires", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-11-10T12:00:00Z") });
+  const patches: LineAnswersPatch[] = [];
+  const stored: StoredLineAnswersByFix = {};
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    const patch = route.request().postDataJSON() as LineAnswersPatch;
+    patches.push(patch);
+    stored[String(patch.fix_index)] = { ...patch, updated_at: "2026-11-10T14:00:00.000Z" };
+    return route.fulfill({ json: { ok: true } });
+  });
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => route.fulfill({ json: {
+    ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored,
+  } }));
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  await page.clock.pauseAt("2026-11-10T14:00:00Z");
+  expect(await warnsBeforeLeaving(page)).toBe(false);
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  await card.getByTestId("worklist-blank").first().fill("12");
+  expect(await warnsBeforeLeaving(page)).toBe(true);
+  expect(patches).toHaveLength(0);
+  // Dispatch the real Next link while timers are paused: the debounce cannot save this edit.
+  await page.getByRole("link", { name: "New report", exact: true }).dispatchEvent("click");
+  await expect(page.getByTestId("worklist-report")).toHaveCount(0);
+  await expect.poll(() => patches.length).toBe(1);
+  expect(patches[0].answers).toContainEqual({ question: lineLabels[0], kind: "answered", text: "12" });
+  await expect.poll(() => warnsBeforeLeaving(page)).toBe(false);
+  await page.clock.resume();
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  await expect(card.getByTestId("worklist-blank").first()).toHaveValue("12");
+});
+
+test("reopening waits for the detached clear before reading and saving a newer edit", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-11-10T12:00:00Z") });
+  await installSignedInSession(page, { freeUsesLeft: 0 });
+  let finishFirst!: () => void;
+  const firstResponse = new Promise<void>((resolve) => { finishFirst = resolve; });
+  const patches: LineAnswersPatch[] = [];
+  let stored: StoredLineAnswersByFix = {};
+  let reads = 0;
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => {
+    reads += 1;
+    return route.fulfill({ json: { ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored } });
+  });
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, async (route) => {
+    const patch = route.request().postDataJSON() as LineAnswersPatch;
+    patches.push(patch);
+    if (patches.length === 1) await firstResponse;
+    stored = patch.answers.length ? { [String(patch.fix_index)]: { ...patch, updated_at: "2026-11-10T14:00:00.000Z" } } : {};
+    await route.fulfill({ json: { ok: true } });
+  });
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const answer = card.getByTestId("worklist-blank").first();
+  await expect(answer).toBeVisible();
+  await page.clock.pauseAt("2026-11-10T14:00:00Z");
+  await answer.fill("12");
+  await page.clock.runFor(1500);
+  await expect.poll(() => patches.length).toBe(1);
+  await answer.fill("");
+  await page.getByRole("link", { name: "New report", exact: true }).dispatchEvent("click");
+  await expect(page.getByTestId("worklist-report")).toHaveCount(0);
+  expect(await warnsBeforeLeaving(page)).toBe(true);
+  expect(patches).toHaveLength(1);
+  await page.goBack();
+  await expect(page).toHaveURL(new RegExp(`/reports/${REPORT_ID}$`));
+  await expect(answer).toHaveCount(0);
+  expect(reads).toBe(1); // The reopened view must not read the old DB snapshot mid-save.
+  expect(patches).toHaveLength(1);
+  finishFirst();
+  await expect.poll(() => patches.length).toBe(2);
+  await expect(answer).toHaveValue("");
+  expect(reads).toBe(2);
+  await answer.fill("14");
+  await page.clock.runFor(1500);
+  await expect.poll(() => patches.length).toBe(3);
+  expect(patches[1]).toEqual({ fix_index: lineCard, answers: [], line: null, source: "literal" });
+  expect(patches[2].answers).toContainEqual({ question: lineLabels[0], kind: "answered", text: "14" });
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(await warnsBeforeLeaving(page)).toBe(false);
+  await page.clock.resume();
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(answer).toHaveValue("14");
+});
+
+test("a failed detached save reopens with its edit and can be retried", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-11-10T12:00:00Z") });
+  await installSignedInSession(page, { freeUsesLeft: 0 });
+  let finishFirst!: () => void;
+  const firstResponse = new Promise<void>((resolve) => { finishFirst = resolve; });
+  const patches: LineAnswersPatch[] = [];
+  const stored: StoredLineAnswersByFix = {};
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => route.fulfill({ json: {
+    ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: stored,
+  } }));
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, async (route) => {
+    const patch = route.request().postDataJSON() as LineAnswersPatch;
+    patches.push(patch);
+    if (patches.length === 1) {
+      await firstResponse;
+      return route.fulfill({ status: 503, json: { ok: false } });
+    }
+    stored[String(patch.fix_index)] = { ...patch, updated_at: "2026-11-10T14:00:00.000Z" };
+    return route.fulfill({ json: { ok: true } });
+  });
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const answer = card.getByTestId("worklist-blank").first();
+  await expect(answer).toBeVisible();
+  await page.clock.pauseAt("2026-11-10T14:00:00Z");
+  await answer.fill("12");
+  await page.clock.runFor(1500);
+  await expect.poll(() => patches.length).toBe(1);
+  expect(await warnsBeforeLeaving(page)).toBe(true);
+  await page.getByRole("link", { name: "New report", exact: true }).dispatchEvent("click");
+  await expect(page.getByTestId("worklist-report")).toHaveCount(0);
+  finishFirst();
+  await page.clock.runFor(2000);
+  expect(patches).toHaveLength(1); // Leaving must not silently retry a failed task.
+  expect(await warnsBeforeLeaving(page)).toBe(true);
+  await page.goBack();
+  await expect(answer).toHaveValue("12");
+  await expect(card.getByTestId("worklist-kept")).toContainText("We couldn't save these changes.");
+  await card.getByRole("button", { name: "Try saving again", exact: true }).dispatchEvent("click");
+  await page.clock.runFor(0);
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(patches).toHaveLength(2);
+  expect(patches[1]).toEqual(patches[0]);
+  expect(await warnsBeforeLeaving(page)).toBe(false);
+  await page.clock.resume();
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(answer).toHaveValue("12");
 });
 
 // The first pass (Nov 7, 2026): which job the resume was read for and at what level, with their reasons, under the
@@ -199,4 +498,34 @@ test.describe("on a phone", () => {
     const box = await page.getByTestId("worklist-card").nth(lineCard).getByTestId("worklist-copy").boundingBox();
     expect(box!.height).toBeGreaterThanOrEqual(44);
   });
+});
+
+test("typing keeps focus and the caret when an answer changes between inline and multiline", async ({ page }) => {
+  await runReport(page, { signedIn: false, data: {
+    cards: [{ ...mock.cards[lineCard], example: "Worked in [role].", question: "What was your role?" }],
+  } });
+  const blank = page.getByTestId("worklist-blank").first();
+  await blank.focus();
+  const role = "Customer success operations specialist";
+  await page.keyboard.type(role);
+  await expect(blank).toHaveValue(role);
+  await expect(blank).toBeFocused();
+  await expect(blank).toHaveJSProperty("tagName", "TEXTAREA");
+  await expect(blank).toHaveJSProperty("selectionStart", role.length);
+
+  // Replacing a long answer with a short one remounts the input in the other direction.
+  await page.keyboard.press("ControlOrMeta+A");
+  await page.keyboard.type("Support");
+  await expect(blank).toHaveValue("Support");
+  await expect(blank).toBeFocused();
+  await expect(blank).toHaveJSProperty("tagName", "INPUT");
+  await expect(blank).toHaveJSProperty("selectionStart", 7);
+
+  // Inserting in the middle must keep the caret there when the threshold is crossed.
+  await blank.fill("Customer success operations");
+  await blank.evaluate((element: HTMLInputElement) => element.setSelectionRange(9, 9));
+  await page.keyboard.type("lead ");
+  await expect(blank).toHaveValue("Customer lead success operations");
+  await expect(blank).toBeFocused();
+  await expect(blank).toHaveJSProperty("selectionStart", 14);
 });

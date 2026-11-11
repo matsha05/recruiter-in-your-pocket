@@ -2,7 +2,7 @@
 
 **Tier:** golden
 **Prompt Version:** v1
-**Contract Version:** v2
+**Contract Version:** v3
 **Execution Mode:** Dry run (no model calls)
 
 > This report validates fixture files and configuration only. It is not evidence of model output quality.

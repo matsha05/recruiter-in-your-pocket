@@ -10,7 +10,7 @@ import ReportPanel from "@/components/workspace/ReportPanel";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
-import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
+import { waitForLineAnswerWrites, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
@@ -53,6 +53,10 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       return;
     }
     try {
+      // A prior view may have flushed its last edit while this route was opening.
+      // Read after those writes settle so an older GET cannot hide a confirmed save.
+      await waitForLineAnswerWrites(reportId, signal);
+      if (signal.aborted) return;
       const res = await fetch(`/api/reports/${encodeURIComponent(reportId)}`, {
         signal,
         credentials: "same-origin",

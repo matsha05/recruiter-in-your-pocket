@@ -10,8 +10,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 429 |
 | Files with copy | 260 |
-| Strings | 3045 |
-| Unique strings | 2536 |
+| Strings | 3051 |
+| Unique strings | 2540 |
 | Routes with copy | 119 |
 
 ## By moment
@@ -19,15 +19,15 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Moment | Strings |
 | --- | --- |
 | research | 988 |
-| account | 442 |
+| account | 443 |
 | marketing | 418 |
-| report | 323 |
+| report | 327 |
 | pricing | 218 |
 | upload | 155 |
 | legal | 111 |
 | extension | 98 |
 | shared | 85 |
-| rewrite | 62 |
+| rewrite | 63 |
 | auth | 54 |
 | error | 54 |
 | analysis | 16 |
@@ -40,9 +40,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Table | Strings | Routes |
 | --- | --- | --- |
 | [research](./research.md) | 674 | `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks` and 19 more |
-| [workspace](./workspace.md) | 542 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 5 more |
+| [workspace](./workspace.md) | 547 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 5 more |
 | [shared](./shared.md) | 426 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 94 more |
-| [api](./api.md) | 282 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |
+| [api](./api.md) | 283 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |
 | [settings](./settings.md) | 122 | `/settings/account`, `/settings/billing`, `/settings/matching`, `/settings/support-reply/[emailId]` |

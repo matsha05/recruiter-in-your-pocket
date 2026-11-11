@@ -713,6 +713,23 @@ assert.deepEqual(findMechanicalCopyIssues({ summary: "The roles include $180M in
 assert.ok(findMechanicalCopyIssues({ summary: "The resume needs more detail, because it needs more detail about the work." }).length > 0,
   "genuine repeated prose must still be detected");
 
+assert.deepEqual(findMechanicalCopyIssues({
+  summary: "Covering for the supervisor shows trust, but a recruiter can't tell which responsibilities you took on. Those details can show how you prepared for the supervisor role.",
+  write_up: "Your resume points to HR Generalist work in manufacturing, with a move from HR Assistant to HR Generalist at Northstar Plastics.",
+  note: "If you took care of a family member, you can name caregiving; if you took a career break, you can name what you did during it.",
+  question: "What did you test with members, and what did you learn?",
+}), [], "factual role labels and parallel clauses with distinct facts are not repeated observations");
+for (const repeated of [
+  "What did you test with members, and what did you test with customers?",
+  "If you took a career break, name it; if you took a career break, explain it.",
+  "You can name the result, and you can name the result again.",
+  "What did you test because the work needs more detail, and what did you learn because the work needs more detail?",
+  "If you took care of a family member and need more detail, explain it; if you took a career break and need more detail, explain it.",
+]) {
+  assert.ok(findMechanicalCopyIssues({ question: repeated }).some((issue) => issue.includes("repeats the clause")),
+    `shared grammar must not hide duplicated substantive copy: ${repeated}`);
+}
+
 // Sentence counts: decimals and initialisms don't end a sentence (eval_1793578314147, civil engineer).
 assert.deepEqual(reportSentences("Your Ohio P.E. license helps. How large are the projects?"),
   ["Your Ohio P.E. license helps.", "How large are the projects?"], "an initialism is not a sentence end");

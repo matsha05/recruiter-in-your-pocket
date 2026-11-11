@@ -170,16 +170,11 @@ export function CriticalMissRow({
   const filterId = `miss-marker-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const around = onPage ? neighbours(lift.resumeText, excerptOf(fix)) : {};
 
-  if (hidden) {
-    return (
-      <li id={id} className={styles.row} data-kind="miss" data-testid={testId}>
-        <HiddenRow label={label} onRestore={restore} focus={focusRestore} />
-      </li>
-    );
-  }
-
   return (
-    <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={testId}>
+    <>
+      {hidden && <li key="hidden" id={id} className={styles.row} data-kind="miss" data-testid={testId}><HiddenRow label={label} onRestore={restore} focus={focusRestore} /></li>}
+      {/* Keep answers mounted while hidden; the server props may predate a successful save. */}
+      <li key="content" ref={rowRef} tabIndex={-1} id={hidden ? undefined : id} hidden={hidden} className={hidden ? undefined : styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={hidden ? undefined : testId}>
       <div className={styles.lineCell}>
         {onPage
           ? (
@@ -216,7 +211,7 @@ export function CriticalMissRow({
       </div>
       {onPage && (
         <div className={styles.liftCell}>
-          <LineLift excerpt={excerptOf(fix)} onChange={onLiftChange} {...lift} />
+          <LineLift excerpt={excerptOf(fix)} fixIndex={index} onChange={onLiftChange} {...lift} />
         </div>
       )}
       {feedback && (
@@ -224,7 +219,8 @@ export function CriticalMissRow({
           <MissFeedback question={feedback.question} onSubmit={feedback.onSubmit} suggestNo={liftState === "not_mine"} />
         </div>
       )}
-    </li>
+      </li>
+    </>
   );
 }
 
@@ -273,12 +269,10 @@ export function FixRow({
     );
   }
 
-  if (hidden) {
-    return <li id={id} className={styles.row} data-kind="fix"><HiddenRow label={label} onRestore={restore} focus={focusRestore} /></li>;
-  }
-
   return (
-    <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="fix" data-testid="fix-row">
+    <>
+      {hidden && <li key="hidden" id={id} className={styles.row} data-kind="fix"><HiddenRow label={label} onRestore={restore} focus={focusRestore} /></li>}
+      <li key="content" ref={rowRef} tabIndex={-1} id={hidden ? undefined : id} hidden={hidden} className={hidden ? undefined : styles.row} data-kind="fix" data-testid={hidden ? undefined : "fix-row"}>
       <div className={styles.lineCell}>
         {onPage ? <blockquote className={styles.inkLine}>{quotedLine(fix)}</blockquote> : <MissingLine fix={fix} />}
       </div>
@@ -295,10 +289,11 @@ export function FixRow({
       </div>
       {openLift && (
         <div className={styles.liftCell}>
-          <LineLift excerpt={excerptOf(fix)} {...lift} />
+          <LineLift excerpt={excerptOf(fix)} fixIndex={index} {...lift} />
         </div>
       )}
-    </li>
+      </li>
+    </>
   );
 }
 

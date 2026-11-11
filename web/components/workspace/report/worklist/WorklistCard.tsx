@@ -6,11 +6,12 @@ import { Paper } from "@/components/materials/Paper";
 import clip from "@/components/materials/Clipping.module.css";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Button } from "@/components/ui/button";
+import { useLineAnswerSave } from "@/hooks/use-line-answer-save";
 import { useSeen } from "@/hooks/use-seen";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import { Analytics } from "@/lib/analytics";
 import { QUOTED_KINDS, type WorklistCard as Card } from "@/lib/llm/worklist-schema";
-import type { LineAnswersPatch, StoredLineAnswers } from "@/lib/reports/line-answers";
+import { getPendingLineAnswers, LINE_ANSWER_LIMITS, type LineAnswersPatch, type StoredLineAnswers } from "@/lib/reports/line-answers";
 import {
   blankAnswersFromStored,
   blankLabels,
@@ -89,6 +90,7 @@ export interface WorklistCardProps {
   /** The sample can be played with, but nothing is kept; a saved report keeps the answers. */
   isSample?: boolean;
   initial?: StoredLineAnswers;
+  reportId?: string;
   onPersist?: (patch: LineAnswersPatch) => Promise<boolean> | boolean | void;
   onStateChange?: (index: number, state: CardState) => void;
 }
@@ -101,17 +103,42 @@ export interface WorklistCardProps {
  * sentence, in the candidate's blue; their words go in as written. Nothing outside a bracket was invented:
  * the validator held every fact in the example to the resume. Copy waits until every blank is filled.
  */
-export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
+export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, reportId, onPersist, onStateChange }: WorklistCardProps) {
   const labels = useMemo(() => blankLabels(card.example), [card.example]);
   const segments = useMemo(() => exampleSegments(card.example), [card.example]);
-  const restored = useMemo(() => blankAnswersFromStored(card.example, initial), [card.example, initial]);
+  // Only unfinished edits are cached. A confirmed save is read from the server as usual.
+  const [pendingSave] = useState(() => reportId ? getPendingLineAnswers(reportId, index) : null);
+  const restored = useMemo(() => blankAnswersFromStored(card.example, pendingSave
+    ? { ...pendingSave.patch, updated_at: "" }
+    : initial), [card.example, initial, pendingSave]);
+  const restoredSave = useMemo(() => reportId
+    ? { reportId, fixIndex: index, draft: pendingSave }
+    : undefined, [index, pendingSave, reportId]);
   const [answers, setAnswers] = useState<BlankAnswers>(() => restored?.answers ?? labels.map(() => ""));
   const [left, setLeft] = useState(restored?.left ?? false);
   const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const copied = useTransientFeedback();
   const baseId = useId();
+  const blankSelection = useRef<{
+    id: string;
+    start: number | null;
+    end: number | null;
+    direction: "forward" | "backward" | "none" | null;
+  } | null>(null);
   const { ref: lineRef, seen } = useSeen<HTMLQuoteElement>(0.6);
+
+  // A growing answer swaps its inline input for a textarea. Keep the user's caret
+  // on the replacement field so the remaining keystrokes still reach the answer.
+  useLayoutEffect(() => {
+    const selection = blankSelection.current;
+    if (!selection) return;
+    blankSelection.current = null;
+    const field = document.getElementById(selection.id);
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+    field.focus({ preventScroll: true });
+    field.setSelectionRange(selection.start, selection.end, selection.direction ?? undefined);
+  }, [answers]);
 
   const quoted = QUOTED_KINDS.has(card.kind);
   const around = quoted ? neighbours(resumeText, card.line) : {};
@@ -123,27 +150,38 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
 
   useEffect(() => { onStateChange?.(index, state); }, [index, onStateChange, state]);
 
-  // Keep the answers with the saved report once they settle; nothing is kept until something is answered or left.
-  const [kept, setKept] = useState<"idle" | "saving" | "kept" | "failed">(initial ? "kept" : "idle");
-  const persistKey = JSON.stringify({ answers, left, composed });
-  const lastPersisted = useRef<string | null>(initial ? persistKey : null);
-  useEffect(() => {
-    if (!onPersist || (!answeredAny && !left) || lastPersisted.current === persistKey) return;
-    let cancelled = false;
-    const timer = setTimeout(() => {
-      lastPersisted.current = persistKey;
-      setKept("saving");
-      Promise.resolve(onPersist({ fix_index: index, answers: storedAnswersForCard(card.example, answers, left), line: composed, source: "literal" }))
-        .then((ok) => { if (!cancelled) setKept(ok === false ? "failed" : "kept"); })
-        .catch(() => { if (!cancelled) setKept("failed"); });
-    }, 1500);
-    return () => { cancelled = true; clearTimeout(timer); };
-  }, [answeredAny, answers, card.example, composed, index, left, onPersist, persistKey]);
+  const { state: kept, schedule: keepAnswers, retry: retrySave } = useLineAnswerSave(onPersist, Boolean(initial), restoredSave);
+  const persistAnswers = (nextAnswers: BlankAnswers, nextLeft: boolean) => {
+    const nextLine = nextLeft ? null : composeExample(card.example, nextAnswers);
+    keepAnswers({
+      fix_index: index,
+      answers: storedAnswersForCard(card.example, nextAnswers, nextLeft),
+      // The web report and PDF rebuild the line from its answers. Keep every valid answer
+      // even when their combined sentence is longer than the optional stored-line field.
+      line: nextLine && nextLine.length <= LINE_ANSWER_LIMITS.line ? nextLine : null,
+      source: "literal",
+    });
+  };
 
   const setAnswer = (position: number, value: string) => {
-    setAnswers((current) => current.map((answer, i) => (i === position ? value : answer)));
+    const wasLong = Math.max(labels[position].length, answers[position].trim().length) > LONG_BLANK;
+    const willBeLong = Math.max(labels[position].length, value.trim().length) > LONG_BLANK;
+    const field = document.activeElement;
+    if (wasLong !== willBeLong &&
+      (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) &&
+      field.id === `${baseId}-blank-${position}`) {
+      blankSelection.current = { id: field.id, start: field.selectionStart, end: field.selectionEnd, direction: field.selectionDirection };
+    }
+    const nextAnswers = answers.map((answer, i) => (i === position ? value : answer));
+    setAnswers(nextAnswers);
     setLeft(false);
+    persistAnswers(nextAnswers, false);
     copied.reset();
+  };
+
+  const setLeftAnswer = (nextLeft: boolean) => {
+    setLeft(nextLeft);
+    persistAnswers(answers, nextLeft);
   };
 
   const handleCopy = async () => {
@@ -163,6 +201,9 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
 
   const position = cardPosition(cards, index);
   const questionId = `${baseId}-question`;
+  const saveMessage = kept === "kept"
+    ? !answeredAny && !left ? "Cleared from this report." : "Kept with this report."
+    : kept === "saving" ? "Keeping this with your report…" : "Our bad. We couldn't save these changes.";
 
   return (
     <li id={`section-card-${index + 1}`} className={styles.card} data-kind={card.kind} data-state={state} data-sample={isSample || undefined} data-ghost-above={around.above ? "" : undefined} data-testid="worklist-card">
@@ -254,7 +295,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                 {card.kind === "upgrade"
                   ? "Left as it is. It's optional, and the line already works."
                   : "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto."}{" "}
-                <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
+                <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeftAnswer(false)}>Fill it in after all</Button>
               </p>
             ) : (
               <>
@@ -270,18 +311,19 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                     </Button>
                   )}
                   {!answeredAny && (
-                    <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(true)}>{card.kind === "upgrade" ? UPGRADE_LEAVE_LABEL : "I don't know yet"}</Button>
+                    <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeftAnswer(true)}>{card.kind === "upgrade" ? UPGRADE_LEAVE_LABEL : "I don't know yet"}</Button>
                   )}
                 </div>
                 {composed && <p className={styles.note}>Every fact in it is from your resume or your answers.</p>}
                 {copyError && <p role="status" className={styles.note}>Couldn&apos;t copy. Select the text and copy it yourself.</p>}
-                {onPersist && kept !== "idle" && (
-                  <p className={styles.note} data-testid="worklist-kept" aria-live="polite">
-                    {kept === "kept" ? "Kept with this report." : kept === "saving" ? "Keeping this with your report…" : "We couldn't keep this with your report just now. Copy the line to be safe."}
-                  </p>
-                )}
               </>
             )
+          )}
+          {onPersist && kept !== "idle" && (
+            <p className={styles.note} data-testid="worklist-kept" aria-live="polite">
+              {saveMessage}
+              {kept === "failed" && <> <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={retrySave}>Try saving again</Button></>}
+            </p>
           )}
         </div>
       )}

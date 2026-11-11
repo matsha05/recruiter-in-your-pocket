@@ -98,6 +98,7 @@ Every piece of text on the site uses one of twelve roles (eleven on Nov 1, 2026,
 Rules:
 
 - Three headline tiers, so hierarchy follows importance: marketing 60 at 600 (the homepage), content 48 at 800, app 32 at 800. Nothing outranks the homepage's read; the 404 and the research index use the content tier.
+- The worklist score is a narrowly scoped numeric exception, not a reading role: 44px with unit leading below 640px and 52px with unit leading from 640px, Schibsted 800. The November 6 [typography brief](design/2026-11-worklist-report/typography-brief.md) explicitly keeps the approved score and bands unchanged. `Worklist.module.css .score` owns `--report-score-size`; the source guard pins that selector, token, breakpoint and font, and the rendered guard permits the two sizes only for the actual numeric worklist score. Do not reuse this token for prose or controls.
 - Three weights: 800 for headline and title; 600 for display (the marketing tier), headings, controls, labels, and bold text (`strong`, `b`, and `th` are 600, not the browser's 700); 400 for reading. Tailwind's `font-medium` and `font-semibold` both mean 600, and `font-bold` means 800.
 - The one marketing quote (the homepage verdict in One Sentence) uses the `headline` size in Literata 400, with the leading opened to 44 / 58 (`--type-headline-serif-leading`) so the highlighter and Literata's ascenders don't collide.
 - Uppercase stays reserved for the Verdict and Critical Miss labels (`label` with 0.1em tracking).
@@ -515,7 +516,7 @@ The guardrail must fail for:
 - unauthorized hardcoded colors
 - banned public copy patterns
 - increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
-- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 12 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 5 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
+- style budgets (`web/scripts/qa/design-system-budgets.mjs`): more than 12 text roles; a Tailwind size key that doesn't resolve to a role; a weight other than 400, 600, or 800; a raw `font-size` or `text-[…px]` outside the roles; more than 5 Button variants or 4 sizes, a Button size that isn't 44/48/60px, or any hand-built pill; more than 7 corner radii or 6 shadows; more ad-hoc hover utilities, `leading-*` overrides, or legacy type utilities than the recorded counts; a shared reading rail over 75 characters per line
 
 The rendered check loads 23 public routes at 1440 and 390px and fails on an off-scale or fractional size, a weight outside 400/600/800, more than 40 text styles, more than one build of the primary action per size, or a paragraph inside a reading rail over 75 characters per line. Paragraphs a page lays out outside the rail are listed as warnings:
 
