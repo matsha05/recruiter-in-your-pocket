@@ -177,7 +177,7 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
       {report.progress || report.change ? (
         <p className={styles.standing} data-testid="report-standing">
           {report.progress ? <span data-done={report.progress.answered >= report.progress.total || undefined}>{lineProgressLabel(report.progress)}</span> : null}
-          {report.change ? <span data-up={report.change.delta > 0 || undefined}>{scoreChangeLabel(report.change, formatReportDate(report.change.since))}</span> : null}
+          {report.change ? <span data-up={report.change.delta > 0 || undefined}>{scoreChangeLabel(report.change, formatReportDate(report.change.since), formatReportDate(report.createdAt))}</span> : null}
         </p>
       ) : null}
     </>

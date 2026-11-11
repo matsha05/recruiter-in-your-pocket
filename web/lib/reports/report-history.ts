@@ -84,9 +84,14 @@ export function scoreChanges(reports: readonly ScoredReport[]): Map<string, Scor
   return changes;
 }
 
-/** "Up 6 since Nov 1", with the date already formatted the way the page formats dates. */
-export function scoreChangeLabel(change: ScoreChange, sinceLabel: string): string {
-  if (change.delta > 0) return `Up ${change.delta} since ${sinceLabel}`;
-  if (change.delta < 0) return `Down ${Math.abs(change.delta)} since ${sinceLabel}`;
-  return `Same score as ${sinceLabel}`;
+/**
+ * "Up 6 since Nov 1, 2026", with both dates already formatted the way the page formats dates. When the earlier
+ * report was made the same day, "since" that date reads as if nothing came before it, so the row says which
+ * report instead: "Down 2 from your earlier report that day".
+ */
+export function scoreChangeLabel(change: ScoreChange, sinceLabel: string, ownLabel?: string): string {
+  const sameDay = ownLabel !== undefined && ownLabel === sinceLabel;
+  if (change.delta > 0) return sameDay ? `Up ${change.delta} from your earlier report that day` : `Up ${change.delta} since ${sinceLabel}`;
+  if (change.delta < 0) return sameDay ? `Down ${Math.abs(change.delta)} from your earlier report that day` : `Down ${Math.abs(change.delta)} since ${sinceLabel}`;
+  return sameDay ? "Same score as your earlier report that day" : `Same score as ${sinceLabel}`;
 }

@@ -10,8 +10,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 425 |
 | Files with copy | 257 |
-| Strings | 2960 |
-| Unique strings | 2464 |
+| Strings | 2957 |
+| Unique strings | 2461 |
 | Routes with copy | 118 |
 
 ## By moment
@@ -21,7 +21,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | research | 990 |
 | account | 459 |
 | marketing | 411 |
-| report | 269 |
+| report | 266 |
 | pricing | 217 |
 | upload | 124 |
 | legal | 111 |
@@ -52,7 +52,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
-| [reports](./reports.md) | 43 | `/reports` |
+| [reports](./reports.md) | 40 | `/reports` |
 | [pricing](./pricing.md) | 40 | `/pricing` |
 | [methodology](./methodology.md) | 32 | `/methodology` |
 | [dashboard](./dashboard.md) | 29 | `/dashboard` |
