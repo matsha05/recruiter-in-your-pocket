@@ -9,6 +9,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
 import { isValidAuthEmail, normalizeAuthEmail, safeAuthRedirect } from "@/lib/auth/utils";
+import { signInLanding } from "@/lib/auth/landing";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { useAuthFieldFocus } from "./useAuthFieldFocus";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
@@ -21,6 +22,8 @@ interface AuthFlowProps {
   onSuccess?: () => void;
   onClose?: () => void;
   redirectTo?: string;
+  /** A plain sign-in with nowhere to go back to: land on My reports when the person has a saved report (lib/auth/landing.ts). */
+  landOnSavedReports?: boolean;
   isOpen?: boolean;
   initialError?: string | null;
 }
@@ -34,6 +37,7 @@ export function AuthFlow({
   onSuccess,
   onClose,
   redirectTo,
+  landOnSavedReports = false,
   isOpen = true,
   initialError = null
 }: AuthFlowProps) {
@@ -47,6 +51,8 @@ export function AuthFlow({
   const [code, setCode] = useState("");
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
+  // After verification, while the landing for a plain sign-in is being decided.
+  const [finishing, setFinishing] = useState(false);
   const [loadingAction, setLoadingAction] = useState<"send" | "verify" | "name" | null>(null);
   const [error, setError] = useState<string | null>(initialError);
   const [resendCooldown, setResendCooldown] = useState(0);
@@ -153,11 +159,17 @@ export function AuthFlow({
     if (variant === "page") {
       // Verification sets cookies server-side. Recreate the browser auth state
       // before opening a protected destination; a router refresh preserves it.
+      if (landOnSavedReports) {
+        // The button stays busy while we ask whether there is a saved report to open; the answer can't fail the sign-in.
+        setFinishing(true);
+        void signInLanding().then((landing) => window.location.replace(landing));
+        return;
+      }
       window.location.replace(safeAuthRedirect(redirectTo ?? null, "/workspace"));
     } else {
       onClose?.();
     }
-  }, [onClose, onSuccess, redirectTo, variant]);
+  }, [landOnSavedReports, onClose, onSuccess, redirectTo, variant]);
 
   const verifyCode = useCallback(async () => {
     if (!isOpen || step !== "code" || !/^\d{8}$/.test(code) || authRequestRef.current.pending || authRequestRef.current.verified) return;
@@ -305,7 +317,7 @@ export function AuthFlow({
                   />
                 </div>
               </div>
-              <Button type="submit" variant="primary" isLoading={loading} loadingLabel="Sending sign-in code…" className="w-full whitespace-normal">
+              <Button type="submit" variant="primary" isLoading={loading || finishing} loadingLabel="Sending sign-in code…" className="w-full whitespace-normal">
                 Send sign-in code
                 <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
@@ -345,7 +357,7 @@ export function AuthFlow({
                   }}
                 />
               </div>
-              <Button type="submit" variant="primary" disabled={code.length !== 8} isLoading={loading} loadingLabel={loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="w-full">
+              <Button type="submit" variant="primary" disabled={code.length !== 8} isLoading={loading || finishing} loadingLabel={finishing ? "Signing you in…" : loadingAction === "send" ? "Sending a new code…" : "Verifying code…"} className="w-full">
                 Verify code
                 <Check className="ml-2 size-4" weight="bold" />
               </Button>
@@ -401,7 +413,7 @@ export function AuthFlow({
                   )}
                 />
               </div>
-              <Button type="submit" variant="primary" disabled={!firstName.trim()} isLoading={loading} loadingLabel="Saving your name…" className="w-full">
+              <Button type="submit" variant="primary" disabled={!firstName.trim()} isLoading={loading || finishing} loadingLabel={finishing ? "Signing you in…" : "Saving your name…"} className="w-full">
                 Continue
               </Button>
               <Button
@@ -409,6 +421,7 @@ export function AuthFlow({
                 variant="quiet"
                 className="w-full text-muted-foreground hover:text-foreground"
                 onClick={() => finishAuth()}
+                disabled={finishing}
               >
                 Skip for now
               </Button>

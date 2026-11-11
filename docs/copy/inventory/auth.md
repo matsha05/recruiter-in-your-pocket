@@ -11,7 +11,7 @@ Routes: `/auth`. Strings: 7 (7 unique).
 | 1 | auth | `web/app/auth/page.tsx:12` | key:description | Sign in to see your saved reports and the job postings you kept. |
 | 2 | auth | `web/app/auth/page.tsx:24` | jsx-text | Skip to content |
 | 3 | auth | `web/app/auth/page.tsx:26` | attr:aria-label | Recruiter in Your Pocket home |
-| 4 | auth | `web/components/auth/AuthClient.tsx:40` | jsx-text | You&apos;re already signed in. |
-| 5 | auth | `web/components/auth/AuthClient.tsx:42` | jsx-text | You&apos;re signed in as |
-| 6 | auth | `web/components/auth/AuthClient.tsx:47` | jsx-text | Go to my reports |
-| 7 | auth | `web/components/auth/AuthClient.tsx:52` | jsx-text | Sign out |
+| 4 | auth | `web/components/auth/AuthClient.tsx:43` | jsx-text | You&apos;re already signed in. |
+| 5 | auth | `web/components/auth/AuthClient.tsx:45` | jsx-text | You&apos;re signed in as |
+| 6 | auth | `web/components/auth/AuthClient.tsx:50` | jsx-text | Go to my reports |
+| 7 | auth | `web/components/auth/AuthClient.tsx:55` | jsx-text | Sign out |
