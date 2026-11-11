@@ -33056,7 +33056,7 @@
     {
       "text": "Sample report · Jordan is fictional",
       "kind": "jsx-text",
-      "line": 208,
+      "line": 209,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33069,7 +33069,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 216,
+      "line": 217,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33082,7 +33082,7 @@
     {
       "text": "Export PDF",
       "kind": "jsx-text",
-      "line": 251,
+      "line": 252,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33095,7 +33095,7 @@
     {
       "text": "Exporting…",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 253,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33108,7 +33108,7 @@
     {
       "text": "Share report",
       "kind": "attr:aria-label",
-      "line": 260,
+      "line": 261,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33121,7 +33121,7 @@
     {
       "text": "Share report",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 265,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33134,7 +33134,7 @@
     {
       "text": "Still writing the rest.",
       "kind": "jsx-text",
-      "line": 278,
+      "line": 279,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33147,7 +33147,7 @@
     {
       "text": "Share view is on.",
       "kind": "jsx-text",
-      "line": 286,
+      "line": 287,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33160,7 +33160,7 @@
     {
       "text": "Some personal details are hidden. Check the report for anything else you want to remove before sharing.",
       "kind": "jsx-text",
-      "line": 288,
+      "line": 289,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33173,7 +33173,7 @@
     {
       "text": "Copy link",
       "kind": "jsx-text",
-      "line": 295,
+      "line": 296,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33186,7 +33186,7 @@
     {
       "text": "Exit share",
       "kind": "jsx-text",
-      "line": 299,
+      "line": 300,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
