@@ -662,6 +662,24 @@ assert.deepEqual(
   }),
   [],
 );
+// A two-part question repeats its stem by grammar; a statement that repeats a clause is still flagged.
+assert.deepEqual(
+  findMechanicalCopyIssues({ cards: [
+    { question: "Which agencies did you work with, and what did you work on together?" },
+    { question: "What did you do to generate leads, and what did you contribute in client meetings?" },
+  ] }),
+  [],
+);
+assert.equal(
+  findMechanicalCopyIssues({ cards: [{ cannot_tell: "If you took care of a family member, name that; if you took a career break, say what you did during it." }] }).length,
+  1,
+  "the recited gap sentence is still mechanical copy",
+);
+assert.equal(
+  findMechanicalCopyIssues({ cards: [{ question: "Which accounts were the renewals for, and which accounts were the renewals at risk?" }] }).length,
+  1,
+  "a repeated clause that isn't the question's stem is still flagged in a question",
+);
 assert.deepEqual(
   findMechanicalCopyIssues({
     top_fixes: [

@@ -212,7 +212,12 @@ export function findMechanicalCopyIssues(output: unknown): string[] {
         const repeatedMetricLabel = repeatedClause ? Array.from(normalized.matchAll(new RegExp(`\\b${escapeRegExp(repeatedClause)}\\b`, "g"))) : [];
         const qualifiesDistinctMetrics = repeatedMetricLabel.length > 1 && repeatedMetricLabel.every(match =>
             /\d+(?:\.\d+)?[kmb]?\s+$/.test(normalized.slice(0, match.index)));
-        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel && !qualifiesDistinctMetrics) {
+        // A two-part question repeats its stem by grammar, not by habit: "Which agencies did you work with, and
+        // what did you work on together?" Only the stem is excused, and only in a question.
+        const isQuestionStem = Boolean(repeatedClause)
+            && /\?\s*$/.test(item.value)
+            && /^(?:(?:what|which|how|who|where|when|why)\s+)?(?:did|do|does|were|was|have|had|are|is)\s+you(?:\s+[a-z'-]+)?$/.test(repeatedClause!);
+        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel && !qualifiesDistinctMetrics && !isQuestionStem) {
             issues.push(`${item.path} repeats the clause "${repeatedClause}"`);
         }
 

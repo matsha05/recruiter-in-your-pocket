@@ -257,6 +257,14 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### The gap card stops reciting — November 12
+
+The note on a card about unaccounted time says what the gap does to this person's resume instead of reciting the same list of options. Record: `docs/audits/2026-11-gap-note.md`.
+
+- Gate: golden on the final prompt, 22 pass, 1 warning, 0 failures (23 fixtures), bundled as the release evidence; the ten synthetic fixtures twice, 9 pass and 1 warning each.
+- `W_MECHANICAL_COPY`: 15 in 122 reports before, 1 in 43 after. The check also stops flagging a two-part question's repeated stem.
+- Spend: about $1.00.
+
 ### The verdict as an opinion — November 12
 
 The verdict is two or three short sentences, under forty-five words: what a recruiter notices first, by name, whether the work backs it up, and the question still open when there is one. Record: `docs/audits/2026-11-verdict-opinion.md`.
