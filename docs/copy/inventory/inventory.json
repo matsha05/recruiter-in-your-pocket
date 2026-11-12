@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 437,
     "files_with_copy": 263,
-    "strings": 3021,
-    "unique_strings": 2522
+    "strings": 3022,
+    "unique_strings": 2523
   },
   "by_moment": {
     "research": 990,
     "account": 469,
     "marketing": 411,
-    "report": 318,
+    "report": 319,
     "pricing": 218,
     "upload": 124,
     "legal": 113,
@@ -36879,7 +36879,7 @@
     {
       "text": "Send it. Then read it against the posting you're going for.",
       "kind": "const",
-      "line": 44,
+      "line": 45,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36896,7 +36896,7 @@
     {
       "text": "Check my updated profile",
       "kind": "const",
-      "line": 46,
+      "line": 47,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36913,7 +36913,7 @@
     {
       "text": "Read it against a posting",
       "kind": "const",
-      "line": 46,
+      "line": 47,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36930,7 +36930,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 46,
+      "line": 47,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36947,7 +36947,7 @@
     {
       "text": "That’s",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 54,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36964,7 +36964,7 @@
     {
       "text": "’s. Yours is next.",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 54,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36981,7 +36981,24 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 55,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Or read another sample:",
+      "kind": "jsx-text",
+      "line": 60,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36998,7 +37015,7 @@
     {
       "text": "Your line is ready. Save this version.",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 77,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37015,7 +37032,7 @@
     {
       "text": "Save this version.",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 77,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37032,7 +37049,7 @@
     {
       "text": "Your answers and the revised line stay with it.",
       "kind": "jsx-text",
-      "line": 65,
+      "line": 79,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37049,7 +37066,7 @@
     {
       "text": "Saving…",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 82,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37066,7 +37083,7 @@
     {
       "text": "Save this version",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 82,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37083,7 +37100,7 @@
     {
       "text": "Check my updated profile",
       "kind": "jsx-text",
-      "line": 71,
+      "line": 85,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37100,7 +37117,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 71,
+      "line": 85,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37117,7 +37134,7 @@
     {
       "text": "Kept in",
       "kind": "jsx-text",
-      "line": 88,
+      "line": 102,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37134,7 +37151,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 88,
+      "line": 102,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37151,7 +37168,7 @@
     {
       "text": "The comparison lasts for this visit. Save the report to keep it.",
       "kind": "jsx-text",
-      "line": 107,
+      "line": 121,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",

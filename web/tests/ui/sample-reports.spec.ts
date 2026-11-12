@@ -20,6 +20,8 @@ for (const sample of SAMPLE_REPORTS) {
       await expect(switcher.getByRole("link", { name: other.situation, exact: true })).toHaveAttribute("href", samplePath(other));
     }
     await expect(page.getByTestId("sample-terminal-cta")).toContainText(`That’s ${sample.person}’s. Yours is next.`);
+    // The other samples are also linked from the ending's own text, which is what the internal-links gate counts.
+    await expect(page.getByTestId("sample-others").getByRole("link")).toHaveCount(SAMPLE_REPORTS.length - 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
   });
 }
