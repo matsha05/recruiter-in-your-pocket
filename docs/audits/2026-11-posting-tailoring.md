@@ -143,7 +143,7 @@ The thirteen pairs on the final prompt, judged the same way (`gpt-6.1-sol`):
 
 ### The full golden tier, run once
 
-Matt approved one run of all 23 golden fixtures on this prompt the same day (thirteen of them are real people's resumes). Result: 20 pass, 3 warnings, 0 failures, $0.33.
+Matt approved one run of all 23 golden fixtures on this prompt the same day (thirteen are not marked synthetic, and at least four of those carry real people's names). Result: 20 pass, 3 warnings, 0 failures, $0.33.
 
 | Fixture | Warning |
 | --- | --- |
@@ -152,6 +152,14 @@ Matt approved one run of all 23 golden fixtures on this prompt the same day (thi
 | `anchor_elite_ml_staff_1` | `W_SPECIFICITY_LOW`: the first card's example has no blank to fill |
 
 That is 87% passing. The bundled release evidence must show no failure and at least 90% passing, so this run does not meet it and is not the bundled evidence; the ten-fixture run above still is. The run was not repeated. Read plainly: none of the 23 fixtures carries a posting and none failed, the ten synthetic ones passed a second time, and the three warnings are kinds earlier golden runs showed the same day (the verdict prompt's final golden run was 19 pass and 4 warnings, `docs/audits/2026-11-verdict-opinion.md`). But the full tier on the prompt just before this one was 22 pass and 1 warning on its single run (`docs/audits/2026-11-gap-note.md`), so this is two more warnings than that, on a sample of one each. Receipt: `tests/fixtures/results/summary_golden_full_must_have_2026-11-12.md`.
+
+**The three warnings, read.** None is a fault in the report.
+
+- "The degree year in your header also differs from the end year in your education entry." The repeated words are "year in your", in a sentence that names two places a date appears. It reads as written.
+- "Start with the Uplight lines on processes and the people you managed. Add what the processes changed and how many people you managed." The second use refers back to the first. An editor might vary it; it is not a recited phrase.
+- The card with no blank is on a stray "javascript" alone on the last line of the resume, under the skills. The example folds it into the languages line and the question asks whether it belongs there. The line is really there (`tests/resumes/golden/anchor_elite_ml_staff_1.txt`), and the three earlier full runs that day did not mention it. A fix to where a word sits has nothing to fill in, so the check's rule (a card that needs work has a blank) does not fit this card.
+
+Whether the must-have rule caused them cannot be told from one run, and the day's other full runs say this count is ordinary: 3 warnings and a failure, 4 warnings, 1 warning, and now 3, on four prompts. The legal and machine-learning fixtures passed in all three earlier runs; the sales fixture warned or failed in nearly every run that day, mostly on a score range that has since been redrawn. The checks were left as they are. The repeated-clause check flags "if you took" twice in a sentence, which is a real habit, by the same test that flags "year in your", and loosening it to pass this run would cost that.
 
 Still not covered: a clearance or licence the posting requires and the resume lacks is treated as a must-have, which is right, but no fixture has one beside a citizenship rule to show the two are told apart.
 
