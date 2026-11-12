@@ -25,7 +25,7 @@ Twelve pages. "Cited" counts the four readable answers in [ai-answers/2026-11.md
 
 ### The email
 
-Drafted by Astra, 102 words, checked against the voice and the rules. Addressed to Zapier; swap the first line for the others.
+Drafted by Astra on November 5; the description was rewritten on November 12, 2026 because the report changed on November 6 and the first draft named parts it no longer has (Critical Misses, a labeled Verdict). Addressed to Zapier; swap the first line for the others.
 
 > **Subject:** Resume feedback tool for editorial consideration
 >
@@ -33,9 +33,9 @@ Drafted by Astra, 102 words, checked against the voice and the rules. Addressed 
 >
 > Would you consider Recruiter in Your Pocket for the resume-feedback tools in your guide?
 >
-> The report uses AI to apply recruiter review criteria to an existing resume, returning a Verdict, Critical Misses and rewrites grounded in its facts; it is not a human review, resume builder, ATS score or prediction of interview odds.
+> It reads an existing resume the way a recruiter does on a first pass. The report gives a score, a short write-up, and the specific lines a recruiter would question, each with a rewrite built only from the resume's own facts. It uses AI; it is not a human review, a resume builder, an ATS score or a prediction of interview odds.
 >
-> You can [read a sample report](https://www.recruiterinyourpocket.com/sample-report) or [try the first complete report free](https://www.recruiterinyourpocket.com/), with no account or card.
+> You can [read a sample report](https://www.recruiterinyourpocket.com/sample-report) or [get the first report free](https://www.recruiterinyourpocket.com/), with no account or card.
 >
 > We don't pay for placement, enter affiliate arrangements or trade links. If the report fits your editorial criteria, we'd welcome an independent assessment.
 >

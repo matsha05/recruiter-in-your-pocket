@@ -8,11 +8,11 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 437 |
+| Files scanned | 439 |
 | Files with copy | 263 |
 | Strings | 3022 |
 | Unique strings | 2523 |
-| Routes with copy | 122 |
+| Routes with copy | 123 |
 
 ## By moment
 
@@ -39,7 +39,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [shared](./shared.md) | 921 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 98 more |
+| [shared](./shared.md) | 921 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 99 more |
 | [research](./research.md) | 675 | `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks` and 19 more |
 | [api](./api.md) | 266 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 25 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
