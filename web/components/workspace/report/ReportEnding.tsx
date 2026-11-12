@@ -41,6 +41,7 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
   const wording = reportWording(document);
   const isProfile = document === "linkedin";
   const sample = useSamplePerson();
+  const others = sample.samples.filter((other) => !other.current);
   const readyEnding = ready ? (clean ? wording.readyEnding : "Send it. Then read it against the posting you're going for.") : null;
   const readyNote = ready && clean ? wording.readyNote : null;
   const revisionLabel = isProfile ? "Check my updated profile" : ready ? "Read it against a posting" : "Compare my revision";
@@ -52,6 +53,19 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
       <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
         <h2 id="report-next-step" className={styles.sectionTitle}>That&rsquo;s {sample.person}&rsquo;s. Yours is next.</h2>
         <div><Button variant="primary" onClick={onStartReport}>Get your free report <ArrowRight className="size-4" weight="bold" /></Button></div>
+        {/* The other samples, in the page's own text (the header's switcher is a menu): a reader who isn't Jordan
+            can find the one closest to their situation, and each sample is cited from the others. */}
+        {others.length > 0 && (
+          <p className="text-small text-muted-foreground" data-testid="sample-others">
+            Or read another sample:{" "}
+            {others.map((other, index) => (
+              <span key={other.href}>
+                <Link href={other.href} className="riyp-link-quiet">{other.label.replace(/^A /u, "a ").replace(/^(Changing|Back|Customer)/u, (word) => word.toLowerCase())}</Link>
+                {index < others.length - 2 ? ", " : index === others.length - 2 ? " or " : "."}
+              </span>
+            ))}
+          </p>
+        )}
       </section>
     );
   }
