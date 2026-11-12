@@ -148,10 +148,10 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             My reports
           </Link>
           {/* The header already offers "New report"; from a saved report the next step is checking a revision against it. */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             {/* Every saved resume report can be read against a posting; an older report has no link for it in its body. On a phone it is at the report's end. */}
             {state === "ready" && report && !isLinkedInReport(report) ? (
-              <Link href={`/workspace?posting=${encodeURIComponent(reportId)}`} className="riyp-link-nav hidden min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex" data-testid="bar-read-against-posting">
+              <Link href={`/workspace?posting=${encodeURIComponent(reportId)}`} className="riyp-link-nav mr-4 hidden min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex" data-testid="bar-read-against-posting">
                 Read it against a posting
               </Link>
             ) : null}

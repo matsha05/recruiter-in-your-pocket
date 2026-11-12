@@ -38,6 +38,7 @@ async function buildSaveHarness() {
       const refreshUser = async () => {
         if (!user) { user = signedInUser; window.dispatchEvent(new Event("test-auth-change")); }
       };
+      export function useOptionalAuthUser() { return useAuth()?.user ?? null; }
       export function useAuth() { return {user: useSyncExternalStore(subscribe, snapshot), isLoading: false, refreshUser}; }`,
     "@/components/shared/AuthModal": `import React from "react";
       export default function AuthModal({isOpen, onSuccess}) {

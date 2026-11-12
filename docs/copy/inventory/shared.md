@@ -1373,7 +1373,7 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/lib/seo/share-cards.ts:6` (40 routes) | const | Recruiter in Your Pocket: see what a recruiter sees |
+| 1 | marketing | `web/lib/seo/share-cards.ts:6` (44 routes) | const | Recruiter in Your Pocket: see what a recruiter sees |
 
 ## web/lib/seo/site.ts
 

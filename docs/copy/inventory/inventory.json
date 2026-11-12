@@ -27354,8 +27354,8 @@
     },
     {
       "text": "Sample report: {sample.situation.toLowerC…}",
-      "kind": "const",
-      "line": 15,
+      "kind": "key:title",
+      "line": 17,
       "file": "web/components/marketing/SampleReportBySituation.tsx",
       "routes": [
         "/sample-report/career-break",
@@ -45591,6 +45591,10 @@
         "/resources/offer-negotiation",
         "/resources/tech-offer-negotiation",
         "/resources/tools/comp-calculator",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
         "/terms"
       ],
       "moment": "marketing",

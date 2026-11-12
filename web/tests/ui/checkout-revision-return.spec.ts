@@ -32,6 +32,7 @@ async function buildCheckoutHarness() {
           await new Promise((resolve) => { window.completeCheckoutAccountRefresh = resolve; });
         }
       };
+      export function useOptionalAuthUser() { return useAuth()?.user ?? null; }
       export function useAuth() { return {user, isLoading: false, refreshUser}; }`,
     "@/lib/analytics": `export const Analytics = new Proxy({}, {get: () => () => {}});`,
   };

@@ -8,4 +8,4 @@ Routes: `/sample-report/career-break`, `/sample-report/career-change`, `/sample-
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/components/marketing/SampleReportBySituation.tsx:15` | const | Sample report: {sample.situation.toLowerC…} |
+| 1 | marketing | `web/components/marketing/SampleReportBySituation.tsx:17` | key:title | Sample report: {sample.situation.toLowerC…} |
