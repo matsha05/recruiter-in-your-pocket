@@ -662,6 +662,22 @@ assert.deepEqual(
   }),
   [],
 );
+// A clause cut off at a function word is the frame of a comparison, not a phrase said twice.
+assert.deepEqual(
+  findMechanicalCopyIssues({ write_up: ["The degree year in your header also differs from the end year in your education entry, leaving a question about the dates."] }),
+  [],
+);
+assert.equal(
+  findMechanicalCopyIssues({ write_up: ["Start with the Uplight lines on processes and the people you managed. Add what the processes changed and how many people you managed."] }).length,
+  1,
+  "a phrase with content in it, said twice, is still flagged",
+);
+assert.equal(
+  findMechanicalCopyIssues({ write_up: ["Say what you did in the first role, and then say what you did in the second role as well."] }).length,
+  1,
+  "three words are left once the trailing function words come off, so it is still a repeat",
+);
+
 // A two-part question repeats its stem by grammar; a statement that repeats a clause is still flagged.
 assert.deepEqual(
   findMechanicalCopyIssues({ cards: [
