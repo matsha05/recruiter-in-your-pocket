@@ -92,6 +92,8 @@ export interface WorklistCardProps {
   initial?: StoredLineAnswers;
   onPersist?: (patch: LineAnswersPatch) => Promise<boolean> | boolean | void;
   onStateChange?: (index: number, state: CardState) => void;
+  /** The line once every blank is filled, with the answers that filled it; null while it isn't. */
+  onLineChange?: (index: number, finished: { line: string; answers: BlankAnswers } | null) => void;
 }
 
 /**
@@ -102,7 +104,7 @@ export interface WorklistCardProps {
  * sentence, in the candidate's blue; their words go in as written. Nothing outside a bracket was invented:
  * the validator held every fact in the example to the resume. Copy waits until every blank is filled.
  */
-export function WorklistCard({ card, index, cards, resumeText, document = "resume", isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
+export function WorklistCard({ card, index, cards, resumeText, document = "resume", isSample = false, initial, onPersist, onStateChange, onLineChange }: WorklistCardProps) {
   const wording = reportWording(document);
   const labels = useMemo(() => blankLabels(card.example), [card.example]);
   const segments = useMemo(() => exampleSegments(card.example), [card.example]);
@@ -124,6 +126,7 @@ export function WorklistCard({ card, index, cards, resumeText, document = "resum
   const fillable = asks && !left;
 
   useEffect(() => { onStateChange?.(index, state); }, [index, onStateChange, state]);
+  useEffect(() => { onLineChange?.(index, composed && labels.length > 0 ? { line: composed, answers } : null); }, [answers, composed, index, labels.length, onLineChange]);
 
   // Keep the answers with the saved report once they settle; nothing is kept until something is answered or left.
   const [kept, setKept] = useState<"idle" | "saving" | "kept" | "failed">(initial ? "kept" : "idle");
