@@ -214,12 +214,13 @@ export default function ReportPanel({
                                 {(targetRole || readTime) && (
                                     <p className="text-label font-normal text-muted-foreground">{[targetRole, readTime].filter(Boolean).join(" · ")}</p>
                                 )}
-                                {/* The other samples, by situation (lib/reports/sample-reports.ts). */}
+                                {/* The other samples, by situation (lib/reports/sample-reports.ts). On a phone they are one row
+                                    that scrolls sideways: wrapped onto three lines they pushed the report's heading down the screen. */}
                                 {isSample && sample.samples.length > 1 && (
-                                    <nav aria-label="Sample reports" className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-label max-sm:basis-full" data-testid="sample-switcher">
+                                    <nav aria-label="Sample reports" className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-label max-sm:w-full max-sm:min-w-0 max-sm:basis-full max-sm:flex-nowrap max-sm:overflow-x-auto max-sm:whitespace-nowrap max-sm:[scrollbar-width:none]" data-testid="sample-switcher">
                                         {sample.samples.map((other) => other.current
-                                            ? <span key={other.href} aria-current="page" className="font-semibold text-foreground">{other.label}</span>
-                                            : <Link key={other.href} href={other.href} className="riyp-link-quiet text-muted-foreground">{other.label}</Link>)}
+                                            ? <span key={other.href} aria-current="page" className="shrink-0 font-semibold text-foreground">{other.label}</span>
+                                            : <Link key={other.href} href={other.href} className="riyp-link-quiet shrink-0 text-muted-foreground">{other.label}</Link>)}
                                     </nav>
                                 )}
                             </div>
