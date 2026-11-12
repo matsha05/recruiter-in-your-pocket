@@ -257,6 +257,15 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### The verdict as an opinion — November 12
+
+The verdict is two or three short sentences, under forty-five words: what a recruiter notices first, by name, whether the work backs it up, and the question still open when there is one. Record: `docs/audits/2026-11-verdict-opinion.md`.
+
+- Gate: golden on the final prompt, 19 pass, 4 warnings, 0 failures (23 fixtures). An earlier draft's run had one failure (`golden_sales_strong_foundation_mark_sherrod_1`, 67 against 80 to 88); a control on the shipped prompt gave the same score, so it predates this change, and the fixture's range is still open.
+- Read: fourteen synthetic resumes before and after, two runs each after, and the person's own resume with their permission.
+- Bundled evidence: the fourth run of the ten synthetic fixtures (10 pass). The first three missed the bar on a card-text warning or a network failure, as did a control on the shipped prompt; the audit lists every run.
+- Spend: about $2.80.
+
 ### The worklist report, Matt's voice — November 6 (prompt `0a19c3ee`)
 
 The report's prompt follows the copy system Matt settled on November 6 (PR 83: `docs/copy-system.md` §1 and §4, `docs/voice-and-tone.md` "Matt in his own words"). Record: `docs/audits/2026-11-worklist-run.md`, passes 6 to 8.

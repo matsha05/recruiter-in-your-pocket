@@ -117,7 +117,8 @@ export const WorklistReportSchema = z.object({
   /** The validator writes the rung from the score; the model never sets it. */
   score_label: z.string().optional(),
   lifted_by_employer: z.boolean(),
-  verdict: text(240),
+  // Two or three short sentences, under forty-five words (the verdict rule of November 12, 2026).
+  verdict: text(420),
   write_up: z.array(text(1800)).min(1).max(MAX_WRITE_UP_PARAGRAPHS),
   cards: z.array(WorklistCardSchema).max(MAX_CARDS),
   fit: WorklistFitSchema,

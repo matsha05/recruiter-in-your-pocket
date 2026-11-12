@@ -55,6 +55,17 @@
     text-wrap: pretty;
 }
 
+/* The verdict's second and third sentences: the same voice, a step down, close under the first. */
+.verdictRest {
+    max-width: 46ch;
+    margin-top: 0.5rem;
+    color: hsl(var(--foreground));
+    font: var(--type-verdict);
+    font-size: var(--type-lead-size);
+    line-height: var(--type-lead-leading);
+    text-wrap: pretty;
+}
+
 /* The write-up: the recruiter's own words, in the pen. Upright Literata at reading size. */
 .writeUp {
     display: grid;

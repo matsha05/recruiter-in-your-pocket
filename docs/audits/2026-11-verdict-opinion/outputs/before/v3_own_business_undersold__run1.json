@@ -1,0 +1,316 @@
+{
+  "case_id": "v3_own_business_undersold",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Built and sold a 31-person company; the resume calls it self-employed. No known employer.",
+  "resume_file": "resumes/v3_own_business_undersold.txt",
+  "resume_sha256": "cec580370b6eb48f43b66492d5dd363a6b217f22a7c15aaa08a7b96ecc476733",
+  "resume_words": 122,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:23:27.983Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6924,
+        "completion_tokens": 1532,
+        "total_tokens": 8456,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 528,
+        "reasoning_tokens": 645
+      },
+      "cost_usd": 0.00864265,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26935
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A landscaping owner with substantial operating experience, but no account of work after 2024.",
+    "write_up": [
+      "You moved from crew lead to running Bell Lawn & Landscape, growing its revenue and selling the company. I read your resume for operations work. A recruiter can see the business you ran, but the broad headline and the time after 2024 leave questions about what you want next and what you've been doing since.",
+      "The revenue growth line is the model: it gives a starting point, an ending point and a timeframe. The 31 employees at peak and named maintenance contracts also show how much you managed. Your resume doesn't say what followed the sale or what kind of operations job you're seeking.",
+      "Let's start with the headline and the time after 2024, then add detail to the bidding and safety work. Keep the revenue line prominent; it gives a recruiter a concrete reason to look at the rest."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "A recruiter can't tell what kind of operations role you want. Your business ownership gives you a stronger starting point than a general request for an opportunity.",
+        "example": "[target job title] with experience running Bell Lawn & Landscape",
+        "question": "What job title are you targeting?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the business was sold and your self-employed role ended. That blank may prompt a pass even with your business results.",
+        "example": "2024 - Present  [what you did after 2024]",
+        "question": "What have you been doing since 2024 that you can list honestly?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, revenue line",
+        "line": "- Grew yearly revenue from $240,000 to $2.9 million in five years",
+        "cannot_tell": "Keep this prominent. The starting and ending figures give a recruiter something concrete to remember about the business.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, operations line",
+        "line": "- Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but the list doesn't show how you handled any one of them. Bidding is a useful place to show the work behind the contracts.",
+        "example": "Did bidding for [type of work], including [bidding responsibilities]",
+        "question": "What did your bidding work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Green Valley Landscaping, line 2",
+        "line": "- Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for [equipment responsibilities] and [safety responsibilities] for a crew of five",
+        "question": "What equipment and safety work were you responsible for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your self-employed role includes scheduling, payroll, hiring, bidding and equipment purchasing.",
+      "level": "manager, ran a company with 31 employees at its peak",
+      "note": "Your experience points toward operations work where managing people, contracts and equipment matters. Name the role you want so a recruiter can connect your business ownership to it.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A landscaping owner with substantial operating experience, but no account of work after 2024.",
+    "write_up": [
+      "You moved from crew lead to running Bell Lawn & Landscape, growing its revenue and selling the company. I read your resume for operations work. A recruiter can see the business you ran, but the broad headline and the time after 2024 leave questions about what you want next and what you've been doing since.",
+      "The revenue growth line is the model: it gives a starting point, an ending point and a timeframe. The 31 employees at peak and named maintenance contracts also show how much you managed. Your resume doesn't say what followed the sale or what kind of operations job you're seeking.",
+      "Let's start with the headline and the time after 2024, then add detail to the bidding and safety work. Keep the revenue line prominent; it gives a recruiter a concrete reason to look at the rest."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "A recruiter can't tell what kind of operations role you want. Your business ownership gives you a stronger starting point than a general request for an opportunity.",
+        "example": "[target job title] with experience running Bell Lawn & Landscape",
+        "question": "What job title are you targeting?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the business was sold and your self-employed role ended. That blank may prompt a pass even with your business results.",
+        "example": "2024 - Present [what you did after 2024]",
+        "question": "What have you been doing since 2024 that you can list honestly?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, revenue line",
+        "line": "Grew yearly revenue from $240,000 to $2.9 million in five years",
+        "cannot_tell": "Keep this prominent. The starting and ending figures give a recruiter something concrete to remember about the business.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, operations line",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but the list doesn't show how you handled any one of them. Bidding is a useful place to show the work behind the contracts.",
+        "example": "Did bidding for [type of work], including [bidding responsibilities]",
+        "question": "What did your bidding work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Green Valley Landscaping, line 2",
+        "line": "Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for [equipment responsibilities] and [safety responsibilities] for a crew of five",
+        "question": "What equipment and safety work were you responsible for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your self-employed role includes scheduling, payroll, hiring, bidding and equipment purchasing.",
+      "level": "manager, ran a company with 31 employees at its peak",
+      "note": "Your experience points toward operations work where managing people, contracts and equipment matters. Name the role you want so a recruiter can connect your business ownership to it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A landscaping owner with substantial operating experience, but no account of work after 2024.",
+    "write_up": [
+      "You moved from crew lead to running Bell Lawn & Landscape, growing its revenue and selling the company. I read your resume for operations work. A recruiter can see the business you ran, but the broad headline and the time after 2024 leave questions about what you want next and what you've been doing since.",
+      "The revenue growth line is the model: it gives a starting point, an ending point and a timeframe. The 31 employees at peak and named maintenance contracts also show how much you managed. Your resume doesn't say what followed the sale or what kind of operations job you're seeking.",
+      "Let's start with the headline and the time after 2024, then add detail to the bidding and safety work. Keep the revenue line prominent; it gives a recruiter a concrete reason to look at the rest."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "A recruiter can't tell what kind of operations role you want. Your business ownership gives you a stronger starting point than a general request for an opportunity.",
+        "example": "[target job title] with experience running Bell Lawn & Landscape",
+        "question": "What job title are you targeting?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the business was sold and your self-employed role ended. That blank may prompt a pass even with your business results.",
+        "example": "2024 - Present [what you did after 2024]",
+        "question": "What have you been doing since 2024 that you can list honestly?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, revenue line",
+        "line": "Grew yearly revenue from $240,000 to $2.9 million in five years",
+        "cannot_tell": "Keep this prominent. The starting and ending figures give a recruiter something concrete to remember about the business.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, operations line",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but the list doesn't show how you handled any one of them. Bidding is a useful place to show the work behind the contracts.",
+        "example": "Did bidding for [type of work], including [bidding responsibilities]",
+        "question": "What did your bidding work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Green Valley Landscaping, line 2",
+        "line": "Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for [equipment responsibilities] and [safety responsibilities] for a crew of five",
+        "question": "What equipment and safety work were you responsible for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your self-employed role includes scheduling, payroll, hiring, bidding and equipment purchasing.",
+      "level": "manager, ran a company with 31 employees at its peak",
+      "note": "Your experience points toward operations work where managing people, contracts and equipment matters. Name the role you want so a recruiter can connect your business ownership to it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A landscaping owner with substantial operating experience, but no account of work after 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 140,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "blanks": 1,
+        "question": "What job title are you targeting?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since 2024 that you can list honestly?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, revenue line",
+        "line": "Grew yearly revenue from $240,000 to $2.9 million in five years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, operations line",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "blanks": 2,
+        "question": "What did your bidding work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Green Valley Landscaping, line 2",
+        "line": "Responsible for equipment and safety",
+        "blanks": 2,
+        "question": "What equipment and safety work were you responsible for?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 3,
+      "dates": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your self-employed role includes scheduling, payroll, hiring, bidding and equipment purchasing.",
+      "level": "manager, ran a company with 31 employees at its peak",
+      "note": "Your experience points toward operations work where managing people, contracts and equipment matters. Name the role you want so a recruiter can connect your business ownership to it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00864265,
+  "latency_ms": 26939
+}

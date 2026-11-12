@@ -1,5 +1,6 @@
 "use client";
 
+import { splitVerdict } from "@/lib/reports/report-opening";
 import { useCallback, useMemo, useState } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import type { WorklistReport as Report } from "@/lib/llm/worklist-schema";
@@ -111,6 +112,8 @@ export function WorklistReport({
   // A revision of a report saved before the worklist: the two aren't the same kind of report, and the comparison says so.
   const olderBaseline = comparisonBaseline && !isWorklistReport(comparisonBaseline) && reportDocumentKind(report) === "resume" && !isLinkedInReport(comparisonBaseline) ? comparisonBaseline : null;
 
+  const verdict = splitVerdict(report.verdict);
+
   return (
     <div className={cn(styles.root, className)} data-testid="worklist-report">
       {previous && <WorklistComparison previous={previous} current={report} />}
@@ -121,7 +124,9 @@ export function WorklistReport({
           <p className={styles.score} aria-label={`Score ${report.score} out of 99`} data-testid="worklist-score">{report.score}</p>
           <ScoreBand score={report.score} bands={isProfile ? "profile" : "worklist"} />
         </div>
-        <h1 id="report-verdict" className={styles.verdict}>{report.verdict}</h1>
+        {/* The verdict runs two or three sentences (Nov 12, 2026): the first is the heading, the rest reads on under it. */}
+        <h1 id="report-verdict" className={styles.verdict}>{verdict.lead}</h1>
+        {verdict.rest && <p className={styles.verdictRest} data-testid="worklist-verdict-rest">{verdict.rest}</p>}
         <FirstPass report={report} onReadAgainstPosting={isSample || isProfile ? undefined : onReadAgainstPosting} />
         <div className={styles.writeUp} data-testid="worklist-write-up">
           {report.write_up.map((paragraph, index) => <p key={index}>{paragraph}</p>)}

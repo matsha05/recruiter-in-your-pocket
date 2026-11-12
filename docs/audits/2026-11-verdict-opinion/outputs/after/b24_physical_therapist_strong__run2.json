@@ -1,0 +1,254 @@
+{
+  "case_id": "b24_physical_therapist_strong",
+  "batch": "verdict",
+  "run": 2,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+  "resume_sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:42:00.829Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7576,
+        "completion_tokens": 1362,
+        "total_tokens": 8938,
+        "cached_prompt_tokens": 7573,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 645
+      },
+      "cost_usd": 0.00719165,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20580
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Your outpatient orthopedic and post-surgical rehab work is clear, and the patient load and program work back it up. I’d want to talk to you. I’d ask which function measures sit behind the discharge figures.",
+    "write_up": [
+      "Your outpatient rehab work is easy to follow: you name the cases you treat, the program you built, and the therapists you mentor. That gives a clinic a concrete picture of both your patient care and your senior responsibilities!",
+      "The return-to-run line is the model for the rest: it names something you built and tells us how many patients completed it. Your Minnesota license and DPT are easy to find, too.",
+      "Add the measure and patient count behind the discharge figures if you have them. Your resume otherwise does its job; how competitive a particular clinic is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is clear, but a recruiter can't tell which function measures were used or how many discharged patients the percentage represents. Those details would give the figure more context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores, measured using [measure or measures]",
+        "question": "Which measures were used, and how many discharged patients were included?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "- Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this. It gives the program a name, makes your role in building it clear, and puts a time frame around patient completion.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "- Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a move into clinic leadership, a broader team or clinic responsibility would show what you handle beyond mentoring and scheduling.",
+        "example": "Mentor 2 newer therapists and set the PT aide schedule; [broader team or clinic responsibility]",
+        "question": "What broader team or clinic responsibilities have you held, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current Senior Physical Therapist role combines orthopedic patient care, a return-to-run program, and mentoring newer therapists.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehab roles. The mentoring and scheduling work also gives you a starting point for showing clinic leadership responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Your outpatient orthopedic and post-surgical rehab work is clear, and the patient load and program work back it up. I’d want to talk to you. I’d ask which function measures sit behind the discharge figures.",
+    "write_up": [
+      "Your outpatient rehab work is easy to follow: you name the cases you treat, the program you built, and the therapists you mentor. That gives a clinic a concrete picture of both your patient care and your senior responsibilities!",
+      "The return-to-run line is the model for the rest: it names something you built and tells us how many patients completed it. Your Minnesota license and DPT are easy to find, too.",
+      "Add the measure and patient count behind the discharge figures if you have them. Your resume otherwise does its job; how competitive a particular clinic is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is clear, but a recruiter can't tell which function measures were used or how many discharged patients the percentage represents. Those details would give the figure more context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores, measured using [measure or measures]",
+        "question": "Which measures were used, and how many discharged patients were included?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this. It gives the program a name, makes your role in building it clear, and puts a time frame around patient completion.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a move into clinic leadership, a broader team or clinic responsibility would show what you handle beyond mentoring and scheduling.",
+        "example": "Mentor 2 newer therapists and set the PT aide schedule; [broader team or clinic responsibility]",
+        "question": "What broader team or clinic responsibilities have you held, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current Senior Physical Therapist role combines orthopedic patient care, a return-to-run program, and mentoring newer therapists.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehab roles. The mentoring and scheduling work also gives you a starting point for showing clinic leadership responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Your outpatient orthopedic and post-surgical rehab work is clear, and the patient load and program work back it up. I’d want to talk to you. I’d ask which function measures sit behind the discharge figures.",
+    "write_up": [
+      "Your outpatient rehab work is easy to follow: you name the cases you treat, the program you built, and the therapists you mentor. That gives a clinic a concrete picture of both your patient care and your senior responsibilities!",
+      "The return-to-run line is the model for the rest: it names something you built and tells us how many patients completed it. Your Minnesota license and DPT are easy to find, too.",
+      "Add the measure and patient count behind the discharge figures if you have them. Your resume otherwise does its job; how competitive a particular clinic is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is clear, but a recruiter can't tell which function measures were used or how many discharged patients the percentage represents. Those details would give the figure more context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores, measured using [measure or measures]",
+        "question": "Which measures were used, and how many discharged patients were included?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this. It gives the program a name, makes your role in building it clear, and puts a time frame around patient completion.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a move into clinic leadership, a broader team or clinic responsibility would show what you handle beyond mentoring and scheduling.",
+        "example": "Mentor 2 newer therapists and set the PT aide schedule; [broader team or clinic responsibility]",
+        "question": "What broader team or clinic responsibilities have you held, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current Senior Physical Therapist role combines orthopedic patient care, a return-to-run program, and mentoring newer therapists.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehab roles. The mentoring and scheduling work also gives you a starting point for showing clinic leadership responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Your outpatient orthopedic and post-surgical rehab work is clear, and the patient load and program work back it up. I’d want to talk to you. I’d ask which function measures sit behind the discharge figures.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 100,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "blanks": 2,
+        "question": "Which measures were used, and how many discharged patients were included?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "blanks": 1,
+        "question": "What broader team or clinic responsibilities have you held, if any?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current Senior Physical Therapist role combines orthopedic patient care, a return-to-run program, and mentoring newer therapists.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehab roles. The mentoring and scheduling work also gives you a starting point for showing clinic leadership responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00719165,
+  "latency_ms": 20582
+}
