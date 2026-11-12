@@ -25,8 +25,18 @@ export const WORK_KINDS: ReadonlySet<CardKind> = new Set(["line", "structure", "
 
 /** The most cards a report shows; the prompt asks for every line that needs obvious work. */
 export const MAX_CARDS = 12;
-/** A quoted line is one resume line or a bounded part of one. */
-export const MAX_LINE_LENGTH = 200;
+/**
+ * The longest quote the model is asked for: one resume line or a bounded part of one. A resume line up to this
+ * length is always shown whole, whatever part of it the model quoted.
+ */
+export const MAX_QUOTE_LENGTH = 200;
+/**
+ * The longest quoted line a report holds: the length of the longest example a card shows under it. On a resume
+ * line longer than the model can quote, a quote that stops mid-sentence is run on to the end of its sentence
+ * (quoteWithinLine), so it can pass the model's limit and never this one. A live report of November 12, 2026 ended
+ * a 293-character bullet at "through innovative strategies aimed at".
+ */
+export const MAX_LINE_LENGTH = 400;
 export const MAX_WRITE_UP_PARAGRAPHS = 3;
 
 const text = (max: number) => z.string().trim().min(1).max(max);
@@ -155,7 +165,7 @@ const POSTING_MOVES_JSON_SCHEMA = {
   maxItems: MAX_POSTING_MOVES,
   items: {
     type: "object",
-    properties: { line: { type: "string", minLength: 1, maxLength: MAX_LINE_LENGTH }, why: nonEmptyString },
+    properties: { line: { type: "string", minLength: 1, maxLength: MAX_QUOTE_LENGTH }, why: nonEmptyString },
     required: ["line", "why"],
     additionalProperties: false,
   },
@@ -179,7 +189,7 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
         properties: {
           kind: { type: "string", enum: [...CARD_KINDS] },
           where: nonEmptyString,
-          line: { type: "string", minLength: 1, maxLength: MAX_LINE_LENGTH },
+          line: { type: "string", minLength: 1, maxLength: MAX_QUOTE_LENGTH },
           cannot_tell: nonEmptyString,
           example: stringValue,
           question: stringValue,
@@ -208,7 +218,7 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
               maxItems: MAX_POSTING_COVERED,
               items: {
                 type: "object",
-                properties: { requirement: nonEmptyString, line: { type: "string", minLength: 1, maxLength: MAX_LINE_LENGTH } },
+                properties: { requirement: nonEmptyString, line: { type: "string", minLength: 1, maxLength: MAX_QUOTE_LENGTH } },
                 required: ["requirement", "line"],
                 additionalProperties: false,
               },

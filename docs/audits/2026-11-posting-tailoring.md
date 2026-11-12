@@ -167,6 +167,24 @@ The same saved run, replayed through the corrected check (`scripts/replay-live-e
 
 Still not covered: a clearance or licence the posting requires and the resume lacks is treated as a must-have, which is right, but no fixture has one beside a citizenship rule to show the two are told apart.
 
+## A quoted line cut mid-sentence, November 12
+
+On the live walk one card quoted a bullet as far as "through innovative strategies aimed at" and stopped. The bullet is 293 characters. The model is asked for quotes under 200, and the validator widened a quote to the whole resume line only when the line was 200 or under, so on a longer line the quote ended wherever the model's limit landed.
+
+The fix is in the validator; the prompt is unchanged and no model call was made. A report now holds a quoted line of up to 400 characters, the length of the longest example a card shows under it, while the model is still asked for 200. On a resume line over 200:
+
+- a quote that stops at a break (the end of a sentence, or a clause mark) is the part the model chose and stands;
+- a quote that stops anywhere else keeps its start and runs on to the end of its sentence;
+- when that sentence is too long to show, the end moves to the nearest clause break, forward if it fits and back if not.
+
+The same rule covers a card's line, a row of the posting's table, and the lines to move up or trim (`quoteWithinLine` in `web/lib/llm/worklist-grounding.ts`, tests in `web/tests/posting-tailoring.test.ts`).
+
+Measured on saved output, not on new runs. The full golden run's 166 quoted lines, replayed: 13 sit on a resume line over 200 characters. Seven of those quotes stop at a break and are unchanged. Four change only by the bullet mark the resume's own form drops. Two stopped mid-clause and now run to the end of their sentence, one of them at "go to market, and G A". The run still scores 21 pass, 2 warnings, 0 failures. The live bullet, cut where the report cut it and put through the rule, comes back whole.
+
+The first version of this fix showed every line up to 400 characters whole. On the same saved run that replaced quotes the model had kept to one sentence of a several-sentence line with the whole line, and ran one quote past a bullet mark into the next bullet (a file read had put two bullets on one line). The rule above is the correction: it changes a quote only when the quote stops mid-clause.
+
+Not measured: how often a live report now shows a quote between 200 and 400 characters. The Report Lab has a layout fixture for one (`worklist-long-line`).
+
 ## Spend
 
 The full golden run on the must-have prompt: $0.33.

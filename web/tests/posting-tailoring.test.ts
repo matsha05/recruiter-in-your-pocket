@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { validateWorklistPayload } from "../lib/llm/worklist-validator";
-import { WORKLIST_REPORT_JSON_SCHEMA, WorklistReportSchema } from "../lib/llm/worklist-schema";
+import { MAX_LINE_LENGTH, MAX_QUOTE_LENGTH, WORKLIST_REPORT_JSON_SCHEMA, WorklistReportSchema } from "../lib/llm/worklist-schema";
+import { quoteWithinLine } from "../lib/llm/worklist-grounding";
 import { POSTING_LEAD_HOW, POSTING_LEAD_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL } from "../lib/reports/worklist-presentation";
 
 /**
@@ -172,16 +173,70 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
     "a years ask answered by a line of that work stays; one answered by an employer-and-dates line, and an eligibility rule, are dropped");
 }
 
-// A quote from a resume line longer than a report can hold stays as quoted, so the report can be parsed again.
+// A bullet longer than the model's quote is shown whole. The model is asked for under 200 characters and stops where
+// that lands; on a live report of November 12, 2026 a card's line ended "through innovative strategies aimed at".
 {
-  const long = `Dedicated engineer with nine years of experience building payment systems at scale. ${"Passionate about reliable software and strong teams. ".repeat(4)}`.trim();
-  const text = `${RESUME}\n\nSummary\n${long}`;
-  assert.ok(long.length > 200);
+  const bullet = "Rebuilt the hiring process across four regions, cutting time to hire from 61 days to 34 within two quarters through structured interviews aimed at opening new markets (Vietnam, Kenya, Poland) and new fields (machine learning, payments).";
+  const cut = bullet.slice(0, bullet.indexOf("aimed at") + "aimed at".length);
+  assert.ok(bullet.length > MAX_QUOTE_LENGTH && bullet.length <= MAX_LINE_LENGTH && cut.length <= MAX_QUOTE_LENGTH);
+  const text = `${RESUME}\n- ${bullet}`;
   const draft = structuredClone(base);
-  (draft as { cards: unknown[] }).cards = [{ kind: "line", where: "Summary", line: "Dedicated engineer with nine years of experience building payment systems at scale.", cannot_tell: "This could describe many engineers. Which systems were yours?", example: "Backend engineer who built [which systems] for [who used them].", question: "Which payment systems did you build, and who used them?" }];
+  (draft as { cards: unknown[] }).cards = [{ kind: "line", where: "Northwind Pay, line 4", line: cut, cannot_tell: "The days are here. Which roles were these?", example: "Rebuilt hiring for [which roles] across four regions, cutting time to hire from 61 days to 34.", question: "Which roles did the new process hire for?" }];
+  Object.assign(draft.fit.posting, { covered: [{ requirement: "Hiring across regions", line: cut }], lead: [], trim: [{ line: cut, why: "A good line. Nothing in this posting asks for it." }] });
   const report = validateWorklistPayload(draft, text, { forceGrounding: true });
-  assert.ok(report.cards[0].line.length <= 200, "the quote is not widened past the limit");
+  assert.equal(report.cards[0].line, bullet, "a card quotes the whole bullet, not the part the model's limit reached");
+  assert.equal(report.fit.posting.covered?.[0].line, bullet, "so does a row of the posting's table");
+  assert.equal(report.fit.posting.trim?.[0].line, bullet, "and a line the posting doesn't ask about");
   assert.equal(WorklistReportSchema.safeParse(report).success, true, "a validated report always parses again");
+}
+
+// On a line longer than a report holds (a summary pasted as one paragraph) a quote that stops mid-sentence runs on to
+// the end of its sentence, a quote that is a whole sentence stays the one the model chose, and the report parses again.
+{
+  const first = "Dedicated engineer with nine years of experience building payment systems at scale.";
+  const long = `${first} ${"Passionate about reliable software and strong teams. ".repeat(7)}`.trim();
+  const text = `${RESUME}\n\nSummary\n${long}`;
+  assert.ok(long.length > MAX_LINE_LENGTH);
+  const card = { kind: "line", where: "Summary", line: "Dedicated engineer with nine years of experience building payment", cannot_tell: "This could describe many engineers. Which systems were yours?", example: "Backend engineer who built [which systems] for [who used them].", question: "Which payment systems did you build, and who used them?" };
+  for (const line of [card.line, first]) {
+    const draft = structuredClone(base);
+    (draft as { cards: unknown[] }).cards = [{ ...card, line }];
+    const report = validateWorklistPayload(draft, text, { forceGrounding: true });
+    assert.equal(report.cards[0].line, first, "the quote is the sentence: not the paragraph, and not a part of the sentence");
+    assert.equal(WorklistReportSchema.safeParse(report).success, true, "a validated report always parses again");
+  }
+}
+
+// The same rule on its own, with a small limit so the cases are short.
+{
+  // A quote that stops at a break is the part the model chose.
+  const line = "Led the migration of 3.5 million accounts to the new ledger over two years, working with Finance (Treasury, Tax) and Risk, then trained the support team on it.";
+  const clause = "Led the migration of 3.5 million accounts to the new ledger over two years";
+  assert.equal(quoteWithinLine(clause, line, 400), clause, "a quote that stops at a clause break stands, with room or without");
+  assert.equal(quoteWithinLine(clause, line, 80), clause);
+  assert.equal(quoteWithinLine(line, line, 80), line, "the line's own end is a break");
+
+  // A quote that stops anywhere else runs on to the end of its sentence.
+  assert.equal(quoteWithinLine("Led the migration of 3.5 million accounts to the new", line, 400), line, "to the sentence's end when that fits");
+  assert.equal(quoteWithinLine("working with Finance (Treasury, Tax) and Risk, then trained the", line, 400), "working with Finance (Treasury, Tax) and Risk, then trained the support team on it.", "it keeps the start the model chose");
+
+  // When the sentence is too long to show, the end moves to the nearest clause break.
+  assert.equal(quoteWithinLine("Led the migration of 3.5 million accounts to the new", line, 80), clause, "forward to the next clause break; the point in 3.5 is not one");
+  assert.equal(quoteWithinLine("working with Finance (Treasury", line, 80), "working with Finance (Treasury, Tax) and Risk", "never left inside a parenthesis it opened");
+  const run = "Owned onboarding for enterprise customers, and built the playbook that the regional teams in eleven countries still use to bring a new account from signed contract to first invoice.";
+  assert.equal(quoteWithinLine("Owned onboarding for enterprise customers, and built the", run, 100), "Owned onboarding for enterprise customers", "back to the last break when the next one is out of reach");
+  assert.equal(quoteWithinLine("and built the playbook that", run, 100), "and built the playbook that", "with no break to move to, the quote stands as written");
+  assert.equal(quoteWithinLine("not on this line at all", run, 100), "not on this line at all", "a quote the line doesn't hold is left alone");
+
+  // Where a sentence ends: not at an abbreviation, and at a bullet's mark when a file read put two bullets on one line.
+  const two = "Runs payments for Inc. 5000 sellers in the U.S. and Canada. Built the ledger. Hired the first six engineers and set the on-call rota.";
+  assert.equal(quoteWithinLine("Runs payments for Inc. 5000 sellers in", two, 400), "Runs payments for Inc. 5000 sellers in the U.S. and Canada.", "an abbreviation does not end a sentence");
+  assert.equal(quoteWithinLine("Runs payments for Inc.", two, 400), "Runs payments for Inc. 5000 sellers in the U.S. and Canada.", "and a quote that stops on one has not reached a break");
+  assert.equal(quoteWithinLine("Built the ledger. Hired the first", two, 400), "Built the ledger. Hired the first six engineers and set the on-call rota.", "a quote that runs into a second sentence runs to the end of that one");
+  assert.equal(quoteWithinLine("Built the ledger.", two, 400), "Built the ledger.", "one whole sentence of several stays one sentence");
+  const joined = "Opened three regions to target enterprise deals. ● Managed the LATAM sales team as it grew from four people to eleven ● Hired the first sales engineer";
+  assert.equal(quoteWithinLine("Opened three regions to target enterprise deals.", joined, 400), "Opened three regions to target enterprise deals.", "the first of two bullets on one line stays the first");
+  assert.equal(quoteWithinLine("Managed the LATAM sales team as it", joined, 400), "Managed the LATAM sales team as it grew from four people to eleven", "a bullet ends at the next bullet's mark, with or without a full stop");
 }
 
 console.log("posting tailoring tests passed");

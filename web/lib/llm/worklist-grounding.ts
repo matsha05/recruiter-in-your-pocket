@@ -153,6 +153,74 @@ export function resolveCardLine(line: string, resumeText: string): LineResolutio
   return { status: "missing" };
 }
 
+const ABBREVIATION = /(?:\b(?:e\.g|i\.e|etc|vs|inc|ltd|co|corp|sr|jr|dr|mr|ms|mrs|st|no|approx|dept)|\b\p{Lu})\.$/iu;
+/** A bullet's mark. A file read can put two bullets on one line, so the mark ends a sentence wherever it sits. */
+const BULLET_MARKS = "•●◦▪▫‣⁃";
+
+/** Where each sentence of a line ends, the line's own end included. */
+function sentenceEnds(line: string) {
+  const ends: number[] = [line.length];
+  for (const match of line.matchAll(new RegExp(`[.!?]["”')\\]]*(?=\\s+(?:[${BULLET_MARKS}]\\s*)?["“(\\[]?[\\p{Lu}\\d])`, "gu"))) {
+    if (match[0][0] === "." && ABBREVIATION.test(line.slice(0, match.index + 1))) continue;
+    ends.push(match.index + match[0].length);
+  }
+  for (const match of line.matchAll(new RegExp(`\\s+[${BULLET_MARKS}](?=\\s)`, "gu"))) ends.push(match.index);
+  return ends.sort((a, b) => a - b);
+}
+
+/**
+ * Whether a quote that starts at `start` may stop at this index: at the end of the line, on a mark that ends a
+ * sentence, or just before a mark that closes a clause, and never inside a parenthesis it opened. A point inside
+ * a number or a name ("3.5", "Node.js") and the point of an abbreviation close nothing.
+ */
+function isClauseBreak(line: string, start: number, index: number) {
+  if (index <= start || /\s/u.test(line[index - 1])) return false;
+  const quoted = line.slice(start, index);
+  if ((quoted.match(/\(/gu) ?? []).length > (quoted.match(/\)/gu) ?? []).length) return false;
+  if (index === line.length) return true;
+  const rest = line.slice(index);
+  if (/[.!?]["”')\]]*$/u.test(quoted) && /^\s/u.test(rest)) return !ABBREVIATION.test(quoted);
+  return new RegExp(`^(?:[,;:](?=\\s)|\\s+[(–—${BULLET_MARKS}]|\\s+-\\s)`, "u").test(rest);
+}
+
+/** Where the quote sits on the line: the one place it stands as whole words. */
+function quoteStart(line: string, quote: string) {
+  const edge = /[\p{L}\p{M}\p{N}]/u;
+  for (let start = line.indexOf(quote); start !== -1; start = line.indexOf(quote, start + 1)) {
+    const before = start === 0 ? "" : line[start - 1];
+    const after = line[start + quote.length] ?? "";
+    if (!edge.test(before) && !edge.test(after)) return start;
+  }
+  return -1;
+}
+
+/**
+ * The quote for a resume line longer than the model can quote whole (a long bullet, or a summary or an About
+ * section pasted as one paragraph). The model quotes a bounded part of such a line, and when its limit lands
+ * mid-sentence the quote stops there. A quote that stops at a break, the end of a sentence or of a clause, is the
+ * part the model chose and is left alone. One that stops anywhere else keeps its start and runs on to the end of
+ * its sentence. When that is too long to show, its end moves to the nearest clause break: forward when that fits,
+ * back when that keeps at least half of it. The result is always text from the line, in one piece; with no break
+ * to move to, the quote stands.
+ */
+export function quoteWithinLine(quote: string, line: string, max: number) {
+  const identity = canonicalSourceIdentity(quote);
+  const start = identity ? quoteStart(line, identity) : -1;
+  if (start === -1) return quote;
+  const end = start + identity.length;
+  if (isClauseBreak(line, start, end)) return identity;
+
+  const sentenceEnd = sentenceEnds(line).find((value) => value >= end) ?? line.length;
+  if (sentenceEnd - start <= max) return line.slice(start, sentenceEnd).trim();
+  for (let index = end + 1; index <= line.length && index - start <= max; index += 1) {
+    if (isClauseBreak(line, start, index)) return line.slice(start, index).trim();
+  }
+  for (let index = end - 1; index - start >= identity.length / 2; index -= 1) {
+    if (isClauseBreak(line, start, index)) return line.slice(start, index).trim();
+  }
+  return identity;
+}
+
 /** Two cards on the same resume line. */
 export function sameCardLine(a: string, b: string) {
   return canonicalSourceIdentity(a) === canonicalSourceIdentity(b);
