@@ -90,6 +90,14 @@ One harness check changed with it: a card on a headline or summary whose example
 
 The evidence is today's final golden run replayed through the new ranges at no cost (`scripts/replay-live-eval.ts`, which now replays worklist reports): 9 PASS, 1 WARN, 0 FAIL. The warning is a dates card that says "if you took" twice in one sentence. `tests/fixtures/results/summary_latest_live.md` and `lib/launch/liveEvalBaseline.ts` carry it, and the test passes.
 
+### The sales fixture, November 12
+
+The redraw above covered the ten synthetic fixtures. `sales_strong_foundation_mark_sherrod_1` (in both the smoke and golden tiers) kept the old prompt's range, 80 to 88, and failed a golden run on November 12 at 67. Seven live runs that day, on the shipped prompt before and after the verdict rule: 67, 66, 68, 68, 67, 68, 67. By the same method (lowest and highest, widened by four) the range is now 62 to 72.
+
+Why it sits there: the range was written for the old prompt, and the resume's latest role ended in October 2023, so read today it has three years nothing accounts for, which costs a band. That rule is behaving as intended. A separate check on one strong synthetic resume with its latest role ended one, four, nine and twelve months ago scored 94, 95, 83 and 82 (two runs each, both within a point): a recent end costs nothing, and the cost starts somewhere between four and nine months.
+
+Two other fixtures on old-prompt ranges warn rather than fail and are left as they are: `talent_leader_high_bar_matt_shaw_current_1` scored 78 to 83 across six runs against 84 to 92, and `finance_not_ready_sam_helmuth_1` 46 to 55 against 55 to 68. Spend for the day's runs on these three fixtures and the date check: about $0.60.
+
 ## Spend
 
 About $2.70 of live spend, by the runners' ledgers. The final pass, which everything above reports: the 49-case set $0.53, the golden fixtures $0.16, eleven posting reads $0.15, their judge $0.08, the pairwise judge $0.71. The first pass, before the "missing" fix, was about $1.00 for the same runs without a full pairwise read (one judge run was stopped early, so its cost is an estimate).

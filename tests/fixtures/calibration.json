@@ -71,8 +71,8 @@
             "path": "smoke/sales_strong_foundation_mark_sherrod_1.txt",
             "tier": "smoke",
             "expected_score": {
-                "min": 80,
-                "max": 88
+                "min": 62,
+                "max": 72
             },
             "expected_band": "strong_foundation",
             "tags": [
@@ -119,8 +119,8 @@
             "path": "smoke/sales_strong_foundation_mark_sherrod_1.txt",
             "tier": "golden",
             "expected_score": {
-                "min": 80,
-                "max": 88
+                "min": 62,
+                "max": 72
             },
             "expected_band": "strong_foundation",
             "tags": [
