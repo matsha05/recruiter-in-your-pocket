@@ -159,6 +159,12 @@ function checkDiscouragedPhrases(
 // HUMAN COPY CHECK
 // ============================================
 
+/** Words a clause can't end on and still be a phrase: determiners, possessives, prepositions, conjunctions. */
+const TRAILING_FUNCTION_WORDS = new Set([
+    "your", "my", "our", "their", "his", "her", "its", "the", "a", "an",
+    "of", "in", "on", "at", "for", "with", "by", "as", "and", "or",
+]);
+
 export function findMechanicalCopyIssues(output: unknown): string[] {
     const prose: Array<{ path: string; value: string }> = [];
 
@@ -217,7 +223,13 @@ export function findMechanicalCopyIssues(output: unknown): string[] {
         const isQuestionStem = Boolean(repeatedClause)
             && /\?\s*$/.test(item.value)
             && /^(?:(?:what|which|how|who|where|when|why)\s+)?(?:did|do|does|were|was|have|had|are|is)\s+you(?:\s+[a-z'-]+)?$/.test(repeatedClause!);
-        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel && !qualifiesDistinctMetrics && !isQuestionStem) {
+        // "The degree year in your header differs from the end year in your education entry" repeats "year in your":
+        // a clause cut off at a function word, the frame of a comparison and not a phrase said twice. What counts is
+        // what is left once the trailing function words are taken off, and it still needs three words.
+        const clauseCore = (repeatedClause?.split(/\s+/) || []);
+        while (clauseCore.length > 0 && TRAILING_FUNCTION_WORDS.has(clauseCore[clauseCore.length - 1])) clauseCore.pop();
+        const isFrameOnly = Boolean(repeatedClause) && clauseCore.length < 3;
+        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel && !qualifiesDistinctMetrics && !isQuestionStem && !isFrameOnly) {
             issues.push(`${item.path} repeats the clause "${repeatedClause}"`);
         }
 

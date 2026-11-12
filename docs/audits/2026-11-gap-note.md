@@ -81,3 +81,17 @@ The 43 reports above carried three warnings. Both causes were fixed afterwards, 
 - **A rewritten summary or objective flagged for having no blank** (two cards). The check already excused a card labelled exactly "Headline" or "Summary", on the November 11 ground that an intro line rewritten from the resume's own facts is finished. Resumes call that line other things, and the model labels it as the resume does: "Professional Summary" (21 cards in the day's runs), "Objective" (10), "Summary, sentence 1". The check now knows those names (`isIntroLine`, `web/lib/evals/worklist-checks.ts`); a job title or any other line still needs a blank.
 
 Replayed through both, the three final runs are 23 of 23 and 10 of 10 twice, with no warning. The bundled evidence is the same golden run, now 23 pass.
+
+## Three warnings on the must-have prompt, read one by one
+
+The full golden tier on the prompt that followed (22a90f22, the posting session's run, 20 pass and 3 warnings) flagged three things. Across all 188 reports saved on November 11 and 12, these were the only two write-up sentences the repeated-clause check flagged, and two of 1,203 line cards outside the intro line had an example with no blank.
+
+| Warning | The text | Read |
+| --- | --- | --- |
+| Repeated clause "year in your" | "The degree year in your header also differs from the end year in your education entry, leaving a question about the dates." | Not a repeat. The clause is cut off at a function word: it is the frame of a comparison. **The check was wrong.** |
+| Repeated clause "people you managed" | "Start with the Uplight lines on processes and the people you managed. Add what the processes changed and how many people you managed, …" | A mild, real repeat. The check is right to notice it. One in 188 reports does not justify a prompt change and the paid run that goes with one. **Left flagged.** |
+| Card example has no blank | A stray "javascript" at the bottom of a skills section; the example folds it into the languages line and the question asks whether it belongs there. | A good card whose fix has nothing to fill in. The other such card in the day's runs removes an expired credential from beside a name. The two share no pattern a rule could state without being fitted to them. **Left flagged.** |
+
+The check now takes the trailing function words off a repeated clause (determiners, possessives, prepositions, conjunctions) and flags it only when three words are left (`web/lib/evals/checks.ts`). "Year in your" leaves one. "What you did in the" leaves three and is still flagged, as is "people you managed"; all three are tested.
+
+Replayed through it at no cost, that run is 21 pass, 2 warnings, 0 failures. It was not bound as the release evidence: the ten-synthetic run stays bundled, and whether a run that clears the bar only after a check was corrected should replace it is not this change's call.
