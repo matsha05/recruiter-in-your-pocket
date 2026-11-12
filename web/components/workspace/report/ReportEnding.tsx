@@ -5,6 +5,7 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { reportWording } from "@/lib/reports/worklist-presentation";
+import { useSamplePerson } from "./SamplePerson";
 import styles from "./markup/MarkedReport.module.css";
 
 export interface ReportEndingProps {
@@ -39,6 +40,7 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
   // Matt, November 6, 2026: on a strong resume, say so and say the resume isn't the problem (copy system §3, pair 40).
   const wording = reportWording(document);
   const isProfile = document === "linkedin";
+  const sample = useSamplePerson();
   const readyEnding = ready ? (clean ? wording.readyEnding : "Send it. Then read it against the posting you're going for.") : null;
   const readyNote = ready && clean ? wording.readyNote : null;
   const revisionLabel = isProfile ? "Check my updated profile" : ready ? "Read it against a posting" : "Compare my revision";
@@ -48,7 +50,7 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
     if (!onStartReport) return null;
     return (
       <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
-        <h2 id="report-next-step" className={styles.sectionTitle}>That&rsquo;s Jordan&rsquo;s. Yours is next.</h2>
+        <h2 id="report-next-step" className={styles.sectionTitle}>That&rsquo;s {sample.person}&rsquo;s. Yours is next.</h2>
         <div><Button variant="primary" onClick={onStartReport}>Get your free report <ArrowRight className="size-4" weight="bold" /></Button></div>
       </section>
     );

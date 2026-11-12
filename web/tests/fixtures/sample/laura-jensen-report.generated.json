@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-11-11T23:52:57.424Z",
+  "model": "gpt-6.1-terra",
+  "prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "prompt_version": "resume_v3",
+  "today": "2026-11-11",
+  "resume_sha256": "0612aaf944af08cdf4e74b00a7f9e2caa258d702e4ce109f6743611d70d42c11",
+  "repaired": false,
+  "telemetry": [
+    {
+      "request_id": "sample-report-1794441154051",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 7078,
+      "tokens_out": 1654,
+      "latency_ms": 23355,
+      "cost_estimate_usd": 0.00944515,
+      "outcome": "success"
+    }
+  ],
+  "payload": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid plant experience and an unexplained stretch after a caregiving break.",
+    "write_up": [
+      "It’s common for an HR resume to list the work without showing much about how it was handled. Yours shows a move from HR Assistant to HR Generalist at Northstar Plastics, supporting a manufacturing plant across three shifts. A recruiter can see the range of your work, but may hesitate over the time after your caregiving break and what your investigations involved.",
+      "The orientation line is a good model: you say you ran it and how often. The caregiving break is named plainly, but nothing is dated after June 2025, so a recruiter can’t tell what you’ve done since.",
+      "Let’s start with the dates, then add your part in the employee relations work. You don’t need to turn every HR duty into a number; a few concrete details about the work you handled will make the Northstar role more useful to a recruiter."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can see that you took time for family caregiving, but can’t tell what you’ve done since that entry ended. If caregiving continued, you can say so. If you took a career break or did paid work, study or volunteering, name it only if it’s true.",
+        "example": "June 2025 - Present [what you did]",
+        "question": "What have you done since June 2025 that you’d be comfortable including?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you handled questions and investigations with the HR manager, but not which parts of the investigations were yours. That matters for another generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [your part in the investigations]",
+        "question": "What parts of the investigations did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model: it names an activity you owned and gives its regular cadence. A recruiter doesn’t have to guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "cannot_tell": "The files and records are named, but a recruiter can’t tell what changes you handled in them. One example would show what maintaining them involved.",
+        "example": "Kept personnel files and HRIS records up to date, including [type of record updates]",
+        "question": "What kinds of updates did you make to the files and HRIS records?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "why": "Your headline and Northstar Plastics role point to HR generalist work across employee relations, benefits and onboarding.",
+      "level": "mid-level, HR Generalist experience supporting a plant of 400 employees across three shifts",
+      "note": "Your experience points toward generalist roles in manufacturing, with earlier HR assistant work and a SHRM-CP credential. The named caregiving break gives useful context for your time away from Northstar.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  }
+}

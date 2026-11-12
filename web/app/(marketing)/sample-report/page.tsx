@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Footer from "@/components/landing/Footer";
 import WorkspaceClient from "@/components/workspace/WorkspaceClient";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
+import { SamplePersonProvider } from "@/components/workspace/report/SamplePerson";
+import { SAMPLE_REPORTS, samplePath } from "@/lib/reports/sample-reports";
 import sampleReport from "@/public/sample-report.json";
 
 // WorkspaceClient reads URL state. Render this public sample per request so the
@@ -33,7 +35,9 @@ export default function SampleReportPage() {
   return (
     <>
       <div className="sample-report-page-shell">
-        <WorkspaceClient initialReport={sampleReport as ReportData} />
+        <SamplePersonProvider value={{ person: "Jordan", samples: SAMPLE_REPORTS.map((sample) => ({ href: samplePath(sample), label: sample.situation, current: sample.slug === null })) }}>
+          <WorkspaceClient initialReport={sampleReport as ReportData} />
+        </SamplePersonProvider>
       </div>
       <Footer />
     </>
