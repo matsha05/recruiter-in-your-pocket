@@ -53,6 +53,15 @@ function loadWorklistFixtures(root: string): LabFixture[] {
   fixtures.push(...loadFirstReadFixtures(root));
   fixtures.push(...loadVerdictFixtures(root));
   fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
+  // A bullet longer than the model's quote, shown whole (Nov 12, 2026): the card's clipping at its longest. Layout
+  // only: the mock's card with a made-up line of about 300 characters in place of its own.
+  const shortLine = "Documented the workflow and trained the support team on customer onboarding.";
+  const longLine = "Documented the onboarding workflow and trained the support team on it across four regions, cutting the time from signed contract to first invoice from 61 days to 34 within two quarters by moving account managers onto one shared checklist (enterprise, mid-market, partner) and one weekly review.";
+  const mock = fixtures.find((item) => item.id === "worklist-mock");
+  if (mock?.resumeText?.includes(shortLine)) {
+    const report = JSON.parse(JSON.stringify(mock.report).split(JSON.stringify(shortLine)).join(JSON.stringify(longLine)));
+    fixtures.push({ id: "worklist-long-line", label: "worklist · a bullet of about 300 characters (layout only)", report, resumeText: mock.resumeText.replace(shortLine, longLine) });
+  }
   return fixtures;
 }
 

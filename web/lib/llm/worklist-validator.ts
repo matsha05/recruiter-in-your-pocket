@@ -4,6 +4,7 @@ import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from
 import {
   bannedPhrasesIn,
   inflatesOwnership,
+  quoteWithinLine,
   replaceRetiredIdiom,
   resolveCardLine,
   sameCardLine,
@@ -11,7 +12,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart, type PostingCovered, MAX_LINE_LENGTH } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart, type PostingCovered, MAX_LINE_LENGTH, MAX_QUOTE_LENGTH } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -80,6 +81,19 @@ function normaliseCard(card: WorklistCard): WorklistCard {
 }
 
 /**
+ * The quote a report shows for a line it found on the resume: the whole line as the resume writes it. On a line
+ * longer than the model can quote (a long bullet, a summary pasted as one paragraph) it is the part the model
+ * chose, run on to the end of its sentence when the model's limit cut it short. An adjusted quote is used only
+ * when it is still found on the resume once; otherwise the model's own quote stands, since that one is known to
+ * be there.
+ */
+function quoteFor(quote: string, resolvedLine: string, resumeText: string) {
+  if (resolvedLine.length <= MAX_QUOTE_LENGTH) return resolvedLine;
+  const fitted = quoteWithinLine(quote, resolvedLine, MAX_LINE_LENGTH);
+  return fitted !== quote && resolveCardLine(fitted, resumeText).status === "resolved" ? fitted : quote;
+}
+
+/**
  * The posting's moves, held to the resume: a line that isn't on it word for word, or that sits on it more than
  * once, is dropped, never repaired, because the lists are optional and a wrong quote is worse than none. A line
  * may be moved up or trimmed, never both; without a posting there are no moves.
@@ -91,7 +105,7 @@ function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string
     if (resumeText) {
       const resolved = resolveCardLine(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) line = resolved.line;
+      if (resolved.status === "resolved") line = quoteFor(line, resolved.line, resumeText);
     }
     if ([...taken, ...kept.map((item) => item.line)].some((other) => sameCardLine(other, line))) continue;
     kept.push({ line, why: normaliseProse(move.why) });
@@ -127,7 +141,7 @@ function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText:
     if (resumeText) {
       const resolved = resolveCardLine(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) line = resolved.line;
+      if (resolved.status === "resolved") line = quoteFor(line, resolved.line, resumeText);
     }
     if (missing.some((other) => sameWords(other, requirement)) || kept.some((other) => sameWords(other.requirement, requirement))) continue;
     kept.push({ requirement, line });
@@ -278,10 +292,10 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
           issues.push({ path: `${path}.line`, message: `matches more than one resume line: "${card.line}"` });
           return;
         }
-        // The quote is widened to the whole resume line it sits on, unless that line is longer than a report can
-        // hold (a summary pasted as one paragraph). Then the model's own quote stands: it is on the resume, and a
-        // line past the limit would make the saved report unreadable when it is opened again.
-        if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) card = { ...card, line: resolved.line };
+        // The quote is widened to the whole resume line it sits on; on a line longer than the model can quote, a
+        // quote cut mid-sentence is run on to the sentence's end (quoteFor). Never past what a report holds: a
+        // line over the limit would make the saved report unreadable when it is opened again.
+        if (resolved.status === "resolved") card = { ...card, line: quoteFor(card.line, resolved.line, resumeText) };
       } else {
         for (const issue of ungroundedTokensInStatement(card.line, resumeText)) {
           issues.push({ path: `${path}.line`, message: `states a ${issue.kind} the resume doesn't have: "${issue.token}"` });
