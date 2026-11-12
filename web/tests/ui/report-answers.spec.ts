@@ -127,3 +127,35 @@ test("a saved report reopened elsewhere shows the stored answer, its line and Ad
   await expect(page.getByTestId("report-save-version")).toHaveCount(0);
   await expect(page.getByTestId("report-next-step").getByRole("button", { name: /Compare my revision/ })).toBeVisible();
 });
+
+test("a saved report is named and deleted from the report itself", async ({ page }) => {
+  await installSignedInSession(page, { freeUsesLeft: 0 });
+  const calls: { method: string; body: unknown }[] = [];
+  await page.route(`**/api/reports/${REPORT_ID}`, (route) => {
+    const method = route.request().method();
+    if (method === "GET") return route.fulfill({ json: { ok: true, report: { ...REPORT, report_id: REPORT_ID }, jdPreview: null, targetRole: null, lineAnswers: null, name: null } });
+    calls.push({ method, body: method === "PATCH" ? route.request().postDataJSON() : null });
+    return route.fulfill({ json: { ok: true } });
+  });
+  await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
+  const manage = page.getByTestId("report-manage");
+  await expect(manage).toBeVisible({ timeout: 30_000 });
+
+  // No name yet: the menu offers to give it one.
+  await manage.click();
+  await page.getByRole("menuitem", { name: "Name this report", exact: true }).click();
+  await page.getByLabel("Report name", { exact: true }).fill("After the rewrite");
+  await page.getByRole("button", { name: "Save", exact: true }).click();
+  await expect.poll(() => calls).toEqual([{ method: "PATCH", body: { name: "After the rewrite" } }]);
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+
+  // Named now: the same item renames, and deleting asks first, then leaves the report.
+  await manage.click();
+  await expect(page.getByRole("menuitem", { name: "Rename", exact: true })).toBeVisible();
+  await page.getByRole("menuitem", { name: "Delete report", exact: true }).click();
+  const confirm = page.getByRole("dialog");
+  await expect(confirm).toContainText("After the rewrite will be permanently deleted.");
+  await confirm.getByRole("button", { name: "Delete report", exact: true }).click();
+  await expect.poll(() => calls.at(-1)?.method).toBe("DELETE");
+  await expect(page).not.toHaveURL(new RegExp(REPORT_ID));
+});

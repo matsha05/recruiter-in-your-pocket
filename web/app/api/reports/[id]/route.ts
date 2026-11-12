@@ -31,7 +31,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant, line_answers")
+      .select("report_json, evidence_version, evidence_json, job_description_text, target_role, resume_variant, line_answers, name")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -69,6 +69,8 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       jdPreview: data.job_description_text?.slice(0, 200) || null,
       targetRole: data.target_role || null,
       resumeVariant: data.resume_variant || null,
+      // The name the person gave this report, for the rename control on the report page.
+      name: data.name || null,
       // The reader's own answers under each Critical Miss, so the revised line survives a reload (W3).
       lineAnswers: parseStoredLineAnswers(data.line_answers),
     });

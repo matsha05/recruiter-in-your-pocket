@@ -33,7 +33,7 @@ Routes: `/api/resume-feedback`, `/api/resume-feedback-stream`, `/auth`, `/extens
 | 13 | error | `web/lib/billing/generationFailureCopy.ts:49` | const[] | Your report was completed and counted toward your report allowance, but the connection ended before it appeared here |
 | 14 | error | `web/lib/billing/generationFailureCopy.ts:50` | const[] | We could not confirm whether this attempt used a report. Check how many reports you have left before trying again |
 
-## /auth, /reports, /sample-report, /workspace
+## /auth, /reports/[id], /sample-report, /workspace
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |

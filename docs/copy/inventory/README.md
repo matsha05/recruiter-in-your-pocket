@@ -8,10 +8,10 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 427 |
-| Files with copy | 258 |
-| Strings | 2980 |
-| Unique strings | 2488 |
+| Files scanned | 428 |
+| Files with copy | 259 |
+| Strings | 2984 |
+| Unique strings | 2487 |
 | Routes with copy | 118 |
 
 ## By moment
@@ -19,7 +19,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Moment | Strings |
 | --- | --- |
 | research | 990 |
-| account | 465 |
+| account | 469 |
 | marketing | 410 |
 | report | 285 |
 | pricing | 217 |
@@ -50,15 +50,15 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [jobs](./jobs.md) | 71 | `/jobs` |
 | [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
-| [reports](./reports.md) | 54 | `/reports` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
+| [reports](./reports.md) | 44 | `/reports` |
 | [pricing](./pricing.md) | 40 | `/pricing` |
 | [methodology](./methodology.md) | 32 | `/methodology` |
+| [reports-id](./reports-id.md) | 29 | `/reports/[id]` |
 | [dashboard](./dashboard.md) | 29 | `/dashboard` |
 | [unrouted](./unrouted.md) | 18 |  |
 | [status](./status.md) | 17 | `/status` |
-| [reports-id](./reports-id.md) | 15 | `/reports/[id]` |
 | [llms.txt](./llms.txt.md) | 15 | `/llms.txt` |
 | [resources](./resources.md) | 10 | `/resources`, `/resources/offer-negotiation`, `/resources/tech-offer-negotiation`, `/resources/tools/comp-calculator` |
 | [auth](./auth.md) | 7 | `/auth` |

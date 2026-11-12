@@ -282,28 +282,28 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 3 | account | `web/app/api/reports/[id]/route.ts:41` | key:message | We couldn't load this report. Refresh and try again. |
 | 4 | account | `web/app/api/reports/[id]/route.ts:48` | key:message | Report not found or you don't have access to it. |
 | 5 | account | `web/app/api/reports/[id]/route.ts:61` | key:message | This report must be rerun before it can be displayed. |
-| 6 | account | `web/app/api/reports/[id]/route.ts:77` | key:message | Could not load this report. Try again. |
-| 7 | account | `web/app/api/reports/[id]/route.ts:87` | key:message | We can’t find that report. Open it from My reports. |
-| 8 | account | `web/app/api/reports/[id]/route.ts:98` | key:message | Sign in to delete this report. |
-| 9 | account | `web/app/api/reports/[id]/route.ts:116` | key:message | We couldn’t confirm this report is yours. Refresh and try again. |
-| 10 | account | `web/app/api/reports/[id]/route.ts:119` | key:message | Could not confirm access to this report. Refresh the page and try again. |
-| 11 | account | `web/app/api/reports/[id]/route.ts:126` | key:message | Report not found or you don't have permission to delete it. |
-| 12 | account | `web/app/api/reports/[id]/route.ts:143` | key:message | We couldn’t delete this report. Try again. |
-| 13 | account | `web/app/api/reports/[id]/route.ts:146` | key:message | Could not delete this report. |
-| 14 | account | `web/app/api/reports/[id]/route.ts:163` | key:message | Report deletion could not be verified |
-| 15 | account | `web/app/api/reports/[id]/route.ts:163` | key:message | Report still existed after deletion |
-| 16 | account | `web/app/api/reports/[id]/route.ts:166` | key:message | Could not verify that this report was deleted. |
-| 17 | account | `web/app/api/reports/[id]/route.ts:171` | key:message | Report deleted. |
-| 18 | account | `web/app/api/reports/[id]/route.ts:174` | key:message | Could not delete this report. Try again. |
-| 19 | account | `web/app/api/reports/[id]/route.ts:184` | key:message | We can’t find that report. Open it from My reports. |
-| 20 | account | `web/app/api/reports/[id]/route.ts:195` | key:message | Sign in to rename this report. |
-| 21 | account | `web/app/api/reports/[id]/route.ts:209` | key:message | Keep the report name to 100 characters or fewer. |
-| 22 | account | `web/app/api/reports/[id]/route.ts:219` | key:message | Keep the version name to 50 characters or fewer. |
-| 23 | account | `web/app/api/reports/[id]/route.ts:228` | key:message | Enter a report name or version name to save. |
-| 24 | account | `web/app/api/reports/[id]/route.ts:245` | key:message | Report update failed |
-| 25 | account | `web/app/api/reports/[id]/route.ts:248` | key:message | Could not update this report. |
-| 26 | account | `web/app/api/reports/[id]/route.ts:253` | key:message | Report updated. |
-| 27 | account | `web/app/api/reports/[id]/route.ts:256` | key:message | Could not rename this report. Try again. |
+| 6 | account | `web/app/api/reports/[id]/route.ts:79` | key:message | Could not load this report. Try again. |
+| 7 | account | `web/app/api/reports/[id]/route.ts:89` | key:message | We can’t find that report. Open it from My reports. |
+| 8 | account | `web/app/api/reports/[id]/route.ts:100` | key:message | Sign in to delete this report. |
+| 9 | account | `web/app/api/reports/[id]/route.ts:118` | key:message | We couldn’t confirm this report is yours. Refresh and try again. |
+| 10 | account | `web/app/api/reports/[id]/route.ts:121` | key:message | Could not confirm access to this report. Refresh the page and try again. |
+| 11 | account | `web/app/api/reports/[id]/route.ts:128` | key:message | Report not found or you don't have permission to delete it. |
+| 12 | account | `web/app/api/reports/[id]/route.ts:145` | key:message | We couldn’t delete this report. Try again. |
+| 13 | account | `web/app/api/reports/[id]/route.ts:148` | key:message | Could not delete this report. |
+| 14 | account | `web/app/api/reports/[id]/route.ts:165` | key:message | Report deletion could not be verified |
+| 15 | account | `web/app/api/reports/[id]/route.ts:165` | key:message | Report still existed after deletion |
+| 16 | account | `web/app/api/reports/[id]/route.ts:168` | key:message | Could not verify that this report was deleted. |
+| 17 | account | `web/app/api/reports/[id]/route.ts:173` | key:message | Report deleted. |
+| 18 | account | `web/app/api/reports/[id]/route.ts:176` | key:message | Could not delete this report. Try again. |
+| 19 | account | `web/app/api/reports/[id]/route.ts:186` | key:message | We can’t find that report. Open it from My reports. |
+| 20 | account | `web/app/api/reports/[id]/route.ts:197` | key:message | Sign in to rename this report. |
+| 21 | account | `web/app/api/reports/[id]/route.ts:211` | key:message | Keep the report name to 100 characters or fewer. |
+| 22 | account | `web/app/api/reports/[id]/route.ts:221` | key:message | Keep the version name to 50 characters or fewer. |
+| 23 | account | `web/app/api/reports/[id]/route.ts:230` | key:message | Enter a report name or version name to save. |
+| 24 | account | `web/app/api/reports/[id]/route.ts:247` | key:message | Report update failed |
+| 25 | account | `web/app/api/reports/[id]/route.ts:250` | key:message | Could not update this report. |
+| 26 | account | `web/app/api/reports/[id]/route.ts:255` | key:message | Report updated. |
+| 27 | account | `web/app/api/reports/[id]/route.ts:258` | key:message | Could not rename this report. Try again. |
 
 ## /api/reports/[id]/answers
 

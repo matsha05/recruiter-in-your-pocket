@@ -1,14 +1,14 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 427,
-    "files_with_copy": 258,
-    "strings": 2980,
-    "unique_strings": 2488
+    "files_scanned": 428,
+    "files_with_copy": 259,
+    "strings": 2984,
+    "unique_strings": 2487
   },
   "by_moment": {
     "research": 990,
-    "account": 465,
+    "account": 469,
     "marketing": 410,
     "report": 285,
     "pricing": 217,
@@ -12793,7 +12793,7 @@
     {
       "text": "Could not load this report. Try again.",
       "kind": "key:message",
-      "line": 77,
+      "line": 79,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12804,7 +12804,7 @@
     {
       "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
-      "line": 87,
+      "line": 89,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12815,7 +12815,7 @@
     {
       "text": "Sign in to delete this report.",
       "kind": "key:message",
-      "line": 98,
+      "line": 100,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12826,7 +12826,7 @@
     {
       "text": "We couldn’t confirm this report is yours. Refresh and try again.",
       "kind": "key:message",
-      "line": 116,
+      "line": 118,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12837,7 +12837,7 @@
     {
       "text": "Could not confirm access to this report. Refresh the page and try again.",
       "kind": "key:message",
-      "line": 119,
+      "line": 121,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12848,7 +12848,7 @@
     {
       "text": "Report not found or you don't have permission to delete it.",
       "kind": "key:message",
-      "line": 126,
+      "line": 128,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12859,7 +12859,7 @@
     {
       "text": "We couldn’t delete this report. Try again.",
       "kind": "key:message",
-      "line": 143,
+      "line": 145,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12870,7 +12870,7 @@
     {
       "text": "Could not delete this report.",
       "kind": "key:message",
-      "line": 146,
+      "line": 148,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12881,7 +12881,7 @@
     {
       "text": "Report deletion could not be verified",
       "kind": "key:message",
-      "line": 163,
+      "line": 165,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12892,7 +12892,7 @@
     {
       "text": "Report still existed after deletion",
       "kind": "key:message",
-      "line": 163,
+      "line": 165,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12903,7 +12903,7 @@
     {
       "text": "Could not verify that this report was deleted.",
       "kind": "key:message",
-      "line": 166,
+      "line": 168,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12914,7 +12914,7 @@
     {
       "text": "Report deleted.",
       "kind": "key:message",
-      "line": 171,
+      "line": 173,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12925,7 +12925,7 @@
     {
       "text": "Could not delete this report. Try again.",
       "kind": "key:message",
-      "line": 174,
+      "line": 176,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12936,7 +12936,7 @@
     {
       "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
-      "line": 184,
+      "line": 186,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12947,7 +12947,7 @@
     {
       "text": "Sign in to rename this report.",
       "kind": "key:message",
-      "line": 195,
+      "line": 197,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12958,7 +12958,7 @@
     {
       "text": "Keep the report name to 100 characters or fewer.",
       "kind": "key:message",
-      "line": 209,
+      "line": 211,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12969,7 +12969,7 @@
     {
       "text": "Keep the version name to 50 characters or fewer.",
       "kind": "key:message",
-      "line": 219,
+      "line": 221,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12980,7 +12980,7 @@
     {
       "text": "Enter a report name or version name to save.",
       "kind": "key:message",
-      "line": 228,
+      "line": 230,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12991,7 +12991,7 @@
     {
       "text": "Report update failed",
       "kind": "key:message",
-      "line": 245,
+      "line": 247,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13002,7 +13002,7 @@
     {
       "text": "Could not update this report.",
       "kind": "key:message",
-      "line": 248,
+      "line": 250,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13013,7 +13013,7 @@
     {
       "text": "Report updated.",
       "kind": "key:message",
-      "line": 253,
+      "line": 255,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13024,7 +13024,7 @@
     {
       "text": "Could not rename this report. Try again.",
       "kind": "key:message",
-      "line": 256,
+      "line": 258,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -28015,7 +28015,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 102,
+      "line": 105,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28026,7 +28026,7 @@
     {
       "text": "The PDF couldn’t download. Try exporting again.",
       "kind": "call:ClientActionError",
-      "line": 116,
+      "line": 119,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28037,7 +28037,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 147,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28048,7 +28048,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 152,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28059,7 +28059,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 152,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28070,7 +28070,7 @@
     {
       "text": "Loading report…",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 164,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28081,7 +28081,7 @@
     {
       "text": "Report not found",
       "kind": "jsx-text",
-      "line": 166,
+      "line": 173,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28092,7 +28092,7 @@
     {
       "text": "Back to your workspace",
       "kind": "jsx-text",
-      "line": 171,
+      "line": 178,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28103,7 +28103,7 @@
     {
       "text": "Sign in to view this report",
       "kind": "jsx-text",
-      "line": 182,
+      "line": 189,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28114,7 +28114,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 192,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28125,7 +28125,7 @@
     {
       "text": "We couldn’t load this report.",
       "kind": "jsx-text",
-      "line": 196,
+      "line": 203,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28136,7 +28136,7 @@
     {
       "text": "Your report is safe.",
       "kind": "jsx-text",
-      "line": 198,
+      "line": 205,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28147,7 +28147,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 205,
+      "line": 212,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28158,7 +28158,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 211,
+      "line": 218,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28169,7 +28169,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 50,
+      "line": 47,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28180,7 +28180,7 @@
     {
       "text": "Lifetime access",
       "kind": "return",
-      "line": 70,
+      "line": 67,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28191,7 +28191,7 @@
     {
       "text": "Monthly plan",
       "kind": "return",
-      "line": 71,
+      "line": 68,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28202,7 +28202,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 74,
+      "line": 71,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28213,7 +28213,7 @@
     {
       "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
       "kind": "return",
-      "line": 77,
+      "line": 74,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28224,18 +28224,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 85,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Could not rename this report. Try again.",
-      "kind": "call:ClientActionError",
-      "line": 130,
+      "line": 81,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28246,29 +28235,7 @@
     {
       "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 153,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Could not delete this report. Try again.",
-      "kind": "call:ClientActionError",
-      "line": 175,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Report deleted",
-      "kind": "call:toast.success",
-      "line": 179,
+      "line": 97,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28279,7 +28246,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 191,
+      "line": 114,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28290,7 +28257,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 192,
+      "line": 115,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28301,7 +28268,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 195,
+      "line": 118,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28312,7 +28279,7 @@
     {
       "text": "Since version 1",
       "kind": "jsx-text",
-      "line": 231,
+      "line": 154,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28322,8 +28289,8 @@
     },
     {
       "text": "Opening both reports…",
-      "kind": "attr:loadingLabel",
-      "line": 248,
+      "kind": "jsx-text",
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28334,7 +28301,51 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 249,
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "const",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "const",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "attr:loadingLabel",
+      "line": 178,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "jsx-text",
+      "line": 179,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28345,7 +28356,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28356,7 +28367,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 276,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28367,84 +28378,7 @@
     {
       "text": "· Version",
       "kind": "jsx-text",
-      "line": 278,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Delete version {version?.number}",
-      "kind": "attr:aria-label",
-      "line": 306,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Report name",
-      "kind": "jsx-text",
-      "line": 327,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Name this version",
-      "kind": "attr:placeholder",
-      "line": 339,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Saving…",
-      "kind": "attr:loadingLabel",
-      "line": 342,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Cancel rename",
-      "kind": "attr:aria-label",
-      "line": 343,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Rename {reportTitle(report)}",
-      "kind": "attr:aria-label",
-      "line": 352,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Delete {reportTitle(report)}",
-      "kind": "attr:aria-label",
-      "line": 355,
+      "line": 207,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28455,7 +28389,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 369,
+      "line": 253,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28466,7 +28400,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 377,
+      "line": 261,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28477,7 +28411,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 387,
+      "line": 271,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28488,18 +28422,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 401,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Check a revision",
-      "kind": "jsx-text",
-      "line": 405,
+      "line": 281,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28510,7 +28433,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 417,
+      "line": 290,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28519,48 +28442,169 @@
       "table": "reports"
     },
     {
-      "text": "Check a revision",
-      "kind": "jsx-text",
-      "line": 444,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Open {title}",
+      "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 455,
+      "line": 317,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
       ],
       "moment": "account",
       "table": "reports"
+    },
+    {
+      "text": "Could not rename this report. Try again.",
+      "kind": "call:ClientActionError",
+      "line": 43,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Could not delete this report. Try again.",
+      "kind": "call:ClientActionError",
+      "line": 60,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Report deleted",
+      "kind": "call:toast.success",
+      "line": 61,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Rename or delete this report",
+      "kind": "attr:aria-label",
+      "line": 74,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this report",
+      "kind": "jsx-text",
+      "line": 81,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Delete report",
+      "kind": "jsx-text",
+      "line": 85,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Rename this report",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this report",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "The name leads its row on My reports. Leave it empty to show the verdict instead.",
+      "kind": "jsx-text",
+      "line": 94,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Report name",
+      "kind": "jsx-text",
+      "line": 97,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this version",
+      "kind": "attr:placeholder",
+      "line": 98,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Saving…",
+      "kind": "attr:loadingLabel",
+      "line": 101,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
     },
     {
       "text": "Delete this report?",
       "kind": "attr:title",
-      "line": 479,
-      "file": "web/components/reports/ReportHistoryList.tsx",
+      "line": 111,
+      "file": "web/components/reports/ReportManageMenu.tsx",
       "routes": [
-        "/reports"
+        "/reports/[id]"
       ],
       "moment": "account",
-      "table": "reports"
+      "table": "reports-id"
     },
     {
-      "text": "{reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact.",
+      "text": "{name || \"This report\"} will be permanently deleted. Your account and any other saved reports will stay intact.",
       "kind": "attr:description",
-      "line": 480,
-      "file": "web/components/reports/ReportHistoryList.tsx",
+      "line": 112,
+      "file": "web/components/reports/ReportManageMenu.tsx",
       "routes": [
-        "/reports"
+        "/reports/[id]"
       ],
       "moment": "account",
-      "table": "reports"
+      "table": "reports-id"
     },
     {
       "text": "All research",
@@ -31489,7 +31533,7 @@
       "file": "web/components/ui/input.tsx",
       "routes": [
         "/auth",
-        "/reports",
+        "/reports/[id]",
         "/sample-report",
         "/workspace"
       ],
@@ -31503,7 +31547,7 @@
       "file": "web/components/ui/input.tsx",
       "routes": [
         "/auth",
-        "/reports",
+        "/reports/[id]",
         "/sample-report",
         "/workspace"
       ],
