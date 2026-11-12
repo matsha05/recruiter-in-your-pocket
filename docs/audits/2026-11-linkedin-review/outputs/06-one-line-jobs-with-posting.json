@@ -1,60 +1,52 @@
 {
   "file": "02-one-line-jobs.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-11",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
-  "seconds": 27,
+  "seconds": 29,
   "report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 67,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer in payments, with a strong ledger project but little about the work in each job.",
+    "verdict": "Your work on payouts and ledger services caught my attention, and ledger-recon makes the payments connection stronger. I read to the end still wondering what you built or changed at Northwind Pay.",
     "write_up": [
-      "You're a senior backend engineer working on payouts and ledger services, with a Go reconciliation project. It's common to see a job described in one line and an earlier one left blank, but a recruiter may move on without knowing what you did in either role.",
-      "The ledger-recon project is the model: it names the library, the language, 1,200 GitHub stars and use by three payment companies. That work belongs much higher in the About section.",
-      "Start with the Northwind Pay job: say what you worked on within payouts and ledger services, and what changed. Then bring ledger-recon into the About and headline, and fill in the Kestrel Labs job. A recruiter can then assess your payments work without guessing what sits behind the titles."
+      "Senior backend engineering in payments is the thread here. It’s common to see a current job reduced to one line and an earlier job left blank, but that leaves a recruiter guessing about the work behind the titles.",
+      "The strongest detail is in Projects: ledger-recon names the library, Go, its 1,200 GitHub stars and its use by three payment companies. That’s a useful model for naming the work, though your part in the project isn’t stated.",
+      "Start with what you did on Northwind Pay’s payouts and ledger services, then bring the payments specialty into your headline and the project into your About. A recruiter hiring for money movement could then see both the field you work in and your part in it."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Senior Backend Engineer at Northwind Pay",
-        "cannot_tell": "This headline repeats your job title but leaves out the payments work. Payouts and ledger services give a recruiter a better reason to look closer.",
-        "example": "Senior Backend Engineer | Payouts and ledger services | Go, PostgreSQL",
-        "question": "What part of the payouts or ledger work is most central to your job?"
+        "cannot_tell": "This repeats your title and employer but leaves out the payments work. Payouts and ledger services are already on your profile, so put them beside the role.",
+        "example": "Senior Backend Engineer | payouts and ledger services | Go, PostgreSQL",
+        "question": "Which parts of payouts and ledger services have you worked on most?"
       },
       {
         "kind": "line",
         "where": "About",
         "line": "Passionate engineer with a track record of delivering scalable solutions. I enjoy hard problems and working with great teams.",
-        "cannot_tell": "This could be almost any engineer's About. Your ledger-recon project names the work and the companies using it, so let's bring that up here.",
-        "example": "I work on payouts and ledger services. My project, ledger-recon, is an open-source ledger reconciliation library in Go, used by three payment companies and with 1,200 GitHub stars.",
-        "question": "What work did you personally do on ledger-recon?"
+        "cannot_tell": "“Scalable solutions” could describe almost any engineer. Your payouts and ledger work, and the ledger-recon library in Projects, tell a recruiter much more.",
+        "example": "I’ve worked on payouts and ledger services. ledger-recon is an open-source ledger reconciliation library in Go, used by three payment companies.",
+        "question": "What was your part in ledger-recon?"
       },
       {
         "kind": "line",
         "where": "Northwind Pay, description",
         "line": "Worked on payouts and ledger services.",
-        "cannot_tell": "This names the services, but not your work on them. Someone searching for payment services, reliability or production systems has only this one line to go on under your current job.",
-        "example": "Worked on payouts and ledger services, [what you built or changed] for [who uses it].",
-        "question": "What did you build or change in the payouts or ledger services, and who uses it?"
+        "cannot_tell": "One line covers the work but not your part in it. Someone searching for payment services, reliability or reconciliation has no such terms to match in this job.",
+        "example": "Worked on payouts and ledger services, including [what you built or changed].",
+        "question": "Which parts of payouts and ledger services did you work on, and what did you build or change?"
       },
       {
         "kind": "structure",
         "where": "Kestrel Labs, description",
         "line": "The Software Engineer job at Kestrel Labs has no description.",
-        "cannot_tell": "The Kestrel Labs job leaves a recruiter guessing about your work there. Terms such as backend systems, services and production systems have nothing under this job to match.",
-        "example": "[What you built or maintained: services, applications, or infrastructure] using [languages or tools], for [who used it].",
-        "question": "At Kestrel Labs, did you build services, applications or infrastructure, and what languages or tools did you use?"
-      },
-      {
-        "kind": "keep",
-        "where": "Projects, ledger-recon",
-        "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
-        "cannot_tell": "Keep this as the model. It names the library's purpose and language, then tells a recruiter who uses it.",
-        "example": "",
-        "question": ""
+        "cannot_tell": "This job has a title and dates, but no systems or work beneath them. Searches for software development, APIs or backend systems have nothing to match in this job.",
+        "example": "[What you built, maintained or tested] for [who used it], using [languages or systems].",
+        "question": "At Kestrel Labs, which systems did you build, maintain or test, and which languages or tools did you use?"
       }
     ],
     "fit": {
@@ -62,23 +54,23 @@
         "Senior Backend Engineer",
         "Senior Backend Engineer, Money Movement"
       ],
-      "why": "Your current title and payouts and ledger services work point to senior backend engineering in payments.",
-      "level": "senior, the Senior Backend Engineer title at Northwind Pay",
-      "note": "'Senior Backend Engineer' is in your headline and current title. 'Payouts' is in the Northwind Pay description; 'Go' and 'reconciliation' are in the project description. 'PostgreSQL' and 'Kafka' are among your top skills. The posting's title belongs in the headline if it describes your role; idempotent, event-driven systems, reliability, on-call, technical design reviews and double-entry accounting belong in the Northwind Pay description. Add them only if they describe your work. Start by moving payouts and ledger services into the headline.",
+      "why": "Your headline names Senior Backend Engineer, and your current job names payouts and ledger services.",
+      "level": "senior, the Senior Backend Engineer title",
+      "note": "“Senior Backend Engineer” is in your headline and current title. “Payouts” and “ledger” are in your current job, while “reconciliation” is in Projects. “Go” is in Top Skills and Projects, and “PostgreSQL” and “Kafka” are in Top Skills. The posting’s “Money Movement,” “idempotent,” “on-call,” “technical design reviews,” “reliability” and “double-entry accounting” are not on your profile. Add them only if they describe your work: Money Movement belongs in the headline, and the others belong in the current job description. Move your payouts and ledger specialty into the headline first.",
       "posting": {
-        "summary": "The role is for a senior backend engineer working on money movement, payouts, ledger services and reliability.",
+        "summary": "Cobalt Pay is hiring a Senior Backend Engineer, Money Movement to build payment services in Go, own payouts reliability and partner on reconciliation and controls.",
         "missing": [
-          "Senior Backend Engineer, Money Movement",
+          "Money Movement",
           "idempotent",
-          "event-driven systems",
-          "reliability",
           "on-call",
-          "technical design reviews"
+          "technical design reviews",
+          "reliability",
+          "double-entry accounting"
         ],
         "lead": [
           {
             "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
-            "why": "This answers the posting's asks for Go and reconciliation. Bring it into the first lines of your About."
+            "why": "This answers the posting’s asks for Go and reconciliation. Bring the library into the first lines of your About, and name your part in it."
           }
         ]
       }
@@ -114,7 +106,7 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68,
+    "content_score": 67,
     "document": "linkedin"
   }
 }
