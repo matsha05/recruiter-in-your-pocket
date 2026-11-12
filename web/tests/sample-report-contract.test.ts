@@ -56,4 +56,32 @@ for (const quote of [JORDAN_EXAMPLE.verdict, JORDAN_EXAMPLE.line, JORDAN_EXAMPLE
   assert.ok(homepage.includes(quote.replace(/"/g, '\\"')), `the homepage example quotes "${quote}"`);
 }
 
+// ---- The samples by situation (Nov 11, 2026): each is real output on its own fictional resume, unedited ----
+{
+  const { SAMPLE_REPORTS, samplePath, sampleBySlug } = require("../lib/reports/sample-reports");
+  const { PUBLIC_PAGES } = require("../lib/seo/public-pages");
+  assert.equal(SAMPLE_REPORTS[0].slug, null, "Jordan's report stays at /sample-report");
+  assert.equal(sampleBySlug("no-such-sample"), undefined);
+  const REAL_ORGANIZATIONS = /ohio state|cardinal health|lake travis|kipp|general assembly|coursera|texas state|oracle|university of washington|jiao tong|st\. thomas/iu;
+  for (const entry of SAMPLE_REPORTS.slice(1)) {
+    const published = WorklistReportSchema.parse(JSON.parse(readFileSync(path.join(process.cwd(), `public/sample-reports/${entry.slug}.json`), "utf8")));
+    const record = JSON.parse(readFileSync(path.join(process.cwd(), `tests/fixtures/sample/${entry.fixture}-report.generated.json`), "utf8"));
+    const text = readFileSync(path.join(process.cwd(), `tests/fixtures/sample/${entry.fixture}-resume.txt`), "utf8");
+    assert.deepEqual(JSON.parse(JSON.stringify(published)), JSON.parse(JSON.stringify(WorklistReportSchema.parse(record.payload))), `${entry.slug} is the generated payload, unedited`);
+    assert.equal(record.model, "gpt-6.1-terra");
+    assert.equal(record.prompt_version, "resume_v3");
+    for (const [index, card] of published.cards.entries()) {
+      if (card.kind === "line" || card.kind === "keep" || card.kind === "upgrade") {
+        assert.equal(resolveCardLine(card.line, text).status, "resolved", `${entry.slug} card ${index + 1} quotes a line that is on the resume`);
+      }
+    }
+    assert.ok(text.startsWith(entry.person.toUpperCase()) || text.startsWith(entry.person), `${entry.slug} is ${entry.person}'s resume`);
+    assert.match(text, /@example\.com/u, `${entry.slug} uses a reserved example address`);
+    assert.doesNotMatch(text + JSON.stringify(published), REAL_ORGANIZATIONS, `${entry.slug} names no real employer or school`);
+    assert.ok(!/critical miss/iu.test(JSON.stringify(published)));
+    assert.ok(PUBLIC_PAGES.some((page: { path: string }) => page.path === samplePath(entry)), `${samplePath(entry)} is listed as a public page`);
+    assert.ok(entry.description.includes(entry.person) && /fictional/u.test(entry.description), `${entry.slug}'s description says the person is fictional`);
+  }
+}
+
 console.log("Sample report content contracts passed");

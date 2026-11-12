@@ -1,0 +1,45 @@
+Maria Delgado
+Austin, TX | maria.delgado@example.com | 512-555-0188 | linkedin.com/in/mariadelgado-example
+
+SUMMARY
+Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.
+
+CERTIFICATIONS
+Data Analytics Professional Certificate (online), 2026
+Data Analytics Bootcamp, Hill Country Data Academy, Austin TX, January 2026 - April 2026
+
+SKILLS
+SQL, Excel (Pivot Tables, VLOOKUP), Tableau, Python (pandas, matplotlib), Google Sheets, Data Visualization, Statistics, Data Cleaning, Presentation Skills, Curriculum Design, Classroom Management
+
+PROFESSIONAL EXPERIENCE
+
+Mathematics Teacher, Cedar Ridge High School, Austin, TX
+August 2018 - June 2026
+- Taught Algebra II and AP Statistics to approximately 150 students per year across 6 class periods
+- Developed and implemented engaging curriculum aligned with state standards
+- Analyzed student assessment data to identify learning gaps and adjust instruction
+- Served as Math Department Data Lead, compiling benchmark results for department meetings
+- Mentored 3 new teachers through the district induction program
+- Communicated regularly with parents and administrators regarding student progress
+- Coached the UIL Mathematics team
+
+Middle School Math Teacher, Eastside Preparatory Middle School, Austin, TX
+August 2016 - June 2018
+- Taught 7th grade math in a Title I charter school
+- Used data from weekly quizzes to group students for small-group instruction
+- Participated in professional learning communities
+
+DATA PROJECTS
+
+Austin Housing Affordability Analysis (Bootcamp Capstone)
+- Analyzed 10 years of Austin housing and income data using Python and SQL
+- Created a Tableau dashboard showing affordability trends by zip code
+- Presented findings to a panel of instructors and peers
+
+Student Performance Dashboard
+- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years
+- Used by the math department to decide which units needed re-teaching
+
+EDUCATION
+Bachelor of Science in Mathematics, State University, San Marcos, TX, 2016
+Texas Teaching Certificate, Mathematics 7-12

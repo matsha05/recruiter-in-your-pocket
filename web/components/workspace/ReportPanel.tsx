@@ -24,6 +24,8 @@ import { candidateNameOf, formatReadTime, targetRoleOf } from "@/lib/reports/rep
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { isLinkedInReport } from "@/lib/reports/report-document";
 import { wordingFor } from "@/lib/reports/worklist-presentation";
+import { useSamplePerson } from "@/components/workspace/report/SamplePerson";
+import Link from "next/link";
 import { hasRoleSection, worklistTargetRole } from "@/lib/reports/worklist-presentation";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
@@ -109,6 +111,7 @@ export default function ReportPanel({
         setShareMode(shareParam === "1");
     }, [searchParams, shareEnabled]);
 
+    const sample = useSamplePerson();
     const displayReport = useMemo(() => {
         if (!report) return null;
         return shareMode ? redactReport(report) : report;
@@ -206,10 +209,18 @@ export default function ReportPanel({
                             {/* On a phone the name and the job share a line when they fit, so the row stays one line tall. */}
                             <div className="min-w-0 max-sm:flex max-sm:flex-wrap max-sm:items-baseline max-sm:gap-x-2">
                                 <p className="text-small font-semibold text-foreground">
-                                    {isSample ? "Sample report · Jordan is fictional" : (!shareMode && !isLinkedInReport(displayReport) && candidateNameOf(resumeText)) || wordingFor(displayReport).header}
+                                    {isSample ? `Sample report · ${sample.person} is fictional` : (!shareMode && !isLinkedInReport(displayReport) && candidateNameOf(resumeText)) || wordingFor(displayReport).header}
                                 </p>
                                 {(targetRole || readTime) && (
                                     <p className="text-label font-normal text-muted-foreground">{[targetRole, readTime].filter(Boolean).join(" · ")}</p>
+                                )}
+                                {/* The other samples, by situation (lib/reports/sample-reports.ts). */}
+                                {isSample && sample.samples.length > 1 && (
+                                    <nav aria-label="Sample reports" className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-label max-sm:basis-full" data-testid="sample-switcher">
+                                        {sample.samples.map((other) => other.current
+                                            ? <span key={other.href} aria-current="page" className="font-semibold text-foreground">{other.label}</span>
+                                            : <Link key={other.href} href={other.href} className="riyp-link-quiet text-muted-foreground">{other.label}</Link>)}
+                                    </nav>
                                 )}
                             </div>
                             {isSample && onNewReport ? (
