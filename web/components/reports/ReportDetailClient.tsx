@@ -13,6 +13,7 @@ import { Analytics } from "@/lib/analytics";
 import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
+import { isLinkedInReport } from "@/lib/reports/report-document";
 import { ReportManageMenu } from "@/components/reports/ReportManageMenu";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
@@ -148,6 +149,12 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           </Link>
           {/* The header already offers "New report"; from a saved report the next step is checking a revision against it. */}
           <div className="flex items-center gap-1">
+            {/* Every saved resume report can be read against a posting; an older report has no link for it in its body. On a phone it is at the report's end. */}
+            {state === "ready" && report && !isLinkedInReport(report) ? (
+              <Link href={`/workspace?posting=${encodeURIComponent(reportId)}`} className="riyp-link-nav mr-4 hidden min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex" data-testid="bar-read-against-posting">
+                Read it against a posting
+              </Link>
+            ) : null}
             <Link href={revisionHref || "/workspace"} className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               {revisionHref ? "Compare my revision" : "New report"}
             </Link>

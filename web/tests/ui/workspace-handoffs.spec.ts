@@ -43,6 +43,7 @@ async function buildWorkspaceHarness() {
       }`,
     "@/components/providers/AuthProvider": `const refreshUser = async () => {};
       const user = JSON.parse(sessionStorage.getItem("workspace-harness-user") || "null");
+      export function useOptionalAuthUser() { return useAuth()?.user ?? null; }
       export function useAuth() { return {user, isLoading: false, refreshUser}; }`,
     "@/components/workspace/WorkspaceOverlays": `export default function WorkspaceOverlays() { return null; }`,
     "@/components/workspace/LinkedInModeSection": `export default function LinkedInModeSection() { return null; }`,

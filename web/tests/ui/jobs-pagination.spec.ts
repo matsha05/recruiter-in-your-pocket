@@ -61,6 +61,7 @@ async function buildJobsHarness(component: 'JobsClient' | 'JobDetailClient' = 'J
         window.__jobsHarness = {setAccount(id) { setUser(id ? {id, email: "candidate@example.test"} : null); }};
         return <AuthContext.Provider value={{user, isLoading: false}}>{children}</AuthContext.Provider>;
       }
+      export function useOptionalAuthUser() { return useAuth()?.user ?? null; }
       export function useAuth() { return useContext(AuthContext); }`,
   };
   const result = await build({

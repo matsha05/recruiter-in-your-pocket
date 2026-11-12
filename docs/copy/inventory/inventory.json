@@ -1,17 +1,17 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 439,
-    "files_with_copy": 263,
-    "strings": 3022,
-    "unique_strings": 2523
+    "files_scanned": 440,
+    "files_with_copy": 265,
+    "strings": 3032,
+    "unique_strings": 2530
   },
   "by_moment": {
     "research": 990,
-    "account": 469,
+    "account": 470,
     "marketing": 411,
-    "report": 319,
-    "pricing": 218,
+    "report": 327,
+    "pricing": 219,
     "upload": 124,
     "legal": 113,
     "extension": 98,
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 97,
+      "line": 100,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 114,
+      "line": 117,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 123,
+      "line": 126,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 129,
+      "line": 132,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 135,
+      "line": 138,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 145,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -12518,7 +12518,7 @@
     {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
-      "line": 56,
+      "line": 57,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12529,7 +12529,7 @@
     {
       "text": "Choose a file to upload.",
       "kind": "key:message",
-      "line": 68,
+      "line": 69,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12540,7 +12540,7 @@
     {
       "text": "This file is too large. Choose a file of 4 MB or less.",
       "kind": "key:message",
-      "line": 76,
+      "line": 77,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12551,7 +12551,7 @@
     {
       "text": "Could not read this file. Try uploading a new PDF or DOCX copy.",
       "kind": "key:message",
-      "line": 98,
+      "line": 99,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -17775,7 +17775,7 @@
       "table": "shared"
     },
     {
-      "text": "You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.",
+      "text": "You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and works down the page top to bottom, the way a recruiter reads it.",
       "kind": "jsx-text",
       "line": 269,
       "file": "web/components/compare/comparisons.tsx",
@@ -19513,7 +19513,7 @@
       "table": "shared"
     },
     {
-      "text": "You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.",
+      "text": "You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question, top to bottom, the way a recruiter reads.",
       "kind": "jsx-text",
       "line": 624,
       "file": "web/components/compare/comparisons.tsx",
@@ -20173,7 +20173,7 @@
       "table": "shared"
     },
     {
-      "text": "You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.",
+      "text": "You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and works down the page top to bottom, the way a recruiter reads it.",
       "kind": "jsx-text",
       "line": 744,
       "file": "web/components/compare/comparisons.tsx",
@@ -24434,7 +24434,7 @@
     {
       "text": "Open your reports, settings and account.",
       "kind": "attr:description",
-      "line": 19,
+      "line": 20,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24457,7 +24457,7 @@
     {
       "text": "Checking account…",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 23,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24480,7 +24480,7 @@
     {
       "text": "Lifetime access",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 36,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24503,7 +24503,7 @@
     {
       "text": "Monthly plan",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 41,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24526,7 +24526,7 @@
     {
       "text": "Free report available",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 54,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24549,7 +24549,7 @@
     {
       "text": "{user.freeUsesLeft} free reports available",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 54,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24572,7 +24572,7 @@
     {
       "text": "Free report used",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 55,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24595,7 +24595,7 @@
     {
       "text": "Sign out",
       "kind": "jsx-text",
-      "line": 62,
+      "line": 63,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -24618,7 +24618,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 69,
+      "line": 70,
       "file": "web/components/layout/MobileNav.tsx",
       "routes": [
         "/dashboard",
@@ -27354,8 +27354,8 @@
     },
     {
       "text": "Sample report: {sample.situation.toLowerC…}",
-      "kind": "const",
-      "line": 15,
+      "kind": "key:title",
+      "line": 17,
       "file": "web/components/marketing/SampleReportBySituation.tsx",
       "routes": [
         "/sample-report/career-break",
@@ -28317,7 +28317,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 105,
+      "line": 106,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28328,7 +28328,7 @@
     {
       "text": "The PDF couldn’t download. Try exporting again.",
       "kind": "call:ClientActionError",
-      "line": 119,
+      "line": 120,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28339,7 +28339,18 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 147,
+      "line": 148,
+      "file": "web/components/reports/ReportDetailClient.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "report",
+      "table": "reports-id"
+    },
+    {
+      "text": "Read it against a posting",
+      "kind": "jsx-text",
+      "line": 155,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28350,7 +28361,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 152,
+      "line": 159,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28361,7 +28372,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 152,
+      "line": 159,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28372,7 +28383,7 @@
     {
       "text": "Loading report…",
       "kind": "jsx-text",
-      "line": 164,
+      "line": 171,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28383,7 +28394,7 @@
     {
       "text": "Report not found",
       "kind": "jsx-text",
-      "line": 173,
+      "line": 180,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28394,7 +28405,7 @@
     {
       "text": "Back to your workspace",
       "kind": "jsx-text",
-      "line": 178,
+      "line": 185,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28405,7 +28416,7 @@
     {
       "text": "Sign in to view this report",
       "kind": "jsx-text",
-      "line": 189,
+      "line": 196,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28416,7 +28427,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 192,
+      "line": 199,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28427,7 +28438,7 @@
     {
       "text": "We couldn’t load this report.",
       "kind": "jsx-text",
-      "line": 203,
+      "line": 210,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28438,7 +28449,7 @@
     {
       "text": "Your report is safe.",
       "kind": "jsx-text",
-      "line": 205,
+      "line": 212,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28449,7 +28460,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 212,
+      "line": 219,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28460,7 +28471,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 225,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28471,7 +28482,18 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 47,
+      "line": 50,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.",
+      "kind": "const",
+      "line": 68,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28482,7 +28504,7 @@
     {
       "text": "Lifetime access",
       "kind": "return",
-      "line": 67,
+      "line": 73,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28493,7 +28515,7 @@
     {
       "text": "Monthly plan",
       "kind": "return",
-      "line": 68,
+      "line": 74,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28504,7 +28526,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 71,
+      "line": 77,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28515,7 +28537,7 @@
     {
       "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
       "kind": "return",
-      "line": 74,
+      "line": 81,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28526,7 +28548,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 81,
+      "line": 88,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28537,7 +28559,7 @@
     {
       "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 97,
+      "line": 104,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28548,7 +28570,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 114,
+      "line": 121,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28559,7 +28581,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 115,
+      "line": 122,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28570,7 +28592,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 118,
+      "line": 125,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28581,7 +28603,7 @@
     {
       "text": "Since version 1",
       "kind": "jsx-text",
-      "line": 154,
+      "line": 161,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28592,7 +28614,7 @@
     {
       "text": "Opening both reports…",
       "kind": "jsx-text",
-      "line": 175,
+      "line": 183,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28603,7 +28625,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 175,
+      "line": 183,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28614,7 +28636,7 @@
     {
       "text": "Opening both reports…",
       "kind": "const",
-      "line": 175,
+      "line": 183,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28625,7 +28647,7 @@
     {
       "text": "See what changed",
       "kind": "const",
-      "line": 175,
+      "line": 183,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28636,7 +28658,7 @@
     {
       "text": "Opening both reports…",
       "kind": "attr:loadingLabel",
-      "line": 178,
+      "line": 186,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28647,7 +28669,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 179,
+      "line": 187,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28658,7 +28680,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 205,
+      "line": 213,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28669,7 +28691,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 205,
+      "line": 213,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28680,7 +28702,7 @@
     {
       "text": "· Version",
       "kind": "jsx-text",
-      "line": 207,
+      "line": 215,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28691,7 +28713,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 253,
+      "line": 261,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28702,7 +28724,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 261,
+      "line": 269,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28713,7 +28735,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 271,
+      "line": 279,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28724,7 +28746,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 281,
+      "line": 289,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28735,7 +28757,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 290,
+      "line": 298,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28746,7 +28768,7 @@
     {
       "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 317,
+      "line": 325,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -30760,7 +30782,7 @@
     {
       "text": "Open account menu",
       "kind": "attr:aria-label",
-      "line": 39,
+      "line": 40,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -30852,7 +30874,7 @@
     {
       "text": "Lifetime access",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 64,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -30944,7 +30966,7 @@
     {
       "text": "Monthly plan",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 69,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31036,7 +31058,7 @@
     {
       "text": "Free report available",
       "kind": "jsx-text",
-      "line": 81,
+      "line": 82,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31128,7 +31150,7 @@
     {
       "text": "{user.freeUsesLeft} free reports available",
       "kind": "jsx-text",
-      "line": 81,
+      "line": 82,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31220,7 +31242,7 @@
     {
       "text": "Free report used",
       "kind": "jsx-text",
-      "line": 82,
+      "line": 83,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31312,7 +31334,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 93,
+      "line": 94,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31404,7 +31426,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 99,
+      "line": 100,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -31496,7 +31518,7 @@
     {
       "text": "Sign out",
       "kind": "jsx-text",
-      "line": 126,
+      "line": 127,
       "file": "web/components/shared/UserNav.tsx",
       "routes": [
         "/",
@@ -34688,7 +34710,7 @@
     {
       "text": "We couldn't load your purchases. Try again.",
       "kind": "call:ClientActionError",
-      "line": 117,
+      "line": 118,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34701,7 +34723,7 @@
     {
       "text": "We couldn't load your receipts. Try again.",
       "kind": "call:ClientActionError",
-      "line": 126,
+      "line": 127,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34714,7 +34736,7 @@
     {
       "text": "Profile updated",
       "kind": "call:toast.success",
-      "line": 221,
+      "line": 222,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34727,7 +34749,7 @@
     {
       "text": "We couldn't save your name. Try again.",
       "kind": "call:toast.error",
-      "line": 223,
+      "line": 224,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34740,7 +34762,7 @@
     {
       "text": "We couldn't delete your account. Try again or contact support.",
       "kind": "call:ClientActionError",
-      "line": 234,
+      "line": 235,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34753,7 +34775,7 @@
     {
       "text": "Account deleted",
       "kind": "call:toast.success",
-      "line": 246,
+      "line": 247,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34766,7 +34788,7 @@
     {
       "text": "We couldn't start your download. Try Export data again.",
       "kind": "call:ClientActionError",
-      "line": 263,
+      "line": 264,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34779,7 +34801,7 @@
     {
       "text": "Preparing export",
       "kind": "call:toast.message",
-      "line": 271,
+      "line": 272,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34792,7 +34814,7 @@
     {
       "text": "We're gathering your account data for download.",
       "kind": "key:description",
-      "line": 272,
+      "line": 273,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34805,7 +34827,7 @@
     {
       "text": "We couldn't check whether your download is ready. Try Export data again.",
       "kind": "call:ClientActionError",
-      "line": 285,
+      "line": 286,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34818,7 +34840,7 @@
     {
       "text": "We couldn't prepare your download. Try Export data again.",
       "kind": "call:ClientActionError",
-      "line": 290,
+      "line": 291,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34831,7 +34853,7 @@
     {
       "text": "Your export is still processing. Try again in a moment.",
       "kind": "call:ClientActionError",
-      "line": 295,
+      "line": 296,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34844,7 +34866,7 @@
     {
       "text": "We couldn't download your account data. Try Export data again.",
       "kind": "call:ClientActionError",
-      "line": 301,
+      "line": 302,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34857,7 +34879,7 @@
     {
       "text": "Export downloaded",
       "kind": "call:toast.success",
-      "line": 319,
+      "line": 320,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34870,7 +34892,7 @@
     {
       "text": "We couldn't open checkout. Try again.",
       "kind": "call:ClientActionError",
-      "line": 350,
+      "line": 351,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34883,7 +34905,7 @@
     {
       "text": "We couldn't open the billing portal. Try again.",
       "kind": "call:ClientActionError",
-      "line": 373,
+      "line": 374,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34896,7 +34918,7 @@
     {
       "text": "We couldn't restore your purchase. Try again.",
       "kind": "call:ClientActionError",
-      "line": 391,
+      "line": 392,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34909,7 +34931,7 @@
     {
       "text": "Access check complete",
       "kind": "call:toast.success",
-      "line": 399,
+      "line": 400,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34922,7 +34944,7 @@
     {
       "text": "Lifetime access",
       "kind": "const",
-      "line": 418,
+      "line": 419,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34935,7 +34957,7 @@
     {
       "text": "Monthly plan",
       "kind": "const",
-      "line": 420,
+      "line": 421,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34948,7 +34970,7 @@
     {
       "text": "{user.paidUsesLeft || 0} {(user.paidUsesLeft || 0) …} left on your pass",
       "kind": "const",
-      "line": 422,
+      "line": 423,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34961,7 +34983,7 @@
     {
       "text": "{user?.freeUsesLeft || 0} free report{(user?.freeUsesLeft || 0)…} left",
       "kind": "const",
-      "line": 423,
+      "line": 426,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34974,7 +34996,7 @@
     {
       "text": "{Math.max(0, Number(passFo…} remaining",
       "kind": "const",
-      "line": 431,
+      "line": 434,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -34986,19 +35008,6 @@
     },
     {
       "text": "No renewal",
-      "kind": "const",
-      "line": 437,
-      "file": "web/components/workspace/SettingsClient.tsx",
-      "routes": [
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching"
-      ],
-      "moment": "account",
-      "table": "settings"
-    },
-    {
-      "text": "Renews on {passExpiryDate}",
       "kind": "const",
       "line": 440,
       "file": "web/components/workspace/SettingsClient.tsx",
@@ -35011,7 +35020,7 @@
       "table": "settings"
     },
     {
-      "text": "Expires on {passExpiryDate}",
+      "text": "Renews on {passExpiryDate}",
       "kind": "const",
       "line": 443,
       "file": "web/components/workspace/SettingsClient.tsx",
@@ -35024,9 +35033,22 @@
       "table": "settings"
     },
     {
+      "text": "Expires on {passExpiryDate}",
+      "kind": "const",
+      "line": 446,
+      "file": "web/components/workspace/SettingsClient.tsx",
+      "routes": [
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching"
+      ],
+      "moment": "account",
+      "table": "settings"
+    },
+    {
       "text": "Opening your settings",
       "kind": "attr:title",
-      "line": 454,
+      "line": 457,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35039,7 +35061,7 @@
     {
       "text": "Loading account settings…",
       "kind": "jsx-text",
-      "line": 458,
+      "line": 461,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35052,7 +35074,7 @@
     {
       "text": "Sign in to open settings",
       "kind": "jsx-text",
-      "line": 477,
+      "line": 480,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35065,7 +35087,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 482,
+      "line": 485,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35078,7 +35100,7 @@
     {
       "text": "Back to workspace",
       "kind": "jsx-text",
-      "line": 489,
+      "line": 492,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35091,7 +35113,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 528,
+      "line": 531,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35104,7 +35126,7 @@
     {
       "text": "Settings sections",
       "kind": "attr:aria-label",
-      "line": 536,
+      "line": 539,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35117,7 +35139,7 @@
     {
       "text": "Saving…",
       "kind": "key:label",
-      "line": 576,
+      "line": 579,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35130,7 +35152,7 @@
     {
       "text": "Your data",
       "kind": "jsx-text",
-      "line": 586,
+      "line": 589,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35143,7 +35165,7 @@
     {
       "text": "Your reports, passes, receipts and profile, as a file.",
       "kind": "jsx-text",
-      "line": 587,
+      "line": 590,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35156,7 +35178,7 @@
     {
       "text": "Preparing export…",
       "kind": "key:label",
-      "line": 595,
+      "line": 598,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35169,7 +35191,7 @@
     {
       "text": "Delete account",
       "kind": "jsx-text",
-      "line": 600,
+      "line": 603,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35182,7 +35204,7 @@
     {
       "text": "Your reports and your account go with it. Nothing comes back.",
       "kind": "jsx-text",
-      "line": 601,
+      "line": 604,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35195,7 +35217,7 @@
     {
       "text": "Deleting…",
       "kind": "key:label",
-      "line": 609,
+      "line": 612,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35208,7 +35230,7 @@
     {
       "text": "Job matching",
       "kind": "jsx-text",
-      "line": 619,
+      "line": 622,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35221,7 +35243,7 @@
     {
       "text": "Your pass",
       "kind": "jsx-text",
-      "line": 628,
+      "line": 631,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35234,7 +35256,7 @@
     {
       "text": "{Number(activePass.uses_re…} reports left on your pass, one sheet each",
       "kind": "attr:label",
-      "line": 631,
+      "line": 634,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35247,7 +35269,7 @@
     {
       "text": "Purchases are tied to",
       "kind": "jsx-text",
-      "line": 634,
+      "line": 637,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35260,7 +35282,7 @@
     {
       "text": "Restore access",
       "kind": "key:label",
-      "line": 643,
+      "line": 646,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35273,7 +35295,7 @@
     {
       "text": "Checking access…",
       "kind": "key:label",
-      "line": 643,
+      "line": 646,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35286,7 +35308,7 @@
     {
       "text": "Manage legacy plan",
       "kind": "key:label",
-      "line": 651,
+      "line": 654,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35299,7 +35321,7 @@
     {
       "text": "Opening billing…",
       "kind": "key:label",
-      "line": 651,
+      "line": 654,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35312,7 +35334,7 @@
     {
       "text": "We couldn&apos;t find billing records for this email. If you used a different email at checkout, sign in with that email and choose Restore access.",
       "kind": "jsx-text",
-      "line": 657,
+      "line": 660,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35325,7 +35347,7 @@
     {
       "text": "More reports",
       "kind": "jsx-text",
-      "line": 665,
+      "line": 668,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35338,7 +35360,7 @@
     {
       "text": "Five more over 90 days, one payment, no renewal.",
       "kind": "jsx-text",
-      "line": 666,
+      "line": 669,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35351,7 +35373,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:label",
-      "line": 674,
+      "line": 677,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35364,7 +35386,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 674,
+      "line": 677,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35377,7 +35399,7 @@
     {
       "text": "Job Search Pass",
       "kind": "jsx-text",
-      "line": 680,
+      "line": 683,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35390,7 +35412,7 @@
     {
       "text": "Five sheets of paper: the Job Search Pass",
       "kind": "attr:label",
-      "line": 682,
+      "line": 685,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35403,7 +35425,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 687,
+      "line": 690,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35416,7 +35438,7 @@
     {
       "text": "Loading…",
       "kind": "jsx-text",
-      "line": 698,
+      "line": 701,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35429,7 +35451,7 @@
     {
       "text": "Purchase history could not load.",
       "kind": "jsx-text",
-      "line": 702,
+      "line": 705,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35442,7 +35464,7 @@
     {
       "text": "We couldn&apos;t retrieve your purchases. Try again to see the list.",
       "kind": "jsx-text",
-      "line": 703,
+      "line": 706,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35455,7 +35477,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 705,
+      "line": 708,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35468,7 +35490,7 @@
     {
       "text": "No purchases yet. If you already paid, choose Restore access above.",
       "kind": "jsx-text",
-      "line": 711,
+      "line": 714,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35481,7 +35503,7 @@
     {
       "text": "{uses} remaining",
       "kind": "const",
-      "line": 722,
+      "line": 725,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35494,7 +35516,7 @@
     {
       "text": "No renewal",
       "kind": "jsx-text",
-      "line": 730,
+      "line": 733,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35507,7 +35529,7 @@
     {
       "text": "Loading…",
       "kind": "jsx-text",
-      "line": 748,
+      "line": 751,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35520,7 +35542,7 @@
     {
       "text": "Receipts could not load.",
       "kind": "jsx-text",
-      "line": 752,
+      "line": 755,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35533,7 +35555,7 @@
     {
       "text": "Try again. If you need an invoice now, email support@recruiterinyourpocket.com.",
       "kind": "jsx-text",
-      "line": 753,
+      "line": 756,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35546,7 +35568,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 755,
+      "line": 758,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35559,7 +35581,7 @@
     {
       "text": "No receipts found for this account. If you recently paid, try Refresh.",
       "kind": "jsx-text",
-      "line": 760,
+      "line": 763,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35572,7 +35594,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 771,
+      "line": 774,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35585,7 +35607,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 772,
+      "line": 775,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35598,7 +35620,7 @@
     {
       "text": "Loading…",
       "kind": "key:label",
-      "line": 781,
+      "line": 784,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35611,7 +35633,7 @@
     {
       "text": "Where should we send your receipt?",
       "kind": "jsx-text",
-      "line": 793,
+      "line": 796,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35624,7 +35646,7 @@
     {
       "text": "We will link access to this email.",
       "kind": "jsx-text",
-      "line": 794,
+      "line": 797,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35637,7 +35659,7 @@
     {
       "text": "Billing email",
       "kind": "attr:aria-label",
-      "line": 805,
+      "line": 808,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35650,7 +35672,7 @@
     {
       "text": "Continue to checkout",
       "kind": "key:label",
-      "line": 815,
+      "line": 818,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35663,7 +35685,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 815,
+      "line": 818,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35676,7 +35698,7 @@
     {
       "text": "Delete your account?",
       "kind": "attr:title",
-      "line": 828,
+      "line": 831,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35689,7 +35711,7 @@
     {
       "text": "This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone.",
       "kind": "attr:description",
-      "line": 829,
+      "line": 832,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35787,7 +35809,7 @@
     {
       "text": "Compare reports",
       "kind": "jsx-text",
-      "line": 39,
+      "line": 40,
       "file": "web/components/workspace/VersionComparisonView.tsx",
       "routes": [
         "/reports",
@@ -35804,7 +35826,7 @@
     {
       "text": "The lines, score and verdict from your earlier report beside the newer one.",
       "kind": "jsx-text",
-      "line": 43,
+      "line": 44,
       "file": "web/components/workspace/VersionComparisonView.tsx",
       "routes": [
         "/reports",
@@ -36841,25 +36863,7 @@
       "table": "shared"
     },
     {
-      "text": "The summary line is the same.",
-      "kind": "jsx-text",
-      "line": 101,
-      "file": "web/components/workspace/report/ReadComparison.tsx",
-      "routes": [
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "The summary line changed too.",
+      "text": "The verdict reads the same.",
       "kind": "jsx-text",
       "line": 101,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -36879,7 +36883,7 @@
     {
       "text": "Send it. Then read it against the posting you're going for.",
       "kind": "const",
-      "line": 45,
+      "line": 49,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36896,7 +36900,7 @@
     {
       "text": "Check my updated profile",
       "kind": "const",
-      "line": 47,
+      "line": 51,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36913,7 +36917,7 @@
     {
       "text": "Read it against a posting",
       "kind": "const",
-      "line": 47,
+      "line": 51,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36930,7 +36934,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 47,
+      "line": 51,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36945,58 +36949,7 @@
       "table": "shared"
     },
     {
-      "text": "That’s",
-      "kind": "jsx-text",
-      "line": 54,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "’s. Yours is next.",
-      "kind": "jsx-text",
-      "line": 54,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Get your free report",
-      "kind": "jsx-text",
-      "line": 55,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Or read another sample:",
+      "text": "Going for a specific job?",
       "kind": "jsx-text",
       "line": 60,
       "file": "web/components/workspace/report/ReportEnding.tsx",
@@ -37013,9 +36966,94 @@
       "table": "shared"
     },
     {
+      "text": "Read it against a posting",
+      "kind": "jsx-text",
+      "line": 61,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "That’s",
+      "kind": "jsx-text",
+      "line": 69,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "’s. Yours is next.",
+      "kind": "jsx-text",
+      "line": 69,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Get your free report",
+      "kind": "jsx-text",
+      "line": 70,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Or read another sample:",
+      "kind": "jsx-text",
+      "line": 75,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "Your line is ready. Save this version.",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 92,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37032,7 +37070,7 @@
     {
       "text": "Save this version.",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 92,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37049,7 +37087,7 @@
     {
       "text": "Your answers and the revised line stay with it.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 94,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37066,7 +37104,7 @@
     {
       "text": "Saving…",
       "kind": "jsx-text",
-      "line": 82,
+      "line": 97,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37083,7 +37121,7 @@
     {
       "text": "Save this version",
       "kind": "jsx-text",
-      "line": 82,
+      "line": 97,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37100,7 +37138,7 @@
     {
       "text": "Check my updated profile",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 100,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37117,7 +37155,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 100,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37134,7 +37172,7 @@
     {
       "text": "Kept in",
       "kind": "jsx-text",
-      "line": 102,
+      "line": 119,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37151,7 +37189,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 102,
+      "line": 119,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37168,7 +37206,7 @@
     {
       "text": "The comparison lasts for this visit. Save the report to keep it.",
       "kind": "jsx-text",
-      "line": 121,
+      "line": 138,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -37185,7 +37223,7 @@
     {
       "text": "That resume doesn't have the lines this report quotes. Paste the version you ran the report on.",
       "kind": "return",
-      "line": 153,
+      "line": 154,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37202,7 +37240,7 @@
     {
       "text": "Read the rest",
       "kind": "jsx-text",
-      "line": 225,
+      "line": 226,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37219,7 +37257,7 @@
     {
       "text": "Before the bullets",
       "kind": "jsx-text",
-      "line": 234,
+      "line": 235,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37236,7 +37274,7 @@
     {
       "text": "Was this the right thing to fix first?",
       "kind": "key:question",
-      "line": 267,
+      "line": 268,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37253,7 +37291,7 @@
     {
       "text": "Keep this one",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 284,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37270,7 +37308,7 @@
     {
       "text": "Keep these. They&apos;re working.",
       "kind": "jsx-text",
-      "line": 326,
+      "line": 327,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37287,7 +37325,7 @@
     {
       "text": "How your experience fits this role.",
       "kind": "jsx-text",
-      "line": 340,
+      "line": 341,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37304,7 +37342,7 @@
     {
       "text": "Roles your experience points toward.",
       "kind": "jsx-text",
-      "line": 340,
+      "line": 341,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37321,7 +37359,7 @@
     {
       "text": "Roles to consider",
       "kind": "jsx-text",
-      "line": 344,
+      "line": 345,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37338,7 +37376,7 @@
     {
       "text": "Level suggested by the resume:",
       "kind": "jsx-text",
-      "line": 346,
+      "line": 347,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37355,7 +37393,7 @@
     {
       "text": "How the score works",
       "kind": "jsx-text",
-      "line": 354,
+      "line": 355,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -37372,7 +37410,7 @@
     {
       "text": "The score weighs four things a recruiter notices: the results you show, how clearly each line reads, how your experience fits together, and how easy the text is to follow. It doesn&apos;t predict interviews or offers.",
       "kind": "jsx-text",
-      "line": 358,
+      "line": 359,
       "file": "web/components/workspace/report/ReportStream.tsx",
       "routes": [
         "/reports/[id]",
@@ -38508,6 +38546,42 @@
       "table": "shared"
     },
     {
+      "text": "One more line is in the report.",
+      "kind": "jsx-text",
+      "line": 56,
+      "file": "web/components/workspace/report/worklist/AcrossShapesComparison.tsx",
+      "routes": [
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "{rest} more lines are in the report.",
+      "kind": "jsx-text",
+      "line": 56,
+      "file": "web/components/workspace/report/worklist/AcrossShapesComparison.tsx",
+      "routes": [
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "As written:",
       "kind": "jsx-text",
       "line": 60,
@@ -38801,7 +38875,7 @@
     {
       "text": "Score {report.score} out of 99",
       "kind": "attr:aria-label",
-      "line": 115,
+      "line": 121,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38818,7 +38892,7 @@
     {
       "text": "What the score means",
       "kind": "jsx-text",
-      "line": 209,
+      "line": 215,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38835,7 +38909,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work.",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 221,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38852,7 +38926,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 221,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -39105,6 +39179,100 @@
       ],
       "moment": "email",
       "table": "api"
+    },
+    {
+      "text": "No reports left on your pass",
+      "kind": "const",
+      "line": 23,
+      "file": "web/lib/billing/accountPassStatus.ts",
+      "routes": [
+        "/",
+        "/auth",
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/dashboard",
+        "/extension",
+        "/guides",
+        "/guides/offer-negotiation",
+        "/guides/tech-offer-negotiation",
+        "/guides/tools/comp-calculator",
+        "/help",
+        "/jobs",
+        "/jobs/[id]",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/pricing",
+        "/privacy",
+        "/purchase/confirmed",
+        "/purchase/restore",
+        "/reports",
+        "/reports/[id]",
+        "/research",
+        "/research/asking-for-a-referral",
+        "/research/ats",
+        "/research/ats-myths",
+        "/research/automation-and-bias",
+        "/research/automation-filter-points",
+        "/research/bias-limits-optimization",
+        "/research/career-breaks",
+        "/research/gaps-and-pivots",
+        "/research/hiring-discrimination-meta-analysis",
+        "/research/how-people-scan",
+        "/research/how-recruiters-read",
+        "/research/human-vs-algorithm",
+        "/research/impact",
+        "/research/linkedin-visibility",
+        "/research/linkedin-vs-resume",
+        "/research/offer",
+        "/research/page-two-gate",
+        "/research/quantifying-impact",
+        "/research/read",
+        "/research/recruiter-search-behavior",
+        "/research/referral-advantage",
+        "/research/referral-advantage-quantified",
+        "/research/referrals",
+        "/research/resume-error-tax",
+        "/research/resume-length-myths",
+        "/research/salary-anchors",
+        "/research/salary-history-bans",
+        "/research/signal-vs-clarity",
+        "/research/skills-based-hiring",
+        "/research/skills-first-promise-reality",
+        "/research/social-screening",
+        "/research/spelling-errors-impact",
+        "/research/star-method",
+        "/research/story",
+        "/research/structured-interviews-why-star",
+        "/research/who-you-are",
+        "/research/writing-quality-hire-probability",
+        "/resources",
+        "/resources/offer-negotiation",
+        "/resources/tech-offer-negotiation",
+        "/resources/tools/comp-calculator",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/settings/support-reply/[emailId]",
+        "/signin",
+        "/status",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
     },
     {
       "text": "Monthly plan",
@@ -40083,7 +40251,7 @@
     {
       "text": "5 more reports, good for 90 days. No automatic renewal.",
       "kind": "key:terms",
-      "line": 32,
+      "line": 34,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40109,7 +40277,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:cta",
-      "line": 33,
+      "line": 35,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40135,7 +40303,7 @@
     {
       "text": "Get your free report",
       "kind": "key:buttonText",
-      "line": 44,
+      "line": 46,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40161,7 +40329,7 @@
     {
       "text": "One complete resume report",
       "kind": "key:text",
-      "line": 46,
+      "line": 48,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40187,7 +40355,7 @@
     {
       "text": "Where your resume stands, and why",
       "kind": "key:text",
-      "line": 47,
+      "line": 49,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40213,7 +40381,7 @@
     {
       "text": "Every line that needs work, with the line as written and what to add",
       "kind": "key:text",
-      "line": 48,
+      "line": 50,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40239,7 +40407,7 @@
     {
       "text": "A revised line, written only from your facts",
       "kind": "key:text",
-      "line": 49,
+      "line": 51,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40265,7 +40433,7 @@
     {
       "text": "PDF export and saved reports when you sign in. No card needed.",
       "kind": "key:text",
-      "line": 50,
+      "line": 52,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40291,7 +40459,7 @@
     {
       "text": "Job Search Pass",
       "kind": "key:label",
-      "line": 55,
+      "line": 57,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40317,7 +40485,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:buttonText",
-      "line": 58,
+      "line": 60,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40343,7 +40511,7 @@
     {
       "text": "Re-check a revision and see which lines came off the list",
       "kind": "key:text",
-      "line": 61,
+      "line": 63,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40369,7 +40537,7 @@
     {
       "text": "Use any report to review your LinkedIn profile",
       "kind": "key:text",
-      "line": 63,
+      "line": 65,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40395,7 +40563,7 @@
     {
       "text": "$29 once. Good for 90 days. No automatic renewal.",
       "kind": "key:text",
-      "line": 64,
+      "line": 66,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -44617,6 +44785,82 @@
       "table": "shared"
     },
     {
+      "text": "The earlier report named only its top problems and scored your resume differently. This one lists every line that needs work, so a longer list or a different score doesn't mean a weaker resume.",
+      "kind": "const",
+      "line": 448,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "{now.length} {now.length === 1 ? \"line …} work in this version",
+      "kind": "const",
+      "line": 462,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "{gone.length} of the {problems.length} lines the earlier report led with {gone.length === 1 ? \"is\" …} off the list.",
+      "kind": "assign",
+      "line": 476,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "{still.length === 1 ? \"One…} still there, and {needWorkClause}.",
+      "kind": "assign",
+      "line": 477,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "The page never names the job it's for.",
       "kind": "const",
       "line": 45,
@@ -45347,6 +45591,10 @@
         "/resources/offer-negotiation",
         "/resources/tech-offer-negotiation",
         "/resources/tools/comp-calculator",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
         "/terms"
       ],
       "moment": "marketing",

@@ -8,10 +8,10 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 439 |
-| Files with copy | 263 |
-| Strings | 3022 |
-| Unique strings | 2523 |
+| Files scanned | 440 |
+| Files with copy | 265 |
+| Strings | 3032 |
+| Unique strings | 2530 |
 | Routes with copy | 123 |
 
 ## By moment
@@ -19,10 +19,10 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Moment | Strings |
 | --- | --- |
 | research | 990 |
-| account | 469 |
+| account | 470 |
 | marketing | 411 |
-| report | 319 |
-| pricing | 218 |
+| report | 327 |
+| pricing | 219 |
 | upload | 124 |
 | legal | 113 |
 | extension | 98 |
@@ -39,7 +39,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [shared](./shared.md) | 921 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 99 more |
+| [shared](./shared.md) | 929 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 99 more |
 | [research](./research.md) | 675 | `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks` and 19 more |
 | [api](./api.md) | 266 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 25 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
@@ -51,10 +51,10 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
-| [reports](./reports.md) | 44 | `/reports` |
+| [reports](./reports.md) | 45 | `/reports` |
 | [pricing](./pricing.md) | 40 | `/pricing` |
 | [methodology](./methodology.md) | 32 | `/methodology` |
-| [reports-id](./reports-id.md) | 29 | `/reports/[id]` |
+| [reports-id](./reports-id.md) | 30 | `/reports/[id]` |
 | [dashboard](./dashboard.md) | 29 | `/dashboard` |
 | [unrouted](./unrouted.md) | 18 |  |
 | [status](./status.md) | 17 | `/status` |

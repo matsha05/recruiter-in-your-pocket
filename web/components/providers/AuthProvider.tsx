@@ -295,6 +295,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
 }
 
+/** The signed-in person where a provider may be absent (a report rendered on its own, as the tests and the PDF do). */
+export function useOptionalAuthUser(): AuthUser | null {
+    return useContext(AuthContext)?.user ?? null;
+}
+
 export function useAuth() {
     const context = useContext(AuthContext);
     if (context === undefined) {

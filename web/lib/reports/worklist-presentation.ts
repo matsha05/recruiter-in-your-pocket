@@ -419,3 +419,62 @@ export function compareWorklists(previous: Pick<WorklistReport, "cards" | "score
   const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since ${since}. That's the right direction!` : `Down ${Math.abs(delta)} since ${since}.`;
   return { gone, still, added, delta, title, intro, sum };
 }
+
+// ---- An older report beside a worklist report (live test, November 12, 2026) ----
+// A report saved before November 6, 2026 names its top one to three problems; a worklist report lists every
+// line that needs work, and its score is worked out differently. So the two can be compared on one thing only:
+// whether the lines the older report led with are still on the list. The longer list and the score are said
+// to be what they are, a different report, never a change in the resume.
+
+/** One of an older report's top problems: the resume line it quoted, and its note. */
+export interface EarlierProblem {
+  line: string;
+  note: string;
+}
+
+export interface AcrossShapesComparison {
+  /** The older report's problems whose line is no longer on the list. */
+  gone: EarlierProblem[];
+  /** The older report's problems whose line is still on the list. */
+  still: EarlierProblem[];
+  /** Every line that needs work now, in reading order. */
+  now: WorklistCard[];
+  title: string;
+  intro: string;
+  /** Why the list is longer and the scores aren't compared. */
+  note: string;
+}
+
+export const ACROSS_SHAPES_NOTE = "The earlier report named only its top problems and scored your resume differently. This one lists every line that needs work, so a longer list or a different score doesn't mean a weaker resume.";
+
+export function compareAcrossShapes(earlier: readonly EarlierProblem[], current: Pick<WorklistReport, "cards">): AcrossShapesComparison {
+  const now = workCards(current);
+  const identities = now.map((card) => canonicalSourceIdentity(card.line).toLocaleLowerCase()).filter(Boolean);
+  const onList = (problem: EarlierProblem) => {
+    const identity = canonicalSourceIdentity(problem.line).toLocaleLowerCase();
+    return Boolean(identity) && identities.some((line) => line === identity || line.includes(identity) || identity.includes(line));
+  };
+  const problems = earlier.filter((problem) => problem.line.trim());
+  const still = problems.filter(onList);
+  const gone = problems.filter((problem) => !onList(problem));
+  const needWorkClause = now.length === 0
+    ? "nothing in this version needs work"
+    : `${now.length} ${now.length === 1 ? "line needs" : "lines need"} work in this version`;
+  const needWork = `${needWorkClause[0].toUpperCase()}${needWorkClause.slice(1)}.`;
+  let title: string;
+  let intro: string;
+  if (problems.length === 0) {
+    title = needWork;
+    intro = "";
+  } else if (gone.length === 0) {
+    title = problems.length === 1 ? "The line the earlier report led with is still on the list." : "The lines the earlier report led with are still on the list.";
+    intro = needWork;
+  } else if (still.length === 0) {
+    title = problems.length === 1 ? "The line the earlier report led with is off the list." : "The lines the earlier report led with are off the list.";
+    intro = needWork;
+  } else {
+    title = `${gone.length} of the ${problems.length} lines the earlier report led with ${gone.length === 1 ? "is" : "are"} off the list.`;
+    intro = `${still.length === 1 ? "One is" : `${still.length} are`} still there, and ${needWorkClause}.`;
+  }
+  return { gone, still, now, title, intro, note: ACROSS_SHAPES_NOTE };
+}

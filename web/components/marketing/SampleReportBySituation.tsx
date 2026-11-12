@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Footer from "@/components/landing/Footer";
 import WorkspaceClient from "@/components/workspace/WorkspaceClient";
@@ -12,14 +13,8 @@ import { SAMPLE_REPORTS, sampleBySlug, samplePath } from "@/lib/reports/sample-r
 export function sampleReportMetadata(slug: string): Metadata {
   const sample = sampleBySlug(slug);
   if (!sample) return {};
-  const title = `Sample report: ${sample.situation.toLowerCase()}`;
-  return {
-    title,
-    description: sample.description,
-    alternates: { canonical: samplePath(sample) },
-    openGraph: { title, description: sample.description, url: `https://www.recruiterinyourpocket.com${samplePath(sample)}`, images: ["/opengraph-image?v=20261104"], type: "website" },
-    twitter: { card: "summary_large_image", title, description: sample.description, images: ["/opengraph-image?v=20261104"] },
-  };
+  // The shared builder keeps the title short enough to show in full and gives the share card its alt text.
+  return pageMetadata({ path: samplePath(sample), title: `Sample report: ${sample.situation.toLowerCase()}`, description: sample.description });
 }
 
 export function SampleReportBySituation({ slug, report }: { slug: string; report: unknown }) {

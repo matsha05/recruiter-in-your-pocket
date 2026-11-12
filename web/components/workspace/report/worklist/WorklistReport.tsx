@@ -19,6 +19,8 @@ import { FinishedLines, type FinishedLine } from "./FinishedLines";
 import { FirstPass } from "./FirstPass";
 import { WorklistCard, type CardState } from "./WorklistCard";
 import { WorklistComparison } from "./WorklistComparison";
+import { AcrossShapesComparison } from "./AcrossShapesComparison";
+import { isLinkedInReport } from "@/lib/reports/report-document";
 import styles from "./Worklist.module.css";
 
 export interface WorklistReportProps {
@@ -106,9 +108,13 @@ export function WorklistReport({
   // A re-check compares like with like: a profile with a profile, a resume with a resume.
   const previous = comparisonBaseline && isWorklistReport(comparisonBaseline) && reportDocumentKind(comparisonBaseline) === reportDocumentKind(report) ? comparisonBaseline : null;
 
+  // A revision of a report saved before the worklist: the two aren't the same kind of report, and the comparison says so.
+  const olderBaseline = comparisonBaseline && !isWorklistReport(comparisonBaseline) && reportDocumentKind(report) === "resume" && !isLinkedInReport(comparisonBaseline) ? comparisonBaseline : null;
+
   return (
     <div className={cn(styles.root, className)} data-testid="worklist-report">
       {previous && <WorklistComparison previous={previous} current={report} />}
+      {olderBaseline && <AcrossShapesComparison previous={olderBaseline} current={report} />}
 
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
         <div className={styles.top}>

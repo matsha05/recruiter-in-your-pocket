@@ -1,5 +1,6 @@
 "use client";
 
+import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 import Link from "next/link";
@@ -35,6 +36,8 @@ export type ReportHistoryItem = {
   revises?: string | null;
   /** What this version's list looks like against the resume's first version: lines off it, still on it, new. */
   revisions?: (RevisionProgress & { sinceId: string }) | null;
+  /** Version 1 of this resume was saved before the worklist report: its list and score aren't compared with this one's. */
+  earlierShape?: boolean;
 };
 
 type Comparison = { earlier: { id: string; createdAt: string; score: number; report: ReportData; label: string }; current: { id: string; createdAt: string; score: number; report: ReportData; label: string } };
@@ -61,8 +64,11 @@ function reportTitle(report: ReportHistoryItem) {
   return report.name || (report.isProfile ? LINKEDIN_SAVED_PREVIEW : "Resume report");
 }
 
+/** Under "Since version 1" when that version is an older kind of report: no bare "Down 2." with nothing behind it. */
+const EARLIER_SHAPE_NOTE = "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.";
+
 /** What the signed-in person has left, in the words the upload page and Settings use. */
-function accessLine(user: { membership?: string | null; paidUsesLeft?: number | null; freeUsesLeft?: number | null } | null | undefined) {
+function accessLine(user: { membership?: string | null; paidUsesLeft?: number | null; freeUsesLeft?: number | null; postingReads?: boolean | null } | null | undefined) {
   if (!user) return null;
   if (user.membership === "lifetime") return "Lifetime access";
   if (user.membership === "monthly") return "Monthly plan";
@@ -70,6 +76,7 @@ function accessLine(user: { membership?: string | null; paidUsesLeft?: number | 
     const paid = Number(user.paidUsesLeft || 0);
     return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
   }
+  if (isPassSpent(user)) return PASS_SPENT_LABEL;
   const free = Number(user.freeUsesLeft || 0);
   return `${free} free report${free === 1 ? "" : "s"} left`;
 }
@@ -139,7 +146,7 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
     const first = group[group.length - 1];
     const lists = report.revisions && report.revisions.sinceId === first.id ? report.revisions : null;
     const delta = typeof report.score === "number" && typeof first.score === "number" ? report.score - first.score : null;
-    if (!lists && delta === null) return null;
+    if (!lists && delta === null && !report.earlierShape) return null;
     // With three or more versions, the last step is said too: a resume can be up overall and down on the latest try.
     const step = version.change && version.change.from !== 1 ? `${versionChangeLabel(version.change)}.` : null;
     return { first, lists, delta, step, version };
@@ -153,7 +160,8 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
       <div className={styles.journey} data-testid="report-journey">
         <p className={styles.journeyLabel}>Since version 1 <span>· {formatReportDate(first.createdAt)}</span></p>
         {lists ? <p className={styles.journeyLines}>{revisionProgressLabel(lists)}</p> : null}
-        {delta !== null ? (
+        {report.earlierShape ? <p className={styles.journeyLines}>{EARLIER_SHAPE_NOTE}</p> : null}
+        {delta !== null && !report.earlierShape ? (
           <p className={styles.journeyScore}>
             <span data-up={delta > 0 || undefined}>{revisionScoreLabel(delta, scoreBandFor(first.score ?? 0).name, scoreBandFor(report.score ?? 0).name)}</span>
             {step ? <span>{step}</span> : null}

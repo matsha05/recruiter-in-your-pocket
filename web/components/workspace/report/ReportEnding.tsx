@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { useOptionalAuthUser } from "@/components/providers/AuthProvider";
+import { isPassSpent } from "@/lib/billing/accountPassStatus";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { reportWording } from "@/lib/reports/worklist-presentation";
 import { useSamplePerson } from "./SamplePerson";
@@ -26,6 +28,8 @@ export interface ReportEndingProps {
   revisedCount: number;
   onStartReport?: () => void;
   onStartRevision?: () => void;
+  /** A saved resume report that has no posting link of its own (the older report shape): the ending offers the read. */
+  onReadAgainstPosting?: () => void;
   onSaveReport?: () => void;
   isSavingReport?: boolean;
   onUpgrade?: () => void;
@@ -36,7 +40,7 @@ export interface ReportEndingProps {
  * saving this version (W3), the re-check second; an anonymous report points at the re-check, or at the pass
  * once the free report is spent. A clear page ends on sending it, then the posting (Matt, Nov 5, 2026).
  */
-export function ReportEnding({ document = "resume", isSample, isSignedIn, isExhausted, ready, clean = false, allAddressed, revisedCount, onStartReport, onStartRevision, onSaveReport, isSavingReport = false, onUpgrade }: ReportEndingProps) {
+export function ReportEnding({ document = "resume", isSample, isSignedIn, isExhausted, ready, clean = false, allAddressed, revisedCount, onStartReport, onStartRevision, onReadAgainstPosting, onSaveReport, isSavingReport = false, onUpgrade }: ReportEndingProps) {
   // Matt, November 6, 2026: on a strong resume, say so and say the resume isn't the problem (copy system §3, pair 40).
   const wording = reportWording(document);
   const isProfile = document === "linkedin";
@@ -46,6 +50,17 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
   const readyNote = ready && clean ? wording.readyNote : null;
   const revisionLabel = isProfile ? "Check my updated profile" : ready ? "Read it against a posting" : "Compare my revision";
   const addressedHeading = wording.addressed(revisedCount);
+  // A pass holder whose reports are used has paid: the ending says what the pass still does, not "your free report".
+  const user = useOptionalAuthUser();
+  const exhaustedCopy = isPassSpent(user)
+    ? JOB_SEARCH_PASS_DECISION.passSpent
+    : `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB_SEARCH_PASS_DECISION.whenToBuy}`;
+  const postingLink = onReadAgainstPosting && !isProfile && !ready ? (
+    <p className={styles.endingNote}>
+      Going for a specific job?{" "}
+      <button type="button" className="riyp-link focus-ring" onClick={onReadAgainstPosting} data-testid="ending-read-against-posting">Read it against a posting</button>
+    </p>
+  ) : null;
 
   if (isSample) {
     if (!onStartReport) return null;
@@ -85,7 +100,8 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
             <Button variant="quiet" onClick={onStartRevision}>{isProfile ? "Check my updated profile" : "Compare my revision"} <ArrowRight className="size-4" weight="bold" /></Button>
           )}
         </div>
-        {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
+        {postingLink}
+        {isExhausted && <p className={styles.endingNote}>{isPassSpent(user) ? JOB_SEARCH_PASS_DECISION.passSpent : JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
       </section>
     );
   }
@@ -97,8 +113,9 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
           {allAddressed ? addressedHeading : readyEnding || "Made your edits? See what changed."}
         </h2>
         {!allAddressed && readyNote && <p className={styles.endingCopy}>{readyNote}</p>}
-        {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
+        {isExhausted && <p className={styles.endingCopy}>{exhaustedCopy}</p>}
         <div><Button variant="primary" onClick={onStartRevision}>{revisionLabel}<ArrowRight className="size-4" weight="bold" /></Button></div>
+        {postingLink}
         <p className={styles.endingNote} data-testid="report-kept">Kept in <Link href="/reports" className="riyp-link">My reports</Link>.</p>
         {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.terms}</p>}
       </section>
@@ -112,7 +129,7 @@ export function ReportEnding({ document = "resume", isSample, isSignedIn, isExha
           {allAddressed ? addressedHeading : readyEnding || (isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed.")}
         </h2>
         {!allAddressed && readyNote && <p className={styles.endingCopy}>{readyNote}</p>}
-        {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
+        {isExhausted && <p className={styles.endingCopy}>{exhaustedCopy}</p>}
         <div>
           <Button variant="primary" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
             {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : revisionLabel}<ArrowRight className="size-4" weight="bold" />
