@@ -1,0 +1,257 @@
+{
+  "case_id": "v2_known_names_results_two_seats",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Stripe, Netflix, Airbnb with results; leads a team and still recruits, so the next seat is open.",
+  "resume_file": "resumes/v2_known_names_results_two_seats.txt",
+  "resume_sha256": "fd717ea2ab231490575b007ed11d44e32c0f5722939d266a7e56e791c23eb197",
+  "resume_words": 187,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:42:45.440Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7592,
+        "completion_tokens": 1448,
+        "total_tokens": 9040,
+        "cached_prompt_tokens": 6872,
+        "cache_write_prompt_tokens": 717,
+        "reasoning_tokens": 724
+      },
+      "cost_usd": 0.00848285,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 22958
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Stripe, Netflix and Airbnb get my attention, and your hiring and team leadership work backs up the names. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong recruiting leadership resume! At Stripe, you show the hiring plan, the hires against it and the team you lead, while Netflix and Airbnb show the searches and programs you built along the way.",
+      "The site reliability interview loop is a great model: you name your partner, the work you changed and the drop in time to offer. Your progression from technical recruiter to recruiting lead is easy to follow, and your experience leads before education.",
+      "Your resume isn’t what stands between you and a conversation. Competition for recruiting leadership roles and a referral can matter too. If you’re aiming for the next level, add the team priorities and decisions you own, where true."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 4",
+        "line": "- Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Keep this as a model. It connects a concrete change in the hiring process to a before-and-after measure, without making a recruiter guess who worked with you.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 2",
+        "line": "- Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a role above recruiting lead, the priorities and decisions you own would add to the team leadership already shown here. Add them if they were yours.",
+        "example": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches; set [team priorities] and make [team-level decisions]",
+        "question": "What team priorities and decisions do you own?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Airbnb, Technical Recruiter, line 2",
+        "line": "- Started the company's first sourcing program for returning parents, which produced 12 hires in its first year",
+        "cannot_tell": "Consider moving this above the hiring total in the Airbnb role. Starting a new sourcing program and showing what it produced makes the work especially memorable.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current Stripe role combines infrastructure hiring, staff-level searches and leadership of recruiters and sourcers.",
+      "level": "manager, leads four recruiters and two sourcers",
+      "note": "Your experience points toward recruiting leadership roles that still involve senior technical searches. The Netflix management searches and Airbnb sourcing program also show work beyond individual engineering searches.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Stripe, Netflix and Airbnb get my attention, and your hiring and team leadership work backs up the names. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong recruiting leadership resume! At Stripe, you show the hiring plan, the hires against it and the team you lead, while Netflix and Airbnb show the searches and programs you built along the way.",
+      "The site reliability interview loop is a great model: you name your partner, the work you changed and the drop in time to offer. Your progression from technical recruiter to recruiting lead is easy to follow, and your experience leads before education.",
+      "Your resume isn’t what stands between you and a conversation. Competition for recruiting leadership roles and a referral can matter too. If you’re aiming for the next level, add the team priorities and decisions you own, where true."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Keep this as a model. It connects a concrete change in the hiring process to a before-and-after measure, without making a recruiter guess who worked with you.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a role above recruiting lead, the priorities and decisions you own would add to the team leadership already shown here. Add them if they were yours.",
+        "example": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches; set [team priorities] and make [team-level decisions]",
+        "question": "What team priorities and decisions do you own?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Airbnb, Technical Recruiter, line 2",
+        "line": "Started the company's first sourcing program for returning parents, which produced 12 hires in its first year",
+        "cannot_tell": "Consider moving this above the hiring total in the Airbnb role. Starting a new sourcing program and showing what it produced makes the work especially memorable.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current Stripe role combines infrastructure hiring, staff-level searches and leadership of recruiters and sourcers.",
+      "level": "manager, leads four recruiters and two sourcers",
+      "note": "Your experience points toward recruiting leadership roles that still involve senior technical searches. The Netflix management searches and Airbnb sourcing program also show work beyond individual engineering searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Stripe, Netflix and Airbnb get my attention, and your hiring and team leadership work backs up the names. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong recruiting leadership resume! At Stripe, you show the hiring plan, the hires against it and the team you lead, while Netflix and Airbnb show the searches and programs you built along the way.",
+      "The site reliability interview loop is a great model: you name your partner, the work you changed and the drop in time to offer. Your progression from technical recruiter to recruiting lead is easy to follow, and your experience leads before education.",
+      "Your resume isn’t what stands between you and a conversation. Competition for recruiting leadership roles and a referral can matter too. If you’re aiming for the next level, add the team priorities and decisions you own, where true."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Keep this as a model. It connects a concrete change in the hiring process to a before-and-after measure, without making a recruiter guess who worked with you.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a role above recruiting lead, the priorities and decisions you own would add to the team leadership already shown here. Add them if they were yours.",
+        "example": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches; set [team priorities] and make [team-level decisions]",
+        "question": "What team priorities and decisions do you own?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Airbnb, Technical Recruiter, line 2",
+        "line": "Started the company's first sourcing program for returning parents, which produced 12 hires in its first year",
+        "cannot_tell": "Consider moving this above the hiring total in the Airbnb role. Starting a new sourcing program and showing what it produced makes the work especially memorable.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current Stripe role combines infrastructure hiring, staff-level searches and leadership of recruiters and sourcers.",
+      "level": "manager, leads four recruiters and two sourcers",
+      "note": "Your experience points toward recruiting leadership roles that still involve senior technical searches. The Netflix management searches and Airbnb sourcing program also show work beyond individual engineering searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Stripe, Netflix and Airbnb get my attention, and your hiring and team leadership work backs up the names. I’d want to talk to you.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 117,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, Recruiting Lead, Infrastructure, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "blanks": 2,
+        "question": "What team priorities and decisions do you own?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Airbnb, Technical Recruiter, line 2",
+        "line": "Started the company's first sourcing program for returning parents, which produced 12 hires in its first year",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current Stripe role combines infrastructure hiring, staff-level searches and leadership of recruiters and sourcers.",
+      "level": "manager, leads four recruiters and two sourcers",
+      "note": "Your experience points toward recruiting leadership roles that still involve senior technical searches. The Netflix management searches and Airbnb sourcing program also show work beyond individual engineering searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00848285,
+  "latency_ms": 22960
+}

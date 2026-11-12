@@ -160,8 +160,8 @@ export default async function ReportsPage() {
               revisions: revisions.get(report.id) ?? null,
               earlierShape: shapeChanged.has(report.id),
               // An earlier report's first impression runs two or three sentences; its row shows the first, the way
-              // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
-              verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),
+              // that report opens (lib/reports/report-opening.ts). A worklist verdict runs two or three since November 12, 2026, and its row shows the first too.
+              verdict: verdictLine((typeof report.verdict === "string" && report.verdict.trim() ? splitVerdict(report.verdict).lead : null) || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),
               name: report.name,
               targetRole: report.target_role,
               createdAt: report.created_at,

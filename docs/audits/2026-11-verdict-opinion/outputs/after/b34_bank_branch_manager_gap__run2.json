@@ -1,0 +1,383 @@
+{
+  "case_id": "b34_bank_branch_manager_gap",
+  "batch": "verdict",
+  "run": 2,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:42:15.996Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7483,
+        "completion_tokens": 2094,
+        "total_tokens": 9577,
+        "cached_prompt_tokens": 7480,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 860
+      },
+      "cost_usd": 0.010847,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28155
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your progression to Branch Manager at Magnolia Community Bank is easy to follow, and the deposit growth and team management back it up. I’d move this forward for a branch manager role. I’d still want to know what you’ve been doing since December 2024.",
+    "write_up": [
+      "You moved from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch team in your latest role. I read your resume for another Branch Manager job. There’s enough here to make the case, though the more routine management lines leave questions about what you handled.",
+      "The deposit growth line is your best model: it names the measure, where it started and where it ended. Your experience comes before education, and your promotions are easy to follow. The main question is what you’ve done since the Branch Manager role ended in December 2024.",
+      "Let’s start by accounting for that time honestly, then add your part in the audits and customer complaints. A short description of Magnolia Community Bank’s footprint could also give a recruiter context for your branch, if you can confirm it."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the Branch Manager role ended. A dated line can answer that question without making the time into something it wasn’t. Caregiving is a real line, as is a career break with a course, project, volunteering or travel; include freelance work only if it was real.",
+        "example": "December 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024 that you’d like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Magnolia Community Bank",
+        "line": "Magnolia Community Bank is the only employer listed.",
+        "cannot_tell": "A recruiter may not know the bank beyond its name. One brief, confirmed detail about its footprint could give context to the branch you managed.",
+        "example": "",
+        "question": "What can you share about Magnolia Community Bank’s footprint?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "- Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and referral coaching are clear, but a recruiter can’t tell what you covered with the bankers. What did you focus on when coaching them?",
+        "example": "Led weekly sales huddles and coached bankers on referrals, covering [sales topics] and [referral coaching practices]",
+        "question": "What did you cover in the huddles and referral coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight can mean several things. A recruiter can’t tell what you handled during the reviews or what follow-up was yours.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [your responsibilities] and [findings or follow-up]",
+        "question": "What were your responsibilities during the audits and reviews, and what findings or follow-up did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "The escalation tells a recruiter these complaints reached you, but not what kinds of problems you handled or how you addressed them.",
+        "example": "Handled escalated customer complaints about [complaint types] by [your actions]",
+        "question": "What kinds of escalated complaints did you handle, and what did you do to address them?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Branch Manager, line 1",
+        "line": "- Supervised the teller line and vault operations",
+        "cannot_tell": "A recruiter can see the areas you supervised, but not what that supervision involved day to day.",
+        "example": "Supervised the teller line and vault operations, including [your responsibilities]",
+        "question": "What were your main responsibilities for the teller line and vault?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete way to understand the branch’s progress, without making them guess what the numbers refer to.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "why": "Your headline and latest role both point to Branch Manager work, with earlier banking roles at Magnolia Community Bank.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression within Magnolia Community Bank points toward branch management in retail banking. The deposit and team figures give a recruiter a useful starting point for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your progression to Branch Manager at Magnolia Community Bank is easy to follow, and the deposit growth and team management back it up. I’d move this forward for a branch manager role. I’d still want to know what you’ve been doing since December 2024.",
+    "write_up": [
+      "You moved from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch team in your latest role. I read your resume for another Branch Manager job. There’s enough here to make the case, though the more routine management lines leave questions about what you handled.",
+      "The deposit growth line is your best model: it names the measure, where it started and where it ended. Your experience comes before education, and your promotions are easy to follow. The main question is what you’ve done since the Branch Manager role ended in December 2024.",
+      "Let’s start by accounting for that time honestly, then add your part in the audits and customer complaints. A short description of Magnolia Community Bank’s footprint could also give a recruiter context for your branch, if you can confirm it."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the Branch Manager role ended. A dated line can answer that question without making the time into something it wasn’t. Caregiving is a real line, as is a career break with a course, project, volunteering or travel; include freelance work only if it was real.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024 that you’d like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Magnolia Community Bank",
+        "line": "Magnolia Community Bank is the only employer listed.",
+        "cannot_tell": "A recruiter may not know the bank beyond its name. One brief, confirmed detail about its footprint could give context to the branch you managed.",
+        "example": "",
+        "question": "What can you share about Magnolia Community Bank’s footprint?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and referral coaching are clear, but a recruiter can’t tell what you covered with the bankers. What did you focus on when coaching them?",
+        "example": "Led weekly sales huddles and coached bankers on referrals, covering [sales topics] and [referral coaching practices]",
+        "question": "What did you cover in the huddles and referral coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight can mean several things. A recruiter can’t tell what you handled during the reviews or what follow-up was yours.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [your responsibilities] and [findings or follow-up]",
+        "question": "What were your responsibilities during the audits and reviews, and what findings or follow-up did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "The escalation tells a recruiter these complaints reached you, but not what kinds of problems you handled or how you addressed them.",
+        "example": "Handled escalated customer complaints about [complaint types] by [your actions]",
+        "question": "What kinds of escalated complaints did you handle, and what did you do to address them?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Branch Manager, line 1",
+        "line": "Supervised the teller line and vault operations",
+        "cannot_tell": "A recruiter can see the areas you supervised, but not what that supervision involved day to day.",
+        "example": "Supervised the teller line and vault operations, including [your responsibilities]",
+        "question": "What were your main responsibilities for the teller line and vault?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete way to understand the branch’s progress, without making them guess what the numbers refer to.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "why": "Your headline and latest role both point to Branch Manager work, with earlier banking roles at Magnolia Community Bank.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression within Magnolia Community Bank points toward branch management in retail banking. The deposit and team figures give a recruiter a useful starting point for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your progression to Branch Manager at Magnolia Community Bank is easy to follow, and the deposit growth and team management back it up. I’d move this forward for a branch manager role. I’d still want to know what you’ve been doing since December 2024.",
+    "write_up": [
+      "You moved from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch team in your latest role. I read your resume for another Branch Manager job. There’s enough here to make the case, though the more routine management lines leave questions about what you handled.",
+      "The deposit growth line is your best model: it names the measure, where it started and where it ended. Your experience comes before education, and your promotions are easy to follow. The main question is what you’ve done since the Branch Manager role ended in December 2024.",
+      "Let’s start by accounting for that time honestly, then add your part in the audits and customer complaints. A short description of Magnolia Community Bank’s footprint could also give a recruiter context for your branch, if you can confirm it."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the Branch Manager role ended. A dated line can answer that question without making the time into something it wasn’t. Caregiving is a real line, as is a career break with a course, project, volunteering or travel; include freelance work only if it was real.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024 that you’d like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Magnolia Community Bank",
+        "line": "Magnolia Community Bank is the only employer listed.",
+        "cannot_tell": "A recruiter may not know the bank beyond its name. One brief, confirmed detail about its footprint could give context to the branch you managed.",
+        "example": "",
+        "question": "What can you share about Magnolia Community Bank’s footprint?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and referral coaching are clear, but a recruiter can’t tell what you covered with the bankers. What did you focus on when coaching them?",
+        "example": "Led weekly sales huddles and coached bankers on referrals, covering [sales topics] and [referral coaching practices]",
+        "question": "What did you cover in the huddles and referral coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight can mean several things. A recruiter can’t tell what you handled during the reviews or what follow-up was yours.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [your responsibilities] and [findings or follow-up]",
+        "question": "What were your responsibilities during the audits and reviews, and what findings or follow-up did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "The escalation tells a recruiter these complaints reached you, but not what kinds of problems you handled or how you addressed them.",
+        "example": "Handled escalated customer complaints about [complaint types] by [your actions]",
+        "question": "What kinds of escalated complaints did you handle, and what did you do to address them?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Branch Manager, line 1",
+        "line": "Supervised the teller line and vault operations",
+        "cannot_tell": "A recruiter can see the areas you supervised, but not what that supervision involved day to day.",
+        "example": "Supervised the teller line and vault operations, including [your responsibilities]",
+        "question": "What were your main responsibilities for the teller line and vault?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete way to understand the branch’s progress, without making them guess what the numbers refer to.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "why": "Your headline and latest role both point to Branch Manager work, with earlier banking roles at Magnolia Community Bank.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression within Magnolia Community Bank points toward branch management in retail banking. The deposit and team figures give a recruiter a useful starting point for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "presentation": {
+    "score": 74,
+    "band": "Mostly clear",
+    "model_score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your progression to Branch Manager at Magnolia Community Bank is easy to follow, and the deposit growth and team management back it up. I’d move this forward for a branch manager role. I’d still want to know what you’ve been doing since December 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 139,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since December 2024 that you’d like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Magnolia Community Bank",
+        "line": "Magnolia Community Bank is the only employer listed.",
+        "blanks": 0,
+        "question": "What can you share about Magnolia Community Bank’s footprint?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "blanks": 2,
+        "question": "What did you cover in the huddles and referral coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 2,
+        "question": "What were your responsibilities during the audits and reviews, and what findings or follow-up did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kinds of escalated complaints did you handle, and what did you do to address them?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Branch Manager, line 1",
+        "line": "Supervised the teller line and vault operations",
+        "blanks": 1,
+        "question": "What were your main responsibilities for the teller line and vault?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "why": "Your headline and latest role both point to Branch Manager work, with earlier banking roles at Magnolia Community Bank.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression within Magnolia Community Bank points toward branch management in retail banking. The deposit and team figures give a recruiter a useful starting point for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.010847,
+  "latency_ms": 28161
+}

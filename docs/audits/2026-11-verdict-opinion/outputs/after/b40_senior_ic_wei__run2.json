@@ -1,0 +1,373 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "verdict",
+  "run": 2,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:42:25.518Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8251,
+        "completion_tokens": 1992,
+        "total_tokens": 10243,
+        "cached_prompt_tokens": 8248,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 709
+      },
+      "cost_usd": 0.0103754,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28563
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "Your payments infrastructure work has grown from fraud scoring and reconciliation into technical leadership of the ledger and settlement platform. I’d move this forward: the work backs up the Staff title. I’d want to know how big the team and platform are.",
+    "write_up": [
+      "I read this for Staff Software Engineer roles. At Brightline Payments, you’ve moved from building fraud and reconciliation services to leading ledger architecture and payment reliability work. The progression makes sense, but a recruiter looking for a Staff engineer will still want a better sense of how big the current remit is.",
+      "The idempotency line is a strong model: it names the framework you drove across payment services and the duplicate-charge incidents it eliminated. The fraud pipeline line also gives a recruiter a concrete latency measure. Your experience leads the resume, and the dates are easy to follow.",
+      "Let’s start with the ledger and settlement team: add its size and the responsibilities you can substantiate. Then give the ledger redesign and reliability work a measurable result where you have one. The technical detail is already there; these additions would show what the work meant at Brightline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how big it is or what falls under its remit. That comparison matters for a Staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people, responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what is the team responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn’t show how much work the ledger handles or what changed after the redesign. Either would help establish the weight of the project.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [measured change]",
+        "question": "What measurable change followed the redesign?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What’s missing is whether the error budgets and SLOs changed how the team operated or how the services performed.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after the team introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 7",
+        "line": "- Authored engineering design documents and architecture reviews adopted as team standards",
+        "cannot_tell": "A recruiter can see that you authored the documents and reviews, but not which practices the team adopted. Naming one would make the standard concrete.",
+        "example": "Authored engineering design documents and architecture reviews adopted as team standards for [practice]",
+        "question": "What practice did the team adopt as a standard?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both improvements matter for reconciliation, but there’s no sense of how much either changed. A before-and-after measure for one would give the result more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort",
+        "question": "What was the reconciliation break rate before and after your work?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "- Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques and the measures you improved. The amount of improvement is the missing piece.",
+        "example": "Improved API latency from [before] to [after] and availability through caching and request coalescing",
+        "question": "What was the API latency before and after the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your ownership to a named payment problem without making a reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both name Staff Software Engineer, and your recent work centers on ledger architecture and payment reliability.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward technical leadership in distributed payments systems. The earlier storage control plane work adds another example of infrastructure engineering.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "Your payments infrastructure work has grown from fraud scoring and reconciliation into technical leadership of the ledger and settlement platform. I’d move this forward: the work backs up the Staff title. I’d want to know how big the team and platform are.",
+    "write_up": [
+      "I read this for Staff Software Engineer roles. At Brightline Payments, you’ve moved from building fraud and reconciliation services to leading ledger architecture and payment reliability work. The progression makes sense, but a recruiter looking for a Staff engineer will still want a better sense of how big the current remit is.",
+      "The idempotency line is a strong model: it names the framework you drove across payment services and the duplicate-charge incidents it eliminated. The fraud pipeline line also gives a recruiter a concrete latency measure. Your experience leads the resume, and the dates are easy to follow.",
+      "Let’s start with the ledger and settlement team: add its size and the responsibilities you can substantiate. Then give the ledger redesign and reliability work a measurable result where you have one. The technical detail is already there; these additions would show what the work meant at Brightline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how big it is or what falls under its remit. That comparison matters for a Staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people, responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what is the team responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn’t show how much work the ledger handles or what changed after the redesign. Either would help establish the weight of the project.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [measured change]",
+        "question": "What measurable change followed the redesign?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What’s missing is whether the error budgets and SLOs changed how the team operated or how the services performed.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after the team introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 7",
+        "line": "Authored engineering design documents and architecture reviews adopted as team standards",
+        "cannot_tell": "A recruiter can see that you authored the documents and reviews, but not which practices the team adopted. Naming one would make the standard concrete.",
+        "example": "Authored engineering design documents and architecture reviews adopted as team standards for [practice]",
+        "question": "What practice did the team adopt as a standard?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both improvements matter for reconciliation, but there’s no sense of how much either changed. A before-and-after measure for one would give the result more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort",
+        "question": "What was the reconciliation break rate before and after your work?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques and the measures you improved. The amount of improvement is the missing piece.",
+        "example": "Improved API latency from [before] to [after] and availability through caching and request coalescing",
+        "question": "What was the API latency before and after the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your ownership to a named payment problem without making a reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both name Staff Software Engineer, and your recent work centers on ledger architecture and payment reliability.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward technical leadership in distributed payments systems. The earlier storage control plane work adds another example of infrastructure engineering.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "Your payments infrastructure work has grown from fraud scoring and reconciliation into technical leadership of the ledger and settlement platform. I’d move this forward: the work backs up the Staff title. I’d want to know how big the team and platform are.",
+    "write_up": [
+      "I read this for Staff Software Engineer roles. At Brightline Payments, you’ve moved from building fraud and reconciliation services to leading ledger architecture and payment reliability work. The progression makes sense, but a recruiter looking for a Staff engineer will still want a better sense of how big the current remit is.",
+      "The idempotency line is a strong model: it names the framework you drove across payment services and the duplicate-charge incidents it eliminated. The fraud pipeline line also gives a recruiter a concrete latency measure. Your experience leads the resume, and the dates are easy to follow.",
+      "Let’s start with the ledger and settlement team: add its size and the responsibilities you can substantiate. Then give the ledger redesign and reliability work a measurable result where you have one. The technical detail is already there; these additions would show what the work meant at Brightline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how big it is or what falls under its remit. That comparison matters for a Staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people, responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what is the team responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn’t show how much work the ledger handles or what changed after the redesign. Either would help establish the weight of the project.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [measured change]",
+        "question": "What measurable change followed the redesign?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What’s missing is whether the error budgets and SLOs changed how the team operated or how the services performed.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after the team introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 7",
+        "line": "Authored engineering design documents and architecture reviews adopted as team standards",
+        "cannot_tell": "A recruiter can see that you authored the documents and reviews, but not which practices the team adopted. Naming one would make the standard concrete.",
+        "example": "Authored engineering design documents and architecture reviews adopted as team standards for [practice]",
+        "question": "What practice did the team adopt as a standard?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both improvements matter for reconciliation, but there’s no sense of how much either changed. A before-and-after measure for one would give the result more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort",
+        "question": "What was the reconciliation break rate before and after your work?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques and the measures you improved. The amount of improvement is the missing piece.",
+        "example": "Improved API latency from [before] to [after] and availability through caching and request coalescing",
+        "question": "What was the API latency before and after the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your ownership to a named payment problem without making a reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both name Staff Software Engineer, and your recent work centers on ledger architecture and payment reliability.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward technical leadership in distributed payments systems. The earlier storage control plane work adds another example of infrastructure engineering.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "Your payments infrastructure work has grown from fraud scoring and reconciliation into technical leadership of the ledger and settlement platform. I’d move this forward: the work backs up the Staff title. I’d want to know how big the team and platform are.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 146,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 2,
+        "question": "How many people are on the team, and what is the team responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What measurable change followed the redesign?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "blanks": 1,
+        "question": "What changed after the team introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 7",
+        "line": "Authored engineering design documents and architecture reviews adopted as team standards",
+        "blanks": 1,
+        "question": "What practice did the team adopt as a standard?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 2,
+        "question": "What was the reconciliation break rate before and after your work?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "blanks": 2,
+        "question": "What was the API latency before and after the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 6,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both name Staff Software Engineer, and your recent work centers on ledger architecture and payment reliability.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward technical leadership in distributed payments systems. The earlier storage control plane work adds another example of infrastructure engineering.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0103754,
+  "latency_ms": 28568
+}

@@ -1,0 +1,89 @@
+{
+  "description": "Fourteen synthetic resumes for the verdict rule change of November 12, 2026: the same resumes on the shipped prompt and on the candidate.",
+  "cases": [
+    {
+      "id": "t1_google_engineer_maya",
+      "batch": "verdict",
+      "resume": "../2026-11-worklist-run/resumes/t1_google_engineer_maya.txt",
+      "note": "Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared."
+    },
+    {
+      "id": "t2_logos_operations_robert",
+      "batch": "verdict",
+      "resume": "../2026-11-worklist-run/resumes/t2_logos_operations_robert.txt",
+      "note": "Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared."
+    },
+    {
+      "id": "h1_bad_resume",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/resumes/h1_bad_resume.txt",
+      "note": "Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line."
+    },
+    {
+      "id": "h2_thin_resume",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/resumes/h2_thin_resume.txt",
+      "note": "Student: one internship, coursework, a club."
+    },
+    {
+      "id": "h3_strong_resume",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+      "note": "Senior product manager whose resume is already good."
+    },
+    {
+      "id": "h5_mismatched_posting",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+      "job_description": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+      "note": "Data analyst against a registered nurse posting."
+    },
+    {
+      "id": "b13_marketing_vp_elite",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+      "note": "Executive, strong (golden)."
+    },
+    {
+      "id": "b24_physical_therapist_strong",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt"
+    },
+    {
+      "id": "b34_bank_branch_manager_gap",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "note": "Gap with nothing after it."
+    },
+    {
+      "id": "b36_product_designer_unrelated",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+      "note": "Current job outside the field."
+    },
+    {
+      "id": "b40_senior_ic_wei",
+      "batch": "verdict",
+      "resume": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+      "note": "Senior IC (bar persona)."
+    },
+    {
+      "id": "v1_known_names_vague_lines",
+      "batch": "verdict",
+      "resume": "resumes/v1_known_names_vague_lines.txt",
+      "note": "Amazon, Microsoft, Zillow, and no line says what she did."
+    },
+    {
+      "id": "v2_known_names_results_two_seats",
+      "batch": "verdict",
+      "resume": "resumes/v2_known_names_results_two_seats.txt",
+      "note": "Stripe, Netflix, Airbnb with results; leads a team and still recruits, so the next seat is open."
+    },
+    {
+      "id": "v3_own_business_undersold",
+      "batch": "verdict",
+      "resume": "resumes/v3_own_business_undersold.txt",
+      "note": "Built and sold a 31-person company; the resume calls it self-employed. No known employer."
+    }
+  ]
+}

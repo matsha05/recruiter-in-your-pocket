@@ -38875,7 +38875,7 @@
     {
       "text": "Score {report.score} out of 99",
       "kind": "attr:aria-label",
-      "line": 121,
+      "line": 124,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38892,7 +38892,7 @@
     {
       "text": "What the score means",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 220,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38909,7 +38909,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work.",
       "kind": "jsx-text",
-      "line": 221,
+      "line": 226,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38926,7 +38926,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.",
       "kind": "jsx-text",
-      "line": 221,
+      "line": 226,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -43185,6 +43185,7 @@
       "line": 90,
       "file": "web/lib/reports/report-opening.ts",
       "routes": [
+        "/api/export-pdf",
         "/reports",
         "/reports/[id]",
         "/sample-report",

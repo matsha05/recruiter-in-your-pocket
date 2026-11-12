@@ -1,0 +1,316 @@
+{
+  "case_id": "v3_own_business_undersold",
+  "batch": "verdict",
+  "run": 2,
+  "note": "Built and sold a 31-person company; the resume calls it self-employed. No known employer.",
+  "resume_file": "resumes/v3_own_business_undersold.txt",
+  "resume_sha256": "cec580370b6eb48f43b66492d5dd363a6b217f22a7c15aaa08a7b96ecc476733",
+  "resume_words": 122,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:42:54.341Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7403,
+        "completion_tokens": 1764,
+        "total_tokens": 9167,
+        "cached_prompt_tokens": 7400,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 790
+      },
+      "cost_usd": 0.009193,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26203
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You built and sold Bell Lawn & Landscape, and the contracts, revenue growth and team behind it are on your resume. I'd want to talk to you. I'd also want to know what you've been doing since 2024 and which job you want next.",
+    "write_up": [
+      "I read your resume for operations work. You moved from Crew Lead at Green Valley Landscaping to running Bell Lawn & Landscape, with commercial contracts and substantial revenue growth. The work is there, but the general headline and the time since your last dated role leave a recruiter with questions.",
+      "The line about running Bell Lawn & Landscape is a strong model: it names the business, the kind of work, the trucks and the employees at its peak. A recruiter can grasp what you ran. Your work history ends in 2024, and the resume doesn't say what came next.",
+      "Start by naming the kind of operations job you want, then account for the time after 2024 honestly. Add a little more about your day-to-day responsibilities and the equipment and safety work at Green Valley."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "This doesn't say which operations job you want, and it leaves out the landscaping business you ran. A recruiter has to guess where you want to take that experience.",
+        "example": "[target role] with experience running Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "question": "What kind of operations job do you want next?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the business was sold. If you took care of a family member, name that; if you took a career break, you can say what you did during it. Include freelance or consulting work only if it was real.",
+        "example": "2024 - Present  [what you did]",
+        "question": "What have you been doing since 2024 that you can accurately include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, line 1",
+        "line": "- Ran Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "cannot_tell": "Keep this as a model. It gives the business a name and makes the operation concrete without making a recruiter hunt for the details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, line 5",
+        "line": "- Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but a recruiter can't tell what your work on them involved. One concrete example would show how you ran the business day to day.",
+        "example": "Did scheduling, payroll, hiring, bidding and equipment purchasing, including [a responsibility]",
+        "question": "What did your work on these responsibilities involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Crew Lead, line 2",
+        "line": "- Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for equipment and safety, including [equipment responsibility] and [safety responsibility]",
+        "question": "What did you do to handle equipment and safety for the crew?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your work history shows you ran a commercial landscaping business after leading a crew.",
+      "level": "executive, ran a company with 31 employees at its peak",
+      "note": "Your business ownership and crew leadership point toward operations work, with commercial landscaping as your strongest subject matter. Naming the role you want next will help put that experience in context.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You built and sold Bell Lawn & Landscape, and the contracts, revenue growth and team behind it are on your resume. I'd want to talk to you. I'd also want to know what you've been doing since 2024 and which job you want next.",
+    "write_up": [
+      "I read your resume for operations work. You moved from Crew Lead at Green Valley Landscaping to running Bell Lawn & Landscape, with commercial contracts and substantial revenue growth. The work is there, but the general headline and the time since your last dated role leave a recruiter with questions.",
+      "The line about running Bell Lawn & Landscape is a strong model: it names the business, the kind of work, the trucks and the employees at its peak. A recruiter can grasp what you ran. Your work history ends in 2024, and the resume doesn't say what came next.",
+      "Start by naming the kind of operations job you want, then account for the time after 2024 honestly. Add a little more about your day-to-day responsibilities and the equipment and safety work at Green Valley."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "This doesn't say which operations job you want, and it leaves out the landscaping business you ran. A recruiter has to guess where you want to take that experience.",
+        "example": "[target role] with experience running Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "question": "What kind of operations job do you want next?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the business was sold. If you took care of a family member, name that; if you took a career break, you can say what you did during it. Include freelance or consulting work only if it was real.",
+        "example": "2024 - Present [what you did]",
+        "question": "What have you been doing since 2024 that you can accurately include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, line 1",
+        "line": "Ran Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "cannot_tell": "Keep this as a model. It gives the business a name and makes the operation concrete without making a recruiter hunt for the details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, line 5",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but a recruiter can't tell what your work on them involved. One concrete example would show how you ran the business day to day.",
+        "example": "Did scheduling, payroll, hiring, bidding and equipment purchasing, including [a responsibility]",
+        "question": "What did your work on these responsibilities involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Crew Lead, line 2",
+        "line": "Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for equipment and safety, including [equipment responsibility] and [safety responsibility]",
+        "question": "What did you do to handle equipment and safety for the crew?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your work history shows you ran a commercial landscaping business after leading a crew.",
+      "level": "executive, ran a company with 31 employees at its peak",
+      "note": "Your business ownership and crew leadership point toward operations work, with commercial landscaping as your strongest subject matter. Naming the role you want next will help put that experience in context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You built and sold Bell Lawn & Landscape, and the contracts, revenue growth and team behind it are on your resume. I'd want to talk to you. I'd also want to know what you've been doing since 2024 and which job you want next.",
+    "write_up": [
+      "I read your resume for operations work. You moved from Crew Lead at Green Valley Landscaping to running Bell Lawn & Landscape, with commercial contracts and substantial revenue growth. The work is there, but the general headline and the time since your last dated role leave a recruiter with questions.",
+      "The line about running Bell Lawn & Landscape is a strong model: it names the business, the kind of work, the trucks and the employees at its peak. A recruiter can grasp what you ran. Your work history ends in 2024, and the resume doesn't say what came next.",
+      "Start by naming the kind of operations job you want, then account for the time after 2024 honestly. Add a little more about your day-to-day responsibilities and the equipment and safety work at Green Valley."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "cannot_tell": "This doesn't say which operations job you want, and it leaves out the landscaping business you ran. A recruiter has to guess where you want to take that experience.",
+        "example": "[target role] with experience running Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "question": "What kind of operations job do you want next?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the business was sold. If you took care of a family member, name that; if you took a career break, you can say what you did during it. Include freelance or consulting work only if it was real.",
+        "example": "2024 - Present [what you did]",
+        "question": "What have you been doing since 2024 that you can accurately include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, line 1",
+        "line": "Ran Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "cannot_tell": "Keep this as a model. It gives the business a name and makes the operation concrete without making a recruiter hunt for the details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, line 5",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "cannot_tell": "These are substantial responsibilities, but a recruiter can't tell what your work on them involved. One concrete example would show how you ran the business day to day.",
+        "example": "Did scheduling, payroll, hiring, bidding and equipment purchasing, including [a responsibility]",
+        "question": "What did your work on these responsibilities involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Crew Lead, line 2",
+        "line": "Responsible for equipment and safety",
+        "cannot_tell": "A recruiter can't tell what you did with the equipment or how you handled safety for the crew.",
+        "example": "Responsible for equipment and safety, including [equipment responsibility] and [safety responsibility]",
+        "question": "What did you do to handle equipment and safety for the crew?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your work history shows you ran a commercial landscaping business after leading a crew.",
+      "level": "executive, ran a company with 31 employees at its peak",
+      "note": "Your business ownership and crew leadership point toward operations work, with commercial landscaping as your strongest subject matter. Naming the role you want next will help put that experience in context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You built and sold Bell Lawn & Landscape, and the contracts, revenue growth and team behind it are on your resume. I'd want to talk to you. I'd also want to know what you've been doing since 2024 and which job you want next.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 134,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Operations professional seeking a new opportunity",
+        "blanks": 1,
+        "question": "What kind of operations job do you want next?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since 2024 that you can accurately include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Self-employed, line 1",
+        "line": "Ran Bell Lawn & Landscape, a commercial landscaping company with 12 trucks and 31 employees at its peak",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Self-employed, line 5",
+        "line": "Did scheduling, payroll, hiring, bidding and equipment purchasing",
+        "blanks": 1,
+        "question": "What did your work on these responsibilities involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Crew Lead, line 2",
+        "line": "Responsible for equipment and safety",
+        "blanks": 2,
+        "question": "What did you do to handle equipment and safety for the crew?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 3,
+      "dates": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations professional",
+        "Crew Lead"
+      ],
+      "why": "Your headline points to operations, and your work history shows you ran a commercial landscaping business after leading a crew.",
+      "level": "executive, ran a company with 31 employees at its peak",
+      "note": "Your business ownership and crew leadership point toward operations work, with commercial landscaping as your strongest subject matter. Naming the role you want next will help put that experience in context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.009193,
+  "latency_ms": 26206
+}

@@ -1,0 +1,257 @@
+{
+  "case_id": "v2_known_names_results_two_seats",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Stripe, Netflix, Airbnb with results; leads a team and still recruits, so the next seat is open.",
+  "resume_file": "resumes/v2_known_names_results_two_seats.txt",
+  "resume_sha256": "fd717ea2ab231490575b007ed11d44e32c0f5722939d266a7e56e791c23eb197",
+  "resume_words": 187,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:23:15.805Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7113,
+        "completion_tokens": 1349,
+        "total_tokens": 8462,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 717,
+        "reasoning_tokens": 640
+      },
+      "cost_usd": 0.0079639,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21592
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A recruiting lead with a strong record of engineering hires, team leadership, and faster hiring.",
+    "write_up": [
+      "This is a strong recruiting resume! Your Stripe, Netflix, and Airbnb roles show engineering hiring alongside leadership and changes to the hiring process. The numbers make it easy to see both the work and what it produced.",
+      "The Stripe line about 61 infrastructure hires is a great model: it gives the hiring plan and offer acceptance rate, so a recruiter can understand the result in context. Your experience is also easy to follow, with the current role first and education below it.",
+      "Your resume is unlikely to be the reason you don't get a call back. For a more senior recruiting leadership role, we can bring the interview-loop work higher and add the team's priorities. How competitive the role is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, line 1",
+        "line": "- Hired 61 infrastructure engineers in 2024 with a 91% offer accept rate, against a plan of 55",
+        "cannot_tell": "Keep this as a model. It puts the hires next to the plan and shows that offers were accepted, not just made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 2",
+        "line": "- Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a recruiting leadership role one level up, the team's priorities and your decisions about them would add to the team size already here.",
+        "example": "Lead a team of four recruiters and two sourcers on [the team's recruiting priorities], including [a decision you made]; still carry my own staff-level searches",
+        "question": "What were the team's recruiting priorities, and what decisions did you make about them?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 4",
+        "line": "- Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Move this above the line about closing staff and principal engineers. The partnership with the engineering director and the drop in time to offer show how you improved the hiring process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current role leads recruiters and sourcers while carrying staff-level infrastructure searches.",
+      "level": "lead, leads a team of four recruiters and two sourcers",
+      "note": "Your experience points to technical recruiting leadership, especially for engineering teams. The hiring results and interview-loop work also show that you remain close to searches.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A recruiting lead with a strong record of engineering hires, team leadership, and faster hiring.",
+    "write_up": [
+      "This is a strong recruiting resume! Your Stripe, Netflix, and Airbnb roles show engineering hiring alongside leadership and changes to the hiring process. The numbers make it easy to see both the work and what it produced.",
+      "The Stripe line about 61 infrastructure hires is a great model: it gives the hiring plan and offer acceptance rate, so a recruiter can understand the result in context. Your experience is also easy to follow, with the current role first and education below it.",
+      "Your resume is unlikely to be the reason you don't get a call back. For a more senior recruiting leadership role, we can bring the interview-loop work higher and add the team's priorities. How competitive the role is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, line 1",
+        "line": "Hired 61 infrastructure engineers in 2024 with a 91% offer accept rate, against a plan of 55",
+        "cannot_tell": "Keep this as a model. It puts the hires next to the plan and shows that offers were accepted, not just made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a recruiting leadership role one level up, the team's priorities and your decisions about them would add to the team size already here.",
+        "example": "Lead a team of four recruiters and two sourcers on [the team's recruiting priorities], including [a decision you made]; still carry my own staff-level searches",
+        "question": "What were the team's recruiting priorities, and what decisions did you make about them?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Move this above the line about closing staff and principal engineers. The partnership with the engineering director and the drop in time to offer show how you improved the hiring process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current role leads recruiters and sourcers while carrying staff-level infrastructure searches.",
+      "level": "lead, leads a team of four recruiters and two sourcers",
+      "note": "Your experience points to technical recruiting leadership, especially for engineering teams. The hiring results and interview-loop work also show that you remain close to searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A recruiting lead with a strong record of engineering hires, team leadership, and faster hiring.",
+    "write_up": [
+      "This is a strong recruiting resume! Your Stripe, Netflix, and Airbnb roles show engineering hiring alongside leadership and changes to the hiring process. The numbers make it easy to see both the work and what it produced.",
+      "The Stripe line about 61 infrastructure hires is a great model: it gives the hiring plan and offer acceptance rate, so a recruiter can understand the result in context. Your experience is also easy to follow, with the current role first and education below it.",
+      "Your resume is unlikely to be the reason you don't get a call back. For a more senior recruiting leadership role, we can bring the interview-loop work higher and add the team's priorities. How competitive the role is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, line 1",
+        "line": "Hired 61 infrastructure engineers in 2024 with a 91% offer accept rate, against a plan of 55",
+        "cannot_tell": "Keep this as a model. It puts the hires next to the plan and shows that offers were accepted, not just made.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "cannot_tell": "For a recruiting leadership role one level up, the team's priorities and your decisions about them would add to the team size already here.",
+        "example": "Lead a team of four recruiters and two sourcers on [the team's recruiting priorities], including [a decision you made]; still carry my own staff-level searches",
+        "question": "What were the team's recruiting priorities, and what decisions did you make about them?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "cannot_tell": "Move this above the line about closing staff and principal engineers. The partnership with the engineering director and the drop in time to offer show how you improved the hiring process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current role leads recruiters and sourcers while carrying staff-level infrastructure searches.",
+      "level": "lead, leads a team of four recruiters and two sourcers",
+      "note": "Your experience points to technical recruiting leadership, especially for engineering teams. The hiring results and interview-loop work also show that you remain close to searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A recruiting lead with a strong record of engineering hires, team leadership, and faster hiring.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 123,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Stripe, line 1",
+        "line": "Hired 61 infrastructure engineers in 2024 with a 91% offer accept rate, against a plan of 55",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 2",
+        "line": "Lead a team of four recruiters and two sourcers; still carry my own staff-level searches",
+        "blanks": 2,
+        "question": "What were the team's recruiting priorities, and what decisions did you make about them?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Stripe, line 4",
+        "line": "Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Recruiting Lead, Infrastructure",
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current role leads recruiters and sourcers while carrying staff-level infrastructure searches.",
+      "level": "lead, leads a team of four recruiters and two sourcers",
+      "note": "Your experience points to technical recruiting leadership, especially for engineering teams. The hiring results and interview-loop work also show that you remain close to searches.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0079639,
+  "latency_ms": 21597
+}

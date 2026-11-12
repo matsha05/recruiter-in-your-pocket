@@ -1,0 +1,470 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:23:11.225Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7772,
+        "completion_tokens": 1965,
+        "total_tokens": 9737,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 384
+      },
+      "cost_usd": 0.01186765,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27996
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with substantial payments infrastructure work, but a lead role whose team size is unclear.",
+    "write_up": [
+      "Your resume tells a clear story from object storage at Nimbus Cloud to fraud, reconciliation, and ledger work at Brightline Payments. I read it for Staff Software Engineer roles. A recruiter can see the technical leadership and would likely move it forward with questions about how big the team and platform are.",
+      "The idempotency line is the model: you name the framework, its adoption across payment services, and the duplicate-charge incidents it eliminated. Your Experience section leads, and the staff headline is backed by the work underneath it. What’s missing is a comparable measure of the team you lead and what the ledger redesign changed.",
+      "Start with the Brightline staff role. Add the team size and a measure of the ledger redesign if you can substantiate them, then sharpen the older lines that leave your contribution or the change unclear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see that you lead the technical work, but not how big the team is or what it handles day to day. That context matters for a staff-level role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] engineers, responsible for [team responsibilities]",
+        "question": "How many engineers are on the team, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architectural change is concrete, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, supporting [platform volume] and changing [measure] from [before] to [after]",
+        "question": "What volume does the ledger handle, and what measurable change followed the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your leadership across services to a concrete problem that went away, without making the reader guess what the framework was for.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "You name the incident work and the practices you introduced. What happened to service reliability afterward is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [reliability measure] changing from [before] to [after]",
+        "question": "Did a reliability measure change after you introduced error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap is a useful piece of staff-level work, but partnering doesn't say what you contributed to it.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort by [amount] through [work]",
+        "question": "What did you change, and how much did the break rate and manual ops effort fall?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 1",
+        "line": "- Worked on the object storage control plane in Go",
+        "cannot_tell": "The system and language are named, but 'worked on' leaves your contribution open.",
+        "example": "Worked on the object storage control plane in Go, building [component]",
+        "question": "What did you build or change in the control plane?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "- Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The techniques are clear. The before and after for latency or availability would show what they changed.",
+        "example": "Improved API latency and availability through caching and request coalescing, changing [measure] from [before] to [after]",
+        "question": "What were the before and after figures for latency or availability?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "- Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "Contributed could cover several parts of a migration. Name the part that was yours.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [contribution]",
+        "question": "What was your part in the Kubernetes migration?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "- Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "A recruiter can see what the tools were for, but not what they did or who used them.",
+        "example": "Developed internal tooling and APIs for storage provisioning that [function] for [users]",
+        "question": "What did the tooling and APIs do, and who used them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and latest Brightline role both name Staff Software Engineer, and the work centers on payments infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your recent work points toward staff-level distributed systems and payments infrastructure roles. The earlier object storage work also supports infrastructure roles outside payments.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with substantial payments infrastructure work, but a lead role whose team size is unclear.",
+    "write_up": [
+      "Your resume tells a clear story from object storage at Nimbus Cloud to fraud, reconciliation, and ledger work at Brightline Payments. I read it for Staff Software Engineer roles. A recruiter can see the technical leadership and would likely move it forward with questions about how big the team and platform are.",
+      "The idempotency line is the model: you name the framework, its adoption across payment services, and the duplicate-charge incidents it eliminated. Your Experience section leads, and the staff headline is backed by the work underneath it. What’s missing is a comparable measure of the team you lead and what the ledger redesign changed.",
+      "Start with the Brightline staff role. Add the team size and a measure of the ledger redesign if you can substantiate them, then sharpen the older lines that leave your contribution or the change unclear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see that you lead the technical work, but not how big the team is or what it handles day to day. That context matters for a staff-level role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] engineers, responsible for [team responsibilities]",
+        "question": "How many engineers are on the team, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architectural change is concrete, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, supporting [platform volume] and changing [measure] from [before] to [after]",
+        "question": "What volume does the ledger handle, and what measurable change followed the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your leadership across services to a concrete problem that went away, without making the reader guess what the framework was for.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "You name the incident work and the practices you introduced. What happened to service reliability afterward is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [reliability measure] changing from [before] to [after]",
+        "question": "Did a reliability measure change after you introduced error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap is a useful piece of staff-level work, but partnering doesn't say what you contributed to it.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort by [amount] through [work]",
+        "question": "What did you change, and how much did the break rate and manual ops effort fall?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 1",
+        "line": "Worked on the object storage control plane in Go",
+        "cannot_tell": "The system and language are named, but 'worked on' leaves your contribution open.",
+        "example": "Worked on the object storage control plane in Go, building [component]",
+        "question": "What did you build or change in the control plane?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The techniques are clear. The before and after for latency or availability would show what they changed.",
+        "example": "Improved API latency and availability through caching and request coalescing, changing [measure] from [before] to [after]",
+        "question": "What were the before and after figures for latency or availability?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "Contributed could cover several parts of a migration. Name the part that was yours.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [contribution]",
+        "question": "What was your part in the Kubernetes migration?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "A recruiter can see what the tools were for, but not what they did or who used them.",
+        "example": "Developed internal tooling and APIs for storage provisioning that [function] for [users]",
+        "question": "What did the tooling and APIs do, and who used them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and latest Brightline role both name Staff Software Engineer, and the work centers on payments infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your recent work points toward staff-level distributed systems and payments infrastructure roles. The earlier object storage work also supports infrastructure roles outside payments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with substantial payments infrastructure work, but a lead role whose team size is unclear.",
+    "write_up": [
+      "Your resume tells a clear story from object storage at Nimbus Cloud to fraud, reconciliation, and ledger work at Brightline Payments. I read it for Staff Software Engineer roles. A recruiter can see the technical leadership and would likely move it forward with questions about how big the team and platform are.",
+      "The idempotency line is the model: you name the framework, its adoption across payment services, and the duplicate-charge incidents it eliminated. Your Experience section leads, and the staff headline is backed by the work underneath it. What’s missing is a comparable measure of the team you lead and what the ledger redesign changed.",
+      "Start with the Brightline staff role. Add the team size and a measure of the ledger redesign if you can substantiate them, then sharpen the older lines that leave your contribution or the change unclear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see that you lead the technical work, but not how big the team is or what it handles day to day. That context matters for a staff-level role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] engineers, responsible for [team responsibilities]",
+        "question": "How many engineers are on the team, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architectural change is concrete, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, supporting [platform volume] and changing [measure] from [before] to [after]",
+        "question": "What volume does the ledger handle, and what measurable change followed the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your leadership across services to a concrete problem that went away, without making the reader guess what the framework was for.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "You name the incident work and the practices you introduced. What happened to service reliability afterward is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [reliability measure] changing from [before] to [after]",
+        "question": "Did a reliability measure change after you introduced error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap is a useful piece of staff-level work, but partnering doesn't say what you contributed to it.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort by [amount] through [work]",
+        "question": "What did you change, and how much did the break rate and manual ops effort fall?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 1",
+        "line": "Worked on the object storage control plane in Go",
+        "cannot_tell": "The system and language are named, but 'worked on' leaves your contribution open.",
+        "example": "Worked on the object storage control plane in Go, building [component]",
+        "question": "What did you build or change in the control plane?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The techniques are clear. The before and after for latency or availability would show what they changed.",
+        "example": "Improved API latency and availability through caching and request coalescing, changing [measure] from [before] to [after]",
+        "question": "What were the before and after figures for latency or availability?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "Contributed could cover several parts of a migration. Name the part that was yours.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [contribution]",
+        "question": "What was your part in the Kubernetes migration?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "A recruiter can see what the tools were for, but not what they did or who used them.",
+        "example": "Developed internal tooling and APIs for storage provisioning that [function] for [users]",
+        "question": "What did the tooling and APIs do, and who used them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and latest Brightline role both name Staff Software Engineer, and the work centers on payments infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your recent work points toward staff-level distributed systems and payments infrastructure roles. The earlier object storage work also supports infrastructure roles outside payments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with substantial payments infrastructure work, but a lead role whose team size is unclear.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 140,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 2,
+        "question": "How many engineers are on the team, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 4,
+        "question": "What volume does the ledger handle, and what measurable change followed the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "blanks": 3,
+        "question": "Did a reliability measure change after you introduced error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "blanks": 1,
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 4,
+        "question": "What did you change, and how much did the break rate and manual ops effort fall?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 1",
+        "line": "Worked on the object storage control plane in Go",
+        "blanks": 1,
+        "question": "What did you build or change in the control plane?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "blanks": 3,
+        "question": "What were the before and after figures for latency or availability?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "blanks": 1,
+        "question": "What was your part in the Kubernetes migration?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "blanks": 2,
+        "question": "What did the tooling and APIs do, and who used them?"
+      }
+    ],
+    "card_count": 10,
+    "kinds": {
+      "line": 9,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and latest Brightline role both name Staff Software Engineer, and the work centers on payments infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your recent work points toward staff-level distributed systems and payments infrastructure roles. The earlier object storage work also supports infrastructure roles outside payments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01186765,
+  "latency_ms": 28002
+}

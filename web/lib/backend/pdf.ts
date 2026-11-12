@@ -1,3 +1,4 @@
+import { splitVerdict } from "../reports/report-opening";
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
@@ -59,6 +60,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const bandIndex = Math.max(0, worklistBandIndex(report.score));
   // A LinkedIn profile review prints the profile's band names and score note; the cards' headings follow the report.
   const profile = reportDocumentKind(worklist) === "linkedin";
+  const worklistVerdict = splitVerdict(worklist.verdict);
   const band = worklistBandsFor(profile ? "linkedin" : "resume")[bandIndex];
   const work = worklist.cards.filter((card) => WORK_KINDS.has(card.kind));
   const heading = cardsHeading(worklist).title;
@@ -151,7 +153,8 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
         <div class="band-anchor">${escapeHtml(band.anchor)}</div>
       </div>
     </div>
-    <h1>${escapeHtml(worklist.verdict)}</h1>
+    <h1>${escapeHtml(worklistVerdict.lead)}</h1>
+    ${worklistVerdict.rest ? `<p class="verdict-rest">${escapeHtml(worklistVerdict.rest)}</p>` : ""}
     ${firstPassHtml}
     <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
     <div class="score-note">${profile ? "The band is what a recruiter would do after landing on your profile; the number says where in the band you sit. Neither predicts messages, interviews or offers." : "The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers."}${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>

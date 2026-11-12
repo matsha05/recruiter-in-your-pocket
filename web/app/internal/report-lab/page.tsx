@@ -51,7 +51,34 @@ function loadWorklistFixtures(root: string): LabFixture[] {
   }
   fixtures.push(...loadStrongFixtures(root));
   fixtures.push(...loadFirstReadFixtures(root));
+  fixtures.push(...loadVerdictFixtures(root));
   fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
+  return fixtures;
+}
+
+// The verdict rule (Nov 12, 2026; docs/audits/2026-11-verdict-opinion.md): each synthetic resume as the changed prompt
+// reads it, beside the prompt it replaced (`-before`).
+function loadVerdictFixtures(root: string): LabFixture[] {
+  const dir = path.join(root, "..", "docs/audits/2026-11-verdict-opinion");
+  const manifestFile = path.join(dir, "manifest.json");
+  if (!fs.existsSync(manifestFile)) return [];
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8")) as { cases: Array<{ id: string; resume: string }> };
+  const fixtures: LabFixture[] = [];
+  for (const item of manifest.cases) {
+    const resumePath = path.resolve(dir, item.resume);
+    for (const pass of [{ dir: "outputs/after", idSuffix: "", labelSuffix: "" }, { dir: "outputs/before", idSuffix: "-before", labelSuffix: " · before" }]) {
+      const file = path.join(dir, pass.dir, `${item.id}__run1.json`);
+      if (!fs.existsSync(file)) continue;
+      const record = JSON.parse(fs.readFileSync(file, "utf8"));
+      if (!record.shipped_report) continue;
+      fixtures.push({
+        id: `verdict-${item.id}${pass.idSuffix}`,
+        label: `verdict · ${item.id.replace(/_/gu, " ")} · ${record.shipped_report.score}${pass.labelSuffix}`,
+        report: record.shipped_report,
+        resumeText: fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined,
+      });
+    }
+  }
   return fixtures;
 }
 
