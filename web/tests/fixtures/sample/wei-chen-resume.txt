@@ -1,0 +1,47 @@
+Wei Chen
+San Francisco, CA | wei.chen@example.com | (415) 555-0133 | github.com/weichen-example
+
+Staff Software Engineer | Distributed Systems | Payments Infrastructure
+
+EXPERIENCE
+
+Staff Software Engineer, Brightline Payments, San Francisco, CA
+January 2022 - Present
+- Technical lead for the ledger and settlement platform team
+- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB
+- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents
+- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services
+- Mentored senior and mid-level engineers; ran the backend engineering reading group
+- Partnered with product and finance on the roadmap for multi-currency settlement
+- Authored engineering design documents and architecture reviews adopted as team standards
+- Interviewed 100+ candidates and helped revise the backend hiring loop
+
+Senior Software Engineer, Brightline Payments, San Francisco, CA
+June 2019 - December 2021
+- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms
+- Designed and shipped the reconciliation service that matches internal ledger entries against processor settlement files
+- Reduced reconciliation break rate and manual ops effort
+- On-call rotation for payments core services
+
+Software Engineer II, Nimbus Cloud (acquired in 2019), Seattle, WA
+August 2016 - May 2019
+- Worked on the object storage control plane in Go
+- Implemented multi-region replication and lifecycle policies
+- Improved API latency and availability through caching and request coalescing
+- Contributed to the migration of the control plane to Kubernetes
+
+Software Engineer, Nimbus Cloud, Seattle, WA
+July 2015 - August 2016
+- Developed internal tooling and APIs for storage provisioning
+- Participated in on-call and wrote runbooks
+
+SKILLS
+Go, Java, Python, Kafka, Flink, CockroachDB, Postgres, Kubernetes, AWS, gRPC, Terraform, distributed systems, event sourcing, consensus, observability (Prometheus, Grafana, OpenTelemetry), system design, technical leadership
+
+EDUCATION
+M.S. Computer Science, State University, 2015
+B.S. Computer Science, Eastern Technical University, 2013
+
+PUBLICATIONS & TALKS
+"Idempotency at Scale: Lessons from a Payments Platform," internal tech talk series, 2024
+Co-author, "Multi-Region Replication Tradeoffs for Object Storage," Nimbus Engineering Blog, 2018

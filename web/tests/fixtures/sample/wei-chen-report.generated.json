@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-11-11T23:52:33.331Z",
+  "model": "gpt-6.1-terra",
+  "prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "prompt_version": "resume_v3",
+  "today": "2026-11-11",
+  "resume_sha256": "2fbba90cd3530b011718ca07edffb9f3e801c0c105d291bc66a91ae1779cf430",
+  "repaired": false,
+  "telemetry": [
+    {
+      "request_id": "sample-report-1794441126467",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 7770,
+      "tokens_out": 2012,
+      "latency_ms": 26846,
+      "cost_estimate_usd": 0.01210015,
+      "outcome": "success"
+    }
+  ],
+  "payload": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A payments infrastructure lead with strong technical work, but few measures of the systems and team they lead.",
+    "write_up": [
+      "Your resume points to staff-level payments infrastructure work: you moved from Nimbus Cloud's storage systems to Brightline's fraud, ledger and settlement platforms. A recruiter can follow the technical work, but has to guess how big the current platform and team are.",
+      "The idempotency line is a strong model: you name the change you drove and the duplicate-charge incidents it eliminated. Your progression at Brightline is easy to follow, and the current Staff Software Engineer title fits the work shown.",
+      "Let's start with the ledger and settlement team, then add a measure to the ledger redesign if you can. After that, make your part in the settlement roadmap more concrete and put numbers around the reconciliation and API improvements you can substantiate."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how many engineers you lead technically. That helps establish the reach of a staff-level role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] engineers",
+        "question": "How many engineers are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell how much the ledger handles or what changed after the redesign. Either measure would give the technical decision more weight.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [payment volume] and changing [system measure] from [before] to [after]",
+        "question": "What volume does the ledger handle, and which system measure changed after the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your role in adoption to a concrete payment problem, without making a recruiter guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The partners and roadmap are named, but your contribution to the roadmap is still open. A recruiter hiring a technical lead will want to know what you brought to those decisions.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 7",
+        "line": "Authored engineering design documents and architecture reviews adopted as team standards",
+        "cannot_tell": "A recruiter can see that the team adopted your work, but not what those standards covered. Naming a decision or practice would show what other engineers took from it.",
+        "example": "Authored engineering design documents and architecture reviews adopted as team standards for [decision or practice]",
+        "question": "What decision or practice did the adopted standards cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both improvements matter for payments operations, but the line doesn't say how much either changed or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [work you did]",
+        "question": "What did you do to reduce the break rate and manual effort, and how did you measure the changes?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are clear, but the improvements aren't measured. Before-and-after figures would show what caching and request coalescing changed.",
+        "example": "Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing",
+        "question": "What were the latency and availability measures before and after the changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both point to staff-level distributed systems work in payments.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your earlier storage work and Brightline's fraud and reconciliation services reinforce the distributed systems track. The strongest next step is to show the scale of the current team and platform alongside the technical decisions.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  }
+}

@@ -16,8 +16,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const WEB_ROOT = path.resolve(__dirname, "..");
-const RESUME_PATH = path.join(WEB_ROOT, "tests/fixtures/sample/jordan-miller-resume.txt");
-const OUTPUT_PATH = path.join(WEB_ROOT, "tests/fixtures/sample/jordan-miller-report.generated.json");
+// RIYP_SAMPLE_NAME picks another fictional resume in tests/fixtures/sample (the samples by situation, Nov 11,
+// 2026: lib/reports/sample-reports.ts); without it this is Jordan's.
+const SAMPLE = (process.env.RIYP_SAMPLE_NAME || "jordan-miller").replace(/[^a-z0-9-]/giu, "");
+const RESUME_PATH = path.join(WEB_ROOT, `tests/fixtures/sample/${SAMPLE}-resume.txt`);
+const OUTPUT_PATH = path.join(WEB_ROOT, `tests/fixtures/sample/${SAMPLE}-report.generated.json`);
 
 // run-ts-script transpiles without path mapping or loaders; the production modules import
 // "@/..." and bundle their prompts as .txt, so resolve both here before loading them.

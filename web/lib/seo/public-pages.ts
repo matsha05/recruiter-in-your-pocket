@@ -24,7 +24,12 @@ export type PublicPage = {
 
 export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/", updated: "2026-11-02" },
-  { path: "/sample-report", updated: "2026-11-01" },
+  { path: "/sample-report", updated: "2026-11-11" },
+  // The samples by situation (Nov 11, 2026; lib/reports/sample-reports.ts).
+  { path: "/sample-report/new-graduate", updated: "2026-11-11" },
+  { path: "/sample-report/career-change", updated: "2026-11-11" },
+  { path: "/sample-report/career-break", updated: "2026-11-11" },
+  { path: "/sample-report/staff-engineer", updated: "2026-11-11" },
   { path: "/pricing", updated: "2026-11-04" },
   { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 

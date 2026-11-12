@@ -1,0 +1,158 @@
+{
+  "generated_at": "2026-11-11T23:51:36.496Z",
+  "model": "gpt-6.1-terra",
+  "prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "prompt_version": "resume_v3",
+  "today": "2026-11-11",
+  "resume_sha256": "00482454ce4f1dfcc47369de9572952e5e8892bceabe90b3c0664aa03165600f",
+  "repaired": true,
+  "telemetry": [
+    {
+      "request_id": "sample-report-1794441036072",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 7796,
+      "tokens_out": 2521,
+      "latency_ms": 30599,
+      "cost_estimate_usd": 0.02234925,
+      "outcome": "success"
+    },
+    {
+      "request_id": "sample-report-1794441036072",
+      "task": "resume_feedback",
+      "model": "gpt-6.1-terra",
+      "tokens_in": 9629,
+      "tokens_out": 2546,
+      "latency_ms": 29787,
+      "cost_estimate_usd": 0.0247655,
+      "outcome": "success"
+    }
+  ],
+  "payload": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A software engineering graduate with useful projects, but an internship that leaves too much of the work unnamed.",
+    "write_up": [
+      "Your resume points to entry-level Software Engineer work: a computer science degree, a Meridian Health Supply internship and several application projects. It's common for an internship resume to lean on duties, but your recent lines mostly leave the features, tests and fixes unnamed. That makes it difficult to stand out alongside other graduates who list the same tools.",
+      "The Personal Finance Tracker line is a good model: it names the application, what it does and the tools you used. Your help desk and internship experience can lead the resume, so put Experience above Education. The objective names the job you want, but its general claims take space that could show your engineering work.",
+      "Let's start with the Meridian internship. Name a feature you developed, a test you wrote and a bug you fixed, sticking to what you can describe accurately. Then use the same approach for the help desk work and keep the project details that show what you built."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.",
+        "cannot_tell": "The job you want is clear, but the rest could describe almost any graduate. Put your inventory application work up front instead.",
+        "example": "Computer Science graduate seeking a Software Engineer position, with experience developing [feature] for an internal inventory management web application using React and Spring Boot",
+        "question": "Which feature did you develop for the inventory application?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your help desk and internship work give a recruiter something to look at before coursework. Move Experience above Education so that work comes first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "structure",
+        "where": "Meridian Health Supply",
+        "line": "Meridian Health Supply isn't described beyond its name and location.",
+        "cannot_tell": "A short description of the employer could give a recruiter context for the inventory application, if it adds something the name doesn't already say.",
+        "example": "Meridian Health Supply: [what the employer does] for [customers]",
+        "question": "What does Meridian Health Supply do, and who does it serve?"
+      },
+      {
+        "kind": "line",
+        "where": "Technical Skills",
+        "line": "Soft Skills: Communication, Teamwork, Leadership, Time Management, Problem Solving",
+        "cannot_tell": "These claims don't show how you used those skills. Consider trimming the list and giving that space to a concrete example from your work.",
+        "example": "[What you did] for [project or team], resulting in [what changed]",
+        "question": "What did you do on a project or team, and what changed as a result?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 1",
+        "line": "Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "cannot_tell": "The application and tools are named, but the features aren't. A recruiter can't tell what part of the inventory application you developed.",
+        "example": "Developed [feature] for an internal inventory management web application using React and Spring Boot",
+        "question": "Which feature did you develop for the application?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 2",
+        "line": "Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+        "cannot_tell": "Meetings were part of the job, but this doesn't show what you contributed. If there's a concrete planning contribution, name it; otherwise, use the room for your development work.",
+        "example": "Participated in sprint planning meetings for [project], contributing [planning contribution]",
+        "question": "What did you contribute to planning for the team's work?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 3",
+        "line": "Wrote unit tests to improve code quality and reliability",
+        "cannot_tell": "A recruiter can see that you wrote tests, but not what you tested. Naming the feature or behavior would connect this to your engineering work.",
+        "example": "Wrote unit tests for [feature or behavior] using [test tool]",
+        "question": "What did you test, and what tool did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 4",
+        "line": "Collaborated with cross-functional teams to gather requirements and deliver solutions",
+        "cannot_tell": "The teams, requirements and solutions are all unnamed. Pick one piece of work and show your part in it.",
+        "example": "Collaborated with [team] to gather requirements for [feature] and deliver [your contribution]",
+        "question": "Which team did you work with, and what did you contribute to a feature or solution?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 5",
+        "line": "Fixed bugs and performed code reviews",
+        "cannot_tell": "Both are useful engineering tasks, but neither has an example attached. A bug you fixed or a review you contributed to would give a recruiter more to discuss.",
+        "example": "Fixed [bug] in [feature] and performed code reviews for [work reviewed]",
+        "question": "What bug did you fix, and what work did you review?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 1",
+        "line": "Provided technical support to students and faculty for hardware and software issues",
+        "cannot_tell": "The people you supported are clear, but the problems are broad. Name an issue you handled and, if you know it, how many requests you supported.",
+        "example": "Provided technical support to students and faculty for [issue], handling [number] requests [time period]",
+        "question": "What kind of issue did you handle, and how many requests did you support in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 2",
+        "line": "Resolved tickets in a timely manner and documented solutions",
+        "cannot_tell": "A recruiter can't tell what the tickets involved or what you documented. One example would show the work behind the tickets.",
+        "example": "Resolved tickets for [issue] and documented [solution]",
+        "question": "What was one issue you resolved and documented?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 3",
+        "line": "Assisted with setting up laptops and classroom technology",
+        "cannot_tell": "Assisted can cover several different tasks. Say what part of the setup was yours.",
+        "example": "Assisted with setting up laptops and classroom technology by [your setup task]",
+        "question": "What did you do when setting up the laptops or classroom technology?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer",
+        "Software Engineering Intern"
+      ],
+      "why": "Your objective names Software Engineer, and your internship and projects show application development work.",
+      "level": "entry level, a software engineering internship and a computer science degree",
+      "note": "Your React and Spring Boot internship and full-stack capstone point toward application development roles. The Python and JavaScript projects give you more work to discuss alongside the internship.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  }
+}

@@ -151,4 +151,16 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
   assert.equal("covered" in WorklistReportSchema.parse(saved).fit.posting, false, "a report saved before the table parses to the same object");
 }
 
+// A quote from a resume line longer than a report can hold stays as quoted, so the report can be parsed again.
+{
+  const long = `Dedicated engineer with nine years of experience building payment systems at scale. ${"Passionate about reliable software and strong teams. ".repeat(4)}`.trim();
+  const text = `${RESUME}\n\nSummary\n${long}`;
+  assert.ok(long.length > 200);
+  const draft = structuredClone(base);
+  (draft as { cards: unknown[] }).cards = [{ kind: "line", where: "Summary", line: "Dedicated engineer with nine years of experience building payment systems at scale.", cannot_tell: "This could describe many engineers. Which systems were yours?", example: "Backend engineer who built [which systems] for [who used them].", question: "Which payment systems did you build, and who used them?" }];
+  const report = validateWorklistPayload(draft, text, { forceGrounding: true });
+  assert.ok(report.cards[0].line.length <= 200, "the quote is not widened past the limit");
+  assert.equal(WorklistReportSchema.safeParse(report).success, true, "a validated report always parses again");
+}
+
 console.log("posting tailoring tests passed");

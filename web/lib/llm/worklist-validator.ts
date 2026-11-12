@@ -10,7 +10,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart, type PostingCovered } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart, type PostingCovered, MAX_LINE_LENGTH } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -73,7 +73,7 @@ function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string
     if (resumeText) {
       const resolved = resolveCardLine(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved") line = resolved.line;
+      if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) line = resolved.line;
     }
     if ([...taken, ...kept.map((item) => item.line)].some((other) => sameCardLine(other, line))) continue;
     kept.push({ line, why: normaliseProse(move.why) });
@@ -96,7 +96,7 @@ function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText:
     if (resumeText) {
       const resolved = resolveCardLine(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved") line = resolved.line;
+      if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) line = resolved.line;
     }
     if (missing.some((other) => sameWords(other, requirement)) || kept.some((other) => sameWords(other.requirement, requirement))) continue;
     kept.push({ requirement, line });
@@ -246,7 +246,10 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
           issues.push({ path: `${path}.line`, message: `matches more than one resume line: "${card.line}"` });
           return;
         }
-        if (resolved.status === "resolved") card = { ...card, line: resolved.line };
+        // The quote is widened to the whole resume line it sits on, unless that line is longer than a report can
+        // hold (a summary pasted as one paragraph). Then the model's own quote stands: it is on the resume, and a
+        // line past the limit would make the saved report unreadable when it is opened again.
+        if (resolved.status === "resolved" && resolved.line.length <= MAX_LINE_LENGTH) card = { ...card, line: resolved.line };
       } else {
         for (const issue of ungroundedTokensInStatement(card.line, resumeText)) {
           issues.push({ path: `${path}.line`, message: `states a ${issue.kind} the resume doesn't have: "${issue.token}"` });

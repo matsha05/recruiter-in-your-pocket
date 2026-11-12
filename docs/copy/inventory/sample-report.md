@@ -8,9 +8,9 @@ Routes: `/sample-report`. Strings: 6 (4 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/app/(marketing)/sample-report/page.tsx:12` | key:title | Sample report |
-| 2 | marketing | `web/app/(marketing)/sample-report/page.tsx:13` | key:description | A complete resume report on a fictional candidate, Jordan: what a recruiter takes from the resume, and the lines that need work. |
-| 3 | marketing | `web/app/(marketing)/sample-report/page.tsx:18` | key:title | Sample report: Jordan’s resume, start to finish |
-| 4 | marketing | `web/app/(marketing)/sample-report/page.tsx:19` | key:description | A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first. |
-| 5 | marketing | `web/app/(marketing)/sample-report/page.tsx:26` | key:title | Sample report: Jordan’s resume, start to finish |
-| 6 | marketing | `web/app/(marketing)/sample-report/page.tsx:27` | key:description | A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first. |
+| 1 | marketing | `web/app/(marketing)/sample-report/page.tsx:14` | key:title | Sample report |
+| 2 | marketing | `web/app/(marketing)/sample-report/page.tsx:15` | key:description | A complete resume report on a fictional candidate, Jordan: what a recruiter takes from the resume, and the lines that need work. |
+| 3 | marketing | `web/app/(marketing)/sample-report/page.tsx:20` | key:title | Sample report: Jordan’s resume, start to finish |
+| 4 | marketing | `web/app/(marketing)/sample-report/page.tsx:21` | key:description | A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first. |
+| 5 | marketing | `web/app/(marketing)/sample-report/page.tsx:28` | key:title | Sample report: Jordan’s resume, start to finish |
+| 6 | marketing | `web/app/(marketing)/sample-report/page.tsx:29` | key:description | A complete resume report on a fictional candidate: the feedback, the quoted lines behind it, and what to fix first. |
