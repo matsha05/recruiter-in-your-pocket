@@ -264,7 +264,8 @@ The table of what a posting asks for takes its rows from the qualifications, req
 - Found on a live walk with a real resume and two real postings; reproduced on two synthetic postings shaped like them.
 - Thirteen posting reads judged: 0 wrong of 42 missing, 0 wrong of 30 covered, 0 contradictions.
 - Full golden tier, one run later the same day: 20 pass, 3 warnings, 0 failures (23 fixtures), 87% passing. Under the 90% the bundled evidence needs, so recorded and not bound; not rerun. Receipt: `tests/fixtures/results/summary_golden_full_must_have_2026-11-12.md`.
-- Gate: the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_latest_live.md`). The golden fixtures that are real people's resumes were not run; they carry no posting, so this change does not reach them.
+- Bundled evidence since later that day: the same full run replayed through the repeated-clause check as corrected in PR 142, 21 pass, 2 warnings, 0 failures (91.3%), `tests/fixtures/results/summary_latest_live.md`. One generation, not repeated; it clears the bar only with that correction.
+- First gate, and the evidence until then: the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_golden_synthetic_must_have_2026-11-12.md`).
 - Spend: about $0.80.
 
 ### The gap card stops reciting — November 12
