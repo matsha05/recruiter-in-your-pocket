@@ -13,6 +13,7 @@ import { Analytics } from "@/lib/analytics";
 import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
+import { ReportManageMenu } from "@/components/reports/ReportManageMenu";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
@@ -34,6 +35,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   const [report, setReport] = useState<ReportData | null>(null);
   const [lineAnswers, setLineAnswers] = useState<StoredLineAnswersByFix | null>(null);
   const [hasJobDescription, setHasJobDescription] = useState(false);
+  const [reportName, setReportName] = useState<string | null>(null);
   const [isExporting, setIsExporting] = useState(false);
 
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
@@ -81,6 +83,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       setReport(nextReport);
       setLineAnswers(data.lineAnswers ?? null);
       setHasJobDescription(Boolean(data.jdPreview));
+      setReportName(typeof data.name === "string" && data.name.trim() ? data.name : null);
       setState("ready");
       Analytics.track("report_detail_opened");
     } catch {
@@ -144,9 +147,13 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             My reports
           </Link>
           {/* The header already offers "New report"; from a saved report the next step is checking a revision against it. */}
-          <Link href={revisionHref || "/workspace"} className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
-            {revisionHref ? "Compare my revision" : "New report"}
-          </Link>
+          <div className="flex items-center gap-1">
+            <Link href={revisionHref || "/workspace"} className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+              {revisionHref ? "Compare my revision" : "New report"}
+            </Link>
+            {/* Naming and deleting live with the report; My reports only opens it (Nov 11, 2026). */}
+            {state === "ready" && report ? <ReportManageMenu key={reportId} reportId={reportId} initialName={reportName} /> : null}
+          </div>
         </div>
       </div>
 

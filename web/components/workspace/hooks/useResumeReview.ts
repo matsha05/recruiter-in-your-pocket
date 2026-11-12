@@ -22,6 +22,8 @@ export function useResumeReview(input: {
   document?: "linkedin" | null;
   /** Set when this run is a posting read on the pass: the saved report of the same resume. It spends no report. */
   postingReadReportId?: string | null;
+  /** The saved report this run re-checks; the new report is kept as a version of it. */
+  revisesReportId?: string | null;
   onPostingReadRefused?: () => void;
   freeUsesRemaining: number;
   user: any;
@@ -165,6 +167,7 @@ export function useResumeReview(input: {
           rebuild,
           document: rebuild ? null : input.document ?? null,
           postingRead: !rebuild && !input.document && input.postingReadReportId && hasJobDescription ? { reportId: input.postingReadReportId } : null,
+          revisesReportId: input.revisesReportId ?? null,
           onStage: (stage) => {
             if (input.isAnalysisCurrent(controller)) input.setAnalysisStage?.(stage);
           },

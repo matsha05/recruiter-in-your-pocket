@@ -51,6 +51,7 @@ const MIGRATIONS = [
   ["023_report_feedback_retention", "web/database/migrations/023_report_feedback_retention.sql"],
   ["024_report_line_answers", "web/database/migrations/024_report_line_answers.sql"],
   ["025_pass_lifecycle", "web/database/migrations/025_pass_lifecycle.sql"],
+  ["026_report_revisions", "web/database/migrations/026_report_revisions.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -247,6 +248,7 @@ async function verifyCleanReplay(manifest) {
         "023_report_feedback_retention",
         "024_report_line_answers",
         "025_pass_lifecycle",
+        "026_report_revisions",
       ],
     );
     for (const migration of upgradeBaseline) {

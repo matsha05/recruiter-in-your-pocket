@@ -1,16 +1,16 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 436,
-    "files_with_copy": 262,
-    "strings": 3005,
-    "unique_strings": 2506
+    "files_scanned": 437,
+    "files_with_copy": 263,
+    "strings": 3021,
+    "unique_strings": 2522
   },
   "by_moment": {
     "research": 990,
-    "account": 459,
+    "account": 469,
     "marketing": 411,
-    "report": 312,
+    "report": 318,
     "pricing": 218,
     "upload": 124,
     "legal": 113,
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 80,
+      "line": 97,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 97,
+      "line": 114,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 106,
+      "line": 123,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 112,
+      "line": 129,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 118,
+      "line": 135,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 142,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -12793,7 +12793,7 @@
     {
       "text": "Could not load this report. Try again.",
       "kind": "key:message",
-      "line": 77,
+      "line": 79,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12804,7 +12804,7 @@
     {
       "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
-      "line": 87,
+      "line": 89,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12815,7 +12815,7 @@
     {
       "text": "Sign in to delete this report.",
       "kind": "key:message",
-      "line": 98,
+      "line": 100,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12826,7 +12826,7 @@
     {
       "text": "We couldn’t confirm this report is yours. Refresh and try again.",
       "kind": "key:message",
-      "line": 116,
+      "line": 118,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12837,7 +12837,7 @@
     {
       "text": "Could not confirm access to this report. Refresh the page and try again.",
       "kind": "key:message",
-      "line": 119,
+      "line": 121,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12848,7 +12848,7 @@
     {
       "text": "Report not found or you don't have permission to delete it.",
       "kind": "key:message",
-      "line": 126,
+      "line": 128,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12859,7 +12859,7 @@
     {
       "text": "We couldn’t delete this report. Try again.",
       "kind": "key:message",
-      "line": 143,
+      "line": 145,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12870,7 +12870,7 @@
     {
       "text": "Could not delete this report.",
       "kind": "key:message",
-      "line": 146,
+      "line": 148,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12881,7 +12881,7 @@
     {
       "text": "Report deletion could not be verified",
       "kind": "key:message",
-      "line": 163,
+      "line": 165,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12892,7 +12892,7 @@
     {
       "text": "Report still existed after deletion",
       "kind": "key:message",
-      "line": 163,
+      "line": 165,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12903,7 +12903,7 @@
     {
       "text": "Could not verify that this report was deleted.",
       "kind": "key:message",
-      "line": 166,
+      "line": 168,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12914,7 +12914,7 @@
     {
       "text": "Report deleted.",
       "kind": "key:message",
-      "line": 171,
+      "line": 173,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12925,7 +12925,7 @@
     {
       "text": "Could not delete this report. Try again.",
       "kind": "key:message",
-      "line": 174,
+      "line": 176,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12936,7 +12936,7 @@
     {
       "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
-      "line": 184,
+      "line": 186,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12947,7 +12947,7 @@
     {
       "text": "Sign in to rename this report.",
       "kind": "key:message",
-      "line": 195,
+      "line": 197,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12958,7 +12958,7 @@
     {
       "text": "Keep the report name to 100 characters or fewer.",
       "kind": "key:message",
-      "line": 209,
+      "line": 211,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12969,7 +12969,7 @@
     {
       "text": "Keep the version name to 50 characters or fewer.",
       "kind": "key:message",
-      "line": 219,
+      "line": 221,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12980,7 +12980,7 @@
     {
       "text": "Enter a report name or version name to save.",
       "kind": "key:message",
-      "line": 228,
+      "line": 230,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -12991,7 +12991,7 @@
     {
       "text": "Report update failed",
       "kind": "key:message",
-      "line": 245,
+      "line": 247,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13002,7 +13002,7 @@
     {
       "text": "Could not update this report.",
       "kind": "key:message",
-      "line": 248,
+      "line": 250,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13013,7 +13013,7 @@
     {
       "text": "Report updated.",
       "kind": "key:message",
-      "line": 253,
+      "line": 255,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13024,7 +13024,7 @@
     {
       "text": "Could not rename this report. Try again.",
       "kind": "key:message",
-      "line": 256,
+      "line": 258,
       "file": "web/app/api/reports/[id]/route.ts",
       "routes": [
         "/api/reports/[id]"
@@ -13409,7 +13409,7 @@
     {
       "text": "This is taking longer than usual. Try again in a moment.",
       "kind": "const",
-      "line": 452,
+      "line": 462,
       "file": "web/app/api/resume-feedback/route.ts",
       "routes": [
         "/api/resume-feedback"
@@ -13420,7 +13420,7 @@
     {
       "text": "Connection hiccup. Try again in a moment.",
       "kind": "const",
-      "line": 454,
+      "line": 464,
       "file": "web/app/api/resume-feedback/route.ts",
       "routes": [
         "/api/resume-feedback"
@@ -13431,7 +13431,7 @@
     {
       "text": "We couldn't read the report that came back. Try again.",
       "kind": "const",
-      "line": 457,
+      "line": 467,
       "file": "web/app/api/resume-feedback/route.ts",
       "routes": [
         "/api/resume-feedback"
@@ -13442,7 +13442,7 @@
     {
       "text": "We couldn’t finish this report on our side. Your resume wasn’t the problem.",
       "kind": "const",
-      "line": 459,
+      "line": 469,
       "file": "web/app/api/resume-feedback/route.ts",
       "routes": [
         "/api/resume-feedback"
@@ -13508,7 +13508,7 @@
     {
       "text": "This is taking longer than usual. Try again in a moment.",
       "kind": "const",
-      "line": 682,
+      "line": 692,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13519,7 +13519,7 @@
     {
       "text": "Connection hiccup. Try again in a moment.",
       "kind": "const",
-      "line": 684,
+      "line": 694,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -27374,6 +27374,7 @@
       "routes": [
         "/",
         "/methodology",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -28316,7 +28317,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 102,
+      "line": 105,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28327,7 +28328,7 @@
     {
       "text": "The PDF couldn’t download. Try exporting again.",
       "kind": "call:ClientActionError",
-      "line": 116,
+      "line": 119,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28338,7 +28339,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 147,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28349,7 +28350,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 152,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28360,7 +28361,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 152,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28371,7 +28372,7 @@
     {
       "text": "Loading report…",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 164,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28382,7 +28383,7 @@
     {
       "text": "Report not found",
       "kind": "jsx-text",
-      "line": 166,
+      "line": 173,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28393,7 +28394,7 @@
     {
       "text": "Back to your workspace",
       "kind": "jsx-text",
-      "line": 171,
+      "line": 178,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28404,7 +28405,7 @@
     {
       "text": "Sign in to view this report",
       "kind": "jsx-text",
-      "line": 182,
+      "line": 189,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28415,7 +28416,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 192,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28426,7 +28427,7 @@
     {
       "text": "We couldn’t load this report.",
       "kind": "jsx-text",
-      "line": 196,
+      "line": 203,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28437,7 +28438,7 @@
     {
       "text": "Your report is safe.",
       "kind": "jsx-text",
-      "line": 198,
+      "line": 205,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28448,7 +28449,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 205,
+      "line": 212,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28459,7 +28460,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 211,
+      "line": 218,
       "file": "web/components/reports/ReportDetailClient.tsx",
       "routes": [
         "/reports/[id]"
@@ -28470,7 +28471,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 42,
+      "line": 47,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28481,7 +28482,7 @@
     {
       "text": "Lifetime access",
       "kind": "return",
-      "line": 62,
+      "line": 67,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28492,7 +28493,7 @@
     {
       "text": "Monthly plan",
       "kind": "return",
-      "line": 63,
+      "line": 68,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28503,7 +28504,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 66,
+      "line": 71,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28514,7 +28515,7 @@
     {
       "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
       "kind": "return",
-      "line": 69,
+      "line": 74,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28525,7 +28526,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 77,
+      "line": 81,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28534,31 +28535,9 @@
       "table": "reports"
     },
     {
-      "text": "Could not rename this report. Try again.",
+      "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 117,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Could not delete this report. Try again.",
-      "kind": "call:ClientActionError",
-      "line": 140,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Report deleted",
-      "kind": "call:toast.success",
-      "line": 144,
+      "line": 97,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28569,7 +28548,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 156,
+      "line": 114,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28580,7 +28559,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 115,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28591,7 +28570,84 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 160,
+      "line": 118,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Since version 1",
+      "kind": "jsx-text",
+      "line": 154,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "jsx-text",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "jsx-text",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "const",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "const",
+      "line": 175,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "attr:loadingLabel",
+      "line": 178,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "jsx-text",
+      "line": 179,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28602,7 +28658,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 174,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28613,7 +28669,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 174,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28622,64 +28678,9 @@
       "table": "reports"
     },
     {
-      "text": "Report name",
+      "text": "· Version",
       "kind": "jsx-text",
-      "line": 188,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Name this version",
-      "kind": "attr:placeholder",
-      "line": 200,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Saving…",
-      "kind": "attr:loadingLabel",
-      "line": 203,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Cancel rename",
-      "kind": "attr:aria-label",
-      "line": 204,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Rename {reportTitle(report)}",
-      "kind": "attr:aria-label",
-      "line": 213,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Delete {reportTitle(report)}",
-      "kind": "attr:aria-label",
-      "line": 216,
+      "line": 207,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28690,7 +28691,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 230,
+      "line": 253,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28701,7 +28702,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 238,
+      "line": 261,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28712,7 +28713,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 248,
+      "line": 271,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28723,18 +28724,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 262,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Check a revision",
-      "kind": "jsx-text",
-      "line": 266,
+      "line": 281,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28745,7 +28735,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 290,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28754,48 +28744,169 @@
       "table": "reports"
     },
     {
-      "text": "Check a revision",
-      "kind": "jsx-text",
-      "line": 301,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Open {title}",
+      "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 309,
+      "line": 317,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
       ],
       "moment": "account",
       "table": "reports"
+    },
+    {
+      "text": "Could not rename this report. Try again.",
+      "kind": "call:ClientActionError",
+      "line": 43,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Could not delete this report. Try again.",
+      "kind": "call:ClientActionError",
+      "line": 60,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Report deleted",
+      "kind": "call:toast.success",
+      "line": 61,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Rename or delete this report",
+      "kind": "attr:aria-label",
+      "line": 74,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this report",
+      "kind": "jsx-text",
+      "line": 81,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Delete report",
+      "kind": "jsx-text",
+      "line": 85,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Rename this report",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this report",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "The name leads its row on My reports. Leave it empty to show the verdict instead.",
+      "kind": "jsx-text",
+      "line": 94,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Report name",
+      "kind": "jsx-text",
+      "line": 97,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Name this version",
+      "kind": "attr:placeholder",
+      "line": 98,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
+    },
+    {
+      "text": "Saving…",
+      "kind": "attr:loadingLabel",
+      "line": 101,
+      "file": "web/components/reports/ReportManageMenu.tsx",
+      "routes": [
+        "/reports/[id]"
+      ],
+      "moment": "account",
+      "table": "reports-id"
     },
     {
       "text": "Delete this report?",
       "kind": "attr:title",
-      "line": 325,
-      "file": "web/components/reports/ReportHistoryList.tsx",
+      "line": 111,
+      "file": "web/components/reports/ReportManageMenu.tsx",
       "routes": [
-        "/reports"
+        "/reports/[id]"
       ],
       "moment": "account",
-      "table": "reports"
+      "table": "reports-id"
     },
     {
-      "text": "{reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact.",
+      "text": "{name || \"This report\"} will be permanently deleted. Your account and any other saved reports will stay intact.",
       "kind": "attr:description",
-      "line": 326,
-      "file": "web/components/reports/ReportHistoryList.tsx",
+      "line": 112,
+      "file": "web/components/reports/ReportManageMenu.tsx",
       "routes": [
-        "/reports"
+        "/reports/[id]"
       ],
       "moment": "account",
-      "table": "reports"
+      "table": "reports-id"
     },
     {
       "text": "All research",
@@ -31776,7 +31887,7 @@
       "file": "web/components/ui/input.tsx",
       "routes": [
         "/auth",
-        "/reports",
+        "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -31794,7 +31905,7 @@
       "file": "web/components/ui/input.tsx",
       "routes": [
         "/auth",
-        "/reports",
+        "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -35676,9 +35787,10 @@
     {
       "text": "Compare reports",
       "kind": "jsx-text",
-      "line": 36,
+      "line": 39,
       "file": "web/components/workspace/VersionComparisonView.tsx",
       "routes": [
+        "/reports",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -35692,9 +35804,10 @@
     {
       "text": "The lines, score and verdict from your earlier report beside the newer one.",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 43,
       "file": "web/components/workspace/VersionComparisonView.tsx",
       "routes": [
+        "/reports",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -35724,7 +35837,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 427,
+      "line": 430,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35740,7 +35853,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 428,
+      "line": 431,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35756,7 +35869,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 458,
+      "line": 461,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35989,7 +36102,7 @@
     {
       "text": "We couldn’t read this resume",
       "kind": "call:toast.error",
-      "line": 79,
+      "line": 81,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36005,7 +36118,7 @@
     {
       "text": "We couldn’t read this file",
       "kind": "call:toast.error",
-      "line": 85,
+      "line": 87,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36021,7 +36134,7 @@
     {
       "text": "Try another PDF or DOCX, or paste the resume text.",
       "kind": "key:description",
-      "line": 85,
+      "line": 87,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36037,7 +36150,7 @@
     {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
-      "line": 102,
+      "line": 104,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36053,7 +36166,7 @@
     {
       "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
-      "line": 109,
+      "line": 111,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36069,7 +36182,7 @@
     {
       "text": "Add your resume first",
       "kind": "call:toast.error",
-      "line": 131,
+      "line": 133,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36085,7 +36198,7 @@
     {
       "text": "Upload a file or paste the resume text before creating the report.",
       "kind": "key:description",
-      "line": 132,
+      "line": 134,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36101,7 +36214,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.warning",
-      "line": 183,
+      "line": 186,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36117,7 +36230,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 187,
+      "line": 190,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36133,7 +36246,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 191,
+      "line": 194,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36149,7 +36262,7 @@
     {
       "text": "{REPORT_ACCESS_NOT_USED} Try again whenever you're ready.",
       "kind": "const",
-      "line": 249,
+      "line": 252,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36165,7 +36278,7 @@
     {
       "text": "The connection dropped",
       "kind": "const",
-      "line": 254,
+      "line": 257,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36181,7 +36294,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "const",
-      "line": 254,
+      "line": 257,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36197,7 +36310,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "call:toast.error",
-      "line": 271,
+      "line": 274,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36607,6 +36720,7 @@
       "line": 67,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36624,6 +36738,7 @@
       "line": 70,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36641,6 +36756,7 @@
       "line": 72,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36658,6 +36774,7 @@
       "line": 72,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36675,6 +36792,7 @@
       "line": 82,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36692,6 +36810,7 @@
       "line": 86,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36709,6 +36828,7 @@
       "line": 94,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36726,6 +36846,7 @@
       "line": 101,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -36743,6 +36864,7 @@
       "line": 101,
       "file": "web/components/workspace/report/ReadComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37474,6 +37596,7 @@
       "line": 30,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37491,6 +37614,7 @@
       "line": 31,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37508,6 +37632,7 @@
       "line": 32,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37525,6 +37650,7 @@
       "line": 33,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37542,6 +37668,7 @@
       "line": 50,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37559,6 +37686,7 @@
       "line": 247,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37576,6 +37704,7 @@
       "line": 247,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37593,6 +37722,7 @@
       "line": 248,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37610,6 +37740,7 @@
       "line": 261,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37627,6 +37758,7 @@
       "line": 261,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37644,6 +37776,7 @@
       "line": 262,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37661,6 +37794,7 @@
       "line": 275,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37678,6 +37812,7 @@
       "line": 276,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37695,6 +37830,7 @@
       "line": 289,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37712,6 +37848,7 @@
       "line": 289,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37729,6 +37866,7 @@
       "line": 314,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37746,6 +37884,7 @@
       "line": 315,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37763,6 +37902,7 @@
       "line": 324,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37780,6 +37920,7 @@
       "line": 353,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37797,6 +37938,7 @@
       "line": 360,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37814,6 +37956,7 @@
       "line": 366,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37831,6 +37974,7 @@
       "line": 366,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37848,6 +37992,7 @@
       "line": 370,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37865,6 +38010,7 @@
       "line": 375,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37882,6 +38028,7 @@
       "line": 379,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37899,6 +38046,7 @@
       "line": 382,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37916,6 +38064,7 @@
       "line": 388,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37933,6 +38082,7 @@
       "line": 79,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37950,6 +38100,7 @@
       "line": 103,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37967,6 +38118,7 @@
       "line": 104,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -37984,6 +38136,7 @@
       "line": 214,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38001,6 +38154,7 @@
       "line": 269,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38018,6 +38172,7 @@
       "line": 292,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38035,6 +38190,7 @@
       "line": 293,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38052,6 +38208,7 @@
       "line": 39,
       "file": "web/components/workspace/report/markup/MissFeedback.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38069,6 +38226,7 @@
       "line": 62,
       "file": "web/components/workspace/report/markup/MissFeedback.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38086,6 +38244,7 @@
       "line": 69,
       "file": "web/components/workspace/report/markup/MissFeedback.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38121,6 +38280,7 @@
       "line": 77,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38138,6 +38298,7 @@
       "line": 77,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38155,6 +38316,7 @@
       "line": 78,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38172,6 +38334,7 @@
       "line": 81,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38189,6 +38352,7 @@
       "line": 81,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38206,6 +38370,7 @@
       "line": 82,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38223,6 +38388,7 @@
       "line": 86,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38240,6 +38406,7 @@
       "line": 89,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38257,6 +38424,7 @@
       "line": 91,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38274,6 +38442,7 @@
       "line": 92,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38291,6 +38460,7 @@
       "line": 93,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38308,6 +38478,7 @@
       "line": 95,
       "file": "web/components/workspace/report/markup/guardCopy.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38575,62 +38746,12 @@
       "table": "shared"
     },
     {
-      "text": "Last time",
-      "kind": "attr:aria-label",
-      "line": 24,
-      "file": "web/components/workspace/report/worklist/WorklistComparison.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Last time",
-      "kind": "attr:caption",
-      "line": 25,
-      "file": "web/components/workspace/report/worklist/WorklistComparison.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Last time",
-      "kind": "attr:caption",
-      "line": 26,
-      "file": "web/components/workspace/report/worklist/WorklistComparison.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
       "text": "The verdict reads the same.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 39,
       "file": "web/components/workspace/report/worklist/WorklistComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38645,9 +38766,10 @@
     {
       "text": "The verdict changed too.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 39,
       "file": "web/components/workspace/report/worklist/WorklistComparison.tsx",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -38730,7 +38852,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 158,
+      "line": 160,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38746,7 +38868,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 188,
+      "line": 190,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38762,7 +38884,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 239,
+      "line": 241,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38778,7 +38900,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 368,
+      "line": 370,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -39821,6 +39943,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39846,6 +39969,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39871,6 +39995,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39896,6 +40021,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39921,6 +40047,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39946,6 +40073,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39971,6 +40099,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -39996,6 +40125,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40021,6 +40151,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40046,6 +40177,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40071,6 +40203,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40096,6 +40229,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40121,6 +40255,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40146,6 +40281,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40171,6 +40307,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40196,6 +40333,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40221,6 +40359,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -40246,6 +40385,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42305,9 +42445,25 @@
       "table": "shared"
     },
     {
+      "text": "Report revision link failed",
+      "kind": "key:message",
+      "line": 76,
+      "file": "web/lib/reports/generated-report-store.ts",
+      "routes": [
+        "/api/reports",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/api/user/default-resume"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "Report insert failed",
       "kind": "key:message",
-      "line": 115,
+      "line": 148,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -42323,7 +42479,7 @@
     {
       "text": "Saved job link update failed",
       "kind": "key:message",
-      "line": 132,
+      "line": 165,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -42339,7 +42495,7 @@
     {
       "text": "Report rollback failed",
       "kind": "key:message",
-      "line": 155,
+      "line": 188,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -42380,6 +42536,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42407,6 +42564,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42434,6 +42592,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42461,6 +42620,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42488,6 +42648,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42515,6 +42676,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42542,6 +42704,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42569,6 +42732,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42596,6 +42760,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42623,6 +42788,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42650,6 +42816,7 @@
         "/help",
         "/pricing",
         "/privacy",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42720,7 +42887,7 @@
     {
       "text": "{total} {lines} to answer",
       "kind": "return",
-      "line": 47,
+      "line": 50,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -42731,7 +42898,95 @@
     {
       "text": "{answered} of {total} {lines} answered",
       "kind": "return",
-      "line": 49,
+      "line": 52,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Up {change.delta} from version {change.from}",
+      "kind": "return",
+      "line": 188,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Down {Math.abs(change.delta)} from version {change.from}",
+      "kind": "return",
+      "line": 189,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Same score as version {change.from}",
+      "kind": "return",
+      "line": 190,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "{count} earlier {count === 1 ? \"version\" :…}",
+      "kind": "return",
+      "line": 195,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "{lines(gone, \"line is\", \"l…} off the list.",
+      "kind": "const",
+      "line": 230,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Up {delta}",
+      "kind": "const",
+      "line": 240,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Down {Math.abs(delta)}",
+      "kind": "const",
+      "line": 240,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Same score",
+      "kind": "const",
+      "line": 240,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -42770,6 +43025,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42794,6 +43050,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42818,6 +43075,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42842,6 +43100,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42866,6 +43125,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42890,6 +43150,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42914,6 +43175,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42938,6 +43200,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42962,6 +43225,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -42986,6 +43250,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43010,6 +43275,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43034,6 +43300,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43058,6 +43325,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43082,6 +43350,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43106,6 +43375,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43130,6 +43400,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43154,6 +43425,7 @@
         "/api/resume-feedback-stream",
         "/api/revise-line",
         "/launch/gauntlet",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43199,6 +43471,7 @@
       "file": "web/lib/reports/revised-line-polish.ts",
       "routes": [
         "/api/revise-line",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43221,6 +43494,7 @@
         "/api/reports/[id]/answers",
         "/api/resume-feedback-stream",
         "/api/revise-line",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43243,6 +43517,7 @@
         "/api/reports/[id]/answers",
         "/api/resume-feedback-stream",
         "/api/revise-line",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43265,6 +43540,7 @@
         "/api/reports/[id]/answers",
         "/api/resume-feedback-stream",
         "/api/revise-line",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43287,6 +43563,7 @@
         "/api/reports/[id]/answers",
         "/api/resume-feedback-stream",
         "/api/revise-line",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43740,6 +44017,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43758,6 +44036,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43776,6 +44055,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43794,6 +44074,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43812,6 +44093,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43830,6 +44112,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43848,6 +44131,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43866,6 +44150,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43884,6 +44169,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43902,6 +44188,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43920,6 +44207,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43938,6 +44226,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43956,6 +44245,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43974,6 +44264,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -43992,6 +44283,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44010,6 +44302,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44028,6 +44321,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44046,6 +44340,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44064,6 +44359,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44082,6 +44378,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44100,6 +44397,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44118,6 +44416,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44136,6 +44435,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44154,6 +44454,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44172,6 +44473,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44190,6 +44492,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44208,6 +44511,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44226,6 +44530,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44244,6 +44549,7 @@
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44256,12 +44562,13 @@
       "table": "shared"
     },
     {
-      "text": "Up {delta} since last time. That's the right direction!",
+      "text": "Up {delta} since {since}. That's the right direction!",
       "kind": "const",
       "line": 419,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
@@ -44274,12 +44581,13 @@
       "table": "shared"
     },
     {
-      "text": "Down {Math.abs(delta)} since last time.",
+      "text": "Down {Math.abs(delta)} since {since}.",
       "kind": "const",
       "line": 419,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/sample-report/career-break",
