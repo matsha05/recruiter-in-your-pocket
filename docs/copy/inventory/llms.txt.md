@@ -9,7 +9,7 @@ Routes: `/llms.txt`. Strings: 15 (15 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | marketing | `web/lib/seo/llms.ts:20` | key:note | Upload the resume you have and read what a recruiter would question before you send it. |
-| 2 | marketing | `web/lib/seo/llms.ts:21` | key:note | One complete report on one resume: the recruiter's write-up, the lines that need work in the order a recruiter hits them, and an example for each. |
+| 2 | marketing | `web/lib/seo/llms.ts:21` | key:note | One complete report on one fictional resume: the recruiter's write-up, the lines that need work in the order a recruiter reads them, and an example for each. Four more by situation: a new graduate (/sample-report/new-graduate), a career change (/sample-report/career-change), a return from a career break (/sample-report/career-break) and a senior resume (/sample-report/staff-engineer). |
 | 3 | marketing | `web/lib/seo/llms.ts:22` | key:note | The first report is free, with no card and no account. Then $29 once for five more reports, good for 90 days. Nothing renews. |
 | 4 | marketing | `web/lib/seo/llms.ts:24` | key:note | Plain answers about the score, applicant tracking systems, privacy, and the pass. |
 | 5 | marketing | `web/lib/seo/llms.ts:45` | const[] | > A free report that reads the resume you already have the way a recruiter would: a recruiter's write-up, the lines that need work in order, and examples built only from your facts. The first report is free; then $29 once for five more, good for 90 days. No subscription. |

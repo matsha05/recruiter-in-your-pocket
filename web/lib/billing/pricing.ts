@@ -60,6 +60,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
       { text: "5 more complete reports", bold: true },
       { text: "Re-check a revision and see which lines came off the list" },
       { text: POSTING_READS_FEATURE },
+      { text: "Use any report to review your LinkedIn profile" },
       { text: "$29 once. Good for 90 days. No automatic renewal." }
     ]
   },

@@ -3,6 +3,7 @@ import type { IconProps } from "@phosphor-icons/react";
 // The server-safe icon build: legal pages render on the server.
 import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react/dist/ssr";
 import { FREE_REPORT_ENTITLEMENT } from "../billing/pricing";
+import { POSTING_READS_AFTER_FIVE, POSTING_READS_SENTENCE } from "../reports/posting-read-terms";
 import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TERMS_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 
 export type LegalIcon = ComponentType<IconProps>;
@@ -298,7 +299,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What does the report cover?",
-                a: "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every card quotes the line it is about, says what a recruiter can’t tell from it, and gives an example with blanks only you can fill. Add a job posting, and the report reads your resume against that role too.",
+                a: "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every card quotes the line it is about, says what a recruiter can’t tell from it, and gives an example with blanks only you can fill. Add a job posting, and the report reads your resume against that role too: what the posting asks for, the line on your resume that answers each requirement, and what isn't there.",
+              },
+              {
+                q: "Can it review my LinkedIn profile?",
+                a: "Yes. On LinkedIn, save your profile as a PDF, then upload that file under LinkedIn on the new-report screen. The review covers your headline, your About, each job and your top skills, and the words a recruiter would search for. It uses one report. We never sign in to your LinkedIn account, and the PDF leaves out your photo and recommendations, so the review says nothing about them.",
               },
               {
                 q: "How is this different from ATS keyword tools?",
@@ -331,7 +336,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What happens to uploaded resume data?",
-                a: "We don't store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time.",
+                a: "We don't store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time. A saved report doesn't keep the resume. With a pass, you can choose to keep a resume on file so a later posting read doesn't ask for it again; it stays until you remove it.",
               },
               {
                 q: "Is my data used to train public models?",
@@ -339,7 +344,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "How do I delete my data?",
-                a: "Delete individual reports from Reports. In Settings, you can export your account data or delete your account entirely.",
+                a: "Delete individual reports from Reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
               },
             ],
           },
@@ -352,11 +357,11 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What is the Job Search Pass?",
-                a: "One $29 payment for five more complete reports. Use them to check a revision or read your resume against a job. The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.",
+                a: `One $29 payment for five more complete reports. Use them to check a revision, read another resume, or review your LinkedIn profile. ${POSTING_READS_SENTENCE} The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.`,
               },
               {
                 q: "What happens after I use all five reports?",
-                a: "You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. Another report requires a new pass or available free access.",
+                a: `You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. ${POSTING_READS_AFTER_FIVE} Another report requires a new pass or available free access.`,
               },
               {
                 q: "How do I restore access and get receipts?",
