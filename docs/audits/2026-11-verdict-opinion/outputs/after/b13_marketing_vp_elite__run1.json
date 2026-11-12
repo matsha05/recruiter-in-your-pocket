@@ -1,0 +1,218 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:41:53.216Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 9264,
+        "completion_tokens": 1424,
+        "total_tokens": 10688,
+        "cached_prompt_tokens": 6872,
+        "cache_write_prompt_tokens": 2389,
+        "reasoning_tokens": 777
+      },
+      "cost_usd": 0.01045285,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20649
+    }
+  ],
+  "resume_prompt_sha256": "5619c27b444f576da9ffe10ba1af95b45f72af8dd0e1d489845c475db4e8fd08",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your Chief Marketing Officer role at Novara shows a substantial global organization and the marketing results to back it up. I’d move this resume forward.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your progression from NexGen to Novara comes with the teams, budgets and business results that explain each move.",
+      "The product launch line is a great model: it names your decision, the faster launch process and the revenue increase. At Novara, you lead with the organization and budget, then show what your marketing work changed.",
+      "Your resume isn’t what I’d expect to hold you back. Competition for executive roles will matter too. For a broader business leadership role, consider adding a company-wide decision you made beyond marketing, if there’s one you can name."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "Keep this as a model. It gives a recruiter your decision and several concrete measures of what followed, including the time period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader enterprise leadership role, a company-wide decision beyond marketing would show how you shape the business.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision beyond marketing did you make, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your global marketing leadership at Novara point to another Chief Marketing Officer role.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your work points toward executive marketing leadership in SaaS and other technology businesses. The demand generation, launch and brand work gives a recruiter several ways to understand your contribution.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your Chief Marketing Officer role at Novara shows a substantial global organization and the marketing results to back it up. I’d move this resume forward.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your progression from NexGen to Novara comes with the teams, budgets and business results that explain each move.",
+      "The product launch line is a great model: it names your decision, the faster launch process and the revenue increase. At Novara, you lead with the organization and budget, then show what your marketing work changed.",
+      "Your resume isn’t what I’d expect to hold you back. Competition for executive roles will matter too. For a broader business leadership role, consider adding a company-wide decision you made beyond marketing, if there’s one you can name."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "Keep this as a model. It gives a recruiter your decision and several concrete measures of what followed, including the time period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader enterprise leadership role, a company-wide decision beyond marketing would show how you shape the business.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision beyond marketing did you make, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your global marketing leadership at Novara point to another Chief Marketing Officer role.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your work points toward executive marketing leadership in SaaS and other technology businesses. The demand generation, launch and brand work gives a recruiter several ways to understand your contribution.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your Chief Marketing Officer role at Novara shows a substantial global organization and the marketing results to back it up. I’d move this resume forward.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your progression from NexGen to Novara comes with the teams, budgets and business results that explain each move.",
+      "The product launch line is a great model: it names your decision, the faster launch process and the revenue increase. At Novara, you lead with the organization and budget, then show what your marketing work changed.",
+      "Your resume isn’t what I’d expect to hold you back. Competition for executive roles will matter too. For a broader business leadership role, consider adding a company-wide decision you made beyond marketing, if there’s one you can name."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "Keep this as a model. It gives a recruiter your decision and several concrete measures of what followed, including the time period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a broader enterprise leadership role, a company-wide decision beyond marketing would show how you shape the business.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision beyond marketing did you make, if any?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your global marketing leadership at Novara point to another Chief Marketing Officer role.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your work points toward executive marketing leadership in SaaS and other technology businesses. The demand generation, launch and brand work gives a recruiter several ways to understand your contribution.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your Chief Marketing Officer role at Novara shows a substantial global organization and the marketing results to back it up. I’d move this resume forward.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 99,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "blanks": 1,
+        "question": "What company-wide decision beyond marketing did you make, if any?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer"
+      ],
+      "why": "Your current title and your global marketing leadership at Novara point to another Chief Marketing Officer role.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your work points toward executive marketing leadership in SaaS and other technology businesses. The demand generation, launch and brand work gives a recruiter several ways to understand your contribution.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01045285,
+  "latency_ms": 20655
+}

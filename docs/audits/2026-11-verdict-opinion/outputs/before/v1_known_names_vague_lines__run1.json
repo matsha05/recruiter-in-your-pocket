@@ -1,0 +1,438 @@
+{
+  "case_id": "v1_known_names_vague_lines",
+  "batch": "verdict",
+  "run": 1,
+  "note": "Amazon, Microsoft, Zillow, and no line says what she did.",
+  "resume_file": "resumes/v1_known_names_vague_lines.txt",
+  "resume_sha256": "e695b80fc37887e135afdc9c348ea12228a9e99bc1d1e63b718b5e1d95864a16",
+  "resume_words": 128,
+  "job_description_file": null,
+  "today": "2026-11-12",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-12T15:23:15.389Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6988,
+        "completion_tokens": 2215,
+        "total_tokens": 9203,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 592,
+        "reasoning_tokens": 853
+      },
+      "cost_usd": 0.01213765,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 35621
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": true,
+    "verdict": "A senior product manager at Amazon whose resume names the products but leaves the work too vague.",
+    "write_up": [
+      "Your resume traces product work from Zillow rentals to Teams meetings and now Amazon seller tools. This is a common pattern: the products are named, but most lines stop before saying what you did or what changed. A recruiter will recognize Amazon and give your resume a look, but will likely hesitate over the work underneath.",
+      "The strongest starting point is your Teams meetings line: it names the product and says you managed features. It still needs an example of those features. Your progression through product roles is easy to follow, and your current role and education are where a recruiter would expect to find them.",
+      "Let's start with the Amazon roadmap. Add the priorities you owned and the team or budget you were responsible for, if applicable. Then show your part in seller onboarding and planning. Those details will give a recruiter more to work with than a list of collaborations."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Amazon, line 1",
+        "line": "- Responsible for the roadmap for seller tools",
+        "cannot_tell": "A recruiter can't tell which roadmap priorities were yours or how large your remit was. At senior level, the team or budget you managed, if any, helps show what you were responsible for.",
+        "example": "Responsible for the roadmap for seller tools, covering [roadmap priorities] and [team or budget remit]",
+        "question": "What were your roadmap priorities, and what team or budget were you responsible for, if any?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 2",
+        "line": "- Worked with engineering, design and data science partners on key initiatives",
+        "cannot_tell": "The partners are clear, but the initiatives and your part in them aren't. Name one and the product work you contributed.",
+        "example": "Worked with engineering, design and data science partners on [initiative], contributing [product work]",
+        "question": "Which initiative did you work on with these partners, and what was your part?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 3",
+        "line": "- Helped drive improvements to the seller onboarding experience",
+        "cannot_tell": "Seller onboarding is a useful detail, but 'helped' leaves your contribution open. A recruiter also can't tell what improved.",
+        "example": "Helped drive improvements to the seller onboarding experience by [contribution], with [what changed]",
+        "question": "What did you contribute to seller onboarding, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 4",
+        "line": "- Participated in annual planning and quarterly business reviews",
+        "cannot_tell": "Planning and reviews can involve very different jobs. Say what you brought to them or what decision your work informed.",
+        "example": "Participated in annual planning and quarterly business reviews by [contribution], informing [decision]",
+        "question": "What did you contribute to planning or reviews, and which decision did it inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 1",
+        "line": "- Managed features for Teams meetings",
+        "cannot_tell": "This names the product and your ownership, but not the features. One example would show what you managed.",
+        "example": "Managed [feature] for Teams meetings, including [product work]",
+        "question": "Which Teams meetings feature did you manage, and what did that work include?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 2",
+        "line": "- Collaborated cross-functionally to deliver customer value",
+        "cannot_tell": "A recruiter can't tell what you worked on or what customers received. Connect the collaboration to a named piece of work.",
+        "example": "Collaborated cross-functionally on [product work] to deliver [customer benefit]",
+        "question": "What did you work on with other teams, and what did customers get from it?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 3",
+        "line": "- Supported go-to-market activities for new releases",
+        "cannot_tell": "The releases are there, but your contribution to getting them out isn't. Keep 'supported' and name the work you did.",
+        "example": "Supported go-to-market activities for [release] by [contribution]",
+        "question": "Which release did you support, and what did you do for its go-to-market work?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 1",
+        "line": "- Assisted with rental listings products",
+        "cannot_tell": "A recruiter knows the product area but not what your assistance involved. One named task or feature would give the role substance.",
+        "example": "Assisted with rental listings products by [contribution]",
+        "question": "What did you do for the rental listings products?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 2",
+        "line": "- Gathered requirements from stakeholders",
+        "cannot_tell": "The stakeholders' requirements could have been for almost anything. Name the product work they informed.",
+        "example": "Gathered requirements from stakeholders for [product work]",
+        "question": "What product work were these requirements for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "why": "Your headline names product management, and your roles cover seller tools, Teams meetings and rental listings.",
+      "level": "senior, current Senior Product Manager title",
+      "note": "Your experience points toward product management roles across seller and customer-facing tools. Show what you owned within those products so the senior title has more detail behind it.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": true,
+    "verdict": "A senior product manager at Amazon whose resume names the products but leaves the work too vague.",
+    "write_up": [
+      "Your resume traces product work from Zillow rentals to Teams meetings and now Amazon seller tools. This is a common pattern: the products are named, but most lines stop before saying what you did or what changed. A recruiter will recognize Amazon and give your resume a look, but will likely hesitate over the work underneath.",
+      "The strongest starting point is your Teams meetings line: it names the product and says you managed features. It still needs an example of those features. Your progression through product roles is easy to follow, and your current role and education are where a recruiter would expect to find them.",
+      "Let's start with the Amazon roadmap. Add the priorities you owned and the team or budget you were responsible for, if applicable. Then show your part in seller onboarding and planning. Those details will give a recruiter more to work with than a list of collaborations."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Amazon, line 1",
+        "line": "Responsible for the roadmap for seller tools",
+        "cannot_tell": "A recruiter can't tell which roadmap priorities were yours or how large your remit was. At senior level, the team or budget you managed, if any, helps show what you were responsible for.",
+        "example": "Responsible for the roadmap for seller tools, covering [roadmap priorities] and [team or budget remit]",
+        "question": "What were your roadmap priorities, and what team or budget were you responsible for, if any?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 2",
+        "line": "Worked with engineering, design and data science partners on key initiatives",
+        "cannot_tell": "The partners are clear, but the initiatives and your part in them aren't. Name one and the product work you contributed.",
+        "example": "Worked with engineering, design and data science partners on [initiative], contributing [product work]",
+        "question": "Which initiative did you work on with these partners, and what was your part?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 3",
+        "line": "Helped drive improvements to the seller onboarding experience",
+        "cannot_tell": "Seller onboarding is a useful detail, but 'helped' leaves your contribution open. A recruiter also can't tell what improved.",
+        "example": "Helped drive improvements to the seller onboarding experience by [contribution], with [what changed]",
+        "question": "What did you contribute to seller onboarding, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 4",
+        "line": "Participated in annual planning and quarterly business reviews",
+        "cannot_tell": "Planning and reviews can involve very different jobs. Say what you brought to them or what decision your work informed.",
+        "example": "Participated in annual planning and quarterly business reviews by [contribution], informing [decision]",
+        "question": "What did you contribute to planning or reviews, and which decision did it inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 1",
+        "line": "Managed features for Teams meetings",
+        "cannot_tell": "This names the product and your ownership, but not the features. One example would show what you managed.",
+        "example": "Managed [feature] for Teams meetings, including [product work]",
+        "question": "Which Teams meetings feature did you manage, and what did that work include?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 2",
+        "line": "Collaborated cross-functionally to deliver customer value",
+        "cannot_tell": "A recruiter can't tell what you worked on or what customers received. Connect the collaboration to a named piece of work.",
+        "example": "Collaborated cross-functionally on [product work] to deliver [customer benefit]",
+        "question": "What did you work on with other teams, and what did customers get from it?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 3",
+        "line": "Supported go-to-market activities for new releases",
+        "cannot_tell": "The releases are there, but your contribution to getting them out isn't. Keep 'supported' and name the work you did.",
+        "example": "Supported go-to-market activities for [release] by [contribution]",
+        "question": "Which release did you support, and what did you do for its go-to-market work?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 1",
+        "line": "Assisted with rental listings products",
+        "cannot_tell": "A recruiter knows the product area but not what your assistance involved. One named task or feature would give the role substance.",
+        "example": "Assisted with rental listings products by [contribution]",
+        "question": "What did you do for the rental listings products?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 2",
+        "line": "Gathered requirements from stakeholders",
+        "cannot_tell": "The stakeholders' requirements could have been for almost anything. Name the product work they informed.",
+        "example": "Gathered requirements from stakeholders for [product work]",
+        "question": "What product work were these requirements for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "why": "Your headline names product management, and your roles cover seller tools, Teams meetings and rental listings.",
+      "level": "senior, current Senior Product Manager title",
+      "note": "Your experience points toward product management roles across seller and customer-facing tools. Show what you owned within those products so the senior title has more detail behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": true,
+    "verdict": "A senior product manager at Amazon whose resume names the products but leaves the work too vague.",
+    "write_up": [
+      "Your resume traces product work from Zillow rentals to Teams meetings and now Amazon seller tools. This is a common pattern: the products are named, but most lines stop before saying what you did or what changed. A recruiter will recognize Amazon and give your resume a look, but will likely hesitate over the work underneath.",
+      "The strongest starting point is your Teams meetings line: it names the product and says you managed features. It still needs an example of those features. Your progression through product roles is easy to follow, and your current role and education are where a recruiter would expect to find them.",
+      "Let's start with the Amazon roadmap. Add the priorities you owned and the team or budget you were responsible for, if applicable. Then show your part in seller onboarding and planning. Those details will give a recruiter more to work with than a list of collaborations."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Amazon, line 1",
+        "line": "Responsible for the roadmap for seller tools",
+        "cannot_tell": "A recruiter can't tell which roadmap priorities were yours or how large your remit was. At senior level, the team or budget you managed, if any, helps show what you were responsible for.",
+        "example": "Responsible for the roadmap for seller tools, covering [roadmap priorities] and [team or budget remit]",
+        "question": "What were your roadmap priorities, and what team or budget were you responsible for, if any?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 2",
+        "line": "Worked with engineering, design and data science partners on key initiatives",
+        "cannot_tell": "The partners are clear, but the initiatives and your part in them aren't. Name one and the product work you contributed.",
+        "example": "Worked with engineering, design and data science partners on [initiative], contributing [product work]",
+        "question": "Which initiative did you work on with these partners, and what was your part?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 3",
+        "line": "Helped drive improvements to the seller onboarding experience",
+        "cannot_tell": "Seller onboarding is a useful detail, but 'helped' leaves your contribution open. A recruiter also can't tell what improved.",
+        "example": "Helped drive improvements to the seller onboarding experience by [contribution], with [what changed]",
+        "question": "What did you contribute to seller onboarding, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 4",
+        "line": "Participated in annual planning and quarterly business reviews",
+        "cannot_tell": "Planning and reviews can involve very different jobs. Say what you brought to them or what decision your work informed.",
+        "example": "Participated in annual planning and quarterly business reviews by [contribution], informing [decision]",
+        "question": "What did you contribute to planning or reviews, and which decision did it inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 1",
+        "line": "Managed features for Teams meetings",
+        "cannot_tell": "This names the product and your ownership, but not the features. One example would show what you managed.",
+        "example": "Managed [feature] for Teams meetings, including [product work]",
+        "question": "Which Teams meetings feature did you manage, and what did that work include?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 2",
+        "line": "Collaborated cross-functionally to deliver customer value",
+        "cannot_tell": "A recruiter can't tell what you worked on or what customers received. Connect the collaboration to a named piece of work.",
+        "example": "Collaborated cross-functionally on [product work] to deliver [customer benefit]",
+        "question": "What did you work on with other teams, and what did customers get from it?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 3",
+        "line": "Supported go-to-market activities for new releases",
+        "cannot_tell": "The releases are there, but your contribution to getting them out isn't. Keep 'supported' and name the work you did.",
+        "example": "Supported go-to-market activities for [release] by [contribution]",
+        "question": "Which release did you support, and what did you do for its go-to-market work?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 1",
+        "line": "Assisted with rental listings products",
+        "cannot_tell": "A recruiter knows the product area but not what your assistance involved. One named task or feature would give the role substance.",
+        "example": "Assisted with rental listings products by [contribution]",
+        "question": "What did you do for the rental listings products?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 2",
+        "line": "Gathered requirements from stakeholders",
+        "cannot_tell": "The stakeholders' requirements could have been for almost anything. Name the product work they informed.",
+        "example": "Gathered requirements from stakeholders for [product work]",
+        "question": "What product work were these requirements for?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "why": "Your headline names product management, and your roles cover seller tools, Teams meetings and rental listings.",
+      "level": "senior, current Senior Product Manager title",
+      "note": "Your experience points toward product management roles across seller and customer-facing tools. Show what you owned within those products so the senior title has more detail behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": true,
+    "verdict": "A senior product manager at Amazon whose resume names the products but leaves the work too vague.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 152,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Amazon, line 1",
+        "line": "Responsible for the roadmap for seller tools",
+        "blanks": 2,
+        "question": "What were your roadmap priorities, and what team or budget were you responsible for, if any?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 2",
+        "line": "Worked with engineering, design and data science partners on key initiatives",
+        "blanks": 2,
+        "question": "Which initiative did you work on with these partners, and what was your part?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 3",
+        "line": "Helped drive improvements to the seller onboarding experience",
+        "blanks": 2,
+        "question": "What did you contribute to seller onboarding, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Amazon, line 4",
+        "line": "Participated in annual planning and quarterly business reviews",
+        "blanks": 2,
+        "question": "What did you contribute to planning or reviews, and which decision did it inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 1",
+        "line": "Managed features for Teams meetings",
+        "blanks": 2,
+        "question": "Which Teams meetings feature did you manage, and what did that work include?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 2",
+        "line": "Collaborated cross-functionally to deliver customer value",
+        "blanks": 2,
+        "question": "What did you work on with other teams, and what did customers get from it?"
+      },
+      {
+        "kind": "line",
+        "where": "Microsoft, line 3",
+        "line": "Supported go-to-market activities for new releases",
+        "blanks": 2,
+        "question": "Which release did you support, and what did you do for its go-to-market work?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 1",
+        "line": "Assisted with rental listings products",
+        "blanks": 1,
+        "question": "What did you do for the rental listings products?"
+      },
+      {
+        "kind": "line",
+        "where": "Zillow, line 2",
+        "line": "Gathered requirements from stakeholders",
+        "blanks": 1,
+        "question": "What product work were these requirements for?"
+      }
+    ],
+    "card_count": 9,
+    "kinds": {
+      "line": 9
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Product Manager",
+        "Senior Product Manager"
+      ],
+      "why": "Your headline names product management, and your roles cover seller tools, Teams meetings and rental listings.",
+      "level": "senior, current Senior Product Manager title",
+      "note": "Your experience points toward product management roles across seller and customer-facing tools. Show what you owned within those products so the senior title has more detail behind it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01213765,
+  "latency_ms": 35628
+}

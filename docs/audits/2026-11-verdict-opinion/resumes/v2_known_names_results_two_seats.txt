@@ -1,0 +1,24 @@
+Daniel Okonkwo
+Denver, CO | daniel.okonkwo@example.com | 555-0177
+
+Professional Experience
+Stripe, Recruiting Lead, Infrastructure
+Remote | Feb 2023 – Present
+- Hired 61 infrastructure engineers in 2024 with a 91% offer accept rate, against a plan of 55
+- Lead a team of four recruiters and two sourcers; still carry my own staff-level searches
+- Closed 9 staff and principal engineers from competing offers at larger companies
+- Rebuilt the interview loop for site reliability roles with the engineering director, cutting time to offer from 41 days to 24
+
+Netflix, Senior Technical Recruiter
+Los Gatos, CA | May 2019 – Jan 2023
+- Filled 118 engineering roles across streaming and data platform over three and a half years
+- Ran the full search for 14 engineering managers and 3 directors
+- Trained 11 new recruiters on closing senior candidates
+
+Airbnb, Technical Recruiter
+San Francisco, CA | Aug 2016 – Apr 2019
+- Hired 74 engineers for payments and trust
+- Started the company's first sourcing program for returning parents, which produced 12 hires in its first year
+
+Education and Certifications
+University of Colorado Boulder, BA Psychology, 2014

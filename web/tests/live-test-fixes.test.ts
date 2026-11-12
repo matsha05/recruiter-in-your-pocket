@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { htmlToResumeText } from "../lib/backend/docx-text";
 import { PASS_SPENT_LABEL, isPassSpent, readAuthoritativePassAccess } from "../lib/billing/accountPassStatus";
+import { WorklistReportSchema } from "../lib/llm/worklist-schema";
+import { splitVerdict } from "../lib/reports/report-opening";
 import { fileReadFindings } from "../lib/reports/file-read";
 import { ACROSS_SHAPES_NOTE, compareAcrossShapes } from "../lib/reports/worklist-presentation";
 
@@ -68,6 +70,21 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes } from "../lib/reports/worklist
   assert.equal(compareAcrossShapes([], current).title, "2 lines need work in this version.");
   // The copy never says a line was fixed, and never sets the two scores against each other.
   for (const result of [mixed, allGone, allStill, clean]) assert.ok(!/fixed|\bup \d|\bdown \d/iu.test(`${result.title} ${result.intro} ${result.note}`));
+}
+
+// ---- A verdict of two or three sentences: the first is the heading, the rest reads on under it ----
+{
+  const verdict = "Stripe, Netflix and Airbnb get my attention, and your recruiting work backs up the names. I'd want to talk to you. Which seat do you want next?";
+  const split = splitVerdict(verdict);
+  assert.equal(split.lead, "Stripe, Netflix and Airbnb get my attention, and your recruiting work backs up the names.");
+  assert.equal(split.rest, "I'd want to talk to you. Which seat do you want next?");
+  assert.deepEqual(splitVerdict("Nine years of payments work, with the results attached."), { lead: "Nine years of payments work, with the results attached.", rest: null }, "a one-sentence verdict from an earlier report is shown whole");
+  // The schema takes the longer verdict and still refuses a runaway one.
+   
+  const sample = require("../public/sample-report.json");
+  assert.equal(WorklistReportSchema.safeParse(sample).success, true);
+  assert.equal(WorklistReportSchema.safeParse({ ...sample, verdict: "x".repeat(420) }).success, true);
+  assert.equal(WorklistReportSchema.safeParse({ ...sample, verdict: "x".repeat(421) }).success, false);
 }
 
 console.log("live-test fixes: Word line breaks, spent pass, older report beside a worklist report");

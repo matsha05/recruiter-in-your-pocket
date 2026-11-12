@@ -937,10 +937,10 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:121` (7 routes) | attr:aria-label | Score {report.score} out of 99 |
-| 2 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:215` (7 routes) | jsx-text | What the score means |
-| 3 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:221` (7 routes) | jsx-text | A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work. |
-| 4 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:221` (7 routes) | jsx-text | A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work. |
+| 1 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:124` (7 routes) | attr:aria-label | Score {report.score} out of 99 |
+| 2 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:220` (7 routes) | jsx-text | What the score means |
+| 3 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:226` (7 routes) | jsx-text | A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work. |
+| 4 | report | `web/components/workspace/report/worklist/WorklistReport.tsx:226` (7 routes) | jsx-text | A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work. |
 
 ## web/components/workspace/ReportPanel.tsx
 
@@ -1230,7 +1230,7 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/lib/reports/report-opening.ts:90` (8 routes) | return | read in {remainder} s |
+| 1 | report | `web/lib/reports/report-opening.ts:90` (9 routes) | return | read in {remainder} s |
 
 ## web/lib/reports/report-presentation.ts
 
