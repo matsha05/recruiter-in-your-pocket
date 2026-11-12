@@ -3,17 +3,17 @@
   "counts": {
     "files_scanned": 437,
     "files_with_copy": 263,
-    "strings": 3019,
-    "unique_strings": 2520
+    "strings": 3022,
+    "unique_strings": 2523
   },
   "by_moment": {
     "research": 990,
     "account": 469,
     "marketing": 411,
     "report": 319,
-    "pricing": 217,
+    "pricing": 218,
     "upload": 124,
-    "legal": 111,
+    "legal": 113,
     "extension": 98,
     "shared": 73,
     "rewrite": 62,
@@ -40367,9 +40367,35 @@
       "table": "shared"
     },
     {
-      "text": "$29 once. Good for 90 days. No automatic renewal.",
+      "text": "Use any report to review your LinkedIn profile",
       "kind": "key:text",
       "line": 63,
+      "file": "web/lib/billing/pricing.ts",
+      "routes": [
+        "/",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
+    },
+    {
+      "text": "$29 once. Good for 90 days. No automatic renewal.",
+      "kind": "key:text",
+      "line": 64,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40450,7 +40476,7 @@
     {
       "text": "How we handle your data",
       "kind": "key:title",
-      "line": 76,
+      "line": 77,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40463,7 +40489,7 @@
     {
       "text": "1. Who operates the service",
       "kind": "key:title",
-      "line": 81,
+      "line": 82,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40476,7 +40502,7 @@
     {
       "text": "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. RIYP is the service operator and controller for personal data collected directly through this website and product. Stripe and the other providers listed below act under their own terms or as processors for the services they provide.",
       "kind": "key:value",
-      "line": 86,
+      "line": 87,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40489,7 +40515,7 @@
     {
       "text": "This policy covers resume inputs, account information, usage data, extension capture data, saved job data, analytics metadata, support requests, and billing events processed by the web app.",
       "kind": "key:value",
-      "line": 92,
+      "line": 93,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40502,7 +40528,7 @@
     {
       "text": "2. What we collect and why",
       "kind": "key:title",
-      "line": 99,
+      "line": 100,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40515,7 +40541,7 @@
     {
       "text": "3. Third-party processors",
       "kind": "key:title",
-      "line": 105,
+      "line": 106,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40528,7 +40554,7 @@
     {
       "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs when you request one. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
       "kind": "key:value",
-      "line": 110,
+      "line": 111,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40541,7 +40567,7 @@
     {
       "text": "4. Your controls",
       "kind": "key:title",
-      "line": 117,
+      "line": 118,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40554,7 +40580,7 @@
     {
       "text": "Use Privacy choices in the footer to allow or decline optional analytics. Declining also stops Vercel's page statistics in this browser, as does a Do Not Track or Global Privacy Control signal. Declining does not affect your report or account. We remember your choice in this browser. Withdrawing permission stops future analytics and clears its local identifiers and queued events; it does not delete events already received by Mixpanel. Essential storage still supports sign-in, free-report eligibility, and your privacy choice. You can delete individual reports from Reports. In Settings, you can export your account data or permanently delete your account. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
       "kind": "key:value",
-      "line": 122,
+      "line": 123,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40567,7 +40593,7 @@
     {
       "text": "5. Privacy requests",
       "kind": "key:title",
-      "line": 129,
+      "line": 130,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40580,7 +40606,7 @@
     {
       "text": "To request access, correction, deletion, portability, restriction, or an appeal where those rights apply, email support@recruiterinyourpocket.com with the subject “Privacy request.” We may verify that you control the account email before releasing or changing personal data. We aim to acknowledge requests within 10 days and complete verified requests within 45 days unless the applicable law permits more time. We will explain any extension or denial and will not discriminate against you for making a privacy request.",
       "kind": "key:value",
-      "line": 134,
+      "line": 135,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40593,7 +40619,7 @@
     {
       "text": "6. Contact and complaints",
       "kind": "key:title",
-      "line": 141,
+      "line": 142,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40606,7 +40632,7 @@
     {
       "text": "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures follow section 9 below.",
       "kind": "key:value",
-      "line": 146,
+      "line": 147,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40619,7 +40645,7 @@
     {
       "text": "7. What we store and why",
       "kind": "key:title",
-      "line": 154,
+      "line": 155,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40632,7 +40658,7 @@
     {
       "text": "8. What we commit to",
       "kind": "key:title",
-      "line": 160,
+      "line": 161,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40645,7 +40671,7 @@
     {
       "text": "9. Responsible disclosure",
       "kind": "key:title",
-      "line": 165,
+      "line": 166,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40658,7 +40684,7 @@
     {
       "text": "If you find a security issue, email",
       "kind": "key:value",
-      "line": 168,
+      "line": 169,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40671,7 +40697,7 @@
     {
       "text": "with steps to reproduce it. The same instructions are published at",
       "kind": "key:value",
-      "line": 170,
+      "line": 171,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40684,7 +40710,7 @@
     {
       "text": "Terms for using Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 179,
+      "line": 180,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40697,7 +40723,7 @@
     {
       "text": "1. Acceptance and service scope",
       "kind": "key:title",
-      "line": 184,
+      "line": 185,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40710,7 +40736,7 @@
     {
       "text": "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice. Company names that appear on RIYP, in examples, research, or reports, do not mean those companies sponsor, endorse, or are affiliated with RIYP.",
       "kind": "key:value",
-      "line": 189,
+      "line": 190,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40723,7 +40749,7 @@
     {
       "text": "2. User responsibilities",
       "kind": "key:title",
-      "line": 196,
+      "line": 197,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40736,7 +40762,7 @@
     {
       "text": "3. Privacy and data",
       "kind": "key:title",
-      "line": 206,
+      "line": 207,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40749,7 +40775,7 @@
     {
       "text": "Privacy Policy",
       "kind": "key:label",
-      "line": 210,
+      "line": 211,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40762,7 +40788,7 @@
     {
       "text": "Help page",
       "kind": "key:label",
-      "line": 212,
+      "line": 213,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40775,7 +40801,7 @@
     {
       "text": "explain how we handle your data. If you're signed in, your report history is saved until you delete it.",
       "kind": "key:value",
-      "line": 213,
+      "line": 214,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40788,7 +40814,7 @@
     {
       "text": "4. Payment and refunds",
       "kind": "key:title",
-      "line": 219,
+      "line": 220,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40801,7 +40827,7 @@
     {
       "text": "{FREE_REPORT_ENTITLEMENT.p…} {FREE_REPORT_ENTITLEMENT.a…} A $29 Job Search Pass adds five paid reports and expires 90 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try",
       "kind": "key:value",
-      "line": 222,
+      "line": 223,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40814,7 +40840,7 @@
     {
       "text": "Restore access",
       "kind": "key:label",
-      "line": 223,
+      "line": 224,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40827,7 +40853,7 @@
     {
       "text": "before contacting Support.",
       "kind": "key:value",
-      "line": 224,
+      "line": 225,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40840,7 +40866,7 @@
     {
       "text": "You may request a full refund within 14 calendar days of purchase if none of the paid reports has been used. A refund revokes the remaining pass immediately. Duplicate charges, processing errors, and legally required refunds are reviewed regardless of usage. If a paid report was used, we may still issue a full or partial refund when the service failed materially, but completed AI reports are otherwise non-refundable. This policy does not limit rights that cannot be waived under applicable law. Send the request from the checkout email through",
       "kind": "key:value",
-      "line": 227,
+      "line": 228,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40853,7 +40879,7 @@
     {
       "text": "with the purchase date and receipt identifier.",
       "kind": "key:value",
-      "line": 229,
+      "line": 230,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40866,7 +40892,7 @@
     {
       "text": "5. Limits and liability",
       "kind": "key:title",
-      "line": 235,
+      "line": 236,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40879,7 +40905,7 @@
     {
       "text": "The service is provided as-is. Reports and scores do not predict or guarantee interviews, offers, or hiring outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.",
       "kind": "key:value",
-      "line": 240,
+      "line": 241,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40892,7 +40918,7 @@
     {
       "text": "6. Governing law",
       "kind": "key:title",
-      "line": 247,
+      "line": 248,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40905,7 +40931,7 @@
     {
       "text": "These terms are governed by the laws of the State of Colorado.",
       "kind": "key:value",
-      "line": 252,
+      "line": 253,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40918,7 +40944,7 @@
     {
       "text": "7. Accounts, access, and suspension",
       "kind": "key:title",
-      "line": 259,
+      "line": 260,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40931,7 +40957,7 @@
     {
       "text": "You are responsible for access to your email account and for activity under your account. We may limit or suspend access when needed to investigate abuse, protect the service, comply with law, or prevent harm. Contact",
       "kind": "key:value",
-      "line": 262,
+      "line": 263,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40944,7 +40970,7 @@
     {
       "text": "if you believe a restriction was applied in error.",
       "kind": "key:value",
-      "line": 264,
+      "line": 265,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40957,7 +40983,7 @@
     {
       "text": "8. Ownership and feedback",
       "kind": "key:title",
-      "line": 270,
+      "line": 271,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40970,7 +40996,7 @@
     {
       "text": "You keep ownership of the resume and job materials you submit. Recruiter in Your Pocket retains ownership of the service, software, brand, templates, and original product content. You may use your report for your own career search. If you send product feedback, you allow us to use it to improve the service without including your confidential resume content in public materials.",
       "kind": "key:value",
-      "line": 273,
+      "line": 274,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40983,7 +41009,7 @@
     {
       "text": "9. Changes and contact",
       "kind": "key:title",
-      "line": 279,
+      "line": 280,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -40996,7 +41022,7 @@
     {
       "text": "We may update the service or these terms as the product changes. Material revisions will be reflected by the updated date on this page and will apply prospectively unless the law requires otherwise. Questions, billing disputes, privacy requests, and legal notices can be sent through",
       "kind": "key:value",
-      "line": 282,
+      "line": 283,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41009,7 +41035,7 @@
     {
       "text": "What does the report cover?",
       "kind": "key:q",
-      "line": 300,
+      "line": 301,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41020,9 +41046,35 @@
       "table": "help"
     },
     {
-      "text": "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every card quotes the line it is about, says what a recruiter can’t tell from it, and gives an example with blanks only you can fill. Add a job posting, and the report reads your resume against that role too.",
+      "text": "What a recruiter is likely to take from your resume, what comes through clearly, and where they’d need more detail. Every card quotes the line it is about, says what a recruiter can’t tell from it, and gives an example with blanks only you can fill. Add a job posting, and the report reads your resume against that role too: what the posting asks for, the line on your resume that answers each requirement, and what isn't there.",
       "kind": "key:a",
-      "line": 301,
+      "line": 302,
+      "file": "web/lib/legal/content.ts",
+      "routes": [
+        "/help",
+        "/privacy",
+        "/terms"
+      ],
+      "moment": "legal",
+      "table": "help"
+    },
+    {
+      "text": "Can it review my LinkedIn profile?",
+      "kind": "key:q",
+      "line": 305,
+      "file": "web/lib/legal/content.ts",
+      "routes": [
+        "/help",
+        "/privacy",
+        "/terms"
+      ],
+      "moment": "legal",
+      "table": "help"
+    },
+    {
+      "text": "Yes. On LinkedIn, save your profile as a PDF, then upload that file under LinkedIn on the new-report screen. The review covers your headline, your About, each job and your top skills, and the words a recruiter would search for. It uses one report. We never sign in to your LinkedIn account, and the PDF leaves out your photo and recommendations, so the review says nothing about them.",
+      "kind": "key:a",
+      "line": 306,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41035,7 +41087,7 @@
     {
       "text": "How is this different from ATS keyword tools?",
       "kind": "key:q",
-      "line": 304,
+      "line": 309,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41048,7 +41100,7 @@
     {
       "text": "Keyword tools count matches. The report reads for what you did and what changed because of it. It quotes the line behind every note and asks for the facts that are missing, instead of handing you a keyword score.",
       "kind": "key:a",
-      "line": 305,
+      "line": 310,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41061,7 +41113,7 @@
     {
       "text": "the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score",
       "kind": "key:claim",
-      "line": 308,
+      "line": 313,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41074,7 +41126,7 @@
     {
       "text": "Does a person read my resume?",
       "kind": "key:q",
-      "line": 314,
+      "line": 319,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41087,7 +41139,7 @@
     {
       "text": "No. A recruiter with 15 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
       "kind": "key:a",
-      "line": 315,
+      "line": 320,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41100,7 +41152,7 @@
     {
       "text": "an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person",
       "kind": "key:claim",
-      "line": 318,
+      "line": 323,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41113,7 +41165,7 @@
     {
       "text": "What file formats are supported?",
       "kind": "key:q",
-      "line": 324,
+      "line": 329,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41126,7 +41178,7 @@
     {
       "text": "PDF and Word documents (.docx), up to 4 MB. If we can’t read the file, paste the resume text instead. Formatting doesn’t matter; we only need the words.",
       "kind": "key:a",
-      "line": 325,
+      "line": 330,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41139,7 +41191,7 @@
     {
       "text": "What happens to uploaded resume data?",
       "kind": "key:q",
-      "line": 333,
+      "line": 338,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41150,9 +41202,9 @@
       "table": "help"
     },
     {
-      "text": "We don't store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time.",
+      "text": "We don't store the raw resume or job description from an anonymous run. A completed anonymous report output can be recovered in the same browser for up to 24 hours, then expires automatically. Sign in to save it to history; saved reports and your account can be deleted at any time. A saved report doesn't keep the resume. With a pass, you can choose to keep a resume on file so a later posting read doesn't ask for it again; it stays until you remove it.",
       "kind": "key:a",
-      "line": 334,
+      "line": 339,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41165,7 +41217,7 @@
     {
       "text": "Is my data used to train public models?",
       "kind": "key:q",
-      "line": 337,
+      "line": 342,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41178,7 +41230,7 @@
     {
       "text": "No. We do not opt your data into model training, and OpenAI API data is not used to train OpenAI models by default. OpenAI may retain abuse-monitoring logs containing customer content for up to 30 days.",
       "kind": "key:a",
-      "line": 338,
+      "line": 343,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41191,7 +41243,7 @@
     {
       "text": "How do I delete my data?",
       "kind": "key:q",
-      "line": 341,
+      "line": 346,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41202,9 +41254,9 @@
       "table": "help"
     },
     {
-      "text": "Delete individual reports from Reports. In Settings, you can export your account data or delete your account entirely.",
+      "text": "Delete individual reports from Reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
       "kind": "key:a",
-      "line": 342,
+      "line": 347,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41217,7 +41269,7 @@
     {
       "text": "Is the first report really free?",
       "kind": "key:q",
-      "line": 350,
+      "line": 355,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41230,7 +41282,7 @@
     {
       "text": "Yes, and nothing in it is held back. {FREE_REPORT_ENTITLEMENT.p…} {FREE_REPORT_ENTITLEMENT.a…}",
       "kind": "key:a",
-      "line": 351,
+      "line": 356,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41243,7 +41295,7 @@
     {
       "text": "What is the Job Search Pass?",
       "kind": "key:q",
-      "line": 354,
+      "line": 359,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41254,9 +41306,9 @@
       "table": "help"
     },
     {
-      "text": "One $29 payment for five more complete reports. Use them to check a revision or read your resume against a job. The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.",
+      "text": "One $29 payment for five more complete reports. Use them to check a revision, read another resume, or review your LinkedIn profile. {POSTING_READS_SENTENCE} The pass expires 90 days after purchase and never renews automatically. PDF export isn't part of the pass: any signed-in report can download as a PDF.",
       "kind": "key:a",
-      "line": 355,
+      "line": 360,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41269,7 +41321,7 @@
     {
       "text": "What happens after I use all five reports?",
       "kind": "key:q",
-      "line": 358,
+      "line": 363,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41280,9 +41332,9 @@
       "table": "help"
     },
     {
-      "text": "You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. Another report requires a new pass or available free access.",
+      "text": "You can keep opening your saved reports and downloading their PDFs; that comes with signing in, not with the pass. {POSTING_READS_AFTER_FIVE} Another report requires a new pass or available free access.",
       "kind": "key:a",
-      "line": 359,
+      "line": 364,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41295,7 +41347,7 @@
     {
       "text": "How do I restore access and get receipts?",
       "kind": "key:q",
-      "line": 362,
+      "line": 367,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41308,7 +41360,7 @@
     {
       "text": "Open Restore access and sign in with the email you used at checkout. You can restore your pass and view receipts there, or in Settings > Billing. If you still need help, contact support with your checkout email and purchase date.",
       "kind": "key:a",
-      "line": 363,
+      "line": 368,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41321,7 +41373,7 @@
     {
       "text": "Can I get a refund?",
       "kind": "key:q",
-      "line": 366,
+      "line": 371,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41334,7 +41386,7 @@
     {
       "text": "You can request a full refund within 14 calendar days of purchase if you have not used any paid reports. We also review duplicate charges, processing errors, and cases where the service failed. Contact support from your checkout email with the purchase date and receipt ID. See Terms of Service for the full refund policy.",
       "kind": "key:a",
-      "line": 367,
+      "line": 372,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41347,7 +41399,7 @@
     {
       "text": "Contact support",
       "kind": "key:title",
-      "line": 375,
+      "line": 380,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41360,7 +41412,7 @@
     {
       "text": "with what you were trying to do and what happened. A screenshot helps; remove personal details first, and don't send your resume unless we ask for it.",
       "kind": "key:value",
-      "line": 380,
+      "line": 385,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -41373,7 +41425,7 @@
     {
       "text": "For sign-in, a purchase or a refund, include the email you used at checkout and the purchase date. We will never ask for your password or your full card number.",
       "kind": "key:value",
-      "line": 383,
+      "line": 388,
       "file": "web/lib/legal/content.ts",
       "routes": [
         "/help",
@@ -45097,7 +45149,7 @@
       "table": "llms.txt"
     },
     {
-      "text": "One complete report on one resume: the recruiter's write-up, the lines that need work in the order a recruiter hits them, and an example for each.",
+      "text": "One complete report on one fictional resume: the recruiter's write-up, the lines that need work in the order a recruiter reads them, and an example for each. Four more by situation: a new graduate (/sample-report/new-graduate), a career change (/sample-report/career-change), a return from a career break (/sample-report/career-break) and a senior resume (/sample-report/staff-engineer).",
       "kind": "key:note",
       "line": 21,
       "file": "web/lib/seo/llms.ts",

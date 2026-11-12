@@ -18,7 +18,7 @@ type LlmsInput = {
 
 const REPORT_PAGES: Array<{ path: string; name: string; note: string }> = [
   { path: "/", name: "Get your free report", note: "Upload the resume you have and read what a recruiter would question before you send it." },
-  { path: "/sample-report", name: "A sample report", note: "One complete report on one resume: the recruiter's write-up, the lines that need work in the order a recruiter hits them, and an example for each." },
+  { path: "/sample-report", name: "A sample report", note: "One complete report on one fictional resume: the recruiter's write-up, the lines that need work in the order a recruiter reads them, and an example for each. Four more by situation: a new graduate (/sample-report/new-graduate), a career change (/sample-report/career-change), a return from a career break (/sample-report/career-break) and a senior resume (/sample-report/staff-engineer)." },
   { path: "/pricing", name: "Pricing", note: "The first report is free, with no card and no account. Then $29 once for five more reports, good for 90 days. Nothing renews." },
   { path: "/methodology", name: "How the report works", note: "" },
   { path: "/help", name: "Help", note: "Plain answers about the score, applicant tracking systems, privacy, and the pass." },

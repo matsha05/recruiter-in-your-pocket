@@ -10,8 +10,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 437 |
 | Files with copy | 263 |
-| Strings | 3019 |
-| Unique strings | 2520 |
+| Strings | 3022 |
+| Unique strings | 2523 |
 | Routes with copy | 122 |
 
 ## By moment
@@ -22,9 +22,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | account | 469 |
 | marketing | 411 |
 | report | 319 |
-| pricing | 217 |
+| pricing | 218 |
 | upload | 124 |
-| legal | 111 |
+| legal | 113 |
 | extension | 98 |
 | shared | 73 |
 | rewrite | 62 |
@@ -39,13 +39,13 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [shared](./shared.md) | 920 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 98 more |
+| [shared](./shared.md) | 921 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 98 more |
 | [research](./research.md) | 675 | `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks` and 19 more |
 | [api](./api.md) | 266 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 25 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |
 | [settings](./settings.md) | 122 | `/settings/account`, `/settings/billing`, `/settings/matching`, `/settings/support-reply/[emailId]` |
-| [help](./help.md) | 87 | `/help`, `/privacy`, `/status`, `/terms` |
+| [help](./help.md) | 89 | `/help`, `/privacy`, `/status`, `/terms` |
 | [jobs](./jobs.md) | 71 | `/jobs` |
 | [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
