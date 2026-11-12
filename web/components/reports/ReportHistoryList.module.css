@@ -22,21 +22,12 @@
     padding-top: 1.25rem;
 }
 
-.latestHead {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 2.75rem;
-}
-
 .latestLabel {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.125rem 1rem;
     margin: 0;
-    padding-top: 0.25rem;
     color: hsl(var(--text-strong));
     font: var(--type-small);
     font-weight: var(--weight-control);
@@ -46,19 +37,20 @@
 
 .latestVerdict {
     max-width: 34ch;
-    margin: 0.75rem 0 0;
+    margin: 1.25rem 0 0;
     font: var(--weight-body) var(--type-title-size) / var(--type-title-leading) var(--font-editorial);
     letter-spacing: -0.01em;
     text-wrap: pretty;
 }
 
-.latest .name { margin-top: 0.75rem; }
+.latest .name { margin-top: 1.25rem; }
 .latest .meta { margin-top: 0.875rem; }
 
 .latestActions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
     margin-top: 1.75rem;
 }
 
@@ -156,21 +148,6 @@
 }
 .standing [data-done], .standing [data-up] { color: hsl(var(--pen)); font-weight: var(--weight-control); }
 
-.revise {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.75rem;
-    margin-top: 0.125rem;
-    font: var(--type-small);
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 0.125rem;
-    margin-right: -0.5rem;
-}
-
 .arrow {
     display: inline-flex;
     align-items: center;
@@ -184,6 +161,104 @@
 
 .row:hover .arrow { transform: translateX(2px); color: hsl(var(--pen)); }
 
+/* What the revisions did, under the newest version's verdict: against the first version, the lines off the
+   list and the ones still on it at reading size, then the score in small type. The pen marks a rise only. */
+.journey {
+    max-width: 38rem;
+    margin-top: 1.25rem;
+    border-left: 2px solid hsl(var(--pen));
+    padding-left: 1rem;
+}
+.journeyLabel {
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+.journeyLabel span { color: hsl(var(--text-muted)); font-weight: var(--weight-body); }
+.journeyLines {
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    text-wrap: pretty;
+}
+.journeyScore {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+.journeyScore [data-up] { color: hsl(var(--pen)); font-weight: var(--weight-control); }
+
+.rowActions { margin-top: 0.25rem; }
+.compare { display: inline-flex; align-items: center; min-height: 2.75rem; font: var(--type-small); font-weight: var(--weight-control); }
+
+/* The earlier versions of a resume, under its newest report: closed until asked for, then the same parts as a
+   row at reading size. A version's number takes the band's place in the margin; the band sits under its verdict. */
+.versions { margin-top: 0.5rem; }
+.latest .versions { margin-top: 1.5rem; }
+
+.versionsSummary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    border-radius: var(--radius);
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--duration-fast) var(--ease);
+}
+.versionsSummary::-webkit-details-marker { display: none; }
+.versionsSummary:hover { color: hsl(var(--pen)); }
+
+.caret { flex: none; transition: transform var(--duration-fast) var(--ease); }
+.versions[open] .caret { transform: rotate(90deg); }
+
+.versionList {
+    margin: 0.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.versionRow {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.25rem 1.5rem;
+    border-radius: var(--radius);
+    padding: 1rem 0;
+    color: hsl(var(--text-strong));
+    text-decoration: none;
+}
+.versionRow > span, .versionRow .main > span, .versionRow .when > span { display: block; }
+.versionList > li { border-bottom: 1px solid hsl(var(--line)); }
+.versionRow .when { padding-top: 0.125rem; }
+.row .versionList > li:last-child { border-bottom: 0; }
+.row li:last-child .versionRow { padding-bottom: 0; }
+
+.versionName {
+    margin: 0 0 0.25rem;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+    overflow-wrap: anywhere;
+}
+
+.versionVerdict {
+    max-width: 60ch;
+    font: var(--weight-body) var(--type-body-size) / var(--type-body-leading) var(--font-editorial);
+    text-wrap: pretty;
+    transition: color var(--duration-fast) var(--ease);
+}
+.versionVerdict:empty { display: none; }
+.versionRow:hover .versionVerdict { color: hsl(var(--pen)); }
+.versionRow .meta { margin-top: 0.25rem; }
+
 /* No reports yet: plain words on the ground under the same rule the list would start with. */
 .empty { border-top: 1px solid hsl(var(--text-strong)); padding-top: 2rem; }
 .emptyTitle { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
@@ -192,12 +267,15 @@
 @media (max-width: 720px) {
     .latestVerdict { font-size: var(--type-verdict-lead-size); line-height: var(--type-verdict-lead-leading); }
     .latestActions > * { flex: 1 1 auto; }
-    .row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 1rem; padding: 1.25rem 0; }
+    .row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem 1rem; padding: 1.25rem 0; }
     .when { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; padding-top: 0; }
     .date { margin: 0; }
     .arrow { display: none; }
+    .versionRow { grid-template-columns: minmax(0, 1fr); }
+    .versionRow .when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; padding-top: 0; }
+    .versionRow .when > span { display: inline; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .verdict, .name, .arrow { transition: none; }
+    .verdict, .name, .arrow, .versionVerdict, .versionsSummary, .caret { transition: none; }
 }

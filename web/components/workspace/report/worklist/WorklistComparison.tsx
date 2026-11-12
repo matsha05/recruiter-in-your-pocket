@@ -11,8 +11,10 @@ import styles from "../ReadComparison.module.css";
  * list, which are still there, and how far the score moved. Last time's lines are dimmed clippings, as the
  * homepage shows a re-check. A line off the list is no longer a card; the copy never says it was fixed.
  */
-export function WorklistComparison({ previous, current }: { previous: WorklistReport; current: WorklistReport }) {
-  const comparison = compareWorklists(previous, current);
+/** `earlier` names the older report when it isn't simply the last one ("Version 1"). */
+export function WorklistComparison({ previous, current, earlier }: { previous: WorklistReport; current: WorklistReport; earlier?: string }) {
+  const comparison = compareWorklists(previous, current, earlier ? earlier[0].toLowerCase() + earlier.slice(1) : undefined);
+  const then = earlier ?? "Last time";
   const lineOf = (card: WorklistReport["cards"][number]) => card.line;
   return (
     <section aria-labelledby="read-comparison-title" className={styles.root} data-testid="read-comparison">
@@ -21,9 +23,9 @@ export function WorklistComparison({ previous, current }: { previous: WorklistRe
         <p className={styles.intro}>{comparison.intro}</p>
       </div>
       <div className={styles.reads}>
-        <article className={styles.read} aria-label="Last time">
-          {comparison.gone.slice(0, 3).map((card) => <Clipping key={`gone-${card.line}`} caption="Last time" line={lineOf(card)} note={card.cannot_tell} dim />)}
-          {comparison.still.slice(0, 3).map((card) => <Clipping key={`still-${card.line}`} caption="Last time" line={lineOf(card)} note={card.cannot_tell} dim />)}
+        <article className={styles.read} aria-label={then}>
+          {comparison.gone.slice(0, 3).map((card) => <Clipping key={`gone-${card.line}`} caption={then} line={lineOf(card)} note={card.cannot_tell} dim />)}
+          {comparison.still.slice(0, 3).map((card) => <Clipping key={`still-${card.line}`} caption={then} line={lineOf(card)} note={card.cannot_tell} dim />)}
           <p className={styles.verdict}>{previous.verdict}</p>
         </article>
         <article className={cn(styles.read, styles.current)} aria-label="Now">

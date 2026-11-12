@@ -51,7 +51,7 @@ import {
     type GenerationAccessReservation,
     type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
-import { loadOwnedTrustedReport, persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
+import { linkReportRevision, loadOwnedTrustedReport, persistGeneratedReport, resolveUserSavedJobId } from "@/lib/reports/generated-report-store";
 import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
@@ -587,6 +587,16 @@ export async function POST(request: Request) {
                     }
                     await commitGenerationAccess(grantedReservation, reservationAdmin);
                     reservationCommitted = true;
+                }
+                // A re-check of a saved report, or a report written again from its answers, is a version of that report.
+                if (user && reportId) {
+                    await linkReportRevision({
+                        admin: reservationAdmin,
+                        userId: user.id,
+                        reportId,
+                        revisesReportId: rebuild?.reportId ?? (typeof body?.revises_report_id === "string" ? body.revises_report_id : null),
+                        context: { request_id, route, user_id },
+                    });
                 }
                 stages.lap("finalize");
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used

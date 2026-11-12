@@ -46,6 +46,39 @@ export async function lookupOwnedTrustedReport(admin: any, userId: string, repor
   return report ? { status: "found", report } : { status: "unavailable" };
 }
 
+/**
+ * Records that a new report revises an earlier saved one (migration 026), so My reports can keep a resume's
+ * versions together. The earlier report must be the same person's. The report is already saved when this runs,
+ * so a failure is logged and the report stands on its own: a missing link never costs anyone a report.
+ */
+export async function linkReportRevision(input: {
+  admin: any;
+  userId: string;
+  reportId: string | null;
+  revisesReportId: string | null;
+  context: StoreContext;
+}): Promise<boolean> {
+  const { admin, userId, reportId, revisesReportId } = input;
+  if (!admin || !userId || !reportId || !revisesReportId) return false;
+  if (!UUID_PATTERN.test(reportId) || !UUID_PATTERN.test(revisesReportId) || reportId.toLowerCase() === revisesReportId.toLowerCase()) return false;
+  try {
+    if (!(await ownedStoredReportExists(admin, userId, revisesReportId))) return false;
+    // Only ever set once: a replayed request can't repoint a report at something else.
+    const { error } = await admin.from("reports").update({ revises_report_id: revisesReportId })
+      .eq("id", reportId).eq("user_id", userId).is("revises_report_id", null);
+    if (error) throw error;
+    return true;
+  } catch (cause: any) {
+    logWarn({
+      msg: "report.revision_link_failed",
+      ...input.context,
+      outcome: "provider_error",
+      err: { name: "ReportRevisionLinkError", message: "Report revision link failed", code: String(cause?.code || "REPORT_REVISION_LINK_FAILED") },
+    });
+    return false;
+  }
+}
+
 function persistenceError(reportId?: string) {
   const error = new Error("We could not safely save this report.") as Error & {
     code: string;
