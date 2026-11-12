@@ -1,4 +1,5 @@
 import { createAppError } from "../backend/errors";
+import { reportSentences } from "./report-sentences";
 import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from "../score-utils";
 import {
   bannedPhrasesIn,
@@ -49,15 +50,32 @@ export function normaliseProse(value: string) {
     .trim();
 }
 
+const sentenceKey = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N} ]+/gu, " ").replace(/\s+/gu, " ").trim();
+
+/**
+ * The note without a sentence that is, word for word, the card's own question. The report shows the note and then
+ * the question as the label over the answer fields, so a note that ends by asking it says the same thing twice
+ * (about one card in a thousand; live runs, November 12, 2026). A note that is nothing but the question stays:
+ * a card is never left without one.
+ */
+export function noteWithoutItsQuestion(note: string, question: string): string {
+  const asked = new Set(reportSentences(question).map(sentenceKey).filter(Boolean));
+  if (asked.size === 0) return note;
+  const sentences = reportSentences(note);
+  const kept = sentences.filter((sentence) => !asked.has(sentenceKey(sentence)));
+  return kept.length === 0 || kept.length === sentences.length ? note : kept.join(" ");
+}
+
 function normaliseCard(card: WorklistCard): WorklistCard {
+  const question = normaliseProse(card.question);
   return {
     ...card,
     where: normaliseProse(card.where),
     line: card.line.replace(/\s+/gu, " ").trim(),
-    cannot_tell: normaliseProse(card.cannot_tell),
+    cannot_tell: noteWithoutItsQuestion(normaliseProse(card.cannot_tell), question),
     // The example is the line itself; a leading bullet mark is the resume's, not the example's.
     example: normaliseProse(card.example).replace(/^[-•*]\s+/u, ""),
-    question: normaliseProse(card.question),
+    question,
   };
 }
 

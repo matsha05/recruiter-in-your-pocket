@@ -72,3 +72,12 @@ Every gap note from the three final runs, nineteen in all. No two are the same.
 - No judge scored these. The claim is narrow: the recited sentence is gone and the notes differ. Whether a note that describes the gap helps a person more than one that lists their options is a product judgment, made here on the grounds that the card's example line already lists them.
 - The warm line "taking care of a family member is a real line" no longer reaches the note. It survives in the blank's label. If people with caregiving gaps read the new note as colder, that is the place to look.
 - The bundled release evidence is the single golden run above, the first on the final prompt.
+
+## The last three warnings, the same day
+
+The 43 reports above carried three warnings. Both causes were fixed afterwards, with no prompt change and no model spend.
+
+- **A note that asks its own card's question** (one card in 1,249 across the day's saved runs): "Financial reports can mean many things. Which reports and statements did you prepare, and who used them?" above a question field labelled with the same sentence. The validator now drops a sentence from a note when it is, word for word, the card's question (`noteWithoutItsQuestion`, `web/lib/llm/worklist-validator.ts`). A note that is only the question stays, so no card loses its note. This changes what a person sees, on the rare card it applies to.
+- **A rewritten summary or objective flagged for having no blank** (two cards). The check already excused a card labelled exactly "Headline" or "Summary", on the November 11 ground that an intro line rewritten from the resume's own facts is finished. Resumes call that line other things, and the model labels it as the resume does: "Professional Summary" (21 cards in the day's runs), "Objective" (10), "Summary, sentence 1". The check now knows those names (`isIntroLine`, `web/lib/evals/worklist-checks.ts`); a job title or any other line still needs a blank.
+
+Replayed through both, the three final runs are 23 of 23 and 10 of 10 twice, with no warning. The bundled evidence is the same golden run, now 23 pass.

@@ -51,6 +51,15 @@ export function worklistMetrics(report: WorklistReport): WorklistMetrics {
   };
 }
 
+/**
+ * The line at the top of a resume that introduces the person, under any of the names resumes give it: "Headline",
+ * "Summary", "Professional Summary", "Objective", "Summary, sentence 1". Rewritten from the resume's own facts it is
+ * a finished line with nothing to fill in, so its example needs no blank. A job title or any other line does.
+ */
+export function isIntroLine(where: string): boolean {
+  return /^(?:(?:professional|career|executive)\s+)?(?:headline|summary|objective|profile)(?:,\s*(?:line|sentence)\s+\d+)?$/iu.test(where.trim());
+}
+
 export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{ code: ErrorCode; message: string }>; warnings: Array<{ code: WarningCode; message: string }> } {
   const errors: Array<{ code: ErrorCode; message: string }> = [];
   const warnings: Array<{ code: WarningCode; message: string }> = [];
@@ -95,7 +104,7 @@ export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{
   // A card that needs work with no blank in its example asks for nothing the person can fill in.
   report.cards.forEach((card, index) => {
     // A headline or summary rewritten from the page's own facts is a finished line: it has nothing to fill in.
-    if (card.kind === "line" && !/^(headline|summary)$/iu.test(card.where.trim()) && blanksOf(card.example).length === 0) warnings.push({ code: "W_SPECIFICITY_LOW", message: `Card ${index + 1} example has no blank to fill` });
+    if (card.kind === "line" && !isIntroLine(card.where) && blanksOf(card.example).length === 0) warnings.push({ code: "W_SPECIFICITY_LOW", message: `Card ${index + 1} example has no blank to fill` });
   });
   return { errors, warnings };
 }
