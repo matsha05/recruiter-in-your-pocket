@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { earlierVersionsLabel, groupReportVersions, revisionProgress, revisionProgressLabel, revisionScoreLabel, lineProgress, lineProgressLabel, reportVersions, scoreChangeLabel, scoreChanges, versionChangeLabel } from "../lib/reports/report-history";
+import { earlierVersionsLabel, groupReportVersions, revisionProgress, revisionProgressLabel, revisionScoreLabel, lineProgress, lineProgressLabel, reportVersions, savedPostingRole, scoreChangeLabel, scoreChanges, versionChangeLabel } from "../lib/reports/report-history";
 
 // ---- Lines answered ----
 const cards = [
@@ -46,6 +46,22 @@ assert.equal(changes.has("b"), false, "a different role is a different compariso
 assert.equal(changes.has("p"), false, "a profile review is never compared with a resume report");
 assert.equal(changes.has("n"), false, "a report with no role is not compared");
 assert.equal(changes.has("x"), false, "a report with no score is skipped, and doesn't break the chain");
+
+// A read against a posting is the same resume read again (the live walk of November 12, 2026: "Up 2", "Down 2").
+const withPostings = scoreChanges([
+  { id: "r1", score: 80, targetRole: "Technical Recruiter", createdAt: "2026-11-05T12:00:00.000Z", isProfile: false },
+  { id: "p1", score: 82, targetRole: "Technical Recruiter", createdAt: "2026-11-12T12:00:00.000Z", isProfile: false, hasPosting: true },
+  { id: "p2", score: 84, targetRole: "Technical Recruiter", createdAt: "2026-11-12T13:00:00.000Z", isProfile: false, hasPosting: true },
+  { id: "r2", score: 86, targetRole: "Technical Recruiter", createdAt: "2026-11-13T12:00:00.000Z", isProfile: false },
+]);
+assert.equal(withPostings.has("p1"), false, "a posting read is not set against the report before it");
+assert.equal(withPostings.has("p2"), false, "nor against another posting read");
+assert.deepEqual(withPostings.get("r2"), { delta: 6, since: "2026-11-05T12:00:00.000Z" }, "the next resume report is measured against the last resume report, past the posting reads");
+
+assert.deepEqual(savedPostingRole("A close match for the security desk.", ["Senior Technical Recruiter", "Technical Recruiter, Security"]), { hasPosting: true, postingRole: "Technical Recruiter, Security" });
+assert.deepEqual(savedPostingRole("A close match.", ["Senior Technical Recruiter"]), { hasPosting: true, postingRole: null }, "a posting read that names no second role still says it was one");
+assert.deepEqual(savedPostingRole("", ["Senior Technical Recruiter", "Recruiter"]), { hasPosting: false, postingRole: null }, "without a posting the second role is only another job the resume points to");
+assert.deepEqual(savedPostingRole(null, null), { hasPosting: false, postingRole: null }, "an earlier kind of report has neither");
 
 assert.equal(scoreChangeLabel({ delta: 6, since: "x" }, "Nov 1, 2026"), "Up 6 since Nov 1, 2026");
 assert.equal(scoreChangeLabel({ delta: -3, since: "x" }, "Nov 1, 2026"), "Down 3 since Nov 1, 2026");

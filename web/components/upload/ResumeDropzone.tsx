@@ -21,6 +21,8 @@ interface ResumeDropzoneProps {
     onValidationStateChange?: (hasError: boolean) => void;
     /** Replaces "Ready to review" when the file was read but can't be reviewed. */
     readyLabel?: string;
+    /** Replaces "Remove" when the card shows something other than a file just chosen (a resume kept on file). */
+    removeLabel?: string;
     /** What is being uploaded; a LinkedIn profile PDF gets its own words (Nov 10, 2026). */
     document?: "resume" | "linkedin";
 }
@@ -37,6 +39,7 @@ export function ResumeDropzone({
     className,
     fileName,
     readyLabel = "Ready to review",
+    removeLabel,
     document = "resume",
     onRemoveFile,
     onValidationStateChange,
@@ -207,14 +210,14 @@ export function ResumeDropzone({
                     </span>
                     <Button
                         ref={successActionRef}
-                        aria-label={`Remove ${displayFileName}`}
+                        aria-label={removeLabel ?? `Remove ${displayFileName}`}
                         variant="quiet"
                         size="sm"
                         className="shrink-0 text-muted-foreground hover:text-destructive"
                         onClick={handleRemoveFile}
                         disabled={isBusy}
                    >
-                        Remove
+                        {removeLabel ?? "Remove"}
                     </Button>
                 </Paper>
             ) : rejectedFile && error ? (

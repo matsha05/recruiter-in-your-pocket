@@ -1,0 +1,120 @@
+{
+  "id": "recruiter-aerospace-posting",
+  "resume": "../../2026-11-posting-tailoring/resumes/recruiter_security_senior.txt",
+  "posting": "../../2026-11-posting-tailoring/resumes/posting_recruiter_aerospace.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-12",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 2,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 9401,
+    "tokens_out": 2512,
+    "cost_estimate_usd": 0.0130329
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Your security recruiting at Halden AI is a strong match for Meridian's work, and the offer numbers back it up. I'd want to talk to you. I'd ask what your current searches involve from sourcing through close.",
+    "write_up": [
+      "You bring security recruiting at Halden AI, people leadership at Tessera Labs, and machine learning hiring at Orbis. For Meridian's security recruiter role, the recruiting results are compelling, though the resume says less about how you run a current search from start to finish.",
+      "The Orbis mentorship line is a great model: it names who you trained, how you trained them, and the hires that followed. One figure needs another look: a 250% reduction in time to hire isn't mathematically possible as written.",
+      "Let's start with your work with the CISO, then correct the time-to-hire figure and name your part in the Orbis funnel initiatives. Bring your full-cycle recruiting and reporting work closer to the top for Meridian, and add your sourcing and closing methods if you can substantiate them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Technical Recruiter, line 3",
+        "line": "Hiring point-of-contact for the Chief Information Security Officer.",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you handled together. That partnership matters for a job working directly with technical leaders.",
+        "example": "Hiring point-of-contact for the Chief Information Security Officer, coordinating [hiring work]",
+        "question": "What hiring work did you coordinate with the Chief Information Security Officer?"
+      },
+      {
+        "kind": "line",
+        "where": "Head of People, line 2",
+        "line": "Rebuilt the company's hiring process, achieving a 250% reduction in time to hire within five months.",
+        "cannot_tell": "A reduction can't exceed 100% of the original time, so this figure will make a recruiter pause. The time before and after the rebuild would show what changed.",
+        "example": "Rebuilt the company's hiring process, changing time to hire from [prior time to hire] to [new time to hire] within five months",
+        "question": "What were the time-to-hire figures before and after the rebuild?"
+      },
+      {
+        "kind": "line",
+        "where": "Recruiting Manager (Machine Learning), line 2",
+        "line": "Played a key role in funnel initiatives, contributing to 800+ machine learning hires and reporting results to recruiting leadership.",
+        "cannot_tell": "The hiring total is substantial, but a recruiter can't tell what you contributed to the funnel initiatives. Your part matters more than the total alone.",
+        "example": "Played a key role in funnel initiatives by [your contribution], contributing to 800+ machine learning hires and reporting results to recruiting leadership",
+        "question": "What did you do on the funnel initiatives?"
+      },
+      {
+        "kind": "keep",
+        "where": "Recruiting Manager (Machine Learning), line 4",
+        "line": "Trained 60 non-ML sourcers through a structured mentorship program, resulting in 90 additional hires in Q3 2022.",
+        "cannot_tell": "Keep this as a model. It ties your own work to a hiring result without making a recruiter guess what the program did.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Technical Recruiter",
+        "Technical Recruiter, Security"
+      ],
+      "why": "Your current role names security hiring across functions and levels, with offer accepts and an accept rate.",
+      "level": "senior, current senior technical recruiter hiring up to VP level",
+      "note": "Your referral drive and recruiting leadership reports give you useful material for this application. The posting lists Waco, TX, but also requires full-time onsite work in Long Beach, CA; check the location and export-control eligibility before applying.",
+      "posting": {
+        "summary": "Meridian seeks a full-desk recruiter for security and related technical hiring, with sourcing, closing, hiring-manager partnership and recruiting data experience.",
+        "missing": [
+          "Experience recruiting skilled labor",
+          "Demonstrated expertise in non-standard recruiting methods: cold calling, ad hoc networking events, targeted sourcing campaigns"
+        ],
+        "lead": [
+          {
+            "line": "Full-cycle recruiting from 2018 to 2020 across sales, product, operations and engineering roles.",
+            "why": "This answers the full life cycle recruiting requirement but sits at the bottom of Stratus Cloud. Move it higher in that role."
+          },
+          {
+            "line": "Played a key role in funnel initiatives, contributing to 800+ machine learning hires and reporting results to recruiting leadership.",
+            "why": "This shows recruiting data reporting in an older role. Move it closer to the top of Orbis after naming your contribution."
+          }
+        ],
+        "covered": [
+          {
+            "requirement": "Bachelor's degree and 1+ years of recruiting experience",
+            "line": "Full-cycle recruiting from 2018 to 2020 across sales, product, operations and engineering roles."
+          },
+          {
+            "requirement": "2+ years of technical recruiting experience",
+            "line": "Security hiring across all levels and functions while the company grew from 40 employees to 600+."
+          },
+          {
+            "requirement": "2+ years of experience recruiting for IT, information security, software engineering or physical security",
+            "line": "Security hiring across all levels and functions while the company grew from 40 employees to 600+."
+          },
+          {
+            "requirement": "Experience with in-house recruiting",
+            "line": "Security hiring across all levels and functions while the company grew from 40 employees to 600+."
+          },
+          {
+            "requirement": "Experience with high volume recruiting",
+            "line": "170 offer accepts with a 92% accept rate."
+          },
+          {
+            "requirement": "Full life cycle recruiting experience, from sourcing to closing",
+            "line": "Full-cycle recruiting from 2018 to 2020 across sales, product, operations and engineering roles."
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  }
+}

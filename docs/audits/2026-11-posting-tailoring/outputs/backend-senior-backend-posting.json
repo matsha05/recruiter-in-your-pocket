@@ -3,7 +3,7 @@
   "resume": "fr01_backend_ic_senior.txt",
   "posting": "posting_senior_backend.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-07",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
   "drafted": {
@@ -11,36 +11,36 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7631,
-    "tokens_out": 2369,
-    "cost_estimate_usd": 0.0122294
+    "tokens_in": 8747,
+    "tokens_out": 2126,
+    "cost_estimate_usd": 0.0124118
   },
   "report": {
     "contract_version": "v3",
-    "score": 90,
+    "score": 94,
     "lifted_by_employer": false,
-    "verdict": "A senior payments engineer with strong Go and ledger work, but some leadership and partnership details aren't shown.",
+    "verdict": "Your payouts and ledger work is a close match for Cobalt Pay. The migration and reliability work back up your senior title, and I’d want to talk to you.",
     "write_up": [
-      "Your resume is strong because it connects payments engineering work to the demands placed on it: payout volume, a zero-downtime ledger migration and faster balance reads. A recruiter can see why your Lumen Ledger work belongs in the conversation for Cobalt Pay.",
-      "The balance API line is a great model: it names the change, the before and after, and the approach you used. Your experience also leads your education, and the progression from insurance to freight technology to payments is easy to follow.",
-      "For this posting, bring your Kafka work forward and add any relevant collaboration or technical leadership you can substantiate. Your resume is unlikely to be the thing holding you back; the competition for the role and a referral can also matter."
+      "This is a strong resume for Cobalt Pay’s money movement role! At Lumen Ledger, you show how you build and run payment services, including a ledger migration and a substantial latency improvement. Your earlier backend work adds to that story.",
+      "The balance API line is an excellent model: it ties the change from 900 ms to 140 ms to the move to a Kafka-fed cache. Your senior headline is backed up by the technical work and mentoring that follow it.",
+      "Your resume isn’t what stands between you and a callback; the competition for the role matters too. For this application, bring your Kafka pipeline forward and add any Finance or Risk partnership you can speak to."
     ],
     "cards": [
       {
         "kind": "keep",
-        "where": "Lumen Ledger, line 3",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete service and a measurable improvement without making them guess what you changed.",
+        "cannot_tell": "Keep this as a model. It names the service, the measure and the technical change, so a recruiter can see what your work accomplished.",
         "example": "",
         "question": ""
       },
       {
         "kind": "upgrade",
-        "where": "Lumen Ledger, line 2",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For a role above senior engineer, a cross-team architecture decision would show how your leadership reached beyond the migration itself.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, with [cross-team architecture decision] for [systems affected]",
-        "question": "Did you make a cross-team architecture decision for this migration, and which systems did it affect?"
+        "cannot_tell": "For a role above senior, a decision about the wider system would show more of your technical direction.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [a decision you made about the wider system]",
+        "question": "What decision did you make about the wider system during the migration?"
       }
     ],
     "fit": {
@@ -48,25 +48,21 @@
         "Senior Backend Engineer",
         "Senior Backend Engineer, Money Movement"
       ],
-      "why": "Your headline and current payments platform role both point to senior backend engineering.",
-      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your payouts service, ledger migration and Kafka-fed cache are directly relevant to money movement. Bring the event-driven billing line higher in the Harborview role to make that experience easier to spot.",
+      "why": "Your headline and Lumen Ledger work point to senior backend engineering, with payments services, a ledger migration and reliability work.",
+      "level": "senior, leads technical migrations and mentors two mid-level engineers",
+      "note": "Your payouts service and ledger work align closely with Cobalt Pay’s role. If you partnered with Finance or Risk on reconciliation or controls, add that work to your resume.",
       "posting": {
-        "summary": "Cobalt Pay wants a senior backend engineer to build and run reliable money movement services, lead technical work, and partner across functions.",
-        "missing": [
-          "Own the reliability of the payouts path end to end, including on-call",
-          "Lead technical design reviews and mentor engineers on the team",
-          "Partner with Finance and Risk on reconciliation and controls"
-        ],
+        "summary": "Senior backend role building and running money movement services, with an emphasis on correctness, reliability and technical leadership.",
+        "missing": [],
         "lead": [
           {
             "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
-            "why": "This directly answers the posting's ask for event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
+            "why": "This directly answers the request for experience with event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
           }
         ],
         "covered": [
           {
-            "requirement": "Design and build high-throughput, idempotent payment services in Go",
+            "requirement": "5+ years building backend systems, ideally in payments or financial services",
             "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month"
           },
           {
@@ -78,7 +74,11 @@
             "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run"
           },
           {
-            "requirement": "A record of leading migrations or reliability work on production systems",
+            "requirement": "leading migrations or reliability work on production systems",
+            "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends"
+          },
+          {
+            "requirement": "experience with ledgers, double-entry accounting or settlement",
             "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends"
           }
         ]
@@ -88,6 +88,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 90
+    "content_score": 94
   }
 }

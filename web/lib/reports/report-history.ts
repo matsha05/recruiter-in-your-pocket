@@ -59,14 +59,30 @@ export type ScoredReport = {
   createdAt: string;
   /** A LinkedIn profile review is never compared with a resume report. */
   isProfile: boolean;
+  /**
+   * The report read a resume the person already had a report on against a posting. The resume is the same one, so
+   * a point or two between two such reads is the model, not the person's work, and the row says nothing of it.
+   */
+  hasPosting?: boolean;
 };
+
+/**
+ * The title of the posting a saved report was read against, from the stored report: `fit.posting.summary` is
+ * filled only with a posting, and the posting's title is the second role (lib/reports/worklist-presentation.ts).
+ */
+export function savedPostingRole(postingSummary: unknown, roles: unknown): { hasPosting: boolean; postingRole: string | null } {
+  const hasPosting = typeof postingSummary === "string" && postingSummary.trim().length > 0;
+  const second = Array.isArray(roles) && typeof roles[1] === "string" ? roles[1].trim() : "";
+  return { hasPosting, postingRole: hasPosting && second ? second : null };
+}
 
 const roleKey = (role: string | null) => (role ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 
 /**
  * For each report, the change from the person's previous report of the same kind for the same role. The role is
  * the report's own read of the target job, so two reports that share it were judged against the same thing; a
- * report with no role, or no earlier match, has no change to show. This compares two real scores and says which
+ * report with no role, or no earlier match, has no change to show. A read against a posting is left out on both
+ * sides: it is the same resume read again. This compares two real scores and says which
  * report it is measured against. It does not claim the two are versions of one resume: reports that record the
  * report they revise are measured through that link instead (reportVersions, below).
  */
@@ -78,7 +94,7 @@ export function scoreChanges(reports: readonly ScoredReport[]): Map<string, Scor
   const lastByKey = new Map<string, ScoredReport>();
   for (const report of oldestFirst) {
     const role = roleKey(report.targetRole);
-    if (!role) continue;
+    if (!role || report.hasPosting) continue;
     const key = `${report.isProfile ? "profile" : "resume"}:${role}`;
     const previous = lastByKey.get(key);
     if (previous) changes.set(report.id, { delta: (report.score as number) - (previous.score as number), since: previous.createdAt });

@@ -14,7 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
-import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED } from "@/lib/reports/posting-read-terms";
+import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, POSTING_READ_NEEDS_POSTING_HINT, RESUME_ON_FILE_USE_ANOTHER, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED } from "@/lib/reports/posting-read-terms";
 import type { ResumeOnFileState } from "./hooks/useResumeOnFile";
 import { cn } from "@/lib/utils";
 import { FILE_READ_NOTE, fileReadFindings, fileReadSummary } from "@/lib/reports/file-read";
@@ -49,7 +49,7 @@ interface InputPanelProps {
     /** With a pass, reading an already-read resume against a posting spends no report; say so once the posting is in. */
     postingReadIncluded?: boolean;
     /** Keeping the resume on file for posting reads (components/workspace/hooks/useResumeOnFile.ts). */
-    resumeOnFile?: { state: ResumeOnFileState; onKeep: () => void; onRemove: () => void } | null;
+    resumeOnFile?: { state: ResumeOnFileState; onKeep: (fileName: string | null) => void; onRemove: () => void } | null;
 }
 
 export default function InputPanel({
@@ -141,7 +141,8 @@ export default function InputPanel({
 
     // The line under the button says what the next report costs, only when the button can't.
     const getRunHint = () => {
-        if (postingReadIncluded && jobDescription.trim().length > 0) return POSTING_READ_INCLUDED_HINT;
+        // A posting read is included on the pass even with no reports left, so it never says a pass is needed.
+        if (postingReadIncluded) return jobDescription.trim().length > 0 ? POSTING_READ_INCLUDED_HINT : POSTING_READ_NEEDS_POSTING_HINT;
         const membership = user?.membership;
         if (membership === "monthly" || membership === "lifetime") return null;
         if (membership === "credit") {
@@ -231,6 +232,7 @@ export default function InputPanel({
                                 onRemoveFile={handleRemoveFile}
                                 onValidationStateChange={setHasRejectedResume}
                                 readyLabel={isTooShort ? "Too short to review" : undefined}
+                                removeLabel={resumeOnFile?.state.status === "loaded" ? RESUME_ON_FILE_USE_ANOTHER : undefined}
                             />
                         ) : (
                             <div className="ui-state-enter">
@@ -346,7 +348,7 @@ export default function InputPanel({
                                 ) : resumeOnFile.state.status === "error" ? (
                                     resumeOnFile.state.message
                                 ) : (
-                                    <>{RESUME_ON_FILE_OFFER}{" "}<button type="button" className="riyp-link-quiet" onClick={resumeOnFile.onKeep} disabled={resumeOnFile.state.status === "saving"} data-testid="resume-on-file-keep">{RESUME_ON_FILE_KEEP}</button></>
+                                    <>{RESUME_ON_FILE_OFFER}{" "}<button type="button" className="riyp-link-quiet" onClick={() => resumeOnFile.onKeep(fileName)} disabled={resumeOnFile.state.status === "saving"} data-testid="resume-on-file-keep">{RESUME_ON_FILE_KEEP}</button></>
                                 )}
                             </p>
                         )}

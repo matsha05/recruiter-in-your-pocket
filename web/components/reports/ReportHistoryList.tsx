@@ -27,6 +27,9 @@ export type ReportHistoryItem = {
   verdict: string | null;
   name: string | null;
   targetRole: string | null;
+  /** The report read the resume against a posting; `postingRole` is that posting's title when the report names it. */
+  hasPosting?: boolean;
+  postingRole?: string | null;
   createdAt: string;
   /** How many of the report's lines have an answer kept, when the report asked any. */
   progress?: LineProgress | null;
@@ -210,8 +213,9 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
   const details = (report: ReportHistoryItem) => (
     <>
       <p className={styles.meta}>
-        {report.isProfile ? "LinkedIn profile" : "Resume"}
-        {report.targetRole ? <> · {report.targetRole}</> : null}
+        {/* Reads of one resume against different postings share a role and often a first sentence; the posting tells them apart. */}
+        {report.isProfile ? "LinkedIn profile" : report.hasPosting ? "Resume against a posting" : "Resume"}
+        {report.hasPosting && report.postingRole ? <> · {report.postingRole}</> : report.targetRole ? <> · {report.targetRole}</> : null}
         {versions.get(report.id) ? <> · Version {versions.get(report.id)?.number}</> : null}
       </p>
       {standing(report)}

@@ -9,7 +9,7 @@ import { launchFlags } from "@/lib/launch/flags";
 import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { splitVerdict } from "@/lib/reports/report-opening";
-import { groupReportVersions, lineProgress, revisionProgress, scoreChanges } from "@/lib/reports/report-history";
+import { groupReportVersions, lineProgress, revisionProgress, savedPostingRole, scoreChanges } from "@/lib/reports/report-history";
 import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
@@ -43,7 +43,7 @@ export default async function ReportsPage() {
     // The row leads with the report's own one-sentence verdict (Nov 11, 2026), read out of the stored report: the
     // worklist report's `verdict`, or the earlier report's first impression.
     // The cards and the kept answers ride along so a row can say how many lines are answered (lib/reports/report-history.ts).
-    .select("id, score, score_label, resume_preview, name, target_role, created_at, line_answers, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway, cards:report_json->cards")
+    .select("id, score, score_label, resume_preview, name, target_role, created_at, line_answers, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway, cards:report_json->cards, posting_summary:report_json->fit->posting->>summary, roles:report_json->fit->roles")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(51);
@@ -69,6 +69,7 @@ export default async function ReportsPage() {
     targetRole: report.target_role,
     createdAt: report.created_at,
     isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
+    hasPosting: savedPostingRole(report.posting_summary, report.roles).hasPosting,
   })));
 
   // What each later version's list looks like against its resume's first version (lib/reports/report-history.ts).
@@ -164,6 +165,7 @@ export default async function ReportsPage() {
               verdict: verdictLine((typeof report.verdict === "string" && report.verdict.trim() ? splitVerdict(report.verdict).lead : null) || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),
               name: report.name,
               targetRole: report.target_role,
+              ...savedPostingRole(report.posting_summary, report.roles),
               createdAt: report.created_at,
             }))}
           />

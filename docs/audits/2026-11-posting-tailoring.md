@@ -63,7 +63,7 @@ The first pass of the same eleven pairs had one wrong "missing" item of 49: a nu
 
 - **The smoke tier was not run.** Its three fixtures are real people's resumes, and the approved spend covers synthetic resumes only.
 - **Picks still vary between runs.** The backend resume against the senior backend posting got one line to move up on one run and two on the next.
-- **No real resume and no real posting** has been through a posting read.
+- **No real resume and no real posting** had been through a posting read when this was written. One did on November 12, and it found what the section "What counts as a must-have" below records.
 
 ## The golden ranges, redrawn
 
@@ -105,7 +105,47 @@ The two other fixtures still on old-prompt ranges warned rather than failed. Mat
 
 No fixture is left on a range written for the old prompt that the worklist prompt misses. Spend for the day's runs on these three fixtures and the date check: about $0.65.
 
+## What counts as a must-have, November 12
+
+The first real resume against real postings went through a posting read on November 12 (a live walk of the site on the founder's account, two public postings for a technical recruiter). Every quoted line was on the resume and nothing was both covered and missing, but the table showed the wrong rows:
+
+- Conditions of employment listed as gaps: "Available to work extended hours and weekends as needed", "requires being onsite full-time" and "ITAR REQUIREMENTS" each marked "Not on your resume", above "If you've done it, say where."
+- A heading and the tail of a sentence written as requirements, and "full lifecycle recruiting experience" cut down from an ask that went on "with substantial time supporting technical engineering organizations".
+- "A field relevant to the role" and "Genuine interest in [the company's] mission" as rows, while all five preferred qualifications were left out, including the two the resume answers best (recruiting at a high-growth AI company, hiring for security).
+- On the second posting the two closest matches, both written as "2+ years of ...", were missing from the table. That one was the validator: it dropped every covered row whose requirement mentions years.
+- Both write-ups said "I read it for your [current title] role" on a read the person had given a posting for.
+
+The eleven pairs above could not show any of this: their postings are clean lists with no preferred section, no logistics block and no conditions. Two postings shaped like the real ones were added, with a synthetic senior security recruiter (`resumes/posting_recruiter_aerospace.txt`, `resumes/posting_recruiter_ai_lab.txt`, `resumes/recruiter_security_senior.txt`; the people and companies are fictional). On the shipped prompt they reproduced it: extended hours, full-time onsite, export-control eligibility and a day-to-day duty in "missing", and the security and AI-company asks absent.
+
+What changed:
+
+- **The prompt says what a must-have is.** An ask about the work a recruiter screens a resume on, taken from the qualifications, required and preferred alike; a duty only when a posting has no qualifications. Never a condition of the job a resume doesn't state (citizenship, work authorization, export control, onsite or hybrid, relocation, travel, hours, a background check), never an ask about motive or character, never a line that names nothing a resume could show, never the employer's own text. A condition that could decide whether to apply goes in the fit note in one clause. Each item is one whole ask: no heading, no tail of a sentence, no ask cut to the half the resume answers.
+- **A kind of work answers an ask that lists its specialties.** "Security hiring across all levels" covers "experience hiring for security engineering, incident response or threat intelligence"; a card can ask which.
+- **With a posting, the write-up doesn't say which job it read the resume for.**
+- **The validator** keeps a years ask in covered when the quoted line shows the work, and drops it only when the line is an employer-and-dates line. Under the prompt it also drops, from both lists, a section heading and a rule about who may be hired (citizenship, work authorization, export control).
+
+The thirteen pairs on the final prompt, judged the same way (`gpt-6.1-sol`):
+
+| | Before (eleven pairs, November 11) | After (thirteen pairs) |
+| --- | --- | --- |
+| Missing: wrong / partly / absent | 0 / 28 / 30 of 58 | 0 / 14 / 28 of 42 |
+| Covered: no / partly / yes | 0 / 3 / 13 of 16 | 0 / 9 / 21 of 30 |
+| Lines to move up: no / partly / yes | 0 / 1 / 8 of 9 | 0 / 3 / 8 of 11 |
+| Lines to trim: wrong | 0 of 6 | 0 of 6 |
+| Covered rows not in the posting | 0 | 0 |
+| Contradictions | 0 | 0 |
+| Answered asks left out of the table | 1 | 3 |
+
+- No condition of employment, heading or fragment is in either list on any of the thirteen. The two recruiter pairs were run three times on the final prompt (twice on their own, then in the judged set); the security and AI-company asks were covered every time, and the conditions were in the note every time ("The posting names Waco, TX, but also says full-time onsite in Long Beach, CA").
+- The three left out are all day-to-day duties the resume answers ("Precept students and new graduates as assigned"). That is the cost of keeping duties out of the table: a duty the resume doesn't show no longer reads as a gap, and one it does show no longer earns a row.
+- No run needed the repair pass.
+- The release evidence is the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_latest_live.md`). The golden fixtures that are real people's resumes were not run; they carry no posting, so this change does not reach them.
+
+Still not covered: a clearance or licence the posting requires and the resume lacks is treated as a must-have, which is right, but no fixture has one beside a citizenship rule to show the two are told apart.
+
 ## Spend
+
+The must-have change of November 12: about $0.80 (thirty-six report calls across the drafts and the final set, the judge, the ten synthetic golden fixtures).
 
 About $2.70 of live spend, by the runners' ledgers. The final pass, which everything above reports: the 49-case set $0.53, the golden fixtures $0.16, eleven posting reads $0.15, their judge $0.08, the pairwise judge $0.71. The first pass, before the "missing" fix, was about $1.00 for the same runs without a full pairwise read (one judge run was stopped early, so its cost is an estimate).
 

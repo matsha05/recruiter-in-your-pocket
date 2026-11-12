@@ -3,66 +3,50 @@
   "resume": "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt",
   "posting": "posting_senior_backend.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-07",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
   "drafted": {
-    "lead": 1,
+    "lead": 3,
     "trim": 3
   },
   "usage": {
-    "tokens_in": 8077,
-    "tokens_out": 2963,
-    "cost_estimate_usd": 0.0152217
+    "tokens_in": 9193,
+    "tokens_out": 2352,
+    "cost_estimate_usd": 0.0140993
   },
   "report": {
     "contract_version": "v3",
-    "score": 86,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A senior platform engineer with strong reliability work and a partial match for money movement.",
+    "verdict": "Your payment reliability and backend work are easy to spot, and the results back up your senior title. I’d want to talk with you. For Cobalt Pay, I’d still want to know how deeply you’ve worked with PostgreSQL and event-driven systems.",
     "write_up": [
-      "Your resume is strong: you connect platform work at Tidewater Commerce to numbers a recruiter can use, from service migrations to faster builds! I read it for Senior Software Engineer. The Cobalt Pay role also fits parts of your background, especially Go and payment reliability, though some of its money-movement requirements aren't shown.",
-      "The CI templates are a great model: you name what you built, the tool, and the change in build time. Your payment failover work is just as compelling, but it sits below office activities in the Tidewater role.",
-      "Let's put the payment and reliability work first for Cobalt Pay, then add the migration team detail and what maintaining the PHP panel involved. Your resume has plenty of substantive engineering work; the match for this particular role will also depend on the experience you can show with its specific requirements."
+      "Your resume makes a strong case for senior backend work! At Tidewater Commerce, you’ve built checkout services, moved production systems to Kubernetes, and led payment failover work. That’s relevant to Cobalt Pay, though the resume doesn’t yet establish two of its technical requirements.",
+      "The payment provider failover line is the model: it names the project, your leadership, the team you worked with, and the change in failed checkouts. Your reconciliation work at Cascade Health Systems and your payq project also matter here, but they arrive well after several less relevant activities.",
+      "Let’s bring the checkout and reconciliation work forward and make room by trimming a few office activities for this application. Your resume is strong for senior backend roles; for this particular job, add PostgreSQL depth and event-driven work only where you can substantiate them."
     ],
     "cards": [
       {
-        "kind": "line",
-        "where": "Senior Software Engineer, Platform, line 3",
-        "line": "Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime",
-        "cannot_tell": "The migration and its result are clear. For a senior role, a recruiter will also want to know how many engineers worked on it.",
-        "example": "Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime, working with [number] engineers",
-        "question": "How many other engineers worked on the migration?"
-      },
-      {
-        "kind": "line",
-        "where": "Senior Software Engineer, Platform, line 9",
-        "line": "Maintained the legacy PHP admin panel until it was retired in 2022",
-        "cannot_tell": "A recruiter can see which system you maintained, but not what that work involved. One concrete example would give the PHP work more substance.",
-        "example": "Maintained the legacy PHP admin panel until it was retired in 2022, including [maintenance work]",
-        "question": "What maintenance work did you do on the admin panel?"
-      },
-      {
         "kind": "keep",
-        "where": "Senior Software Engineer, Platform, line 5",
+        "where": "Tidewater Commerce, CI pipeline templates",
         "line": "Wrote the CI pipeline templates in GitHub Actions that cut median build time from 14 minutes to 6",
-        "cannot_tell": "Keep this as a model. It makes your contribution unmistakable and gives the reader a before and after.",
+        "cannot_tell": "Keep this as a model for the rest. It connects a tool and deliverable to a before-and-after measure without making a recruiter guess what improved.",
         "example": "",
         "question": ""
       },
       {
         "kind": "upgrade",
-        "where": "Senior Software Engineer, Platform, line 1",
+        "where": "Tidewater Commerce, developer portal",
         "line": "Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services",
-        "cannot_tell": "For a role above senior engineer, a technical decision that shaped other teams or systems would show more of your direction-setting work.",
-        "example": "Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services; [a technical decision you made] shaped [teams or systems]",
-        "question": "Did you make a technical decision on the portal that shaped other teams or systems, and what was it?"
+        "cannot_tell": "For a role above senior engineer, a recruiter would also look for a technical decision that shaped the wider engineering system.",
+        "example": "Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services, including [a wider technical decision you made]",
+        "question": "What wider technical decision, if any, did you make for the developer portal?"
       },
       {
         "kind": "upgrade",
-        "where": "Senior Software Engineer, Platform, line 8",
+        "where": "Tidewater Commerce, payment provider failover",
         "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
-        "cannot_tell": "Move this above the office activities in the Tidewater role. It puts your payment reliability work where a recruiter will see it sooner.",
+        "cannot_tell": "This is one of your strongest results, but it sits below several less relevant activities. Move it to the top of the Tidewater Commerce role for this application.",
         "example": "",
         "question": ""
       }
@@ -72,47 +56,55 @@
         "Senior Software Engineer",
         "Senior Backend Engineer, Money Movement"
       ],
-      "why": "Your headline and current platform role point to senior software engineering, with Go services, migrations and payment reliability work.",
-      "level": "senior, leads a payment provider failover project and designs services",
-      "note": "Your checkout service, payment failover project and payment retries library are worth emphasizing for Cobalt Pay. Bring those forward and add any relevant work you can substantiate.",
+      "why": "Your headline and Tidewater Commerce role name senior software engineering, and your recent work includes checkout services, infrastructure, and payment reliability.",
+      "level": "senior, leads the payment provider failover project",
+      "note": "Your payq project and checkout failover work are relevant to payment reliability. Bring your reconciliation work forward and show any on-call ownership or technical design reviews you can substantiate. The role is in Seattle or remote within the US.",
       "posting": {
-        "summary": "Cobalt Pay wants a senior backend engineer to build and run reliable money-movement services, lead technical work and partner on financial controls.",
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate reliable money movement services.",
         "missing": [
-          "Design and build high-throughput, idempotent payment services in Go",
-          "Own the reliability of the payouts path end to end, including on-call",
-          "Lead technical design reviews and mentor engineers on the team",
-          "Partner with Finance and Risk on reconciliation and controls",
-          "deep experience with PostgreSQL",
+          "Strong Go or Java, and deep experience with PostgreSQL",
           "Experience with event-driven systems such as Kafka"
         ],
         "lead": [
           {
+            "line": "Designed the checkout rate-limiting service in Go that handles 4,000 requests a second at peak",
+            "why": "This shows backend systems work in payments, which the posting asks for. Move it near the top of the Tidewater Commerce role."
+          },
+          {
             "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
-            "why": "This answers the ask for reliability work on production systems. Move it to the top of the Tidewater role."
+            "why": "This answers the ask for leading reliability work on production systems. Make it the first line under Tidewater Commerce."
+          },
+          {
+            "line": "Reconciled daily claim payments against the ledger with a nightly Python job, flagging about 40 mismatches a week for finance",
+            "why": "This shows the ledger experience listed as a bonus. Move it to the top of the Cascade Health Systems role."
           }
         ],
         "trim": [
           {
             "line": "Redesigned the office seating chart tool for the facilities team as a side project",
-            "why": "This is useful work, but the posting doesn't ask for it; trim it to make room for payment and reliability work."
+            "why": "Useful work, but this posting doesn’t ask for facilities tools."
           },
           {
             "line": "Volunteered as a tour guide for prospective interns during summer recruiting",
-            "why": "This shows a contribution to recruiting, but the posting doesn't ask for it, so it's a reasonable trim here."
+            "why": "This was a generous contribution, but the posting doesn’t ask for recruiting support."
           },
           {
             "line": "Managed the team's snack budget and planned two offsite events",
-            "why": "This helped the team, but the posting doesn't ask for it; trim it to give the engineering work more room."
+            "why": "This shows team involvement, but it takes room from the backend work Cobalt Pay is seeking."
           }
         ],
         "covered": [
           {
-            "requirement": "Strong Go or Java",
+            "requirement": "5+ years building backend systems, ideally in payments",
             "line": "Designed the checkout rate-limiting service in Go that handles 4,000 requests a second at peak"
           },
           {
             "requirement": "leading migrations or reliability work on production systems",
             "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%"
+          },
+          {
+            "requirement": "experience with ledgers, double-entry accounting or settlement",
+            "line": "Reconciled daily claim payments against the ledger with a nightly Python job, flagging about 40 mismatches a week for finance"
           }
         ]
       }
@@ -121,6 +113,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 86
+    "content_score": 91
   }
 }

@@ -101,16 +101,29 @@ function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string
 
 const sameWords = (a: string, b: string) => a.toLowerCase().replace(/[^a-z0-9]+/gu, " ").trim() === b.toLowerCase().replace(/[^a-z0-9]+/gu, " ").trim();
 
+/** A role's header rather than its work: a short line that carries a year or "present" (employer, place, dates). */
+const isDatesLine = (line: string) => line.split(/\s+/u).length <= 10 && /\b(?:(?:19|20)\d{2}|present|current)\b/iu.test(line);
+
+/**
+ * A posting's line that is no gap on a resume, whatever the model made of it: a section heading, or a rule about who
+ * may be hired (citizenship, work authorization, export control). The prompt keeps these out; this is the net under it.
+ */
+const isNotAResumeAsk = (requirement: string) =>
+  (!/[a-z]/u.test(requirement) && /\b(?:REQUIREMENTS?|QUALIFICATIONS?|RESPONSIBILITIES|SKILLS)\b/u.test(requirement))
+  || /\b(?:citizen(?:ship)?|work authori[sz]ation|authori[sz]ed to work|lawful permanent resident|green card|visa sponsorship|ITAR|export[- ]control)\b/iu.test(requirement);
+
 /** Covered requirements: the line must be on the resume, a requirement is listed once, and never also as missing. */
 function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText: string | undefined, missing: string[]): PostingCovered[] {
   const kept: PostingCovered[] = [];
   for (const item of covered ?? []) {
     const requirement = normaliseProse(item.requirement);
     let line = item.line.replace(/\s+/gu, " ").trim();
-    if (!requirement) continue;
+    if (!requirement || isNotAResumeAsk(requirement)) continue;
     // An ask for years of experience is answered by the dates, which a recruiter reads without a line pointing at
-    // them; the model's row for one quotes an employer-and-dates line that shows nothing of the work.
-    if (/\b\d+\s*\+?\s*(?:or more\s+)?years?\b/iu.test(requirement)) continue;
+    // them; a row for one that quotes an employer-and-dates line shows nothing of the work, so it is dropped. A
+    // years ask in a kind of work ("2+ years recruiting for InfoSec") answered by a line of that work stays: dropping
+    // those took a person's closest matches out of the table (the live walk of November 12, 2026).
+    if (/\b\d+\s*\+?\s*(?:or more\s+)?years?\b/iu.test(requirement) && isDatesLine(line)) continue;
     if (resumeText) {
       const resolved = resolveCardLine(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
@@ -229,6 +242,7 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     const groundingText = isMockRun() && !options.forceGrounding ? undefined : resumeText;
     const lead = hasPosting ? groundPostingMoves(draftLead, groundingText, []) : [];
     const trim = hasPosting ? groundPostingMoves(draftTrim, groundingText, lead.map((move) => move.line)) : [];
+    posting.missing = posting.missing.filter((item) => !isNotAResumeAsk(item));
     const covered = hasPosting ? groundPostingCovered(draftCovered, groundingText, posting.missing) : [];
     report.fit = { ...report.fit, posting: { ...posting, ...(lead.length ? { lead } : {}), ...(trim.length ? { trim } : {}), ...(covered.length ? { covered } : {}) } };
   }
