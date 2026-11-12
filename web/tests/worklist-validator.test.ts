@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { validateWorklistPayload, normaliseProse } from "../lib/llm/worklist-validator";
+import { validateWorklistPayload, normaliseProse, noteWithoutItsQuestion } from "../lib/llm/worklist-validator";
+import { isIntroLine } from "../lib/evals/worklist-checks";
 import { WorklistReportSchema, isWorklistReport } from "../lib/llm/worklist-schema";
 import { bannedPhrasesIn, inflatesOwnership, ungroundedTokensInExample } from "../lib/llm/worklist-grounding";
 import { mergeSeverityIntoWorklist, worklistAsSeverityReport } from "../lib/reports/worklist-severity";
@@ -113,6 +114,28 @@ function refuses(input: unknown, pattern: RegExp) {
   assert.equal(report.cards.length, 5);
   assert.equal(report.cards[3].line, "Helped with the member newsletter");
   assert.ok(isWorklistReport(report));
+}
+
+// A note never repeats its own card's question: the report shows the question right under it.
+{
+  assert.equal(
+    noteWithoutItsQuestion("Financial reports can mean many things. Which reports and statements did you prepare, and who used them?", "Which reports and statements did you prepare, and who used them?"),
+    "Financial reports can mean many things.",
+  );
+  assert.equal(noteWithoutItsQuestion("Which reports did you prepare?", "Which reports did you prepare?"), "Which reports did you prepare?", "a note that is only the question stays");
+  assert.equal(noteWithoutItsQuestion("'Helped' hides the job. Did you write it, build it, send it?", "What part of the newsletter was yours?"), "'Helped' hides the job. Did you write it, build it, send it?", "a different question in the note is the note's own");
+  assert.equal(noteWithoutItsQuestion("The headline promises a manager.", ""), "The headline promises a manager.");
+  assert.equal(noteWithoutItsQuestion("It's unclear. What job are you going for? One title.", "What job are you going for? One title."), "It's unclear.", "every sentence of a two-sentence question goes");
+  const card = { ...draft().cards[3], cannot_tell: "'Helped' hides the job. What part of the newsletter was yours?", question: "What part of the newsletter was yours?" };
+  const report = validateWorklistPayload(draft({ cards: [card] }), RESUME, { forceGrounding: true });
+  assert.equal(report.cards[0].cannot_tell, "'Helped' hides the job.");
+  assert.equal(report.cards[0].question, "What part of the newsletter was yours?");
+}
+
+// The intro line goes by several names; a job title is not one of them.
+{
+  for (const where of ["Headline", "Summary", "Professional Summary", "professional summary, line 3", "Objective", "Summary, sentence 1", "Profile", " Career objective "]) assert.equal(isIntroLine(where), true, where);
+  for (const where of ["Marketing Intern, line 1", "Robe Half International, job title", "Skills", "Dates", "Name and credential", "Summary of qualifications, line 2", "Objective statement and skills"]) assert.equal(isIntroLine(where), false, where);
 }
 
 // A quoted line that is not on the resume as written is refused, and names the card.

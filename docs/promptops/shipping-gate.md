@@ -263,6 +263,7 @@ The note on a card about unaccounted time says what the gap does to this person'
 
 - Gate: golden on the final prompt, 22 pass, 1 warning, 0 failures (23 fixtures), bundled as the release evidence; the ten synthetic fixtures twice, 9 pass and 1 warning each.
 - `W_MECHANICAL_COPY`: 15 in 122 reports before, 1 in 43 after. The check also stops flagging a two-part question's repeated stem.
+- Later the same day, with no prompt change: the validator drops a note's sentence that repeats its own card's question, and the no-blank check recognises a summary or objective under the names resumes give it. The same golden run replays at 23 pass, 0 warnings.
 - Spend: about $1.00.
 
 ### The verdict as an opinion — November 12
