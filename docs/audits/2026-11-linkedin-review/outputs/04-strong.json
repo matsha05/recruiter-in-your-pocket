@@ -1,47 +1,46 @@
 {
   "file": "04-strong.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-11",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
-  "seconds": 21,
+  "seconds": 24,
   "report": {
     "contract_version": "v3",
-    "score": 94,
+    "score": 92,
     "lifted_by_employer": false,
-    "verdict": "An emergency department nurse manager whose profile connects staffing decisions to patient flow, retention and budget results.",
+    "verdict": "Emergency department management at a Level II trauma center is clear from the start, and your work backs it up with staffing, patient flow and budget results. I’d write to you about ED leadership, with your note that you’re not looking in mind.",
     "write_up": [
-      "This is a strong profile! A recruiter can see an emergency department nurse manager leading a 42-bed ED and changing how it staffs and moves patients.",
-      "The current Saguaro Valley job is the model: you name the staffing changes, the drop in RN turnover and the labor budget you own. Your About brings the front-door triage work forward, so a reader doesn't have to hunt for it.",
-      "You don't need a rewrite. If you're discussing director-level work, you could add how you plan staffing and labor spending. Your profile isn't likely to be the reason a recruiter moves on; the role's requirements and whether it interests you also matter."
+      "This is a strong ED leadership profile! You show how your team changed triage and overflow beds, then give the change in patients leaving without being seen.",
+      "The Nurse Manager job is the model: it connects staffing, turnover and budget decisions to results. Your Charge Nurse job also makes your night-shift leadership and precepting work easy to understand.",
+      "Your profile isn’t what would stop me from writing. Whether a conversation makes sense also depends on the role and your interest. If you’re documenting work for a future move, the budget line is a good place to add how you planned staffing against it."
     ],
     "cards": [
-      {
-        "kind": "keep",
-        "where": "Saguaro Valley Medical Center, Nurse Manager description",
-        "line": "Brought RN turnover down from 24% to 13% by moving to self-scheduling and a paid preceptor track.",
-        "cannot_tell": "Keep this line. It connects two staffing changes to the drop in turnover, so a recruiter can see both what you did and what changed.",
-        "example": "",
-        "question": ""
-      },
       {
         "kind": "upgrade",
         "where": "Saguaro Valley Medical Center, Nurse Manager description",
         "line": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan.",
-        "cannot_tell": "The budget result is strong. For a director-level conversation, the next question is how you plan staffing and labor spending across the year.",
-        "example": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan. [How you plan staffing and labor spending across the year].",
-        "question": "What part do you play in planning staffing and labor spending across the year?"
+        "cannot_tell": "The budget result is strong. For a leadership role above Nurse Manager, how you planned staffing against that budget would add to it.",
+        "example": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan. [How you planned staffing against the budget].",
+        "question": "How did you plan staffing against the labor budget?"
+      },
+      {
+        "kind": "keep",
+        "where": "Saguaro Valley Medical Center, Charge Nurse description",
+        "line": "Precepted 22 new graduate nurses; 19 were still on the unit two years later.",
+        "cannot_tell": "Keep this line. It names the nurses you precepted and tells a reader how many were still on the unit two years later.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
       "roles": [
         "Emergency Department Nurse Manager",
-        "Nurse Manager, Emergency Department",
         "Charge Nurse, Emergency Department"
       ],
-      "why": "Your headline, current job and About all describe managing an emergency department, including staffing, patient flow and a labor budget.",
-      "level": "manager, your current Nurse Manager, Emergency Department title and responsibility for 96 nurses and techs",
-      "note": "'Emergency Department Nurse Manager' and 'throughput' are in your headline. 'Nurse Staffing' is among your top skills, and 'split-flow' is in your About. 'Labor budget' is in your current job. Budget forecasting and quality improvement are optional search terms if they describe your work.",
+      "why": "Your headline and current job center on managing an emergency department, with staffing, patient flow and budget work.",
+      "level": "manager, your Nurse Manager title and leadership of 96 nurses and techs",
+      "note": "‘Emergency Department Nurse Manager’ and ‘throughput’ are in your headline. ‘Nurse Staffing’ and ‘Trauma Care’ are among your top skills. ‘split-flow’ is in your About.",
       "posting": {
         "summary": "",
         "missing": []
@@ -83,7 +82,7 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 94,
+    "content_score": 92,
     "document": "linkedin"
   }
 }

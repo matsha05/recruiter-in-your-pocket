@@ -1,58 +1,58 @@
 {
   "file": "02-one-line-jobs.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-11",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
-  "seconds": 22,
+  "seconds": 25,
   "report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 66,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer with a notable ledger project, but little about what she did in her jobs.",
+    "verdict": "Payouts and ledger services stand out, as does your ledger-recon project. I’d read to the end, but I’d still be guessing about what you did at Northwind Pay.",
     "write_up": [
-      "You're a senior backend engineer working on payouts and ledger services. It's common to see a recent job summed up in one line and an earlier job left blank, but that leaves a recruiter guessing about your work.",
-      "The ledger-recon project is the strongest part: it names the library, its language and who uses it. That gives us real work to bring into your About.",
-      "Start with the Northwind Pay job, then update the headline and About. Add what you did at Kestrel Labs too. Someone hiring for backend payments work could then connect the project to what you did in your jobs."
+      "You’re a Senior Backend Engineer working on payouts and ledger services, with an open-source ledger project. It’s common to see a recent job described in one line, but here it leaves a recruiter guessing about your part in the work.",
+      "The best model is ledger-recon, near the bottom of your profile. It names the library, Go, 1,200 GitHub stars and use by three payment companies. That’s much more useful than the generic opening in your About.",
+      "Start with what you did at Northwind Pay, then bring the ledger project into your About and add your specialties to the headline. The earlier Kestrel Labs job is blank too. Together, those changes would give someone hiring for backend payments work a better picture of your work."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Senior Backend Engineer at Northwind Pay",
-        "cannot_tell": "The headline repeats your title and employer but leaves out the payouts and ledger work. Put that specialty beside your title.",
-        "example": "Senior Backend Engineer | Payouts and ledger services | Go",
-        "question": "Which part of the payouts and ledger work was yours?"
+        "cannot_tell": "The headline repeats your job and leaves out the payouts and ledger work below it. Put those specialties beside your title.",
+        "example": "Senior Backend Engineer | Payouts and ledger services | Go, PostgreSQL, Kafka",
+        "question": "Which parts of payouts and ledger services have you worked on?"
       },
       {
         "kind": "line",
         "where": "About",
         "line": "Passionate engineer with a track record of delivering scalable solutions. I enjoy hard problems and working with great teams.",
-        "cannot_tell": "“Scalable solutions” could describe almost any engineer. Your ledger-recon library is much more memorable, and it's sitting in Projects.",
-        "example": "I work on payouts and ledger services. My project ledger-recon is an open-source ledger reconciliation library in Go, used by three payment companies.",
-        "question": "What part did you play in developing ledger-recon?"
+        "cannot_tell": "“Scalable solutions” could describe almost any engineer. Your ledger-recon project gives you a much better opening: a Go library used by three payment companies.",
+        "example": "I work on payouts and ledger services. My project, ledger-recon, is an open-source ledger reconciliation library in Go used by three payment companies.",
+        "question": "What was your contribution to ledger-recon?"
       },
       {
         "kind": "line",
         "where": "Northwind Pay, description",
         "line": "Worked on payouts and ledger services.",
-        "cannot_tell": "This names the services but not what you did to them. Someone searching for API design or distributed systems has no such terms to match in this job.",
+        "cannot_tell": "One line names the services but not your part in them. A recruiter can match payouts and ledger services, but has no words here for the specific work you did on either.",
         "example": "Worked on payouts and ledger services, [what you built or changed] for [who uses it].",
-        "question": "What did you build or change in the payouts and ledger services, and who uses it?"
+        "question": "Which parts of payouts or ledger services did you build or change, and who used them?"
       },
       {
         "kind": "structure",
-        "where": "Kestrel Labs, Software Engineer",
+        "where": "Kestrel Labs, description",
         "line": "The Software Engineer job at Kestrel Labs has no description.",
-        "cannot_tell": "The title doesn't say what you built or maintained. Terms such as APIs and backend services have nothing to match under this job.",
-        "example": "[What you built or maintained at Kestrel Labs] for [who used it], using [tools you used].",
-        "question": "At Kestrel Labs, did you build APIs, maintain services or work on data systems, and who used them?"
+        "cannot_tell": "There’s nothing here about the software you worked on. Someone searching for APIs, databases or backend services has no words from this job to match.",
+        "example": "[What you built or maintained] using [tools or languages] for [who used it].",
+        "question": "At Kestrel Labs, did you work on APIs, databases or backend services? Which tools did you use?"
       },
       {
         "kind": "keep",
-        "where": "Projects, ledger-recon",
+        "where": "ledger-recon, project",
         "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
-        "cannot_tell": "This is the model for the rest: it names the library, the language and its users. A recruiter doesn't have to guess what ledger-recon is.",
+        "cannot_tell": "Keep this as a model: it names the library, the language and who uses it. Your job descriptions can name their work just as plainly.",
         "example": "",
         "question": ""
       }
@@ -62,9 +62,9 @@
         "Senior Backend Engineer",
         "Software Engineer"
       ],
-      "why": "Your headline and current title name senior backend engineering, and your recent work and project both involve ledgers.",
-      "level": "senior, the Senior Backend Engineer title",
-      "note": "“Senior Backend Engineer” is in your headline and current title. “Payouts” and “ledger services” are in your current job. “Go” is in your top skills and project, and “ledger reconciliation” is in your project. Recruiters also search for API design, distributed systems and payment processing; those terms aren't on your profile. Add them only if they describe your work: API design and distributed systems could go in the Northwind Pay description, and payment processing could go in your About if it ties your work together. Move ledger services into your headline first.",
+      "why": "Your headline and current title name a Senior Backend Engineer, and the current job and ledger-recon project point to payments and ledger work.",
+      "level": "senior, the Senior Backend Engineer title at Northwind Pay",
+      "note": "“Senior Backend Engineer” is in your headline and current title. “Payouts” and “ledger services” are in the Northwind Pay description. “Go” is in Top Skills and the ledger-recon project, while “ledger reconciliation” is in the project. Distributed systems, API design and transaction processing are not on your profile; add the ones that describe your work to the Northwind Pay description. Move payouts and ledger services into your headline.",
       "posting": {
         "summary": "",
         "missing": []
@@ -101,7 +101,7 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68,
+    "content_score": 66,
     "document": "linkedin"
   }
 }
