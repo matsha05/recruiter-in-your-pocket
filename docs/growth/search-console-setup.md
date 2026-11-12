@@ -17,6 +17,10 @@ Used Matt Shaw’s existing signed-in Google account in Chrome. No accounts or a
 
 Both tools accepted `https://www.recruiterinyourpocket.com/sitemap.xml`. Bing reports 1 known sitemap, 0 errors, and 0 warnings.
 
+**November 12, 2026.** The sitemap was resubmitted in Google Search Console after an audit found Google had not re-read it since November 5: it now reports 48 discovered pages. Indexing was requested by hand for the pages Google had not indexed, the six research pillar pages and the comparison pages first. Google caps these requests each day, so the rest follow on later days.
+
+**Bing gets changes without anyone asking.** A daily Vercel cron calls `/api/indexnow`, which sends Bing's IndexNow feed the pages in `PUBLIC_PAGES` that are new or whose `updated` date changed since the last send (`web/lib/seo/indexnow.ts`; the record of what was sent is in Redis, so an unchanged page is never sent twice). The first run sends every page. Google does not take part in IndexNow; a new page there still needs the sitemap and, when it matters, a manual request.
+
 ## Google Search Console
 
 The existing `sc-domain:recruiterinyourpocket.com` Domain property was found at the start of this session. It covers the apex, www, other subdomains, and both HTTP and HTTPS; no URL-prefix property was created. Settings showed **You are a verified owner** and **Property added to account July 30, 2026**. A duplicate property was not created. Ownership verification showed **Domain name provider: Successfully verified** at approximately 15:14 MST. Users and permissions showed **Users (1)**, **Matt Shaw (you)**, **Owner Verified**, and **1–1 of 1**. No user was added.
