@@ -266,7 +266,7 @@ export const comparisons: Comparison[] = [
                 title: `When ${OUR_NAME} is the better choice`,
                 paragraphs: [
                     <>
-                        You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.
+                        You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and works down the page top to bottom, the way a recruiter reads it.
                     </>,
                     <>
                         You’d rather pay once. Five reports for $29 covers a revision and a few target roles, and when you add a job posting the report reads your resume against that role without turning it into a keyword count.
@@ -621,7 +621,7 @@ export const comparisons: Comparison[] = [
                 title: `When ${OUR_NAME} is the better choice`,
                 paragraphs: [
                     <>
-                        You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.
+                        You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question, top to bottom, the way a recruiter reads.
                     </>,
                     <>
                         You wrote it yourself and want the text to survive a reader, not a template. Where a bullet is generic, the report asks for <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, then rewrites the line from your answer. Nothing gets added that you didn’t say.
@@ -741,7 +741,7 @@ export const comparisons: Comparison[] = [
                 title: `When ${OUR_NAME} is the better choice`,
                 paragraphs: [
                     <>
-                        You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.
+                        You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and works down the page top to bottom, the way a recruiter reads it.
                     </>,
                     <>
                         You’d rather fix the facts than the score. When a line says what you did but not what changed, the report asks for <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, and rewrites from your answer.

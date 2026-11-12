@@ -3,7 +3,7 @@ import "server-only";
 import { GenerationAccessError } from "../billing/generationAccess";
 import type { GenerationAccessReservation, GenerationPassSnapshot } from "../billing/generationAccessTypes";
 import { passIncludesPostingReads } from "../billing/entitlements";
-import { containsBoundedSourceExcerpt } from "../llm/source-fidelity";
+import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "../llm/source-fidelity";
 import { QUOTED_KINDS, isWorklistReport } from "../llm/worklist-schema";
 import { rateLimitAsync } from "../security/rateLimit";
 import { lookupOwnedTrustedReport } from "./generated-report-store";
@@ -16,9 +16,26 @@ function refused(code: string, message: string, httpStatus: number) {
   return new GenerationAccessError(code, message, httpStatus, false);
 }
 
-/** The lines a saved worklist report quotes from its resume: what ties a posting read to the resume it was written on. */
+/** A report from before the worklist (saved before November 6, 2026) quotes the line behind each of its fixes. */
+function olderReportQuotes(report: unknown): string[] {
+  const fixes = (report as { top_fixes?: unknown } | null)?.top_fixes;
+  if (!Array.isArray(fixes)) return [];
+  return fixes
+    .map((fix) => {
+      const evidence = (fix as { evidence?: unknown } | null)?.evidence;
+      const excerpt = typeof evidence === "string" ? evidence : (evidence as { excerpt?: unknown } | null)?.excerpt;
+      return typeof excerpt === "string" ? excerpt.trim() : "";
+    })
+    // A fix about something the resume doesn't have quotes nothing ("No summary present").
+    .filter((excerpt) => excerpt && !isExactAbsenceSentinel(excerpt.replace(/\.$/u, "")) && (excerpt.match(/[\p{L}\p{N}]+/gu) || []).length >= 3);
+}
+
+/**
+ * The lines a saved report quotes from its resume: what ties a posting read to the resume it was written on.
+ * A worklist report quotes a line on each card; an older report quotes one under each fix.
+ */
 export function quotedLinesOf(report: unknown): string[] {
-  if (!isWorklistReport(report)) return [];
+  if (!isWorklistReport(report)) return olderReportQuotes(report);
   return report.cards.filter((card) => QUOTED_KINDS.has(card.kind)).map((card) => card.line).filter(Boolean);
 }
 

@@ -73,11 +73,14 @@ export default async function ReportsPage() {
 
   // What each later version's list looks like against its resume's first version (lib/reports/report-history.ts).
   const revisions = new Map<string, { sinceId: string; gone: number; still: number; added: number }>();
+  const shapeChanged = new Set<string>();
   for (const group of groupReportVersions(items.map((report) => ({ id: report.id, score: report.score, createdAt: report.created_at, revises: revises.get(report.id) ?? null, cards: report.cards, isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW })))) {
     const first = group[group.length - 1];
     for (const version of group.slice(0, -1)) {
       const progress = version.isProfile === first.isProfile ? revisionProgress(first.cards, version.cards) : null;
       if (progress) revisions.set(version.id, { sinceId: first.id, ...progress });
+      // Version 1 was saved before the worklist: its list and score aren't the same kind of thing as this one's.
+      if (version.isProfile === first.isProfile && !Array.isArray(first.cards) && Array.isArray(version.cards)) shapeChanged.add(version.id);
     }
   }
 
@@ -155,6 +158,7 @@ export default async function ReportsPage() {
               change: changes.get(report.id) ?? null,
               revises: revises.get(report.id) ?? null,
               revisions: revisions.get(report.id) ?? null,
+              earlierShape: shapeChanged.has(report.id),
               // An earlier report's first impression runs two or three sentences; its row shows the first, the way
               // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
               verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),

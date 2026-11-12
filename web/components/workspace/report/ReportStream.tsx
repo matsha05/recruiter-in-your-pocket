@@ -110,6 +110,7 @@ function CriticalMissReport({
   hasPaidAccess = false,
   comparisonBaseline = null,
   onStartRevision,
+  onReadAgainstPosting,
   onStartReport,
   resumeText,
   resumeSource,
@@ -370,6 +371,7 @@ function CriticalMissReport({
         revisedCount={revisable.length}
         onStartReport={onStartReport}
         onStartRevision={onStartRevision}
+        onReadAgainstPosting={isSample ? undefined : onReadAgainstPosting}
         onSaveReport={onSaveReport}
         isSavingReport={isSavingReport}
         onUpgrade={onUpgrade}

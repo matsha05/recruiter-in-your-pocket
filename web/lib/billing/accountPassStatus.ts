@@ -9,6 +9,19 @@ export type AuthoritativePassAccess = {
   postingReads: boolean;
 };
 
+/**
+ * A pass still in its term with every report used. The account is not "on the free report": it paid, its
+ * posting reads still run, and nothing it sees should call its reports free (live test, November 12, 2026).
+ */
+export function isPassSpent(user: { membership?: string | null; postingReads?: boolean | null; freeUsesLeft?: number | null } | null | undefined): boolean {
+  if (!user || user.postingReads !== true) return false;
+  if (user.membership && user.membership !== "free") return false;
+  return Number(user.freeUsesLeft || 0) <= 0;
+}
+
+/** What a spent pass is called wherever the balance is shown. */
+export const PASS_SPENT_LABEL = "No reports left on your pass";
+
 export function readAuthoritativePassAccess(
   httpOk: boolean,
   payload: { ok?: unknown; passes?: unknown },

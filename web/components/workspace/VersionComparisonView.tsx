@@ -3,6 +3,7 @@
 import { ReportData } from "./report/ReportTypes";
 import { ReadComparison } from "./report/ReadComparison";
 import { WorklistComparison } from "./report/worklist/WorklistComparison";
+import { AcrossShapesComparison } from "./report/worklist/AcrossShapesComparison";
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { reportDocumentKind } from "@/lib/reports/report-document";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -46,6 +47,9 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     {/* Two worklist reports of the same kind compare line by line; anything else, by what each led with. */}
                     {isWorklistReport(older.report) && isWorklistReport(newer.report) && reportDocumentKind(older.report) === reportDocumentKind(newer.report)
                         ? <WorklistComparison previous={older.report} current={newer.report} earlier={label(older)} />
+                        : !isWorklistReport(older.report) && isWorklistReport(newer.report) && reportDocumentKind(newer.report) === "resume"
+                        // An older report beside a worklist report: read as an older report, the newer side came out empty (Nov 12, 2026).
+                        ? <AcrossShapesComparison previous={older.report} current={newer.report} earlier={label(older)} />
                         : <ReadComparison previous={{ ...older.report, score: older.score }} current={{ ...newer.report, score: newer.score }} />}
                 </div>
             </DialogContent>

@@ -61,7 +61,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
         intro = single ? "Your revision didn't change it. Let's start there again." : "Your revision didn't change them. Let's start with the first one again.";
     } else if (remaining.length === 0) {
         title = single ? "Your top problem changed." : "Your top problems changed.";
-        intro = single ? "The report now leads with a new one." : "The report now leads with new ones.";
+        intro = single ? "The earlier one isn't in this report. It now leads with the problem on the right." : "The earlier ones aren't in this report. It now leads with the problems on the right.";
     } else {
         title = gone.length === 1 ? "One problem changed." : `${gone.length} problems changed.`;
         intro = `${remaining.length === 1 ? "One is" : `${remaining.length} are`} still there. Let's start with ${remaining.length === 1 ? "that one" : "those"} again.`;
@@ -98,7 +98,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
 
             <p className={styles.sum}>
                 {sum && <span className={styles.delta}>{sum}</span>}
-                <span className={styles.sumQuiet}>{verdictSame ? "The summary line is the same." : "The summary line changed too."}</span>
+                {verdictSame && <span className={styles.sumQuiet}>The verdict reads the same.</span>}
             </p>
         </section>
     );

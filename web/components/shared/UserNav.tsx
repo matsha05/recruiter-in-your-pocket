@@ -1,5 +1,6 @@
 "use client";
 
+import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
 import Link from "next/link";
 import { Files, SignOut } from "@phosphor-icons/react";
 import { SettingsIcon } from "@/components/ui/settings";
@@ -79,7 +80,7 @@ export function UserNav({
                         {(user.membership === "free" || !user.membership) && (
                             user.freeUsesLeft !== undefined && user.freeUsesLeft > 0
                                 ? <span className="text-success">{user.freeUsesLeft === 1 ? "Free report available" : `${user.freeUsesLeft} free reports available`}</span>
-                                : <span className="text-muted-foreground">Free report used</span>
+                                : <span className="text-muted-foreground">{isPassSpent(user) ? PASS_SPENT_LABEL : "Free report used"}</span>
                         )}
                     </div>
                 </DropdownMenuLabel>

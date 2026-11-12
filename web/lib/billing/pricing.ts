@@ -29,6 +29,8 @@ export const REFUND_WINDOW_DAYS = 14;
 export const JOB_SEARCH_PASS_DECISION = {
   freeBoundary: "Everything in your free report is yours. Nothing is held back.",
   whenToBuy: "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",
+  // For a pass holder whose reports are used: they paid, so nothing here calls the report free.
+  passSpent: "You've used every report on your pass. Until it expires, reading one of these resumes against a posting is still included. Checking a revision takes a new pass.",
   terms: "5 more reports, good for 90 days. No automatic renewal.",
   cta: "Get 5 more reports · $29",
 } as const;

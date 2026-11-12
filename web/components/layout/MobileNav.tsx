@@ -1,5 +1,6 @@
 "use client";
 
+import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SignOut } from "@phosphor-icons/react";
@@ -51,7 +52,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
                                 {(user.membership === "free" || !user.membership) && (
                                     user.freeUsesLeft !== undefined && user.freeUsesLeft > 0
                                         ? <span className="text-xs font-medium text-success">{user.freeUsesLeft === 1 ? "Free report available" : `${user.freeUsesLeft} free reports available`}</span>
-                                        : <span className="text-xs font-medium text-muted-foreground">Free report used</span>
+                                        : <span className="text-xs font-medium text-muted-foreground">{isPassSpent(user) ? PASS_SPENT_LABEL : "Free report used"}</span>
                                 )}
                             </p>
                         </div>

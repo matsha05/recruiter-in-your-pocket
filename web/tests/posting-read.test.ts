@@ -75,7 +75,17 @@ async function run() {
     assert.equal(isSameResume(report, RESUME), true);
     assert.equal(isSameResume(report, RESUME.replace("public API gateway", "partner API gateway")), false, "a revised line makes it a new resume, which is a report of its own");
     assert.equal(isSameResume({ ...report, cards: [report.cards[1]] }, RESUME), false, "a report that quotes nothing can't vouch for any text");
-    assert.equal(isSameResume({ score: 70, top_fixes: [] }, RESUME), false, "only a worklist report can be read against a posting this way");
+    assert.equal(isSameResume({ score: 70, top_fixes: [] }, RESUME), false, "an older report that quotes nothing can't vouch for any text");
+    // A report saved before the worklist quotes the line behind each fix; that ties it to its resume the same way.
+    const older = { score: 70, top_fixes: [
+      { fix: "Say what you owned.", evidence: { section: "Experience", excerpt: report.cards[0].line } },
+      { fix: "Add a summary.", evidence: { section: "Summary", excerpt: "No summary section present" } },
+      { fix: "Say what changed.", evidence: report.cards[2].line },
+    ] };
+    assert.deepEqual(quotedLinesOf(older), [report.cards[0].line, report.cards[2].line], "a fix about something missing quotes nothing");
+    assert.equal(isSameResume(older, RESUME), true, "an older report can be read against a posting too");
+    assert.equal(isSameResume(older, RESUME.replace("public API gateway", "partner API gateway")), false);
+    assert.equal(isSameResume({ score: 70, top_fixes: [older.top_fixes[1]] }, RESUME), false, "only missing-section fixes: nothing quoted, nothing vouched for");
   }
 
   assert.equal(await refusal(reservePostingRead({ reportId: REPORT_ID, text: RESUME, hasPosting: true, userId: null, admin: passesAdmin([]) })), "POSTING_READ_SIGN_IN");

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import mammoth from "mammoth";
+import { extractDocxText } from "@/lib/backend/docx-text";
 import pdfParse from "pdf-parse";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
@@ -113,8 +114,7 @@ export async function POST(request: Request) {
       }
     } else if (kind === "docx") {
       try {
-        const docxResult = await mammoth.extractRawText({ buffer });
-        extractedText = docxResult.value || "";
+        extractedText = await extractDocxText(mammoth as any, buffer);
       } catch (err) {
         return unreadableFile(err);
       }

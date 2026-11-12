@@ -238,10 +238,10 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | upload | `web/app/api/parse-resume/route.ts:56` | key:message | Too many requests. Try again shortly. |
-| 2 | upload | `web/app/api/parse-resume/route.ts:68` | key:message | Choose a file to upload. |
-| 3 | upload | `web/app/api/parse-resume/route.ts:76` | key:message | This file is too large. Choose a file of 4 MB or less. |
-| 4 | upload | `web/app/api/parse-resume/route.ts:98` | key:message | Could not read this file. Try uploading a new PDF or DOCX copy. |
+| 1 | upload | `web/app/api/parse-resume/route.ts:57` | key:message | Too many requests. Try again shortly. |
+| 2 | upload | `web/app/api/parse-resume/route.ts:69` | key:message | Choose a file to upload. |
+| 3 | upload | `web/app/api/parse-resume/route.ts:77` | key:message | This file is too large. Choose a file of 4 MB or less. |
+| 4 | upload | `web/app/api/parse-resume/route.ts:99` | key:message | Could not read this file. Try uploading a new PDF or DOCX copy. |
 | 5 | upload | `web/app/api/parse-resume/route.ts:126` | key:message | Choose a PDF or DOCX file. |
 | 6 | upload | `web/app/api/parse-resume/route.ts:143` | key:message | Could not extract enough text from the file. Try pasting your resume text directly. |
 | 7 | upload | `web/app/api/parse-resume/route.ts:157` | key:message | This document exceeds the 30,000-character limit. Upload a shorter file. |

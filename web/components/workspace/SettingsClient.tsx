@@ -1,5 +1,6 @@
 "use client";
 
+import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -420,7 +421,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
             ? "Monthly plan"
             : user?.membership === "credit"
                 ? `${user.paidUsesLeft || 0} ${(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass`
-                : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
+                : isPassSpent(user)
+                    ? PASS_SPENT_LABEL
+                    : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
     const latestPass = loadingPasses ? null : passes[0];
     const passForStatus = activePass || latestPass || null;
