@@ -19,6 +19,7 @@ const INPUTS = path.resolve(WEB_ROOT, "../docs/audits/2026-11-first-read/resumes
 // A two-page resume with lines no payments posting asks about, so "trim" has something to find.
 const LONG = "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt";
 const LIVE_JUDGMENT = "../../2026-11-live-judgment/resumes";
+const TAILORING = "../../2026-11-posting-tailoring/resumes";
 const BLIND_PICK = "../../../../tests/resumes/blindpick";
 const CASES: Array<{ id: string; resume: string; posting: string | null }> = [
     { id: "backend-senior-backend-posting", resume: "fr01_backend_ic_senior.txt", posting: "posting_senior_backend.txt" },
@@ -36,6 +37,11 @@ const CASES: Array<{ id: string; resume: string; posting: string | null }> = [
     { id: "analyst-nursing-posting", resume: `${LIVE_JUDGMENT}/h5_data_analyst.txt`, posting: `${LIVE_JUDGMENT}/h5_nursing_posting.txt` },
     { id: "finance-hubspot-posting", resume: "fr04_financial_analyst_frames.txt", posting: "posting_marketing_hubspot.txt" },
     { id: "operations-director-manager-posting", resume: "fr06_senior_director_duties.txt", posting: "posting_engineering_manager.txt" },
+    // Postings shaped like real ones (November 12, 2026): "preferred" asks that name the specialty, a logistics block,
+    // conditions of employment (hours, onsite, export control) and equal-opportunity text. None of those conditions
+    // is a gap on a resume, and the preferred asks this resume answers belong in the table.
+    { id: "recruiter-aerospace-posting", resume: `${TAILORING}/recruiter_security_senior.txt`, posting: `${TAILORING}/posting_recruiter_aerospace.txt` },
+    { id: "recruiter-ai-lab-posting", resume: `${TAILORING}/recruiter_security_senior.txt`, posting: `${TAILORING}/posting_recruiter_ai_lab.txt` },
 ];
 
 type Resolver = { _resolveFilename: (request: string, ...rest: unknown[]) => string };

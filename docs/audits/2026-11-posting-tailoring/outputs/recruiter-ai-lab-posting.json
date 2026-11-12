@@ -1,0 +1,126 @@
+{
+  "id": "recruiter-ai-lab-posting",
+  "resume": "../../2026-11-posting-tailoring/resumes/recruiter_security_senior.txt",
+  "posting": "../../2026-11-posting-tailoring/resumes/posting_recruiter_ai_lab.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-12",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 2,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 9344,
+    "tokens_out": 2554,
+    "cost_estimate_usd": 0.01324005
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Your security hiring at Halden AI is a close match for Northlight's focus, and your earlier engineering recruiting backs it up. I'd want to talk. I'd also want to understand the time-to-hire figure at Tessera, because a reduction can't exceed 100%.",
+    "write_up": [
+      "Your resume makes a strong case for Northlight's Technical Recruiter role. It follows your work from engineering recruiting at Stratus Cloud through machine learning hiring at Orbis to security hiring at Halden AI. The hiring numbers give a recruiter plenty to work with, though a few lines leave your part in the work open.",
+      "The Stratus Cloud referrals drive is a good model: you led a named effort and show both referrals and offer accepts. At Tessera, the reported 250% reduction in time to hire needs correcting before you send this. A recruiter can't reconcile that figure with a reduction.",
+      "Let's start with Halden: explain what sat behind the offer accepts and how you worked with the CISO. Then check the Tessera figures and bring your full-cycle engineering recruiting higher within the Stratus Cloud role. Add the tools and security knowledge Northlight asks for only where you can speak to them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Halden AI, line 2",
+        "line": "170 offer accepts with a 92% accept rate.",
+        "cannot_tell": "Those are substantial hiring figures, but I can't tell which recruiting work was yours or what period they cover. That distinction matters when Northlight is hiring a recruiter to work directly with candidates.",
+        "example": "170 offer accepts with a 92% accept rate from [your recruiting work] over [period].",
+        "question": "What was your part in those offers, and what period do the figures cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Halden AI, line 3",
+        "line": "Hiring point-of-contact for the Chief Information Security Officer.",
+        "cannot_tell": "The CISO partnership is relevant here, but point-of-contact doesn't say what you worked on together. Northlight specifically asks about work with hiring managers.",
+        "example": "Hiring point-of-contact for the Chief Information Security Officer on [hiring activities].",
+        "question": "What hiring activities did you and the CISO work on together?"
+      },
+      {
+        "kind": "line",
+        "where": "Tessera Labs, line 2",
+        "line": "Rebuilt the company's hiring process, achieving a 250% reduction in time to hire within five months.",
+        "cannot_tell": "A reduction in time to hire can't exceed 100%, so the figure makes the result difficult to trust. The process rebuild is relevant to Northlight; check the original measures and describe the change accurately.",
+        "example": "Rebuilt the company's hiring process, changing time to hire from [before] to [after] within five months.",
+        "question": "What were the time-to-hire figures before and after the rebuild?"
+      },
+      {
+        "kind": "line",
+        "where": "Orbis, line 2",
+        "line": "Played a key role in funnel initiatives, contributing to 800+ machine learning hires and reporting results to recruiting leadership.",
+        "cannot_tell": "The hiring figure is significant, but a recruiter can't tell what you contributed to the funnel initiatives. Name your part without claiming all of those hires.",
+        "example": "Played a key role in funnel initiatives by [your contribution], contributing to 800+ machine learning hires and reporting results to recruiting leadership.",
+        "question": "What did you do on the funnel initiatives?"
+      },
+      {
+        "kind": "keep",
+        "where": "Stratus Cloud, line 4",
+        "line": "Led a regional candidate referrals drive, generating 95 offer accepts and nearly 4,000 referrals for senior engineers in two quarters.",
+        "cannot_tell": "Keep this as a model. It names the people you were recruiting, the effort you led and what it generated, all in one line.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Technical Recruiter",
+        "Technical Recruiter"
+      ],
+      "why": "Your current role centers on security hiring, following engineering and machine learning recruiting work.",
+      "level": "senior, current Senior Technical Recruiter role with security hiring up to VP level",
+      "note": "Your Halden security hiring and earlier engineering recruiting align with Northlight's technical teams. The job requires travel and at least 25% of time in an office.",
+      "posting": {
+        "summary": "Northlight seeks a technical recruiter to hire across technical teams, with a focus on its growing security organization.",
+        "missing": [
+          "Proficiency with an applicant tracking system such as Greenhouse and with modern sourcing tools",
+          "Experience partnering directly with hiring managers on intake, bar calibration and interview loop design",
+          "Working knowledge of security credentials and where they do and do not carry signal",
+          "Comfort using LLMs to speed up sourcing, research and market mapping"
+        ],
+        "lead": [
+          {
+            "line": "Full-cycle recruiting from 2018 to 2020 across sales, product, operations and engineering roles.",
+            "why": "Northlight asks for full lifecycle recruiting supporting technical engineering organizations. Move this higher within the Stratus Cloud role so that experience is found sooner."
+          },
+          {
+            "line": "Rebuilt the company's hiring process, achieving a 250% reduction in time to hire within five months.",
+            "why": "The process rebuild answers Northlight's preference for improving recruiting processes. Once you've corrected the figure, consider moving it to the top of the Tessera Labs role."
+          }
+        ],
+        "covered": [
+          {
+            "requirement": "Deep full lifecycle recruiting supporting technical engineering organizations",
+            "line": "Full-cycle recruiting from 2018 to 2020 across sales, product, operations and engineering roles."
+          },
+          {
+            "requirement": "Experience recruiting at a high-growth technology, AI or machine learning company",
+            "line": "Security hiring across all levels and functions while the company grew from 40 employees to 600+."
+          },
+          {
+            "requirement": "Experience hiring for security engineering, incident response, threat intelligence or physical security",
+            "line": "Security hiring across all levels and functions while the company grew from 40 employees to 600+."
+          },
+          {
+            "requirement": "Experience improving recruiting processes or interview design",
+            "line": "Rebuilt the company's hiring process, achieving a 250% reduction in time to hire within five months."
+          },
+          {
+            "requirement": "Bachelor's degree or an equivalent combination of education, training and experience",
+            "line": "B.S. Business Administration"
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  }
+}

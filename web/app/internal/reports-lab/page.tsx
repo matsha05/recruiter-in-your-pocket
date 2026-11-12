@@ -23,6 +23,8 @@ const FIXTURES: ReportHistoryItem[] = [
   // Two earlier versions of the customer success resume above: 03 re-checked 07, which re-checked 06.
   { id: "00000000-0000-4000-8000-000000000007", score: 79, isProfile: false, verdict: "A customer success manager with a named SaaS portfolio, and renewals described only as a duty.", name: null, targetRole: "Customer Success Manager", createdAt: "2026-11-03T15:00:00.000Z", progress: { total: 6, answered: 4 }, revises: "00000000-0000-4000-8000-000000000006" },
   { id: "00000000-0000-4000-8000-000000000006", score: 58, isProfile: false, verdict: "A customer success manager whose accounts, renewals and results are all still unnamed.", name: "First draft", targetRole: "Customer Success Manager", createdAt: "2026-11-01T15:00:00.000Z", progress: { total: 7, answered: 7 } },
+  // The customer success resume read against a posting: the row names the posting and shows no change in score.
+  { id: "00000000-0000-4000-8000-000000000008", score: 76, isProfile: false, verdict: "Your customer success work at Northwind Analytics is easy to place for this role.", name: null, targetRole: "Customer Success Manager", hasPosting: true, postingRole: "Senior Customer Success Manager, Enterprise", createdAt: "2026-11-04T15:00:00.000Z", progress: { total: 5, answered: 0 } },
   { id: "00000000-0000-4000-8000-000000000004", score: 42, isProfile: false, verdict: "Your resume names a Marketing Manager goal, but the work shown is mostly retail and warehouse duties.", name: null, targetRole: "Marketing Manager", createdAt: "2026-11-01T15:00:00.000Z" },
   { id: "00000000-0000-4000-8000-000000000005", score: 64, isProfile: false, verdict: null, name: null, targetRole: null, createdAt: "2026-10-20T15:00:00.000Z" },
 ];

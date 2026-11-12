@@ -27,7 +27,13 @@ export const RESUME_ON_FILE_KEPT = "On file. We store the text of this resume in
 /** A posting read that found the resume on file. */
 export const RESUME_ON_FILE_LOADED = "We filled in the resume you keep on file. Paste the posting and you're set.";
 export const RESUME_ON_FILE_REMOVE = "Remove it from file";
+/** The card's name for a resume on file that was kept without a file name (pasted text, or kept before names were stored). */
+export const RESUME_ON_FILE_NAME = "Your resume on file";
+/** On that card, the way to read a different resume: it clears the field, and the copy on file stays. */
+export const RESUME_ON_FILE_USE_ANOTHER = "Use a different resume";
 export const RESUME_ON_FILE_REMOVED = "Removed. Your resume is no longer on file.";
 
 /** Under the run button when the read is included: what it costs the person, said once. */
 export const POSTING_READ_INCLUDED_HINT = "Included with your pass. This one doesn't use a report.";
+/** The same line before the posting is in: the read is included once there is a posting to read against. */
+export const POSTING_READ_NEEDS_POSTING_HINT = "Paste the posting and this read is included with your pass.";

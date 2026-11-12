@@ -3,7 +3,7 @@
   "resume": "fr01_backend_ic_senior.txt",
   "posting": null,
   "model": "gpt-6.1-terra",
-  "today": "2026-11-07",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
   "drafted": {
@@ -11,53 +11,54 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7309,
-    "tokens_out": 1323,
-    "cost_estimate_usd": 0.0069833
+    "tokens_in": 8425,
+    "tokens_out": 1515,
+    "cost_estimate_usd": 0.0181055
   },
   "report": {
     "contract_version": "v3",
-    "score": 89,
+    "score": 90,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer whose payments and infrastructure work comes with scale and results.",
+    "verdict": "Payments infrastructure is the first thing I notice, and your work backs up the senior title with production scale and measurable results. I'd want to talk to you.",
     "write_up": [
-      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you show both the engineering behind the payments platform and the scale it handles. The earlier freight and insurance roles make the progression easy to follow.",
-      "The balance API line is a great model: it names the change you made and shows latency before and after. Your headline fits the work, and Experience is easy to find above Education.",
-      "Let’s add a little more about what maintaining the claims services involved. If you made a wider platform decision during the ledger migration, that could also show what you’re ready to take on next. Your resume is unlikely to be the reason you’re passed over; how competitive a role is will matter too."
+      "Your resume makes a strong case for senior backend work: you connect payment systems to throughput, uptime and latency! The move from freight technology to Lumen Ledger builds a clear story around services that businesses rely on.",
+      "The balance API line is a great model: it names the change you made and shows latency before and after. Your headline fits the work, and Experience leads with your current role.",
+      "Your resume isn't likely to be what holds you back from a call. Competition for the role still matters. For a step up, add a broader technical decision if you have one, and bring the latency result closer to the top."
     ],
     "cards": [
       {
         "kind": "keep",
-        "where": "Senior Software Engineer, Payments Platform, line 3",
-        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. It connects a technical choice to a measurable improvement without making the reader guess what you did.",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the service, your ownership, the tools and how much work the service handles.",
         "example": "",
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Software Engineer, line 1",
-        "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "Maintaining the services could cover several kinds of work. A concrete fix or improvement would show what you handled there.",
-        "example": "Maintained the claims intake services in Java by [maintenance work]",
-        "question": "What fix or improvement did you make to the claims intake services?"
       },
       {
         "kind": "upgrade",
         "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "The migration already shows strong technical leadership. A wider platform decision, if you made one, could show how your work reached beyond the migration itself.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends; made [platform-wide decision]",
-        "question": "What platform-wide decision did you make in connection with the migration?"
+        "cannot_tell": "For a role one level up, a recruiter will look for technical direction beyond one migration. A broader decision you made would show that work if it's part of your story.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends and set [broader system direction]",
+        "question": "What broader system direction did you set, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Consider moving this above the migration line. The before and after makes the improvement immediately tangible.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
       "roles": [
-        "Senior Backend Engineer"
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
       ],
-      "why": "Your headline and current role point to senior backend work, with payments services, a ledger migration and API performance improvements.",
-      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your experience points toward backend platform and payments engineering roles. The Go, PostgreSQL and Kafka work gives a recruiter concrete technologies to match against a role.",
+      "why": "Your headline and current payments platform work both point to senior backend engineering.",
+      "level": "senior, leads a ledger migration and mentors two engineers",
+      "note": "Your recent work points toward backend roles involving payments, distributed data and service reliability. The freight and insurance roles add Java service experience.",
       "posting": {
         "summary": "",
         "missing": []
@@ -67,6 +68,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 89
+    "content_score": 90
   }
 }

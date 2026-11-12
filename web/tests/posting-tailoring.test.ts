@@ -151,6 +151,27 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
   assert.equal("covered" in WorklistReportSchema.parse(saved).fit.posting, false, "a report saved before the table parses to the same object");
 }
 
+// ---- What a must-have is (Nov 12, 2026): the live walk's table listed citizenship, a heading and hours as gaps ----
+{
+  const prompt = require("node:fs").readFileSync(require("node:path").join(__dirname, "../prompts/resume_v3.txt"), "utf8");
+  assert.match(prompt, /a condition of the job that a resume doesn't state/, "conditions of employment are named as never a must-have");
+  assert.match(prompt, /never a section heading/, "a heading is never a requirement");
+  assert.match(prompt, /required and preferred alike/, "a preferred ask that names the specialty counts");
+  assert.match(prompt, /the write-up never says which job you read the resume for/, "with a posting, the person named the job");
+
+  const draft = structuredClone(base) as typeof base & { fit: { posting: { covered?: Array<{ requirement: string; line: string }> } } };
+  draft.fit.posting.missing = ["ITAR REQUIREMENTS", "U.S. citizen or national, (ii) U.S. lawful permanent resident", "Must be authorized to work in the United States", "Kubernetes in production", "SQL"];
+  draft.fit.posting.covered = [
+    { requirement: "3+ years on call for a payments service", line: "Wrote the on-call runbook for the payouts service." },
+    { requirement: "5+ years building backend systems", line: "Northwind Pay, Senior Backend Engineer, March 2021 - Present" },
+    { requirement: "Eligible under export-control rules", line: "Wrote the on-call runbook for the payouts service." },
+  ];
+  const report = validateWorklistPayload(draft, RESUME, { forceGrounding: true });
+  assert.deepEqual(report.fit.posting.missing, ["Kubernetes in production", "SQL"], "a heading and a rule about who may be hired are not gaps on a resume; a short tool name still is");
+  assert.deepEqual(report.fit.posting.covered?.map((item) => item.requirement), ["3+ years on call for a payments service"],
+    "a years ask answered by a line of that work stays; one answered by an employer-and-dates line, and an eligibility rule, are dropped");
+}
+
 // A quote from a resume line longer than a report can hold stays as quoted, so the report can be parsed again.
 {
   const long = `Dedicated engineer with nine years of experience building payment systems at scale. ${"Passionate about reliable software and strong teams. ".repeat(4)}`.trim();

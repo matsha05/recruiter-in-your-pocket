@@ -3,7 +3,7 @@
   "resume": "fr04_financial_analyst_frames.txt",
   "posting": "posting_marketing_hubspot.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-07",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
   "drafted": {
@@ -11,60 +11,60 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7233,
-    "tokens_out": 1516,
-    "cost_estimate_usd": 0.0079445
+    "tokens_in": 8349,
+    "tokens_out": 1325,
+    "cost_estimate_usd": 0.0079093
   },
   "report": {
     "contract_version": "v3",
-    "score": 76,
+    "score": 77,
     "lifted_by_employer": false,
-    "verdict": "Your finance resume points to financial analyst roles, not the marketing operations track this posting requires.",
+    "verdict": "The move from corporate FP&A to Marketing Operations Coordinator is a significant change in track. Your finance work is substantial, but I’d pass for this role because the resume doesn’t show marketing campaigns or the required HubSpot work.",
     "write_up": [
-      "Tallgrass is hiring for marketing operations, while your resume shows financial analysis. I read it for Financial Analyst roles: your work at Piedmont Building Supply and Carolina Regional Bank shows forecasting, reporting and financial systems work. Several strong figures would carry more weight if a recruiter could see the work behind them.",
-      "Your headcount model line is the model to follow: it names Adaptive Planning and the three disconnected spreadsheets you replaced. Your finance experience is easy to follow, but the resume doesn't show the marketing tools or campaign work this posting asks for.",
-      "Let's start with the savings and forecast lines at Piedmont. Add how you found the savings and improved the forecast, then do the same for reporting efficiency. For Tallgrass, add relevant marketing work if you've done it; the financial reporting experience alone doesn't establish a fit for the role."
+      "Tallgrass is looking for marketing operations work, while your resume tells a finance story: branch profitability at Carolina Regional Bank followed by corporate FP&A at Piedmont Building Supply. For financial analyst roles, I’d move this forward with a few questions. For this posting, the change in track is the main obstacle.",
+      "The headcount model is your best model for the rest of the resume: it names Adaptive Planning and tells me what you replaced. Your experience is easy to follow, and it comes before education. The savings, forecasting and efficiency figures are worth attention, but a recruiter still needs to know what you did to produce them.",
+      "Let’s start with the Piedmont savings line, then add the work behind the forecasting and efficiency figures. For Tallgrass, include any relevant marketing operations work you can substantiate, rather than trying to make finance reporting stand in for campaign work."
     ],
     "cards": [
       {
         "kind": "line",
-        "where": "Piedmont Building Supply, line 1",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
         "line": "Identified $1.2M in savings",
-        "cannot_tell": "A recruiter can see the amount you identified, but not where the savings came from or how you found them.",
-        "example": "Identified $1.2M in savings through [analysis] of [cost area]",
-        "question": "Where did you identify the savings, and what analysis led you to them?"
+        "cannot_tell": "The savings figure gets attention, but I can’t tell where you found it or what analysis you did. That matters for an FP&A role.",
+        "example": "Identified $1.2M in savings in [area] through [analysis]",
+        "question": "Where did you find the savings, and what analysis did you do?"
       },
       {
         "kind": "line",
-        "where": "Piedmont Building Supply, line 2",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
         "line": "Improved forecast accuracy by 18%",
-        "cannot_tell": "The improvement stands out, but a recruiter can't tell what you changed or how accuracy was measured.",
-        "example": "Improved forecast accuracy by 18% through [method], measured using [measurement]",
-        "question": "What did you change in the forecast, and how was the improvement measured?"
+        "cannot_tell": "The improvement is useful, but the forecast and your approach are unnamed. A recruiter can’t tell which part of forecasting was yours.",
+        "example": "Improved [forecast] accuracy by 18% through [actions]",
+        "question": "Which forecast improved, and what did you change?"
       },
       {
         "kind": "keep",
-        "where": "Piedmont Building Supply, line 4",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
         "line": "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
-        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete before and after, along with the system you used.",
+        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete deliverable, the tool and the previous setup in one line.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Piedmont Building Supply, line 5",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
         "line": "Increased reporting efficiency by 40%",
-        "cannot_tell": "The figure is promising, but the resume doesn't say what you changed in reporting or what the percentage measures.",
-        "example": "Increased reporting efficiency by 40% through [change], measured by [measurement]",
-        "question": "What did you change in reporting, and how was the 40% measured?"
+        "cannot_tell": "I can see the reported improvement, but not which reporting process changed or what you did to it.",
+        "example": "Increased [reporting process] efficiency by 40% through [actions]",
+        "question": "Which reporting process changed, and what did you do to improve it?"
       },
       {
         "kind": "line",
-        "where": "Carolina Regional Bank, line 3",
+        "where": "Financial Analyst, line 3",
         "line": "Grew automation of month-end tasks",
-        "cannot_tell": "A recruiter can't tell which tasks you automated or what you did to automate them.",
-        "example": "Grew automation of month-end tasks by [action] for [tasks]",
-        "question": "Which month-end tasks did you automate, and what did you do?"
+        "cannot_tell": "This names the area but leaves your contribution open. Which tasks did you automate, and what did you use?",
+        "example": "Grew automation of [month-end tasks] using [tool]",
+        "question": "Which month-end tasks did you automate, and what tool did you use?"
       }
     ],
     "fit": {
@@ -72,16 +72,16 @@
         "Financial Analyst",
         "Marketing Operations Coordinator"
       ],
-      "why": "Your headline and both of your roles are in financial analysis, with forecasting and reporting work in your current job.",
+      "why": "Your headline and both roles center on financial analysis, reporting and forecasting.",
       "level": "mid-level, current corporate FP&A role and prior financial analyst role",
-      "note": "Your monthly variance report and forecasting work show reporting experience, though in finance rather than marketing. If you've also done relevant marketing work, add the deliverables and tools you used without claiming experience you haven't had.",
+      "note": "Your reporting and analysis work gives you a foundation for the measurement side of marketing operations. The Tallgrass role is hybrid in Columbus, OH; your resume lists Charlotte, NC.",
       "posting": {
-        "summary": "Tallgrass seeks a marketing operations coordinator to run campaigns, maintain marketing and CRM systems, report on performance, and support events.",
+        "summary": "Marketing operations role focused on B2B campaigns, HubSpot and Salesforce, campaign reporting, and event support.",
         "missing": [
           "2+ years in marketing for a B2B company",
           "Hands-on HubSpot experience: workflows, lists, email and reporting",
           "Working knowledge of Salesforce",
-          "Comfortable with Google Analytics 4 and building simple reports",
+          "Google Analytics 4 and building simple reports",
           "record of running campaigns on deadline"
         ]
       }
@@ -90,6 +90,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 76
+    "content_score": 77
   }
 }

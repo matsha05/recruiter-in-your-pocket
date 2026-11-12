@@ -3,16 +3,16 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3032,
-    "unique_strings": 2530
+    "strings": 3035,
+    "unique_strings": 2533
   },
   "by_moment": {
     "research": 990,
-    "account": 470,
+    "account": 471,
     "marketing": 411,
-    "report": 327,
+    "report": 330,
     "pricing": 219,
-    "upload": 124,
+    "upload": 123,
     "legal": 113,
     "extension": 98,
     "shared": 73,
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 100,
+      "line": 101,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 117,
+      "line": 118,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 126,
+      "line": 127,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 132,
+      "line": 133,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 138,
+      "line": 139,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 146,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -28482,7 +28482,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 50,
+      "line": 53,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28493,7 +28493,7 @@
     {
       "text": "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.",
       "kind": "const",
-      "line": 68,
+      "line": 71,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28504,7 +28504,7 @@
     {
       "text": "Lifetime access",
       "kind": "return",
-      "line": 73,
+      "line": 76,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28515,7 +28515,7 @@
     {
       "text": "Monthly plan",
       "kind": "return",
-      "line": 74,
+      "line": 77,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28526,7 +28526,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 77,
+      "line": 80,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28537,7 +28537,7 @@
     {
       "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
       "kind": "return",
-      "line": 81,
+      "line": 84,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28548,7 +28548,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 88,
+      "line": 91,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28559,7 +28559,7 @@
     {
       "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 104,
+      "line": 107,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28570,7 +28570,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 121,
+      "line": 124,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28581,7 +28581,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 122,
+      "line": 125,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28592,7 +28592,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 128,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28603,7 +28603,7 @@
     {
       "text": "Since version 1",
       "kind": "jsx-text",
-      "line": 161,
+      "line": 164,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28614,50 +28614,6 @@
     {
       "text": "Opening both reports…",
       "kind": "jsx-text",
-      "line": 183,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "See what changed",
-      "kind": "jsx-text",
-      "line": 183,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Opening both reports…",
-      "kind": "const",
-      "line": 183,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "See what changed",
-      "kind": "const",
-      "line": 183,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Opening both reports…",
-      "kind": "attr:loadingLabel",
       "line": 186,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
@@ -28669,7 +28625,51 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 187,
+      "line": 186,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "const",
+      "line": 186,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "const",
+      "line": 186,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Opening both reports…",
+      "kind": "attr:loadingLabel",
+      "line": 189,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "See what changed",
+      "kind": "jsx-text",
+      "line": 190,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28680,7 +28680,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 213,
+      "line": 217,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28691,7 +28691,18 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 213,
+      "line": 217,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Resume against a posting",
+      "kind": "const",
+      "line": 217,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28702,7 +28713,7 @@
     {
       "text": "· Version",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 219,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28713,7 +28724,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 261,
+      "line": 265,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28724,7 +28735,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 269,
+      "line": 273,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28735,7 +28746,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 283,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28746,7 +28757,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 289,
+      "line": 293,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28757,7 +28768,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 298,
+      "line": 302,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28768,7 +28779,7 @@
     {
       "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 325,
+      "line": 329,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -32035,7 +32046,7 @@
     {
       "text": "{(bytes / 1024 / 1024).toF…} MB",
       "kind": "return",
-      "line": 31,
+      "line": 33,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32051,7 +32062,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 90,
+      "line": 93,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32067,7 +32078,7 @@
     {
       "text": "This file is {formatMegabytes(rejection…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 102,
+      "line": 105,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32083,7 +32094,7 @@
     {
       "text": "That file type won’t open here. Choose a PDF or DOCX.",
       "kind": "call:setError",
-      "line": 104,
+      "line": 107,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32099,7 +32110,7 @@
     {
       "text": "We couldn’t read this file. Try another PDF or DOCX.",
       "kind": "call:setError",
-      "line": 121,
+      "line": 124,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32115,7 +32126,7 @@
     {
       "text": "We couldn’t read this file. Try again or choose another PDF or DOCX.",
       "kind": "call:setError",
-      "line": 130,
+      "line": 133,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32131,23 +32142,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 162,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "shared"
-    },
-    {
-      "text": "Remove {displayFileName}",
-      "kind": "attr:aria-label",
-      "line": 210,
+      "line": 165,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32163,7 +32158,7 @@
     {
       "text": "Remove {rejectedFile.name}",
       "kind": "attr:aria-label",
-      "line": 234,
+      "line": 237,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32179,7 +32174,7 @@
     {
       "text": "Choose another file",
       "kind": "jsx-text",
-      "line": 256,
+      "line": 259,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32195,7 +32190,7 @@
     {
       "text": "Drop your LinkedIn PDF here.",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 276,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32211,7 +32206,7 @@
     {
       "text": "Drop your resume here.",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 276,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32227,7 +32222,7 @@
     {
       "text": "Add your LinkedIn PDF.",
       "kind": "jsx-text",
-      "line": 274,
+      "line": 277,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32243,7 +32238,7 @@
     {
       "text": "Add your resume.",
       "kind": "jsx-text",
-      "line": 274,
+      "line": 277,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32259,7 +32254,7 @@
     {
       "text": "The PDF LinkedIn saves for you, up to 4 MB.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 279,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32275,7 +32270,7 @@
     {
       "text": "PDF or Word, up to 4 MB.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 279,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32291,7 +32286,7 @@
     {
       "text": "Choose a file",
       "kind": "jsx-text",
-      "line": 290,
+      "line": 293,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -33091,7 +33086,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 149,
+      "line": 150,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33107,7 +33102,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 153,
+      "line": 154,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33123,7 +33118,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 154,
+      "line": 155,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33139,7 +33134,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 160,
+      "line": 161,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33155,7 +33150,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 161,
+      "line": 162,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33171,7 +33166,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 161,
+      "line": 162,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33187,7 +33182,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 181,
+      "line": 182,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33203,7 +33198,7 @@
     {
       "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 186,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33219,7 +33214,7 @@
     {
       "text": "Open your profile",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 187,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33235,7 +33230,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 196,
+      "line": 197,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33251,7 +33246,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 216,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33267,7 +33262,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 217,
+      "line": 218,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33283,7 +33278,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 219,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33299,7 +33294,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 238,
+      "line": 240,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33315,7 +33310,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 245,
+      "line": 247,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33331,7 +33326,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 248,
+      "line": 250,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33347,7 +33342,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 262,
+      "line": 264,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33363,7 +33358,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 262,
+      "line": 264,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33379,7 +33374,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 262,
+      "line": 264,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33395,7 +33390,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 272,
+      "line": 274,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33411,7 +33406,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 282,
+      "line": 284,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33427,7 +33422,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 282,
+      "line": 284,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33443,7 +33438,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 298,
+      "line": 300,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33459,7 +33454,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 301,
+      "line": 303,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33475,7 +33470,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 301,
+      "line": 303,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33491,7 +33486,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 316,
+      "line": 318,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33507,7 +33502,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 320,
+      "line": 322,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33523,7 +33518,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 330,
+      "line": 332,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33539,7 +33534,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 334,
+      "line": 336,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33555,7 +33550,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 365,
+      "line": 367,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33571,7 +33566,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 365,
+      "line": 367,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33587,7 +33582,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 373,
+      "line": 375,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33603,7 +33598,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 381,
+      "line": 383,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33619,7 +33614,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 396,
+      "line": 398,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -35843,7 +35838,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 262,
+      "line": 263,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35859,7 +35854,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 430,
+      "line": 433,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35875,7 +35870,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 431,
+      "line": 434,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35891,7 +35886,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 461,
+      "line": 464,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -42962,9 +42957,65 @@
       "table": "shared"
     },
     {
+      "text": "Your resume on file",
+      "kind": "const",
+      "line": 31,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Use a different resume",
+      "kind": "const",
+      "line": 33,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "Removed. Your resume is no longer on file.",
       "kind": "const",
-      "line": 30,
+      "line": 34,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",
@@ -42992,7 +43043,35 @@
     {
       "text": "Included with your pass. This one doesn't use a report.",
       "kind": "const",
-      "line": 33,
+      "line": 37,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Paste the posting and this read is included with your pass.",
+      "kind": "const",
+      "line": 39,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",
@@ -43094,7 +43173,7 @@
     {
       "text": "Up {change.delta} from version {change.from}",
       "kind": "return",
-      "line": 188,
+      "line": 204,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43105,7 +43184,7 @@
     {
       "text": "Down {Math.abs(change.delta)} from version {change.from}",
       "kind": "return",
-      "line": 189,
+      "line": 205,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43116,7 +43195,7 @@
     {
       "text": "Same score as version {change.from}",
       "kind": "return",
-      "line": 190,
+      "line": 206,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43127,7 +43206,7 @@
     {
       "text": "{count} earlier {count === 1 ? \"version\" :…}",
       "kind": "return",
-      "line": 195,
+      "line": 211,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43138,7 +43217,7 @@
     {
       "text": "{lines(gone, \"line is\", \"l…} off the list.",
       "kind": "const",
-      "line": 230,
+      "line": 246,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43149,7 +43228,7 @@
     {
       "text": "Up {delta}",
       "kind": "const",
-      "line": 240,
+      "line": 256,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43160,7 +43239,7 @@
     {
       "text": "Down {Math.abs(delta)}",
       "kind": "const",
-      "line": 240,
+      "line": 256,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43171,7 +43250,7 @@
     {
       "text": "Same score",
       "kind": "const",
-      "line": 240,
+      "line": 256,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"

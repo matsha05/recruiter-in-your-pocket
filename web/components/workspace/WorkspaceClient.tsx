@@ -13,6 +13,7 @@ import { useReportCompletion } from "./hooks/useReportCompletion";
 import { useSavedReportRevision } from "./hooks/useSavedReportRevision";
 import SavedRevisionNotice from "./SavedRevisionNotice";
 import { resumeOnFileStateFor, useResumeOnFile } from "./hooks/useResumeOnFile";
+import { RESUME_ON_FILE_NAME } from "@/lib/reports/posting-read-terms";
 import { WorkspaceResumePicker, type WorkspaceResumePickerHandle } from "./WorkspaceResumePicker";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import ResumeModeSection from "@/components/workspace/ResumeModeSection";
@@ -293,7 +294,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     // A resume kept on file fills in a posting read that came from a saved report (useResumeOnFile).
     const handleResumeOnFileLoaded = useCallback((text: string, filename: string | null) => {
         setResumeText((current) => current.trim() ? current : text);
-        setCommandUploadName((current) => current ?? filename);
+        // Shown as a file in the card, so the screen doesn't ask for a resume it has just filled in. A resume kept
+        // without a name (pasted, or kept before names were stored) gets the card's own.
+        setCommandUploadName((current) => current ?? filename ?? RESUME_ON_FILE_NAME);
     }, []);
     const resumeOnFile = useResumeOnFile({
         reportId: postingSource && postingSource.text === null && !resumeText.trim() ? postingSource.reportId : null,
@@ -643,7 +646,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onReadAgainstPosting={handleReadAgainstPosting}
                             focusPosting={postingRequested}
                             postingReadIncluded={Boolean(postingReadReportId)}
-                            resumeOnFile={user?.postingReads ? { state: resumeOnFileStateFor(resumeOnFile.state, resumeText), onKeep: () => void resumeOnFile.keep(resumeText, commandUploadName), onRemove: () => void resumeOnFile.remove() } : null}
+                            resumeOnFile={user?.postingReads ? { state: resumeOnFileStateFor(resumeOnFile.state, resumeText), onKeep: (fileName: string | null) => void resumeOnFile.keep(resumeText, fileName ?? commandUploadName), onRemove: () => void resumeOnFile.remove() } : null}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}

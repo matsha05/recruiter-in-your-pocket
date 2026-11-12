@@ -257,6 +257,15 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### What a posting's must-haves are — November 12
+
+The table of what a posting asks for takes its rows from the qualifications, required and preferred, and never lists a condition of employment, a heading or a soft ask as a gap. Record: `docs/audits/2026-11-posting-tailoring.md`.
+
+- Found on a live walk with a real resume and two real postings; reproduced on two synthetic postings shaped like them.
+- Thirteen posting reads judged: 0 wrong of 42 missing, 0 wrong of 30 covered, 0 contradictions.
+- Gate: the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_latest_live.md`). The golden fixtures that are real people's resumes were not run; they carry no posting, so this change does not reach them.
+- Spend: about $0.80.
+
 ### The gap card stops reciting — November 12
 
 The note on a card about unaccounted time says what the gap does to this person's resume instead of reciting the same list of options. Record: `docs/audits/2026-11-gap-note.md`.

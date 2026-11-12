@@ -3,52 +3,60 @@
   "resume": "../../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
   "posting": "../../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
   "model": "gpt-6.1-terra",
-  "today": "2026-11-07",
+  "today": "2026-11-12",
   "repaired": false,
   "firstError": null,
   "drafted": {
-    "lead": 1,
+    "lead": 0,
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7494,
-    "tokens_out": 1954,
-    "cost_estimate_usd": 0.01014755
+    "tokens_in": 8610,
+    "tokens_out": 1934,
+    "cost_estimate_usd": 0.01128055
   },
   "report": {
     "contract_version": "v3",
-    "score": 74,
+    "score": 78,
     "lifted_by_employer": false,
-    "verdict": "A mid-market Customer Success Manager with a clear account book, but no renewal results to compare with this posting.",
+    "verdict": "Your payroll software work points directly to mid-market customer success, and the account ownership backs it up. I’d want to talk to you. The question for this job is what renewal results you can claim.",
     "write_up": [
-      "Your resume tells a clear customer success story: you moved from payroll support into managing mid-market accounts at Brightline Payroll Software. A recruiter can see the book you manage and the work you do with customers. For this posting, the big unanswered question is how your book performed at renewal.",
-      "The onboarding checklist is a good model: you built a named resource and show that the whole CS team uses it. Your 94% customer satisfaction score also gives the earlier support work a concrete result.",
-      "Start with the at-risk account line and add what you and Sales did, plus any renewal results you can substantiate. Then bring your Gainsight and Salesforce experience forward for this application. Keep the account-book and checklist lines prominent."
+      "Your move from support into Customer Success Manager at Brightline Payroll Software fits the kind of work Brightline Analytics is hiring for. You manage mid-market accounts, run business reviews and work with Sales on at-risk customers. The main question is whether you can show the retention results this particular role asks for.",
+      "The line about managing 48 mid-market accounts works especially well: it names the customers and the book you own. Your onboarding checklist also shows work the whole CS team uses. The promotion from support is easy to follow, and experience comes before education.",
+      "Let’s start with the at-risk account line. Add your part in the renewal strategy and any renewal figures you can substantiate. Then make the sponsor level in your business reviews clear; the posting asks for VP-level sponsors."
     ],
     "cards": [
       {
         "kind": "line",
-        "where": "Customer Success Manager, line 3",
-        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
-        "cannot_tell": "A recruiter can see who you worked with, but not what went into the renewal strategy or what happened to those accounts. That matters for a role accountable for retention.",
-        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [action], with [renewal results]",
-        "question": "What did you do with Sales for at-risk accounts, and what renewal results can you substantiate?"
-      },
-      {
-        "kind": "keep",
-        "where": "Customer Success Manager, line 4",
-        "line": "Built an onboarding checklist now used by the whole CS team",
-        "cannot_tell": "Keep this as a model. It names something you made and shows who uses it, without making a recruiter guess what the work produced.",
-        "example": "",
-        "question": ""
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The posting asks for QBRs with VP-level sponsors, but the titles of your finance and HR contacts aren't clear.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], to discuss [review topics]",
+        "question": "What were the titles of the people in these reviews, and what did you discuss?"
       },
       {
         "kind": "line",
-        "where": "Account Coordinator, line 2",
-        "line": "Answered client questions by phone and email",
-        "cannot_tell": "The channels are clear, but the questions could cover almost anything. Naming the subjects would show what clients relied on you for.",
-        "example": "Answered small business client questions about [topics] by phone and email",
-        "question": "What kinds of questions did those clients bring to you?"
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnering with Sales is relevant here, but your part in the strategy and the renewal results aren't shown.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result]",
+        "question": "What did you contribute to the strategy, and what renewal results can you substantiate?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "A failed payroll run is a concrete customer problem. Your role in handling the escalation isn't yet clear.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [what happened]",
+        "question": "What do you do during an escalation, and what happened in an example you can share?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It puts your responsibility, the number of accounts and their industries together without making a recruiter guess.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
@@ -56,29 +64,21 @@
         "Customer Success Manager",
         "Customer Success Manager, Mid-Market"
       ],
-      "why": "Your headline and current role both center on managing mid-market software accounts.",
+      "why": "Your headline and current role both name customer success, and your work covers a mid-market account book.",
       "level": "mid-level, manages a book of 48 mid-market accounts",
-      "note": "Your payroll software background, customer reviews and work with Sales give you relevant experience for this application. Put the tools and customer work closest to the posting near the top, using details you can substantiate.",
+      "note": "Your onboarding, QBR and payroll escalation work gives you relevant customer context for this role. Emphasize the parts of that work that involved customer decisions and cross-team follow-through.",
       "posting": {
-        "summary": "The role owns a mid-market SaaS book, with responsibility for renewals, expansion, onboarding and customer advocacy.",
+        "summary": "The role matches your mid-market customer success work, though its book is larger: 60 to 80 accounts compared with the 48 on your resume. The posting also asks for a quantified retention or expansion record and specific experience with data tools and senior sponsors.",
         "missing": [
-          "Own a book of 60 to 80 mid-market accounts representing about $4M in ARR",
           "A track record of hitting retention or expansion targets, with numbers you can talk about",
-          "Run onboarding for new accounts and quarterly business reviews with executive sponsors",
-          "Identify at-risk accounts early using product usage data and build save plans with Sales",
-          "Be the voice of the customer to Product; log and prioritize feature requests",
-          "a BI tool such as Looker"
-        ],
-        "lead": [
-          {
-            "line": "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting",
-            "why": "The posting asks for Gainsight and Salesforce. Consider bringing these tools closer to the top so they aren't first encountered in Skills."
-          }
+          "Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Experience with analytics or data products"
         ],
         "covered": [
           {
-            "requirement": "Gainsight, Salesforce",
-            "line": "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+            "requirement": "3+ years in customer success or account management at a SaaS company",
+            "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
           }
         ]
       }
@@ -87,6 +87,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 74
+    "content_score": 78
   }
 }

@@ -49,7 +49,7 @@ type ResumeModeSectionProps = {
   focusPosting?: boolean;
   /** This run is a posting read on the pass; the input says it doesn't use a report. */
   postingReadIncluded?: boolean;
-  resumeOnFile?: { state: ResumeOnFileState; onKeep: () => void; onRemove: () => void } | null;
+  resumeOnFile?: { state: ResumeOnFileState; onKeep: (fileName: string | null) => void; onRemove: () => void } | null;
   /** How long this visit's report took to arrive; null when it was restored or sampled. */
   readDurationMs?: number | null;
   /** Ask-first: the questions to show before this report, until the person writes or skips. */

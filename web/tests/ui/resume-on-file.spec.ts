@@ -29,9 +29,27 @@ test("a posting read from a saved report fills in the resume kept on file, and i
   await expect(notice).toHaveAttribute("data-state", "loaded");
   await expect(notice).toContainText("We filled in the resume you keep on file.");
   await expect(page.getByTestId("workspace-job-description")).toBeVisible();
+  // The card shows the resume as a file instead of asking for one, and the line under the button says the read is included.
+  await expect(page.getByText("alex-rivera.pdf")).toBeVisible();
+  await expect(page.getByText("Add your resume.")).toHaveCount(0);
+  await expect(page.getByText("Paste the posting and this read is included with your pass.")).toBeVisible();
+  await expect(page.getByText("Another report needs a Job Search Pass")).toHaveCount(0);
+  await page.getByTestId("workspace-job-description").fill("Customer Operations Manager. Requirements: HubSpot workflows, onboarding programs for B2B customers, weekly reporting to sales leadership.");
+  await expect(page.getByText("Included with your pass. This one doesn't use a report.")).toBeVisible();
   await page.getByTestId("resume-on-file-remove").click();
   await expect(notice).toHaveAttribute("data-state", "removed");
   expect(state.wasRemoved()).toBe(true);
+});
+
+test("a resume kept without a file name still shows as the resume on file", async ({ page }) => {
+  await open(page, { hasResume: true, resumeText: RESUME, resumeFilename: null, matchesReport: true });
+  await expect(page.getByTestId("resume-on-file")).toHaveAttribute("data-state", "loaded");
+  await expect(page.getByText("Your resume on file", { exact: true })).toBeVisible();
+  await expect(page.getByText("Add your resume.")).toHaveCount(0);
+  // Reading a different resume clears the field; the copy on file is not touched.
+  await page.getByRole("button", { name: "Use a different resume" }).click();
+  await expect(page.getByTestId("resume-on-file")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Choose a file" })).toBeVisible();
 });
 
 test("a resume on file that isn't the one the report was written on is not filled in", async ({ page }) => {
