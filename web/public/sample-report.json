@@ -1,35 +1,35 @@
 {
   "contract_version": "v3",
-  "score": 77,
+  "score": 75,
   "lifted_by_employer": false,
-  "verdict": "A customer success manager with a defined SaaS portfolio, but few details about renewals and what changed.",
+  "verdict": "Your customer success work at Northwind Analytics is easy to place, and the account portfolio gives it weight. I’d move it forward with a question: what changed after you introduced the renewal-risk reviews?",
   "write_up": [
-    "Your resume tells a consistent customer-facing story, from account coordination at Brightpath Logistics to customer success at Northwind Analytics. A recruiter could move it forward for a Customer Success Manager role, with questions about what your renewal work involved and what came from it.",
-    "The strongest line names 32 B2B SaaS accounts and $2.4M in annual recurring revenue. It gives a recruiter a concrete picture of your portfolio. The objective above your experience is much more generic and doesn't point to that work.",
-    "Let's start by replacing the objective with your customer success work, then fill in your part in renewals and the risk reviews. You don't need a number on every line: the quarterly business reviews and weekly shipment reports already name work a recruiter can follow."
+    "You’ve moved from logistics account coordination into B2B SaaS customer success. I read your resume for Customer Success Manager roles: the portfolio and customer leadership work are clear, but the resume says less about what happened with renewals.",
+    "The line about 32 B2B SaaS accounts and $2.4M in annual recurring revenue is the best model. It names both the work and the portfolio you managed. The objective above it could belong to almost anyone and doesn’t point to customer success.",
+    "Let’s start by replacing the objective with the job you want and the account work you’ve done. Then make the renewal-risk reviews more useful to a recruiter by adding what you did with the findings and what changed, if you can substantiate it. Trim the generic team-player language to make room."
   ],
   "cards": [
     {
       "kind": "line",
       "where": "Objective",
       "line": "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.",
-      "cannot_tell": "This could describe almost anyone, and it doesn't name the customer success work below it. Lead with your portfolio instead.",
-      "example": "Customer Success Manager managing 32 B2B SaaS accounts with $2.4M in annual recurring revenue, seeking [target role]",
-      "question": "What role are you targeting?"
+      "cannot_tell": "A recruiter can’t tell which job you want from this. Your B2B SaaS account work is a much stronger introduction.",
+      "example": "Customer Success Manager with experience managing 32 B2B SaaS accounts and $2.4M in annual recurring revenue",
+      "question": "Is Customer Success Manager the job you want next?"
     },
     {
       "kind": "line",
       "where": "Customer Success Manager, line 1",
       "line": "Responsible for managing customer relationships and renewals",
-      "cannot_tell": "A recruiter can see the portfolio on the next line, but not what you did to manage renewals. Did you coordinate the process, negotiate terms, or handle another part?",
-      "example": "Managed customer relationships and renewals by [renewal responsibilities]",
-      "question": "What parts of the renewal process did you handle?"
+      "cannot_tell": "This names the responsibility but not what you did to manage renewals. Your next line already covers the accounts, so use this space for the renewal work itself or trim it.",
+      "example": "Managed customer relationships and renewals by [renewal work]",
+      "question": "What did you do during the renewal process?"
     },
     {
       "kind": "keep",
       "where": "Customer Success Manager, line 2",
       "line": "Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue",
-      "cannot_tell": "Keep this as a model. It pairs your ownership with the kind of accounts and their revenue, so a recruiter doesn't have to guess what you managed.",
+      "cannot_tell": "Keep this. It puts your ownership and the value of the accounts together, so a recruiter doesn’t have to guess how much business you handled.",
       "example": "",
       "question": ""
     },
@@ -37,33 +37,33 @@
       "kind": "line",
       "where": "Customer Success Manager, line 3",
       "line": "Introduced monthly renewal-risk reviews across the portfolio",
-      "cannot_tell": "Introducing the reviews is useful work. What the reviews covered and what followed them would show why they mattered.",
-      "example": "Introduced monthly renewal-risk reviews across the portfolio, covering [review topics] and [follow-up actions]",
-      "question": "What did the reviews cover, and what actions followed them?"
+      "cannot_tell": "Introducing the reviews is useful work. What happened with the risks you identified is still open, and that matters for a renewal-focused role.",
+      "example": "Introduced monthly renewal-risk reviews across the portfolio, using the findings to [action taken]",
+      "question": "What did you do with the findings from the reviews?"
     },
     {
       "kind": "line",
       "where": "Customer Success Manager, line 5",
       "line": "Team player with excellent communication skills",
-      "cannot_tell": "This tells a recruiter how you describe yourself, not what you did. Replace it with a customer or team interaction that shows those skills in use.",
-      "example": "Worked with [people or teams] on [customer success work]",
-      "question": "What customer or team work could you describe here?"
+      "cannot_tell": "This could describe almost anyone. Give that space to customer work you can name, or trim the line.",
+      "example": "[Customer success work you did] with [who] to [purpose]",
+      "question": "What customer work could you add here instead?"
     },
     {
       "kind": "line",
       "where": "Account Coordinator, line 1",
       "line": "Assisted account managers with various tasks as needed",
-      "cannot_tell": "Assisted keeps your role honest, but various tasks leaves the work blank. Name the tasks you handled for the account managers.",
-      "example": "Assisted account managers with [account management tasks]",
-      "question": "Which tasks did you handle for the account managers?"
+      "cannot_tell": "Assisted keeps your part appropriately modest, but the tasks could mean almost anything. Name one piece of account work that was yours.",
+      "example": "Assisted account managers with [account task]",
+      "question": "Which account task did you assist with?"
     },
     {
       "kind": "line",
       "where": "Skills",
       "line": "Microsoft Office, Communication, Leadership",
-      "cannot_tell": "A recruiter can't tell which Office applications you used, and the two broad skills don't show where you used them. Name the applications and other job-related skills you can back up.",
-      "example": "Microsoft Office: [applications used]; [other customer success skills]",
-      "question": "Which Office applications and customer success skills have you used in your work?"
+      "cannot_tell": "The list doesn’t show which tools you used for customer success. Communication and leadership are more convincing when the jobs show them in action.",
+      "example": "Microsoft Office, [customer success tools used], [other relevant skills]",
+      "question": "Which customer success tools or relevant skills have you used that you can add?"
     }
   ],
   "fit": {
@@ -71,9 +71,9 @@
       "Customer Success Manager",
       "Account Coordinator"
     ],
-    "why": "Your current Customer Success Manager role covers a B2B SaaS portfolio, renewals, risk reviews and customer business reviews.",
-    "level": "Customer Success Manager, manages 32 B2B SaaS accounts",
-    "note": "Your experience points most directly toward customer success and account management work. Details about your renewal responsibilities and what followed the risk reviews would help distinguish your work within those roles.",
+    "why": "Your latest role manages B2B SaaS accounts, renewals and customer leadership reviews.",
+    "level": "mid-level, manages a B2B SaaS account portfolio",
+    "note": "Your experience points toward customer success roles with an account and renewal focus. The earlier logistics role adds client-facing work, while Northwind should carry the most detail.",
     "posting": {
       "summary": "",
       "missing": []
@@ -83,5 +83,5 @@
   "layout_score": null,
   "layout_band": "unknown",
   "layout_notes": "",
-  "content_score": 77
+  "content_score": 75
 }

@@ -954,17 +954,17 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | 6 | report | `web/components/workspace/ReportPanel.tsx:172` (7 routes) | call:toast.success | Link copied. |
 | 7 | report | `web/components/workspace/ReportPanel.tsx:174` (7 routes) | call:toast.error | Couldn't copy the link. Copy it from the address bar. |
 | 8 | report | `web/components/workspace/ReportPanel.tsx:212` (7 routes) | jsx-text | Sample report · {sample.person} is fictional |
-| 9 | report | `web/components/workspace/ReportPanel.tsx:219` (7 routes) | attr:aria-label | Sample reports |
-| 10 | report | `web/components/workspace/ReportPanel.tsx:228` (7 routes) | jsx-text | Get your free report |
-| 11 | report | `web/components/workspace/ReportPanel.tsx:263` (7 routes) | jsx-text | Export PDF |
-| 12 | report | `web/components/workspace/ReportPanel.tsx:264` (7 routes) | jsx-text | Exporting… |
-| 13 | report | `web/components/workspace/ReportPanel.tsx:272` (7 routes) | attr:aria-label | Share report |
-| 14 | report | `web/components/workspace/ReportPanel.tsx:276` (7 routes) | jsx-text | Share report |
-| 15 | report | `web/components/workspace/ReportPanel.tsx:290` (7 routes) | jsx-text | Still writing the rest. |
-| 16 | report | `web/components/workspace/ReportPanel.tsx:298` (7 routes) | jsx-text | Share view is on. |
-| 17 | report | `web/components/workspace/ReportPanel.tsx:300` (7 routes) | jsx-text | Some personal details are hidden. Check the report for anything else you want to remove before sharing. |
-| 18 | report | `web/components/workspace/ReportPanel.tsx:307` (7 routes) | jsx-text | Copy link |
-| 19 | report | `web/components/workspace/ReportPanel.tsx:311` (7 routes) | jsx-text | Exit share |
+| 9 | report | `web/components/workspace/ReportPanel.tsx:220` (7 routes) | attr:aria-label | Sample reports |
+| 10 | report | `web/components/workspace/ReportPanel.tsx:229` (7 routes) | jsx-text | Get your free report |
+| 11 | report | `web/components/workspace/ReportPanel.tsx:264` (7 routes) | jsx-text | Export PDF |
+| 12 | report | `web/components/workspace/ReportPanel.tsx:265` (7 routes) | jsx-text | Exporting… |
+| 13 | report | `web/components/workspace/ReportPanel.tsx:273` (7 routes) | attr:aria-label | Share report |
+| 14 | report | `web/components/workspace/ReportPanel.tsx:277` (7 routes) | jsx-text | Share report |
+| 15 | report | `web/components/workspace/ReportPanel.tsx:291` (7 routes) | jsx-text | Still writing the rest. |
+| 16 | report | `web/components/workspace/ReportPanel.tsx:299` (7 routes) | jsx-text | Share view is on. |
+| 17 | report | `web/components/workspace/ReportPanel.tsx:301` (7 routes) | jsx-text | Some personal details are hidden. Check the report for anything else you want to remove before sharing. |
+| 18 | report | `web/components/workspace/ReportPanel.tsx:308` (7 routes) | jsx-text | Copy link |
+| 19 | report | `web/components/workspace/ReportPanel.tsx:312` (7 routes) | jsx-text | Exit share |
 
 ## web/components/workspace/ResumeLabel.tsx
 

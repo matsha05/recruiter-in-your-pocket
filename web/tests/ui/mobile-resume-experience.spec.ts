@@ -102,9 +102,14 @@ for (const width of [320, 390]) {
       await expect(page.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
       await expect(page.getByTestId("score-band")).not.toContainText("/100");
 
-      // The first screen holds the score, the verdict and the write-up's first lines; the cards follow the write-up.
+      // The first screen holds the score and the whole verdict; the cards follow the write-up. Since the verdict
+      // became two or three sentences (November 12, 2026), the write-up's first lines share that screen at 390px
+      // and start just under it at 320px, where the verdict alone fills the width.
       await expect(page.getByTestId("worklist-score")).toBeInViewport({ ratio: 1 });
-      await expect(page.getByTestId("worklist-write-up").locator("p").first()).toBeInViewport({ ratio: 0.3 });
+      await expect(opening).toBeInViewport({ ratio: 1 });
+      const firstParagraph = page.getByTestId("worklist-write-up").locator("p").first();
+      if (width >= 390) await expect(firstParagraph).toBeInViewport({ ratio: 0.3 });
+      else expect((await firstParagraph.boundingBox())!.y).toBeLessThan(844 * 1.1);
       await expect(page.getByTestId("worklist-report")).not.toContainText("Critical Miss");
 
       // The section tabs wait until the opening read has scrolled away, then sit under the header.
