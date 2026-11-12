@@ -263,6 +263,7 @@ The table of what a posting asks for takes its rows from the qualifications, req
 
 - Found on a live walk with a real resume and two real postings; reproduced on two synthetic postings shaped like them.
 - Thirteen posting reads judged: 0 wrong of 42 missing, 0 wrong of 30 covered, 0 contradictions.
+- Full golden tier, one run later the same day: 20 pass, 3 warnings, 0 failures (23 fixtures), 87% passing. Under the 90% the bundled evidence needs, so recorded and not bound; not rerun. Receipt: `tests/fixtures/results/summary_golden_full_must_have_2026-11-12.md`.
 - Gate: the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_latest_live.md`). The golden fixtures that are real people's resumes were not run; they carry no posting, so this change does not reach them.
 - Spend: about $0.80.
 

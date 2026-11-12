@@ -141,9 +141,23 @@ The thirteen pairs on the final prompt, judged the same way (`gpt-6.1-sol`):
 - No run needed the repair pass.
 - The release evidence is the ten synthetic golden fixtures on the final prompt, first run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_latest_live.md`). The golden fixtures that are real people's resumes were not run; they carry no posting, so this change does not reach them.
 
+### The full golden tier, run once
+
+Matt approved one run of all 23 golden fixtures on this prompt the same day (thirteen of them are real people's resumes). Result: 20 pass, 3 warnings, 0 failures, $0.33.
+
+| Fixture | Warning |
+| --- | --- |
+| `golden_sales_strong_foundation_mark_sherrod_1` | `W_MECHANICAL_COPY`: a write-up paragraph repeats the clause "year in your" |
+| `law_inhouse_thin_signal_1` | `W_MECHANICAL_COPY`: a write-up paragraph repeats the clause "people you managed" |
+| `anchor_elite_ml_staff_1` | `W_SPECIFICITY_LOW`: the first card's example has no blank to fill |
+
+That is 87% passing. The bundled release evidence must show no failure and at least 90% passing, so this run does not meet it and is not the bundled evidence; the ten-fixture run above still is. The run was not repeated. Read plainly: none of the 23 fixtures carries a posting and none failed, the ten synthetic ones passed a second time, and the three warnings are kinds earlier golden runs showed the same day (the verdict prompt's final golden run was 19 pass and 4 warnings, `docs/audits/2026-11-verdict-opinion.md`). But the full tier on the prompt just before this one was 22 pass and 1 warning on its single run (`docs/audits/2026-11-gap-note.md`), so this is two more warnings than that, on a sample of one each. Receipt: `tests/fixtures/results/summary_golden_full_must_have_2026-11-12.md`.
+
 Still not covered: a clearance or licence the posting requires and the resume lacks is treated as a must-have, which is right, but no fixture has one beside a citizenship rule to show the two are told apart.
 
 ## Spend
+
+The full golden run on the must-have prompt: $0.33.
 
 The must-have change of November 12: about $0.80 (thirty-six report calls across the drafts and the final set, the judge, the ten synthetic golden fixtures).
 
