@@ -29,15 +29,15 @@ export const JORDAN_ROLE_FIT = {
 /**
  * The homepage's worked example and the hero's reviewer note. The verdict, the line, the note and the question
  * are quoted word for word from Jordan's generated sample report (public/sample-report.json, the worklist
- * prompt resume_v3 338ac33a): the verdict is the report's one-sentence read, the line is a card's quoted
+ * prompt resume_v3 5619c27b): the verdict is the report's opinion in two or three sentences, the line is a card's quoted
  * line, the note is that card's "what a recruiter can't tell", and the question is the card's question.
  * Regenerate the sample and update these together when the prompt changes.
  */
 export const JORDAN_EXAMPLE = {
-    verdict: "A customer success manager with a defined SaaS portfolio, but few details about renewals and what changed.",
+    verdict: "Your customer success work at Northwind Analytics is easy to place, and the account portfolio gives it weight. I’d move it forward with a question: what changed after you introduced the renewal-risk reviews?",
     line: "Introduced monthly renewal-risk reviews across the portfolio",
-    note: "Introducing the reviews is useful work. What the reviews covered and what followed them would show why they mattered.",
+    note: "Introducing the reviews is useful work. What happened with the risks you identified is still open, and that matters for a renewal-focused role.",
     asks: [
-        { question: "What did the reviews cover, and what actions followed them?" },
+        { question: "What did you do with the findings from the reviews?" },
     ],
 } as const;

@@ -16,6 +16,7 @@ import {
 } from "../lib/reports/worklist-presentation";
 import { normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { renderReportHtml } from "../lib/backend/pdf";
+import { splitVerdict } from "../lib/reports/report-opening";
 import { WorklistReportSchema, type WorklistReport } from "../lib/llm/worklist-schema";
 import { parseStoredLineAnswers, LINE_ANSWER_LIMITS, parseLineAnswersPatch } from "../lib/reports/line-answers";
 import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
@@ -97,13 +98,18 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
 {
   const sample = JSON.parse(readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
   const report = WorklistReportSchema.parse(sample);
-  const filledIndex = report.cards.findIndex((card) => card.kind === "line");
+  // The first line card whose example has a blank: a card can carry a finished example with nothing to fill.
+  const filledIndex = report.cards.findIndex((card) => card.kind === "line" && blankLabels(card.example).length > 0);
   const label = blankLabels(report.cards[filledIndex].example)[0];
   const normalized = normalizeReportForPdf(sample, { [String(filledIndex)]: { answers: [{ question: label, kind: "answered", text: "the renewal checklist" }], line: null, source: "literal", updated_at: "2026-11-06T00:00:00.000Z" } });
   assert.ok(normalized?.worklist, "a worklist report normalizes with its worklist content");
   assert.equal(normalized?.worklist?.cards.length, report.cards.length);
   const html = renderReportHtml(normalized!);
-  assert.ok(html.includes(report.verdict.replace(/'/g, "&#39;")) || html.includes(report.verdict), "the verdict is the PDF's h1");
+  // The verdict's first sentence is the heading and the rest reads on under it, so the PDF holds each part.
+  const verdictParts = splitVerdict(report.verdict);
+  for (const part of [verdictParts.lead, verdictParts.rest].filter((value): value is string => Boolean(value))) {
+    assert.ok(html.includes(part.replace(/'/g, "&#39;")) || html.includes(part), "the verdict is the PDF's h1, and the rest of it follows");
+  }
   for (const paragraph of report.write_up) assert.ok(html.includes(paragraph.slice(0, 40)), "every write-up paragraph prints");
   for (const card of report.cards) assert.ok(html.includes(card.line.slice(0, 40)), `card line prints: ${card.line.slice(0, 40)}`);
   assert.ok(html.includes('class="blank"'), "open blanks print in the candidate's blue");
