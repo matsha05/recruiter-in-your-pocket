@@ -261,7 +261,7 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 
 The verdict is two or three short sentences, under forty-five words: what a recruiter notices first, by name, whether the work backs it up, and the question still open when there is one. Record: `docs/audits/2026-11-verdict-opinion.md`.
 
-- Gate: golden on the final prompt, 19 pass, 4 warnings, 0 failures (23 fixtures). An earlier draft's run had one failure (`golden_sales_strong_foundation_mark_sherrod_1`, 67 against 80 to 88); a control on the shipped prompt gave the same score, so it predates this change, and the fixture's range is still open.
+- Gate: golden on the final prompt, 19 pass, 4 warnings, 0 failures (23 fixtures). An earlier draft's run had one failure (`golden_sales_strong_foundation_mark_sherrod_1`, 67 against 80 to 88); a control on the shipped prompt gave the same score, so it predates this change. The fixture's range was redrawn the same day from seven runs, to 62 to 72 (`docs/audits/2026-11-posting-tailoring.md`).
 - Read: fourteen synthetic resumes before and after, two runs each after, and the person's own resume with their permission.
 - Bundled evidence: the fourth run of the ten synthetic fixtures (10 pass). The first three missed the bar on a card-text warning or a network failure, as did a control on the shipped prompt; the audit lists every run.
 - Spend: about $2.80.
