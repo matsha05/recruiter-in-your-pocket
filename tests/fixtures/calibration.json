@@ -39,8 +39,8 @@
             "path": "smoke/talent_leader_high_bar_matt_shaw_current_1.txt",
             "tier": "smoke",
             "expected_score": {
-                "min": 84,
-                "max": 92
+                "min": 74,
+                "max": 87
             },
             "expected_band": "high_bar",
             "tags": [
@@ -87,8 +87,8 @@
             "path": "smoke/talent_leader_high_bar_matt_shaw_current_1.txt",
             "tier": "golden",
             "expected_score": {
-                "min": 84,
-                "max": 92
+                "min": 74,
+                "max": 87
             },
             "expected_band": "high_bar",
             "tags": [
@@ -233,8 +233,8 @@
             "path": "golden/finance_not_ready_sam_helmuth_1.txt",
             "tier": "golden",
             "expected_score": {
-                "min": 55,
-                "max": 68
+                "min": 42,
+                "max": 59
             },
             "expected_band": "not_ready",
             "tags": [

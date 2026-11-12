@@ -96,7 +96,14 @@ The redraw above covered the ten synthetic fixtures. `sales_strong_foundation_ma
 
 Why it sits there: the range was written for the old prompt, and the resume's latest role ended in October 2023, so read today it has three years nothing accounts for, which costs a band. That rule is behaving as intended. A separate check on one strong synthetic resume with its latest role ended one, four, nine and twelve months ago scored 94, 95, 83 and 82 (two runs each, both within a point): a recent end costs nothing, and the cost starts somewhere between four and nine months.
 
-Two other fixtures on old-prompt ranges warn rather than fail and are left as they are: `talent_leader_high_bar_matt_shaw_current_1` scored 78 to 83 across six runs against 84 to 92, and `finance_not_ready_sam_helmuth_1` 46 to 55 against 55 to 68. Spend for the day's runs on these three fixtures and the date check: about $0.60.
+The two other fixtures still on old-prompt ranges warned rather than failed. Matt approved redrawing both on November 12, by the same method, from seven live runs each that day:
+
+| Fixture | Seven runs | Was | Now |
+| --- | --- | --- | --- |
+| `talent_leader_high_bar_matt_shaw_current_1` (smoke and golden) | 78, 79, 78, 83, 80, 82, 82 | 84 to 92 | 74 to 87 |
+| `finance_not_ready_sam_helmuth_1` | 47, 46, 47, 48, 55, 52, 48 | 55 to 68 | 42 to 59 |
+
+No fixture is left on a range written for the old prompt that the worklist prompt misses. Spend for the day's runs on these three fixtures and the date check: about $0.65.
 
 ## Spend
 
