@@ -10,8 +10,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 427 |
 | Files with copy | 258 |
-| Strings | 2974 |
-| Unique strings | 2477 |
+| Strings | 2980 |
+| Unique strings | 2488 |
 | Routes with copy | 118 |
 
 ## By moment
@@ -19,9 +19,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Moment | Strings |
 | --- | --- |
 | research | 990 |
-| account | 460 |
+| account | 465 |
 | marketing | 410 |
-| report | 284 |
+| report | 285 |
 | pricing | 217 |
 | upload | 124 |
 | legal | 111 |
@@ -40,8 +40,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Table | Strings | Routes |
 | --- | --- | --- |
 | [research](./research.md) | 675 | `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks` and 19 more |
-| [workspace](./workspace.md) | 451 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 5 more |
-| [shared](./shared.md) | 440 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 94 more |
+| [shared](./shared.md) | 469 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 94 more |
+| [workspace](./workspace.md) | 419 | `/api/resume-feedback`, `/api/resume-feedback-stream`, `/auth`, `/extension`, `/methodology`, `/reports` and 3 more |
 | [api](./api.md) | 266 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 25 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |
@@ -50,9 +50,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [jobs](./jobs.md) | 71 | `/jobs` |
 | [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
+| [reports](./reports.md) | 54 | `/reports` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
-| [reports](./reports.md) | 45 | `/reports` |
 | [pricing](./pricing.md) | 40 | `/pricing` |
 | [methodology](./methodology.md) | 32 | `/methodology` |
 | [dashboard](./dashboard.md) | 29 | `/dashboard` |

@@ -2,6 +2,9 @@
 // lines the person has answered, and how its score moved against their previous report for the same role.
 // Pure, so the page computes it on the server and the rows only render it.
 
+import { compareWorklists } from "./worklist-presentation";
+import type { WorklistReport } from "../llm/worklist-schema";
+
 export type LineProgress = {
   /** Lines the report asked a question about. */
   total: number;
@@ -190,4 +193,50 @@ export function versionChangeLabel(change: VersionChange): string {
 /** "2 earlier versions". */
 export function earlierVersionsLabel(count: number): string {
   return `${count} earlier ${count === 1 ? "version" : "versions"}`;
+}
+
+// ---- What a resume's revisions did (Nov 11, 2026) ----
+// The question a person comes back with is whether the rewrite worked. For two versions of one resume this says
+// which of the first version's lines are off the list now, which are still there, and what came up new: the same
+// comparison the report shows on a re-check (compareWorklists), in the same words. A line off the list is no
+// longer a card. That doesn't prove it's fixed, so nothing here says so.
+
+export type RevisionProgress = {
+  /** Lines the earlier version was asked about that this one isn't. */
+  gone: number;
+  /** Lines both were asked about. */
+  still: number;
+  /** Lines this version is asked about that the earlier one wasn't. */
+  added: number;
+};
+
+const isCards = (cards: unknown): cards is WorklistReport["cards"] =>
+  Array.isArray(cards) && cards.every((card) => card && typeof card === "object" && typeof (card as { kind?: unknown }).kind === "string" && typeof (card as { line?: unknown }).line === "string");
+
+/** Null when either report isn't a worklist report: an earlier-format report has no list to compare. */
+export function revisionProgress(earlierCards: unknown, currentCards: unknown): RevisionProgress | null {
+  if (!isCards(earlierCards) || !isCards(currentCards)) return null;
+  const { gone, still, added } = compareWorklists({ cards: earlierCards, score: 0 }, { cards: currentCards, score: 0 });
+  return { gone: gone.length, still: still.length, added: added.length };
+}
+
+/** "4 lines are off the list. 2 are still there, and 1 new one came up." */
+export function revisionProgressLabel(progress: RevisionProgress): string {
+  const { gone, still, added } = progress;
+  const lines = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  const fresh = added > 0 ? lines(added, "new one came up", "new ones came up") : null;
+  if (gone === 0 && still === 0) return fresh ? `Nothing was on the list before. ${fresh[0].toUpperCase()}${fresh.slice(1)}.` : "Nothing on the list, then or now.";
+  if (gone === 0) return fresh ? `The same ${still === 1 ? "line is" : "lines are"} on the list, and ${fresh}.` : `The same ${still === 1 ? "line is" : "lines are"} on the list.`;
+  const off = `${lines(gone, "line is", "lines are")} off the list.`;
+  if (still === 0) return fresh ? `${off} ${fresh[0].toUpperCase()}${fresh.slice(1)}.` : gone === 1 ? "The one line is off the list. Nothing is on it now." : `All ${gone} lines are off the list. Nothing is on it now.`;
+  return fresh ? `${off} ${lines(still, "is", "are")} still there, and ${fresh}.` : `${off} ${lines(still, "is", "are")} still there.`;
+}
+
+/**
+ * How the score moved across the resume's versions, with the bands when the band changed:
+ * "Up 17, from Not ready yet to Mostly clear." The number itself never appears, only the change.
+ */
+export function revisionScoreLabel(delta: number, bandBefore: string, bandNow: string): string {
+  const moved = delta > 0 ? `Up ${delta}` : delta < 0 ? `Down ${Math.abs(delta)}` : "Same score";
+  return bandBefore === bandNow ? `${moved}.` : `${moved}, from ${bandBefore} to ${bandNow}.`;
 }

@@ -9,7 +9,7 @@ import { launchFlags } from "@/lib/launch/flags";
 import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { splitVerdict } from "@/lib/reports/report-opening";
-import { lineProgress, scoreChanges } from "@/lib/reports/report-history";
+import { groupReportVersions, lineProgress, revisionProgress, scoreChanges } from "@/lib/reports/report-history";
 import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
@@ -70,6 +70,16 @@ export default async function ReportsPage() {
     createdAt: report.created_at,
     isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
   })));
+
+  // What each later version's list looks like against its resume's first version (lib/reports/report-history.ts).
+  const revisions = new Map<string, { sinceId: string; gone: number; still: number; added: number }>();
+  for (const group of groupReportVersions(items.map((report) => ({ id: report.id, score: report.score, createdAt: report.created_at, revises: revises.get(report.id) ?? null, cards: report.cards, isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW })))) {
+    const first = group[group.length - 1];
+    for (const version of group.slice(0, -1)) {
+      const progress = version.isProfile === first.isProfile ? revisionProgress(first.cards, version.cards) : null;
+      if (progress) revisions.set(version.id, { sinceId: first.id, ...progress });
+    }
+  }
 
   // The pass, for the line above the list: how many reports are left and the day it ends. A failed read leaves
   // the line to what the signed-in session already knows.
@@ -144,6 +154,7 @@ export default async function ReportsPage() {
               progress: lineProgress(report.cards, report.line_answers),
               change: changes.get(report.id) ?? null,
               revises: revises.get(report.id) ?? null,
+              revisions: revisions.get(report.id) ?? null,
               // An earlier report's first impression runs two or three sentences; its row shows the first, the way
               // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
               verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),

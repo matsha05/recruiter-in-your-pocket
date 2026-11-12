@@ -371,7 +371,7 @@ function cardKey(card: WorklistCard) {
  * are off the list, which are still there, and how far the score moved. A line that left the list is no
  * longer a card; that doesn't prove it's fixed, so the copy never says so.
  */
-export function compareWorklists(previous: WorklistReport, current: WorklistReport): WorklistComparison {
+export function compareWorklists(previous: Pick<WorklistReport, "cards" | "score">, current: Pick<WorklistReport, "cards" | "score">, since = "last time"): WorklistComparison {
   const before = workCards(previous);
   const after = workCards(current);
   const afterKeys = new Set(after.map(cardKey));
@@ -400,6 +400,6 @@ export function compareWorklists(previous: WorklistReport, current: WorklistRepo
     ].filter(Boolean).join(" ");
   }
   // One earned exclamation point on a real win (Matt, November 6, 2026); never on a drop.
-  const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since last time. That's the right direction!` : `Down ${Math.abs(delta)} since last time.`;
+  const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since ${since}. That's the right direction!` : `Down ${Math.abs(delta)} since ${since}.`;
   return { gone, still, added, delta, title, intro, sum };
 }

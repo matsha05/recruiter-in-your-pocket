@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { earlierVersionsLabel, groupReportVersions, lineProgress, lineProgressLabel, reportVersions, scoreChangeLabel, scoreChanges, versionChangeLabel } from "../lib/reports/report-history";
+import { earlierVersionsLabel, groupReportVersions, revisionProgress, revisionProgressLabel, revisionScoreLabel, lineProgress, lineProgressLabel, reportVersions, scoreChangeLabel, scoreChanges, versionChangeLabel } from "../lib/reports/report-history";
 
 // ---- Lines answered ----
 const cards = [
@@ -88,4 +88,29 @@ assert.equal(versionChangeLabel({ delta: 0, from: 1 }), "Same score as version 1
 assert.equal(earlierVersionsLabel(1), "1 earlier version");
 assert.equal(earlierVersionsLabel(2), "2 earlier versions");
 
-console.log("report history: lines answered, score changes and versions");
+// ---- What a resume's revisions did ----
+const line = (text: string) => ({ kind: "line", line: text, example: `${text} [detail]` });
+const first = [line("Managed renewals"), line("Worked with teams"), line("Ran reviews"), { kind: "keep", line: "Managed 32 accounts", example: "x" }];
+const now = [line("Worked  with teams"), line("Led onboarding"), { kind: "keep", line: "Managed 32 accounts", example: "x" }];
+assert.deepEqual(revisionProgress(first, now), { gone: 2, still: 1, added: 1 }, "the kept line is never on the list; spacing doesn't make a line new");
+assert.deepEqual(revisionProgress(first, [first[3]]), { gone: 3, still: 0, added: 0 });
+assert.equal(revisionProgress(undefined, now), null, "an earlier-format report has no list to compare");
+assert.equal(revisionProgress(first, [{ kind: "line" }]), null, "a card without its line is not compared");
+
+assert.equal(revisionProgressLabel({ gone: 4, still: 2, added: 1 }), "4 lines are off the list. 2 are still there, and 1 new one came up.");
+assert.equal(revisionProgressLabel({ gone: 1, still: 1, added: 0 }), "1 line is off the list. 1 is still there.");
+assert.equal(revisionProgressLabel({ gone: 3, still: 0, added: 0 }), "All 3 lines are off the list. Nothing is on it now.");
+assert.equal(revisionProgressLabel({ gone: 1, still: 0, added: 0 }), "The one line is off the list. Nothing is on it now.");
+assert.equal(revisionProgressLabel({ gone: 2, still: 0, added: 2 }), "2 lines are off the list. 2 new ones came up.");
+assert.equal(revisionProgressLabel({ gone: 0, still: 3, added: 0 }), "The same lines are on the list.");
+assert.equal(revisionProgressLabel({ gone: 0, still: 1, added: 2 }), "The same line is on the list, and 2 new ones came up.");
+assert.equal(revisionProgressLabel({ gone: 0, still: 0, added: 0 }), "Nothing on the list, then or now.");
+assert.equal(revisionProgressLabel({ gone: 0, still: 0, added: 1 }), "Nothing was on the list before. 1 new one came up.");
+for (const label of [{ gone: 4, still: 2, added: 1 }, { gone: 3, still: 0, added: 0 }].map(revisionProgressLabel)) assert.doesNotMatch(label, /fixed/i, "off the list is never called fixed");
+
+assert.equal(revisionScoreLabel(17, "Not ready yet", "Mostly clear"), "Up 17, from Not ready yet to Mostly clear.");
+assert.equal(revisionScoreLabel(4, "Mostly clear", "Mostly clear"), "Up 4.");
+assert.equal(revisionScoreLabel(-3, "Mostly clear", "Mostly clear"), "Down 3.");
+assert.equal(revisionScoreLabel(0, "Mostly clear", "Mostly clear"), "Same score.");
+
+console.log("report history: lines answered, score changes, versions and what the revisions did");

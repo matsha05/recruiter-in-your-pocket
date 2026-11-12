@@ -184,6 +184,40 @@
 
 .row:hover .arrow { transform: translateX(2px); color: hsl(var(--pen)); }
 
+/* What the revisions did, under the newest version's verdict: against the first version, the lines off the
+   list and the ones still on it at reading size, then the score in small type. The pen marks a rise only. */
+.journey {
+    max-width: 38rem;
+    margin-top: 1.25rem;
+    border-left: 2px solid hsl(var(--pen));
+    padding-left: 1rem;
+}
+.journeyLabel {
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+.journeyLabel span { color: hsl(var(--text-muted)); font-weight: var(--weight-body); }
+.journeyLines {
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    text-wrap: pretty;
+}
+.journeyScore {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    margin: 0.25rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+.journeyScore [data-up] { color: hsl(var(--pen)); font-weight: var(--weight-control); }
+
+.rowActions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1rem; margin-top: 0.25rem; }
+.rowActions .revise { margin-top: 0; }
+
 /* The earlier versions of a resume, under its newest report: closed until asked for, then the same parts as a
    row at reading size. A version's number takes the band's place in the margin; the band sits under its verdict. */
 .versions { margin-top: 0.5rem; }
