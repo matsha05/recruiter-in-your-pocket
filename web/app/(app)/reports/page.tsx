@@ -10,7 +10,7 @@ import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { splitVerdict } from "@/lib/reports/report-opening";
 import { groupReportVersions, lineProgress, revisionProgress, savedPostingRole, scoreChanges } from "@/lib/reports/report-history";
-import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
+import { isPassActive, isUnlimitedPassTier, passIncludesPostingReads } from "@/lib/billing/entitlements";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
 function verdictLine(value: unknown): string | null {
@@ -92,7 +92,11 @@ export default async function ReportsPage() {
     .select("tier, uses_remaining, expires_at, revoked_at, revocation_reason")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false });
-  const activePass = (passes || []).find((pass) => isPassActive(pass) && !isUnlimitedPassTier(pass.tier)) ?? null;
+  const countedPasses = (passes || []).filter((pass) => !isUnlimitedPassTier(pass.tier));
+  const hasUnlimitedPass = (passes || []).some((pass) => isPassActive(pass) && isUnlimitedPassTier(pass.tier));
+  // A pass still in its term with every report used is named as that from the first paint, never as a free report.
+  const activePass = countedPasses.find((pass) => isPassActive(pass))
+    ?? (hasUnlimitedPass ? null : countedPasses.find((pass) => passIncludesPostingReads(pass)) ?? null);
 
   return (
     <section className="flex-1 bg-background">

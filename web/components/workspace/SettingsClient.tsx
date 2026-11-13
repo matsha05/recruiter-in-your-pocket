@@ -1,6 +1,6 @@
 "use client";
 
-import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
+import { accountBalanceLine } from "@/lib/billing/accountPassStatus";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -415,15 +415,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     });
 
     const hasPaidMembership = Boolean(user?.membership && user.membership !== "free");
-    const accessLabel = user?.membership === "lifetime"
-        ? "Lifetime access"
-        : user?.membership === "monthly"
-            ? "Monthly plan"
-            : user?.membership === "credit"
-                ? `${user.paidUsesLeft || 0} ${(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass`
-                : isPassSpent(user)
-                    ? PASS_SPENT_LABEL
-                    : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
+    const accessLabel = accountBalanceLine(user);
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
     const latestPass = loadingPasses ? null : passes[0];
     const passForStatus = activePass || latestPass || null;
@@ -507,9 +499,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     title="Settings"
                     meta={
                         <>
-                            <span className="inline-flex items-center rounded-md bg-brand/5 px-3 py-1 text-sm font-medium text-brand">
-                                {accessLabel}
-                            </span>
+                            {accessLabel ? (
+                                <span className="inline-flex items-center rounded-md bg-brand/5 px-3 py-1 text-sm font-medium text-brand">
+                                    {accessLabel}
+                                </span>
+                            ) : null}
                         </>
                     }
                     actions={
@@ -633,7 +627,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     {activePass && !isUnlimitedPassTier(activePass.tier) && Number(activePass.uses_remaining || 0) > 0 && (
                                         <Pile count={Math.min(5, Number(activePass.uses_remaining || 0))} size="lg" label={`${Number(activePass.uses_remaining || 0)} reports left on your pass, one sheet each`} />
                                     )}
-                                    <p className={settings.strong}>{accessLabel}</p>
+                                    {accessLabel ? <p className={settings.strong}>{accessLabel}</p> : null}
                                     <p className={settings.quiet}>Purchases are tied to {user?.email}.{passExpiryLabel ? ` ${passExpiryLabel}.` : ""}</p>
                                 </div>
                                 <div className={settings.rowAction}>

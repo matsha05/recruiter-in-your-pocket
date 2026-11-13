@@ -1,6 +1,6 @@
 "use client";
 
-import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
+import { PASS_SPENT_LABEL, accountBalanceLine } from "@/lib/billing/accountPassStatus";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 import Link from "next/link";
@@ -70,26 +70,14 @@ function reportTitle(report: ReportHistoryItem) {
 /** Under "Since version 1" when that version is an older kind of report: no bare "Down 2." with nothing behind it. */
 const EARLIER_SHAPE_NOTE = "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.";
 
-/** What the signed-in person has left, in the words the upload page and Settings use. */
-function accessLine(user: { membership?: string | null; paidUsesLeft?: number | null; freeUsesLeft?: number | null; postingReads?: boolean | null } | null | undefined) {
-  if (!user) return null;
-  if (user.membership === "lifetime") return "Lifetime access";
-  if (user.membership === "monthly") return "Monthly plan";
-  if (user.membership === "credit") {
-    const paid = Number(user.paidUsesLeft || 0);
-    return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
-  }
-  if (isPassSpent(user)) return PASS_SPENT_LABEL;
-  const free = Number(user.freeUsesLeft || 0);
-  return `${free} free report${free === 1 ? "" : "s"} left`;
-}
-
 export function ReportHistoryList({ initialReports: reports, pass = null }: { initialReports: ReportHistoryItem[]; pass?: ReportHistoryPass | null }) {
   const { user } = useAuth();
   // The pass the server read wins: it is this page's own data, and it is there before the session hook answers.
+  // A pass with every report used is named as that until the hook answers, never as a free report; once it has,
+  // the hook's line stands, since it also knows about a free report still unused.
   const access = pass && pass.usesLeft > 0
     ? `${pass.usesLeft} ${pass.usesLeft === 1 ? "report" : "reports"} left on your pass`
-    : accessLine(user);
+    : accountBalanceLine(user) ?? (pass ? PASS_SPENT_LABEL : null);
   const [comparingId, setComparingId] = useState<string | null>(null);
   const [comparison, setComparison] = useState<Comparison | null>(null);
 
@@ -270,7 +258,7 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
             <>
               <span aria-hidden="true"> · </span>
               <Link href="/settings/billing" className="riyp-link-quiet focus-ring">{access}</Link>
-              {pass && passEnds ? <span>, good until {passEnds}</span> : null}
+              {pass && pass.usesLeft > 0 && passEnds ? <span>, good until {passEnds}</span> : null}
             </>
           ) : null}
         </p>

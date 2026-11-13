@@ -62,3 +62,34 @@ test("Progress isn't open yet: /dashboard lands on My reports", async ({ request
   expect(response.status()).toBe(307);
   expect(new URL(response.headers()["location"], "http://riyp.test").pathname).toBe("/reports");
 });
+
+// Live check, November 13, 2026: a pass with every report used read "0 free reports left" on My reports for about a
+// second on every load, because the account's name arrives before its balance. Settings and the account menu wait
+// for the balance, so there the same gap only shows when the balance can't be read at all.
+async function openSettings(page: Page) {
+  await page.goto("/settings/account", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
+  const decline = page.getByRole("button", { name: "Decline analytics", exact: true });
+  if (await decline.isVisible().catch(() => false)) await decline.click();
+  await expect(page.getByRole("heading", { name: "Settings", exact: true })).toBeVisible({ timeout: 15_000 });
+  await page.getByRole("button", { name: "Open account menu" }).click();
+  await expect(page.getByRole("menu")).toBeVisible();
+}
+
+test("when the balance can't be read, nothing is claimed about a free report", async ({ page }) => {
+  await installSignedInSession(page, { freeUsesLeft: 0 });
+  await page.route("**/api/passes", (route) => route.fulfill({ status: 503, json: { ok: false } }));
+  await page.route("**/api/free-status", (route) => route.fulfill({ status: 503, json: { ok: false } }));
+  await openSettings(page);
+  await expect(page.getByRole("menu")).toContainText("Sign out");
+  await expect(page.locator("body")).not.toContainText(/free report/i);
+});
+
+test("a pass with every report used is named as that in Settings and the account menu", async ({ page }) => {
+  const spentPass = { id: "33333333-3333-4333-8333-333333333333", tier: "30d", uses_remaining: 0, expires_at: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(), created_at: "2026-11-05T21:00:00.000Z", price_id: null, revoked_at: null, revocation_reason: null };
+  await installSignedInSession(page, { freeUsesLeft: 0, passes: [spentPass] });
+  await openSettings(page);
+  await expect(page.getByRole("menu")).toContainText("No reports left on your pass");
+  await expect(page.locator("main")).toContainText("No reports left on your pass");
+  await expect(page.locator("body")).not.toContainText(/free report/i);
+});

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { htmlToResumeText } from "../lib/backend/docx-text";
-import { PASS_SPENT_LABEL, isPassSpent, readAuthoritativePassAccess } from "../lib/billing/accountPassStatus";
+import { PASS_SPENT_LABEL, accountBalanceLine, isBalanceKnown, isPassSpent, readAuthoritativePassAccess } from "../lib/billing/accountPassStatus";
 import { WorklistReportSchema } from "../lib/llm/worklist-schema";
 import { splitVerdict } from "../lib/reports/report-opening";
 import { fileReadFindings } from "../lib/reports/file-read";
@@ -42,6 +42,24 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes } from "../lib/reports/worklist
   assert.equal(isPassSpent({ membership: "credit", postingReads: true, freeUsesLeft: 0 }), false, "reports left on the pass");
   assert.equal(isPassSpent(null), false);
   assert.ok(!/free/iu.test(PASS_SPENT_LABEL));
+}
+
+// ---- Nothing is said about the balance until it is known (live check, November 13, 2026) ----
+{
+  // The session hook sets who is signed in first and what they have left a moment later. In that moment a
+  // pass holder read "0 free reports left" on My reports.
+  const justSignedIn: { id: string; membership?: string; freeUsesLeft?: number } = { id: "u1" };
+  assert.equal(isBalanceKnown(justSignedIn), false);
+  assert.equal(accountBalanceLine(justSignedIn), null, "no line at all, rather than a wrong one");
+  assert.equal(accountBalanceLine(null), null);
+  assert.equal(isBalanceKnown({ freeUsesLeft: 0 }), true, "the free-report read alone is an answer");
+  assert.equal(accountBalanceLine({ membership: "free", postingReads: false, freeUsesLeft: 1 }), "1 free report left");
+  assert.equal(accountBalanceLine({ membership: "free", postingReads: false, freeUsesLeft: 0 }), "0 free reports left");
+  assert.equal(accountBalanceLine({ membership: "free", postingReads: true, freeUsesLeft: 0 }), PASS_SPENT_LABEL);
+  assert.equal(accountBalanceLine({ membership: "credit", paidUsesLeft: 1, postingReads: true }), "1 report left on your pass");
+  assert.equal(accountBalanceLine({ membership: "credit", paidUsesLeft: 4, postingReads: true }), "4 reports left on your pass");
+  assert.equal(accountBalanceLine({ membership: "lifetime" }), "Lifetime access");
+  assert.equal(accountBalanceLine({ membership: "monthly" }), "Monthly plan");
 }
 
 // ---- An older report beside a worklist report ----
