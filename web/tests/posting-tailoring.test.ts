@@ -188,6 +188,18 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
   assert.equal(report.fit.posting.covered?.[0].line, bullet, "so does a row of the posting's table");
   assert.equal(report.fit.posting.trim?.[0].line, bullet, "and a line the posting doesn't ask about");
   assert.equal(WorklistReportSchema.safeParse(report).success, true, "a validated report always parses again");
+
+  // The next live report quoted the same kind of bullet from its middle to its end, exactly 200 characters:
+  // "achieving a 300% reduction in time to hire…". The start is the limit's doing too.
+  const tail = bullet.slice(bullet.indexOf("cutting time"));
+  assert.ok(tail.length <= MAX_QUOTE_LENGTH);
+  const fromTheMiddle = structuredClone(draft);
+  (fromTheMiddle as { cards: Array<{ line: string }> }).cards[0].line = tail;
+  Object.assign(fromTheMiddle.fit.posting, { covered: [{ requirement: "Hiring across regions", line: tail }], lead: [], trim: [{ line: tail, why: "A good line. Nothing in this posting asks for it." }] });
+  const whole = validateWorklistPayload(fromTheMiddle, text, { forceGrounding: true });
+  assert.equal(whole.cards[0].line, bullet, "a card quotes the bullet from its first word, not from where the model's limit let it start");
+  assert.equal(whole.fit.posting.covered?.[0].line, bullet);
+  assert.equal(whole.fit.posting.trim?.[0].line, bullet);
 }
 
 // On a line longer than a report holds (a summary pasted as one paragraph) a quote that stops mid-sentence runs on to
@@ -218,14 +230,18 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
 
   // A quote that stops anywhere else runs on to the end of its sentence.
   assert.equal(quoteWithinLine("Led the migration of 3.5 million accounts to the new", line, 400), line, "to the sentence's end when that fits");
-  assert.equal(quoteWithinLine("working with Finance (Treasury, Tax) and Risk, then trained the", line, 400), "working with Finance (Treasury, Tax) and Risk, then trained the support team on it.", "it keeps the start the model chose");
+
+  // A quote that starts partway into a sentence goes back to the sentence's first word when the result fits.
+  assert.equal(quoteWithinLine("working with Finance (Treasury, Tax) and Risk, then trained the", line, 400), line, "both ends, when the limit landed mid-sentence twice");
+  assert.equal(quoteWithinLine("then trained the support team on it.", line, 400), line, "a start after a clause break is still partway in");
+  assert.equal(quoteWithinLine("then trained the support team on it.", line, 80), "then trained the support team on it.", "the start stands when the sentence is too long to show");
 
   // When the sentence is too long to show, the end moves to the nearest clause break.
   assert.equal(quoteWithinLine("Led the migration of 3.5 million accounts to the new", line, 80), clause, "forward to the next clause break; the point in 3.5 is not one");
   assert.equal(quoteWithinLine("working with Finance (Treasury", line, 80), "working with Finance (Treasury, Tax) and Risk", "never left inside a parenthesis it opened");
   const run = "Owned onboarding for enterprise customers, and built the playbook that the regional teams in eleven countries still use to bring a new account from signed contract to first invoice.";
   assert.equal(quoteWithinLine("Owned onboarding for enterprise customers, and built the", run, 100), "Owned onboarding for enterprise customers", "back to the last break when the next one is out of reach");
-  assert.equal(quoteWithinLine("and built the playbook that", run, 100), "and built the playbook that", "with no break to move to, the quote stands as written");
+  assert.equal(quoteWithinLine("and built the playbook that the regional teams in eleven countries still use to bring", run, 100), "and built the playbook that the regional teams in eleven countries still use to bring", "with no break to move to and no room to go back, the quote stands as written");
   assert.equal(quoteWithinLine("not on this line at all", run, 100), "not on this line at all", "a quote the line doesn't hold is left alone");
 
   // Where a sentence ends: not at an abbreviation, and at a bullet's mark when a file read put two bullets on one line.
@@ -237,6 +253,8 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
   const joined = "Opened three regions to target enterprise deals. ● Managed the LATAM sales team as it grew from four people to eleven ● Hired the first sales engineer";
   assert.equal(quoteWithinLine("Opened three regions to target enterprise deals.", joined, 400), "Opened three regions to target enterprise deals.", "the first of two bullets on one line stays the first");
   assert.equal(quoteWithinLine("Managed the LATAM sales team as it", joined, 400), "Managed the LATAM sales team as it grew from four people to eleven", "a bullet ends at the next bullet's mark, with or without a full stop");
+  assert.equal(quoteWithinLine("set the on-call rota.", two, 400), "Hired the first six engineers and set the on-call rota.", "going back stops at the start of the quote's own sentence");
+  assert.equal(quoteWithinLine("grew from four people to eleven", joined, 400), "Managed the LATAM sales team as it grew from four people to eleven", "and at a bullet's mark, never in the bullet before it");
 }
 
 console.log("posting tailoring tests passed");

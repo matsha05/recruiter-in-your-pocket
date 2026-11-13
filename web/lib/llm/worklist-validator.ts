@@ -83,7 +83,7 @@ function normaliseCard(card: WorklistCard): WorklistCard {
 /**
  * The quote a report shows for a line it found on the resume: the whole line as the resume writes it. On a line
  * longer than the model can quote (a long bullet, a summary pasted as one paragraph) it is the part the model
- * chose, run on to the end of its sentence when the model's limit cut it short. An adjusted quote is used only
+ * chose, widened to its sentence when the model's limit left it stopping or starting partway. An adjusted quote is used only
  * when it is still found on the resume once; otherwise the model's own quote stands, since that one is known to
  * be there.
  */

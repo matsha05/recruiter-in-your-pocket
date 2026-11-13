@@ -183,6 +183,20 @@ Measured on saved output, not on new runs. The full golden run's 166 quoted line
 
 The first version of this fix showed every line up to 400 characters whole. On the same saved run that replaced quotes the model had kept to one sentence of a several-sentence line with the whole line, and ran one quote past a bullet mark into the next bullet (a file read had put two bullets on one line). The rule above is the correction: it changes a quote only when the quote stops mid-clause.
 
+### The same limit at the quote's other end
+
+After the fix was live, one posting read was run on production from the saved resume (the founder asked for it; the read is included with a pass). It quoted 15 lines, three of them on a resume line over 200 characters. None stopped mid-sentence. One did the reverse: on the same 293-character bullet the model quoted exactly 200 characters, from "achieving a 300% reduction" to the bullet's last word. To reach the end inside its limit it had dropped the start. The first live report's keep card had the same shape and had gone unremarked: it began at "onboarding 80".
+
+A quote that begins after a clause break rarely reads without what came before it, where one that ends at a clause break usually does. So the two ends are treated differently:
+
+- a quote that begins where a sentence begins stands, so one sentence of a several-sentence line stays the one the model chose;
+- a quote that begins partway into a sentence goes back to the start of that sentence when the result fits in 400 characters;
+- when it doesn't fit, the start stands.
+
+Measured on saved output, no model call. Of the 13 quotes on long lines in the full golden run, 12 begin at a sentence and are unchanged; one began mid-clause ("directing ML Acceleration") and now starts with its sentence, 210 characters in place of 169, and goes back no further than the bullet mark that opens it. The run still scores 21 pass, 2 warnings, 0 failures. The live quote, put through the rule, comes back as the whole bullet, and the two other long-line quotes of that report (one sentence each) are unchanged.
+
+Not checked: a live report made after this second change.
+
 Not measured: how often a live report now shows a quote between 200 and 400 characters. The Report Lab has a layout fixture for one (`worklist-long-line`).
 
 ## Spend

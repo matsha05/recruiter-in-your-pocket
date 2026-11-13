@@ -183,6 +183,13 @@ function isClauseBreak(line: string, start: number, index: number) {
   return new RegExp(`^(?:[,;:](?=\\s)|\\s+[(–—${BULLET_MARKS}]|\\s+-\\s)`, "u").test(rest);
 }
 
+/** Where the sentence holding `index` starts: at the line's first word, or past the sentence and bullet mark before it. */
+function sentenceStart(line: string, index: number) {
+  const previous = sentenceEnds(line).filter((end) => end <= index).pop() ?? 0;
+  const lead = line.slice(previous).match(new RegExp(`^[\\s${BULLET_MARKS}*–—-]*`, "u"))?.[0].length ?? 0;
+  return Math.min(previous + lead, index);
+}
+
 /** Where the quote sits on the line: the one place it stands as whole words. */
 function quoteStart(line: string, quote: string) {
   const edge = /[\p{L}\p{M}\p{N}]/u;
@@ -196,29 +203,42 @@ function quoteStart(line: string, quote: string) {
 
 /**
  * The quote for a resume line longer than the model can quote whole (a long bullet, or a summary or an About
- * section pasted as one paragraph). The model quotes a bounded part of such a line, and when its limit lands
- * mid-sentence the quote stops there. A quote that stops at a break, the end of a sentence or of a clause, is the
- * part the model chose and is left alone. One that stops anywhere else keeps its start and runs on to the end of
- * its sentence. When that is too long to show, its end moves to the nearest clause break: forward when that fits,
- * back when that keeps at least half of it. The result is always text from the line, in one piece; with no break
- * to move to, the quote stands.
+ * section pasted as one paragraph). The model quotes a bounded part of such a line, and its limit can land
+ * mid-sentence at either end: the quote stops short, or it starts partway in so that it reaches the end.
+ *
+ * Its end: a quote that stops at a break, the end of a sentence or of a clause, is left alone, since what comes
+ * before a clause break reads as a statement. One that stops anywhere else runs on to the end of its sentence.
+ * When that is too long to show, the end moves to the nearest clause break: forward when that fits, back when
+ * that keeps at least half of the quote. With no break to move to, the end stands.
+ *
+ * Its start: a quote that begins where a sentence begins is left alone, so one sentence of several stays the one
+ * the model chose. One that begins partway into a sentence ("achieving a 300% reduction…") goes back to the
+ * start of that sentence when the result fits, since what follows a clause break rarely reads without what came
+ * before it. When it doesn't fit, the start stands.
+ *
+ * The result is always text from the line, in one piece.
  */
 export function quoteWithinLine(quote: string, line: string, max: number) {
   const identity = canonicalSourceIdentity(quote);
   const start = identity ? quoteStart(line, identity) : -1;
   if (start === -1) return quote;
-  const end = start + identity.length;
-  if (isClauseBreak(line, start, end)) return identity;
+  const end = quoteEnd(line, start, start + identity.length, max);
+  const from = sentenceStart(line, start);
+  return line.slice(end - from <= max ? from : start, end).trim();
+}
 
+/** Where a quote that sits at `start`..`end` of the line should stop. */
+function quoteEnd(line: string, start: number, end: number, max: number) {
+  if (isClauseBreak(line, start, end)) return end;
   const sentenceEnd = sentenceEnds(line).find((value) => value >= end) ?? line.length;
-  if (sentenceEnd - start <= max) return line.slice(start, sentenceEnd).trim();
+  if (sentenceEnd - start <= max) return sentenceEnd;
   for (let index = end + 1; index <= line.length && index - start <= max; index += 1) {
-    if (isClauseBreak(line, start, index)) return line.slice(start, index).trim();
+    if (isClauseBreak(line, start, index)) return index;
   }
-  for (let index = end - 1; index - start >= identity.length / 2; index -= 1) {
-    if (isClauseBreak(line, start, index)) return line.slice(start, index).trim();
+  for (let index = end - 1; index - start >= (end - start) / 2; index -= 1) {
+    if (isClauseBreak(line, start, index)) return index;
   }
-  return identity;
+  return end;
 }
 
 /** Two cards on the same resume line. */
