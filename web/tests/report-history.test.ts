@@ -64,13 +64,18 @@ assert.deepEqual(savedPostingRole("", ["Senior Technical Recruiter", "Recruiter"
 assert.deepEqual(savedPostingRole(null, null), { hasPosting: false, postingRole: null }, "an earlier kind of report has neither");
 
 assert.equal(scoreChangeLabel({ delta: 6, since: "x" }, "Nov 1, 2026"), "Up 6 since Nov 1, 2026");
-assert.equal(scoreChangeLabel({ delta: -3, since: "x" }, "Nov 1, 2026"), "Down 3 since Nov 1, 2026");
+assert.equal(scoreChangeLabel({ delta: -8, since: "x" }, "Nov 1, 2026"), "Down 8 since Nov 1, 2026");
+// Two reads of one page land up to 5 apart (ten resumes read four times each, November 13, 2026), so a difference
+// that size is not called a change, in either direction.
+assert.equal(scoreChangeLabel({ delta: -3, since: "x" }, "Nov 1, 2026"), "About the same score as Nov 1, 2026");
+assert.equal(scoreChangeLabel({ delta: 5, since: "x" }, "Nov 1, 2026"), "About the same score as Nov 1, 2026");
 assert.equal(scoreChangeLabel({ delta: 0, since: "x" }, "Nov 1, 2026"), "Same score as Nov 1, 2026");
 // Two reports for the same role on one day: "since" that date would read as if nothing came before it.
-assert.equal(scoreChangeLabel({ delta: -2, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Down 2 from your earlier report that day");
-assert.equal(scoreChangeLabel({ delta: 4, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Up 4 from your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: -7, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Down 7 from your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: 6, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Up 6 from your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: -2, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "About the same score as your earlier report that day");
 assert.equal(scoreChangeLabel({ delta: 0, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Same score as your earlier report that day");
-assert.equal(scoreChangeLabel({ delta: -2, since: "x" }, "Nov 1, 2026", "Nov 5, 2026"), "Down 2 since Nov 1, 2026");
+assert.equal(scoreChangeLabel({ delta: -9, since: "x" }, "Nov 1, 2026", "Nov 5, 2026"), "Down 9 since Nov 1, 2026");
 
 // ---- Versions of one resume ----
 const linked = [
@@ -99,7 +104,9 @@ const loop = groupReportVersions([{ id: "a", score: 1, createdAt: "2026-11-01T00
 assert.deepEqual(loop.map((group) => group.map((report) => report.id)), [["b", "a"]]);
 
 assert.equal(versionChangeLabel({ delta: 6, from: 2 }), "Up 6 from version 2");
-assert.equal(versionChangeLabel({ delta: -3, from: 1 }), "Down 3 from version 1");
+assert.equal(versionChangeLabel({ delta: -6, from: 1 }), "Down 6 from version 1");
+assert.equal(versionChangeLabel({ delta: -3, from: 1 }), "About the same score as version 1");
+assert.equal(versionChangeLabel({ delta: 5, from: 2 }), "About the same score as version 2");
 assert.equal(versionChangeLabel({ delta: 0, from: 1 }), "Same score as version 1");
 assert.equal(earlierVersionsLabel(1), "1 earlier version");
 assert.equal(earlierVersionsLabel(2), "2 earlier versions");
@@ -125,8 +132,12 @@ assert.equal(revisionProgressLabel({ gone: 0, still: 0, added: 1 }), "Nothing wa
 for (const label of [{ gone: 4, still: 2, added: 1 }, { gone: 3, still: 0, added: 0 }].map(revisionProgressLabel)) assert.doesNotMatch(label, /fixed/i, "off the list is never called fixed");
 
 assert.equal(revisionScoreLabel(17, "Not ready yet", "Mostly clear"), "Up 17, from Not ready yet to Mostly clear.");
-assert.equal(revisionScoreLabel(4, "Mostly clear", "Mostly clear"), "Up 4.");
-assert.equal(revisionScoreLabel(-3, "Mostly clear", "Mostly clear"), "Down 3.");
+assert.equal(revisionScoreLabel(7, "Mostly clear", "Mostly clear"), "Up 7.");
+assert.equal(revisionScoreLabel(-6, "Mostly clear", "Mostly clear"), "Down 6.");
+assert.equal(revisionScoreLabel(4, "Mostly clear", "Mostly clear"), "About the same score.");
+assert.equal(revisionScoreLabel(-3, "Mostly clear", "Mostly clear"), "About the same score.");
+// 82 and 86 are one resume read twice (the live reads of November 13, 2026), and they sit in two bands.
+assert.equal(revisionScoreLabel(4, "Mostly clear", "Clear and specific"), "About the same score.", "a band's edge crossed by a re-read's worth is not a move between bands");
 assert.equal(revisionScoreLabel(0, "Mostly clear", "Mostly clear"), "Same score.");
 
 console.log("report history: lines answered, score changes, versions and what the revisions did");

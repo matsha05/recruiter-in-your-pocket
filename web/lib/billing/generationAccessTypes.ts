@@ -49,6 +49,8 @@ export type GenerationAccessReservation = {
   anonymousMonthKey: string | null;
   recoveredReportId?: string | null;
   operationId?: string | null;
+  /** On a posting read: the score of the saved report it belongs to, which the read keeps (lib/reports/posting-read.ts). */
+  savedReportScore?: number | null;
 };
 
 export type GenerationReleaseReason =

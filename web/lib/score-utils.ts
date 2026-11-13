@@ -44,6 +44,20 @@ export function getScoreLabel(score: number): string {
     return "Needs more context";
 }
 
+/**
+ * How far apart two reads of a page nobody changed can land. The model scores the page on every read, and its
+ * number is not fixed: on November 13, 2026 ten synthetic resumes were each read four times on the shipped
+ * prompt, and of the 60 pairs of reads 30% gave the same score, 73% sat within 2, and none sat more than 5
+ * apart (docs/audits/2026-11-score-reread.md). A difference this size between two reports is not evidence that
+ * the page changed, so nothing announces it as a change.
+ */
+export const SCORE_REREAD_SPREAD = 5;
+
+/** Whether the difference between two reports' scores is more than reading the same page twice produces. */
+export function scoreMoved(delta: number): boolean {
+    return Math.abs(delta) > SCORE_REREAD_SPREAD;
+}
+
 /** At or above this, a worklist report is on the top band, which it earns only when no line needs work (Matt, Nov 6, 2026). */
 export const READY_TO_SEND_SCORE = 93;
 /** A worklist report with no line that needs work never sits below this. */
