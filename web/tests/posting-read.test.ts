@@ -112,6 +112,17 @@ async function run() {
     assert.equal(withSavedScore(clean, 86).score, 94, "a page with nothing to fix never drops below the floor");
     assert.equal(withSavedScore(clean, 91).score, 91, "within the rules, the saved score is kept");
     assert.equal(withSavedScore({ ...clean, lifted_by_employer: true }, 95).score, 94, "the employer lift never reaches the top band");
+
+    // Clear and specific carries at most three cards that need work. A saved 86 over a read with four comes down
+    // to the top of Mostly clear, the nearest the cards allow; a lower saved score is kept as it is.
+    const line = report.cards[0];
+    const busy = { ...read, score: 80, score_label: "Mostly clear", content_score: 80, cards: [line, report.cards[1], { ...line, where: "Northwind, line 3", line: "Organized the quarterly hack week for 40 engineers." }, { ...report.cards[1], kind: "dates", where: "Dates", line: "No role is dated." }, report.cards[2]] };
+    const held = withSavedScore(busy, 86);
+    assert.deepEqual([held.score, held.score_label, held.content_score], [84, "Mostly clear", 84], "four cards that need work: the saved 86 reads as 84");
+    assert.equal(withSavedScore(busy, 82).score, 82, "a saved score under the band is kept");
+    const at84 = { ...busy, score: 84, score_label: "Mostly clear", content_score: 84 };
+    assert.equal(withSavedScore(at84, 90), at84, "already where the cards put it: nothing changes");
+    assert.equal(withSavedScore({ ...busy, cards: busy.cards.slice(1) }, 86).score, 86, "three cards that need work: the saved 86 stands");
   }
 
   assert.equal(await refusal(reservePostingRead({ reportId: REPORT_ID, text: RESUME, hasPosting: true, userId: null, admin: passesAdmin([]) })), "POSTING_READ_SIGN_IN");

@@ -1,6 +1,6 @@
 import { createAppError } from "../backend/errors";
 import { reportSentences } from "./report-sentences";
-import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from "../score-utils";
+import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE, scoreHeldToCards } from "../score-utils";
 import {
   bannedPhrasesIn,
   inflatesOwnership,
@@ -332,6 +332,10 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
   }
 
   if (issues.length > 0) fail(issues);
+  // Clear and specific is held to the cards too (Nov 13, 2026), in code and without a second call: the cards stand
+  // and the number comes down to the top of Mostly clear. Which way to mend it is never in doubt, so nothing is
+  // sent back to the model.
+  report.score = scoreHeldToCards(report.score, work);
   report.score_label = getWorklistScoreLabel(report.score);
   return report;
 }

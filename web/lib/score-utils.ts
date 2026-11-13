@@ -63,6 +63,26 @@ export const READY_TO_SEND_SCORE = 93;
 /** A worklist report with no line that needs work never sits below this. */
 export const NOTHING_TO_FIX_FLOOR = 90;
 
+/** The first score in Clear and specific. */
+export const CLEAR_AND_SPECIFIC_SCORE = 85;
+/**
+ * The most cards that need work a page in Clear and specific carries. The prompt's own words for the band are
+ * "one or two still hide a detail". Of the 273 reads saved under docs/audits that scored 85 to 92 (November 6 to
+ * 12, 2026, across prompt versions), none carries more than three. The three reads seen since that did carry more
+ * (five, seven and eight) were each the odd read of a page that scored 80 to 82 on its other reads, so the count
+ * is what tells a steady read from a stray one (docs/audits/2026-11-score-reread.md).
+ */
+export const CLEAR_AND_SPECIFIC_WORK_LIMIT = 3;
+
+/**
+ * The score a page's cards allow. A page with more cards that need work than Clear and specific carries sits at
+ * the top of Mostly clear, whatever number the read gave it. The cards are quoted from the page and come back
+ * nearly the same on every read; the number is the softer of the two.
+ */
+export function scoreHeldToCards(score: number, work: number): number {
+    return score >= CLEAR_AND_SPECIFIC_SCORE && work > CLEAR_AND_SPECIFIC_WORK_LIMIT ? CLEAR_AND_SPECIFIC_SCORE - 1 : score;
+}
+
 /**
  * The worklist report's label (Nov 6, 2026): the v2 labels plus a fifth at the top, "Ready to send", for the
  * page with nothing left to fix. v2 reports keep the four of getScoreLabel.

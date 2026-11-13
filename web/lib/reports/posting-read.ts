@@ -5,7 +5,7 @@ import type { GenerationAccessReservation, GenerationPassSnapshot } from "../bil
 import { passIncludesPostingReads } from "../billing/entitlements";
 import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "../llm/source-fidelity";
 import { QUOTED_KINDS, WORK_KINDS, isWorklistReport } from "../llm/worklist-schema";
-import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from "../score-utils";
+import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE, scoreHeldToCards } from "../score-utils";
 import { rateLimitAsync } from "../security/rateLimit";
 import { lookupOwnedTrustedReport } from "./generated-report-store";
 import { POSTING_READS_PER_DAY } from "./posting-read-terms";
@@ -65,14 +65,20 @@ export function savedScoreOf(report: unknown): number | null {
  * The one thing that outranks the saved score is the top band's rule, which the cards decide: a page with a card
  * that needs work is never Ready to send, and a page with none never sits below the floor. When the saved score
  * would break that against this read's cards, this read's own score stands.
+ *
+ * Clear and specific is held to the cards as well (scoreHeldToCards). A saved 86 over a read with more cards that
+ * need work than that band carries comes down to the top of Mostly clear, which is as near the saved score as the
+ * cards allow.
  */
 export function withSavedScore<T>(payload: T, savedScore: number | null | undefined): T {
   if (typeof savedScore !== "number" || !isWorklistReport(payload) || payload.score === savedScore) return payload;
   const work = payload.cards.filter((card) => WORK_KINDS.has(card.kind)).length;
   if (savedScore >= READY_TO_SEND_SCORE && (work > 0 || payload.lifted_by_employer)) return payload;
   if (work === 0 && payload.cards.length > 0 && savedScore < NOTHING_TO_FIX_FLOOR) return payload;
-  const kept: Record<string, unknown> = { ...payload, score: savedScore, score_label: getWorklistScoreLabel(savedScore) };
-  if (typeof kept.content_score === "number") kept.content_score = savedScore;
+  const score = scoreHeldToCards(savedScore, work);
+  if (payload.score === score) return payload;
+  const kept: Record<string, unknown> = { ...payload, score, score_label: getWorklistScoreLabel(score) };
+  if (typeof kept.content_score === "number") kept.content_score = score;
   return kept as T;
 }
 

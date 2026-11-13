@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { validateWorklistPayload, normaliseProse, noteWithoutItsQuestion } from "../lib/llm/worklist-validator";
 import { isIntroLine } from "../lib/evals/worklist-checks";
+import { scoreHeldToCards } from "../lib/score-utils";
 import { WorklistReportSchema, isWorklistReport } from "../lib/llm/worklist-schema";
 import { bannedPhrasesIn, inflatesOwnership, ungroundedTokensInExample } from "../lib/llm/worklist-grounding";
 import { mergeSeverityIntoWorklist, worklistAsSeverityReport } from "../lib/reports/worklist-severity";
@@ -270,7 +271,7 @@ console.log("worklist-validator tests passed");
   assert.equal(ready.score_label, "Ready to send");
   const clear = validateWorklistPayload(draft({ score: 90, cards: [keep] }), RESUME, { forceGrounding: true });
   assert.equal(clear.score_label, "Clear and specific", "90 to 92 with nothing to fix is still Clear and specific");
-  assert.equal(validateWorklistPayload(draft({ score: 92 }), RESUME, { forceGrounding: true }).score_label, "Clear and specific", "92 with work to do is the top of Clear and specific");
+  assert.equal(validateWorklistPayload(draft({ score: 92, cards: draft().cards.filter((card) => card.kind !== "dates") }), RESUME, { forceGrounding: true }).score_label, "Clear and specific", "92 with work to do is the top of Clear and specific");
 
   // Upgrades (Matt, Nov 7, 2026) are optional: a strong page keeps Ready to send with them, and they quote the resume.
   const upgrade = {
@@ -288,5 +289,23 @@ console.log("worklist-validator tests passed");
   assert.throws(() => validateWorklistPayload(draft({ score: 95, cards: [keep, { ...upgrade, example: "Wrote 15 literature summaries on farm subsidies for the USDA" }] }), RESUME, { forceGrounding: true }), /outside a bracket/u, "an upgrade's example invents nothing outside a bracket");
   assert.throws(() => validateWorklistPayload(draft({ score: 95, cards: [keep, { ...upgrade, question: "" }] }), RESUME, { forceGrounding: true }), /blanks/u, "an upgrade with blanks asks the question that fills them");
   assert.throws(() => validateWorklistPayload(draft({ score: 85, cards: [keep, upgrade] }), RESUME, { forceGrounding: true }), /at least 90/u, "a page whose only cards are keep and upgrades has nothing to fix, so it scores at least 90");
+
+  // Clear and specific is held to the cards too (Nov 13, 2026): at most three that need work. The draft carries
+  // four (two lines, structure, dates). A read that scores it 85 or more keeps every card and comes back at the
+  // top of Mostly clear, with no refusal and so no second call.
+  assert.equal(scoreHeldToCards(86, 3), 86, "three cards that need work fit the band");
+  assert.equal(scoreHeldToCards(86, 4), 84, "four don't");
+  assert.equal(scoreHeldToCards(92, 12), 84);
+  assert.equal(scoreHeldToCards(84, 12), 84, "a score under the band is never touched");
+  assert.equal(scoreHeldToCards(60, 0), 60);
+  const four = draft({ score: 86 });
+  const held = validateWorklistPayload(four, RESUME, { forceGrounding: true });
+  assert.deepEqual([held.score, held.score_label], [84, "Mostly clear"], "86 with four cards that need work reads as 84");
+  assert.equal(held.cards.length, four.cards.length, "the cards stand; only the number moves");
+  const three = validateWorklistPayload(draft({ score: 86, cards: four.cards.filter((card) => card.kind !== "dates") }), RESUME, { forceGrounding: true });
+  assert.deepEqual([three.score, three.score_label], [86, "Clear and specific"], "86 with three stands");
+  const withUpgrade = validateWorklistPayload(draft({ score: 86, cards: [...four.cards.filter((card) => card.kind !== "dates"), upgrade] }), RESUME, { forceGrounding: true });
+  assert.equal(withUpgrade.score, 86, "an upgrade is not work: it never counts toward the limit");
+  assert.equal(validateWorklistPayload(draft({ score: 80 }), RESUME, { forceGrounding: true }).score, 80);
 }
 console.log("worklist band rules passed");

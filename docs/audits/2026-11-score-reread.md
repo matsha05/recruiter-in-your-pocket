@@ -51,10 +51,52 @@ A first report is seen alone, and its number having a few points of play is what
 
 The homepage's fictional re-check stepped 80, 86, 91; the second step was 5, which the app no longer announces, so the sample is now 80, 86, 92.
 
+## Clear and specific is held to the cards
+
+Added the same day, after a posting read from the 86 report came back with seven cards that need work under a score of 86.
+
+The question: when one page reads 82 three times and 86 once, is there anything in the read itself that tells the stray from the steady? The cards do. No new reads were made for this; it is counted from reads already saved.
+
+**Reads that scored 85 to 92, by cards that need work** (`line`, `structure` and `dates` cards; the keep card and upgrades are not work):
+
+| Where | Reads at 85 to 92 | 0 | 1 | 2 | 3 | 4 or more |
+| --- | --- | --- | --- | --- | --- | --- |
+| Saved under `docs/audits` (November 6 to 12, several prompt versions) | 273 | 43 | 146 | 75 | 9 | 0 |
+| The eval runs of November 11 to 13 (run files, not committed) | 7 | 0 | 3 | 2 | 0 | 2 (seven and eight) |
+| The four live reads of one resume | 1 | 0 | 0 | 0 | 0 | 1 (five) |
+
+The first row is `python3 docs/audits/2026-11-score-reread/tools/band-cards.py docs/audits`. A read saved in more than one file is counted once.
+
+The three reads with more than three are the only reads in this record that crossed the line between Mostly clear and Clear and specific on a page nobody changed:
+
+| Page | Every read, as score/cards that need work |
+| --- | --- |
+| Synthetic UX director (ten reads, four prompt versions) | **85/8**, 81/8, 82/10, 82/8, 80/8, 80/9, **85/7**, 80/7, 81/9, 80/9 |
+| The live resume against one posting | 82/7, 82/8, 82/6, **86/5** |
+
+On both pages the count barely moves while the number crosses a band. In the repeat run as a whole, two reads of one page gave the same count in 38 of 60 pairs and never sat more than 2 apart; the scores matched in 18 of 60.
+
+The prompt already defines the band this way: "one or two still hide a detail". In 278 of the 281 reads the band came with three or fewer.
+
+**The rule** (`scoreHeldToCards`, `CLEAR_AND_SPECIFIC_WORK_LIMIT` in `web/lib/score-utils.ts`): a page with more than three cards that need work scores at most 84. The validator applies it after every other check. The cards stand and the number comes down, with no refusal and no second call to the model, because which way to mend it is never in doubt. A posting read applies it to the saved score as well: a saved 86 over a read with four or more such cards shows 84.
+
+Run over every read above, it lowers those three to 84 and changes no other. The saved golden run and the repeat run replay with the same counts as before (21 pass, 2 warnings, 0 failures; 38, 2, 0).
+
+It runs one way. Few cards do not make a page Clear and specific: of 337 saved reads at 70 to 84, 205 carry three or fewer.
+
+A held score is logged as `llm.response.score_held` with the number the read gave, so how often it applies can be counted from production.
+
+What it leaves:
+
+- The words of a held read. The 85 read of the UX director says "Your resume is already in good shape to send" above seven cards that need work, and carries two upgrade cards, which the prompt reserves for a strong resume. Holding the score makes the band agree with the cards; the write-up was still written by a read that thought the page was stronger. Changing that means a prompt change or a second call, and neither was made.
+- Three or four. Nothing in the record sits between three cards and five, so the data does not choose between a limit of three and a limit of four. Three is one more than the prompt's own "one or two".
+- Pages with three or fewer cards that sit near 85 can still land either side of it.
+- A profile review uses the same validator and its prompt uses the same words for the band ("One or two parts still hide a detail"), so the rule holds there too. Only six profile reads are saved, one in the band with no card that needs work.
+
 ## What this does not show
 
 - Ten resumes, all synthetic, one prompt, one day. 5 is the widest gap seen in 60 pairs plus the earlier runs and the live reads. It is not a bound: a wider gap can happen and would be announced.
 - A real improvement of 5 points or fewer is no longer announced as a number. From one pair of reads it can't be told from a re-read.
-- The first score is as unsteady as it was. Steadying it means scoring twice, or tying the bands below the top to the cards in code. Neither was done; the second is a judgment change that needs its own evaluation.
+- Inside a band the first score is as unsteady as it was. The one crossing this record shows on an unchanged page, into Clear and specific over a long list of cards, is closed by the rule above; a page can still read 78 once and 82 the next time.
 - Reports compared in the earlier format (saved before November 6) still announce any difference. No new reports are made in that format, and this measurement was not run on it.
-- No live posting read was made after the change; it is covered by unit tests.
+- One live posting read was made after the first two changes, from the 86 report: it showed 86, over seven cards that need work. That read is what prompted the rule above. No live read has been made since the rule; it is covered by unit tests and the replays.
