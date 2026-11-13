@@ -1,6 +1,6 @@
 "use client";
 
-import { PASS_SPENT_LABEL, isPassSpent } from "@/lib/billing/accountPassStatus";
+import { PASS_SPENT_LABEL, isBalanceKnown, isPassSpent } from "@/lib/billing/accountPassStatus";
 import Link from "next/link";
 import { Files, SignOut } from "@phosphor-icons/react";
 import { SettingsIcon } from "@/components/ui/settings";
@@ -77,7 +77,7 @@ export function UserNav({
                                 {user.paidUsesLeft || 0} {(user.paidUsesLeft || 0) === 1 ? "report" : "reports"} left on your pass
                             </span>
                         )}
-                        {(user.membership === "free" || !user.membership) && (
+                        {(user.membership === "free" || !user.membership) && isBalanceKnown(user) && (
                             user.freeUsesLeft !== undefined && user.freeUsesLeft > 0
                                 ? <span className="text-success">{user.freeUsesLeft === 1 ? "Free report available" : `${user.freeUsesLeft} free reports available`}</span>
                                 : <span className="text-muted-foreground">{isPassSpent(user) ? PASS_SPENT_LABEL : "Free report used"}</span>

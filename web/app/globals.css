@@ -883,7 +883,8 @@
   .app-shell-header {
     @apply sticky top-0 z-50 border-b;
     border-color: hsl(var(--line));
-    background: hsl(var(--surface-page) / 0.96);
+    /* Opaque: at 96% with no blur, the page's text showed faintly through the bar as it scrolled under. */
+    background: hsl(var(--surface-page));
   }
 
   .app-shell-header::before {

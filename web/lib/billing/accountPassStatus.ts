@@ -22,6 +22,31 @@ export function isPassSpent(user: { membership?: string | null; postingReads?: b
 /** What a spent pass is called wherever the balance is shown. */
 export const PASS_SPENT_LABEL = "No reports left on your pass";
 
+type BalanceUser = { membership?: string | null; paidUsesLeft?: number | null; freeUsesLeft?: number | null; postingReads?: boolean | null };
+
+/**
+ * The session hook learns who is signed in a moment before it learns what they have left. Until one of the
+ * two reads has answered, there is no balance to state: a pass holder was shown "0 free reports left" for
+ * about a second on every load of My reports (live check, November 13, 2026).
+ */
+export function isBalanceKnown(user: BalanceUser | null | undefined): boolean {
+  return Boolean(user) && (user?.membership != null || user?.freeUsesLeft != null);
+}
+
+/** What a signed-in account has left, in the words My reports and Settings both use. Null while it isn't known. */
+export function accountBalanceLine(user: BalanceUser | null | undefined): string | null {
+  if (!user || !isBalanceKnown(user)) return null;
+  if (user.membership === "lifetime") return "Lifetime access";
+  if (user.membership === "monthly") return "Monthly plan";
+  if (user.membership === "credit") {
+    const paid = Number(user.paidUsesLeft || 0);
+    return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
+  }
+  if (isPassSpent(user)) return PASS_SPENT_LABEL;
+  const free = Number(user.freeUsesLeft || 0);
+  return `${free} free report${free === 1 ? "" : "s"} left`;
+}
+
 export function readAuthoritativePassAccess(
   httpOk: boolean,
   payload: { ok?: unknown; passes?: unknown },

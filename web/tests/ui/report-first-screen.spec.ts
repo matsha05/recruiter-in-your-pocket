@@ -77,8 +77,11 @@ test.describe("the report's first screen on a phone", () => {
     await expect(page.getByTestId("report-header-row")).toBeInViewport({ ratio: 1 });
     await expect(page.getByTestId("worklist-score")).toHaveText(String(sampleReport.score));
     await expect(page.getByTestId("score-band")).toBeInViewport({ ratio: 1 });
-    await expect(page.locator("#section-first-impression h1")).toHaveText(sampleReport.verdict);
+    // The verdict's first sentence is the heading; the rest reads on under it (November 12, 2026).
+    const sampleVerdict = splitVerdict(sampleReport.verdict);
+    await expect(page.locator("#section-first-impression h1")).toHaveText(sampleVerdict.lead);
     await expect(page.locator("#section-first-impression h1")).toBeInViewport({ ratio: 1 });
+    if (sampleVerdict.rest) await expect(page.getByTestId("worklist-verdict-rest")).toHaveText(sampleVerdict.rest);
     await expect(page.getByTestId("first-pass-role")).toHaveText(sampleReport.fit.roles[0]);
     await expect(page.getByTestId("first-pass-role")).toBeInViewport({ ratio: 1 });
     await expect(page.getByTestId("worklist-card")).toHaveCount(sampleReport.cards.length);

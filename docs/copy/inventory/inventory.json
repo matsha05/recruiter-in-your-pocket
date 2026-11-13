@@ -3,15 +3,15 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3035,
-    "unique_strings": 2533
+    "strings": 3031,
+    "unique_strings": 2531
   },
   "by_moment": {
     "research": 990,
-    "account": 471,
+    "account": 463,
     "marketing": 411,
     "report": 330,
-    "pricing": 219,
+    "pricing": 223,
     "upload": 123,
     "legal": 113,
     "extension": 98,
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 101,
+      "line": 105,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 118,
+      "line": 122,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 127,
+      "line": 131,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 133,
+      "line": 137,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 139,
+      "line": 143,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 150,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -28502,53 +28502,9 @@
       "table": "reports"
     },
     {
-      "text": "Lifetime access",
-      "kind": "return",
-      "line": 76,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "Monthly plan",
-      "kind": "return",
-      "line": 77,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
-      "kind": "return",
-      "line": 80,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
-      "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
-      "kind": "return",
-      "line": 84,
-      "file": "web/components/reports/ReportHistoryList.tsx",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "account",
-      "table": "reports"
-    },
-    {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 91,
+      "line": 79,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28559,7 +28515,7 @@
     {
       "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 107,
+      "line": 95,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28570,7 +28526,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 124,
+      "line": 112,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28581,7 +28537,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 113,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28592,7 +28548,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 128,
+      "line": 116,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28603,7 +28559,7 @@
     {
       "text": "Since version 1",
       "kind": "jsx-text",
-      "line": 164,
+      "line": 152,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28614,7 +28570,7 @@
     {
       "text": "Opening both reports…",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 174,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28625,7 +28581,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 174,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28636,7 +28592,7 @@
     {
       "text": "Opening both reports…",
       "kind": "const",
-      "line": 186,
+      "line": 174,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28647,7 +28603,7 @@
     {
       "text": "See what changed",
       "kind": "const",
-      "line": 186,
+      "line": 174,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28658,7 +28614,7 @@
     {
       "text": "Opening both reports…",
       "kind": "attr:loadingLabel",
-      "line": 189,
+      "line": 177,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28669,7 +28625,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 190,
+      "line": 178,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28680,7 +28636,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 217,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28691,7 +28647,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 217,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28702,7 +28658,7 @@
     {
       "text": "Resume against a posting",
       "kind": "const",
-      "line": 217,
+      "line": 205,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28713,7 +28669,7 @@
     {
       "text": "· Version",
       "kind": "jsx-text",
-      "line": 219,
+      "line": 207,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28724,7 +28680,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 265,
+      "line": 253,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28735,7 +28691,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 261,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28746,7 +28702,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 271,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28757,7 +28713,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 281,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28768,7 +28724,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 302,
+      "line": 290,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28779,7 +28735,7 @@
     {
       "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 329,
+      "line": 317,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -34937,46 +34893,7 @@
       "table": "settings"
     },
     {
-      "text": "Lifetime access",
-      "kind": "const",
-      "line": 419,
-      "file": "web/components/workspace/SettingsClient.tsx",
-      "routes": [
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching"
-      ],
-      "moment": "account",
-      "table": "settings"
-    },
-    {
-      "text": "Monthly plan",
-      "kind": "const",
-      "line": 421,
-      "file": "web/components/workspace/SettingsClient.tsx",
-      "routes": [
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching"
-      ],
-      "moment": "account",
-      "table": "settings"
-    },
-    {
-      "text": "{user.paidUsesLeft || 0} {(user.paidUsesLeft || 0) …} left on your pass",
-      "kind": "const",
-      "line": 423,
-      "file": "web/components/workspace/SettingsClient.tsx",
-      "routes": [
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching"
-      ],
-      "moment": "account",
-      "table": "settings"
-    },
-    {
-      "text": "{user?.freeUsesLeft || 0} free report{(user?.freeUsesLeft || 0)…} left",
+      "text": "{Math.max(0, Number(passFo…} remaining",
       "kind": "const",
       "line": 426,
       "file": "web/components/workspace/SettingsClient.tsx",
@@ -34989,22 +34906,9 @@
       "table": "settings"
     },
     {
-      "text": "{Math.max(0, Number(passFo…} remaining",
-      "kind": "const",
-      "line": 434,
-      "file": "web/components/workspace/SettingsClient.tsx",
-      "routes": [
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching"
-      ],
-      "moment": "account",
-      "table": "settings"
-    },
-    {
       "text": "No renewal",
       "kind": "const",
-      "line": 440,
+      "line": 432,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35017,7 +34921,7 @@
     {
       "text": "Renews on {passExpiryDate}",
       "kind": "const",
-      "line": 443,
+      "line": 435,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35030,7 +34934,7 @@
     {
       "text": "Expires on {passExpiryDate}",
       "kind": "const",
-      "line": 446,
+      "line": 438,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35043,7 +34947,7 @@
     {
       "text": "Opening your settings",
       "kind": "attr:title",
-      "line": 457,
+      "line": 449,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35056,7 +34960,7 @@
     {
       "text": "Loading account settings…",
       "kind": "jsx-text",
-      "line": 461,
+      "line": 453,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35069,7 +34973,7 @@
     {
       "text": "Sign in to open settings",
       "kind": "jsx-text",
-      "line": 480,
+      "line": 472,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35082,7 +34986,7 @@
     {
       "text": "Sign in",
       "kind": "jsx-text",
-      "line": 485,
+      "line": 477,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35095,7 +34999,7 @@
     {
       "text": "Back to workspace",
       "kind": "jsx-text",
-      "line": 492,
+      "line": 484,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35108,7 +35012,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 531,
+      "line": 525,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35121,7 +35025,7 @@
     {
       "text": "Settings sections",
       "kind": "attr:aria-label",
-      "line": 539,
+      "line": 533,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35134,7 +35038,7 @@
     {
       "text": "Saving…",
       "kind": "key:label",
-      "line": 579,
+      "line": 573,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35147,7 +35051,7 @@
     {
       "text": "Your data",
       "kind": "jsx-text",
-      "line": 589,
+      "line": 583,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35160,7 +35064,7 @@
     {
       "text": "Your reports, passes, receipts and profile, as a file.",
       "kind": "jsx-text",
-      "line": 590,
+      "line": 584,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35173,7 +35077,7 @@
     {
       "text": "Preparing export…",
       "kind": "key:label",
-      "line": 598,
+      "line": 592,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35186,7 +35090,7 @@
     {
       "text": "Delete account",
       "kind": "jsx-text",
-      "line": 603,
+      "line": 597,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35199,7 +35103,7 @@
     {
       "text": "Your reports and your account go with it. Nothing comes back.",
       "kind": "jsx-text",
-      "line": 604,
+      "line": 598,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35212,7 +35116,7 @@
     {
       "text": "Deleting…",
       "kind": "key:label",
-      "line": 612,
+      "line": 606,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35225,7 +35129,7 @@
     {
       "text": "Job matching",
       "kind": "jsx-text",
-      "line": 622,
+      "line": 616,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35238,7 +35142,7 @@
     {
       "text": "Your pass",
       "kind": "jsx-text",
-      "line": 631,
+      "line": 625,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35251,7 +35155,7 @@
     {
       "text": "{Number(activePass.uses_re…} reports left on your pass, one sheet each",
       "kind": "attr:label",
-      "line": 634,
+      "line": 628,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35264,7 +35168,7 @@
     {
       "text": "Purchases are tied to",
       "kind": "jsx-text",
-      "line": 637,
+      "line": 631,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35277,7 +35181,7 @@
     {
       "text": "Restore access",
       "kind": "key:label",
-      "line": 646,
+      "line": 640,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35290,7 +35194,7 @@
     {
       "text": "Checking access…",
       "kind": "key:label",
-      "line": 646,
+      "line": 640,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35303,7 +35207,7 @@
     {
       "text": "Manage legacy plan",
       "kind": "key:label",
-      "line": 654,
+      "line": 648,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35316,7 +35220,7 @@
     {
       "text": "Opening billing…",
       "kind": "key:label",
-      "line": 654,
+      "line": 648,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35329,7 +35233,7 @@
     {
       "text": "We couldn&apos;t find billing records for this email. If you used a different email at checkout, sign in with that email and choose Restore access.",
       "kind": "jsx-text",
-      "line": 660,
+      "line": 654,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35342,7 +35246,7 @@
     {
       "text": "More reports",
       "kind": "jsx-text",
-      "line": 668,
+      "line": 662,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35355,7 +35259,7 @@
     {
       "text": "Five more over 90 days, one payment, no renewal.",
       "kind": "jsx-text",
-      "line": 669,
+      "line": 663,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35368,7 +35272,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:label",
-      "line": 677,
+      "line": 671,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35381,7 +35285,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 677,
+      "line": 671,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35394,7 +35298,7 @@
     {
       "text": "Job Search Pass",
       "kind": "jsx-text",
-      "line": 683,
+      "line": 677,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35407,7 +35311,7 @@
     {
       "text": "Five sheets of paper: the Job Search Pass",
       "kind": "attr:label",
-      "line": 685,
+      "line": 679,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35420,7 +35324,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 690,
+      "line": 684,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35433,7 +35337,7 @@
     {
       "text": "Loading…",
       "kind": "jsx-text",
-      "line": 701,
+      "line": 695,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35446,7 +35350,7 @@
     {
       "text": "Purchase history could not load.",
       "kind": "jsx-text",
-      "line": 705,
+      "line": 699,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35459,7 +35363,7 @@
     {
       "text": "We couldn&apos;t retrieve your purchases. Try again to see the list.",
       "kind": "jsx-text",
-      "line": 706,
+      "line": 700,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35472,7 +35376,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 708,
+      "line": 702,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35485,7 +35389,7 @@
     {
       "text": "No purchases yet. If you already paid, choose Restore access above.",
       "kind": "jsx-text",
-      "line": 714,
+      "line": 708,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35498,7 +35402,7 @@
     {
       "text": "{uses} remaining",
       "kind": "const",
-      "line": 725,
+      "line": 719,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35511,7 +35415,7 @@
     {
       "text": "No renewal",
       "kind": "jsx-text",
-      "line": 733,
+      "line": 727,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35524,7 +35428,7 @@
     {
       "text": "Loading…",
       "kind": "jsx-text",
-      "line": 751,
+      "line": 745,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35537,7 +35441,7 @@
     {
       "text": "Receipts could not load.",
       "kind": "jsx-text",
-      "line": 755,
+      "line": 749,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35550,7 +35454,7 @@
     {
       "text": "Try again. If you need an invoice now, email support@recruiterinyourpocket.com.",
       "kind": "jsx-text",
-      "line": 756,
+      "line": 750,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35563,7 +35467,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 758,
+      "line": 752,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35576,7 +35480,7 @@
     {
       "text": "No receipts found for this account. If you recently paid, try Refresh.",
       "kind": "jsx-text",
-      "line": 763,
+      "line": 757,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35589,7 +35493,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 774,
+      "line": 768,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35602,7 +35506,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 775,
+      "line": 769,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35615,7 +35519,7 @@
     {
       "text": "Loading…",
       "kind": "key:label",
-      "line": 784,
+      "line": 778,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35628,7 +35532,7 @@
     {
       "text": "Where should we send your receipt?",
       "kind": "jsx-text",
-      "line": 796,
+      "line": 790,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35641,7 +35545,7 @@
     {
       "text": "We will link access to this email.",
       "kind": "jsx-text",
-      "line": 797,
+      "line": 791,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35654,7 +35558,7 @@
     {
       "text": "Billing email",
       "kind": "attr:aria-label",
-      "line": 808,
+      "line": 802,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35667,7 +35571,7 @@
     {
       "text": "Continue to checkout",
       "kind": "key:label",
-      "line": 818,
+      "line": 812,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35680,7 +35584,7 @@
     {
       "text": "Opening checkout…",
       "kind": "key:label",
-      "line": 818,
+      "line": 812,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35693,7 +35597,7 @@
     {
       "text": "Delete your account?",
       "kind": "attr:title",
-      "line": 831,
+      "line": 825,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -35706,7 +35610,7 @@
     {
       "text": "This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone.",
       "kind": "attr:description",
-      "line": 832,
+      "line": 826,
       "file": "web/components/workspace/SettingsClient.tsx",
       "routes": [
         "/settings/account",
@@ -39179,6 +39083,382 @@
       "text": "No reports left on your pass",
       "kind": "const",
       "line": 23,
+      "file": "web/lib/billing/accountPassStatus.ts",
+      "routes": [
+        "/",
+        "/auth",
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/dashboard",
+        "/extension",
+        "/guides",
+        "/guides/offer-negotiation",
+        "/guides/tech-offer-negotiation",
+        "/guides/tools/comp-calculator",
+        "/help",
+        "/jobs",
+        "/jobs/[id]",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/pricing",
+        "/privacy",
+        "/purchase/confirmed",
+        "/purchase/restore",
+        "/reports",
+        "/reports/[id]",
+        "/research",
+        "/research/asking-for-a-referral",
+        "/research/ats",
+        "/research/ats-myths",
+        "/research/automation-and-bias",
+        "/research/automation-filter-points",
+        "/research/bias-limits-optimization",
+        "/research/career-breaks",
+        "/research/gaps-and-pivots",
+        "/research/hiring-discrimination-meta-analysis",
+        "/research/how-people-scan",
+        "/research/how-recruiters-read",
+        "/research/human-vs-algorithm",
+        "/research/impact",
+        "/research/linkedin-visibility",
+        "/research/linkedin-vs-resume",
+        "/research/offer",
+        "/research/page-two-gate",
+        "/research/quantifying-impact",
+        "/research/read",
+        "/research/recruiter-search-behavior",
+        "/research/referral-advantage",
+        "/research/referral-advantage-quantified",
+        "/research/referrals",
+        "/research/resume-error-tax",
+        "/research/resume-length-myths",
+        "/research/salary-anchors",
+        "/research/salary-history-bans",
+        "/research/signal-vs-clarity",
+        "/research/skills-based-hiring",
+        "/research/skills-first-promise-reality",
+        "/research/social-screening",
+        "/research/spelling-errors-impact",
+        "/research/star-method",
+        "/research/story",
+        "/research/structured-interviews-why-star",
+        "/research/who-you-are",
+        "/research/writing-quality-hire-probability",
+        "/resources",
+        "/resources/offer-negotiation",
+        "/resources/tech-offer-negotiation",
+        "/resources/tools/comp-calculator",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/settings/support-reply/[emailId]",
+        "/signin",
+        "/status",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
+    },
+    {
+      "text": "Lifetime access",
+      "kind": "return",
+      "line": 39,
+      "file": "web/lib/billing/accountPassStatus.ts",
+      "routes": [
+        "/",
+        "/auth",
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/dashboard",
+        "/extension",
+        "/guides",
+        "/guides/offer-negotiation",
+        "/guides/tech-offer-negotiation",
+        "/guides/tools/comp-calculator",
+        "/help",
+        "/jobs",
+        "/jobs/[id]",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/pricing",
+        "/privacy",
+        "/purchase/confirmed",
+        "/purchase/restore",
+        "/reports",
+        "/reports/[id]",
+        "/research",
+        "/research/asking-for-a-referral",
+        "/research/ats",
+        "/research/ats-myths",
+        "/research/automation-and-bias",
+        "/research/automation-filter-points",
+        "/research/bias-limits-optimization",
+        "/research/career-breaks",
+        "/research/gaps-and-pivots",
+        "/research/hiring-discrimination-meta-analysis",
+        "/research/how-people-scan",
+        "/research/how-recruiters-read",
+        "/research/human-vs-algorithm",
+        "/research/impact",
+        "/research/linkedin-visibility",
+        "/research/linkedin-vs-resume",
+        "/research/offer",
+        "/research/page-two-gate",
+        "/research/quantifying-impact",
+        "/research/read",
+        "/research/recruiter-search-behavior",
+        "/research/referral-advantage",
+        "/research/referral-advantage-quantified",
+        "/research/referrals",
+        "/research/resume-error-tax",
+        "/research/resume-length-myths",
+        "/research/salary-anchors",
+        "/research/salary-history-bans",
+        "/research/signal-vs-clarity",
+        "/research/skills-based-hiring",
+        "/research/skills-first-promise-reality",
+        "/research/social-screening",
+        "/research/spelling-errors-impact",
+        "/research/star-method",
+        "/research/story",
+        "/research/structured-interviews-why-star",
+        "/research/who-you-are",
+        "/research/writing-quality-hire-probability",
+        "/resources",
+        "/resources/offer-negotiation",
+        "/resources/tech-offer-negotiation",
+        "/resources/tools/comp-calculator",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/settings/support-reply/[emailId]",
+        "/signin",
+        "/status",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
+    },
+    {
+      "text": "Monthly plan",
+      "kind": "return",
+      "line": 40,
+      "file": "web/lib/billing/accountPassStatus.ts",
+      "routes": [
+        "/",
+        "/auth",
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/dashboard",
+        "/extension",
+        "/guides",
+        "/guides/offer-negotiation",
+        "/guides/tech-offer-negotiation",
+        "/guides/tools/comp-calculator",
+        "/help",
+        "/jobs",
+        "/jobs/[id]",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/pricing",
+        "/privacy",
+        "/purchase/confirmed",
+        "/purchase/restore",
+        "/reports",
+        "/reports/[id]",
+        "/research",
+        "/research/asking-for-a-referral",
+        "/research/ats",
+        "/research/ats-myths",
+        "/research/automation-and-bias",
+        "/research/automation-filter-points",
+        "/research/bias-limits-optimization",
+        "/research/career-breaks",
+        "/research/gaps-and-pivots",
+        "/research/hiring-discrimination-meta-analysis",
+        "/research/how-people-scan",
+        "/research/how-recruiters-read",
+        "/research/human-vs-algorithm",
+        "/research/impact",
+        "/research/linkedin-visibility",
+        "/research/linkedin-vs-resume",
+        "/research/offer",
+        "/research/page-two-gate",
+        "/research/quantifying-impact",
+        "/research/read",
+        "/research/recruiter-search-behavior",
+        "/research/referral-advantage",
+        "/research/referral-advantage-quantified",
+        "/research/referrals",
+        "/research/resume-error-tax",
+        "/research/resume-length-myths",
+        "/research/salary-anchors",
+        "/research/salary-history-bans",
+        "/research/signal-vs-clarity",
+        "/research/skills-based-hiring",
+        "/research/skills-first-promise-reality",
+        "/research/social-screening",
+        "/research/spelling-errors-impact",
+        "/research/star-method",
+        "/research/story",
+        "/research/structured-interviews-why-star",
+        "/research/who-you-are",
+        "/research/writing-quality-hire-probability",
+        "/resources",
+        "/resources/offer-negotiation",
+        "/resources/tech-offer-negotiation",
+        "/resources/tools/comp-calculator",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/settings/support-reply/[emailId]",
+        "/signin",
+        "/status",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
+    },
+    {
+      "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
+      "kind": "return",
+      "line": 43,
+      "file": "web/lib/billing/accountPassStatus.ts",
+      "routes": [
+        "/",
+        "/auth",
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/dashboard",
+        "/extension",
+        "/guides",
+        "/guides/offer-negotiation",
+        "/guides/tech-offer-negotiation",
+        "/guides/tools/comp-calculator",
+        "/help",
+        "/jobs",
+        "/jobs/[id]",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/pricing",
+        "/privacy",
+        "/purchase/confirmed",
+        "/purchase/restore",
+        "/reports",
+        "/reports/[id]",
+        "/research",
+        "/research/asking-for-a-referral",
+        "/research/ats",
+        "/research/ats-myths",
+        "/research/automation-and-bias",
+        "/research/automation-filter-points",
+        "/research/bias-limits-optimization",
+        "/research/career-breaks",
+        "/research/gaps-and-pivots",
+        "/research/hiring-discrimination-meta-analysis",
+        "/research/how-people-scan",
+        "/research/how-recruiters-read",
+        "/research/human-vs-algorithm",
+        "/research/impact",
+        "/research/linkedin-visibility",
+        "/research/linkedin-vs-resume",
+        "/research/offer",
+        "/research/page-two-gate",
+        "/research/quantifying-impact",
+        "/research/read",
+        "/research/recruiter-search-behavior",
+        "/research/referral-advantage",
+        "/research/referral-advantage-quantified",
+        "/research/referrals",
+        "/research/resume-error-tax",
+        "/research/resume-length-myths",
+        "/research/salary-anchors",
+        "/research/salary-history-bans",
+        "/research/signal-vs-clarity",
+        "/research/skills-based-hiring",
+        "/research/skills-first-promise-reality",
+        "/research/social-screening",
+        "/research/spelling-errors-impact",
+        "/research/star-method",
+        "/research/story",
+        "/research/structured-interviews-why-star",
+        "/research/who-you-are",
+        "/research/writing-quality-hire-probability",
+        "/resources",
+        "/resources/offer-negotiation",
+        "/resources/tech-offer-negotiation",
+        "/resources/tools/comp-calculator",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/settings/support-reply/[emailId]",
+        "/signin",
+        "/status",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "pricing",
+      "table": "shared"
+    },
+    {
+      "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
+      "kind": "return",
+      "line": 47,
       "file": "web/lib/billing/accountPassStatus.ts",
       "routes": [
         "/",
