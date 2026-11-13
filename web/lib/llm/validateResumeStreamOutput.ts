@@ -46,6 +46,17 @@ export function validateResumePayload(parsed: unknown, text: string, options?: {
   return validateResumeModelPayload(parsed, text, options);
 }
 
+/**
+ * Records a score the validator held to the cards (scoreHeldToCards), with the number the read gave. Without it a
+ * held score can't be told from one the model gave, and how often the hold applies can't be counted.
+ */
+function logScoreHeld(draft: unknown, payload: unknown, ctx: { requestId: string; route: string; userIdForLogs?: string }) {
+  const drafted = (draft as { score?: unknown } | null)?.score;
+  const kept = (payload as { score?: unknown } | null)?.score;
+  if (typeof drafted !== "number" || typeof kept !== "number" || drafted === kept) return;
+  logInfo({ msg: "llm.response.score_held", request_id: ctx.requestId, route: ctx.route, user_id: ctx.userIdForLogs, score: kept, source: `drafted_${drafted}` });
+}
+
 export async function validateResumeStreamOutput(input: {
   raw: string;
   text: string;
@@ -75,6 +86,7 @@ export async function validateResumeStreamOutput(input: {
       payload = ensureLayoutAndContentFields(
         validateResumePayload(parsedJson, input.text, input.validationOptions)
       );
+      logScoreHeld(parsedJson, payload, input);
     }
     return { payload, replacementRaw: null as string | null, repairMs: 0 };
   } catch (error: any) {
@@ -134,6 +146,7 @@ export async function validateResumeStreamOutput(input: {
       const payload = ensureLayoutAndContentFields(
         validateResumePayload(repaired.parsed, input.text, input.validationOptions)
       );
+      logScoreHeld(repaired.parsed, payload, input);
       recordLaunchSignal("riyp.report.repair", { result: "completed" });
       logInfo({
         msg: "llm.response.repair_completed",
