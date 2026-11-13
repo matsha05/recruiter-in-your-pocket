@@ -90,6 +90,14 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
   const same = compareWorklists(mock, mock);
   assert.equal(same.title, "The same lines are on the list.");
   assert.equal(same.sum, null);
+  // A page read twice lands up to 5 apart, so the score is said only past that: never "Down 3" on the model's wobble.
+  for (const wobble of [-5, -3, 1, 4, 5]) {
+    const reread = compareWorklists(mock, { ...later, score: mock.score + wobble });
+    assert.equal(reread.sum, null, `${wobble} is within a re-read`);
+    assert.equal(reread.title, "1 line is off the list.", "the lines still say what changed");
+  }
+  assert.equal(compareWorklists(mock, { ...later, score: mock.score + 6 }).sum, "Up 6 since last time. That's the right direction!");
+  assert.equal(compareWorklists(mock, { ...later, score: mock.score - 6 }).sum, "Down 6 since last time.");
   const clean = compareWorklists(mock, { ...mock, score: 90, cards: [] });
   assert.equal(clean.title, "Every line you worked on is off the list.");
 }

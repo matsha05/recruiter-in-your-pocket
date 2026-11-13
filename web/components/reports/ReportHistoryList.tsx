@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { scoreBandFor } from "@/lib/reports/score-band";
+import { scoreMoved } from "@/lib/score-utils";
 import { Button } from "@/components/ui/button";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -154,7 +155,7 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
         {report.earlierShape ? <p className={styles.journeyLines}>{EARLIER_SHAPE_NOTE}</p> : null}
         {delta !== null && !report.earlierShape ? (
           <p className={styles.journeyScore}>
-            <span data-up={delta > 0 || undefined}>{revisionScoreLabel(delta, scoreBandFor(first.score ?? 0).name, scoreBandFor(report.score ?? 0).name)}</span>
+            <span data-up={(delta > 0 && scoreMoved(delta)) || undefined}>{revisionScoreLabel(delta, scoreBandFor(first.score ?? 0).name, scoreBandFor(report.score ?? 0).name)}</span>
             {step ? <span>{step}</span> : null}
           </p>
         ) : null}
@@ -186,7 +187,7 @@ export function ReportHistoryList({ initialReports: reports, pass = null }: { in
    */
   const standing = (report: ReportHistoryItem) => {
     const moved = !versions.get(report.id) && report.change
-      ? { up: report.change.delta > 0, label: scoreChangeLabel(report.change, formatReportDate(report.change.since), formatReportDate(report.createdAt)) }
+      ? { up: report.change.delta > 0 && scoreMoved(report.change.delta), label: scoreChangeLabel(report.change, formatReportDate(report.change.since), formatReportDate(report.createdAt)) }
       : null;
     if (!report.progress && !moved) return null;
     return (

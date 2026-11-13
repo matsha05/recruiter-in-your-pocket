@@ -9,11 +9,15 @@ export const JORDAN_RECHECK = {
     before: "Introduced monthly renewal-risk reviews across the portfolio",
     after: "Ran quarterly business reviews with customer leadership teams",
     change: 6,
-    /** Score for each version, used only for bar length; the page prints changes, never the score (D5). */
+    /**
+     * Score for each version, used only for bar length; the page prints changes, never the score (D5). Each step
+     * is 6: the app announces a change only past what two reads of one page produce (scoreMoved), and the sample
+     * shows nothing the app wouldn't say.
+     */
     versions: [
         { label: "First report", score: 80 },
         { label: "Revision 1", score: 86 },
-        { label: "Revision 2", score: 91 },
+        { label: "Revision 2", score: 92 },
     ],
 } as const;
 

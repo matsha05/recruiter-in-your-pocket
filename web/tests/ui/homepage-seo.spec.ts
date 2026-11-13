@@ -55,7 +55,7 @@ test.describe("homepage feedback and SEO contract", () => {
     const progress = homepage.getByTestId("landing-progress-beat");
     await expect(progress.getByRole("heading", { level: 2, name: "Fix it. Then check it again." })).toBeVisible();
     await expect(progress).toContainText("Changed. Up 6.");
-    await expect(progress).toContainText("Up 11 since the first report.");
+    await expect(progress).toContainText("Up 12 since the first report.");
     await expect(progress).not.toContainText("fixed");
     const truths = homepage.locator("#what-we-look-for");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we fix, line by line.");

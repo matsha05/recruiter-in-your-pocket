@@ -67,7 +67,7 @@ async function run() {
   resolver._resolveFilename = function resolveAlias(this: unknown, request: string, ...rest: unknown[]) {
     return resolveFilename.call(this, request.startsWith("@/") ? path.join(process.cwd(), request.slice(2)) : request, ...rest);
   };
-  const { isSameResume, quotedLinesOf, reservePostingRead } = await import("../lib/reports/posting-read");
+  const { isSameResume, quotedLinesOf, reservePostingRead, savedScoreOf, withSavedScore } = await import("../lib/reports/posting-read");
 
   // ---- The same resume ----
   {
@@ -86,6 +86,32 @@ async function run() {
     assert.equal(isSameResume(older, RESUME), true, "an older report can be read against a posting too");
     assert.equal(isSameResume(older, RESUME.replace("public API gateway", "partner API gateway")), false);
     assert.equal(isSameResume({ score: 70, top_fixes: [older.top_fixes[1]] }, RESUME), false, "only missing-section fixes: nothing quoted, nothing vouched for");
+  }
+
+  // ---- The same resume keeps its score ----
+  // Four live reads of one resume against one posting came back 82, 82, 82 and 86 (November 12 and 13, 2026): the
+  // model scores the page again each time. The read shows the score of the report it belongs to.
+  {
+    assert.equal(savedScoreOf(report), 86);
+    assert.equal(savedScoreOf({ score: 70, top_fixes: [] }), null, "an older report's score was worked out differently, so there is none to keep");
+    assert.equal(savedScoreOf(null), null);
+
+    const read = { ...report, score: 82, score_label: "Mostly clear", content_score: 82, lifted_by_employer: false };
+    const kept = withSavedScore(read, 86);
+    assert.deepEqual([kept.score, kept.score_label, kept.content_score], [86, "Clear and specific", 86], "the saved score, with the band it sits in");
+    assert.equal(kept.cards, read.cards, "nothing else in the read changes");
+    assert.equal(read.score, 82, "the read itself is left as it was");
+    assert.equal(withSavedScore(read, 82), read, "the same score changes nothing");
+    assert.equal(withSavedScore(read, null), read, "no saved score to keep: the read's own stands");
+    assert.equal(withSavedScore(read, undefined), read);
+    assert.equal(withSavedScore({ score: 70, top_fixes: [] }, 86).score, 70, "only a worklist report keeps one");
+
+    // The top band is decided by the cards, and that outranks the saved score in both directions.
+    assert.equal(withSavedScore(read, 95).score, 82, "a saved Ready to send never sits over a card that needs work");
+    const clean = { ...read, score: 94, cards: [report.cards[2]] };
+    assert.equal(withSavedScore(clean, 86).score, 94, "a page with nothing to fix never drops below the floor");
+    assert.equal(withSavedScore(clean, 91).score, 91, "within the rules, the saved score is kept");
+    assert.equal(withSavedScore({ ...clean, lifted_by_employer: true }, 95).score, 94, "the employer lift never reaches the top band");
   }
 
   assert.equal(await refusal(reservePostingRead({ reportId: REPORT_ID, text: RESUME, hasPosting: true, userId: null, admin: passesAdmin([]) })), "POSTING_READ_SIGN_IN");
@@ -118,6 +144,9 @@ async function run() {
   assert.ok(route.indexOf("postingRead ? await reservePostingRead({") > -1, "a posting read must not reach the metered reservation");
   assert.ok(route.indexOf("postingRead ? await reservePostingRead({") < route.indexOf("for await (const ev of streamJson"), "eligibility is settled before any model call");
   assert.match(route, /entitlementKind === "posting_read"/, "a posting read is saved as a report of its own, like a rebuild");
+  assert.match(route, /const read = postingRead \? withSavedScore\(validated\.payload, grantedReservation\.savedReportScore\) : validated\.payload;/, "a posting read keeps the saved report's score");
+  assert.ok(route.indexOf("withSavedScore(validated.payload") < route.indexOf("sendPreview(read)"), "before the wait screen shows a band");
+  assert.equal((route.match(/validated\.payload/g) || []).length, 2, "and nothing downstream reads the score the model gave this time");
   assert.match(route, /\.\.\.\(unmetered \? \{\} : \{/, "a posting read says nothing about reports left");
 
   // ---- The words ----

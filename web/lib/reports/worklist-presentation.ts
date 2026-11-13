@@ -1,5 +1,6 @@
 import { QUOTED_KINDS, WORK_KINDS, type WorklistCard, type WorklistReport } from "../llm/worklist-schema";
 import { canonicalSourceIdentity } from "../llm/source-fidelity";
+import { scoreMoved } from "../score-utils";
 import type { StoredLineAnswer, StoredLineAnswers } from "./line-answers";
 import { reportDocumentKind, type ReportDocumentKind } from "./report-document";
 
@@ -385,7 +386,9 @@ function cardKey(card: WorklistCard) {
 /**
  * Compares two worklist reports on one resume the way a person would: which of the lines they worked on
  * are off the list, which are still there, and how far the score moved. A line that left the list is no
- * longer a card; that doesn't prove it's fixed, so the copy never says so.
+ * longer a card; that doesn't prove it's fixed, so the copy never says so. The score is said only when it moved
+ * by more than two reads of an unchanged page do (scoreMoved): "Down 3" after a good rewrite would be the model's
+ * wobble passed off as a result.
  */
 export function compareWorklists(previous: Pick<WorklistReport, "cards" | "score">, current: Pick<WorklistReport, "cards" | "score">, since = "last time"): WorklistComparison {
   const before = workCards(previous);
@@ -416,7 +419,7 @@ export function compareWorklists(previous: Pick<WorklistReport, "cards" | "score
     ].filter(Boolean).join(" ");
   }
   // One earned exclamation point on a real win (Matt, November 6, 2026); never on a drop.
-  const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since ${since}. That's the right direction!` : `Down ${Math.abs(delta)} since ${since}.`;
+  const sum = !scoreMoved(delta) ? null : delta > 0 ? `Up ${delta} since ${since}. That's the right direction!` : `Down ${Math.abs(delta)} since ${since}.`;
   return { gone, still, added, delta, title, intro, sum };
 }
 

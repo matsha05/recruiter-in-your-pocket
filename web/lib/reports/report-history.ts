@@ -3,6 +3,7 @@
 // Pure, so the page computes it on the server and the rows only render it.
 
 import { compareWorklists } from "./worklist-presentation";
+import { scoreMoved } from "../score-utils";
 import type { WorklistReport } from "../llm/worklist-schema";
 
 export type LineProgress = {
@@ -106,14 +107,18 @@ export function scoreChanges(reports: readonly ScoredReport[]): Map<string, Scor
 /**
  * "Up 6 since Nov 1, 2026", with both dates already formatted the way the page formats dates. When the earlier
  * report was made the same day, "since" that date reads as if nothing came before it, so the row says which
- * report instead: "Down 2 from your earlier report that day".
+ * report instead: "Down 8 from your earlier report that day". A difference no bigger than two reads of one page
+ * produce (scoreMoved) is not a change, and the row says so: "About the same score as Nov 1, 2026".
  */
 export function scoreChangeLabel(change: ScoreChange, sinceLabel: string, ownLabel?: string): string {
   const sameDay = ownLabel !== undefined && ownLabel === sinceLabel;
+  if (!scoreMoved(change.delta)) return `${aboutTheSame(change.delta)} as ${sameDay ? "your earlier report that day" : sinceLabel}`;
   if (change.delta > 0) return sameDay ? `Up ${change.delta} from your earlier report that day` : `Up ${change.delta} since ${sinceLabel}`;
-  if (change.delta < 0) return sameDay ? `Down ${Math.abs(change.delta)} from your earlier report that day` : `Down ${Math.abs(change.delta)} since ${sinceLabel}`;
-  return sameDay ? "Same score as your earlier report that day" : `Same score as ${sinceLabel}`;
+  return sameDay ? `Down ${Math.abs(change.delta)} from your earlier report that day` : `Down ${Math.abs(change.delta)} since ${sinceLabel}`;
 }
+
+/** Two scores that aren't apart by more than a re-read: the same, or about the same. Never "up" or "down". */
+const aboutTheSame = (delta: number) => (delta === 0 ? "Same score" : "About the same score");
 
 // ---- Versions of one resume (Nov 11, 2026) ----
 // A report run as a re-check of a saved report records which report it revises (migration 026). Reports joined
@@ -199,11 +204,11 @@ export function reportVersions<T extends LinkedReport>(groups: readonly (readonl
   return versions;
 }
 
-/** "Up 6 from version 2". */
+/** "Up 6 from version 2", or "About the same score as version 2" when the difference is no more than a re-read's. */
 export function versionChangeLabel(change: VersionChange): string {
+  if (!scoreMoved(change.delta)) return `${aboutTheSame(change.delta)} as version ${change.from}`;
   if (change.delta > 0) return `Up ${change.delta} from version ${change.from}`;
-  if (change.delta < 0) return `Down ${Math.abs(change.delta)} from version ${change.from}`;
-  return `Same score as version ${change.from}`;
+  return `Down ${Math.abs(change.delta)} from version ${change.from}`;
 }
 
 /** "2 earlier versions". */
@@ -250,9 +255,12 @@ export function revisionProgressLabel(progress: RevisionProgress): string {
 
 /**
  * How the score moved across the resume's versions, with the bands when the band changed:
- * "Up 17, from Not ready yet to Mostly clear." The number itself never appears, only the change.
+ * "Up 17, from Not ready yet to Mostly clear." The number itself never appears, only the change. A difference
+ * no bigger than a re-read's is "About the same score.", with no band named: a score that sits near a band's edge
+ * can land on either side of it on two reads of one page.
  */
 export function revisionScoreLabel(delta: number, bandBefore: string, bandNow: string): string {
-  const moved = delta > 0 ? `Up ${delta}` : delta < 0 ? `Down ${Math.abs(delta)}` : "Same score";
+  if (!scoreMoved(delta)) return `${aboutTheSame(delta)}.`;
+  const moved = delta > 0 ? `Up ${delta}` : `Down ${Math.abs(delta)}`;
   return bandBefore === bandNow ? `${moved}.` : `${moved}, from ${bandBefore} to ${bandNow}.`;
 }

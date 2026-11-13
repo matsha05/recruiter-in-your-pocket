@@ -4,7 +4,8 @@ import { GenerationAccessError } from "../billing/generationAccess";
 import type { GenerationAccessReservation, GenerationPassSnapshot } from "../billing/generationAccessTypes";
 import { passIncludesPostingReads } from "../billing/entitlements";
 import { containsBoundedSourceExcerpt, isExactAbsenceSentinel } from "../llm/source-fidelity";
-import { QUOTED_KINDS, isWorklistReport } from "../llm/worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, isWorklistReport } from "../llm/worklist-schema";
+import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from "../score-utils";
 import { rateLimitAsync } from "../security/rateLimit";
 import { lookupOwnedTrustedReport } from "./generated-report-store";
 import { POSTING_READS_PER_DAY } from "./posting-read-terms";
@@ -46,6 +47,33 @@ export function quotedLinesOf(report: unknown): string[] {
 export function isSameResume(report: unknown, text: string) {
   const quoted = quotedLinesOf(report);
   return quoted.length > 0 && quoted.every((line) => containsBoundedSourceExcerpt(text, line));
+}
+
+/** A saved worklist report's score. An older report's score was worked out differently, so it has none to keep. */
+export function savedScoreOf(report: unknown): number | null {
+  return isWorklistReport(report) && Number.isInteger(report.score) ? report.score : null;
+}
+
+/**
+ * A posting read keeps the score of the report it belongs to. The score is the resume's ("a posting that doesn't
+ * fit changes the write-up and the fit note, not the score", the prompt), and a posting read runs only on the
+ * resume that report was written on. But the model scores the page again on every read, and two reads of one
+ * page land a few points apart: on November 12 and 13, 2026 four reads of one resume against one posting came
+ * back 82, 82, 82 and 86, which is a different band. A person holding an 82 would have seen their score change
+ * with nothing changed.
+ *
+ * The one thing that outranks the saved score is the top band's rule, which the cards decide: a page with a card
+ * that needs work is never Ready to send, and a page with none never sits below the floor. When the saved score
+ * would break that against this read's cards, this read's own score stands.
+ */
+export function withSavedScore<T>(payload: T, savedScore: number | null | undefined): T {
+  if (typeof savedScore !== "number" || !isWorklistReport(payload) || payload.score === savedScore) return payload;
+  const work = payload.cards.filter((card) => WORK_KINDS.has(card.kind)).length;
+  if (savedScore >= READY_TO_SEND_SCORE && (work > 0 || payload.lifted_by_employer)) return payload;
+  if (work === 0 && payload.cards.length > 0 && savedScore < NOTHING_TO_FIX_FLOOR) return payload;
+  const kept: Record<string, unknown> = { ...payload, score: savedScore, score_label: getWorklistScoreLabel(savedScore) };
+  if (typeof kept.content_score === "number") kept.content_score = savedScore;
+  return kept as T;
 }
 
 async function activePassFor(admin: any, userId: string): Promise<GenerationPassSnapshot | null> {
@@ -113,5 +141,6 @@ export async function reservePostingRead(input: {
     anonymousCookieMeta: null,
     anonymousIdentityHash: null,
     anonymousMonthKey: null,
+    savedReportScore: savedScoreOf(source),
   };
 }

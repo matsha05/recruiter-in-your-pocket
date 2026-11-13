@@ -59,7 +59,7 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
 import { askFirstOffered, isAskFirstEnabled } from "@/lib/reports/ask-first";
 import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
-import { reservePostingRead } from "@/lib/reports/posting-read";
+import { reservePostingRead, withSavedScore } from "@/lib/reports/posting-read";
 import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
 import { withScreenerText } from "@/lib/reports/screener-text";
 import { LINKEDIN_REPORT_RESPONSE_FORMAT } from "@/lib/llm/worklist-schema";
@@ -527,11 +527,13 @@ export async function POST(request: Request) {
                 // What is final once the report has validated: the Verdict, the band and the first Critical Miss.
                 // The severity check adds Critical Misses after the first and never changes it, so the wait
                 // screen may show these now. Informational, like a stage: only "complete" is the report.
-                sendPreview(validated.payload);
+                // A posting read is the same resume read again: it keeps the saved report's score (withSavedScore).
+                const read = postingRead ? withSavedScore(validated.payload, grantedReservation.savedReportScore) : validated.payload;
+                sendPreview(read);
                 // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
                 // A profile review skips the severity check, which reads a resume report for what it missed.
-                const { payload: checkedPayload, outcome: severity } = document ? { payload: validated.payload, outcome: null } : await severityCheckReport({
-                    payload: validated.payload,
+                const { payload: checkedPayload, outcome: severity } = document ? { payload: read, outcome: null } : await severityCheckReport({
+                    payload: read,
                     mode,
                     resumeText: canonicalResumeText,
                     validationOptions: effectiveJobDescription.validationOptions,
