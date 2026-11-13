@@ -32,9 +32,9 @@ export const MAX_CARDS = 12;
 export const MAX_QUOTE_LENGTH = 200;
 /**
  * The longest quoted line a report holds: the length of the longest example a card shows under it. On a resume
- * line longer than the model can quote, a quote that stops mid-sentence is run on to the end of its sentence
+ * line longer than the model can quote, a quote that stops or starts mid-sentence is widened to its sentence
  * (quoteWithinLine), so it can pass the model's limit and never this one. A live report of November 12, 2026 ended
- * a 293-character bullet at "through innovative strategies aimed at".
+ * a 293-character bullet at "through innovative strategies aimed at"; the next one began it at "achieving".
  */
 export const MAX_LINE_LENGTH = 400;
 export const MAX_WRITE_UP_PARAGRAPHS = 3;
