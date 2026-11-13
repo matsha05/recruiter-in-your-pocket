@@ -153,6 +153,24 @@ export function resolveCardLine(line: string, resumeText: string): LineResolutio
   return { status: "missing" };
 }
 
+/**
+ * Where a quote is on the resume, when its last word may be cut short. The model's limit can close a quote inside
+ * a word: a live report of November 13, 2026 quoted a bullet as far as "executive leadership and key bu". A resume
+ * has no such word, so the quote read as not on the page, the draft was refused, the person waited through a
+ * second draft, and that draft dropped the card. A quote that isn't found is looked for again without its last
+ * word, and stands when that finds one line and the line carries the quote character for character, cut word
+ * and all. The quote that comes back ends on a whole word.
+ */
+export function locateQuote(quote: string, resumeText: string): { quote: string; resolved: LineResolution } {
+  const resolved = resolveCardLine(quote, resumeText);
+  if (resolved.status !== "missing") return { quote, resolved };
+  const whole = quote.replace(/\s+\S*$/u, "");
+  if (whole === quote) return { quote, resolved };
+  const again = resolveCardLine(whole, resumeText);
+  const copied = again.status === "resolved" && again.line.includes(canonicalSourceIdentity(quote));
+  return copied ? { quote: whole, resolved: again } : { quote, resolved };
+}
+
 const ABBREVIATION = /(?:\b(?:e\.g|i\.e|etc|vs|inc|ltd|co|corp|sr|jr|dr|mr|ms|mrs|st|no|approx|dept)|\b\p{Lu})\.$/iu;
 /** A bullet's mark. A file read can put two bullets on one line, so the mark ends a sentence wherever it sits. */
 const BULLET_MARKS = "•●◦▪▫‣⁃";

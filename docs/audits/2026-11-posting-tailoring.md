@@ -195,7 +195,17 @@ A quote that begins after a clause break rarely reads without what came before i
 
 Measured on saved output, no model call. Of the 13 quotes on long lines in the full golden run, 12 begin at a sentence and are unchanged; one began mid-clause ("directing ML Acceleration") and now starts with its sentence, 210 characters in place of 169, and goes back no further than the bullet mark that opens it. The run still scores 21 pass, 2 warnings, 0 failures. The live quote, put through the rule, comes back as the whole bullet, and the two other long-line quotes of that report (one sentence each) are unchanged.
 
-Not checked: a live report made after this second change.
+### A quote cut inside a word, November 13
+
+A second read on production, after the change above was live, showed no card on any long bullet, and took 1 minute 50 seconds where the one before took 45 seconds. The production log for the request gives the reason. The model's first draft quoted a 212-character bullet as far as "executive leadership and key bu": the limit had closed the quote inside the word "business". The validator matches a quote on whole words, so it read this one as not on the resume and refused the draft. The repair call took 52 seconds, and the second draft has no card on that role. The two reads before it both carded that role's "300% reduction" line; what else the refused draft held is not in the log.
+
+So a quote cut inside a word cost the person a minute and the report a role's worth of cards. The fix is in how a quote is found (`locateQuote` in `web/lib/llm/worklist-grounding.ts`): a quote that isn't on the resume is looked for again without its last word, and stands when that finds exactly one line and the line carries the quote character for character, cut word included. A quote whose last word is not the start of the resume's word is still refused. The quote then goes through the rules above, so a card shows it to the end of its sentence. A row of the posting's table or a line to move up or trim with such a quote is kept where it was dropped.
+
+Measured, no model call: the refused quote, put through the change, is found and shown as the whole bullet. Each of the resume's nine lines over 200 characters, cut inside a word just under 200, was refused before and is found now. The full golden run replays at 21 pass, 2 warnings, 0 failures.
+
+Not measured: how often a live draft has been refused for this reason. Production logs are kept for an hour, and the saved golden run holds only drafts that passed.
+
+Not changed: the repair call's instruction, which lets the model drop a card it cannot quote. That is a tuned prompt, and with a cut quote now found, this cause no longer reaches it.
 
 Not measured: how often a live report now shows a quote between 200 and 400 characters. The Report Lab has a layout fixture for one (`worklist-long-line`).
 
