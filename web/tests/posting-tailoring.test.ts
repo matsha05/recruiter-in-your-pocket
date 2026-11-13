@@ -200,6 +200,25 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
   assert.equal(whole.cards[0].line, bullet, "a card quotes the bullet from its first word, not from where the model's limit let it start");
   assert.equal(whole.fit.posting.covered?.[0].line, bullet);
   assert.equal(whole.fit.posting.trim?.[0].line, bullet);
+
+  // And the one after that closed a quote inside a word: "…executive leadership and key bu". Read as not on the
+  // resume, it had the draft refused and the card lost in the second draft. The quote is on the page; only its
+  // last word is cut.
+  const midWord = bullet.slice(0, bullet.indexOf("and new fields") + "and ne".length);
+  assert.ok(midWord.endsWith("and ne") && midWord.length <= MAX_QUOTE_LENGTH);
+  const cutInAWord = structuredClone(draft);
+  (cutInAWord as { cards: Array<{ line: string }> }).cards[0].line = midWord;
+  Object.assign(cutInAWord.fit.posting, { covered: [{ requirement: "Hiring across regions", line: midWord }], lead: [], trim: [{ line: midWord, why: "A good line. Nothing in this posting asks for it." }] });
+  const mended = validateWorklistPayload(cutInAWord, text, { forceGrounding: true });
+  assert.equal(mended.cards[0].line, bullet, "a quote cut inside a word is found by the words before it and shown to its sentence's end");
+  assert.equal(mended.fit.posting.covered?.[0].line, bullet, "a table row with such a quote is kept, not dropped");
+  assert.equal(mended.fit.posting.trim?.[0].line, bullet);
+
+  // A quote whose last word is not the start of the resume's word is not on the resume, cut or not.
+  const invented = structuredClone(draft);
+  (invented as { cards: Array<{ line: string }> }).cards[0].line = `${midWord.slice(0, -2)}xy`;
+  Object.assign(invented.fit.posting, { covered: [], lead: [], trim: [] });
+  assert.throws(() => validateWorklistPayload(invented, text, { forceGrounding: true }), /is not on the resume as written/u);
 }
 
 // On a line longer than a report holds (a summary pasted as one paragraph) a quote that stops mid-sentence runs on to

@@ -4,6 +4,7 @@ import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from
 import {
   bannedPhrasesIn,
   inflatesOwnership,
+  locateQuote,
   quoteWithinLine,
   replaceRetiredIdiom,
   resolveCardLine,
@@ -103,9 +104,9 @@ function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string
   for (const move of moves ?? []) {
     let line = move.line.replace(/\s+/gu, " ").trim();
     if (resumeText) {
-      const resolved = resolveCardLine(line, resumeText);
+      const { quote, resolved } = locateQuote(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved") line = quoteFor(line, resolved.line, resumeText);
+      if (resolved.status === "resolved") line = quoteFor(quote, resolved.line, resumeText);
     }
     if ([...taken, ...kept.map((item) => item.line)].some((other) => sameCardLine(other, line))) continue;
     kept.push({ line, why: normaliseProse(move.why) });
@@ -139,9 +140,9 @@ function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText:
     // those took a person's closest matches out of the table (the live walk of November 12, 2026).
     if (/\b\d+\s*\+?\s*(?:or more\s+)?years?\b/iu.test(requirement) && isDatesLine(line)) continue;
     if (resumeText) {
-      const resolved = resolveCardLine(line, resumeText);
+      const { quote, resolved } = locateQuote(line, resumeText);
       if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
-      if (resolved.status === "resolved") line = quoteFor(line, resolved.line, resumeText);
+      if (resolved.status === "resolved") line = quoteFor(quote, resolved.line, resumeText);
     }
     if (missing.some((other) => sameWords(other, requirement)) || kept.some((other) => sameWords(other.requirement, requirement))) continue;
     kept.push({ requirement, line });
@@ -283,7 +284,7 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     report.cards.forEach((card, index) => {
       const path = `cards[${index}]`;
       if (QUOTED_KINDS.has(card.kind)) {
-        const resolved = resolveCardLine(card.line, resumeText);
+        const { quote, resolved } = locateQuote(card.line, resumeText);
         if (resolved.status === "missing") {
           issues.push({ path: `${path}.line`, message: `is not on the resume as written: "${card.line}"` });
           return;
@@ -295,7 +296,7 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
         // The quote is widened to the whole resume line it sits on; on a line longer than the model can quote, a
         // quote cut mid-sentence is run on to the sentence's end (quoteFor). Never past what a report holds: a
         // line over the limit would make the saved report unreadable when it is opened again.
-        if (resolved.status === "resolved") card = { ...card, line: quoteFor(card.line, resolved.line, resumeText) };
+        if (resolved.status === "resolved") card = { ...card, line: quoteFor(quote, resolved.line, resumeText) };
       } else {
         for (const issue of ungroundedTokensInStatement(card.line, resumeText)) {
           issues.push({ path: `${path}.line`, message: `states a ${issue.kind} the resume doesn't have: "${issue.token}"` });
