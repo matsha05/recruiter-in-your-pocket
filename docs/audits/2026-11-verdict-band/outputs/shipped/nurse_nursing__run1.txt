@@ -1,0 +1,57 @@
+# nurse_nursing, run 1
+Resume: ../2026-11-first-read/resumes/fr05_nurse_no_units.txt (140 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0135; 43.1s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+Your adult hospital nursing and weekend charge work fit the direction of this medical-surgical role. I’d hesitate because I can’t tell your usual patient assignment or whether your RN license meets the North Carolina requirement.
+
+## Write-up
+It’s common for a nursing resume to list core duties the way yours does. Your Riverside and Mount Carmel roles show hospital care, but the recent lines don’t say which unit you work on or how many patients you care for. That makes it difficult to compare your experience with this medical-surgical assignment.
+
+Your Epic line is a useful model: it names both the documentation you handled and the system you used. Your BSN, RN, BLS and ACLS are easy to find, and your present role accounts for your recent work.
+
+Let’s start with the Riverside role and its first line. Add your unit, patient types and usual assignment if you can confirm them, then explain what you do as charge nurse and preceptor. Make your license status clear for this application, and bring the Epic line closer to the top.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Riverside Registered Nurse, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter can see that you care for adults, but not your unit, patient types or usual assignment. Those details matter for a medical-surgical job with a stated patient load.
+   example: Provide direct patient care for [number] adult patients with [patient conditions] on [unit] across 12-hour shifts
+   question: What unit and patient conditions do you work with, and how many patients are usually in your assignment?
+2. [line] Riverside Registered Nurse, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is central to the job, but this doesn't show the medications or responses you monitor. A concrete example would give the work more substance.
+   example: Administer [medication types] and monitor patient response for [responses monitored]
+   question: Which medications do you administer, and what patient responses do you monitor?
+3. [line] Riverside Registered Nurse, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: Discharge education fits the posting, but a recruiter can't tell what you cover with patients and families.
+   example: Educate patients and families on discharge plans, including [education topics]
+   question: What topics do you cover in discharge education?
+4. [line] Riverside Registered Nurse, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: Charge nurse is an important responsibility. The line doesn't say what you handle or how many staff you work with in that role.
+   example: Serve as charge nurse on weekends, handling [charge responsibilities] for [number and roles of staff]
+   question: What do you handle as charge nurse, and how many staff and which roles are involved?
+5. [line] Riverside Registered Nurse, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting is directly relevant here. A recruiter can't tell how many new nurses you've precepted or what you taught them.
+   example: Precept [number] new graduate nurses in [skills or duties]
+   question: How many new graduate nurses have you precepted, and what skills or duties did you teach?
+6. [line] Mount Carmel East Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: This shows surgical care, but not what you did for patients or which kinds of surgery you supported. Those details could connect this earlier role to the medical-surgical job.
+   example: Cared for patients before and after [types of surgery], including [care provided]
+   question: Which types of surgery did your patients have, and what care did you provide before and after?
+7. [keep] Mount Carmel East Registered Nurse, line 2
+   line: "Documented assessments and care plans in Epic"
+   can't tell: Keep this as a model. It pairs a recognizable nursing task with the tool you used, so a recruiter doesn't have to guess what your Epic experience involved.
+
+## Fit
+Roles: ["Registered Nurse","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, hospital nursing roles since 2019 and weekend charge duties
+Note: Your discharge education and precepting work match responsibilities in the role. The job is in Raleigh and includes night shifts and rotating weekends.
+Posting: A night-shift medical-surgical nursing role requiring an eligible RN license, certifications, acute care experience, EHR skills and a 5 to 6 patient assignment.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","Ability to manage a patient assignment of 5 to 6 patients"]

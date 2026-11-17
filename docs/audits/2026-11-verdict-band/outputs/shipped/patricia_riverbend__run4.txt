@@ -1,0 +1,53 @@
+# patricia_riverbend, run 4
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/riverbend_branch_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0235; 44.5s
+Case note: The live walk's slip: 68 and 'I'd want to talk with you'.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Your branch management work at Magnolia Community Bank fits the kind of role Riverbend is filling, and the deposit growth and team size back it up. I’d hesitate to move forward without knowing what you’ve been doing since December 2024.
+
+## Write-up
+Your Magnolia Community Bank experience lines up well with Riverbend’s branch manager role: you managed a branch, coached bankers and grew deposits. It’s common for a banking resume to list daily responsibilities this way, but the coaching, audits and customer complaints need more detail to stand out.
+
+The deposit growth line is your best model because it gives a recruiter a before and after, plus the period over which you grew it. Your progression from Personal Banker to Branch Manager is easy to follow, but the resume stops at December 2024.
+
+Let’s start with the most recent role. Add what the 11-person team handled, then give the coaching and audit work more detail. For Riverbend, also show your lending and BSA/AML experience where you can accurately do so.
+
+## Cards (6; {"dates":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia, but can’t tell what you’ve been doing since the branch manager role ended. That question competes with the deposit growth and management work.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since December 2024?
+2. [line] Branch Manager, line 1
+   line: "Managed a branch of 11 employees"
+   can't tell: The team size is useful, but a recruiter can’t tell what the employees handled across the branch. That matters for another job leading branch staff.
+   example: Managed a branch of 11 employees handling [team responsibilities]
+   question: What did the 11 employees handle?
+3. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this line. It names the measure a branch recruiter cares about and makes the change easy to compare.
+4. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: A recruiter can see how often you met, but not what the coaching was meant to improve or what happened with referrals.
+   example: Led weekly sales huddles and coached bankers on referrals toward [goal], with [result]
+   question: What referral goal were you coaching toward, and what result can you share?
+5. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: Oversight can cover several jobs. The resume doesn’t say what you handled in the audits and reviews, which matters for an audit-ready branch.
+   example: Oversaw audits and compliance reviews for the branch, including [your responsibilities]
+   question: What were your responsibilities during the audits and compliance reviews?
+6. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: A recruiter can’t tell what kinds of complaints reached you or how you handled them.
+   example: Handled escalated customer complaints about [issues] by [actions]
+   question: What kinds of complaints did you handle, and what did you do to resolve them?
+
+## Fit
+Roles: ["Branch Manager","Branch Manager, Retail Banking"]
+Level: manager, managed a branch of 11 employees
+Note: Your experience helping customers apply for loans gives you a place to start when describing lending work. The Riverbend role is on-site, includes some Saturdays, and requires a background and credit check.
+Posting: Lead a retail credit union branch, grow deposits and loans, coach staff, and oversee branch operations and compliance.
+Missing: ["Working knowledge of BSA/AML and branch compliance and audit procedures","Experience with consumer and small business lending","NMLS registration, or the ability to register within 90 days"]

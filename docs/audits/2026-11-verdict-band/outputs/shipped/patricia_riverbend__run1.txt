@@ -1,0 +1,43 @@
+# patricia_riverbend, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/riverbend_branch_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0097; 33.8s
+Case note: The live walk's slip: 68 and 'I'd want to talk with you'.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+Your branch management at Magnolia Community Bank comes through in the staff and deposit results. I’d move this forward for Riverbend, with questions about your work since December 2024 and your BSA/AML knowledge.
+
+## Write-up
+Your Magnolia career moves from Personal Banker to Branch Manager, with work across deposits, staff coaching and branch operations. That’s a credible match for Riverbend’s manager role, although the resume doesn’t yet show all of its compliance and lending requirements.
+
+The deposit growth line is your model: it names the branch result and gives a starting and ending figure. Your team of 11 is also close to the team Riverbend describes. The last role ends in December 2024, so a recruiter will also notice the time since then.
+
+Let’s start with the dates, then the audits and compliance line. Add the procedures you worked with and your part in the reviews. If you have consumer and small business lending experience or NMLS registration, make those visible too.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia, but can’t tell what you’ve done since the Branch Manager role ended. That question may pull attention away from your branch results.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since December 2024 that you’d like a recruiter to know about?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as your model. It gives a recruiter a concrete measure of the branch’s growth rather than leaving them to guess what changed.
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see that you oversaw reviews, but not which procedures you worked with or what you did during them. Riverbend specifically asks for BSA/AML knowledge alongside audit procedures.
+   example: Oversaw audits and compliance reviews for the branch, including [procedures] and [your actions]
+   question: Which procedures did you work with, and what did you do during the audits and reviews?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This names an important part of branch management, but the complaints and your part in resolving them are still a blank.
+   example: Handled escalated customer complaints about [issues] by [actions]
+   question: What kinds of complaints reached you, and what did you do to resolve them?
+
+## Fit
+Roles: ["Branch Manager","Branch Manager, Retail Banking"]
+Level: manager, managed a branch of 11 employees
+Note: Your deposit growth and staff management align with Riverbend’s branch responsibilities. The role is on-site, with some Saturdays, and requires a background and credit check.
+Posting: Lead a credit union branch, grow deposits and loans, coach staff, and oversee operations and compliance.
+Missing: ["Working knowledge of BSA/AML and branch compliance and audit procedures","Experience with consumer and small business lending","NMLS registration, or the ability to register within 90 days"]

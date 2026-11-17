@@ -1,0 +1,47 @@
+# patricia_cardinal, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/cardinal_small_business_rm.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0128; 48.4s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+Your Branch Manager work shows deposit growth and staff management, but the Small Business Relationship Manager role calls for lending experience your resume doesn't establish. I'd pass for this role as written. What have you been doing since December 2024?
+
+## Write-up
+You've progressed from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and business account work that matter for this role. What's common on resumes like this is that the branch work is easier to see than the lending work. Here, that makes it difficult for a recruiter to tell whether you've originated small business loans.
+
+The deposit line is your best model: it shows what you grew, from $48M to $63M, and over what period. Your last role ends in December 2024, so a recruiter also has to account for the time since instead of concentrating on your banking work.
+
+Let's start with the dates, then add detail to the audit, customer complaint and loan lines. Bring your small business account work forward, and add any lending experience you can document without making your role bigger than it was.
+
+## Cards (5; {"dates":1,"keep":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: The time since the Branch Manager role ended is unaccounted for. A recruiter may pause there before considering your deposit growth and branch leadership.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since December 2024 that you'd want a recruiter to know about?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It gives a recruiter a concrete measure of your branch work instead of leaving the deposit growth to their imagination.
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see you oversaw the reviews, but not what that involved. The job asks for complete client files for credit review and audit, so your part in the work matters.
+   example: Oversaw audits and compliance reviews for the branch, handling [audit or review work] and [result]
+   question: What did you handle in the audits and reviews, and what came from that work?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This leaves the customer problems and your response to them unknown. One type of complaint and what you did with it would show more of your customer work.
+   example: Handled escalated customer complaints about [issues] by [actions]
+   question: What kinds of complaints reached you, and what did you do to address them?
+5. [line] Personal Banker, line 1
+   line: "Helped customers open accounts and apply for loans"
+   can't tell: The loan work is relevant, but the types of loans and the help you provided aren't named. A recruiter can't tell whether this included small business lending.
+   example: Helped customers open accounts and apply for [loan types], including [assistance provided]
+   question: What types of loans did customers apply for, and what help did you provide?
+
+## Fit
+Roles: ["Branch Manager","Small Business Relationship Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your small business account work and branch leadership deserve a prominent place in this application; describe the client relationships you handled where you can. The role is hybrid in downtown Birmingham with travel within the metro.
+Posting: The role centers on growing a small business client portfolio and working with the credit team on loans and lines of credit.
+Missing: ["4+ years in business banking, commercial lending or branch management with a lending focus","Experience originating small business loans or lines of credit","SBA lending experience","Formal credit training"]

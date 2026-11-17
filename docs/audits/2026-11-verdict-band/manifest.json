@@ -1,0 +1,51 @@
+{
+  "description": "Verdicts on scores just under Mostly clear (Nov 17, 2026): does a verdict on a page scored below 70 say the recruiter would move it forward or talk to the person? Five posting reads and three resumes without one, all synthetic.",
+  "cases": [
+    {
+      "id": "patricia_riverbend",
+      "resume": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "job_description": "postings/riverbend_branch_manager.txt",
+      "note": "The live walk's slip: 68 and 'I'd want to talk with you'.",
+      "batch": "band"
+    },
+    {
+      "id": "patricia_cardinal",
+      "resume": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "job_description": "postings/cardinal_small_business_rm.txt",
+      "batch": "band"
+    },
+    {
+      "id": "marketing_hubspot",
+      "resume": "../2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt",
+      "job_description": "../2026-11-first-read/resumes/posting_marketing_hubspot.txt",
+      "batch": "band"
+    },
+    {
+      "id": "nurse_nursing",
+      "resume": "../2026-11-first-read/resumes/fr05_nurse_no_units.txt",
+      "job_description": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+      "batch": "band"
+    },
+    {
+      "id": "director_eng_manager",
+      "resume": "../2026-11-first-read/resumes/fr06_senior_director_duties.txt",
+      "job_description": "../2026-11-first-read/resumes/posting_engineering_manager.txt",
+      "batch": "band"
+    },
+    {
+      "id": "patricia_no_posting",
+      "resume": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "batch": "band"
+    },
+    {
+      "id": "staff_accountant",
+      "resume": "../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+      "batch": "band"
+    },
+    {
+      "id": "product_designer",
+      "resume": "../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+      "batch": "band"
+    }
+  ]
+}

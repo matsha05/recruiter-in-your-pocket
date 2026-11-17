@@ -1,0 +1,50 @@
+# product_designer, run 4
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0104; 34.7s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Your product design work at Loop Fitness gives you a clear direction, and the booking flow and design system are real work a recruiter can recognize. I’d hesitate because the resume leaves too much of your part in releases and testing unexplained.
+
+## Write-up
+Your resume points to product design, with app work at Loop Fitness and agency work at Brightpath Studio, followed by your current cafe role. It’s common to list the work this way, but without more about your contributions and what you learned, it may not stand out among other product design resumes.
+
+The strongest model is the Loop Fitness design system: you name what you created, where it was used and the tool. Your current role accounts for the time since your last design job, though a recruiter will notice that your most recent design work ended in February 2024.
+
+Let’s start with the Loop Fitness releases and usability tests. Add your contribution and a finding you can speak to, then bring one Brightpath project into focus. If you’ve done more recent design work, your resume can make room for it too.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the cafe work, but not how many customers you serve. A count would give meaning to busy.
+   example: Prepare drinks and serve customers in a busy cafe, serving [number] customers [time period]
+   question: How many customers do you serve in a typical shift or another period you can describe?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful to see, but the resume doesn't say how much training you do or what you cover.
+   example: Train new baristas on espresso equipment, covering [what you teach] with [number] new baristas [time period]
+   question: What do you teach on the espresso equipment, and how many new baristas have you trained?
+3. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are there, but your contribution to those releases isn't. A recruiter needs to know what you did alongside the engineers and product manager.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your contribution]
+   question: What did you contribute to the weekly releases?
+4. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You say who you tested with and when, but not what you learned or did with it. That detail would show how the testing fed into your design work.
+   example: Ran usability tests with members before launches, finding [finding] and [what you did with it]
+   question: What did a test reveal, and what did you do with that finding?
+5. [line] Junior Product Designer, Brightpath Studio, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: The kinds of work are clear, but the clients and projects are anonymous. One project would give a recruiter something concrete to remember.
+   example: Designed marketing sites and app screens for agency clients, including [project]
+   question: Which client project can you name or describe?
+6. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives you ownership of a named deliverable and tells a recruiter where it belonged.
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, product designer role following a junior product designer role
+Note: Your app flows, design system and member testing fit product design roles. The current cafe job is clear, so focus the design entries on the projects and contributions you want to be considered for next.

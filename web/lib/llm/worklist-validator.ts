@@ -29,9 +29,31 @@ import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type 
 export interface WorklistValidationIssue {
   path: string;
   message: string;
+  /** Worth one repair, never worth losing the report: when the repair fails, the first draft stands. */
+  soft?: boolean;
 }
 
-type ValidationOptions = { forceGrounding?: boolean; jobDescription?: string };
+/** `allowVerdictAboveBand`: keep a first draft whose only fault is its verdict's reaction (after a failed repair). */
+type ValidationOptions = { forceGrounding?: boolean; jobDescription?: string; allowVerdictAboveBand?: boolean };
+
+/**
+ * A verdict that says the recruiter would move the page forward or want to talk. The prompt allows it from
+ * Mostly clear (70) up; below that the band itself says the recruiter hesitates. Seen once on the live walk of
+ * November 17, 2026: 68 and "I'd want to talk with you". "I'd hesitate to move this forward" never matches.
+ */
+const VERDICT_MOVES_FORWARD = /\bI(?:['’]d| would)\s+(?:still\s+)?(?:want to talk|like to talk|be glad to talk|want to speak|move (?:this|it|you|your resume|this resume|this application|your application)\s+(?:\w+\s+)?forward|write to you|reach out)\b/iu;
+const MOSTLY_CLEAR_FLOOR = 70;
+
+export function verdictAboveBand(score: number, verdict: string): string | null {
+  if (score >= MOSTLY_CLEAR_FLOOR) return null;
+  return verdict.match(VERDICT_MOVES_FORWARD)?.[0] ?? null;
+}
+
+/** Every issue soft: the report may stand as drafted if the repair fails. */
+export function onlySoftIssues(error: unknown): boolean {
+  const issues = (error as { internal?: { schemaIssues?: WorklistValidationIssue[] } } | null)?.internal?.schemaIssues;
+  return Array.isArray(issues) && issues.length > 0 && issues.every((issue) => issue.soft === true);
+}
 
 function fail(issues: WorklistValidationIssue[]): never {
   const first = issues[0];
@@ -331,6 +353,15 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
   }
   if (report.lifted_by_employer && report.score >= READY_TO_SEND_SCORE) {
     issues.push({ path: "score", message: `is ${report.score} with the employer lift; the lift never reaches Ready to send` });
+  }
+
+  const aboveBand = options.allowVerdictAboveBand ? null : verdictAboveBand(report.score, report.verdict);
+  if (aboveBand) {
+    issues.push({
+      path: "verdict",
+      message: `says "${aboveBand}" on a score of ${report.score} (${getWorklistScoreLabel(report.score)}); keep the score and rewrite the verdict: below Mostly clear a recruiter hesitates, so say what they'd need to see first, never that they'd move it forward or want to talk`,
+      soft: true,
+    });
   }
 
   if (issues.length > 0) fail(issues);

@@ -1,0 +1,52 @@
+# patricia_cardinal, run 5
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/cardinal_small_business_rm.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0109; 40.2s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+The Small Business Relationship Manager role is a different track from your branch management work. Your deposit growth and team leadership are clear, but I can't tell whether you've originated small business loans. I'd also have a question about your work since December 2024.
+
+## Write-up
+For Cardinal Southern's role, your branch management and deposit growth are relevant, but the resume doesn't establish the small business lending work the job asks for. It's common for a branch manager's resume to focus on branch duties; here, that leaves a recruiter guessing about the lending experience that would distinguish you for this position.
+
+The deposit-growth line is your best model: it names the business measure, where it started and where it ended. Your progression at Magnolia Community Bank is easy to follow, but the work history stops at December 2024 without an explanation.
+
+Let's start with the referral coaching in the Branch Manager role, then look at your earlier loan application work. Add what you can substantiate about the business customers and lending work you handled, and account for the time since your last dated role.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter has to ask what you've been doing since your Magnolia Community Bank role instead of concentrating on your progression there.
+   example: December 2024 - Present [what you did: work, job search, caregiving, study, travel or a career break, if applicable]
+   question: What have you been doing since December 2024?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It puts your ownership next to a change in deposits and gives the time period.
+3. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: The coaching is clear, but a recruiter can't tell what kinds of referrals the bankers worked on or what came from them. That matters for a role built around business clients.
+   example: Led weekly sales huddles and coached bankers on [type of referrals], resulting in [referral results]
+   question: What referrals did you coach bankers on, and what results can you substantiate?
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: You owned the oversight, but the line doesn't say what you did during the reviews or what they found.
+   example: Oversaw audits and compliance reviews for the branch by [your actions], with [review results]
+   question: What did you do during the audits and reviews, and what were the results?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: A recruiter can't tell what kinds of complaints reached you or how you resolved them.
+   example: Handled escalated customer complaints about [issue] by [action], resulting in [result]
+   question: What is one complaint you handled, and how did you resolve it?
+6. [line] Personal Banker, line 1
+   line: "Helped customers open accounts and apply for loans"
+   can't tell: Your part in the loan applications isn't clear. For this role, a recruiter will want to know what lending work you personally handled.
+   example: Helped customers open accounts and apply for loans by [your part in the loan applications]
+   question: What did you personally do to help customers apply for loans, and what kinds of loans were they?
+
+## Fit
+Roles: ["Branch Manager","Small Business Relationship Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your finance degree and deposit growth are useful for this application. The job is hybrid in downtown Birmingham and involves travel within the metro.
+Posting: Cardinal Southern Bank seeks a Small Business Relationship Manager to grow a business-client portfolio and work on small business lending.
+Missing: ["4+ years in business banking, commercial lending or branch management with a lending focus","Experience originating small business loans or lines of credit","SBA lending experience","Formal credit training"]

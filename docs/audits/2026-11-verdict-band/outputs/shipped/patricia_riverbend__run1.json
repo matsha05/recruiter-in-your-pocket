@@ -1,0 +1,372 @@
+{
+  "case_id": "patricia_riverbend",
+  "batch": "band",
+  "run": 1,
+  "note": "The live walk's slip: 68 and 'I'd want to talk with you'.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": "postings/riverbend_branch_manager.txt",
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T19:16:06.160Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8713,
+        "completion_tokens": 1850,
+        "total_tokens": 10563,
+        "cached_prompt_tokens": 8710,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 766
+      },
+      "cost_usd": 0.0096885,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33770
+    }
+  ],
+  "resume_prompt_sha256": "2a237565211b3751de15ed28ec6153d0283469e0a4d8e4c61bbb16bdacb4fc29",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your branch management at Magnolia Community Bank comes through in the staff and deposit results. I’d move this forward for Riverbend, with questions about your work since December 2024 and your BSA/AML knowledge.",
+    "write_up": [
+      "Your Magnolia career moves from Personal Banker to Branch Manager, with work across deposits, staff coaching and branch operations. That’s a credible match for Riverbend’s manager role, although the resume doesn’t yet show all of its compliance and lending requirements.",
+      "The deposit growth line is your model: it names the branch result and gives a starting and ending figure. Your team of 11 is also close to the team Riverbend describes. The last role ends in December 2024, so a recruiter will also notice the time since then.",
+      "Let’s start with the dates, then the audits and compliance line. Add the procedures you worked with and your part in the reviews. If you have consumer and small business lending experience or NMLS registration, make those visible too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can’t tell what you’ve done since the Branch Manager role ended. That question may pull attention away from your branch results.",
+        "example": "December 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you done since December 2024 that you’d like a recruiter to know about?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the branch’s growth rather than leaving them to guess what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which procedures you worked with or what you did during them. Riverbend specifically asks for BSA/AML knowledge alongside audit procedures.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [procedures] and [your actions]",
+        "question": "Which procedures did you work with, and what did you do during the audits and reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "This names an important part of branch management, but the complaints and your part in resolving them are still a blank.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and what did you do to resolve them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Branch Manager, Retail Banking"
+      ],
+      "why": "Your headline and latest role both name branch management, with staff oversight and branch deposit growth.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your deposit growth and staff management align with Riverbend’s branch responsibilities. The role is on-site, with some Saturdays, and requires a background and credit check.",
+      "posting": {
+        "summary": "Lead a credit union branch, grow deposits and loans, coach staff, and oversee operations and compliance.",
+        "missing": [
+          "Working knowledge of BSA/AML and branch compliance and audit procedures",
+          "Experience with consumer and small business lending",
+          "NMLS registration, or the ability to register within 90 days"
+        ],
+        "lead": [],
+        "trim": [],
+        "covered": [
+          {
+            "requirement": "5+ years of retail banking, including 3+ years managing a branch",
+            "line": "- Managed a branch of 11 employees"
+          },
+          {
+            "requirement": "A record of growing deposits or loans at the branch level",
+            "line": "- Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, business or a related field",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          },
+          {
+            "requirement": "Experience in a credit union or community bank",
+            "line": "Magnolia Community Bank, Birmingham, AL"
+          }
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your branch management at Magnolia Community Bank comes through in the staff and deposit results. I’d move this forward for Riverbend, with questions about your work since December 2024 and your BSA/AML knowledge.",
+    "write_up": [
+      "Your Magnolia career moves from Personal Banker to Branch Manager, with work across deposits, staff coaching and branch operations. That’s a credible match for Riverbend’s manager role, although the resume doesn’t yet show all of its compliance and lending requirements.",
+      "The deposit growth line is your model: it names the branch result and gives a starting and ending figure. Your team of 11 is also close to the team Riverbend describes. The last role ends in December 2024, so a recruiter will also notice the time since then.",
+      "Let’s start with the dates, then the audits and compliance line. Add the procedures you worked with and your part in the reviews. If you have consumer and small business lending experience or NMLS registration, make those visible too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can’t tell what you’ve done since the Branch Manager role ended. That question may pull attention away from your branch results.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you done since December 2024 that you’d like a recruiter to know about?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the branch’s growth rather than leaving them to guess what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which procedures you worked with or what you did during them. Riverbend specifically asks for BSA/AML knowledge alongside audit procedures.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [procedures] and [your actions]",
+        "question": "Which procedures did you work with, and what did you do during the audits and reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This names an important part of branch management, but the complaints and your part in resolving them are still a blank.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and what did you do to resolve them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Branch Manager, Retail Banking"
+      ],
+      "why": "Your headline and latest role both name branch management, with staff oversight and branch deposit growth.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your deposit growth and staff management align with Riverbend’s branch responsibilities. The role is on-site, with some Saturdays, and requires a background and credit check.",
+      "posting": {
+        "summary": "Lead a credit union branch, grow deposits and loans, coach staff, and oversee operations and compliance.",
+        "missing": [
+          "Working knowledge of BSA/AML and branch compliance and audit procedures",
+          "Experience with consumer and small business lending",
+          "NMLS registration, or the ability to register within 90 days"
+        ],
+        "covered": [
+          {
+            "requirement": "5+ years of retail banking, including 3+ years managing a branch",
+            "line": "Managed a branch of 11 employees"
+          },
+          {
+            "requirement": "A record of growing deposits or loans at the branch level",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, business or a related field",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          },
+          {
+            "requirement": "Experience in a credit union or community bank",
+            "line": "Magnolia Community Bank, Birmingham, AL"
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your branch management at Magnolia Community Bank comes through in the staff and deposit results. I’d move this forward for Riverbend, with questions about your work since December 2024 and your BSA/AML knowledge.",
+    "write_up": [
+      "Your Magnolia career moves from Personal Banker to Branch Manager, with work across deposits, staff coaching and branch operations. That’s a credible match for Riverbend’s manager role, although the resume doesn’t yet show all of its compliance and lending requirements.",
+      "The deposit growth line is your model: it names the branch result and gives a starting and ending figure. Your team of 11 is also close to the team Riverbend describes. The last role ends in December 2024, so a recruiter will also notice the time since then.",
+      "Let’s start with the dates, then the audits and compliance line. Add the procedures you worked with and your part in the reviews. If you have consumer and small business lending experience or NMLS registration, make those visible too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can’t tell what you’ve done since the Branch Manager role ended. That question may pull attention away from your branch results.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you done since December 2024 that you’d like a recruiter to know about?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the branch’s growth rather than leaving them to guess what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which procedures you worked with or what you did during them. Riverbend specifically asks for BSA/AML knowledge alongside audit procedures.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [procedures] and [your actions]",
+        "question": "Which procedures did you work with, and what did you do during the audits and reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This names an important part of branch management, but the complaints and your part in resolving them are still a blank.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and what did you do to resolve them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Branch Manager, Retail Banking"
+      ],
+      "why": "Your headline and latest role both name branch management, with staff oversight and branch deposit growth.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your deposit growth and staff management align with Riverbend’s branch responsibilities. The role is on-site, with some Saturdays, and requires a background and credit check.",
+      "posting": {
+        "summary": "Lead a credit union branch, grow deposits and loans, coach staff, and oversee operations and compliance.",
+        "missing": [
+          "Working knowledge of BSA/AML and branch compliance and audit procedures",
+          "Experience with consumer and small business lending",
+          "NMLS registration, or the ability to register within 90 days"
+        ],
+        "covered": [
+          {
+            "requirement": "5+ years of retail banking, including 3+ years managing a branch",
+            "line": "Managed a branch of 11 employees"
+          },
+          {
+            "requirement": "A record of growing deposits or loans at the branch level",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, business or a related field",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          },
+          {
+            "requirement": "Experience in a credit union or community bank",
+            "line": "Magnolia Community Bank, Birmingham, AL"
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "presentation": {
+    "score": 74,
+    "band": "Mostly clear",
+    "model_score": 74,
+    "lifted_by_employer": false,
+    "verdict": "Your branch management at Magnolia Community Bank comes through in the staff and deposit results. I’d move this forward for Riverbend, with questions about your work since December 2024 and your BSA/AML knowledge.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 127,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 1,
+        "question": "What have you done since December 2024 that you’d like a recruiter to know about?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 2,
+        "question": "Which procedures did you work with, and what did you do during the audits and reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kinds of complaints reached you, and what did you do to resolve them?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "dates": 1,
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Branch Manager, Retail Banking"
+      ],
+      "why": "Your headline and latest role both name branch management, with staff oversight and branch deposit growth.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your deposit growth and staff management align with Riverbend’s branch responsibilities. The role is on-site, with some Saturdays, and requires a background and credit check.",
+      "posting": {
+        "summary": "Lead a credit union branch, grow deposits and loans, coach staff, and oversee operations and compliance.",
+        "missing": [
+          "Working knowledge of BSA/AML and branch compliance and audit procedures",
+          "Experience with consumer and small business lending",
+          "NMLS registration, or the ability to register within 90 days"
+        ],
+        "covered": [
+          {
+            "requirement": "5+ years of retail banking, including 3+ years managing a branch",
+            "line": "Managed a branch of 11 employees"
+          },
+          {
+            "requirement": "A record of growing deposits or loans at the branch level",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, business or a related field",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          },
+          {
+            "requirement": "Experience in a credit union or community bank",
+            "line": "Magnolia Community Bank, Birmingham, AL"
+          }
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0096885,
+  "latency_ms": 33795
+}

@@ -1,0 +1,55 @@
+# staff_accountant, run 3
+Resume: ../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0100; 34.8s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+Your move from accounts payable to Staff Accountant at Rivermark Building Supply gives me a clear direction. The accounting work is there, but I’d hesitate to move the resume forward because I can’t tell enough about what you handle at close or how much of it you do.
+
+## Write-up
+You’ve moved from accounts payable into staff accounting at Rivermark Building Supply. It’s common for accounting resumes to list duties this way, but yours won’t stand out in a pile yet: a recruiter can see the functions you touch, not enough of the work within them.
+
+The line about matching purchase orders to receipts is the clearest model because it names the documents you worked with and what you did with them. Your current role and accounting degree are easy to find, but Rivermark’s business and the scale of your work are still unclear.
+
+Let’s start with the Staff Accountant role and the month-end close line. Add the tasks you own, then give the journal entries, reconciliations and audit work enough detail to show what you handle.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The resume gives no description of Rivermark Building Supply."
+   can't tell: A recruiter can’t tell how large or complex the business is from its name. That context would help put your accounting work in perspective.
+   example: Rivermark Building Supply, [type of business] with [measure of business size]
+   question: How would you describe Rivermark’s business and its size?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: Month-end close covers a lot of work, and this doesn’t say which parts are yours. A recruiter looking for a staff accountant will want to know what you handle.
+   example: Responsible for month-end close tasks, including [tasks] for [accounts or entities]
+   question: Which close tasks do you handle, and for which accounts or entities?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: The work is relevant, but the accounts and the amount you handle are missing. Those details would distinguish your role from a standard list of accounting duties.
+   example: Prepare journal entries and account reconciliations for [accounts], handling [number] [entries or reconciliations] per [period]
+   question: Which accounts do you work on, and how many entries or reconciliations do you handle in a typical period?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist could mean several different things. The recruiter can’t tell what you contribute to the audit.
+   example: Assist with the annual audit by [your contribution]
+   question: What do you prepare or handle for the annual audit?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: Fixed asset schedules are a concrete deliverable. The line doesn’t say what assets they cover or how many you track.
+   example: Maintain fixed asset schedules for [number] [type of assets]
+   question: What assets do the schedules cover, and how many do you track?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: This connects to your earlier role, but it doesn’t show which payable tasks you still handle or how often they come up.
+   example: Process accounts payable when needed, including [tasks] at [frequency]
+   question: Which accounts payable tasks do you handle now, and how often?
+7. [keep] Accounts Payable Clerk, line 2
+   line: "Matched purchase orders to receipts"
+   can't tell: Keep the direct verb and the named documents. A recruiter can tell what you worked with without guessing.
+
+## Fit
+Roles: ["Staff Accountant"]
+Level: mid-level, current staff accounting role following accounts payable work
+Note: Your accounting degree and current responsibilities point toward staff accounting roles. More detail on the work you handle at close would make that direction easier to assess.

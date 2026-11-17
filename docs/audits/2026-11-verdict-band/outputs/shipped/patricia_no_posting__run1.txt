@@ -1,0 +1,45 @@
+# patricia_no_posting, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0168; 23.3s
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+You moved from Personal Banker to Branch Manager at Magnolia Community Bank, and the deposit growth and team you managed back up that progression. I'd want to talk with you about the branch work. I'd also want to know what you've been doing since December 2024.
+
+## Write-up
+Your resume tells a clear retail banking story: you moved up at Magnolia Community Bank and went on to manage a branch. The team count and deposit growth give a recruiter a solid reason to consider you for another Branch Manager role.
+
+The deposit line is your best model because it names the business measure, where it started and where it ended. The main question comes from the time after December 2024, which your resume doesn't account for.
+
+Let's start there, then add a little more about the sales coaching, audits and customer complaints. Those are important parts of running a branch, and a few details about your part would make them more useful.
+
+## Cards (5; {"dates":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia, but can't tell what you've done since the Branch Manager role ended. That question competes with the branch results on the first pass.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since December 2024?
+2. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: The weekly huddles are clear, but a recruiter can't tell what the referral coaching involved or what came from it.
+   example: Led weekly sales huddles and coached bankers on referrals by [coaching approach], resulting in [referral result]
+   question: What did the referral coaching involve, and what result can you confirm?
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see you oversaw the reviews, but not what that involved or what the reviews found.
+   example: Oversaw audits and compliance reviews for the branch, including [your responsibilities] and [review findings]
+   question: What were your responsibilities during the reviews, and what findings can you share?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: Escalated complaints are part of the job, but this doesn't show what kinds of issues reached you or how you handled them.
+   example: Handled escalated customer complaints about [issue types] by [your actions]
+   question: What kinds of complaints reached you, and what did you do to address them?
+5. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model: it gives a recruiter a concrete measure and a timeframe without making them guess how the branch changed.
+
+## Fit
+Roles: ["Branch Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your progression from Personal Banker through Assistant Branch Manager points toward another branch leadership role. The deposit growth gives you a strong starting point for that story.

@@ -1,0 +1,47 @@
+# marketing_hubspot, run 2
+Resume: ../2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt (132 words), posting: ../2026-11-first-read/resumes/posting_marketing_hubspot.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0121; 42.5s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+Your B2B software marketing work points toward the Tallgrass role, and your resume lists its main tools. I’d hesitate because it doesn’t show the required hands-on HubSpot work or what running campaigns involved.
+
+## Write-up
+Your resume tells a common marketing coordinator story: newsletters, webinars, content calendars and reporting across Brightfield Software and Keystone Benefits Group. That work is relevant to Tallgrass, but the recent bullets leave your part in the campaigns too thin to stand out in a pile.
+
+The weekly campaign reports line is a useful model because it names the deliverable, its cadence and who received it. Your skills list also names all three tools Tallgrass asks for, but it doesn’t show which HubSpot functions you’ve used.
+
+Let’s start with the Brightfield newsletter and webinar lines. Add the tasks that were yours and, where you can, how many people the work reached. Then connect your tools to the work you’ve done with them, especially HubSpot, if you can substantiate it.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: Coordinated can mean several things, from gathering content to sending the emails. A recruiter also can’t tell how many customers received the newsletter.
+   example: Coordinated the monthly customer newsletter and product announcement emails by [your tasks], reaching [number] customers
+   question: Which parts of the newsletter and announcement emails were yours, and how many customers received the newsletter?
+2. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: Supported leaves your part of webinar planning open. Tallgrass also wants help with events, so your actual contribution matters here.
+   example: Supported webinar planning with the product marketing team by [your planning tasks] for [webinar name]
+   question: Which webinar did you work on, and what planning tasks did you handle?
+3. [keep] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: Keep the combination of a named deliverable, a regular cadence and the person it went to. That gives the rest of your work a useful pattern to follow.
+4. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The sales materials are named, but helped doesn’t say what you contributed to them.
+   example: Helped prepare slide decks and one-pagers for the sales team by [your contribution]
+   question: What did you contribute to the slide decks and one-pagers?
+5. [line] Marketing Assistant, line 3
+   line: "Kept the brand asset library organized"
+   can't tell: A recruiter can’t tell what maintaining the library involved or who used it.
+   example: Kept the brand asset library organized by [your tasks] for [who used it]
+   question: What did you do to maintain the library, and who used it?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Operations Coordinator"]
+Level: mid-level, current coordinator role and prior marketing assistant role
+Note: Your newsletter, webinar and campaign reporting work are relevant to Tallgrass, and your skills list names its tools. Where you’ve used those tools in the work itself, connect them to the relevant bullets.
+Posting: Tallgrass seeks a B2B marketing coordinator with hands-on HubSpot, Salesforce and Google Analytics 4 experience for campaigns, reporting and events.
+Missing: ["Hands-on HubSpot experience: workflows, lists, email and reporting","a record of running campaigns on deadline"]

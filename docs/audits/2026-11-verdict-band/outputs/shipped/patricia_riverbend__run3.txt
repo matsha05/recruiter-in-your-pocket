@@ -1,0 +1,53 @@
+# patricia_riverbend, run 3
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/riverbend_branch_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0134; 46.8s
+Case note: The live walk's slip: 68 and 'I'd want to talk with you'.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+Your Magnolia Community Bank work shows the branch leadership and deposit growth Riverbend is looking for. I’d move this forward, though your resume stops at December 2024 and I can’t tell what you’ve done since.
+
+## Write-up
+Your progression from Personal Banker to Branch Manager at Magnolia Community Bank fits much of Riverbend’s role. You show team leadership and deposit growth, but the time since your last role and the broad description of compliance work leave a recruiter with questions.
+
+The deposit line is your best model: it names the business measure, where it started and where it ended. Your experience is easy to follow, and your finance degree sits in the right place below it.
+
+Let’s start with the dates after Magnolia, then make your audit work and customer escalations more concrete. For Riverbend, bring forward any BSA/AML knowledge and relevant lending experience you can substantiate.
+
+## Cards (6; {"dates":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can see your progression at Magnolia, but not what you’ve done since the Branch Manager role ended. That question competes with the deposit growth and team leadership you’ve shown.
+   example: December 2024 - Present [what you did during this time]
+   question: What have you been doing since December 2024?
+2. [line] Branch Manager, line 1
+   line: "Managed a branch of 11 employees"
+   can't tell: The team count is useful, but a recruiter can’t tell what those employees handled. Riverbend names several positions on its branch team, so their responsibilities matter here.
+   example: Managed a branch of 11 employees responsible for [team responsibilities]
+   question: What did the employees on your branch team handle?
+3. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It gives a recruiter a starting point, an ending point and a time frame for the deposit growth.
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can’t tell which audits or compliance reviews you oversaw, or what your part involved. That matters for a role that specifically asks for BSA/AML knowledge.
+   example: Oversaw [audit types] and [compliance reviews] for the branch, including [what you did]
+   question: Which audits and compliance reviews did you oversee, and what did you do for them?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: Escalated complaints are relevant to Riverbend, but this doesn’t say what customers needed or how you handled their concerns.
+   example: Handled escalated customer complaints about [complaint types] by [what you did]
+   question: What kinds of escalated complaints did you handle, and what did you do to address them?
+6. [line] Personal Banker, line 1
+   line: "Helped customers open accounts and apply for loans"
+   can't tell: The loan work could be useful for Riverbend, but the loan types and your part in the applications aren’t named.
+   example: Helped customers open accounts and apply for [loan types] by [your role in applications]
+   question: What kinds of loans did customers apply for, and how did you help with the applications?
+
+## Fit
+Roles: ["Branch Manager","Branch Manager, Retail Banking"]
+Level: manager, managed a branch of 11 employees
+Note: Your teller and vault operations and small business account work also fit the branch’s day-to-day needs. The Riverbend role is on site, includes some Saturdays, and requires a background and credit check.
+Posting: Riverbend seeks a branch manager to lead staff, grow deposits and loans, and keep the branch compliant and audit-ready.
+Missing: ["Working knowledge of BSA/AML and branch compliance and audit procedures","Experience with consumer and small business lending","NMLS registration, or the ability to register within 90 days"]

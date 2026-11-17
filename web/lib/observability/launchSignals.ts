@@ -30,7 +30,7 @@ export const LAUNCH_SIGNALS = {
     latency_bucket: ["lt30", "30to60", "60to120", "gt120"],
   },
   "riyp.report.repair": {
-    result: ["started", "completed", "failed"],
+    result: ["started", "completed", "failed", "kept_draft"],
   },
   "riyp.free_gate.check": {
     result: ["allowed", "blocked", "identity_retry"],
