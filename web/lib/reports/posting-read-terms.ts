@@ -22,6 +22,12 @@ export const POSTING_READ_ADD_RESUME = "Add the resume that report was written o
 /** The opt-in to keep the resume on file, shown once a posting read has its resume. */
 export const RESUME_ON_FILE_OFFER = "Applying to more than one job? Keep this resume on file and next time you only paste the posting.";
 export const RESUME_ON_FILE_KEEP = "Keep it on file";
+/**
+ * The same offer when a different resume is already on file. An account keeps one, so keeping this one replaces
+ * that one; the plain offer said nothing of it, and a click saved one resume over another (Nov 17, 2026).
+ */
+export const RESUME_ON_FILE_REPLACE_OFFER = "You keep a different resume on file.";
+export const RESUME_ON_FILE_REPLACE = "Replace it with this one";
 /** After keeping it: where it lives and how it leaves, said once. */
 export const RESUME_ON_FILE_KEPT = "On file. We store the text of this resume in your account until you remove it.";
 /** A posting read that found the resume on file. */
