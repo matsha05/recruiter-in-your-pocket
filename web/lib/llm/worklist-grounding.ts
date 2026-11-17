@@ -54,9 +54,47 @@ export const WORKLIST_BANNED_PHRASES = [
   "the candidate",
 ] as const;
 
+/**
+ * "The candidate" is retired as a name for the person: the report says "you". On a recruiter's resume it is also the
+ * job's own vocabulary ("the candidate pool", "the candidate experience", "the candidates you placed"), and a plain
+ * text match refused those too. A live read of a recruiter's resume was sent back on it on November 17, 2026, at the
+ * cost of a second model call (docs/audits/2026-11-candidate-phrase.md). So the plural passes, and so does "the
+ * candidate" used as a noun in front of one of these words. "The candidate" on its own and "the candidate's" stay
+ * refused.
+ */
+const RECRUITING_COMPOUNDS = [
+  "pool", "pools", "pipeline", "pipelines", "experience", "experiences", "referral", "referrals", "funnel", "journey",
+  "slate", "slates", "sourcing", "outreach", "assessment", "assessments", "screening", "screen", "screens",
+  "interview", "interviews", "market", "flow", "volume", "quality", "care", "engagement", "survey", "surveys",
+  "feedback", "data", "list", "lists", "side", "communication", "communications", "process", "processes", "selection",
+  "evaluation", "evaluations", "facing", "management", "relationship", "relationships", "nps", "satisfaction",
+  "tracking", "database", "search", "searches", "profile", "profiles", "packet", "packets", "debrief", "debriefs",
+];
+const THE_CANDIDATE_AS_PERSON = new RegExp(`\\bthe candidate\\b(?![-\\s]+(?:${RECRUITING_COMPOUNDS.join("|")})\\b)`, "iu");
+
+function usesPhrase(lowered: string, phrase: string) {
+  return phrase === "the candidate" ? THE_CANDIDATE_AS_PERSON.test(lowered) : lowered.includes(phrase);
+}
+
 export function bannedPhrasesIn(value: string): string[] {
   const lowered = value.toLowerCase();
-  return WORKLIST_BANNED_PHRASES.filter((phrase) => lowered.includes(phrase));
+  return WORKLIST_BANNED_PHRASES.filter((phrase) => usesPhrase(lowered, phrase));
+}
+
+/**
+ * The sentence a retired phrase sits in, so a refusal can say what was written and not only where. Capped, so a
+ * long field never puts more than a sentence's worth into the log.
+ */
+export function sentenceWithPhrase(value: string, phrase: string, max = 200): string {
+  const lowered = value.toLowerCase();
+  const at = phrase === "the candidate" ? lowered.search(THE_CANDIDATE_AS_PERSON) : lowered.indexOf(phrase);
+  if (at < 0) return "";
+  const breaks = [". ", "? ", "! "].map((stop) => value.lastIndexOf(stop, at)).filter((index) => index >= 0);
+  const start = breaks.length ? Math.max(...breaks) + 2 : 0;
+  const stops = [". ", "? ", "! "].map((stop) => value.indexOf(stop, at + phrase.length)).filter((index) => index >= 0);
+  const end = stops.length ? Math.min(...stops) + 1 : value.length;
+  const sentence = value.slice(start, end).trim();
+  return sentence.length > max ? `${sentence.slice(0, max - 1).trimEnd()}…` : sentence;
 }
 
 /** The text outside square brackets: what an example asserts as fact. */

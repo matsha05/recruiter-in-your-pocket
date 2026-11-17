@@ -3,6 +3,7 @@ import { reportSentences } from "./report-sentences";
 import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE, scoreHeldToCards } from "../score-utils";
 import {
   bannedPhrasesIn,
+  sentenceWithPhrase,
   inflatesOwnership,
   locateQuote,
   quoteWithinLine,
@@ -273,7 +274,8 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
   const issues: WorklistValidationIssue[] = [];
   if (sourceTagLeak(JSON.stringify(report))) issues.push({ path: "response", message: "exposes a SOURCE catalog tag" });
   for (const field of proseFields(report)) {
-    for (const phrase of bannedPhrasesIn(field.value)) issues.push({ path: field.path, message: `uses the retired phrase "${phrase}"` });
+    // The sentence goes into the refusal, so the log says what was written, not only where.
+    for (const phrase of bannedPhrasesIn(field.value)) issues.push({ path: field.path, message: `uses the retired phrase "${phrase}" in: ${sentenceWithPhrase(field.value, phrase)}` });
   }
 
   const isMockOpenAI = isMockRun();
