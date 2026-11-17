@@ -16,7 +16,7 @@ The rule asked for "one to four role titles copied exactly from the resume", the
 
 ## Evaluation
 
-Twenty-two synthetic resumes (`manifest.json`): twenty without a posting, chosen for ladders, career changes, gaps and side work, plus two with a posting. Each was read twice on the candidate prompt (`outputs/`) and twice on the shipped prompt the same day (`outputs-shipped/`). Spend: $0.99 in 94 calls, synthetic resumes only.
+Twenty-two synthetic resumes (`manifest.json`): twenty without a posting, chosen for ladders, career changes, gaps and side work, plus two with a posting. Each was read twice on the candidate prompt (`outputs/`) and twice on the shipped prompt the same day (`outputs/shipped/`). Spend: $0.99 in 94 calls, synthetic resumes only.
 
 | Without a posting, 40 reads each | One title | Two | Three | Four |
 | --- | --- | --- | --- | --- |
@@ -43,4 +43,16 @@ Both are copied from the resume, as the rule asks.
 
 ## Release evidence
 
-The prompt hash changes, so the bundled evidence is regenerated on the combined prompt (this change and the three-card band line from the other session) with the ten synthetic golden fixtures. See `docs/promptops/shipping-gate.md`.
+The gate ran on the combined prompt: this change, rebased onto the same day's rule that Clear and specific holds at most three cards (PR 152). The ten synthetic golden fixtures, one run: 10 pass, 0 warnings, 0 failures (`eval_1794934554043`, `tests/fixtures/results/summary_role_list_2026-11-17.md`), bound in `web/lib/launch/liveEvalBaseline.ts`. Nine of the ten lists hold one title. The tenth is "Senior UX Designer / Lead UX Designer / Design Manager": the headline's title and the current role's two-part title, which the rule allows. It lists no job the person left.
+
+## The public sample
+
+Jordan's sample report (`public/sample-report.json`) listed "Customer Success Manager, Account Coordinator", his earlier job, under Roles to consider. The homepage and the methodology page quote it word for word, so it was regenerated on the combined prompt. Three draws, each real output on the same fictional resume, all listing one title:
+
+- **First (74):** dropped the renewal-risk card the homepage quotes, gave a flatter verdict that listed what the work includes, and wrote an objective example that has a Customer Success Manager "seeking [target role]".
+- **Third (76):** also dropped that card.
+- **Second (75):** kept the card. Its verdict is close to the one it replaces ("I'd move this forward with a question: what changed after you introduced the renewal-risk reviews?"). Its notes are specific.
+
+The second is the one published, unedited. The homepage's verdict, note and question were updated to its words. One flaw is left as generated: its keep card comes last rather than in page order.
+
+Spend for the whole change: $0.99 for the comparison, $0.17 for the gate and about $0.04 for the three sample draws.

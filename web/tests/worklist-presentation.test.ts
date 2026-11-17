@@ -108,8 +108,9 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
   const report = WorklistReportSchema.parse(sample);
   // The first line card whose example has a blank: a card can carry a finished example with nothing to fill.
   const filledIndex = report.cards.findIndex((card) => card.kind === "line" && blankLabels(card.example).length > 0);
-  const label = blankLabels(report.cards[filledIndex].example)[0];
-  const normalized = normalizeReportForPdf(sample, { [String(filledIndex)]: { answers: [{ question: label, kind: "answered", text: "the renewal checklist" }], line: null, source: "literal", updated_at: "2026-11-06T00:00:00.000Z" } });
+  // Every blank answered, the first with the text the PDF must show: a line prints filled once it is complete.
+  const answers = blankLabels(report.cards[filledIndex].example).map((label, index) => ({ question: label, kind: "answered" as const, text: index === 0 ? "the renewal checklist" : `answer ${index + 1}` }));
+  const normalized = normalizeReportForPdf(sample, { [String(filledIndex)]: { answers, line: null, source: "literal", updated_at: "2026-11-06T00:00:00.000Z" } });
   assert.ok(normalized?.worklist, "a worklist report normalizes with its worklist content");
   assert.equal(normalized?.worklist?.cards.length, report.cards.length);
   const html = renderReportHtml(normalized!);

@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3031,
-    "unique_strings": 2531
+    "strings": 3033,
+    "unique_strings": 2533
   },
   "by_moment": {
     "research": 990,
     "account": 463,
     "marketing": 411,
-    "report": 330,
+    "report": 332,
     "pricing": 223,
     "upload": 123,
     "legal": 113,
@@ -13508,7 +13508,7 @@
     {
       "text": "This is taking longer than usual. Try again in a moment.",
       "kind": "const",
-      "line": 692,
+      "line": 694,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13519,7 +13519,7 @@
     {
       "text": "Connection hiccup. Try again in a moment.",
       "kind": "const",
-      "line": 694,
+      "line": 696,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -28482,7 +28482,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 53,
+      "line": 54,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28493,7 +28493,7 @@
     {
       "text": "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.",
       "kind": "const",
-      "line": 71,
+      "line": 72,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28504,7 +28504,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "const",
-      "line": 79,
+      "line": 80,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28515,7 +28515,7 @@
     {
       "text": "We couldn’t open those two reports together. Try again.",
       "kind": "call:ClientActionError",
-      "line": 95,
+      "line": 96,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28526,7 +28526,7 @@
     {
       "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 112,
+      "line": 113,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28537,7 +28537,7 @@
     {
       "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
       "kind": "jsx-text",
-      "line": 113,
+      "line": 114,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28548,7 +28548,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 116,
+      "line": 117,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28559,7 +28559,7 @@
     {
       "text": "Since version 1",
       "kind": "jsx-text",
-      "line": 152,
+      "line": 153,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28570,7 +28570,7 @@
     {
       "text": "Opening both reports…",
       "kind": "jsx-text",
-      "line": 174,
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28581,7 +28581,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 174,
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28592,7 +28592,7 @@
     {
       "text": "Opening both reports…",
       "kind": "const",
-      "line": 174,
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28603,7 +28603,7 @@
     {
       "text": "See what changed",
       "kind": "const",
-      "line": 174,
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28614,7 +28614,7 @@
     {
       "text": "Opening both reports…",
       "kind": "attr:loadingLabel",
-      "line": 177,
+      "line": 178,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28625,7 +28625,7 @@
     {
       "text": "See what changed",
       "kind": "jsx-text",
-      "line": 178,
+      "line": 179,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28636,7 +28636,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "jsx-text",
-      "line": 205,
+      "line": 206,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28647,7 +28647,7 @@
     {
       "text": "LinkedIn profile",
       "kind": "const",
-      "line": 205,
+      "line": 206,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28658,7 +28658,7 @@
     {
       "text": "Resume against a posting",
       "kind": "const",
-      "line": 205,
+      "line": 206,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28669,7 +28669,7 @@
     {
       "text": "· Version",
       "kind": "jsx-text",
-      "line": 207,
+      "line": 208,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28680,7 +28680,7 @@
     {
       "text": "{pass.usesLeft} {pass.usesLeft === 1 ? \"re…} left on your pass",
       "kind": "attr:label",
-      "line": 253,
+      "line": 254,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28691,7 +28691,7 @@
     {
       "text": ", good until",
       "kind": "jsx-text",
-      "line": 261,
+      "line": 262,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28702,7 +28702,7 @@
     {
       "text": "Your latest report",
       "kind": "jsx-text",
-      "line": 271,
+      "line": 272,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28713,7 +28713,7 @@
     {
       "text": "Open the report",
       "kind": "jsx-text",
-      "line": 281,
+      "line": 282,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28724,7 +28724,7 @@
     {
       "text": "Earlier reports",
       "kind": "jsx-text",
-      "line": 290,
+      "line": 291,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28735,7 +28735,7 @@
     {
       "text": "Open {report.name || report.ver…}",
       "kind": "attr:aria-label",
-      "line": 317,
+      "line": 318,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -43431,7 +43431,7 @@
     {
       "text": "{total} {lines} to answer",
       "kind": "return",
-      "line": 50,
+      "line": 51,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43442,7 +43442,7 @@
     {
       "text": "{answered} of {total} {lines} answered",
       "kind": "return",
-      "line": 52,
+      "line": 53,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43451,75 +43451,9 @@
       "table": "reports"
     },
     {
-      "text": "Up {change.delta} from version {change.from}",
+      "text": "{aboutTheSame(change.delta)} as {sameDay ? \"your earlier r…}",
       "kind": "return",
-      "line": 204,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Down {Math.abs(change.delta)} from version {change.from}",
-      "kind": "return",
-      "line": 205,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Same score as version {change.from}",
-      "kind": "return",
-      "line": 206,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "{count} earlier {count === 1 ? \"version\" :…}",
-      "kind": "return",
-      "line": 211,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "{lines(gone, \"line is\", \"l…} off the list.",
-      "kind": "const",
-      "line": 246,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Up {delta}",
-      "kind": "const",
-      "line": 256,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Down {Math.abs(delta)}",
-      "kind": "const",
-      "line": 256,
+      "line": 115,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -43530,7 +43464,95 @@
     {
       "text": "Same score",
       "kind": "const",
-      "line": 256,
+      "line": 121,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "About the same score",
+      "kind": "const",
+      "line": 121,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "{aboutTheSame(change.delta)} as version {change.from}",
+      "kind": "return",
+      "line": 209,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Up {change.delta} from version {change.from}",
+      "kind": "return",
+      "line": 210,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Down {Math.abs(change.delta)} from version {change.from}",
+      "kind": "return",
+      "line": 211,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "{count} earlier {count === 1 ? \"version\" :…}",
+      "kind": "return",
+      "line": 216,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "{lines(gone, \"line is\", \"l…} off the list.",
+      "kind": "const",
+      "line": 251,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Up {delta}",
+      "kind": "const",
+      "line": 264,
+      "file": "web/lib/reports/report-history.ts",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "report",
+      "table": "reports"
+    },
+    {
+      "text": "Down {Math.abs(delta)}",
+      "kind": "const",
+      "line": 264,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
@@ -44558,7 +44580,7 @@
     {
       "text": "Your lines are ready. Drop them",
       "kind": "const",
-      "line": 53,
+      "line": 54,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44577,7 +44599,7 @@
     {
       "text": "Your line is ready. Drop it",
       "kind": "const",
-      "line": 53,
+      "line": 54,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44596,7 +44618,7 @@
     {
       "text": "Your lines are ready. Paste them",
       "kind": "const",
-      "line": 77,
+      "line": 78,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44615,7 +44637,7 @@
     {
       "text": "Your line is ready. Paste it",
       "kind": "const",
-      "line": 77,
+      "line": 78,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44634,7 +44656,7 @@
     {
       "text": "Write the others like it.",
       "kind": "const",
-      "line": 218,
+      "line": 219,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44653,7 +44675,7 @@
     {
       "text": "Ways to make it even better.",
       "kind": "const",
-      "line": 224,
+      "line": 225,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44672,7 +44694,7 @@
     {
       "text": "Not true for me",
       "kind": "const",
-      "line": 231,
+      "line": 232,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44691,7 +44713,7 @@
     {
       "text": "Your finished lines.",
       "kind": "key:title",
-      "line": 258,
+      "line": 270,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44710,7 +44732,7 @@
     {
       "text": "Each one is your own text with your answers in, in the order your profile shows them. The blue words are the ones you added.",
       "kind": "key:lead",
-      "line": 260,
+      "line": 272,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44729,7 +44751,7 @@
     {
       "text": "Each one is your own line with your answers in, in resume order. The blue words are the ones you added.",
       "kind": "key:lead",
-      "line": 261,
+      "line": 273,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44748,7 +44770,7 @@
     {
       "text": "What this posting asks for",
       "kind": "const",
-      "line": 268,
+      "line": 280,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44767,7 +44789,7 @@
     {
       "text": "Your resume answers it here",
       "kind": "const",
-      "line": 269,
+      "line": 281,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44786,7 +44808,7 @@
     {
       "text": "Not on your resume",
       "kind": "const",
-      "line": 270,
+      "line": 282,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44805,7 +44827,7 @@
     {
       "text": "Your whole profile, part by part",
       "kind": "const",
-      "line": 273,
+      "line": 285,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44824,7 +44846,7 @@
     {
       "text": "Nothing here yet",
       "kind": "key:empty",
-      "line": 277,
+      "line": 289,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44843,7 +44865,7 @@
     {
       "text": "What the posting asks for that your resume doesn't show",
       "kind": "const",
-      "line": 280,
+      "line": 292,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44862,7 +44884,7 @@
     {
       "text": "If you've done it, say where. If you haven't, leave it out.",
       "kind": "const",
-      "line": 285,
+      "line": 297,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44881,7 +44903,7 @@
     {
       "text": "Move these up for this posting",
       "kind": "const",
-      "line": 292,
+      "line": 304,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44900,7 +44922,7 @@
     {
       "text": "They're already on your resume, further down than this posting needs.",
       "kind": "const",
-      "line": 293,
+      "line": 305,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44919,7 +44941,7 @@
     {
       "text": "Trim these first if you need the room",
       "kind": "const",
-      "line": 294,
+      "line": 306,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44938,7 +44960,7 @@
     {
       "text": "Good lines this posting doesn't ask about. Keep them for the next one.",
       "kind": "const",
-      "line": 295,
+      "line": 307,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44957,7 +44979,7 @@
     {
       "text": "This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there.",
       "kind": "return",
-      "line": 360,
+      "line": 372,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44976,7 +44998,7 @@
     {
       "text": "{what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there.",
       "kind": "return",
-      "line": 363,
+      "line": 375,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -44995,7 +45017,7 @@
     {
       "text": "Still nothing that needs work.",
       "kind": "assign",
-      "line": 403,
+      "line": 417,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45014,7 +45036,7 @@
     {
       "text": "Both versions came back clean.",
       "kind": "assign",
-      "line": 404,
+      "line": 418,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45033,7 +45055,7 @@
     {
       "text": "The same lines are on the list.",
       "kind": "assign",
-      "line": 406,
+      "line": 420,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45052,7 +45074,7 @@
     {
       "text": "None of them came off the list this time. Let's start with the first one again.",
       "kind": "assign",
-      "line": 407,
+      "line": 421,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45071,7 +45093,7 @@
     {
       "text": "Nothing in this version needs work now.",
       "kind": "assign",
-      "line": 410,
+      "line": 424,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45090,7 +45112,7 @@
     {
       "text": "{count(gone.length, \"line …} off the list.",
       "kind": "assign",
-      "line": 412,
+      "line": 426,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45109,7 +45131,7 @@
     {
       "text": "Up {delta} since {since}. That's the right direction!",
       "kind": "const",
-      "line": 419,
+      "line": 433,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45128,7 +45150,7 @@
     {
       "text": "Down {Math.abs(delta)} since {since}.",
       "kind": "const",
-      "line": 419,
+      "line": 433,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45147,7 +45169,7 @@
     {
       "text": "The earlier report named only its top problems and scored your resume differently. This one lists every line that needs work, so a longer list or a different score doesn't mean a weaker resume.",
       "kind": "const",
-      "line": 448,
+      "line": 462,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45166,7 +45188,7 @@
     {
       "text": "{now.length} {now.length === 1 ? \"line …} work in this version",
       "kind": "const",
-      "line": 462,
+      "line": 476,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45185,7 +45207,7 @@
     {
       "text": "{gone.length} of the {problems.length} lines the earlier report led with {gone.length === 1 ? \"is\" …} off the list.",
       "kind": "assign",
-      "line": 476,
+      "line": 490,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45204,7 +45226,7 @@
     {
       "text": "{still.length === 1 ? \"One…} still there, and {needWorkClause}.",
       "kind": "assign",
-      "line": 477,
+      "line": 491,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -45359,7 +45381,7 @@
     {
       "text": "Ready to send",
       "kind": "return",
-      "line": 57,
+      "line": 91,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45394,7 +45416,7 @@
     {
       "text": "Excellent Fit",
       "kind": "key:label",
-      "line": 89,
+      "line": 123,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45429,7 +45451,7 @@
     {
       "text": "Near-perfect alignment with requirements",
       "kind": "key:description",
-      "line": 93,
+      "line": 127,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45464,7 +45486,7 @@
     {
       "text": "Strong Match",
       "kind": "key:label",
-      "line": 96,
+      "line": 130,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45499,7 +45521,7 @@
     {
       "text": "Good alignment with minor gaps",
       "kind": "key:description",
-      "line": 100,
+      "line": 134,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45534,7 +45556,7 @@
     {
       "text": "Plausible Fit",
       "kind": "key:label",
-      "line": 103,
+      "line": 137,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45569,7 +45591,7 @@
     {
       "text": "Reasonable alignment, some gaps",
       "kind": "key:description",
-      "line": 107,
+      "line": 141,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45604,7 +45626,7 @@
     {
       "text": "Career Stretch",
       "kind": "key:label",
-      "line": 110,
+      "line": 144,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45639,7 +45661,7 @@
     {
       "text": "Different domain or missing key requirements",
       "kind": "key:description",
-      "line": 114,
+      "line": 148,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45674,7 +45696,7 @@
     {
       "text": "Not a Match",
       "kind": "key:label",
-      "line": 117,
+      "line": 151,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -45709,7 +45731,7 @@
     {
       "text": "Fundamentally different role",
       "kind": "key:description",
-      "line": 121,
+      "line": 155,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",

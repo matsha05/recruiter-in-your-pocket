@@ -1314,41 +1314,41 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | report | `web/lib/reports/worklist-presentation.ts:53` (9 routes) | const | Your lines are ready. Drop them |
-| 2 | report | `web/lib/reports/worklist-presentation.ts:53` (9 routes) | const | Your line is ready. Drop it |
-| 3 | report | `web/lib/reports/worklist-presentation.ts:77` (9 routes) | const | Your lines are ready. Paste them |
-| 4 | report | `web/lib/reports/worklist-presentation.ts:77` (9 routes) | const | Your line is ready. Paste it |
-| 5 | report | `web/lib/reports/worklist-presentation.ts:218` (9 routes) | const | Write the others like it. |
-| 6 | report | `web/lib/reports/worklist-presentation.ts:224` (9 routes) | const | Ways to make it even better. |
-| 7 | report | `web/lib/reports/worklist-presentation.ts:231` (9 routes) | const | Not true for me |
-| 8 | report | `web/lib/reports/worklist-presentation.ts:258` (9 routes) | key:title | Your finished lines. |
-| 9 | report | `web/lib/reports/worklist-presentation.ts:260` (9 routes) | key:lead | Each one is your own text with your answers in, in the order your profile shows them. The blue words are the ones you added. |
-| 10 | report | `web/lib/reports/worklist-presentation.ts:261` (9 routes) | key:lead | Each one is your own line with your answers in, in resume order. The blue words are the ones you added. |
-| 11 | report | `web/lib/reports/worklist-presentation.ts:268` (9 routes) | const | What this posting asks for |
-| 12 | report | `web/lib/reports/worklist-presentation.ts:269` (9 routes) | const | Your resume answers it here |
-| 13 | report | `web/lib/reports/worklist-presentation.ts:270` (9 routes) | const | Not on your resume |
-| 14 | report | `web/lib/reports/worklist-presentation.ts:273` (9 routes) | const | Your whole profile, part by part |
-| 15 | report | `web/lib/reports/worklist-presentation.ts:277` (9 routes) | key:empty | Nothing here yet |
-| 16 | report | `web/lib/reports/worklist-presentation.ts:280` (9 routes) | const | What the posting asks for that your resume doesn't show |
-| 17 | report | `web/lib/reports/worklist-presentation.ts:285` (9 routes) | const | If you've done it, say where. If you haven't, leave it out. |
-| 18 | report | `web/lib/reports/worklist-presentation.ts:292` (9 routes) | const | Move these up for this posting |
-| 19 | report | `web/lib/reports/worklist-presentation.ts:293` (9 routes) | const | They're already on your resume, further down than this posting needs. |
-| 20 | report | `web/lib/reports/worklist-presentation.ts:294` (9 routes) | const | Trim these first if you need the room |
-| 21 | report | `web/lib/reports/worklist-presentation.ts:295` (9 routes) | const | Good lines this posting doesn't ask about. Keep them for the next one. |
-| 22 | report | `web/lib/reports/worklist-presentation.ts:360` (9 routes) | return | This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there. |
-| 23 | report | `web/lib/reports/worklist-presentation.ts:363` (9 routes) | return | {what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there. |
-| 24 | report | `web/lib/reports/worklist-presentation.ts:403` (9 routes) | assign | Still nothing that needs work. |
-| 25 | report | `web/lib/reports/worklist-presentation.ts:404` (9 routes) | assign | Both versions came back clean. |
-| 26 | report | `web/lib/reports/worklist-presentation.ts:406` (9 routes) | assign | The same lines are on the list. |
-| 27 | report | `web/lib/reports/worklist-presentation.ts:407` (9 routes) | assign | None of them came off the list this time. Let's start with the first one again. |
-| 28 | report | `web/lib/reports/worklist-presentation.ts:410` (9 routes) | assign | Nothing in this version needs work now. |
-| 29 | report | `web/lib/reports/worklist-presentation.ts:412` (9 routes) | assign | {count(gone.length, "line …} off the list. |
-| 30 | report | `web/lib/reports/worklist-presentation.ts:419` (9 routes) | const | Up {delta} since {since}. That's the right direction! |
-| 31 | report | `web/lib/reports/worklist-presentation.ts:419` (9 routes) | const | Down {Math.abs(delta)} since {since}. |
-| 32 | report | `web/lib/reports/worklist-presentation.ts:448` (9 routes) | const | The earlier report named only its top problems and scored your resume differently. This one lists every line that needs work, so a longer list or a different score doesn't mean a weaker resume. |
-| 33 | report | `web/lib/reports/worklist-presentation.ts:462` (9 routes) | const | {now.length} {now.length === 1 ? "line …} work in this version |
-| 34 | report | `web/lib/reports/worklist-presentation.ts:476` (9 routes) | assign | {gone.length} of the {problems.length} lines the earlier report led with {gone.length === 1 ? "is" …} off the list. |
-| 35 | report | `web/lib/reports/worklist-presentation.ts:477` (9 routes) | assign | {still.length === 1 ? "One…} still there, and {needWorkClause}. |
+| 1 | report | `web/lib/reports/worklist-presentation.ts:54` (9 routes) | const | Your lines are ready. Drop them |
+| 2 | report | `web/lib/reports/worklist-presentation.ts:54` (9 routes) | const | Your line is ready. Drop it |
+| 3 | report | `web/lib/reports/worklist-presentation.ts:78` (9 routes) | const | Your lines are ready. Paste them |
+| 4 | report | `web/lib/reports/worklist-presentation.ts:78` (9 routes) | const | Your line is ready. Paste it |
+| 5 | report | `web/lib/reports/worklist-presentation.ts:219` (9 routes) | const | Write the others like it. |
+| 6 | report | `web/lib/reports/worklist-presentation.ts:225` (9 routes) | const | Ways to make it even better. |
+| 7 | report | `web/lib/reports/worklist-presentation.ts:232` (9 routes) | const | Not true for me |
+| 8 | report | `web/lib/reports/worklist-presentation.ts:270` (9 routes) | key:title | Your finished lines. |
+| 9 | report | `web/lib/reports/worklist-presentation.ts:272` (9 routes) | key:lead | Each one is your own text with your answers in, in the order your profile shows them. The blue words are the ones you added. |
+| 10 | report | `web/lib/reports/worklist-presentation.ts:273` (9 routes) | key:lead | Each one is your own line with your answers in, in resume order. The blue words are the ones you added. |
+| 11 | report | `web/lib/reports/worklist-presentation.ts:280` (9 routes) | const | What this posting asks for |
+| 12 | report | `web/lib/reports/worklist-presentation.ts:281` (9 routes) | const | Your resume answers it here |
+| 13 | report | `web/lib/reports/worklist-presentation.ts:282` (9 routes) | const | Not on your resume |
+| 14 | report | `web/lib/reports/worklist-presentation.ts:285` (9 routes) | const | Your whole profile, part by part |
+| 15 | report | `web/lib/reports/worklist-presentation.ts:289` (9 routes) | key:empty | Nothing here yet |
+| 16 | report | `web/lib/reports/worklist-presentation.ts:292` (9 routes) | const | What the posting asks for that your resume doesn't show |
+| 17 | report | `web/lib/reports/worklist-presentation.ts:297` (9 routes) | const | If you've done it, say where. If you haven't, leave it out. |
+| 18 | report | `web/lib/reports/worklist-presentation.ts:304` (9 routes) | const | Move these up for this posting |
+| 19 | report | `web/lib/reports/worklist-presentation.ts:305` (9 routes) | const | They're already on your resume, further down than this posting needs. |
+| 20 | report | `web/lib/reports/worklist-presentation.ts:306` (9 routes) | const | Trim these first if you need the room |
+| 21 | report | `web/lib/reports/worklist-presentation.ts:307` (9 routes) | const | Good lines this posting doesn't ask about. Keep them for the next one. |
+| 22 | report | `web/lib/reports/worklist-presentation.ts:372` (9 routes) | return | This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there. |
+| 23 | report | `web/lib/reports/worklist-presentation.ts:375` (9 routes) | return | {what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there. |
+| 24 | report | `web/lib/reports/worklist-presentation.ts:417` (9 routes) | assign | Still nothing that needs work. |
+| 25 | report | `web/lib/reports/worklist-presentation.ts:418` (9 routes) | assign | Both versions came back clean. |
+| 26 | report | `web/lib/reports/worklist-presentation.ts:420` (9 routes) | assign | The same lines are on the list. |
+| 27 | report | `web/lib/reports/worklist-presentation.ts:421` (9 routes) | assign | None of them came off the list this time. Let's start with the first one again. |
+| 28 | report | `web/lib/reports/worklist-presentation.ts:424` (9 routes) | assign | Nothing in this version needs work now. |
+| 29 | report | `web/lib/reports/worklist-presentation.ts:426` (9 routes) | assign | {count(gone.length, "line …} off the list. |
+| 30 | report | `web/lib/reports/worklist-presentation.ts:433` (9 routes) | const | Up {delta} since {since}. That's the right direction! |
+| 31 | report | `web/lib/reports/worklist-presentation.ts:433` (9 routes) | const | Down {Math.abs(delta)} since {since}. |
+| 32 | report | `web/lib/reports/worklist-presentation.ts:462` (9 routes) | const | The earlier report named only its top problems and scored your resume differently. This one lists every line that needs work, so a longer list or a different score doesn't mean a weaker resume. |
+| 33 | report | `web/lib/reports/worklist-presentation.ts:476` (9 routes) | const | {now.length} {now.length === 1 ? "line …} work in this version |
+| 34 | report | `web/lib/reports/worklist-presentation.ts:490` (9 routes) | assign | {gone.length} of the {problems.length} lines the earlier report led with {gone.length === 1 ? "is" …} off the list. |
+| 35 | report | `web/lib/reports/worklist-presentation.ts:491` (9 routes) | assign | {still.length === 1 ? "One…} still there, and {needWorkClause}. |
 
 ## web/lib/resume-input.ts
 
@@ -1363,17 +1363,17 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | 1 | report | `web/lib/score-utils.ts:42` (25 routes) | return | Clear and specific |
 | 2 | report | `web/lib/score-utils.ts:43` (25 routes) | return | Mostly clear |
 | 3 | report | `web/lib/score-utils.ts:44` (25 routes) | return | Needs more context |
-| 4 | report | `web/lib/score-utils.ts:57` (25 routes) | return | Ready to send |
-| 5 | report | `web/lib/score-utils.ts:89` (25 routes) | key:label | Excellent Fit |
-| 6 | report | `web/lib/score-utils.ts:93` (25 routes) | key:description | Near-perfect alignment with requirements |
-| 7 | report | `web/lib/score-utils.ts:96` (25 routes) | key:label | Strong Match |
-| 8 | report | `web/lib/score-utils.ts:100` (25 routes) | key:description | Good alignment with minor gaps |
-| 9 | report | `web/lib/score-utils.ts:103` (25 routes) | key:label | Plausible Fit |
-| 10 | report | `web/lib/score-utils.ts:107` (25 routes) | key:description | Reasonable alignment, some gaps |
-| 11 | report | `web/lib/score-utils.ts:110` (25 routes) | key:label | Career Stretch |
-| 12 | report | `web/lib/score-utils.ts:114` (25 routes) | key:description | Different domain or missing key requirements |
-| 13 | report | `web/lib/score-utils.ts:117` (25 routes) | key:label | Not a Match |
-| 14 | report | `web/lib/score-utils.ts:121` (25 routes) | key:description | Fundamentally different role |
+| 4 | report | `web/lib/score-utils.ts:91` (25 routes) | return | Ready to send |
+| 5 | report | `web/lib/score-utils.ts:123` (25 routes) | key:label | Excellent Fit |
+| 6 | report | `web/lib/score-utils.ts:127` (25 routes) | key:description | Near-perfect alignment with requirements |
+| 7 | report | `web/lib/score-utils.ts:130` (25 routes) | key:label | Strong Match |
+| 8 | report | `web/lib/score-utils.ts:134` (25 routes) | key:description | Good alignment with minor gaps |
+| 9 | report | `web/lib/score-utils.ts:137` (25 routes) | key:label | Plausible Fit |
+| 10 | report | `web/lib/score-utils.ts:141` (25 routes) | key:description | Reasonable alignment, some gaps |
+| 11 | report | `web/lib/score-utils.ts:144` (25 routes) | key:label | Career Stretch |
+| 12 | report | `web/lib/score-utils.ts:148` (25 routes) | key:description | Different domain or missing key requirements |
+| 13 | report | `web/lib/score-utils.ts:151` (25 routes) | key:label | Not a Match |
+| 14 | report | `web/lib/score-utils.ts:155` (25 routes) | key:description | Fundamentally different role |
 
 ## web/lib/seo/share-cards.ts
 
