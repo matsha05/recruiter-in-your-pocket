@@ -58,6 +58,34 @@ test("a resume on file that isn't the one the report was written on is not fille
   await expect(page.getByTestId("resume-on-file")).toHaveCount(0);
 });
 
+// An account keeps one resume on file, so keeping another replaces it (Nov 17, 2026): the offer says so, where it
+// used to offer "Keep it on file" and save one resume over the other without a word.
+test("with a different resume on file, the offer says keeping this one replaces it", async ({ page }) => {
+  const OTHER = "Patricia Gomez\nBranch Manager\nExperience\nManaged a branch of 12 bankers and grew deposits 18% in two years.";
+  const state = await open(page, { hasResume: true, resumeText: OTHER, resumeFilename: null, matchesReport: false });
+  let kept: unknown = null;
+  page.on("request", (request) => { if (request.method() === "POST" && request.url().includes("/api/user/default-resume")) kept = request.postDataJSON(); });
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill(RESUME);
+  const notice = page.getByTestId("resume-on-file");
+  await expect(notice).toHaveAttribute("data-offer", "replace");
+  await expect(notice).toContainText("You keep a different resume on file.");
+  await expect(notice).not.toContainText("Keep this resume on file");
+  await expect(page.getByTestId("resume-on-file-keep")).toHaveText("Replace it with this one");
+  await page.getByTestId("resume-on-file-keep").click();
+  await expect(notice).toHaveAttribute("data-state", "kept");
+  expect((kept as { resumeText?: string } | null)?.resumeText).toBe(RESUME);
+  expect(state.wasRemoved()).toBe(false);
+});
+
+test("with the same resume already on file, nothing offers to keep it again", async ({ page }) => {
+  await open(page, { hasResume: true, resumeText: RESUME, resumeFilename: null, matchesReport: false });
+  await page.getByTestId("workspace-paste-mode").click();
+  await page.getByTestId("workspace-resume-text").fill(RESUME);
+  await expect(page.getByTestId("workspace-resume-text")).toHaveValue(RESUME);
+  await expect(page.getByTestId("resume-on-file")).toHaveCount(0);
+});
+
 test("with nothing on file, the person adds the resume and is offered to keep it", async ({ page }) => {
   await open(page, { hasResume: false });
   await expect(page.getByTestId("workspace-posting-read-help")).toBeVisible();
@@ -65,6 +93,8 @@ test("with nothing on file, the person adds the resume and is offered to keep it
   await page.getByTestId("workspace-resume-text").fill(RESUME);
   const notice = page.getByTestId("resume-on-file");
   await expect(notice).toContainText("Keep this resume on file");
+  await expect(notice).toHaveAttribute("data-offer", "keep");
+  await expect(page.getByTestId("resume-on-file-keep")).toHaveText("Keep it on file");
   await page.getByTestId("resume-on-file-keep").click();
   await expect(notice).toHaveAttribute("data-state", "kept");
   await expect(notice).toContainText("until you remove it");

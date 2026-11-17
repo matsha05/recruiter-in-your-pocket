@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3036,
-    "unique_strings": 2534
+    "strings": 3038,
+    "unique_strings": 2536
   },
   "by_moment": {
     "research": 990,
     "account": 464,
     "marketing": 411,
-    "report": 335,
+    "report": 337,
     "pricing": 223,
     "upload": 122,
     "legal": 113,
@@ -33490,7 +33490,7 @@
     {
       "text": "The job posting",
       "kind": "jsx-text",
-      "line": 370,
+      "line": 371,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33506,7 +33506,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 370,
+      "line": 371,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33522,7 +33522,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 370,
+      "line": 371,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33538,7 +33538,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 378,
+      "line": 379,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33554,7 +33554,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 386,
+      "line": 387,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33570,7 +33570,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 401,
+      "line": 402,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -35758,7 +35758,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 433,
+      "line": 435,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35774,7 +35774,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 434,
+      "line": 436,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35790,7 +35790,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 464,
+      "line": 466,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35959,7 +35959,7 @@
     {
       "text": "We couldn't keep your resume on file. Try again.",
       "kind": "key:message",
-      "line": 64,
+      "line": 98,
       "file": "web/components/workspace/hooks/useResumeOnFile.ts",
       "routes": [
         "/sample-report",
@@ -35975,7 +35975,7 @@
     {
       "text": "We couldn't keep your resume on file. Try again.",
       "kind": "key:message",
-      "line": 69,
+      "line": 104,
       "file": "web/components/workspace/hooks/useResumeOnFile.ts",
       "routes": [
         "/sample-report",
@@ -35991,7 +35991,7 @@
     {
       "text": "We couldn't remove your resume from file. Try again.",
       "kind": "key:message",
-      "line": 77,
+      "line": 112,
       "file": "web/components/workspace/hooks/useResumeOnFile.ts",
       "routes": [
         "/sample-report",
@@ -36007,7 +36007,7 @@
     {
       "text": "We couldn't remove your resume from file. Try again.",
       "kind": "key:message",
-      "line": 82,
+      "line": 118,
       "file": "web/components/workspace/hooks/useResumeOnFile.ts",
       "routes": [
         "/sample-report",
@@ -43190,63 +43190,7 @@
       "table": "shared"
     },
     {
-      "text": "On file. We store the text of this resume in your account until you remove it.",
-      "kind": "const",
-      "line": 26,
-      "file": "web/lib/reports/posting-read-terms.ts",
-      "routes": [
-        "/",
-        "/api/resume-feedback-stream",
-        "/api/user/default-resume",
-        "/help",
-        "/pricing",
-        "/privacy",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "We filled in the resume you keep on file. Paste the posting and you're set.",
-      "kind": "const",
-      "line": 28,
-      "file": "web/lib/reports/posting-read-terms.ts",
-      "routes": [
-        "/",
-        "/api/resume-feedback-stream",
-        "/api/user/default-resume",
-        "/help",
-        "/pricing",
-        "/privacy",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Remove it from file",
+      "text": "You keep a different resume on file.",
       "kind": "const",
       "line": 29,
       "file": "web/lib/reports/posting-read-terms.ts",
@@ -43274,9 +43218,9 @@
       "table": "shared"
     },
     {
-      "text": "Your resume on file",
+      "text": "Replace it with this one",
       "kind": "const",
-      "line": 31,
+      "line": 30,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",
@@ -43302,9 +43246,9 @@
       "table": "shared"
     },
     {
-      "text": "Use a different resume",
+      "text": "On file. We store the text of this resume in your account until you remove it.",
       "kind": "const",
-      "line": 33,
+      "line": 32,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",
@@ -43330,7 +43274,7 @@
       "table": "shared"
     },
     {
-      "text": "Removed. Your resume is no longer on file.",
+      "text": "We filled in the resume you keep on file. Paste the posting and you're set.",
       "kind": "const",
       "line": 34,
       "file": "web/lib/reports/posting-read-terms.ts",
@@ -43358,7 +43302,35 @@
       "table": "shared"
     },
     {
-      "text": "Included with your pass. This one doesn't use a report.",
+      "text": "Remove it from file",
+      "kind": "const",
+      "line": 35,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Your resume on file",
       "kind": "const",
       "line": 37,
       "file": "web/lib/reports/posting-read-terms.ts",
@@ -43386,9 +43358,93 @@
       "table": "shared"
     },
     {
-      "text": "Paste the posting and this read is included with your pass.",
+      "text": "Use a different resume",
       "kind": "const",
       "line": 39,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Removed. Your resume is no longer on file.",
+      "kind": "const",
+      "line": 40,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Included with your pass. This one doesn't use a report.",
+      "kind": "const",
+      "line": 43,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Paste the posting and this read is included with your pass.",
+      "kind": "const",
+      "line": 45,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",

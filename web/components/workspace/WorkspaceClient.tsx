@@ -12,7 +12,7 @@ import { useWorkspaceCommands } from "./hooks/useWorkspaceCommands";
 import { useReportCompletion } from "./hooks/useReportCompletion";
 import { useSavedReportRevision } from "./hooks/useSavedReportRevision";
 import SavedRevisionNotice from "./SavedRevisionNotice";
-import { resumeOnFileStateFor, useResumeOnFile } from "./hooks/useResumeOnFile";
+import { keepOfferFor, resumeOnFileStateFor, useResumeOnFile } from "./hooks/useResumeOnFile";
 import { RESUME_ON_FILE_NAME } from "@/lib/reports/posting-read-terms";
 import { WorkspaceResumePicker, type WorkspaceResumePickerHandle } from "./WorkspaceResumePicker";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
@@ -302,6 +302,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         reportId: postingSource && postingSource.text === null && !resumeText.trim() ? postingSource.reportId : null,
         enabled: Boolean(user?.postingReads) && !reportDocument,
         onLoaded: handleResumeOnFileLoaded,
+        // The keep offer shows with a resume in the field on a posting read; it needs to know what is on file first.
+        offering: Boolean(postingReadReportId) && resumeText.trim().length > 0,
     });
     // A re-check, from a saved report or from the report just on screen, makes a version of that report when it was saved.
     const revisionBaseline = (savedRevision.active ? savedRevision.baseline : comparisonBaseline) as (ReportData & { report_id?: string | null }) | null;
@@ -646,7 +648,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onReadAgainstPosting={handleReadAgainstPosting}
                             focusPosting={postingRequested}
                             postingReadIncluded={Boolean(postingReadReportId)}
-                            resumeOnFile={user?.postingReads ? { state: resumeOnFileStateFor(resumeOnFile.state, resumeText), onKeep: (fileName: string | null) => void resumeOnFile.keep(resumeText, fileName ?? commandUploadName), onRemove: () => void resumeOnFile.remove() } : null}
+                            resumeOnFile={user?.postingReads ? { state: resumeOnFileStateFor(resumeOnFile.state, resumeText), offer: keepOfferFor(resumeOnFile.onFileText, resumeText), onKeep: (fileName: string | null) => void resumeOnFile.keep(resumeText, fileName ?? commandUploadName), onRemove: () => void resumeOnFile.remove() } : null}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}

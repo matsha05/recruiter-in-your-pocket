@@ -15,7 +15,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
-import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, POSTING_READ_NEEDS_POSTING_HINT, RESUME_ON_FILE_USE_ANOTHER, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED } from "@/lib/reports/posting-read-terms";
+import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, POSTING_READ_NEEDS_POSTING_HINT, RESUME_ON_FILE_USE_ANOTHER, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED, RESUME_ON_FILE_REPLACE, RESUME_ON_FILE_REPLACE_OFFER } from "@/lib/reports/posting-read-terms";
 import type { ResumeOnFileState } from "./hooks/useResumeOnFile";
 import { cn } from "@/lib/utils";
 import { FILE_READ_NOTE, fileReadFindings, fileReadSummary } from "@/lib/reports/file-read";
@@ -50,7 +50,7 @@ interface InputPanelProps {
     /** With a pass, reading an already-read resume against a posting spends no report; say so once the posting is in. */
     postingReadIncluded?: boolean;
     /** Keeping the resume on file for posting reads (components/workspace/hooks/useResumeOnFile.ts). */
-    resumeOnFile?: { state: ResumeOnFileState; onKeep: (fileName: string | null) => void; onRemove: () => void } | null;
+    resumeOnFile?: { state: ResumeOnFileState; offer?: "keep" | "replace" | null; onKeep: (fileName: string | null) => void; onRemove: () => void } | null;
 }
 
 export default function InputPanel({
@@ -340,8 +340,8 @@ export default function InputPanel({
                             </span>
                         </p>
 
-                        {resumeOnFile && postingReadIncluded && !isProfile && resumeText.trim().length > 0 && (
-                            <p className="mt-4 text-sm text-muted-foreground" role="status" data-testid="resume-on-file" data-state={resumeOnFile.state.status}>
+                        {resumeOnFile && postingReadIncluded && !isProfile && resumeText.trim().length > 0 && (resumeOnFile.state.status !== "none" || resumeOnFile.offer) && (
+                            <p className="mt-4 text-sm text-muted-foreground" role="status" data-testid="resume-on-file" data-state={resumeOnFile.state.status} data-offer={resumeOnFile.offer ?? undefined}>
                                 {resumeOnFile.state.status === "loaded" ? (
                                     <>{RESUME_ON_FILE_LOADED}{" "}<button type="button" className="riyp-link-quiet" onClick={resumeOnFile.onRemove} data-testid="resume-on-file-remove">{RESUME_ON_FILE_REMOVE}</button></>
                                 ) : resumeOnFile.state.status === "kept" ? (
@@ -351,7 +351,8 @@ export default function InputPanel({
                                 ) : resumeOnFile.state.status === "error" ? (
                                     resumeOnFile.state.message
                                 ) : (
-                                    <>{RESUME_ON_FILE_OFFER}{" "}<button type="button" className="riyp-link-quiet" onClick={() => resumeOnFile.onKeep(fileName)} disabled={resumeOnFile.state.status === "saving"} data-testid="resume-on-file-keep">{RESUME_ON_FILE_KEEP}</button></>
+                                    // An account keeps one resume on file: when a different one is there, the offer says this replaces it.
+                                    <>{resumeOnFile.offer === "replace" ? RESUME_ON_FILE_REPLACE_OFFER : RESUME_ON_FILE_OFFER}{" "}<button type="button" className="riyp-link-quiet" onClick={() => resumeOnFile.onKeep(fileName)} disabled={resumeOnFile.state.status === "saving"} data-testid="resume-on-file-keep">{resumeOnFile.offer === "replace" ? RESUME_ON_FILE_REPLACE : RESUME_ON_FILE_KEEP}</button></>
                                 )}
                             </p>
                         )}
