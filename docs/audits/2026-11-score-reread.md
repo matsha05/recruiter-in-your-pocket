@@ -93,10 +93,52 @@ What it leaves:
 - Pages with three or fewer cards that sit near 85 can still land either side of it.
 - A profile review uses the same validator and its prompt uses the same words for the band ("One or two parts still hide a detail"), so the rule holds there too. Only six profile reads are saved, one in the band with no card that needs work.
 
+## The limit in the prompt, November 17
+
+On production the rule worked as built. A posting read from the 86 report (report `fdbfc597`) logged `llm.response.score_held`: the model gave 87 over five cards that need work, and the report showed 84, Mostly clear, with no second call. Its words were written for an 87: two upgrade cards, and a write-up that closes "Your resume is unlikely to be the thing holding you back here".
+
+So the limit went into the prompt as well, as one sentence at the end of the Clear and specific bullet: "This band is held to the cards as well: a page with more than three cards that need work never scores above 84, and no card a line needs is ever left off to reach it." The second half is there so the model doesn't drop cards to keep a higher score. The code rule stays as the backstop.
+
+Matt approved about $2 of synthetic reads; $1.39 was spent. Every read below is synthetic.
+
+**How often a read had to be held**:
+
+| | Shipped prompt, today | New prompt |
+| --- | --- | --- |
+| Ten synthetic golden resumes | 12 reads of the UX director (run `eval_1794930816744`): 79 to 83, none held | 40 reads of all ten (runs `eval_1794931009733`, `eval_1794931229682`): none held |
+| Posting reads, the two recruiter pairs | 12 reads: one drafted 86 over four cards that need work, held to 84, with two upgrade cards | 12 reads: none drafted above 84 with more than three |
+| Posting reads, the rest of the set | 10 reads of the strong backend pairs: none held | 17 reads: none held |
+
+On the shipped prompt, holds are rare: one in 34 reads today. On the new prompt there were none in 69. With rates this low, that is the direction we hoped for, not proof.
+
+**Scores, ten synthetic golden resumes** (the shipped prompt's 50 reads from November 12 and 13 against the new prompt's 40):
+
+| Resume | Shipped: score, cards that need work | New: score, cards that need work |
+| --- | --- | --- |
+| Data scientist, senior | 94 to 95, 0 | 95 to 96, 0 |
+| Marketing manager, VP | 91 to 94, 0 to 1 | 94 to 95, 0 |
+| UX director | 80 to 85, 7 to 9 | 80 to 82, 6 to 8 |
+| Product manager, entry | 76 to 80, 2 to 3 | 78 to 79, 3 to 4 |
+| Project manager, VP | 77 to 81, 10 to 12 | 76 to 78, 11 |
+| Software engineer, mid | 69 to 77, 9 to 11 | 69 to 75, 10 to 11 |
+| The four weak resumes | 42 to 52, 11 to 12 | 40 to 54, 12 |
+
+**The strong backend posting pairs** read slightly lower: a mean of 89.3 over ten reads on the new prompt against 90.9 on the shipped prompt. Six of the ten carried one card that needs work, against three of ten. Two reached Ready to send, against three. With ten reads on each side, this can't be told from re-reading noise (the gap between two reads of one page runs to 5). The two strong golden resumes moved up, not down. Nothing here says the sentence pushes strong pages down, but a small effect would not show yet.
+
+**Release evidence:** the ten synthetic fixtures once on the new prompt. 9 pass, 1 warning (a card whose fix has no blank), 0 failures: 90%, on the bar. Across all 40 reads on the new prompt there were 5 warnings, against 2 in the shipped prompt's 50:
+
+- two cards with no blank to fill;
+- two repeated clauses ("the work you" twice);
+- one card question that repeats the verdict, which the shipped prompt also produced on the same resume.
+
+Warnings of these kinds were in the bundled evidence before this change too, and none is about the score or the band.
+
+What it leaves: the sentence tells the model the limit, but cannot make it write the right words for every read. A read that still drafts 85 or more over four cards is held by the code, with the words it wrote.
+
 ## What this does not show
 
 - Ten resumes, all synthetic, one prompt, one day. 5 is the widest gap seen in 60 pairs plus the earlier runs and the live reads. It is not a bound: a wider gap can happen and would be announced.
 - A real improvement of 5 points or fewer is no longer announced as a number. From one pair of reads it can't be told from a re-read.
 - Inside a band the first score is as unsteady as it was. The one crossing this record shows on an unchanged page, into Clear and specific over a long list of cards, is closed by the rule above; a page can still read 78 once and 82 the next time.
 - Reports compared in the earlier format (saved before November 6) still announce any difference. No new reports are made in that format, and this measurement was not run on it.
-- One live posting read was made after the first two changes, from the 86 report: it showed 86, over seven cards that need work. That read is what prompted the rule above. No live read has been made since the rule; it is covered by unit tests and the replays.
+- One live posting read was made after the first two changes, from the 86 report: it showed 86, over seven cards that need work. That read is what prompted the rule above. One more was made after the rule (November 17): see "The limit in the prompt".

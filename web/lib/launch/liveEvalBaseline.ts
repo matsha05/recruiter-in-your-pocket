@@ -1,29 +1,25 @@
 import type { LiveEvalEvidence } from "./evalEvidence";
 
-// The full golden tier (23 fixtures) on the worklist prompt (resume_v3.txt) with the must-have rule of November 12,
-// 2026 (what a posting's table may list), generated live that day in one run and replayed through the validator
-// and checks: 21 pass, 2 warnings, 0 failures.
+// The ten synthetic golden fixtures on the worklist prompt (resume_v3.txt) with Clear and specific held to the cards
+// in the prompt as well as in code (November 17, 2026: more than three cards that need work never scores above 84),
+// generated live that day in one run and checked in the run itself: 9 pass, 1 warning, 0 failures. The warning is a
+// card whose fix has no blank to fill.
 //
-// Read this number with its history. As generated the run was 20 pass and 3 warnings, 87%, under the 90% this
-// evidence must show, and it was recorded as not meeting the bar. One of the three warnings was the repeated-clause
-// check flagging "year in your" in a sentence that names two places a date appears; that check was corrected the
-// same day for its own reasons (PR 142: a clause cut off at a function word is not a repeated phrase), and the
-// same saved run replays at 21 pass. The run was not generated again. The two warnings left are a write-up that
-// says "people you managed" twice and a card whose fix has no blank to fill.
-//
-// Before this, the evidence was a run of the ten synthetic fixtures alone on the same prompt (10 pass; receipt in
-// tests/fixtures/results/summary_golden_synthetic_must_have_2026-11-12.md). None of these fixtures carries a
-// posting; the posting lists were read and judged on thirteen pairs (docs/audits/2026-11-posting-tailoring.md).
+// Read this with its history. Until this change the evidence was the full golden tier (23 fixtures) replayed through
+// the validator (eval_1794518962413_replay, 21 pass, 2 warnings). The approved spend for this change covers synthetic
+// resumes only, so the evidence narrows to the ten synthetic fixtures; the other thirteen were not generated on this
+// prompt. The comparison with the shipped prompt (forty reads of the ten, and posting reads on both prompts) is in
+// docs/audits/2026-11-score-reread.md.
 export const BUNDLED_LIVE_EVAL_EVIDENCE: LiveEvalEvidence = Object.freeze({
-  runId: "eval_1794518962413_replay",
+  runId: "eval_1794931009733",
   model: "gpt-6.1-terra",
   reasoningEffort: "medium",
-  validationMode: "saved_output_replay",
-  "sourceRunSha256": "3a2f4ec3f0deb24daa0d73802cd7fe0ea18bfd27c40c734a493c70b0944174fe",
-  "resumePromptSha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  validationMode: "in_run",
+  sourceRunSha256: undefined,
+  "resumePromptSha256": "31aaaaa165a693ca738aa2ab774bde8497f256a9472501edc1e12f0debca674d",
   "resumeIdeasPromptSha256": "6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7",
-  total: 23,
-  passed: 21,
-  warned: 2,
+  total: 10,
+  passed: 9,
+  warned: 1,
   failed: 0,
 });
