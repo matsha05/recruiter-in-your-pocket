@@ -1,4 +1,5 @@
 import { resolveResumeRepairReasoningEffort } from "@/lib/llm/model-config";
+import { onlySoftIssues } from "./worklist-validator";
 import { extractJsonFromText } from "../backend/openai";
 import {
   ensureLayoutAndContentFields,
@@ -39,7 +40,7 @@ type ChatMessage = {
  * draft says so), the Critical Miss validator otherwise. A v2 draft under the worklist flag is refused by
  * the worklist validator and repaired into the worklist shape.
  */
-export function validateResumePayload(parsed: unknown, text: string, options?: { forceGrounding?: boolean; jobDescription?: string }) {
+export function validateResumePayload(parsed: unknown, text: string, options?: { forceGrounding?: boolean; jobDescription?: string; allowVerdictAboveBand?: boolean }) {
   if (isWorklistReportEnabled() || isWorklistReport(parsed)) {
     return validateWorklistPayload(parsed, text, options);
   }
@@ -157,6 +158,26 @@ export async function validateResumeStreamOutput(input: {
       return { payload, replacementRaw: repaired.raw, repairMs: Date.now() - repairStartedAt };
     } catch (repairError: any) {
       if (isStableOpenAITransportError(repairError)) throw repairError;
+      // A first draft whose only fault was soft (its verdict's reaction above its band) is kept as written rather
+      // than lost: the repair was worth a try, never worth the report.
+      if (onlySoftIssues(error)) {
+        try {
+          const payload = ensureLayoutAndContentFields(
+            validateResumePayload(extractJsonFromText(input.raw), input.text, { ...input.validationOptions, allowVerdictAboveBand: true })
+          );
+          recordLaunchSignal("riyp.report.repair", { result: "kept_draft" });
+          logWarn({
+            msg: "llm.response.repair_kept_draft",
+            request_id: input.requestId,
+            route: input.route,
+            user_id: input.userIdForLogs,
+            err: { name: repairError?.name || "ValidationError", message: repairError?.message || "Response repair failed" },
+          });
+          return { payload, replacementRaw: null as string | null, repairMs: Date.now() - repairStartedAt };
+        } catch {
+          // Fall through: the draft has a fault of its own after all.
+        }
+      }
       recordLaunchSignal("riyp.report.repair", { result: "failed" });
       logError({
         msg: "llm.response.repair_failed",

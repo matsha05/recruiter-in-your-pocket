@@ -1,0 +1,76 @@
+# director_eng_manager, run 1
+Resume: ../2026-11-first-read/resumes/fr06_senior_director_duties.txt (143 words), posting: ../2026-11-first-read/resumes/posting_engineering_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0124; 36.0s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+The Engineering Manager, Payments Platform role is a different track from your operations work. Your progression at Northstar shows leadership in field service, but I don't see engineering management or backend engineering on your resume. I'd pass for this particular role.
+
+## Write-up
+This posting calls for an engineering manager, while your resume follows field operations from Lakeland Appliance Repair to Senior Director at Northstar Home Services. Your move into managing managers is clear, but the engineering work the posting asks for isn't shown.
+
+It's common for an operations resume to list responsibilities without showing how big the work was or what changed. That makes it harder to compare your senior leadership work with others in a pile. Your line about reporting to the COO and partnering with Finance on the annual operating plan is a useful model: it names the people and the work.
+
+Let's start with your current Northstar role. Add the size of the operation and management team, then name an initiative you led and what changed. For this posting, add engineering experience only if you've done that work and can describe it accurately.
+
+## Cards (11; {"structure":1,"line":9,"keep":1}); severity off; added []
+1. [structure] Northstar Home Services
+   line: "The resume does not describe Northstar Home Services beyond its name."
+   can't tell: A recruiter can see the Upper Midwest operations you oversee, but not what services the business provides or how large it is.
+   question: How would you describe Northstar's services and size?
+2. [line] Senior Director, Operations, line 1
+   line: "Responsible for field operations, dispatch and customer care across the Upper Midwest"
+   can't tell: This names the functions and geography, but not how large the operation is. At senior director level, a recruiter will look for a comparable measure such as budget or headcount.
+   example: Responsible for field operations, dispatch and customer care across the Upper Midwest, with [budget or headcount]
+   question: What budget or headcount can you share for these operations?
+3. [keep] Senior Director, Operations, line 2
+   line: "Reported to the COO and partnered with Finance on the annual operating plan"
+   can't tell: Keep this as a model for naming who you worked with and the deliverable. Those details make the senior role tangible without relying on a title alone.
+4. [line] Senior Director, Operations, line 3
+   line: "Oversaw vendor management and fleet"
+   can't tell: Vendor management and fleet are broad areas. A recruiter can't tell what decisions or work were yours.
+   example: Oversaw vendor management and fleet, including [work or decisions]
+   question: What vendor or fleet work did you oversee?
+5. [line] Senior Director, Operations, line 4
+   line: "Led operational strategy and continuous improvement initiatives"
+   can't tell: The initiatives aren't named, so a recruiter can't tell what you led or what changed. One concrete example would carry more weight.
+   example: Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]
+   question: Which initiative did you lead, and what changed?
+6. [line] Senior Director, Operations, line 5
+   line: "Managed managers across multiple regions"
+   can't tell: Managing managers is an important part of your senior role. The number of managers and what their teams handled would show how the organization was set up.
+   example: Managed [number] managers across multiple regions whose teams handled [work]
+   question: How many managers did you manage, and what did their teams handle?
+7. [line] Director, Field Operations, line 1
+   line: "Oversaw technicians and dispatch for the Twin Cities market"
+   can't tell: The market and teams are named, but their size isn't. That would help show the responsibility you held before becoming Senior Director.
+   example: Oversaw [number] technicians and [dispatch team size] for the Twin Cities market
+   question: How many technicians and dispatch staff did you oversee?
+8. [line] Director, Field Operations, line 2
+   line: "Rolled out a new scheduling system"
+   can't tell: The rollout is clear, but a recruiter can't tell who used the system or what changed after it was introduced.
+   example: Rolled out a new scheduling system for [users], resulting in [what changed]
+   question: Who used the scheduling system, and what changed after the rollout?
+9. [line] Director, Field Operations, line 3
+   line: "Improved first-time fix rate"
+   can't tell: This names a useful measure, but not how much it improved or what you did to improve it.
+   example: Improved first-time fix rate from [starting rate] to [ending rate] by [what you did]
+   question: What were the starting and ending rates, and what did you do to improve them?
+10. [line] Operations Manager, line 1
+   line: "Ran daily operations for the service department"
+   can't tell: Daily operations could cover a lot of different work. Name the parts you ran so a recruiter can see what the job involved.
+   example: Ran daily operations for the service department, including [work]
+   question: Which parts of the service department's daily operations did you run?
+11. [line] Operations Manager, line 2
+   line: "Hired and trained technicians"
+   can't tell: Hiring and training are relevant management work, but the line doesn't say how many technicians you brought on or what their training covered.
+   example: Hired and trained [number] technicians in [training areas]
+   question: How many technicians did you hire and train, and what did their training cover?
+
+## Fit
+Roles: ["Senior Operations Leader","Engineering Manager, Payments Platform"]
+Level: director, current Senior Director role managing managers across multiple regions
+Note: Your experience managing managers and partnering with Finance is relevant to leading an organization, though the work is in field services. The posting offers Seattle or remote work in the US.
+Posting: Lead backend engineers responsible for payouts and the ledger, including hiring, team development, delivery and operational reliability.
+Missing: ["2+ years managing engineers with direct reports, including hiring and performance management","5+ years of backend engineering before moving into management","Experience leading teams that run production systems with on-call","A record of growing engineers into senior roles","payments or financial services experience"]

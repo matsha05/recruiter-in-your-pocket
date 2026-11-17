@@ -335,8 +335,8 @@ for (const [name, source] of [
     assert.equal(source.match(/effectiveJobDescription\.validationOptions/g)?.length, 2);
     assert.equal(
       resumeStreamValidation.match(/input\.validationOptions/g)?.length,
-      2,
-      "stream validation must reuse the route's effective JD options for normal and repair validation",
+      3,
+      "stream validation must reuse the route's effective JD options for normal and repair validation, and for a draft kept after a failed repair",
     );
   } else {
     // The JSON route validates through the stream's validator (worklist or Critical Miss contract, one repair),

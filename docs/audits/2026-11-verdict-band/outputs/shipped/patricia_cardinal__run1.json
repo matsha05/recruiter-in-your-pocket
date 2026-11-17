@@ -1,0 +1,375 @@
+{
+  "case_id": "patricia_cardinal",
+  "batch": "band",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": "postings/cardinal_small_business_rm.txt",
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T19:16:50.647Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8607,
+        "completion_tokens": 2273,
+        "total_tokens": 10880,
+        "cached_prompt_tokens": 7780,
+        "cache_write_prompt_tokens": 824,
+        "reasoning_tokens": 1141
+      },
+      "cost_usd": 0.012787,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 41884
+    }
+  ],
+  "resume_prompt_sha256": "2a237565211b3751de15ed28ec6153d0283469e0a4d8e4c61bbb16bdacb4fc29",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "The Small Business Relationship Manager role calls for loan origination that your branch management resume doesn't show. Your deposit growth and management work are strong, but I'd hesitate over the lending fit and what you've done since December 2024.",
+    "write_up": [
+      "Cardinal Southern's role is a shift from running a branch to managing small business relationships with a lending component. It's common for branch resumes to show operations and deposit growth more clearly than lending. Here, that makes it difficult to tell how much of the lending work you could bring to the role.",
+      "Your deposit-growth line is the model: it gives a recruiter a before, an after and a time frame. Your progression at Magnolia Community Bank is easy to follow, but the work stops at December 2024, leaving a question before a recruiter gets to your earlier roles.",
+      "Let's start with the Branch Manager role and account for the time since it ended. Then add what you can substantiate about your part in referrals, audits and lending. Your small business account work belongs in the conversation too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what you've done since the Branch Manager role ended. That question competes with the deposit growth and management work you've shown.",
+        "example": "December 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since the Branch Manager role ended?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "- Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and coaching are clear, but a recruiter can't tell what the referral work produced. That's useful context for a role that partners with branch managers on referrals.",
+        "example": "Led weekly sales huddles and coached bankers on referrals, with [referral result]",
+        "question": "What referral result can you substantiate from the huddles and coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw the reviews, but not what you handled within them. That matters for a role with credit files and audit responsibilities.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [what you handled]",
+        "question": "What did you handle during the branch audits and compliance reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of complaints reached you or how you handled them. One example would show your approach to customer relationships.",
+        "example": "Handled escalated customer complaints about [issue] by [action]",
+        "question": "What kind of escalated complaint did you handle, and what did you do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this. It names the business measure and shows how it moved, so a recruiter doesn't have to guess what growth means.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Small Business Relationship Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management, with responsibility for employees and branch deposits.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your small business account-opening work and Finance degree are relevant to Cardinal Southern's role. The job is hybrid, with three days in the downtown office and travel within the Birmingham metro.",
+      "posting": {
+        "summary": "Manage small business client relationships, grow deposits and loans, and work with the credit team on lending.",
+        "missing": [
+          "4+ years in business banking, commercial lending or branch management with a lending focus",
+          "Experience originating small business loans or lines of credit",
+          "SBA lending experience",
+          "Formal credit training"
+        ],
+        "lead": [],
+        "trim": [],
+        "covered": [
+          {
+            "requirement": "A track record of growing a deposit or loan portfolio",
+            "line": "- Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, accounting or business",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          }
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "The Small Business Relationship Manager role calls for loan origination that your branch management resume doesn't show. Your deposit growth and management work are strong, but I'd hesitate over the lending fit and what you've done since December 2024.",
+    "write_up": [
+      "Cardinal Southern's role is a shift from running a branch to managing small business relationships with a lending component. It's common for branch resumes to show operations and deposit growth more clearly than lending. Here, that makes it difficult to tell how much of the lending work you could bring to the role.",
+      "Your deposit-growth line is the model: it gives a recruiter a before, an after and a time frame. Your progression at Magnolia Community Bank is easy to follow, but the work stops at December 2024, leaving a question before a recruiter gets to your earlier roles.",
+      "Let's start with the Branch Manager role and account for the time since it ended. Then add what you can substantiate about your part in referrals, audits and lending. Your small business account work belongs in the conversation too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what you've done since the Branch Manager role ended. That question competes with the deposit growth and management work you've shown.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since the Branch Manager role ended?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and coaching are clear, but a recruiter can't tell what the referral work produced. That's useful context for a role that partners with branch managers on referrals.",
+        "example": "Led weekly sales huddles and coached bankers on referrals, with [referral result]",
+        "question": "What referral result can you substantiate from the huddles and coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw the reviews, but not what you handled within them. That matters for a role with credit files and audit responsibilities.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [what you handled]",
+        "question": "What did you handle during the branch audits and compliance reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of complaints reached you or how you handled them. One example would show your approach to customer relationships.",
+        "example": "Handled escalated customer complaints about [issue] by [action]",
+        "question": "What kind of escalated complaint did you handle, and what did you do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this. It names the business measure and shows how it moved, so a recruiter doesn't have to guess what growth means.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Small Business Relationship Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management, with responsibility for employees and branch deposits.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your small business account-opening work and Finance degree are relevant to Cardinal Southern's role. The job is hybrid, with three days in the downtown office and travel within the Birmingham metro.",
+      "posting": {
+        "summary": "Manage small business client relationships, grow deposits and loans, and work with the credit team on lending.",
+        "missing": [
+          "4+ years in business banking, commercial lending or branch management with a lending focus",
+          "Experience originating small business loans or lines of credit",
+          "SBA lending experience",
+          "Formal credit training"
+        ],
+        "covered": [
+          {
+            "requirement": "A track record of growing a deposit or loan portfolio",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, accounting or business",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          }
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "The Small Business Relationship Manager role calls for loan origination that your branch management resume doesn't show. Your deposit growth and management work are strong, but I'd hesitate over the lending fit and what you've done since December 2024.",
+    "write_up": [
+      "Cardinal Southern's role is a shift from running a branch to managing small business relationships with a lending component. It's common for branch resumes to show operations and deposit growth more clearly than lending. Here, that makes it difficult to tell how much of the lending work you could bring to the role.",
+      "Your deposit-growth line is the model: it gives a recruiter a before, an after and a time frame. Your progression at Magnolia Community Bank is easy to follow, but the work stops at December 2024, leaving a question before a recruiter gets to your earlier roles.",
+      "Let's start with the Branch Manager role and account for the time since it ended. Then add what you can substantiate about your part in referrals, audits and lending. Your small business account work belongs in the conversation too."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what you've done since the Branch Manager role ended. That question competes with the deposit growth and management work you've shown.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since the Branch Manager role ended?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "cannot_tell": "The weekly huddles and coaching are clear, but a recruiter can't tell what the referral work produced. That's useful context for a role that partners with branch managers on referrals.",
+        "example": "Led weekly sales huddles and coached bankers on referrals, with [referral result]",
+        "question": "What referral result can you substantiate from the huddles and coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw the reviews, but not what you handled within them. That matters for a role with credit files and audit responsibilities.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [what you handled]",
+        "question": "What did you handle during the branch audits and compliance reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of complaints reached you or how you handled them. One example would show your approach to customer relationships.",
+        "example": "Handled escalated customer complaints about [issue] by [action]",
+        "question": "What kind of escalated complaint did you handle, and what did you do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this. It names the business measure and shows how it moved, so a recruiter doesn't have to guess what growth means.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Small Business Relationship Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management, with responsibility for employees and branch deposits.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your small business account-opening work and Finance degree are relevant to Cardinal Southern's role. The job is hybrid, with three days in the downtown office and travel within the Birmingham metro.",
+      "posting": {
+        "summary": "Manage small business client relationships, grow deposits and loans, and work with the credit team on lending.",
+        "missing": [
+          "4+ years in business banking, commercial lending or branch management with a lending focus",
+          "Experience originating small business loans or lines of credit",
+          "SBA lending experience",
+          "Formal credit training"
+        ],
+        "covered": [
+          {
+            "requirement": "A track record of growing a deposit or loan portfolio",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, accounting or business",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          }
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "The Small Business Relationship Manager role calls for loan origination that your branch management resume doesn't show. Your deposit growth and management work are strong, but I'd hesitate over the lending fit and what you've done since December 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 138,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since the Branch Manager role ended?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 3",
+        "line": "Led weekly sales huddles and coached bankers on referrals",
+        "blanks": 1,
+        "question": "What referral result can you substantiate from the huddles and coaching?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 1,
+        "question": "What did you handle during the branch audits and compliance reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kind of escalated complaint did you handle, and what did you do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Small Business Relationship Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management, with responsibility for employees and branch deposits.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your small business account-opening work and Finance degree are relevant to Cardinal Southern's role. The job is hybrid, with three days in the downtown office and travel within the Birmingham metro.",
+      "posting": {
+        "summary": "Manage small business client relationships, grow deposits and loans, and work with the credit team on lending.",
+        "missing": [
+          "4+ years in business banking, commercial lending or branch management with a lending focus",
+          "Experience originating small business loans or lines of credit",
+          "SBA lending experience",
+          "Formal credit training"
+        ],
+        "covered": [
+          {
+            "requirement": "A track record of growing a deposit or loan portfolio",
+            "line": "Grew branch deposits from $48M to $63M over five years"
+          },
+          {
+            "requirement": "Bachelor's degree in finance, accounting or business",
+            "line": "B.S., Finance, University of Alabama at Birmingham, 2012"
+          }
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.012787,
+  "latency_ms": 41887
+}

@@ -1,0 +1,47 @@
+# patricia_cardinal, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/cardinal_small_business_rm.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0128; 41.9s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+The Small Business Relationship Manager role calls for loan origination that your branch management resume doesn't show. Your deposit growth and management work are strong, but I'd hesitate over the lending fit and what you've done since December 2024.
+
+## Write-up
+Cardinal Southern's role is a shift from running a branch to managing small business relationships with a lending component. It's common for branch resumes to show operations and deposit growth more clearly than lending. Here, that makes it difficult to tell how much of the lending work you could bring to the role.
+
+Your deposit-growth line is the model: it gives a recruiter a before, an after and a time frame. Your progression at Magnolia Community Bank is easy to follow, but the work stops at December 2024, leaving a question before a recruiter gets to your earlier roles.
+
+Let's start with the Branch Manager role and account for the time since it ended. Then add what you can substantiate about your part in referrals, audits and lending. Your small business account work belongs in the conversation too.
+
+## Cards (5; {"dates":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia, but can't tell what you've done since the Branch Manager role ended. That question competes with the deposit growth and management work you've shown.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since the Branch Manager role ended?
+2. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: The weekly huddles and coaching are clear, but a recruiter can't tell what the referral work produced. That's useful context for a role that partners with branch managers on referrals.
+   example: Led weekly sales huddles and coached bankers on referrals, with [referral result]
+   question: What referral result can you substantiate from the huddles and coaching?
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see that you oversaw the reviews, but not what you handled within them. That matters for a role with credit files and audit responsibilities.
+   example: Oversaw audits and compliance reviews for the branch, including [what you handled]
+   question: What did you handle during the branch audits and compliance reviews?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This doesn't show what kinds of complaints reached you or how you handled them. One example would show your approach to customer relationships.
+   example: Handled escalated customer complaints about [issue] by [action]
+   question: What kind of escalated complaint did you handle, and what did you do?
+5. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this. It names the business measure and shows how it moved, so a recruiter doesn't have to guess what growth means.
+
+## Fit
+Roles: ["Branch Manager","Small Business Relationship Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your small business account-opening work and Finance degree are relevant to Cardinal Southern's role. The job is hybrid, with three days in the downtown office and travel within the Birmingham metro.
+Posting: Manage small business client relationships, grow deposits and loans, and work with the credit team on lending.
+Missing: ["4+ years in business banking, commercial lending or branch management with a lending focus","Experience originating small business loans or lines of credit","SBA lending experience","Formal credit training"]

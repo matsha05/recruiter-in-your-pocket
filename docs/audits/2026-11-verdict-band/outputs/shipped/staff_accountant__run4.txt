@@ -1,0 +1,57 @@
+# staff_accountant, run 4
+Resume: ../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0092; 30.5s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+Your move from accounts payable to Staff Accountant at Rivermark Building Supply gives you a clear accounting story. I'd hesitate to move the resume forward because the duties don't show how much of the close you handle.
+
+## Write-up
+It's common for accounting resumes to list the regular duties of a job. Yours shows a move from accounts payable into staff accounting at Rivermark, but the duties don't yet show how much work you handle or what you've contributed beyond the basics. That makes it harder to stand out among other Staff Accountant resumes.
+
+The journal entries and reconciliations line is a useful starting model because it names two things you prepare. Your degree and accounting tools also support the direction; what's missing is the detail that shows how those tools and duties fit into your work at Rivermark.
+
+Let's start with the month-end close line. Name the tasks you handle and the accounts or volume involved, then do the same for the audit and fixed assets. Use only details you can confirm.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The resume doesn't say how large Rivermark Building Supply is."
+   can't tell: A recruiter may not know Rivermark, so the amount of accounting work behind the role is hard to judge.
+   example: Rivermark Building Supply, Sacramento, CA | [company size or business description]
+   question: How would you describe Rivermark's business or size?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: Month-end close covers a lot of work. A recruiter can't tell which tasks are yours or how much of the close you handle.
+   example: Handle month-end close tasks including [tasks] for [accounts or business units]
+   question: Which close tasks do you handle, and which accounts or business units do they cover?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names the work, but not the accounts or volume. Those details would show what your regular workload includes.
+   example: Prepare journal entries and account reconciliations for [account types], covering [number] accounts
+   question: What types of accounts do you work on, and how many do you reconcile?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist could mean several things. The recruiter can't tell what you contribute to the audit.
+   example: Assist with the annual audit by preparing [audit materials] and supporting [audit requests]
+   question: What materials or requests do you handle for the annual audit?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedules are named, but the assets and the work involved aren't. Those details would show what you manage.
+   example: Maintain fixed asset schedules for [asset types], including [schedule tasks]
+   question: What assets do the schedules cover, and what do you do to maintain them?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: A recruiter can't tell what processing involves or how often it comes up alongside your staff accounting work.
+   example: Process accounts payable by [tasks] when needed, handling [volume] during [period]
+   question: What payable tasks do you handle, and about how much do you process when needed?
+7. [line] Accounts Payable Clerk, line 1
+   line: "Entered vendor invoices"
+   can't tell: Invoice entry is clear, but the volume isn't. That would show how much of Rivermark's payable work you handled in this role.
+   example: Entered [number] vendor invoices per [period]
+   question: How many vendor invoices did you typically enter, and over what period?
+
+## Fit
+Roles: ["Staff Accountant"]
+Level: mid-level, current Staff Accountant role with prior accounts payable experience
+Note: Your experience points toward staff accounting roles that include close, reconciliations and audit support. Adding the accounts and volume you handle would make that experience more useful to a recruiter.

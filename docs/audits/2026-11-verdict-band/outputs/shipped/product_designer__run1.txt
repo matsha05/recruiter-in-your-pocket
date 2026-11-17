@@ -1,0 +1,50 @@
+# product_designer, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0107; 35.6s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Your product design work at Loop Fitness is easy to spot, but I’d hesitate to move the resume forward without knowing more about the decisions behind it. I’d also want to know what you’ve been working on in design since leaving Loop.
+
+## Write-up
+You’re a product designer who worked on client sites and apps at Brightpath Studio, then on Loop Fitness’s mobile apps, and you’re now a barista at Ferry Street Coffee. It’s common to see a resume name the work without showing the decisions behind it. For product design, that makes it harder to stand out against resumes that show what a design addressed or changed.
+
+The line about creating Loop’s first design system in Figma is your best model: it names what you made, where it was used and the tool. Your current role accounts for the time after Loop, but your resume doesn’t show whether you’ve done design work since then.
+
+Let’s start with the Loop booking flow and weekly releases. Add the design problem and your contribution where you can, then show what you learned from member tests. If you have recent design projects, your portfolio and resume can show that work too.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete piece of work, but a recruiter can’t tell what you were designing it to address. That’s a useful detail for judging your product design work.
+   example: Designed the class booking flow for the iOS and Android apps to address [design problem]
+   question: What problem did the booking flow need to address?
+2. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are clear, but your own contribution to those releases isn’t. What did you design or decide alongside them?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
+3. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model: it gives your action and a recognizable deliverable without making a recruiter guess what you owned.
+4. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You say who took part and when the tests happened. What the tests examined or what you did with the findings would show more of your research work.
+   example: Ran usability tests with members before launches to examine [research question], then [your use of the findings]
+   question: What did you test with members, and what did you do with the findings?
+5. [line] Junior Product Designer, Brightpath Studio, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: Marketing sites and app screens could cover a lot of different projects. One client project or design problem would give a recruiter something concrete to remember.
+   example: Designed [marketing site or app screens] for [client or project], addressing [design problem]
+   question: Which client project can you name, and what design problem did it address?
+6. [line] Junior Product Designer, Brightpath Studio, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The prototypes have an audience, but their subject is missing. A project or feature would show what you were presenting.
+   example: Made prototypes of [project or feature] for client presentations
+   question: What project or feature did the prototypes show?
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, Product Designer role following a Junior Product Designer role
+Note: Your experience points toward product design roles involving mobile apps, design systems and member research. Your current cafe role is clear; recent design projects, if you have them, would help show where your practice is now.

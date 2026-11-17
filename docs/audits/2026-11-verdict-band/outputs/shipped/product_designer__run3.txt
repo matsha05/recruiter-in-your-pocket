@@ -1,0 +1,45 @@
+# product_designer, run 3
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0114; 39.8s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Your product design work at Loop Fitness and Brightpath Studio gives me a clear direction, but I'd hesitate because the resume doesn't show what changed after the design work. Have you done any design work since Loop Fitness?
+
+## Write-up
+Your resume points to product design, with app work at Loop Fitness and agency work at Brightpath Studio, followed by your current barista role. It's common to describe design work through deliverables alone, but in a pile of product designer resumes, a recruiter also wants to see what you learned or changed.
+
+The Loop Fitness design system is a strong model: you name what you created, where it was used, and the tool. Your current coffee role accounts for your recent work, though your resume doesn't show whether you've continued designing since Loop Fitness.
+
+Let's start with the Loop Fitness releases and usability tests. Add your part in the releases and what you were testing, then bring in any results or more recent design work you can substantiate.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your own contribution isn't. A recruiter can't tell what design work you did for those releases.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work] for [feature]
+   question: What design work did you contribute to the weekly releases, and for which feature?
+2. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives you ownership of a named deliverable and tells a recruiter which tool you used.
+3. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Member testing is relevant product design work. The feature and research question would show what you were trying to learn before launch.
+   example: Ran usability tests with [number] members on [feature] before launches to explore [research question]
+   question: Which feature did you test, how many members took part, and what did you want to learn?
+4. [line] Junior Product Designer, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: A recruiter can see the types of work, but not a project they can connect to a client. One named example would make the agency work more concrete.
+   example: Designed marketing sites and app screens for agency clients, including [project] for [client]
+   question: Which client project can you name as an example of this work?
+5. [line] Junior Product Designer, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The prototypes have a purpose, but their subject is missing. What were you showing the client?
+   example: Made prototypes for client presentations of [project], showing [interaction or feature]
+   question: Which project did you prototype, and what interaction or feature did it show?
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, product designer role following a junior design role
+Note: Your app design, Figma design system and member testing point toward product design roles. If you have recent design projects, make them visible alongside the Loop Fitness work.

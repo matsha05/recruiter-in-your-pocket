@@ -1,0 +1,55 @@
+# product_designer, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0115; 39.8s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Your product design work at Loop Fitness includes a booking flow and the app's first design system. I'd hesitate to move forward because the resume doesn't yet show what changed through that work. What have you been designing since February 2024?
+
+## Write-up
+Your resume points toward product design: you worked on client sites and app screens at Brightpath Studio, then on mobile apps at Loop Fitness. It's common for a resume to name the projects but leave out the problems and results. In a pile of product design resumes, that makes it tough to judge the work behind the project names.
+
+The Loop Fitness design system is a good model because it names what you created, where it was used, and the tool. Your current barista role accounts for your recent work, but a recruiter looking for a designer will also notice that the last design role ended in February 2024.
+
+Let's start with the booking flow at Loop Fitness: add the problem you were designing for and any result you can substantiate. Then show what you contributed to releases and learned from member tests. If you've done design work since Loop Fitness, give it a place on your resume.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can picture the work, but not how busy the cafe is. A customer count would give this current role some context.
+   example: Prepare drinks and serve [number] customers [time period] at Ferry Street Coffee
+   question: How many customers do you serve in a typical shift or other period you can substantiate?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful work. The resume doesn't say how many people you've trained or what the training covers.
+   example: Train [number] new baristas on espresso equipment, including [training topic]
+   question: How many new baristas have you trained, and what do you teach them on the equipment?
+3. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project, but a recruiter can't tell what problem you were working on or what changed for members.
+   example: Designed the class booking flow for the iOS and Android apps to address [booking problem], with [result]
+   question: What booking problem did you address, and what result can you substantiate?
+4. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your part in the releases isn't. A recruiter needs to know what design work was yours.
+   example: Worked with two engineers and a product manager on [design work] for weekly releases
+   question: What design work did you contribute to the weekly releases?
+5. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model: your ownership is clear, and the fact that it was the app's first design system gives the work context.
+6. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You ran the tests, but the resume doesn't say what members tested or what you learned. That detail would show how the research fed into design.
+   example: Ran usability tests with members on [feature] before launches, finding [finding]
+   question: What did members test, and what did you learn?
+7. [line] Junior Product Designer, Brightpath Studio, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: The types of work are named, but the clients and projects are broad. One client or project would make the agency work more concrete.
+   example: Designed [marketing site or app screens] for [client or project]
+   question: Which client or project can you name, and what did you design for it?
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, held a Product Designer role after a Junior Product Designer role
+Note: Your design system, booking flow and member testing point toward product design work on digital products. Bring the problems and decisions behind those projects into the resume, alongside your portfolio.

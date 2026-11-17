@@ -1,0 +1,52 @@
+# marketing_hubspot, run 3
+Resume: ../2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt (132 words), posting: ../2026-11-first-read/resumes/posting_marketing_hubspot.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0134; 50.2s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+Your B2B marketing work at Brightfield and Keystone fits the setting Tallgrass is hiring for. I'd hesitate because the resume names HubSpot and Salesforce but doesn't show how you used them. How much of your work was in marketing operations?
+
+## Write-up
+You're a Marketing Coordinator in B2B software, with earlier marketing work at Keystone Benefits Group. Your resume is relevant to Tallgrass, but it's common for coordinator resumes to list recurring duties without showing what went into them. In a pile, that makes it difficult to distinguish your work from someone else's, especially for a job centered on marketing systems.
+
+The content calendar line is the strongest model: it names what you managed and the two channels it served. Your skills list also names the three tools Tallgrass asks for, but it sits apart from the work, so a recruiter can't tell which tasks you did in each one.
+
+Let's start with Brightfield's newsletter and webinar lines. Add your part and the details you can substantiate, then connect your reporting and campaign work to the tools you used. Leave the calendar line's named channels in place.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: Coordinated could mean several different jobs. A recruiter can't tell what you handled or how many people received the newsletter.
+   example: Coordinated the monthly customer newsletter and product announcement emails, handling [your tasks] for [audience size]
+   question: What parts of the emails did you handle, and how many people received them?
+2. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: The product marketing team is named, but your part in planning isn't. Tallgrass wants webinar support from registration through follow-up, so the steps you handled matter here.
+   example: Supported webinar planning with the product marketing team by [your tasks] for [webinar topic]
+   question: What did you handle for a webinar, and what was it about?
+3. [keep] Marketing Coordinator, line 3
+   line: "Managed the content calendar for LinkedIn and the company blog"
+   can't tell: Keep this as a model: it pairs your responsibility with the places the work appeared. Use that same approach to name the deliverables in your other lines.
+4. [line] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: A recruiter can see who received the reports, but not what they measured or which tools you used. Those details matter for a role with HubSpot and Google Analytics 4 reporting.
+   example: Pulled weekly campaign reports on [metrics] for the marketing manager using [tool]
+   question: Which metrics did the reports cover, and what did you use to pull them?
+5. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The deliverables are clear, but helped leaves your part open. A subject or example would show what you contributed to the sales materials.
+   example: Helped prepare slide decks and one-pagers for the sales team by [your contribution] on [subject]
+   question: What did you contribute to the materials, and what did they cover?
+6. [line] Marketing Assistant, line 3
+   line: "Kept the brand asset library organized"
+   can't tell: The library is named, but the work behind keeping it organized isn't. A recruiter can't tell what you maintained or how the sales and marketing teams used it.
+   example: Kept the brand asset library organized by [your method] for [users]
+   question: How did you maintain the library, and who used it?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Operations Coordinator"]
+Level: mid-level, current Marketing Coordinator role and an earlier Marketing Assistant role
+Note: Your newsletter, webinar and reporting work fits the job's day-to-day work. Where you've used the listed tools for those tasks, connect them to the relevant lines; the Tallgrass role is hybrid in Columbus.
+Posting: Tallgrass seeks a B2B marketing coordinator to run HubSpot campaigns, support Salesforce and HubSpot data, report on performance, and support webinars and events.
+Missing: ["Hands-on HubSpot experience: workflows, lists, email and reporting (required)","a record of running campaigns on deadline"]

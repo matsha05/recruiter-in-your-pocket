@@ -1,0 +1,42 @@
+# patricia_cardinal, run 3
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words), posting: postings/cardinal_small_business_rm.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 2a237565; severity check off
+Outcome: report; cost $0.0107; 38.9s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Cardinal Southern's role is a move from branch management into small business relationship lending. Your Magnolia Community Bank record shows deposit growth and team leadership, but I don't see small business loan origination. Did lending form part of your Branch Manager role?
+
+## Write-up
+Cardinal Southern wants a Small Business Relationship Manager with small business lending experience. Your resume shows branch leadership and deposit growth, but not loan origination or a lending focus, so I'd hesitate to move it forward for this role. It's common for a branch resume to emphasize operations; here, that leaves a question central to the job unanswered.
+
+The deposit growth line is your best model: it gives a starting point, an ending point and a timeframe. Your progression at Magnolia Community Bank is easy to follow, but the resume stops at December 2024, leaving a recruiter to ask what came next.
+
+Let's start with the Branch Manager role. Add your part in small business lending if you handled it, then account for the time since December 2024. Your experience opening small business accounts is relevant, but it doesn't establish loan origination.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia Community Bank, but can't tell what you've been doing since the Branch Manager role ended. That question competes with your deposit growth on the first pass.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since December 2024?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this. It gives a recruiter a concrete measure of your branch's growth, rather than leaving them to guess what your work added up to.
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter knows you oversaw the reviews, but not what that involved or what the reviews found. That matters for a role that keeps client files ready for credit review and audit.
+   example: Oversaw audits and compliance reviews for the branch, including [what you oversaw] and [review result]
+   question: What did you oversee in the audits and reviews, and what were the findings?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This says complaints reached you, but not what kinds of issues you handled or how you addressed them. One example would show your work with customers.
+   example: Handled escalated customer complaints about [issue] by [action]
+   question: What kind of escalated complaint did you handle, and what did you do?
+
+## Fit
+Roles: ["Branch Manager","Small Business Relationship Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Opening small business accounts and growing branch deposits give you relevant banking experience to bring forward. The role is hybrid in downtown Birmingham and involves travel within the metro.
+Posting: Build and retain a small business client portfolio, grow deposits and loans, and work with the credit team on lending.
+Missing: ["4+ years in business banking, commercial lending or branch management with a lending focus","Experience originating small business loans or lines of credit","SBA lending experience","Formal credit training"]
