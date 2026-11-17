@@ -3,7 +3,7 @@ import { validateWorklistPayload, normaliseProse, noteWithoutItsQuestion } from 
 import { isIntroLine } from "../lib/evals/worklist-checks";
 import { scoreHeldToCards } from "../lib/score-utils";
 import { WorklistReportSchema, isWorklistReport } from "../lib/llm/worklist-schema";
-import { bannedPhrasesIn, inflatesOwnership, ungroundedTokensInExample } from "../lib/llm/worklist-grounding";
+import { bannedPhrasesIn, inflatesOwnership, sentenceWithPhrase, ungroundedTokensInExample } from "../lib/llm/worklist-grounding";
 import { mergeSeverityIntoWorklist, worklistAsSeverityReport } from "../lib/reports/worklist-severity";
 import { reportPreview } from "../lib/reports/report-preview";
 import { parseResumeStreamCompletion } from "../lib/validation/resume-stream-completion";
@@ -173,6 +173,33 @@ refuses(draft({ cards: [{ ...draft().cards[3], example: "Led the member newslett
 // The retired names never reach the page: "Critical Miss" refuses; "the read" is rewritten in place.
 refuses(draft({ verdict: "A Critical Miss on line one." }), /verdict: uses the retired phrase "critical miss"/);
 assert.deepEqual(bannedPhrasesIn("Nothing to flag; a reader sees the work."), []);
+
+// "The candidate" is retired as a name for the person, not as a recruiter's vocabulary (Nov 17, 2026): a live read of a
+// recruiter's resume was sent back on it. The plural and the recruiting compounds pass; the person does not.
+for (const line of [
+  "Which of the candidates were counted, and over what period?",
+  "Say how many people the candidate pool held before and after.",
+  "A recruiter can't tell what you changed in the candidate experience.",
+  "The candidate referrals drive is your best line.",
+  "Name the candidate-facing part of the process that was yours.",
+  "It leaves out how you moved the candidate pipeline.",
+]) assert.deepEqual(bannedPhrasesIn(line), [], line);
+for (const line of [
+  "The candidate shows strong security hiring.",
+  "It isn't clear what the candidate owned.",
+  "The candidate's role in the offers is unclear.",
+  "A recruiter would ask the candidate, the hiring manager and the panel.",
+]) assert.deepEqual(bannedPhrasesIn(line), ["the candidate"], line);
+assert.equal(sentenceWithPhrase("Strong page. It isn't clear what the candidate owned. Ask yourself that.", "the candidate"), "It isn't clear what the candidate owned.");
+assert.equal(sentenceWithPhrase("The candidate owned it", "the candidate"), "The candidate owned it", "a field with no sentence break is quoted whole");
+assert.equal(sentenceWithPhrase("x".repeat(300) + " the candidate", "the candidate").length, 200, "capped");
+assert.equal(sentenceWithPhrase("The candidate pool grew. Then the candidate left.", "the candidate"), "Then the candidate left.", "the sentence the refused use sits in, not the first mention");
+refuses(draft({ verdict: "It isn't clear what the candidate owned at the credit union." }), /verdict: uses the retired phrase "the candidate" in: It isn't clear what the candidate owned at the credit union\./);
+assert.equal(
+  validateWorklistPayload(draft({ verdict: "A recruiter sees an intern's resume with a manager's headline, and the candidates you'd compete with name their tools." }), RESUME, { forceGrounding: true }).verdict.includes("the candidates"),
+  true,
+  "the plural ships",
+);
 assert.equal(normaliseProse("That detail slows the read. The read is quick otherwise."), "That detail slows the first pass. The first pass is quick otherwise.");
 assert.equal(normaliseProse("Recruiters who read the resume twice are rare."), "Recruiters who read the resume twice are rare.", "a verb phrase is left alone");
 {
