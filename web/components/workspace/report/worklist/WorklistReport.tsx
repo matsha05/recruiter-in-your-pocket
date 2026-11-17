@@ -9,7 +9,7 @@ import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } f
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { worklistBandIndex, worklistBandsFor } from "@/lib/reports/score-band";
 import { reportDocumentKind } from "@/lib/reports/report-document";
-import { cardsHeading, fitHeading, hasRoleSection, PART_STATUS_LABEL, PARTS_LABEL, reportWording, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
+import { cardsHeading, fitHeading, fitListRoles, hasRoleSection, PART_STATUS_LABEL, PARTS_LABEL, reportWording, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
 import { ResearchReceipts } from "../ResearchReceipts";
@@ -203,10 +203,10 @@ export function WorklistReport({
           <h2 id="role-title" className={shared.sectionTitle}>{fitHeading(report)}</h2>
           <div className={styles.fitGrid}>
             {report.fit.note && <p className={shared.bodyText}>{report.fit.note}</p>}
-            {report.fit.roles.length > 0 && (
-              <div className={styles.fitList}>
+            {fitListRoles(report).length > 0 && (
+              <div className={styles.fitList} data-testid="fit-list">
                 <p className={shared.keepLabel}>{wording.fitListLabel}</p>
-                <ul>{report.fit.roles.slice(0, 4).map((role) => <li key={role}>{role}</li>)}</ul>
+                <ul>{fitListRoles(report).map((role) => <li key={role}>{role}</li>)}</ul>
               </div>
             )}
           </div>

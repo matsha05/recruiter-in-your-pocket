@@ -241,12 +241,28 @@ export function worklistTargetRole(report: Pick<WorklistReport, "fit">) {
  * points. With a posting, its fit is in the first pass (Nov 7, 2026).
  */
 export function hasRoleSection(report: Pick<WorklistReport, "fit">) {
-  return !report.fit.posting.summary && Boolean(report.fit.note || report.fit.roles.length > 0);
+  return !report.fit.posting.summary && Boolean(report.fit.note || fitListRoles(report).length > 0);
 }
+
+/**
+ * The titles listed in the fit section. A resume's first title is the job it was read for, which the first pass
+ * already names, so a list of one says nothing new and is left out; two or more are the directions the resume
+ * points. A profile's list is the titles on the profile, shown whatever their number.
+ */
+export function fitListRoles(report: Pick<WorklistReport, "fit">): string[] {
+  const roles = [...new Set(report.fit.roles.map((role) => role.trim()).filter(Boolean))].slice(0, 4);
+  if (reportDocumentKind(report) === "linkedin") return roles;
+  return roles.length > 1 ? roles : [];
+}
+
+/** A resume's fit section with no titles listed under it holds the note alone, so its heading promises no roles. */
+export const FIT_NOTE_TITLE = "Where your experience points.";
 
 /** Headings for the fit section, with and without a posting. */
 export function fitHeading(report: Pick<WorklistReport, "fit">) {
-  return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
+  if (report.fit.posting.summary) return "How your experience fits this role.";
+  if (reportDocumentKind(report) !== "linkedin" && fitListRoles(report).length === 0) return FIT_NOTE_TITLE;
+  return wordingFor(report).fitTitle;
 }
 
 /**

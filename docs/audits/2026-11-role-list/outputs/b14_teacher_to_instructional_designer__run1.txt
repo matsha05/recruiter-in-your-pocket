@@ -1,0 +1,35 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0082; 36.3s
+Case note: Career changer.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+Your mathematics teaching and Canvas module give me a concrete picture of your work. I’d want to talk with you about a teaching role. I’d also want to know whether your next move is in the classroom or in learning design.
+
+## Write-up
+You’ve taught mathematics at Cedar Creek High School and Pinewood Middle School, and you’re building toward digital learning design through the Canvas module and certificate in progress. The teaching work is easy to follow, but your next direction isn’t named, so a recruiter has to decide which parts of your experience to weigh most heavily.
+
+Your line about teaching Algebra II and AP Statistics is a good model: it names the subjects, sections and class sizes. The Canvas module gives the learning design direction something concrete, while the certificate shows that your training is still underway.
+
+Start by deciding which kind of job this version of your resume is for. Then add what you lead in the math department’s professional learning community, and give the Canvas module more room when you’re applying for learning design work.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Your resume doesn't name whether your next job is in teaching or learning design."
+   can't tell: Your recent work points to teaching, while your introduction and professional development also point to learning design. A recruiter has to guess which job you want next.
+   question: Which kind of job do you want this version of your resume to pursue?
+2. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: Leading the community is worth showing, but a recruiter can't tell what you lead colleagues through or what the group works on.
+   example: Lead the math department's professional learning community in [activities] focused on [topics]
+   question: What activities do you lead in the community, and what topics do colleagues work on?
+3. [keep] Cedar Creek High School, line 1
+   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
+   can't tell: Keep this as a model. It lets a recruiter see both what you teach and how many students are in each section.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: mid-level, current classroom teaching and math department professional learning community leadership
+Note: Your classroom experience is the strongest match for teaching roles. The Canvas module, portfolio and training also give you a starting point for a move into learning design.

@@ -373,8 +373,8 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 3 | report | `web/app/api/resume-feedback-stream/route.ts:162` | key:message | A LinkedIn profile review can't be rewritten from answers. |
 | 4 | report | `web/app/api/resume-feedback-stream/route.ts:243` | key:message | Your browser is ready. Try creating your report again. |
 | 5 | report | `web/app/api/resume-feedback-stream/route.ts:301` | key:message | You've used your free report. The Job Search Pass is five more reports, good for 90 days. |
-| 6 | report | `web/app/api/resume-feedback-stream/route.ts:692` | const | This is taking longer than usual. Try again in a moment. |
-| 7 | report | `web/app/api/resume-feedback-stream/route.ts:694` | const | Connection hiccup. Try again in a moment. |
+| 6 | report | `web/app/api/resume-feedback-stream/route.ts:694` | const | This is taking longer than usual. Try again in a moment. |
+| 7 | report | `web/app/api/resume-feedback-stream/route.ts:696` | const | Connection hiccup. Try again in a moment. |
 
 ## /api/resume-feedback, /api/resume-feedback-stream
 

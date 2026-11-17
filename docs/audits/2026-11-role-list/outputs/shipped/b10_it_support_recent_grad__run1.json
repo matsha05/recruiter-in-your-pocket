@@ -1,0 +1,481 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "roles",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:06:15.538Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8092,
+        "completion_tokens": 2061,
+        "total_tokens": 10153,
+        "cached_prompt_tokens": 7509,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 971
+      },
+      "cost_usd": 0.01140845,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 53141
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 9388,
+        "completion_tokens": 2118,
+        "total_tokens": 11506,
+        "cached_prompt_tokens": 7509,
+        "cache_write_prompt_tokens": 1876,
+        "reasoning_tokens": 877
+      },
+      "cost_usd": 0.01331345,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 36245
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your school help desk internship and CompTIA A+ point toward IT support. The work is relevant, but I’d pass on this version because I can’t tell how much you handled or what you’ve done since May 2025.",
+    "write_up": [
+      "You’ve moved from helping electronics customers into a help desk internship at Chattahoochee County Schools, with desktop support as a clear next step. It’s common for an early-career resume to list the tasks without much about the work behind them. Here, that makes it harder to stand out for IT support, especially with no work listed after May 2025.",
+      "The Active Directory line is a useful model: it names both the account work and the tool you used. Your retail experience also belongs above Education, and a recruiter will look for what came after the internship.",
+      "Let’s start with the school help desk tickets and laptop setup. Add the kinds of issues you handled and how much work came through, where you can confirm it. Then account for the time since the internship so a recruiter can follow your story."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The IT Help Desk Intern role ended in May 2025, and no later work is listed.",
+        "cannot_tell": "A recruiter has to pause after the internship to wonder what you’ve been doing since. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025 that you can account for on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to assess than the degree alone. Put Experience first so they reach that work sooner.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "structure",
+        "where": "Chattahoochee County Schools",
+        "line": "The resume doesn't say how large Chattahoochee County Schools is.",
+        "cannot_tell": "The school setting is clear, but a recruiter can’t tell how large the organization was. A short description can give the internship some context.",
+        "example": "Chattahoochee County Schools, Columbus, GA | [number] schools",
+        "question": "How many schools were in the district when you worked there?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff could have needed help with many different problems. The types of tickets and how many you handled would show what this help desk work involved.",
+        "example": "Answered [number] help desk tickets from teachers and staff [time period], including [types of issues]",
+        "question": "What kinds of tickets did you handle, and how many did you typically answer in a given period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Laptop imaging is directly relevant to desktop support. The line doesn’t say how many laptops you set up or what the setup included.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many classroom laptops did you image and set up, and what did the setup include?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model for the other lines: it gives the recruiter a concrete task and the system you used.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers help desk tickets, laptop setup and Active Directory.",
+      "level": "entry level, IT help desk internship and CompTIA A+",
+      "note": "Your school and retail device work point most directly toward desktop support. For a junior systems role, use any additional hands-on systems work you can substantiate to show what you’ve done beyond the help desk.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards.1.question: a card that needs work carries the question that fills its blanks.",
+    "issues": [
+      {
+        "path": "cards.1.question",
+        "message": "a card that needs work carries the question that fills its blanks"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your school help desk internship and CompTIA A+ point toward IT support. I’d pass on this version because the work is relevant, but I can’t tell how much you handled or what you’ve done since the internship.",
+    "write_up": [
+      "You’ve moved from helping electronics customers into a help desk internship at Chattahoochee County Schools, with desktop support as a clear next step. It’s common for an early-career resume to list tasks without much about the work behind them. Here, that makes it difficult to stand out for IT support.",
+      "The Active Directory line is a useful model: it names both the account work and the tool you used. Your retail experience belongs above Education, and a recruiter will also look for what came after the internship. Your CompTIA A+ is dated 2025, but no later work is listed.",
+      "Let’s start with the school help desk tickets and laptop setup. Add the kinds of issues you handled and how much work came through, where you can confirm it. Then account for the time since the internship so a recruiter can follow your story."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The IT Help Desk Intern role ended in May 2025, and no later work is listed.",
+        "cannot_tell": "Your CompTIA A+ is dated 2025, but a recruiter can’t tell what work you’ve done since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025 that you can account for on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to assess than the degree alone. Put Experience first so they reach that work sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "structure",
+        "where": "Chattahoochee County Schools",
+        "line": "The resume doesn't say how large Chattahoochee County Schools is.",
+        "cannot_tell": "The school setting is clear, but a recruiter can’t tell how large the organization was. A short description can give the internship some context.",
+        "example": "Chattahoochee County Schools, Columbus, GA | [organization size]",
+        "question": "What can you confirm about the size of Chattahoochee County Schools when you worked there?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff could have needed help with many different problems. The types of tickets and how many you handled would show what this help desk work involved.",
+        "example": "Answered [number] help desk tickets from teachers and staff [time period], including [types of issues]",
+        "question": "What kinds of tickets did you handle, and how many did you typically answer in a given period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Laptop imaging is directly relevant to desktop support. The line doesn’t say how many laptops you set up or what the setup included.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many classroom laptops did you image and set up, and what did the setup include?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model for the other lines: it gives the recruiter a concrete task and the system you used.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "- Set up new devices for customers at the service counter",
+        "cannot_tell": "Device setup could cover several different tasks. What you set up at the counter can help connect the retail job to desktop support.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks] for [device types]",
+        "question": "Which devices did you set up at the counter, and what did you do to get them ready for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers help desk tickets, laptop setup and Active Directory.",
+      "level": "entry level, IT help desk internship and CompTIA A+",
+      "note": "Your school and retail device work point most directly toward desktop support. For a junior systems role, use any additional hands-on systems work you can substantiate to show what you’ve done beyond the help desk.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your school help desk internship and CompTIA A+ point toward IT support. I’d pass on this version because the work is relevant, but I can’t tell how much you handled or what you’ve done since the internship.",
+    "write_up": [
+      "You’ve moved from helping electronics customers into a help desk internship at Chattahoochee County Schools, with desktop support as a clear next step. It’s common for an early-career resume to list tasks without much about the work behind them. Here, that makes it difficult to stand out for IT support.",
+      "The Active Directory line is a useful model: it names both the account work and the tool you used. Your retail experience belongs above Education, and a recruiter will also look for what came after the internship. Your CompTIA A+ is dated 2025, but no later work is listed.",
+      "Let’s start with the school help desk tickets and laptop setup. Add the kinds of issues you handled and how much work came through, where you can confirm it. Then account for the time since the internship so a recruiter can follow your story."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The IT Help Desk Intern role ended in May 2025, and no later work is listed.",
+        "cannot_tell": "Your CompTIA A+ is dated 2025, but a recruiter can’t tell what work you’ve done since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025 that you can account for on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to assess than the degree alone. Put Experience first so they reach that work sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "structure",
+        "where": "Chattahoochee County Schools",
+        "line": "The resume doesn't say how large Chattahoochee County Schools is.",
+        "cannot_tell": "The school setting is clear, but a recruiter can’t tell how large the organization was. A short description can give the internship some context.",
+        "example": "Chattahoochee County Schools, Columbus, GA | [organization size]",
+        "question": "What can you confirm about the size of Chattahoochee County Schools when you worked there?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff could have needed help with many different problems. The types of tickets and how many you handled would show what this help desk work involved.",
+        "example": "Answered [number] help desk tickets from teachers and staff [time period], including [types of issues]",
+        "question": "What kinds of tickets did you handle, and how many did you typically answer in a given period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Laptop imaging is directly relevant to desktop support. The line doesn’t say how many laptops you set up or what the setup included.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many classroom laptops did you image and set up, and what did the setup include?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model for the other lines: it gives the recruiter a concrete task and the system you used.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "Device setup could cover several different tasks. What you set up at the counter can help connect the retail job to desktop support.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks] for [device types]",
+        "question": "Which devices did you set up at the counter, and what did you do to get them ready for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers help desk tickets, laptop setup and Active Directory.",
+      "level": "entry level, IT help desk internship and CompTIA A+",
+      "note": "Your school and retail device work point most directly toward desktop support. For a junior systems role, use any additional hands-on systems work you can substantiate to show what you’ve done beyond the help desk.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your school help desk internship and CompTIA A+ point toward IT support. I’d pass on this version because the work is relevant, but I can’t tell how much you handled or what you’ve done since the internship.",
+    "write_up": [
+      "You’ve moved from helping electronics customers into a help desk internship at Chattahoochee County Schools, with desktop support as a clear next step. It’s common for an early-career resume to list tasks without much about the work behind them. Here, that makes it difficult to stand out for IT support.",
+      "The Active Directory line is a useful model: it names both the account work and the tool you used. Your retail experience belongs above Education, and a recruiter will also look for what came after the internship. Your CompTIA A+ is dated 2025, but no later work is listed.",
+      "Let’s start with the school help desk tickets and laptop setup. Add the kinds of issues you handled and how much work came through, where you can confirm it. Then account for the time since the internship so a recruiter can follow your story."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The IT Help Desk Intern role ended in May 2025, and no later work is listed.",
+        "cannot_tell": "Your CompTIA A+ is dated 2025, but a recruiter can’t tell what work you’ve done since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025 that you can account for on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to assess than the degree alone. Put Experience first so they reach that work sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "structure",
+        "where": "Chattahoochee County Schools",
+        "line": "The resume doesn't say how large Chattahoochee County Schools is.",
+        "cannot_tell": "The school setting is clear, but a recruiter can’t tell how large the organization was. A short description can give the internship some context.",
+        "example": "Chattahoochee County Schools, Columbus, GA | [organization size]",
+        "question": "What can you confirm about the size of Chattahoochee County Schools when you worked there?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff could have needed help with many different problems. The types of tickets and how many you handled would show what this help desk work involved.",
+        "example": "Answered [number] help desk tickets from teachers and staff [time period], including [types of issues]",
+        "question": "What kinds of tickets did you handle, and how many did you typically answer in a given period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Laptop imaging is directly relevant to desktop support. The line doesn’t say how many laptops you set up or what the setup included.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many classroom laptops did you image and set up, and what did the setup include?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model for the other lines: it gives the recruiter a concrete task and the system you used.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "Device setup could cover several different tasks. What you set up at the counter can help connect the retail job to desktop support.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks] for [device types]",
+        "question": "Which devices did you set up at the counter, and what did you do to get them ready for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers help desk tickets, laptop setup and Active Directory.",
+      "level": "entry level, IT help desk internship and CompTIA A+",
+      "note": "Your school and retail device work point most directly toward desktop support. For a junior systems role, use any additional hands-on systems work you can substantiate to show what you’ve done beyond the help desk.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "model_score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your school help desk internship and CompTIA A+ point toward IT support. I’d pass on this version because the work is relevant, but I can’t tell how much you handled or what you’ve done since the internship.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 143,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The IT Help Desk Intern role ended in May 2025, and no later work is listed.",
+        "blanks": 1,
+        "question": "What have you been doing since May 2025 that you can account for on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "structure",
+        "where": "Chattahoochee County Schools",
+        "line": "The resume doesn't say how large Chattahoochee County Schools is.",
+        "blanks": 1,
+        "question": "What can you confirm about the size of Chattahoochee County Schools when you worked there?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 3,
+        "question": "What kinds of tickets did you handle, and how many did you typically answer in a given period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many classroom laptops did you image and set up, and what did the setup include?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "blanks": 2,
+        "question": "Which devices did you set up at the counter, and what did you do to get them ready for customers?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "dates": 1,
+      "structure": 2,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 3,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers help desk tickets, laptop setup and Active Directory.",
+      "level": "entry level, IT help desk internship and CompTIA A+",
+      "note": "Your school and retail device work point most directly toward desktop support. For a junior systems role, use any additional hands-on systems work you can substantiate to show what you’ve done beyond the help desk.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0247219,
+  "latency_ms": 89393
+}

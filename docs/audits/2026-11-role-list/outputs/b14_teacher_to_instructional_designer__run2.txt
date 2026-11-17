@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0075; 41.1s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+Your mathematics teaching is easy to see, and the Canvas module shows where your digital learning work is taking you. I’d want to talk with you. I’d also want to know whether you’re aiming for another teaching role or a move into learning design.
+
+## Write-up
+Your resume tells the story of a Mathematics Teacher at Pinewood Middle School and Cedar Creek High School who is building digital learning work alongside classroom teaching. I read it for Mathematics Teacher roles: the courses and class sizes make your current work easy to understand, while the Canvas module gives the design direction something concrete.
+
+The line about teaching Algebra II and AP Statistics is a useful model because it names both the subjects and the students you teach. Your experience comes before education, and the certificate is clearly marked as in progress. The main question left in the Cedar Creek role is what your department’s professional learning community works on.
+
+Let’s start with that leadership line and add what the group does. If you’re applying for learning design roles, give the Canvas module and relevant portfolio work more room so that direction is easier to follow.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Mathematics Teacher, Cedar Creek, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what you and your colleagues work on together. That makes the leadership harder to carry into another role.
+   example: Lead the math department's professional learning community of [number] colleagues in [work the group does]
+   question: How many colleagues are in the group, and what work do you lead them through?
+2. [keep] Mathematics Teacher, Cedar Creek, line 1
+   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of your classroom without making them guess at the subjects or class sizes.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: mid-level, classroom teaching experience and leadership of a professional learning community
+Note: Your classroom work points directly to mathematics teaching. The Canvas module and in-progress certificate also show a developing direction in digital learning design.

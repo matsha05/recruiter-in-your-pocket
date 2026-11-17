@@ -170,7 +170,8 @@ const draft = {
   assert.equal(wordingFor(validated).sourceAdvice, null);
   // After the cards a profile review lists search words, where a resume report lists roles.
   assert.equal(fitHeading(marked), "The words a recruiter would search for.");
-  assert.equal(fitHeading(validated), "Roles your experience points toward.");
+  assert.equal(fitHeading({ ...validated, fit: { ...validated.fit, roles: ["Customer Success Manager", "Account Manager"] } }), "Roles your experience points toward.");
+  assert.equal(fitHeading({ ...validated, fit: { ...validated.fit, roles: ["Customer Success Manager"] } }), "Where your experience points.", "a resume's note alone promises no roles");
   const clean = { ...marked, cards: [] };
   assert.match(upgradesLead(clean), /Your profile probably isn't what stands between you and a recruiter's message/);
   for (const text of Object.values(reportWording("linkedin")).filter((value): value is string => typeof value === "string")) {

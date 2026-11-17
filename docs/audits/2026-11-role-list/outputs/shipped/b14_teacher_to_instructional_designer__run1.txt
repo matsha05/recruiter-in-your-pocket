@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0077; 36.4s
+Case note: Career changer.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+Your mathematics teaching and emerging digital learning work are easy to find. I’d move this forward for a teaching role, though I’d still want to know what you’re aiming for next: the classroom or learning design.
+
+## Write-up
+At Cedar Creek High School, you teach Algebra II and AP Statistics and have turned a functions unit into an online module. A recruiter can see the classroom work quickly. The learning design direction is newer, and the resume gives it less room.
+
+The Canvas module is your best model: it names the unit, the format and the tool you used. Your teaching line also gives a recruiter a useful picture of your classes. The professional learning community line leaves more to the imagination.
+
+Start with what you do with the math department’s professional learning community. If learning design is the direction you want next, give the Canvas module and any other portfolio work more room, including what you built and what happened when people used it.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what you work on together. The activities and topics would show what that leadership involves.
+   example: Lead the math department's professional learning community through [activity] focused on [topic]
+   question: What activities do you lead with the group, and what do you focus on?
+2. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It shows a particular piece of teaching you changed and the learning format you made.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: senior, leads the math department's professional learning community
+Note: Your classroom work points clearly toward mathematics teaching. The Canvas module, portfolio and certificate in progress also show a developing learning design direction.

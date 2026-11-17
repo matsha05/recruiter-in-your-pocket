@@ -1,0 +1,30 @@
+# b04_retail_store_manager, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0076; 39.6s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+You've worked your way up at Carolina Home & Garden, and the sales, turnover and shrink results back up your store management work. I'd want to talk to you. I'd also ask what changed at the second store in your headline.
+
+## Write-up
+Your resume tells a strong store management story: you moved from department supervision to running a Charlotte store with 42 employees. The results make the latest role easy to take seriously, but the headline promises two turnarounds and the work under it shows what changed at only one store.
+
+The turnover line is a great model: it shows the starting point, the change and the scheduling decision you made. Your earlier Gastonia roles show growing responsibility, but they don't yet explain the second turnaround.
+
+Let's start with the headline. Name the other store and what changed there, then add the work behind it to the relevant role. Keep the Charlotte results prominent; they give a recruiter plenty to discuss.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: The Charlotte results show substantial improvements, but I can't tell which other store you turned around or what changed there. That's a big claim to leave without the work behind it.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [store] where [what changed]
+   question: Which was the other store, and what changed while you worked there?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. The fixed weekly schedules give a recruiter something concrete to connect to the drop in turnover.
+
+## Fit
+Roles: ["Store Manager"]
+Level: manager, runs a store with 42 employees including 4 department managers
+Note: Your experience points toward store management in retail, particularly home and garden. The progression at Carolina Home & Garden also shows that you've taken on broader responsibility within the chain.

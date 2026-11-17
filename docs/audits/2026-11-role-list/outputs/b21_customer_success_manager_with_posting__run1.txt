@@ -1,0 +1,38 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0106; 39.0s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+Your Brightline Payroll Software work is a close match for this mid-market customer success role. I’d want to talk with you about the accounts you manage. I’d still want to know your renewal results and whether you’ve worked with VP-level sponsors.
+
+## Write-up
+You’ve moved from insurance accounts into payroll support and then customer success at Brightline Payroll Software. The target role fits that path, and your resume makes the customer work easy to follow. What’s less clear is how your book performed against renewal targets, a central part of this job.
+
+Your line about managing 48 mid-market accounts is a strong model: it names the customers and the book you own. The team-wide onboarding checklist adds another useful detail. Your QBR work also fits the posting, though the resume doesn’t establish the sponsors’ seniority.
+
+Start with the at-risk renewal line. Add your part in the strategy and the results you can substantiate. For this application, also name any BI tool or analytics product experience you have, and specify VP-level QBR sponsors if that was part of your work.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this. It puts the account count and customer industries right next to your responsibility, so a recruiter can place your work quickly.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Partnered tells me who you worked with, but not your part in the renewal strategy or what happened to those accounts. Those details matter for a role accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result] against [target]
+   question: What was your part in the renewal strategy, and what renewal results and targets can you substantiate?
+3. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: The contact channels are clear, but the questions themselves could be almost anything. Naming the topics would show more of your insurance work.
+   example: Answered small business client questions about [question topics] by phone and email
+   question: What kinds of questions did you answer for those clients?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: mid-level, manages a book of 48 mid-market accounts
+Note: Your payroll software background and experience with finance and HR customers fit the mid-market work. Bring forward any additional customer results or product experience you can substantiate when tailoring the application.
+Posting: A mid-market customer success role owning renewals, expansion, onboarding and customer relationships for a B2B SaaS company.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker","Experience running QBRs with VP-level sponsors","experience with analytics or data products"]

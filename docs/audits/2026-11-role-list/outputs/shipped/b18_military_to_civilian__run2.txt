@@ -1,0 +1,38 @@
+# b18_military_to_civilian, run 2
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0087; 41.3s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+Your Army logistics and maintenance leadership comes with team and equipment figures and results that back it up. I’d want to talk with you about an operations supervisor role.
+
+## Write-up
+This is a strong transition resume! Your Army work shows both the people you led and the equipment and logistics you were responsible for. That gives a civilian recruiter a real reason to consider you for an operations supervisor role.
+
+The vehicle readiness line is the model: it gives the starting rate, the new rate, and the ordering and scheduling changes you made. Your progression from mechanic to Platoon Sergeant is easy to follow, and your supply chain degree is clearly marked as in progress.
+
+I don’t think your resume is the thing holding you back. Bring the vehicle readiness result higher in the latest role, and add what you taught the junior mechanics. How competitive a particular civilian job is will still matter.
+
+## Cards (4; {"keep":1,"line":1,"upgrade":2}); severity off; added []
+1. [keep] Platoon Sergeant, line 2
+   line: "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories"
+   can't tell: Keep this as a model too. It names what you were accountable for and shows the inventory record alongside it.
+2. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what you passed on from your own work.
+   example: Trained 9 junior mechanics in [skills]
+   question: What skills did you train the junior mechanics in?
+3. [upgrade] Platoon Sergeant, line 1
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: For a role above supervisor, a recruiter will look for how you set direction across those sections and what decisions were yours.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections, setting [direction] and making [decision]
+   question: What direction did you set across the sections, and what decisions did you make?
+4. [upgrade] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: This is your strongest result, and it sits below three other lines. Move it to the top of the Platoon Sergeant role so the change you made is seen first.
+
+## Fit
+Roles: ["operations supervisor"]
+Level: manager, led 38 soldiers and had 6 direct-report sergeants
+Note: Your maintenance and inventory work also points toward supply chain supervision. For civilian applications, explain Army terms where needed without changing the work you did.

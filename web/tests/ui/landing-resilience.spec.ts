@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { JORDAN_EXAMPLE } from "../../lib/marketing/jordan-example";
 
 const headline = "244 people applied for the job you wanted.";
 
@@ -76,5 +77,5 @@ test("the note Jordan never saw is marked when its clipping is in view", async (
     await expect(clipping).not.toHaveAttribute("data-marked", "true");
     await clipping.scrollIntoViewIfNeeded();
     await expect(clipping).toHaveAttribute("data-marked", "true");
-    await expect(clipping.getByText("What happened with the risks you identified is still open", { exact: false })).toBeVisible();
+    await expect(clipping.getByText(JORDAN_EXAMPLE.note, { exact: false })).toBeVisible();
 });

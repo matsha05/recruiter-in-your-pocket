@@ -1,0 +1,39 @@
+# b12_coo_executive_two_page, run 2
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0080; 37.0s
+Case note: Executive, two pages.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+Your multi-site healthcare operations work is substantial, from clinic leadership to the COO role at Lakeshore Dental Partners. The growth, operating results and financial responsibility back it up. I’d move you forward.
+
+## Write-up
+This is a strong COO resume: you show the growth of Lakeshore Dental Partners alongside the operating work needed to run it! The progression through Midwest Physician Alliance and Prairie Health System makes the move into that role easy to follow.
+
+The Lakeshore practice-growth line is the model: it names acquisitions and openings, then shows the same-store margin alongside them. Your current remit, board reporting and P&L responsibility are near the top, so a recruiter doesn’t have to hunt for them.
+
+Your resume gives a recruiter a strong reason to keep reading. The fit with a particular COO job and the competition for it still matter. Let’s add what changed after the Epic go-live, then consider whether a company-wide strategic decision belongs alongside your operating plan.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Vice President, Clinic Operations, line 3
+   line: "Led the Epic go-live across the clinics in 2013"
+   can't tell: You led the go-live, but a recruiter can’t see what changed for the clinics afterward. That would show more of what the rollout meant for operations.
+   example: Led the Epic go-live across the clinics in 2013; [what changed after go-live]
+   question: What changed for the clinics after the Epic go-live?
+2. [keep] Chief Operating Officer, line 2
+   line: "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%"
+   can't tell: Keep this as the model. It shows both how you expanded the organization and how existing practices performed during that growth.
+3. [upgrade] Chief Operating Officer, line 7
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO search, a company-wide strategic decision would add to the financial responsibility already shown here.
+   example: Own the annual operating plan and the $410M P&L with the CFO, and [a company-wide strategic decision you made]
+   question: What company-wide strategic decision have you made, if any?
+4. [upgrade] Vice President, Clinic Operations, line 2
+   line: "Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%"
+   can't tell: Move this above the clinic and director count in that role. The call-center change gives the earlier job a memorable result before the operating remit.
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points toward COO roles in multi-site healthcare services. The clinic and dental operations work also gives you a basis for senior operations roles across healthcare organizations.

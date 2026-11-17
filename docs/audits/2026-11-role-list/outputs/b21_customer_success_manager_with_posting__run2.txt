@@ -1,0 +1,48 @@
+# b21_customer_success_manager_with_posting, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0091; 36.3s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+Your Brightline Payroll work shows a solid mid-market customer success background. I'd move the resume forward with questions, particularly about your renewal results and the seniority of your QBR sponsors.
+
+## Write-up
+You're a Customer Success Manager who moved from payroll support into managing mid-market accounts. That lines up with the Brightline Analytics role, though your resume doesn't yet show the retention results or usage-data work this particular job asks for.
+
+The 48-account line is your best model: it names the book, the customers and the industries. Your experience is easy to follow, and your support work adds useful payroll and customer-service context.
+
+Let's start with the renewal strategy line. Add your part in the work and any results you can support, then show the level of your QBR sponsors and how you use customer data if those details are available.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It gives a recruiter a concrete book of business and names the customers you serve.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The finance and HR audiences are clear, but their seniority isn't. This posting asks for QBRs with VP-level sponsors.
+   example: Run quarterly business reviews with customer finance and HR leads at [sponsor level]
+   question: What levels did the finance and HR leads hold?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see you worked with Sales, but not what part of the renewal strategy was yours or what happened to those accounts. That matters for a role accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result]
+   question: What did you contribute to the renewal strategy, and what renewal results can you share?
+4. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Payroll failures make the stakes clear, but handling an escalation can mean several different things. Your part alongside Support and Product is the missing piece.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions]
+   question: What do you do during a payroll failure escalation?
+5. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: This tells a recruiter how clients reached you, but not what you helped them resolve. A type of question would make the insurance work more concrete.
+   example: Answered client questions about [type of question] by phone and email
+   question: What kinds of client questions did you answer?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: mid-level, manages a book of 48 mid-market accounts
+Note: Your payroll software experience, customer reviews and work with Sales are relevant to this role. Bring forward any supportable details about how you use customer data and work with sponsors.
+Posting: A mid-market customer success role focused on renewals, expansion, customer data and executive relationships.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker","Experience running QBRs with VP-level sponsors","experience with analytics or data products"]

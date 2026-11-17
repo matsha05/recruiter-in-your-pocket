@@ -1,0 +1,35 @@
+# b02_teacher, run 2
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0171; 32.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+Your 4th Grade Teacher work at Lincoln Heights shows classroom results alongside grade-level leadership. I'd want to talk with you. I'd ask what you did to raise reading growth.
+
+## Write-up
+This is a strong teaching resume: you show your classroom, your students' reading growth and the work you lead with other teachers! A recruiter can see both your teaching and your contribution beyond your own classroom.
+
+The reading assessment line is the best model: it names the measure, the starting point and the change over three years. Your Washington certification and English Language Learner endorsement are also easy to find.
+
+Start by adding what you did on the positive behavior support committee. Then consider bringing the reading result to the top of the Lincoln Heights bullets. Your resume isn't likely to be what holds you back; the competition for a particular teaching job will matter too.
+
+## Cards (3; {"line":1,"upgrade":2}); severity off; added []
+1. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see which committee you joined, but not what you did on it. Your work there could show how you contributed beyond your classroom.
+   example: Served on the school's positive behavior support committee and [what you did on the committee]
+   question: What did you do on the committee?
+2. [upgrade] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: For a role with more schoolwide leadership, a decision you made with the team could show how you set direction.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings, including [a decision you made] about [what the team planned]
+   question: What decision did you make while leading the team's planning or data meetings?
+3. [upgrade] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: This is your strongest result. Move it above the classroom description so a recruiter sees it first.
+
+## Fit
+Roles: ["4th Grade Teacher"]
+Level: senior, leads a grade-level team of 4 teachers
+Note: Your experience points toward elementary classroom teaching, with a particular strength in literacy and work with English language learners. Your team leadership also gives you a foundation for roles with broader teaching responsibilities.

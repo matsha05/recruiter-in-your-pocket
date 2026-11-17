@@ -1,0 +1,321 @@
+{
+  "case_id": "b16_career_changer_bad",
+  "batch": "roles",
+  "run": 2,
+  "note": "Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.",
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt",
+  "resume_sha256": "12d7e0e5cf8c013f2914db6c8489b5ecd2eb00d0ec3fc732e6316d80a89deffc",
+  "resume_words": 140,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:08:01.033Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8200,
+        "completion_tokens": 1830,
+        "total_tokens": 10030,
+        "cached_prompt_tokens": 8197,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 885
+      },
+      "cost_usd": 0.00956285,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 43560
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "You supervise evening shifts at Saguaro Market, with earlier work in medical billing and web development. I’d pass for now because I can’t tell which role you want next or how much you oversee at the market.",
+    "write_up": [
+      "It’s common for a resume to show several kinds of work without naming the next job. Yours points toward store supervision, web development and medical billing. I read it for Shift Supervisor, but a recruiter has to guess whether that’s where you want to stay, and the Saguaro Market lines don’t show how many people or registers you oversee.",
+      "The Cactus Grill line is a good model: it names the dining room and the shifts you served. Your current market role is dated, but the freelance web work has no dates, so a recruiter can’t place it alongside your other jobs.",
+      "Let’s start with Saguaro Market. Add the number of cashiers and stockers you supervise, then explain your part in ordering and resets. Name the job you want next and date the freelance work so a recruiter can follow your path."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume does not name the job you want next.",
+        "cannot_tell": "Store supervision, web development and medical billing point to different jobs. A recruiter has to choose a direction for you.",
+        "example": "",
+        "question": "Which job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "- Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "A recruiter can see who you supervise, but not how many people are on your shifts or what you oversee beyond their roles.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts, overseeing [what you oversee]",
+        "question": "How many cashiers and stockers do you supervise, and what do you oversee on a shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "- Help with weekly ordering and store resets",
+        "cannot_tell": "Helping covers a lot of possible work. Your part in the orders and resets is still a blank.",
+        "example": "Help with weekly ordering by [your ordering work] and store resets by [your reset work]",
+        "question": "What do you do for weekly orders and store resets?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "The websites and salon booking work are useful details, but a recruiter can’t tell when you did them or whether they overlapped with your other roles.",
+        "example": "[Month Year] - [Month Year]  Freelance Web Developer, Self-employed",
+        "question": "When did you start and finish the freelance web work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Server, line 1",
+        "line": "- Served a 70-seat dining room on weekend doubles",
+        "cannot_tell": "Keep this as a model. It puts the setting and the kind of shift next to the work, so a recruiter can picture the job without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer",
+        "Medical Billing Assistant"
+      ],
+      "why": "Your current role is Shift Supervisor, where you supervise cashiers and stockers on evening shifts.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your recent work points toward another store supervision role, while your freelance work and certificate also give you a web development story. Choose the direction first, then put the most relevant work up front.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "You supervise evening shifts at Saguaro Market, with earlier work in medical billing and web development. I’d pass for now because I can’t tell which role you want next or how much you oversee at the market.",
+    "write_up": [
+      "It’s common for a resume to show several kinds of work without naming the next job. Yours points toward store supervision, web development and medical billing. I read it for Shift Supervisor, but a recruiter has to guess whether that’s where you want to stay, and the Saguaro Market lines don’t show how many people or registers you oversee.",
+      "The Cactus Grill line is a good model: it names the dining room and the shifts you served. Your current market role is dated, but the freelance web work has no dates, so a recruiter can’t place it alongside your other jobs.",
+      "Let’s start with Saguaro Market. Add the number of cashiers and stockers you supervise, then explain your part in ordering and resets. Name the job you want next and date the freelance work so a recruiter can follow your path."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume does not name the job you want next.",
+        "cannot_tell": "Store supervision, web development and medical billing point to different jobs. A recruiter has to choose a direction for you.",
+        "example": "",
+        "question": "Which job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "A recruiter can see who you supervise, but not how many people are on your shifts or what you oversee beyond their roles.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts, overseeing [what you oversee]",
+        "question": "How many cashiers and stockers do you supervise, and what do you oversee on a shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "cannot_tell": "Helping covers a lot of possible work. Your part in the orders and resets is still a blank.",
+        "example": "Help with weekly ordering by [your ordering work] and store resets by [your reset work]",
+        "question": "What do you do for weekly orders and store resets?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "The websites and salon booking work are useful details, but a recruiter can’t tell when you did them or whether they overlapped with your other roles.",
+        "example": "[Month Year] - [Month Year] Freelance Web Developer, Self-employed",
+        "question": "When did you start and finish the freelance web work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Server, line 1",
+        "line": "Served a 70-seat dining room on weekend doubles",
+        "cannot_tell": "Keep this as a model. It puts the setting and the kind of shift next to the work, so a recruiter can picture the job without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer",
+        "Medical Billing Assistant"
+      ],
+      "why": "Your current role is Shift Supervisor, where you supervise cashiers and stockers on evening shifts.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your recent work points toward another store supervision role, while your freelance work and certificate also give you a web development story. Choose the direction first, then put the most relevant work up front.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "You supervise evening shifts at Saguaro Market, with earlier work in medical billing and web development. I’d pass for now because I can’t tell which role you want next or how much you oversee at the market.",
+    "write_up": [
+      "It’s common for a resume to show several kinds of work without naming the next job. Yours points toward store supervision, web development and medical billing. I read it for Shift Supervisor, but a recruiter has to guess whether that’s where you want to stay, and the Saguaro Market lines don’t show how many people or registers you oversee.",
+      "The Cactus Grill line is a good model: it names the dining room and the shifts you served. Your current market role is dated, but the freelance web work has no dates, so a recruiter can’t place it alongside your other jobs.",
+      "Let’s start with Saguaro Market. Add the number of cashiers and stockers you supervise, then explain your part in ordering and resets. Name the job you want next and date the freelance work so a recruiter can follow your path."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume does not name the job you want next.",
+        "cannot_tell": "Store supervision, web development and medical billing point to different jobs. A recruiter has to choose a direction for you.",
+        "example": "",
+        "question": "Which job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "A recruiter can see who you supervise, but not how many people are on your shifts or what you oversee beyond their roles.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts, overseeing [what you oversee]",
+        "question": "How many cashiers and stockers do you supervise, and what do you oversee on a shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "cannot_tell": "Helping covers a lot of possible work. Your part in the orders and resets is still a blank.",
+        "example": "Help with weekly ordering by [your ordering work] and store resets by [your reset work]",
+        "question": "What do you do for weekly orders and store resets?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "The websites and salon booking work are useful details, but a recruiter can’t tell when you did them or whether they overlapped with your other roles.",
+        "example": "[Month Year] - [Month Year] Freelance Web Developer, Self-employed",
+        "question": "When did you start and finish the freelance web work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Server, line 1",
+        "line": "Served a 70-seat dining room on weekend doubles",
+        "cannot_tell": "Keep this as a model. It puts the setting and the kind of shift next to the work, so a recruiter can picture the job without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer",
+        "Medical Billing Assistant"
+      ],
+      "why": "Your current role is Shift Supervisor, where you supervise cashiers and stockers on evening shifts.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your recent work points toward another store supervision role, while your freelance work and certificate also give you a web development story. Choose the direction first, then put the most relevant work up front.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "model_score": 60,
+    "lifted_by_employer": false,
+    "verdict": "You supervise evening shifts at Saguaro Market, with earlier work in medical billing and web development. I’d pass for now because I can’t tell which role you want next or how much you oversee at the market.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 141,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume does not name the job you want next.",
+        "blanks": 0,
+        "question": "Which job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "blanks": 2,
+        "question": "How many cashiers and stockers do you supervise, and what do you oversee on a shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "blanks": 2,
+        "question": "What do you do for weekly orders and store resets?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "blanks": 2,
+        "question": "When did you start and finish the freelance web work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Server, line 1",
+        "line": "Served a 70-seat dining room on weekend doubles",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "structure": 1,
+      "line": 2,
+      "dates": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer",
+        "Medical Billing Assistant"
+      ],
+      "why": "Your current role is Shift Supervisor, where you supervise cashiers and stockers on evening shifts.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your recent work points toward another store supervision role, while your freelance work and certificate also give you a web development story. Choose the direction first, then put the most relevant work up front.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00956285,
+  "latency_ms": 43563
+}

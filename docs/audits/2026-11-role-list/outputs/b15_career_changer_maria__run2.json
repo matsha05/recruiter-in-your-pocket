@@ -1,0 +1,405 @@
+{
+  "case_id": "b15_career_changer_maria",
+  "batch": "roles",
+  "run": 2,
+  "note": "Career changer (bar persona).",
+  "resume_file": "../../design/2026-11-bar/resumes/2-career-changer-maria.txt",
+  "resume_sha256": "cf6e68aeefb5409ae44ad20d35b5dfe5a27f0f29de2d56c226d1b8891078a1b0",
+  "resume_words": 315,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:58:06.082Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8787,
+        "completion_tokens": 2377,
+        "total_tokens": 11164,
+        "cached_prompt_tokens": 8784,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 1024
+      },
+      "cost_usd": 0.0123272,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 54544
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Your mathematics teaching and data projects show a real move toward analytics. I’d hesitate to move this forward until the job you want and the findings from your projects are clearer.",
+    "write_up": [
+      "This is a common shape for a career change: your Lake Travis teaching work is substantial, while your analytics projects come later. The resume points toward data analytics but doesn't name a target job, so a recruiter has to connect those two parts. I read it for Mathematics Teacher, your most recent title.",
+      "The Austin housing analysis is a good model: it names the data, the time period and the tools you used. Your student dashboard also shows how the math department used your work. Those projects sit below your teaching experience, even though your summary points toward analytics.",
+      "Let's start with the summary and name the analytics job you're seeking. Then bring the projects closer to the top and add a finding from the housing analysis. In the Lake Travis role, show what you did with assessment and benchmark data, not just that you worked with it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't tell a recruiter what kind of analysis you've done. Your housing project gives you something more concrete to lead with.",
+        "example": "Mathematics Teacher transitioning into data analytics, with experience analyzing Austin housing and income data using Python and SQL and presenting [finding].",
+        "question": "What finding from the housing analysis would you want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The summary names data analytics but does not name a target job, and DATA PROJECTS sits below PROFESSIONAL EXPERIENCE.",
+        "cannot_tell": "Your teaching history and analytics projects point in different directions. Naming the job you want and moving the projects higher would make your transition easier to follow.",
+        "example": "",
+        "question": "Which data analytics job are you aiming for?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 2",
+        "line": "- Developed and implemented engaging curriculum aligned with state standards",
+        "cannot_tell": "A recruiter can't see what you developed or how you used it in class. One named curriculum or teaching unit would give them something to hold onto.",
+        "example": "Developed and implemented [curriculum or teaching unit] aligned with state standards for [class].",
+        "question": "Which curriculum or teaching unit did you develop, and for which class?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 3",
+        "line": "- Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "This connects analysis to teaching, but the adjustment is still a blank. A concrete example would show how you used the assessment data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjusted instruction by [instructional change].",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 4",
+        "line": "- Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "The Data Lead work is relevant to your transition, but compiling could cover several tasks. What did you prepare for the department, and how did it use the results?",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to support [use].",
+        "question": "What did you prepare from the benchmark results, and how did the department use it?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, line 3",
+        "line": "- Participated in professional learning communities",
+        "cannot_tell": "Participation alone doesn't say what work you contributed. Name a topic or piece of work if it belongs in the story you want to tell.",
+        "example": "Participated in professional learning communities, contributing [work] on [topic].",
+        "question": "What did you contribute in the professional learning communities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Austin Housing Affordability Analysis, line 1",
+        "line": "- Analyzed 10 years of Austin housing and income data using Python and SQL",
+        "cannot_tell": "Keep this as a model. It puts the subject of the analysis next to the tools, so a recruiter can see what you worked on rather than just a list of skills.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, line 3",
+        "line": "- Presented findings to a panel of instructors and peers",
+        "cannot_tell": "The presentation has an audience, but the finding is missing. A recruiter considering you for analytics will want to know what the housing data showed.",
+        "example": "Presented findings on [housing affordability finding] to a panel of instructors and peers.",
+        "question": "What finding did you present about Austin housing affordability?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your most recent role is Mathematics Teacher, and your experience describes classroom instruction alongside assessment and department data work.",
+      "level": "mid-level, independently taught classes and served as Math Department Data Lead",
+      "note": "Your teaching experience is established, and your Excel and Tableau projects show a route into analytics. For an analytics application, put those projects ahead of the teaching details and name the job you want.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Your mathematics teaching and data projects show a real move toward analytics. I’d hesitate to move this forward until the job you want and the findings from your projects are clearer.",
+    "write_up": [
+      "This is a common shape for a career change: your Lake Travis teaching work is substantial, while your analytics projects come later. The resume points toward data analytics but doesn't name a target job, so a recruiter has to connect those two parts. I read it for Mathematics Teacher, your most recent title.",
+      "The Austin housing analysis is a good model: it names the data, the time period and the tools you used. Your student dashboard also shows how the math department used your work. Those projects sit below your teaching experience, even though your summary points toward analytics.",
+      "Let's start with the summary and name the analytics job you're seeking. Then bring the projects closer to the top and add a finding from the housing analysis. In the Lake Travis role, show what you did with assessment and benchmark data, not just that you worked with it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't tell a recruiter what kind of analysis you've done. Your housing project gives you something more concrete to lead with.",
+        "example": "Mathematics Teacher transitioning into data analytics, with experience analyzing Austin housing and income data using Python and SQL and presenting [finding].",
+        "question": "What finding from the housing analysis would you want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The summary names data analytics but does not name a target job, and DATA PROJECTS sits below PROFESSIONAL EXPERIENCE.",
+        "cannot_tell": "Your teaching history and analytics projects point in different directions. Naming the job you want and moving the projects higher would make your transition easier to follow.",
+        "example": "",
+        "question": "Which data analytics job are you aiming for?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 2",
+        "line": "Developed and implemented engaging curriculum aligned with state standards",
+        "cannot_tell": "A recruiter can't see what you developed or how you used it in class. One named curriculum or teaching unit would give them something to hold onto.",
+        "example": "Developed and implemented [curriculum or teaching unit] aligned with state standards for [class].",
+        "question": "Which curriculum or teaching unit did you develop, and for which class?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 3",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "This connects analysis to teaching, but the adjustment is still a blank. A concrete example would show how you used the assessment data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjusted instruction by [instructional change].",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 4",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "The Data Lead work is relevant to your transition, but compiling could cover several tasks. What did you prepare for the department, and how did it use the results?",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to support [use].",
+        "question": "What did you prepare from the benchmark results, and how did the department use it?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, line 3",
+        "line": "Participated in professional learning communities",
+        "cannot_tell": "Participation alone doesn't say what work you contributed. Name a topic or piece of work if it belongs in the story you want to tell.",
+        "example": "Participated in professional learning communities, contributing [work] on [topic].",
+        "question": "What did you contribute in the professional learning communities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Austin Housing Affordability Analysis, line 1",
+        "line": "Analyzed 10 years of Austin housing and income data using Python and SQL",
+        "cannot_tell": "Keep this as a model. It puts the subject of the analysis next to the tools, so a recruiter can see what you worked on rather than just a list of skills.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, line 3",
+        "line": "Presented findings to a panel of instructors and peers",
+        "cannot_tell": "The presentation has an audience, but the finding is missing. A recruiter considering you for analytics will want to know what the housing data showed.",
+        "example": "Presented findings on [housing affordability finding] to a panel of instructors and peers.",
+        "question": "What finding did you present about Austin housing affordability?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your most recent role is Mathematics Teacher, and your experience describes classroom instruction alongside assessment and department data work.",
+      "level": "mid-level, independently taught classes and served as Math Department Data Lead",
+      "note": "Your teaching experience is established, and your Excel and Tableau projects show a route into analytics. For an analytics application, put those projects ahead of the teaching details and name the job you want.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Your mathematics teaching and data projects show a real move toward analytics. I’d hesitate to move this forward until the job you want and the findings from your projects are clearer.",
+    "write_up": [
+      "This is a common shape for a career change: your Lake Travis teaching work is substantial, while your analytics projects come later. The resume points toward data analytics but doesn't name a target job, so a recruiter has to connect those two parts. I read it for Mathematics Teacher, your most recent title.",
+      "The Austin housing analysis is a good model: it names the data, the time period and the tools you used. Your student dashboard also shows how the math department used your work. Those projects sit below your teaching experience, even though your summary points toward analytics.",
+      "Let's start with the summary and name the analytics job you're seeking. Then bring the projects closer to the top and add a finding from the housing analysis. In the Lake Travis role, show what you did with assessment and benchmark data, not just that you worked with it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't tell a recruiter what kind of analysis you've done. Your housing project gives you something more concrete to lead with.",
+        "example": "Mathematics Teacher transitioning into data analytics, with experience analyzing Austin housing and income data using Python and SQL and presenting [finding].",
+        "question": "What finding from the housing analysis would you want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The summary names data analytics but does not name a target job, and DATA PROJECTS sits below PROFESSIONAL EXPERIENCE.",
+        "cannot_tell": "Your teaching history and analytics projects point in different directions. Naming the job you want and moving the projects higher would make your transition easier to follow.",
+        "example": "",
+        "question": "Which data analytics job are you aiming for?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 2",
+        "line": "Developed and implemented engaging curriculum aligned with state standards",
+        "cannot_tell": "A recruiter can't see what you developed or how you used it in class. One named curriculum or teaching unit would give them something to hold onto.",
+        "example": "Developed and implemented [curriculum or teaching unit] aligned with state standards for [class].",
+        "question": "Which curriculum or teaching unit did you develop, and for which class?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 3",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "This connects analysis to teaching, but the adjustment is still a blank. A concrete example would show how you used the assessment data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjusted instruction by [instructional change].",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 4",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "The Data Lead work is relevant to your transition, but compiling could cover several tasks. What did you prepare for the department, and how did it use the results?",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to support [use].",
+        "question": "What did you prepare from the benchmark results, and how did the department use it?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, line 3",
+        "line": "Participated in professional learning communities",
+        "cannot_tell": "Participation alone doesn't say what work you contributed. Name a topic or piece of work if it belongs in the story you want to tell.",
+        "example": "Participated in professional learning communities, contributing [work] on [topic].",
+        "question": "What did you contribute in the professional learning communities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Austin Housing Affordability Analysis, line 1",
+        "line": "Analyzed 10 years of Austin housing and income data using Python and SQL",
+        "cannot_tell": "Keep this as a model. It puts the subject of the analysis next to the tools, so a recruiter can see what you worked on rather than just a list of skills.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, line 3",
+        "line": "Presented findings to a panel of instructors and peers",
+        "cannot_tell": "The presentation has an audience, but the finding is missing. A recruiter considering you for analytics will want to know what the housing data showed.",
+        "example": "Presented findings on [housing affordability finding] to a panel of instructors and peers.",
+        "question": "What finding did you present about Austin housing affordability?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your most recent role is Mathematics Teacher, and your experience describes classroom instruction alongside assessment and department data work.",
+      "level": "mid-level, independently taught classes and served as Math Department Data Lead",
+      "note": "Your teaching experience is established, and your Excel and Tableau projects show a route into analytics. For an analytics application, put those projects ahead of the teaching details and name the job you want.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Your mathematics teaching and data projects show a real move toward analytics. I’d hesitate to move this forward until the job you want and the findings from your projects are clearer.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 148,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "blanks": 1,
+        "question": "What finding from the housing analysis would you want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The summary names data analytics but does not name a target job, and DATA PROJECTS sits below PROFESSIONAL EXPERIENCE.",
+        "blanks": 0,
+        "question": "Which data analytics job are you aiming for?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 2",
+        "line": "Developed and implemented engaging curriculum aligned with state standards",
+        "blanks": 2,
+        "question": "Which curriculum or teaching unit did you develop, and for which class?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 3",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "blanks": 2,
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, line 4",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "blanks": 2,
+        "question": "What did you prepare from the benchmark results, and how did the department use it?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, line 3",
+        "line": "Participated in professional learning communities",
+        "blanks": 2,
+        "question": "What did you contribute in the professional learning communities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Austin Housing Affordability Analysis, line 1",
+        "line": "Analyzed 10 years of Austin housing and income data using Python and SQL",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, line 3",
+        "line": "Presented findings to a panel of instructors and peers",
+        "blanks": 1,
+        "question": "What finding did you present about Austin housing affordability?"
+      }
+    ],
+    "card_count": 8,
+    "kinds": {
+      "line": 6,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your most recent role is Mathematics Teacher, and your experience describes classroom instruction alongside assessment and department data work.",
+      "level": "mid-level, independently taught classes and served as Math Department Data Lead",
+      "note": "Your teaching experience is established, and your Excel and Tableau projects show a route into analytics. For an analytics application, put those projects ahead of the teaching details and name the job you want.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0123272,
+  "latency_ms": 54549
+}

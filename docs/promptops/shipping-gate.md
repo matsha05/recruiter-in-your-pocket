@@ -257,6 +257,16 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### The role list — November 17
+
+After the first title, the role list adds one only when the resume points a second way at the level the person works at now, never a title the person moved past; the report and the PDF leave a list of one out, since the first pass already names that job. Record: `docs/audits/2026-11-role-list.md`.
+
+- Found on the live check of November 13: a branch manager of five years was offered "Assistant Branch Manager" and "Personal Banker" under Roles to consider.
+- Read: twenty-two synthetic resumes, two reads each on both prompts the same day. One-title lists without a posting, 7 of 40 reads before, 37 of 40 after; scores 0.48 points lower on average, inside the reread spread.
+- Gate: the ten synthetic golden fixtures on the combined prompt (this change and the same day's three-card band line), one run: 10 pass, 0 warnings, 0 failures (`tests/fixtures/results/summary_role_list_2026-11-17.md`). Bound as the release evidence. The previous binding, the three-card prompt alone (9 pass, 1 warning), keeps its receipt in `tests/fixtures/results/summary_golden_synthetic_three_card_2026-11-17.md`.
+- Jordan's public sample was regenerated on the combined prompt, three draws; the second was published and the homepage's quotes updated with it (the audit says why).
+- Spend: about $1.22.
+
 ### What a posting's must-haves are — November 12
 
 The table of what a posting asks for takes its rows from the qualifications, required and preferred, and never lists a condition of employment, a heading or a soft ask as a gap. Record: `docs/audits/2026-11-posting-tailoring.md`.

@@ -1,0 +1,34 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0104; 41.5s
+Case note: Executive, two pages.
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+Your multi-site healthcare work shows a clear progression to COO, with practice growth and operating results to back it up. I’d want to talk to you about this experience.
+
+## Write-up
+This is a strong COO resume! You connect the growth of Lakeshore Dental Partners with the operating model, integration work and clinician retention behind the business. Your earlier physician group and surgery center work show that this isn't a one-setting story.
+
+The hygienist turnover line is a great model: it gives the before and after, the time frame and the changes you made. Your current remit is also easy to find, including the P&L, employee count and board reporting.
+
+Your resume isn't what I'd expect to hold you back. Competition for a particular COO role will matter too. If you're aiming at a CEO seat, consider adding a company-wide decision you made as part of the operating plan; for COO roles, your surgery center turnaround could lead that earlier job.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Chief Operating Officer, Lakeshore Dental Partners
+   line: "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder"
+   can't tell: Keep this as a model. A recruiter can see both the change in retention and the two levers you used to get there.
+2. [upgrade] Chief Operating Officer, Lakeshore Dental Partners
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO role, a company-wide decision within that plan could show how you help set the business's direction.
+   example: Own the annual operating plan and the $410M P&L with the CFO, including [a company-wide decision you made]
+   question: What company-wide decision did you make as part of the operating plan?
+3. [upgrade] Regional Director of Operations, Prairie Health System
+   line: "Took the surgery center from a $600K annual loss to a $1.9M profit in three years by renegotiating payer contracts and rebuilding the block schedule"
+   can't tell: This turnaround is the strongest result in the role. Consider moving it above the line listing the clinics and surgery center.
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points toward multi-site healthcare operations, particularly practice growth and integration. Your value-based contract work also reaches beyond dental services.

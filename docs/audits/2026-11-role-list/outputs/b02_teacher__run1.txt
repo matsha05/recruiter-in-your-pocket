@@ -1,0 +1,38 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0087; 38.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+Your Title I teaching and Washington K-8 certification come through immediately. The reading growth, grade-level leadership and curriculum work back them up. I’d want to talk with you.
+
+## Write-up
+This is a strong teaching resume! Your work at Lincoln Heights and Whitman shows classroom teaching, grade-level leadership and family engagement, with enough detail to make each one concrete.
+
+The reading line is especially strong: it puts district assessment growth from 0.8 to 1.4 grade levels per year alongside the three-year period. Your experience comes before education, and your Washington certification and English Language Learner endorsement are easy to find.
+
+I’d start by adding what you contributed to the positive behavior support committee. Then consider leading with the reading result and, if you’ve had a part in a school-wide decision, adding that to your team leadership line. Your resume doesn’t look like the thing that would hold you back; the school’s needs and competition for the opening matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see you were on the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee, contributing [what you contributed]
+   question: What did you contribute to the committee’s work?
+2. [keep] 4th Grade Teacher, line 4
+   line: "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it"
+   can't tell: Keep this as a model. It names both the curriculum work and what you did for the other teachers.
+3. [upgrade] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: For a broader leadership role, a school-wide decision you contributed to would show how your work reaches beyond the grade-level team.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings, with [your role in a school-wide decision]
+   question: What role, if any, did you have in a school-wide decision, and what was it?
+4. [upgrade] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: This is your strongest result. Consider moving it above the class description so a recruiter sees it first.
+
+## Fit
+Roles: ["Elementary teacher"]
+Level: senior, leads a grade-level team of 4 teachers
+Note: Your resume points toward elementary teaching with grade-level leadership responsibilities. The English Language Learner endorsement and work with English language learners add to that story.

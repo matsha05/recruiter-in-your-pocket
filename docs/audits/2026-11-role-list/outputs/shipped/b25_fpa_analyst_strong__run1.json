@@ -1,0 +1,253 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "roles",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:08:44.598Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8139,
+        "completion_tokens": 1248,
+        "total_tokens": 9387,
+        "cached_prompt_tokens": 7509,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 553
+      },
+      "cost_usd": 0.0074022,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33644
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "Your FP&A work at Lakeshore Foods combines division budgeting, forecasting and pricing with results a recruiter can see. I’d want to talk to you about that work.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you show both the decisions you support and what changed, from forecast accuracy to gross margin. Your earlier work at Midway Brands adds plant reporting and automation.",
+      "The forecast line is a great model: it names what you built and shows the error before and after. Your experience leads, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume isn’t the thing I’d worry about in a search. The match with an opening and the competition still matter. If you’re aiming for a manager role, add any planning direction you set, then consider bringing the pricing result higher in the Lakeshore Foods role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. The driver-based forecast and the change in error make your contribution concrete without extra explanation.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "- Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager role, the planning direction you set would show more of how you guide the division’s work.",
+        "example": "Own the $240M annual operating budget for the snacks division, setting [planning direction]",
+        "question": "What planning direction, if any, did you set for the snacks division?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "Consider moving this above the budget line. The pricing review’s gross margin result gives a recruiter a strong reason to keep reading.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role focus on FP&A budgeting, forecasting and pricing.",
+      "level": "senior, owns the division operating budget and presents to the division CFO",
+      "note": "Your experience points to senior FP&A roles with a mix of planning and commercial analysis. For a manager role, make any planning direction you set visible.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "Your FP&A work at Lakeshore Foods combines division budgeting, forecasting and pricing with results a recruiter can see. I’d want to talk to you about that work.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you show both the decisions you support and what changed, from forecast accuracy to gross margin. Your earlier work at Midway Brands adds plant reporting and automation.",
+      "The forecast line is a great model: it names what you built and shows the error before and after. Your experience leads, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume isn’t the thing I’d worry about in a search. The match with an opening and the competition still matter. If you’re aiming for a manager role, add any planning direction you set, then consider bringing the pricing result higher in the Lakeshore Foods role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. The driver-based forecast and the change in error make your contribution concrete without extra explanation.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager role, the planning direction you set would show more of how you guide the division’s work.",
+        "example": "Own the $240M annual operating budget for the snacks division, setting [planning direction]",
+        "question": "What planning direction, if any, did you set for the snacks division?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "Consider moving this above the budget line. The pricing review’s gross margin result gives a recruiter a strong reason to keep reading.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role focus on FP&A budgeting, forecasting and pricing.",
+      "level": "senior, owns the division operating budget and presents to the division CFO",
+      "note": "Your experience points to senior FP&A roles with a mix of planning and commercial analysis. For a manager role, make any planning direction you set visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "Your FP&A work at Lakeshore Foods combines division budgeting, forecasting and pricing with results a recruiter can see. I’d want to talk to you about that work.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you show both the decisions you support and what changed, from forecast accuracy to gross margin. Your earlier work at Midway Brands adds plant reporting and automation.",
+      "The forecast line is a great model: it names what you built and shows the error before and after. Your experience leads, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume isn’t the thing I’d worry about in a search. The match with an opening and the competition still matter. If you’re aiming for a manager role, add any planning direction you set, then consider bringing the pricing result higher in the Lakeshore Foods role."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. The driver-based forecast and the change in error make your contribution concrete without extra explanation.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager role, the planning direction you set would show more of how you guide the division’s work.",
+        "example": "Own the $240M annual operating budget for the snacks division, setting [planning direction]",
+        "question": "What planning direction, if any, did you set for the snacks division?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "Consider moving this above the budget line. The pricing review’s gross margin result gives a recruiter a strong reason to keep reading.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role focus on FP&A budgeting, forecasting and pricing.",
+      "level": "senior, owns the division operating budget and presents to the division CFO",
+      "note": "Your experience points to senior FP&A roles with a mix of planning and commercial analysis. For a manager role, make any planning direction you set visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "Your FP&A work at Lakeshore Foods combines division budgeting, forecasting and pricing with results a recruiter can see. I’d want to talk to you about that work.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "blanks": 1,
+        "question": "What planning direction, if any, did you set for the snacks division?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role focus on FP&A budgeting, forecasting and pricing.",
+      "level": "senior, owns the division operating budget and presents to the division CFO",
+      "note": "Your experience points to senior FP&A roles with a mix of planning and commercial analysis. For a manager role, make any planning direction you set visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0074022,
+  "latency_ms": 33647
+}

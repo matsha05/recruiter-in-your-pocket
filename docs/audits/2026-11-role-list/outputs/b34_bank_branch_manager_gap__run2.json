@@ -1,0 +1,312 @@
+{
+  "case_id": "b34_bank_branch_manager_gap",
+  "batch": "roles",
+  "run": 2,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:59:37.752Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8234,
+        "completion_tokens": 1421,
+        "total_tokens": 9655,
+        "cached_prompt_tokens": 8231,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00751955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33866
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "You moved from personal banker to branch manager at Magnolia Community Bank, and your branch results back up that progression. I'd want to talk with you. My first question is what you've been doing since December 2024.",
+    "write_up": [
+      "Your resume tells a retail banking story at Magnolia Community Bank, from opening accounts to managing a branch. The deposit growth and staff count give a recruiter something concrete to work with, but the timeline stops at December 2024.",
+      "The deposit line is your model: it names the measure, where it started, where it ended and the period it covers. Your Experience section is easy to follow and sits in the right place above Education.",
+      "Let's start with the time after the Branch Manager role, then add a little more about the people you managed and the audits and complaints you handled. Those details will round out the deposit growth without making every line carry a number."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what came after the branch manager role. That question can distract from the work you did there.",
+        "example": "December 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "- Managed a branch of 11 employees",
+        "cannot_tell": "The staff count establishes how big the branch was, but not what the employees handled or what managing them involved. Those details matter for another branch manager role.",
+        "example": "Managed a branch of 11 employees who handled [team responsibilities], including [management responsibilities]",
+        "question": "What did the employees handle, and what were your management responsibilities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a starting point and an ending point for the deposit growth, with the time period attached.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which reviews or what your oversight involved. A named review would make the work more concrete.",
+        "example": "Oversaw [audit or compliance review] for the branch, including [your responsibilities]",
+        "question": "Which audit or compliance review can you name, and what did you do for it?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of problems reached you or how you handled them. One example can show the judgment the job called for.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and how did you handle one?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management in retail banking.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression at Magnolia points toward another retail banking branch management role. The deposit growth gives you a strong result to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "You moved from personal banker to branch manager at Magnolia Community Bank, and your branch results back up that progression. I'd want to talk with you. My first question is what you've been doing since December 2024.",
+    "write_up": [
+      "Your resume tells a retail banking story at Magnolia Community Bank, from opening accounts to managing a branch. The deposit growth and staff count give a recruiter something concrete to work with, but the timeline stops at December 2024.",
+      "The deposit line is your model: it names the measure, where it started, where it ended and the period it covers. Your Experience section is easy to follow and sits in the right place above Education.",
+      "Let's start with the time after the Branch Manager role, then add a little more about the people you managed and the audits and complaints you handled. Those details will round out the deposit growth without making every line carry a number."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what came after the branch manager role. That question can distract from the work you did there.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "cannot_tell": "The staff count establishes how big the branch was, but not what the employees handled or what managing them involved. Those details matter for another branch manager role.",
+        "example": "Managed a branch of 11 employees who handled [team responsibilities], including [management responsibilities]",
+        "question": "What did the employees handle, and what were your management responsibilities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a starting point and an ending point for the deposit growth, with the time period attached.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which reviews or what your oversight involved. A named review would make the work more concrete.",
+        "example": "Oversaw [audit or compliance review] for the branch, including [your responsibilities]",
+        "question": "Which audit or compliance review can you name, and what did you do for it?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of problems reached you or how you handled them. One example can show the judgment the job called for.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and how did you handle one?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management in retail banking.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression at Magnolia points toward another retail banking branch management role. The deposit growth gives you a strong result to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "You moved from personal banker to branch manager at Magnolia Community Bank, and your branch results back up that progression. I'd want to talk with you. My first question is what you've been doing since December 2024.",
+    "write_up": [
+      "Your resume tells a retail banking story at Magnolia Community Bank, from opening accounts to managing a branch. The deposit growth and staff count give a recruiter something concrete to work with, but the timeline stops at December 2024.",
+      "The deposit line is your model: it names the measure, where it started, where it ended and the period it covers. Your Experience section is easy to follow and sits in the right place above Education.",
+      "Let's start with the time after the Branch Manager role, then add a little more about the people you managed and the audits and complaints you handled. Those details will round out the deposit growth without making every line carry a number."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can follow your progression at Magnolia, but can't tell what came after the branch manager role. That question can distract from the work you did there.",
+        "example": "December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "cannot_tell": "The staff count establishes how big the branch was, but not what the employees handled or what managing them involved. Those details matter for another branch manager role.",
+        "example": "Managed a branch of 11 employees who handled [team responsibilities], including [management responsibilities]",
+        "question": "What did the employees handle, and what were your management responsibilities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a starting point and an ending point for the deposit growth, with the time period attached.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "A recruiter can see that you oversaw reviews, but not which reviews or what your oversight involved. A named review would make the work more concrete.",
+        "example": "Oversaw [audit or compliance review] for the branch, including [your responsibilities]",
+        "question": "Which audit or compliance review can you name, and what did you do for it?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This doesn't show what kinds of problems reached you or how you handled them. One example can show the judgment the job called for.",
+        "example": "Handled escalated customer complaints about [issues] by [actions]",
+        "question": "What kinds of complaints reached you, and how did you handle one?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management in retail banking.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression at Magnolia points toward another retail banking branch management role. The deposit growth gives you a strong result to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "presentation": {
+    "score": 74,
+    "band": "Mostly clear",
+    "model_score": 74,
+    "lifted_by_employer": false,
+    "verdict": "You moved from personal banker to branch manager at Magnolia Community Bank, and your branch results back up that progression. I'd want to talk with you. My first question is what you've been doing since December 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 117,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "blanks": 2,
+        "question": "What did the employees handle, and what were your management responsibilities?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 2,
+        "question": "Which audit or compliance review can you name, and what did you do for it?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kinds of complaints reached you, and how did you handle one?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager"
+      ],
+      "why": "Your headline and most recent role both point to branch management in retail banking.",
+      "level": "manager, managed a branch of 11 employees",
+      "note": "Your progression at Magnolia points toward another retail banking branch management role. The deposit growth gives you a strong result to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00751955,
+  "latency_ms": 33869
+}

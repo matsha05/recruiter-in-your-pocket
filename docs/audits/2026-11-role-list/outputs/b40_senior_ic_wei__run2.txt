@@ -1,0 +1,56 @@
+# b40_senior_ic_wei, run 2
+Resume: ../../design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0104; 47.1s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+Your payments infrastructure work at Brightline shows the architecture and technical leadership behind your Staff title. I’d move this forward. I’d still want to know how large the ledger and settlement team is.
+
+## Write-up
+Your resume follows a clear path from object storage at Nimbus Cloud to fraud, reconciliation and ledger work at Brightline Payments. The technical work backs up your Staff title; the main question is how large the systems and team are around that work.
+
+The idempotency line is a strong model: it names the change you drove and the duplicate-charge incidents it eliminated. Your promotion at Brightline and the move into technical leadership are also easy to follow.
+
+Start with the ledger and settlement team, then add the ledger’s transaction volume if you can. A few older lines need your part or the result made more concrete, but the underlying work is already on your resume.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see which team you lead technically, but not how many engineers are on it. That helps put the Staff role in context.
+   example: Technical lead for the ledger and settlement platform team of [number] engineers
+   question: How many engineers are on the ledger and settlement platform team?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear, but the transaction volume isn’t. That would give a recruiter a sense of the demands on the ledger.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [ledger transaction volume]
+   question: What transaction volume did the ledger service handle after the redesign?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects your ownership across payment services to a concrete problem that went away.
+4. [line] Staff Software Engineer, line 7
+   line: "Authored engineering design documents and architecture reviews adopted as team standards"
+   can't tell: The adoption matters, but a recruiter can’t tell what the documents and reviews covered. One named topic would make the standards more tangible.
+   example: Authored engineering design documents and architecture reviews on [topic], adopted as team standards
+   question: What was one topic covered by the documents or reviews adopted as team standards?
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both improvements matter for reconciliation, but there’s no indication of how much either changed. A before-and-after measure for one would make the result easier to judge.
+   example: Reduced reconciliation break rate from [before] to [after] and reduced manual ops effort
+   question: What was the reconciliation break rate before and after the reduction?
+6. [line] Senior Software Engineer, line 4
+   line: "On-call rotation for payments core services"
+   can't tell: A recruiter can see you were on call, but not what you handled during a rotation.
+   example: On-call rotation for payments core services, with responsibility for [on-call work]
+   question: What did you handle while on call for payments core services?
+7. [line] Software Engineer II, line 4
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: The migration is named, but your part in it isn’t. Keep the contribution at its actual level and name the piece you worked on.
+   example: Contributed to the migration of the control plane to Kubernetes by [your contribution]
+   question: What part of the control plane migration did you work on?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: lead, technical lead for the ledger and settlement platform team
+Note: Your recent work points toward Staff engineering roles in payments and distributed systems. The earlier object storage work adds another infrastructure setting to that story.

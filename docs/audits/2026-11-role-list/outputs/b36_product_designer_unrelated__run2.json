@@ -1,0 +1,249 @@
+{
+  "case_id": "b36_product_designer_unrelated",
+  "batch": "roles",
+  "run": 2,
+  "note": "Current job outside the field.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+  "resume_sha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:59:43.117Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8274,
+        "completion_tokens": 1717,
+        "total_tokens": 9991,
+        "cached_prompt_tokens": 8271,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 987
+      },
+      "cost_usd": 0.00900155,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 48475
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work at Loop Fitness shows what you made, but I’d hesitate to move this resume forward without knowing more about the problems you worked on. What design work, if any, have you done since leaving Loop?",
+    "write_up": [
+      "You designed apps at Loop Fitness and client work at Brightpath Studio, and you’re now working at Ferry Street Coffee. It’s common for a design resume to list what was made without saying what it was meant to solve or what the team learned. For product design roles, that makes it tough to stand out in a pile.",
+      "The line about creating Loop’s first design system is your best model: it names the deliverable, the tool and your part in making it. Your current job accounts for the time since Loop, though a recruiter will still look for recent design work.",
+      "Let’s start with the Loop role. Add what you contributed to the weekly releases and what you tested with members. If you have more recent design work, bring that into the resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "- Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release cadence are clear, but your contribution isn’t. A recruiter can’t tell what design work you did with the engineers and product manager.",
+        "example": "Worked with two engineers and a product manager on [your design work] for weekly releases",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 3",
+        "line": "- Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter where you built it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "- Ran usability tests with members before launches",
+        "cannot_tell": "You say who took part and when the tests happened, but not what you tested or learned. Those details would show how the research informed the work.",
+        "example": "Ran usability tests with members on [what you tested] before launches, learning [what you learned]",
+        "question": "What did you test with members, and what did you learn?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline and your work at Loop Fitness and Brightpath Studio point to product design.",
+      "level": "mid-level, a Product Designer role following a Junior Product Designer role",
+      "note": "Your app flows, design system and member testing point toward product design roles. The resume also shows current customer-facing work at Ferry Street Coffee; any recent design projects could help connect that work to your next move.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work at Loop Fitness shows what you made, but I’d hesitate to move this resume forward without knowing more about the problems you worked on. What design work, if any, have you done since leaving Loop?",
+    "write_up": [
+      "You designed apps at Loop Fitness and client work at Brightpath Studio, and you’re now working at Ferry Street Coffee. It’s common for a design resume to list what was made without saying what it was meant to solve or what the team learned. For product design roles, that makes it tough to stand out in a pile.",
+      "The line about creating Loop’s first design system is your best model: it names the deliverable, the tool and your part in making it. Your current job accounts for the time since Loop, though a recruiter will still look for recent design work.",
+      "Let’s start with the Loop role. Add what you contributed to the weekly releases and what you tested with members. If you have more recent design work, bring that into the resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release cadence are clear, but your contribution isn’t. A recruiter can’t tell what design work you did with the engineers and product manager.",
+        "example": "Worked with two engineers and a product manager on [your design work] for weekly releases",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter where you built it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "You say who took part and when the tests happened, but not what you tested or learned. Those details would show how the research informed the work.",
+        "example": "Ran usability tests with members on [what you tested] before launches, learning [what you learned]",
+        "question": "What did you test with members, and what did you learn?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline and your work at Loop Fitness and Brightpath Studio point to product design.",
+      "level": "mid-level, a Product Designer role following a Junior Product Designer role",
+      "note": "Your app flows, design system and member testing point toward product design roles. The resume also shows current customer-facing work at Ferry Street Coffee; any recent design projects could help connect that work to your next move.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work at Loop Fitness shows what you made, but I’d hesitate to move this resume forward without knowing more about the problems you worked on. What design work, if any, have you done since leaving Loop?",
+    "write_up": [
+      "You designed apps at Loop Fitness and client work at Brightpath Studio, and you’re now working at Ferry Street Coffee. It’s common for a design resume to list what was made without saying what it was meant to solve or what the team learned. For product design roles, that makes it tough to stand out in a pile.",
+      "The line about creating Loop’s first design system is your best model: it names the deliverable, the tool and your part in making it. Your current job accounts for the time since Loop, though a recruiter will still look for recent design work.",
+      "Let’s start with the Loop role. Add what you contributed to the weekly releases and what you tested with members. If you have more recent design work, bring that into the resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and release cadence are clear, but your contribution isn’t. A recruiter can’t tell what design work you did with the engineers and product manager.",
+        "example": "Worked with two engineers and a product manager on [your design work] for weekly releases",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter where you built it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "You say who took part and when the tests happened, but not what you tested or learned. Those details would show how the research informed the work.",
+        "example": "Ran usability tests with members on [what you tested] before launches, learning [what you learned]",
+        "question": "What did you test with members, and what did you learn?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline and your work at Loop Fitness and Brightpath Studio point to product design.",
+      "level": "mid-level, a Product Designer role following a Junior Product Designer role",
+      "note": "Your app flows, design system and member testing point toward product design roles. The resume also shows current customer-facing work at Ferry Street Coffee; any recent design projects could help connect that work to your next move.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "Your product design work at Loop Fitness shows what you made, but I’d hesitate to move this resume forward without knowing more about the problems you worked on. What design work, if any, have you done since leaving Loop?",
+    "write_up_paragraphs": 3,
+    "write_up_words": 134,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "blanks": 1,
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "blanks": 2,
+        "question": "What did you test with members, and what did you learn?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Product Designer"
+      ],
+      "why": "Your headline and your work at Loop Fitness and Brightpath Studio point to product design.",
+      "level": "mid-level, a Product Designer role following a Junior Product Designer role",
+      "note": "Your app flows, design system and member testing point toward product design roles. The resume also shows current customer-facing work at Ferry Street Coffee; any recent design projects could help connect that work to your next move.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00900155,
+  "latency_ms": 48479
+}

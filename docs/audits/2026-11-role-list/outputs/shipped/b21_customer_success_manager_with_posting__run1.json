@@ -1,0 +1,296 @@
+{
+  "case_id": "b21_customer_success_manager_with_posting",
+  "batch": "roles",
+  "run": 1,
+  "note": "The same resume with a posting attached.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": "../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:12:35.458Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8610,
+        "completion_tokens": 1867,
+        "total_tokens": 10477,
+        "cached_prompt_tokens": 7626,
+        "cache_write_prompt_tokens": 981,
+        "reasoning_tokens": 1024
+      },
+      "cost_usd": 0.01094555,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29730
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "Your mid-market customer success work at Brightline Payroll Software gives you a credible foundation for this role. I’d want to talk with you, though I’d still want to know how your book performed against renewal targets.",
+    "write_up": [
+      "You’ve moved from insurance account coordination into payroll support and then customer success, managing mid-market accounts through renewal. That progression fits the Brightline Analytics role, but your resume doesn’t yet show the retention or expansion numbers this posting asks for.",
+      "The line about managing 48 mid-market accounts works well because it names the book and the customers. Your support satisfaction score and team-wide onboarding checklist also give a recruiter concrete work to remember.",
+      "Start with the renewal strategy line: add your part and what happened if you can document it. For this application, also bring forward any usage-data work, BI tools, and VP-level QBR experience you can substantiate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It puts the number of accounts and their industries right next to the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see you worked with Sales, but not your part in the strategy or what happened with the accounts. Those details matter for a role accountable for retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "- Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions could cover almost anything. A topic would show what clients relied on you for.",
+        "example": "Answered client questions about [topics] by phone and email",
+        "question": "What kinds of questions did clients bring to you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "why": "Your headline and current role both center on customer success for mid-market software accounts.",
+      "level": "mid-level, manages a book of 48 mid-market accounts",
+      "note": "Your payroll software background and work with finance and HR leads give you relevant account experience. Use the renewal strategy line to show more of your own work with Sales.",
+      "posting": {
+        "summary": "Mid-market customer success role focused on renewals, expansion, onboarding, QBRs, usage data, and customer feedback.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Experience with analytics or data products"
+        ],
+        "lead": [],
+        "trim": [],
+        "covered": [
+          {
+            "requirement": "3+ years in customer success or account management at a SaaS company",
+            "line": "Customer Success Manager with five years in B2B software, working with mid-market accounts from onboarding through renewal."
+          }
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "Your mid-market customer success work at Brightline Payroll Software gives you a credible foundation for this role. I’d want to talk with you, though I’d still want to know how your book performed against renewal targets.",
+    "write_up": [
+      "You’ve moved from insurance account coordination into payroll support and then customer success, managing mid-market accounts through renewal. That progression fits the Brightline Analytics role, but your resume doesn’t yet show the retention or expansion numbers this posting asks for.",
+      "The line about managing 48 mid-market accounts works well because it names the book and the customers. Your support satisfaction score and team-wide onboarding checklist also give a recruiter concrete work to remember.",
+      "Start with the renewal strategy line: add your part and what happened if you can document it. For this application, also bring forward any usage-data work, BI tools, and VP-level QBR experience you can substantiate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It puts the number of accounts and their industries right next to the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see you worked with Sales, but not your part in the strategy or what happened with the accounts. Those details matter for a role accountable for retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions could cover almost anything. A topic would show what clients relied on you for.",
+        "example": "Answered client questions about [topics] by phone and email",
+        "question": "What kinds of questions did clients bring to you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "why": "Your headline and current role both center on customer success for mid-market software accounts.",
+      "level": "mid-level, manages a book of 48 mid-market accounts",
+      "note": "Your payroll software background and work with finance and HR leads give you relevant account experience. Use the renewal strategy line to show more of your own work with Sales.",
+      "posting": {
+        "summary": "Mid-market customer success role focused on renewals, expansion, onboarding, QBRs, usage data, and customer feedback.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Experience with analytics or data products"
+        ],
+        "covered": [
+          {
+            "requirement": "3+ years in customer success or account management at a SaaS company",
+            "line": "Customer Success Manager with five years in B2B software, working with mid-market accounts from onboarding through renewal."
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "Your mid-market customer success work at Brightline Payroll Software gives you a credible foundation for this role. I’d want to talk with you, though I’d still want to know how your book performed against renewal targets.",
+    "write_up": [
+      "You’ve moved from insurance account coordination into payroll support and then customer success, managing mid-market accounts through renewal. That progression fits the Brightline Analytics role, but your resume doesn’t yet show the retention or expansion numbers this posting asks for.",
+      "The line about managing 48 mid-market accounts works well because it names the book and the customers. Your support satisfaction score and team-wide onboarding checklist also give a recruiter concrete work to remember.",
+      "Start with the renewal strategy line: add your part and what happened if you can document it. For this application, also bring forward any usage-data work, BI tools, and VP-level QBR experience you can substantiate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It puts the number of accounts and their industries right next to the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see you worked with Sales, but not your part in the strategy or what happened with the accounts. Those details matter for a role accountable for retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions could cover almost anything. A topic would show what clients relied on you for.",
+        "example": "Answered client questions about [topics] by phone and email",
+        "question": "What kinds of questions did clients bring to you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "why": "Your headline and current role both center on customer success for mid-market software accounts.",
+      "level": "mid-level, manages a book of 48 mid-market accounts",
+      "note": "Your payroll software background and work with finance and HR leads give you relevant account experience. Use the renewal strategy line to show more of your own work with Sales.",
+      "posting": {
+        "summary": "Mid-market customer success role focused on renewals, expansion, onboarding, QBRs, usage data, and customer feedback.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Experience with analytics or data products"
+        ],
+        "covered": [
+          {
+            "requirement": "3+ years in customer success or account management at a SaaS company",
+            "line": "Customer Success Manager with five years in B2B software, working with mid-market accounts from onboarding through renewal."
+          }
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "Your mid-market customer success work at Brightline Payroll Software gives you a credible foundation for this role. I’d want to talk with you, though I’d still want to know how your book performed against renewal targets.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 108,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "blanks": 1,
+        "question": "What kinds of questions did clients bring to you?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "why": "Your headline and current role both center on customer success for mid-market software accounts.",
+      "level": "mid-level, manages a book of 48 mid-market accounts",
+      "note": "Your payroll software background and work with finance and HR leads give you relevant account experience. Use the renewal strategy line to show more of your own work with Sales.",
+      "posting": {
+        "summary": "Mid-market customer success role focused on renewals, expansion, onboarding, QBRs, usage data, and customer feedback.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Experience with analytics or data products"
+        ],
+        "covered": [
+          {
+            "requirement": "3+ years in customer success or account management at a SaaS company",
+            "line": "Customer Success Manager with five years in B2B software, working with mid-market accounts from onboarding through renewal."
+          }
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01094555,
+  "latency_ms": 29733
+}

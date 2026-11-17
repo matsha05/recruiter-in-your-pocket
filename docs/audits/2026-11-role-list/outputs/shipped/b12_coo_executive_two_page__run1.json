@@ -1,0 +1,285 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "roles",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:06:42.960Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 9221,
+        "completion_tokens": 1380,
+        "total_tokens": 10601,
+        "cached_prompt_tokens": 7509,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0094147,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 34636
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Your healthcare operations career moves from clinic management to running Lakeshore Dental Partners. The growth, margin and workforce results back up that progression. I’d want to talk to you.",
+    "write_up": [
+      "Your resume is strong because it connects executive decisions to changes in the business! At Lakeshore Dental Partners, a recruiter can see both the reach of your COO role and what changed as the organization grew.",
+      "The practice growth line is a model: it names acquisitions and openings alongside the same-store margin change. The earlier roles also show a clear progression from clinics to enterprise operations, and your experience leads your education.",
+      "Your resume isn't the likely obstacle to a recruiter moving you forward. Add how you reduced appointment waits, then consider whether an enterprise-wide decision belongs in the operating plan line for CEO-level roles. Competition for those roles will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "- Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The wait time change is substantial, but a recruiter can't see what you changed to achieve it. That decision would show how you improved access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [operational change]",
+        "question": "What did you change to reduce the wait for an appointment?"
+      },
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 2",
+        "line": "- Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "Keep this as the model. It puts the ways you grew the organization next to the margin change, so the growth is more than a practice count.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, line 7",
+        "line": "- Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision tied to the operating plan would show more of how you set direction.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; [enterprise-wide decision] shaped [business priority]",
+        "question": "What enterprise-wide decision did you make through the operating plan, and what priority did it shape?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Clinic Operations, line 2",
+        "line": "- Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%",
+        "cannot_tell": "Move this to the first line under the Vice President role. It shows the operating change and the reduction in abandoned calls before the clinic count.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "why": "Your headline and current Lakeshore Dental Partners role both position you as a Chief Operating Officer in multi-site healthcare.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points to executive operations roles in multi-site healthcare services. The board reporting and operating plan also give you a base for showing enterprise direction in a CEO-level search.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Your healthcare operations career moves from clinic management to running Lakeshore Dental Partners. The growth, margin and workforce results back up that progression. I’d want to talk to you.",
+    "write_up": [
+      "Your resume is strong because it connects executive decisions to changes in the business! At Lakeshore Dental Partners, a recruiter can see both the reach of your COO role and what changed as the organization grew.",
+      "The practice growth line is a model: it names acquisitions and openings alongside the same-store margin change. The earlier roles also show a clear progression from clinics to enterprise operations, and your experience leads your education.",
+      "Your resume isn't the likely obstacle to a recruiter moving you forward. Add how you reduced appointment waits, then consider whether an enterprise-wide decision belongs in the operating plan line for CEO-level roles. Competition for those roles will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The wait time change is substantial, but a recruiter can't see what you changed to achieve it. That decision would show how you improved access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [operational change]",
+        "question": "What did you change to reduce the wait for an appointment?"
+      },
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 2",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "Keep this as the model. It puts the ways you grew the organization next to the margin change, so the growth is more than a practice count.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision tied to the operating plan would show more of how you set direction.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; [enterprise-wide decision] shaped [business priority]",
+        "question": "What enterprise-wide decision did you make through the operating plan, and what priority did it shape?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Clinic Operations, line 2",
+        "line": "Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%",
+        "cannot_tell": "Move this to the first line under the Vice President role. It shows the operating change and the reduction in abandoned calls before the clinic count.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "why": "Your headline and current Lakeshore Dental Partners role both position you as a Chief Operating Officer in multi-site healthcare.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points to executive operations roles in multi-site healthcare services. The board reporting and operating plan also give you a base for showing enterprise direction in a CEO-level search.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Your healthcare operations career moves from clinic management to running Lakeshore Dental Partners. The growth, margin and workforce results back up that progression. I’d want to talk to you.",
+    "write_up": [
+      "Your resume is strong because it connects executive decisions to changes in the business! At Lakeshore Dental Partners, a recruiter can see both the reach of your COO role and what changed as the organization grew.",
+      "The practice growth line is a model: it names acquisitions and openings alongside the same-store margin change. The earlier roles also show a clear progression from clinics to enterprise operations, and your experience leads your education.",
+      "Your resume isn't the likely obstacle to a recruiter moving you forward. Add how you reduced appointment waits, then consider whether an enterprise-wide decision belongs in the operating plan line for CEO-level roles. Competition for those roles will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The wait time change is substantial, but a recruiter can't see what you changed to achieve it. That decision would show how you improved access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [operational change]",
+        "question": "What did you change to reduce the wait for an appointment?"
+      },
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 2",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "cannot_tell": "Keep this as the model. It puts the ways you grew the organization next to the margin change, so the growth is more than a practice count.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision tied to the operating plan would show more of how you set direction.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO; [enterprise-wide decision] shaped [business priority]",
+        "question": "What enterprise-wide decision did you make through the operating plan, and what priority did it shape?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Clinic Operations, line 2",
+        "line": "Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%",
+        "cannot_tell": "Move this to the first line under the Vice President role. It shows the operating change and the reduction in abandoned calls before the clinic count.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "why": "Your headline and current Lakeshore Dental Partners role both position you as a Chief Operating Officer in multi-site healthcare.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points to executive operations roles in multi-site healthcare services. The board reporting and operating plan also give you a base for showing enterprise direction in a CEO-level search.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Your healthcare operations career moves from clinic management to running Lakeshore Dental Partners. The growth, margin and workforce results back up that progression. I’d want to talk to you.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 112,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "blanks": 1,
+        "question": "What did you change to reduce the wait for an appointment?"
+      },
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 2",
+        "line": "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "blanks": 2,
+        "question": "What enterprise-wide decision did you make through the operating plan, and what priority did it shape?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Clinic Operations, line 2",
+        "line": "Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "why": "Your headline and current Lakeshore Dental Partners role both position you as a Chief Operating Officer in multi-site healthcare.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points to executive operations roles in multi-site healthcare services. The board reporting and operating plan also give you a base for showing enterprise direction in a CEO-level search.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0094147,
+  "latency_ms": 34639
+}

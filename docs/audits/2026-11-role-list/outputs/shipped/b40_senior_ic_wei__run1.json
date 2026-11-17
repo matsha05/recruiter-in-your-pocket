@@ -1,0 +1,346 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "roles",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../../design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:10:35.219Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8888,
+        "completion_tokens": 1828,
+        "total_tokens": 10716,
+        "cached_prompt_tokens": 7509,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 723
+      },
+      "cost_usd": 0.01123845,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 46065
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You've grown from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. The technical work backs up the Staff title, and I'd want to talk to you. I'd still ask how large the team is and what changed after the ledger redesign.",
+    "write_up": [
+      "Your resume tells a clear story: storage infrastructure at Nimbus Cloud, followed by fraud, reconciliation and now ledger and settlement work at Brightline Payments. The architecture and payment problems are concrete, but a recruiter has to guess how large the team is and what the ledger redesign changed.",
+      "The idempotency line is the model: it names the framework, where you drove adoption and the duplicate-charge incidents it eliminated. Your progression from Software Engineer to Staff Software Engineer is also easy to follow.",
+      "Start with the current role. Add the team's size to the technical lead line, then show what changed with the ledger redesign if you can measure it. After that, give the earlier reconciliation and Kubernetes work a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how large it is. That number helps them understand your remit as a technical lead.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] members",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what changed for the ledger service after the redesign. A measure of the change would make the work more compelling.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work across payment services to a specific problem that went away.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both reductions matter, but this doesn't say what you did to achieve them or how much they changed.",
+        "example": "Reduced reconciliation break rate and manual ops effort by [what you did], with [measure of change]",
+        "question": "What did you do to reduce the break rate and manual work, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "- Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A recruiter can't tell which piece of the control plane you worked on.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your contribution]",
+        "question": "What part of the Kubernetes migration did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "- Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "Storage provisioning gives the work a useful setting, but the tools and APIs are still broad. One example would show what you built.",
+        "example": "Developed internal tooling and APIs for storage provisioning, including [tool or API]",
+        "question": "Which tool or API for storage provisioning did you develop?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward distributed systems and payments infrastructure roles with technical leadership. The move from storage to payments also gives you a useful story about building systems in two different settings.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You've grown from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. The technical work backs up the Staff title, and I'd want to talk to you. I'd still ask how large the team is and what changed after the ledger redesign.",
+    "write_up": [
+      "Your resume tells a clear story: storage infrastructure at Nimbus Cloud, followed by fraud, reconciliation and now ledger and settlement work at Brightline Payments. The architecture and payment problems are concrete, but a recruiter has to guess how large the team is and what the ledger redesign changed.",
+      "The idempotency line is the model: it names the framework, where you drove adoption and the duplicate-charge incidents it eliminated. Your progression from Software Engineer to Staff Software Engineer is also easy to follow.",
+      "Start with the current role. Add the team's size to the technical lead line, then show what changed with the ledger redesign if you can measure it. After that, give the earlier reconciliation and Kubernetes work a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how large it is. That number helps them understand your remit as a technical lead.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] members",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what changed for the ledger service after the redesign. A measure of the change would make the work more compelling.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work across payment services to a specific problem that went away.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both reductions matter, but this doesn't say what you did to achieve them or how much they changed.",
+        "example": "Reduced reconciliation break rate and manual ops effort by [what you did], with [measure of change]",
+        "question": "What did you do to reduce the break rate and manual work, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A recruiter can't tell which piece of the control plane you worked on.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your contribution]",
+        "question": "What part of the Kubernetes migration did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "Storage provisioning gives the work a useful setting, but the tools and APIs are still broad. One example would show what you built.",
+        "example": "Developed internal tooling and APIs for storage provisioning, including [tool or API]",
+        "question": "Which tool or API for storage provisioning did you develop?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward distributed systems and payments infrastructure roles with technical leadership. The move from storage to payments also gives you a useful story about building systems in two different settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You've grown from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. The technical work backs up the Staff title, and I'd want to talk to you. I'd still ask how large the team is and what changed after the ledger redesign.",
+    "write_up": [
+      "Your resume tells a clear story: storage infrastructure at Nimbus Cloud, followed by fraud, reconciliation and now ledger and settlement work at Brightline Payments. The architecture and payment problems are concrete, but a recruiter has to guess how large the team is and what the ledger redesign changed.",
+      "The idempotency line is the model: it names the framework, where you drove adoption and the duplicate-charge incidents it eliminated. Your progression from Software Engineer to Staff Software Engineer is also easy to follow.",
+      "Start with the current role. Add the team's size to the technical lead line, then show what changed with the ledger redesign if you can measure it. After that, give the earlier reconciliation and Kubernetes work a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how large it is. That number helps them understand your remit as a technical lead.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] members",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what changed for the ledger service after the redesign. A measure of the change would make the work more compelling.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work across payment services to a specific problem that went away.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both reductions matter, but this doesn't say what you did to achieve them or how much they changed.",
+        "example": "Reduced reconciliation break rate and manual ops effort by [what you did], with [measure of change]",
+        "question": "What did you do to reduce the break rate and manual work, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A recruiter can't tell which piece of the control plane you worked on.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your contribution]",
+        "question": "What part of the Kubernetes migration did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "cannot_tell": "Storage provisioning gives the work a useful setting, but the tools and APIs are still broad. One example would show what you built.",
+        "example": "Developed internal tooling and APIs for storage provisioning, including [tool or API]",
+        "question": "Which tool or API for storage provisioning did you develop?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward distributed systems and payments infrastructure roles with technical leadership. The move from storage to payments also gives you a useful story about building systems in two different settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "You've grown from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. The technical work backs up the Staff title, and I'd want to talk to you. I'd still ask how large the team is and what changed after the ledger redesign.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 122,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 1,
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, line 3",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 2,
+        "question": "What did you do to reduce the break rate and manual work, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 4",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "blanks": 1,
+        "question": "What part of the Kubernetes migration did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Developed internal tooling and APIs for storage provisioning",
+        "blanks": 1,
+        "question": "Which tool or API for storage provisioning did you develop?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "line": 5,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment infrastructure and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your experience points toward distributed systems and payments infrastructure roles with technical leadership. The move from storage to payments also gives you a useful story about building systems in two different settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01123845,
+  "latency_ms": 46068
+}

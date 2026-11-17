@@ -1,0 +1,249 @@
+{
+  "case_id": "h3_strong_resume",
+  "batch": "roles",
+  "run": 1,
+  "note": "Senior product manager whose resume is already good.",
+  "resume_file": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+  "resume_sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+  "resume_words": 311,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:01:32.647Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8801,
+        "completion_tokens": 1348,
+        "total_tokens": 10149,
+        "cached_prompt_tokens": 7623,
+        "cache_write_prompt_tokens": 1175,
+        "reasoning_tokens": 586
+      },
+      "cost_usd": 0.0085929,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 32536
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "Your B2B payments and billing work comes through immediately, from merchant onboarding to leading Northwind Pay's launch. The results and your management of product managers back up the senior role. I'd want to talk to you.",
+    "write_up": [
+      "This is an excellent payments resume! At Northwind, you connect product decisions to customer adoption, revenue and faster market launches, while also showing how your work grew from billing to a platform roadmap and managing product managers.",
+      "The Adyen and Stripe line is a great model: it names the integrations you negotiated and shipped, then shows how launch time changed. Your progression from Peakline to two Northwind roles is easy to follow, and your current remit is right at the top.",
+      "Your resume isn't what I'd expect to stand between you and a call back. Competition for the job and a referral can matter too. If you're aiming for the next level, add a product investment decision you made and consider leading with the payment failure result."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 4",
+        "line": "- Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks",
+        "cannot_tell": "Keep this as a model. You name both partners and give a before and after, so a recruiter can see the business change alongside your work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a role one level up, a product investment decision would show how you set direction across the teams.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, including [a product investment decision you made]",
+        "question": "What product investment decision did you make across these teams, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "The roadmap line gives useful context, but this result shows what changed for customers. Consider moving it to the first bullet under your current role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role and headline center on payments and billing products, with a platform roadmap and product managers you hire and manage.",
+      "level": "manager, hires and manages 3 product managers",
+      "note": "Your experience points toward payments platform and billing product leadership. The mix of customer-facing results and team management gives you a strong story for roles that need both.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "Your B2B payments and billing work comes through immediately, from merchant onboarding to leading Northwind Pay's launch. The results and your management of product managers back up the senior role. I'd want to talk to you.",
+    "write_up": [
+      "This is an excellent payments resume! At Northwind, you connect product decisions to customer adoption, revenue and faster market launches, while also showing how your work grew from billing to a platform roadmap and managing product managers.",
+      "The Adyen and Stripe line is a great model: it names the integrations you negotiated and shipped, then shows how launch time changed. Your progression from Peakline to two Northwind roles is easy to follow, and your current remit is right at the top.",
+      "Your resume isn't what I'd expect to stand between you and a call back. Competition for the job and a referral can matter too. If you're aiming for the next level, add a product investment decision you made and consider leading with the payment failure result."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 4",
+        "line": "Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks",
+        "cannot_tell": "Keep this as a model. You name both partners and give a before and after, so a recruiter can see the business change alongside your work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a role one level up, a product investment decision would show how you set direction across the teams.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, including [a product investment decision you made]",
+        "question": "What product investment decision did you make across these teams, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "The roadmap line gives useful context, but this result shows what changed for customers. Consider moving it to the first bullet under your current role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role and headline center on payments and billing products, with a platform roadmap and product managers you hire and manage.",
+      "level": "manager, hires and manages 3 product managers",
+      "note": "Your experience points toward payments platform and billing product leadership. The mix of customer-facing results and team management gives you a strong story for roles that need both.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "Your B2B payments and billing work comes through immediately, from merchant onboarding to leading Northwind Pay's launch. The results and your management of product managers back up the senior role. I'd want to talk to you.",
+    "write_up": [
+      "This is an excellent payments resume! At Northwind, you connect product decisions to customer adoption, revenue and faster market launches, while also showing how your work grew from billing to a platform roadmap and managing product managers.",
+      "The Adyen and Stripe line is a great model: it names the integrations you negotiated and shipped, then shows how launch time changed. Your progression from Peakline to two Northwind roles is easy to follow, and your current remit is right at the top.",
+      "Your resume isn't what I'd expect to stand between you and a call back. Competition for the job and a referral can matter too. If you're aiming for the next level, add a product investment decision you made and consider leading with the payment failure result."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 4",
+        "line": "Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks",
+        "cannot_tell": "Keep this as a model. You name both partners and give a before and after, so a recruiter can see the business change alongside your work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a role one level up, a product investment decision would show how you set direction across the teams.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, including [a product investment decision you made]",
+        "question": "What product investment decision did you make across these teams, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "The roadmap line gives useful context, but this result shows what changed for customers. Consider moving it to the first bullet under your current role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role and headline center on payments and billing products, with a platform roadmap and product managers you hire and manage.",
+      "level": "manager, hires and manages 3 product managers",
+      "note": "Your experience points toward payments platform and billing product leadership. The mix of customer-facing results and team management gives you a strong story for roles that need both.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "presentation": {
+    "score": 96,
+    "band": "Clear and specific",
+    "model_score": 96,
+    "lifted_by_employer": false,
+    "verdict": "Your B2B payments and billing work comes through immediately, from merchant onboarding to leading Northwind Pay's launch. The results and your management of product managers back up the senior role. I'd want to talk to you.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 127,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 4",
+        "line": "Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "blanks": 1,
+        "question": "What product investment decision did you make across these teams, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role and headline center on payments and billing products, with a platform roadmap and product managers you hire and manage.",
+      "level": "manager, hires and manages 3 product managers",
+      "note": "Your experience points toward payments platform and billing product leadership. The mix of customer-facing results and team management gives you a strong story for roles that need both.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0085929,
+  "latency_ms": 32538
+}

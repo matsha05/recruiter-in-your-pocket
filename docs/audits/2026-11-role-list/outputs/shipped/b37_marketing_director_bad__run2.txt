@@ -1,0 +1,50 @@
+# b37_marketing_director_bad, run 2
+Resume: ../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0108; 56.2s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 55; model wrote 55)
+## Verdict
+Director of Marketing at Lumen Candle Co. is the first thing I notice, but the work listed is mostly hands-on marketing and order support. I’d pass for a director role as written. I’d also wonder what you’ve been doing since January 2025.
+
+## Write-up
+It’s common for a resume to show several kinds of work without naming the next job. Yours moves from biology and data entry to marketing at Lumen Candle Co. The Lumen title points toward a director role, but the lines underneath don’t show the decisions, team or budget a recruiter would look for at that level.
+
+Your candle descriptions are a useful model: you name the deliverable and how many scents you wrote for. Experience is already above Education, which works well. The resume doesn’t account for time after January 2025, and it leaves a recruiter guessing whether you want marketing or a different kind of job next.
+
+Let’s start with Lumen. Add any marketing decisions and team or budget responsibilities you can substantiate, then account for the time since that role. A target job at the top can help you choose which work to emphasize instead of asking a recruiter to make that choice.
+
+## Cards (6; {"line":2,"dates":1,"structure":2,"keep":1}); severity off; added []
+1. [line] Lumen Candle Co., title
+   line: "Director of Marketing"
+   can't tell: The title suggests responsibility beyond the hands-on work listed. A recruiter can't tell what marketing decisions you made or whether you managed a team or budget.
+   example: Director of Marketing: [marketing decisions], with responsibility for [team size or budget]
+   question: What marketing decisions were yours, and did you manage a team or budget?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter looking at your move into marketing will also notice the unaccounted time after Lumen. That leaves a question about what you've been doing since the role ended.
+   example: January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since January 2025?
+3. [structure] Structure
+   line: "The resume does not name a target job."
+   can't tell: Your recent work points to marketing, while earlier roles point to data entry and lab work. A recruiter has to choose which direction you're pursuing.
+   question: Which job do you want this resume to target?
+4. [structure] Lumen Candle Co.
+   line: "The resume does not state the size of Lumen Candle Co."
+   can't tell: A little context about the business could help a recruiter understand the setting for your marketing work and director title.
+   example: Lumen Candle Co., Austin, TX | [company size]
+   question: How large was Lumen Candle Co. when you worked there?
+5. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The frequency and follower count are useful. The line doesn't say what you posted or what you tracked, which would give a recruiter more to go on for a marketing role.
+   example: Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]
+   question: What did you post, and what changes did you track?
+6. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this as a model. It puts your own work first and gives the reader a concrete sense of how much you wrote.
+
+## Fit
+Roles: ["Director of Marketing","Data Entry Clerk"]
+Level: entry level, hands-on marketing work without stated management responsibilities
+Note: The recent work points toward hands-on marketing, while the earlier title work points toward data entry. Choose the direction you want next and put the most relevant work first.

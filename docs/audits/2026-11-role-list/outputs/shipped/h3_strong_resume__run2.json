@@ -1,0 +1,253 @@
+{
+  "case_id": "h3_strong_resume",
+  "batch": "roles",
+  "run": 2,
+  "note": "Senior product manager whose resume is already good.",
+  "resume_file": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+  "resume_sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+  "resume_words": 311,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:11:32.675Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8687,
+        "completion_tokens": 1231,
+        "total_tokens": 9918,
+        "cached_prompt_tokens": 8684,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0065922,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 31061
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your payments and billing work at Northwind is backed by product launches, customer adoption and measurable improvements. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong product resume! Your work at Northwind moves from billing to a payments platform, and you show both what you shipped and what changed for customers and the business.",
+      "The invoice-disputes line is a great model: it connects customer interviews to a redesign and a 38% reduction. Your current role also makes the team and customer base easy to grasp, without burying the product work.",
+      "Your resume isn’t likely to be the thing holding you back. For a more senior product leadership role, add a decision that shows how you set direction across the work, if you can. The competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Manager, Billing, line 2",
+        "line": "- Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews",
+        "cannot_tell": "Keep this as a model. It names the customer problem, the research behind your decision and the change that followed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a product leadership role above your current level, the direction you set and a business decision behind it would add to the team and customer numbers already here.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, with [product direction] and [business decision]",
+        "question": "What product direction did you set, and what business decision shaped it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This result is more concrete than the roadmap line above it. Move it to the top of the Northwind payments role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "why": "Your headline and recent Northwind roles center on payments and billing products.",
+      "level": "manager, hired and manages 3 product managers",
+      "note": "Your experience points toward payments and billing product roles, including roles with product managers to lead. The combination of processor integrations, pricing and platform work gives you several relevant stories to bring forward.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your payments and billing work at Northwind is backed by product launches, customer adoption and measurable improvements. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong product resume! Your work at Northwind moves from billing to a payments platform, and you show both what you shipped and what changed for customers and the business.",
+      "The invoice-disputes line is a great model: it connects customer interviews to a redesign and a 38% reduction. Your current role also makes the team and customer base easy to grasp, without burying the product work.",
+      "Your resume isn’t likely to be the thing holding you back. For a more senior product leadership role, add a decision that shows how you set direction across the work, if you can. The competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Manager, Billing, line 2",
+        "line": "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews",
+        "cannot_tell": "Keep this as a model. It names the customer problem, the research behind your decision and the change that followed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a product leadership role above your current level, the direction you set and a business decision behind it would add to the team and customer numbers already here.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, with [product direction] and [business decision]",
+        "question": "What product direction did you set, and what business decision shaped it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This result is more concrete than the roadmap line above it. Move it to the top of the Northwind payments role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "why": "Your headline and recent Northwind roles center on payments and billing products.",
+      "level": "manager, hired and manages 3 product managers",
+      "note": "Your experience points toward payments and billing product roles, including roles with product managers to lead. The combination of processor integrations, pricing and platform work gives you several relevant stories to bring forward.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your payments and billing work at Northwind is backed by product launches, customer adoption and measurable improvements. I’d want to talk to you.",
+    "write_up": [
+      "This is a strong product resume! Your work at Northwind moves from billing to a payments platform, and you show both what you shipped and what changed for customers and the business.",
+      "The invoice-disputes line is a great model: it connects customer interviews to a redesign and a 38% reduction. Your current role also makes the team and customer base easy to grasp, without burying the product work.",
+      "Your resume isn’t likely to be the thing holding you back. For a more senior product leadership role, add a decision that shows how you set direction across the work, if you can. The competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Manager, Billing, line 2",
+        "line": "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews",
+        "cannot_tell": "Keep this as a model. It names the customer problem, the research behind your decision and the change that followed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "cannot_tell": "For a product leadership role above your current level, the direction you set and a business decision behind it would add to the team and customer numbers already here.",
+        "example": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, with [product direction] and [business decision]",
+        "question": "What product direction did you set, and what business decision shaped it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This result is more concrete than the roadmap line above it. Move it to the top of the Northwind payments role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "why": "Your headline and recent Northwind roles center on payments and billing products.",
+      "level": "manager, hired and manages 3 product managers",
+      "note": "Your experience points toward payments and billing product roles, including roles with product managers to lead. The combination of processor integrations, pricing and platform work gives you several relevant stories to bring forward.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "Your payments and billing work at Northwind is backed by product launches, customer adoption and measurable improvements. I’d want to talk to you.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 109,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Manager, Billing, line 2",
+        "line": "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 1",
+        "line": "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers",
+        "blanks": 2,
+        "question": "What product direction did you set, and what business decision shaped it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "why": "Your headline and recent Northwind roles center on payments and billing products.",
+      "level": "manager, hired and manages 3 product managers",
+      "note": "Your experience points toward payments and billing product roles, including roles with product managers to lead. The combination of processor integrations, pricing and platform work gives you several relevant stories to bring forward.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0065922,
+  "latency_ms": 31063
+}

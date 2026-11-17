@@ -1,0 +1,249 @@
+{
+  "case_id": "h5_mismatched_posting",
+  "batch": "roles",
+  "run": 2,
+  "note": "Data analyst against a registered nurse posting.",
+  "resume_file": "../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+  "resume_sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+  "resume_words": 166,
+  "job_description_file": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T16:12:25.855Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8523,
+        "completion_tokens": 1767,
+        "total_tokens": 10290,
+        "cached_prompt_tokens": 8520,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 1024
+      },
+      "cost_usd": 0.009264,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27737
+    }
+  ],
+  "resume_prompt_sha256": "22a90f2273de5ce42637d4e17bd153524479681571b5471df18782f6b1bb6e6c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 93,
+    "lifted_by_employer": false,
+    "verdict": "The Registered Nurse role is a different track from your data analyst work. Carolina Home Goods shows strong reporting and analysis, but I’d pass for this nursing role because your resume doesn’t show the clinical qualifications.",
+    "write_up": [
+      "This nursing posting asks for clinical qualifications, while your resume tells a strong data analyst story across Carolina Home Goods and Piedmont Insurance Services. The score reflects your analytics resume, not its fit for the nursing job.",
+      "Your SQL model is a great example: it names the work and shows that it replaced a 3-day manual weekly report. The markdown analysis is strong too, with the number of SKUs and the merchandising team’s adoption right there.",
+      "For data analyst jobs, your resume is ready to send; competition for the role will also matter. For this nursing application, add clinical qualifications only if you have them. They aren’t shown on this resume."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 2",
+        "line": "- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Consider moving this above the dashboard line. The change to the weekly report gives a recruiter a concrete reason to remember your SQL work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 1",
+        "line": "- Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams",
+        "cannot_tell": "For a more senior analytics role, a recruiter will also look for decisions you made about reporting across teams. Add one here if that was part of your job.",
+        "example": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; [what you did to set reporting direction across teams]",
+        "question": "Did you set reporting direction across these teams, and what did you decide?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)",
+        "Junior Analyst"
+      ],
+      "why": "Your headline and current role focus on sales and operations analysis, dashboards, and SQL reporting.",
+      "level": "mid-level, current Data Analyst role with prior Junior Analyst experience",
+      "note": "Your reporting work shows collaboration with sales, merchandising, and finance teams. The nursing role is nights, 7p to 7a, with rotating weekends.",
+      "posting": {
+        "summary": "The posting seeks a registered nurse for a medical-surgical unit, with a nursing license, certifications, clinical experience or rotations, EHR experience, and patient-assignment capability.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients"
+        ],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 93,
+    "lifted_by_employer": false,
+    "verdict": "The Registered Nurse role is a different track from your data analyst work. Carolina Home Goods shows strong reporting and analysis, but I’d pass for this nursing role because your resume doesn’t show the clinical qualifications.",
+    "write_up": [
+      "This nursing posting asks for clinical qualifications, while your resume tells a strong data analyst story across Carolina Home Goods and Piedmont Insurance Services. The score reflects your analytics resume, not its fit for the nursing job.",
+      "Your SQL model is a great example: it names the work and shows that it replaced a 3-day manual weekly report. The markdown analysis is strong too, with the number of SKUs and the merchandising team’s adoption right there.",
+      "For data analyst jobs, your resume is ready to send; competition for the role will also matter. For this nursing application, add clinical qualifications only if you have them. They aren’t shown on this resume."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Consider moving this above the dashboard line. The change to the weekly report gives a recruiter a concrete reason to remember your SQL work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 1",
+        "line": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams",
+        "cannot_tell": "For a more senior analytics role, a recruiter will also look for decisions you made about reporting across teams. Add one here if that was part of your job.",
+        "example": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; [what you did to set reporting direction across teams]",
+        "question": "Did you set reporting direction across these teams, and what did you decide?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)",
+        "Junior Analyst"
+      ],
+      "why": "Your headline and current role focus on sales and operations analysis, dashboards, and SQL reporting.",
+      "level": "mid-level, current Data Analyst role with prior Junior Analyst experience",
+      "note": "Your reporting work shows collaboration with sales, merchandising, and finance teams. The nursing role is nights, 7p to 7a, with rotating weekends.",
+      "posting": {
+        "summary": "The posting seeks a registered nurse for a medical-surgical unit, with a nursing license, certifications, clinical experience or rotations, EHR experience, and patient-assignment capability.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 93
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 93,
+    "lifted_by_employer": false,
+    "verdict": "The Registered Nurse role is a different track from your data analyst work. Carolina Home Goods shows strong reporting and analysis, but I’d pass for this nursing role because your resume doesn’t show the clinical qualifications.",
+    "write_up": [
+      "This nursing posting asks for clinical qualifications, while your resume tells a strong data analyst story across Carolina Home Goods and Piedmont Insurance Services. The score reflects your analytics resume, not its fit for the nursing job.",
+      "Your SQL model is a great example: it names the work and shows that it replaced a 3-day manual weekly report. The markdown analysis is strong too, with the number of SKUs and the merchandising team’s adoption right there.",
+      "For data analyst jobs, your resume is ready to send; competition for the role will also matter. For this nursing application, add clinical qualifications only if you have them. They aren’t shown on this resume."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Consider moving this above the dashboard line. The change to the weekly report gives a recruiter a concrete reason to remember your SQL work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 1",
+        "line": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams",
+        "cannot_tell": "For a more senior analytics role, a recruiter will also look for decisions you made about reporting across teams. Add one here if that was part of your job.",
+        "example": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; [what you did to set reporting direction across teams]",
+        "question": "Did you set reporting direction across these teams, and what did you decide?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)",
+        "Junior Analyst"
+      ],
+      "why": "Your headline and current role focus on sales and operations analysis, dashboards, and SQL reporting.",
+      "level": "mid-level, current Data Analyst role with prior Junior Analyst experience",
+      "note": "Your reporting work shows collaboration with sales, merchandising, and finance teams. The nursing role is nights, 7p to 7a, with rotating weekends.",
+      "posting": {
+        "summary": "The posting seeks a registered nurse for a medical-surgical unit, with a nursing license, certifications, clinical experience or rotations, EHR experience, and patient-assignment capability.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 93
+  },
+  "presentation": {
+    "score": 93,
+    "band": "Clear and specific",
+    "model_score": 93,
+    "lifted_by_employer": false,
+    "verdict": "The Registered Nurse role is a different track from your data analyst work. Carolina Home Goods shows strong reporting and analysis, but I’d pass for this nursing role because your resume doesn’t show the clinical qualifications.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 111,
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Data Analyst, line 1",
+        "line": "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams",
+        "blanks": 1,
+        "question": "Did you set reporting direction across these teams, and what did you decide?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)",
+        "Junior Analyst"
+      ],
+      "why": "Your headline and current role focus on sales and operations analysis, dashboards, and SQL reporting.",
+      "level": "mid-level, current Data Analyst role with prior Junior Analyst experience",
+      "note": "Your reporting work shows collaboration with sales, merchandising, and finance teams. The nursing role is nights, 7p to 7a, with rotating weekends.",
+      "posting": {
+        "summary": "The posting seeks a registered nurse for a medical-surgical unit, with a nursing license, certifications, clinical experience or rotations, EHR experience, and patient-assignment capability.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.009264,
+  "latency_ms": 27740
+}
