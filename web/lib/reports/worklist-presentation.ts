@@ -255,9 +255,14 @@ export function fitListRoles(report: Pick<WorklistReport, "fit">): string[] {
   return roles.length > 1 ? roles : [];
 }
 
+/** A resume's fit section with no titles listed under it holds the note alone, so its heading promises no roles. */
+export const FIT_NOTE_TITLE = "Where your experience points.";
+
 /** Headings for the fit section, with and without a posting. */
 export function fitHeading(report: Pick<WorklistReport, "fit">) {
-  return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
+  if (report.fit.posting.summary) return "How your experience fits this role.";
+  if (reportDocumentKind(report) !== "linkedin" && fitListRoles(report).length === 0) return FIT_NOTE_TITLE;
+  return wordingFor(report).fitTitle;
 }
 
 /**

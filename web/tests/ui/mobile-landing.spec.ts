@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { JORDAN_EXAMPLE } from "../../lib/marketing/jordan-example";
 
 for (const width of [320, 390, 430]) {
   test.describe(`phone landing at ${width}px`, () => {
@@ -47,6 +48,6 @@ test("phone visitors read the whole story without opening anything", async ({ pa
   const clipping = page.locator("#how-it-works figure").first();
   await clipping.scrollIntoViewIfNeeded();
   await expect(clipping).toContainText("Introduced monthly renewal-risk reviews across the portfolio");
-  await expect(clipping.getByText("What happened with the risks you identified is still open", { exact: false })).toBeVisible();
+  await expect(clipping.getByText(JORDAN_EXAMPLE.note, { exact: false })).toBeVisible();
   await expect(page.locator("#main-content").getByRole("button", { expanded: false })).toHaveCount(0);
 });

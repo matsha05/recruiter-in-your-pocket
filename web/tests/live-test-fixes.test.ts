@@ -4,7 +4,7 @@ import { PASS_SPENT_LABEL, accountBalanceLine, isBalanceKnown, isPassSpent, read
 import { WorklistReportSchema } from "../lib/llm/worklist-schema";
 import { splitVerdict } from "../lib/reports/report-opening";
 import { fileReadFindings } from "../lib/reports/file-read";
-import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitListRoles, hasRoleSection } from "../lib/reports/worklist-presentation";
+import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitHeading, fitListRoles, hasRoleSection } from "../lib/reports/worklist-presentation";
 
 // Findings from the live customer test of November 12, 2026.
 
@@ -76,6 +76,9 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitListRoles, hasRoleSection }
   assert.deepEqual(fitListRoles(fit(["A", "B", "C", "D", "E"])), ["A", "B", "C", "D"], "four at most");
   const profile = { ...(fit(["Talent Acquisition Partner"]) as object), document: "linkedin" } as never;
   assert.deepEqual(fitListRoles(profile), ["Talent Acquisition Partner"], "a profile lists the titles on it, even one");
+  assert.equal(fitHeading(fit(["Branch Manager"])), "Where your experience points.", "with no list, the heading promises no roles");
+  assert.equal(fitHeading(fit(["Shift Supervisor", "Freelance Web Developer"])), "Roles your experience points toward.");
+  assert.equal(fitHeading(profile), "The words a recruiter would search for.");
 }
 
 // ---- An older report beside a worklist report ----

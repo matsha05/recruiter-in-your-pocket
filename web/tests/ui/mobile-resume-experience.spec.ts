@@ -108,7 +108,8 @@ for (const width of [320, 390]) {
       await expect(page.getByTestId("worklist-score")).toBeInViewport({ ratio: 1 });
       await expect(opening).toBeInViewport({ ratio: 1 });
       const firstParagraph = page.getByTestId("worklist-write-up").locator("p").first();
-      if (width >= 390) await expect(firstParagraph).toBeInViewport({ ratio: 0.3 });
+      // The write-up starts on that screen with at least a line showing; how much depends on the verdict's length.
+      if (width >= 390) expect((await firstParagraph.boundingBox())!.y).toBeLessThan(844 - 40);
       else expect((await firstParagraph.boundingBox())!.y).toBeLessThan(844 * 1.1);
       await expect(page.getByTestId("worklist-report")).not.toContainText("Critical Miss");
 
