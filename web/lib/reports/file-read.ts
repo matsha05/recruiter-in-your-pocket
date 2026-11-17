@@ -82,3 +82,6 @@ export function fileReadSummary(findings: readonly FileReadFinding[]): { tone: "
   }
   return { tone: "ok", text: "Everything we looked for came through." };
 }
+
+/** A file the server couldn’t read: most often a scan or a photo, which has no text to copy either (live walk, November 17, 2026). */
+export const FILE_UNREADABLE_MESSAGE = "We couldn’t find text we can read in this file. If it’s a scan or a photo, upload the Word or PDF file you made it from, or paste the text.";

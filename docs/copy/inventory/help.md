@@ -82,7 +82,7 @@ Routes: `/help`, `/privacy`, `/status`, `/terms`. Strings: 89 (87 unique).
 | 58 | legal | `web/lib/legal/content.ts:342` | key:q | Is my data used to train public models? |
 | 59 | legal | `web/lib/legal/content.ts:343` | key:a | No. We do not opt your data into model training, and OpenAI API data is not used to train OpenAI models by default. OpenAI may retain abuse-monitoring logs containing customer content for up to 30 days. |
 | 60 | legal | `web/lib/legal/content.ts:346` | key:q | How do I delete my data? |
-| 61 | legal | `web/lib/legal/content.ts:347` | key:a | Delete individual reports from Reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely. |
+| 61 | legal | `web/lib/legal/content.ts:347` | key:a | Delete individual reports from My reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely. |
 | 62 | legal | `web/lib/legal/content.ts:355` | key:q | Is the first report really free? |
 | 63 | legal | `web/lib/legal/content.ts:356` | key:a | Yes, and nothing in it is held back. {FREE_REPORT_ENTITLEMENT.p…} {FREE_REPORT_ENTITLEMENT.a…} |
 | 64 | legal | `web/lib/legal/content.ts:359` | key:q | What is the Job Search Pass? |

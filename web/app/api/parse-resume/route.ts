@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import mammoth from "mammoth";
 import { extractDocxText } from "@/lib/backend/docx-text";
+import { tidyPdfText } from "@/lib/backend/pdf-text";
+import { FILE_UNREADABLE_MESSAGE } from "@/lib/reports/file-read";
 import pdfParse from "pdf-parse";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
@@ -108,7 +110,8 @@ export async function POST(request: Request) {
       // Give it a dedicated typed array so valid PDFs retain their byte offsets.
       try {
         const pdfData: any = await (pdfParse as any)(new Uint8Array(buffer));
-        extractedText = pdfData?.text || "";
+        // A bullet the page wrapped comes back as two lines; the report quoted half of it (lib/backend/pdf-text.ts).
+        extractedText = tidyPdfText(String(pdfData?.text || "").replace(/\r\n?/g, "\n"));
       } catch (err) {
         return unreadableFile(err);
       }
@@ -140,7 +143,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "EXTRACTION_EMPTY",
-          message: "Could not extract enough text from the file. Try pasting your resume text directly."
+          message: FILE_UNREADABLE_MESSAGE
         },
         { status: 400 }
       );

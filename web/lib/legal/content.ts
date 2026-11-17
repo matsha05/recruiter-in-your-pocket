@@ -344,7 +344,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "How do I delete my data?",
-                a: "Delete individual reports from Reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
+                a: "Delete individual reports from My reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
               },
             ],
           },

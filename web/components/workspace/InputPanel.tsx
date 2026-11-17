@@ -1,5 +1,6 @@
 "use client";
 
+import type { ResumeFileSelectionOptions } from "./hooks/useResumeReview";
 import { useEffect, useRef, useState, useMemo } from "react";
 import {
     ArrowRight,
@@ -25,7 +26,7 @@ interface InputPanelProps {
     jobDescription: string;
     onResumeTextChange: (text: string) => void;
     onJobDescChange: (text: string) => void;
-    onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
+    onFileSelect: (file: File, options?: ResumeFileSelectionOptions) => void | boolean | Promise<void | boolean>;
     commandUploadName?: string | null;
     onRun: () => void;
     isLoading: boolean;
@@ -120,7 +121,8 @@ export default function InputPanel({
         setIsReadingFile(true);
         setFileName(null);
         try {
-            const accepted = await onFileSelect(file);
+            // The upload box says what went wrong, once (live walk, November 17, 2026).
+            const accepted = await onFileSelect(file, { quiet: true });
             if (accepted !== false) setFileName(file.name);
             return accepted;
         } finally {
@@ -163,7 +165,8 @@ export default function InputPanel({
 
     const charCount = resumeText.trim().length;
     const isTooShort = charCount > 0 && charCount < MIN_RESUME_CHARS;
-    const hasContent = Boolean(fileName || resumeText.length > 0);
+    // Spaces alone are not a resume: they enabled the run button with nothing to read (live walk, November 17, 2026).
+    const hasContent = Boolean(fileName || resumeText.trim().length > 0);
     const wordCount = charCount > 0 ? resumeText.trim().split(/\s+/).length : 0;
     const showReadPreview = Boolean(fileName && !showPaste && charCount > 0);
     // What came out of the file, before a report is spent on it (lib/reports/file-read.ts). A profile export has
@@ -364,7 +367,7 @@ export default function InputPanel({
                             >
                                 <Target className={cn(styles.roleIcon, "size-5 shrink-0", showJD ? "text-brand" : "text-muted-foreground")} weight="bold" />
                                 <span className="min-w-0 flex-1">
-                                    <span className="block text-base font-semibold text-foreground">Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></span>
+                                    <span className="block text-base font-semibold text-foreground">{focusPosting ? "The job posting" : <>Compare with a job <span className="font-normal text-muted-foreground">(optional)</span></>}</span>
                                 </span>
                                 {jobDescription.length > 0 && <Check className="size-4 text-brand" weight="bold" />}
                                 <CaretDown className={cn("size-4 text-muted-foreground transition-transform", showJD && "rotate-180")} />

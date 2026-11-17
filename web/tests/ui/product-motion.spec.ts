@@ -1,4 +1,5 @@
 import { expect, test, type Locator, type Page, type Route } from "@playwright/test";
+import { FILE_UNREADABLE_MESSAGE } from "../../lib/reports/file-read";
 import { schemaValidReport } from "../helpers/report-fidelity-fixture";
 import { ResumeFeedbackResponseSchema } from "../../lib/validation/resume-report-schema";
 
@@ -204,10 +205,20 @@ test.describe("product motion contracts on real app routes", () => {
     await page.route("**/api/parse-resume", (route) => route.fulfill({ status: 422, json: { ok: false, message: "No readable text was found." } }));
     await hydrate(page, "/workspace");
     await page.getByLabel("Upload resume file (PDF or DOCX)", { exact: true }).setInputFiles({ name: "scan.pdf", mimeType: "application/pdf", buffer: Buffer.from("%PDF-1.4 mocked unreadable file") });
-    await expect(page.getByRole("alert").filter({ hasText: "We couldn’t read this file" })).toBeVisible();
+    // One message, where the file was chosen, that works for a scan too (live walk, November 17, 2026).
+    await expect(page.getByRole("alert").filter({ hasText: FILE_UNREADABLE_MESSAGE })).toBeVisible();
+    await expect(page.locator("[data-sonner-toast]")).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Choose another file", exact: true })).toBeEnabled();
     await expect(page.getByText("Ready to review", { exact: true })).toHaveCount(0);
     await expect(page.getByTestId("workspace-run-report")).toBeDisabled();
+  });
+
+  test("spaces alone are not a resume", async ({ page }) => {
+    await hydrate(page, "/workspace");
+    await page.getByTestId("workspace-paste-mode").click();
+    await page.getByTestId("workspace-resume-text").fill("   \n  ");
+    await expect(page.getByTestId("workspace-run-report")).toBeDisabled();
+    await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Paste your resume to begin");
   });
 
   test("sign-in loading keeps one stable busy button, then restores retry after a failed response", async ({ page }) => {
