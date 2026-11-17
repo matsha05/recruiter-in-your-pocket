@@ -1,0 +1,33 @@
+# h5_mismatched_posting, run 2
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0093; 27.7s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 93; model wrote 93)
+## Verdict
+The Registered Nurse role is a different track from your data analyst work. Carolina Home Goods shows strong reporting and analysis, but I’d pass for this nursing role because your resume doesn’t show the clinical qualifications.
+
+## Write-up
+This nursing posting asks for clinical qualifications, while your resume tells a strong data analyst story across Carolina Home Goods and Piedmont Insurance Services. The score reflects your analytics resume, not its fit for the nursing job.
+
+Your SQL model is a great example: it names the work and shows that it replaced a 3-day manual weekly report. The markdown analysis is strong too, with the number of SKUs and the merchandising team’s adoption right there.
+
+For data analyst jobs, your resume is ready to send; competition for the role will also matter. For this nursing application, add clinical qualifications only if you have them. They aren’t shown on this resume.
+
+## Cards (2; {"upgrade":2}); severity off; added []
+1. [upgrade] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Consider moving this above the dashboard line. The change to the weekly report gives a recruiter a concrete reason to remember your SQL work.
+2. [upgrade] Data Analyst, line 1
+   line: "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+   can't tell: For a more senior analytics role, a recruiter will also look for decisions you made about reporting across teams. Add one here if that was part of your job.
+   example: Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; [what you did to set reporting direction across teams]
+   question: Did you set reporting direction across these teams, and what did you decide?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)","Junior Analyst"]
+Level: mid-level, current Data Analyst role with prior Junior Analyst experience
+Note: Your reporting work shows collaboration with sales, merchandising, and finance teams. The nursing role is nights, 7p to 7a, with rotating weekends.
+Posting: The posting seeks a registered nurse for a medical-surgical unit, with a nursing license, certifications, clinical experience or rotations, EHR experience, and patient-assignment capability.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients"]

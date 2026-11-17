@@ -4,7 +4,7 @@ import { PASS_SPENT_LABEL, accountBalanceLine, isBalanceKnown, isPassSpent, read
 import { WorklistReportSchema } from "../lib/llm/worklist-schema";
 import { splitVerdict } from "../lib/reports/report-opening";
 import { fileReadFindings } from "../lib/reports/file-read";
-import { ACROSS_SHAPES_NOTE, compareAcrossShapes } from "../lib/reports/worklist-presentation";
+import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitListRoles, hasRoleSection } from "../lib/reports/worklist-presentation";
 
 // Findings from the live customer test of November 12, 2026.
 
@@ -60,6 +60,22 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes } from "../lib/reports/worklist
   assert.equal(accountBalanceLine({ membership: "credit", paidUsesLeft: 4, postingReads: true }), "4 reports left on your pass");
   assert.equal(accountBalanceLine({ membership: "lifetime" }), "Lifetime access");
   assert.equal(accountBalanceLine({ membership: "monthly" }), "Monthly plan");
+}
+
+// ---- The role list holds directions, not the titles a person moved past (live check, November 13, 2026) ----
+{
+  // A branch manager of five years was offered "Branch Manager, Assistant Branch Manager, Personal Banker" under
+  // "Roles to consider". The prompt now lists a second title only for a second direction; and a list of one,
+  // the job the first pass already names, is not repeated under the cards.
+  const fit = (roles: string[], posting = "") => ({ fit: { roles, why: "", level: "", note: "Where the work points.", posting: { summary: posting, missing: [], covered: [], lead: [], trim: [] } } }) as never;
+  assert.deepEqual(fitListRoles(fit(["Branch Manager"])), [], "one title: the first pass already says it");
+  assert.equal(hasRoleSection(fit(["Branch Manager"])), true, "the note still stands on its own");
+  assert.equal(hasRoleSection({ fit: { roles: ["Branch Manager"], why: "", level: "", note: "", posting: { summary: "", missing: [], covered: [], lead: [], trim: [] } } } as never), false, "no note and one title: no section at all");
+  assert.deepEqual(fitListRoles(fit(["Shift Supervisor", "Freelance Web Developer"])), ["Shift Supervisor", "Freelance Web Developer"], "two directions are listed");
+  assert.deepEqual(fitListRoles(fit(["Data Analyst", " Data Analyst ", "", "Product Analyst"])), ["Data Analyst", "Product Analyst"], "blanks and repeats go");
+  assert.deepEqual(fitListRoles(fit(["A", "B", "C", "D", "E"])), ["A", "B", "C", "D"], "four at most");
+  const profile = { ...(fit(["Talent Acquisition Partner"]) as object), document: "linkedin" } as never;
+  assert.deepEqual(fitListRoles(profile), ["Talent Acquisition Partner"], "a profile lists the titles on it, even one");
 }
 
 // ---- An older report beside a worklist report ----

@@ -1,0 +1,46 @@
+# b34_bank_branch_manager_gap, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0075; 33.9s
+Case note: Gap with nothing after it.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+You moved from personal banker to branch manager at Magnolia Community Bank, and your branch results back up that progression. I'd want to talk with you. My first question is what you've been doing since December 2024.
+
+## Write-up
+Your resume tells a retail banking story at Magnolia Community Bank, from opening accounts to managing a branch. The deposit growth and staff count give a recruiter something concrete to work with, but the timeline stops at December 2024.
+
+The deposit line is your model: it names the measure, where it started, where it ended and the period it covers. Your Experience section is easy to follow and sits in the right place above Education.
+
+Let's start with the time after the Branch Manager role, then add a little more about the people you managed and the audits and complaints you handled. Those details will round out the deposit growth without making every line carry a number.
+
+## Cards (5; {"dates":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can follow your progression at Magnolia, but can't tell what came after the branch manager role. That question can distract from the work you did there.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since December 2024?
+2. [line] Branch Manager, line 1
+   line: "Managed a branch of 11 employees"
+   can't tell: The staff count establishes how big the branch was, but not what the employees handled or what managing them involved. Those details matter for another branch manager role.
+   example: Managed a branch of 11 employees who handled [team responsibilities], including [management responsibilities]
+   question: What did the employees handle, and what were your management responsibilities?
+3. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It gives a recruiter a starting point and an ending point for the deposit growth, with the time period attached.
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see that you oversaw reviews, but not which reviews or what your oversight involved. A named review would make the work more concrete.
+   example: Oversaw [audit or compliance review] for the branch, including [your responsibilities]
+   question: Which audit or compliance review can you name, and what did you do for it?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This doesn't show what kinds of problems reached you or how you handled them. One example can show the judgment the job called for.
+   example: Handled escalated customer complaints about [issues] by [actions]
+   question: What kinds of complaints reached you, and how did you handle one?
+
+## Fit
+Roles: ["Branch Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your progression at Magnolia points toward another retail banking branch management role. The deposit growth gives you a strong result to lead with.

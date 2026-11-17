@@ -1,0 +1,46 @@
+# b38_layoff_gap_james, run 2
+Resume: ../../design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0092; 42.4s
+Case note: Layoff gap (bar persona).
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+Your B2B SaaS marketing work at Velocity shows real management responsibility and results. The freelance work since then is much less developed, so I'd hesitate over what you've been doing most recently.
+
+## Write-up
+You've moved from marketing at Bridgepoint Analytics to leading demand generation at Velocity Software, then into freelance consulting. It's common for consulting work to get compressed into a couple of broad lines, but those lines are now the first work a recruiter sees. They don't yet show how much you took on or what changed for clients, so I'd likely move on despite the stronger Velocity work.
+
+Your MQL line is the model: it names a measure, a change and the cost context alongside it. The Velocity role also makes your management responsibility concrete with a team and budget. The reduction in force explains why that role ended, and your current consulting work accounts for the time since.
+
+Let's start with the freelance role. Add what was yours on a project, how many clients you supported and a result you can substantiate. Then give the Bridgepoint traffic and webinar work a little more substance so the earlier jobs carry their weight too.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: A recruiter can't tell how many clients you supported or what your strategy work involved. That matters because this is your current role and the first work they reach.
+   example: Provided marketing strategy and execution support for [number] small businesses and startups, including [strategy contribution]
+   question: How many clients did you support, and what strategy work did you do for them?
+2. [line] Freelance Marketing Consultant, line 2
+   line: "Projects included website copy, email campaigns, and paid social setup"
+   can't tell: The projects are named, but your part in them isn't. Pick one and show what you contributed and what happened, if you can substantiate it.
+   example: Projects included website copy, email campaigns, and paid social setup; contributed [your contribution] to [project] with [result]
+   question: On one of these projects, what did you contribute and what happened?
+3. [keep] Senior Marketing Manager, Velocity Software
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: Keep this as a model. It gives a recruiter a concrete measure to remember and shows that you considered cost as well as volume.
+4. [line] Marketing Manager, Bridgepoint Analytics, line 2
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: You name the strategy, but 'significantly' leaves the growth open to interpretation. A traffic figure would show what changed.
+   example: Grew blog traffic from [starting traffic] to [ending traffic] through SEO-driven content strategy
+   question: What were the starting and ending traffic figures for the period you can substantiate?
+5. [line] Marketing Manager, Bridgepoint Analytics, line 3
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The webinar program generated pipeline, but a recruiter can't tell how much. A figure would give the work a business context.
+   example: Ran webinar program generating [pipeline amount] for the sales team
+   question: How much pipeline did the webinar program generate?
+
+## Fit
+Roles: ["Marketing Manager"]
+Level: manager, managed 4 marketers and a $1.8M annual marketing budget
+Note: Your experience points toward B2B SaaS marketing management, with consulting work following the Velocity role. Lead with the client work you can describe most concretely, while keeping the team and budget details visible.

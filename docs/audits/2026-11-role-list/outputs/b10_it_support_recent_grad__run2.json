@@ -1,0 +1,317 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "roles",
+  "run": 2,
+  "note": "First job.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:57:12.101Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8206,
+        "completion_tokens": 1524,
+        "total_tokens": 9730,
+        "cached_prompt_tokens": 8203,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 606
+      },
+      "cost_usd": 0.00803315,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 35984
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Your help desk internship at Chattahoochee County Schools points toward desktop support, but your latest work ends in May 2025. I'd pass for now because I can't tell what you've done since or how much support you handled.",
+    "write_up": [
+      "You've moved from helping electronics customers to supporting teachers and staff, with an IT degree and CompTIA A+ alongside the internship. It's common for an early-career resume to list tasks this way, but without a sense of how much support you handled, it won't stand out in a pile.",
+      "The Active Directory line is a useful model: it names both the account work and the tool. Your education appears before your experience, and while your certification is dated 2025, your work history stops at May 2025. A recruiter will have questions about the time since.",
+      "Let's start with the school help desk tickets and laptop setups. Add the volume and the kinds of problems you handled where you can confirm them, then bring your experience above education."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest work ends May 2025; CompTIA A+ is dated 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to look at than the section order suggests. Put Experience above Education so the support work comes first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff tell us who you supported, but not what problems came in or how many tickets you handled. Those details matter for another help desk role.",
+        "example": "Answered [number] help desk tickets from teachers and staff covering [types of issues]",
+        "question": "What kinds of issues did the tickets cover, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are useful desktop support work. The line doesn't say how many you set up or what the setup involved.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup work]",
+        "question": "How many laptops did you set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: a recruiter can see the task and the system you used without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "junior systems role"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory accounts.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your school internship and electronics retail work point most directly toward desktop support. The account work also gives you a starting point for junior systems roles.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Your help desk internship at Chattahoochee County Schools points toward desktop support, but your latest work ends in May 2025. I'd pass for now because I can't tell what you've done since or how much support you handled.",
+    "write_up": [
+      "You've moved from helping electronics customers to supporting teachers and staff, with an IT degree and CompTIA A+ alongside the internship. It's common for an early-career resume to list tasks this way, but without a sense of how much support you handled, it won't stand out in a pile.",
+      "The Active Directory line is a useful model: it names both the account work and the tool. Your education appears before your experience, and while your certification is dated 2025, your work history stops at May 2025. A recruiter will have questions about the time since.",
+      "Let's start with the school help desk tickets and laptop setups. Add the volume and the kinds of problems you handled where you can confirm them, then bring your experience above education."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest work ends May 2025; CompTIA A+ is dated 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to look at than the section order suggests. Put Experience above Education so the support work comes first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff tell us who you supported, but not what problems came in or how many tickets you handled. Those details matter for another help desk role.",
+        "example": "Answered [number] help desk tickets from teachers and staff covering [types of issues]",
+        "question": "What kinds of issues did the tickets cover, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are useful desktop support work. The line doesn't say how many you set up or what the setup involved.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup work]",
+        "question": "How many laptops did you set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: a recruiter can see the task and the system you used without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "junior systems role"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory accounts.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your school internship and electronics retail work point most directly toward desktop support. The account work also gives you a starting point for junior systems roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Your help desk internship at Chattahoochee County Schools points toward desktop support, but your latest work ends in May 2025. I'd pass for now because I can't tell what you've done since or how much support you handled.",
+    "write_up": [
+      "You've moved from helping electronics customers to supporting teachers and staff, with an IT degree and CompTIA A+ alongside the internship. It's common for an early-career resume to list tasks this way, but without a sense of how much support you handled, it won't stand out in a pile.",
+      "The Active Directory line is a useful model: it names both the account work and the tool. Your education appears before your experience, and while your certification is dated 2025, your work history stops at May 2025. A recruiter will have questions about the time since.",
+      "Let's start with the school help desk tickets and laptop setups. Add the volume and the kinds of problems you handled where you can confirm them, then bring your experience above education."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest work ends May 2025; CompTIA A+ is dated 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. That question competes with the school support work you want them to notice.",
+        "example": "May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2025?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work give a recruiter more to look at than the section order suggests. Put Experience above Education so the support work comes first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "Teachers and staff tell us who you supported, but not what problems came in or how many tickets you handled. Those details matter for another help desk role.",
+        "example": "Answered [number] help desk tickets from teachers and staff covering [types of issues]",
+        "question": "What kinds of issues did the tickets cover, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are useful desktop support work. The line doesn't say how many you set up or what the setup involved.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup work]",
+        "question": "How many laptops did you set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: a recruiter can see the task and the system you used without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "junior systems role"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory accounts.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your school internship and electronics retail work point most directly toward desktop support. The account work also gives you a starting point for junior systems roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "presentation": {
+    "score": 59,
+    "band": "Needs more context",
+    "model_score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Your help desk internship at Chattahoochee County Schools points toward desktop support, but your latest work ends in May 2025. I'd pass for now because I can't tell what you've done since or how much support you handled.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 127,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest work ends May 2025; CompTIA A+ is dated 2025.",
+        "blanks": 1,
+        "question": "What have you been doing since May 2025?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 2,
+        "question": "What kinds of issues did the tickets cover, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "junior systems role"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory accounts.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your school internship and electronics retail work point most directly toward desktop support. The account work also gives you a starting point for junior systems roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00803315,
+  "latency_ms": 35988
+}

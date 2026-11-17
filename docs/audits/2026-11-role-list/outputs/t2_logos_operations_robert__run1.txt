@@ -1,0 +1,48 @@
+# t2_logos_operations_robert, run 1
+Resume: ../2026-11-worklist-run/resumes/t2_logos_operations_robert.txt (183 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0159; repair ran; 47.3s
+Case note: Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[3].cannot_tell: uses the retired phrase "the open question is".
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Google and Dell Technologies catch my eye, and your earlier work backs up those names. I'd hesitate over the current Operations Manager role because I can't tell how big the terminal operation is or what you've changed there.
+
+## Write-up
+You've moved from supply chain programs at Dell to data center capacity planning at Google, then into terminal operations at Brightline Freight Partners. It's common for a resume to give the most recent job as a list of duties, but here that leaves your current operations work less memorable than the older programs.
+
+Your Google line about cutting the forecast-to-delivery cycle works particularly well: it names the change and the three approval tracks you consolidated. The Brightline role is current and easy to find, but its four lines don't yet show how much work the terminal handles or what you've accomplished there.
+
+Let's start with the Austin terminal line, then add the team size and the work behind the carrier and customer issues. Use the Google line as a model: name the work first, then add what changed where you can document it.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Operations Manager, line 1
+   line: "Responsible for daily operations of the Austin terminal"
+   can't tell: A recruiter can't tell what daily operations include or how much the terminal handles. That's the first question for this role.
+   example: Responsible for daily operations of the Austin terminal, including [work] and [volume]
+   question: What terminal work are you responsible for, and what volume does it handle?
+2. [line] Operations Manager, line 2
+   line: "Manage a team of coordinators and dispatchers"
+   can't tell: You manage coordinators and dispatchers, but the resume doesn't say how many or what the team handles. That makes the current management job tough to compare with your earlier one.
+   example: Manage a team of [number] coordinators and dispatchers who handle [work]
+   question: How many people are on the team, and what do they handle?
+3. [line] Operations Manager, line 3
+   line: "Work with carriers and customers to resolve issues"
+   can't tell: The carriers and customers are clear, but the issues and your part in resolving them aren't. One example would show what this work involves.
+   example: Work with carriers and customers to resolve [issue] by [your work]
+   question: What issue did you work on with carriers and customers, and what did you do?
+4. [line] Operations Manager, line 4
+   line: "Report weekly metrics to the regional director"
+   can't tell: The reporting cadence and audience are there, but a recruiter can't tell which metrics you report or how they're used.
+   example: Report weekly [metrics] to the regional director for [use]
+   question: Which metrics do you report, and how are they used?
+5. [keep] Senior Program Manager, line 2
+   line: "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one"
+   can't tell: Keep this as a model. It pairs a before-and-after measure with the concrete change you made, so a recruiter can see both your work and its result.
+
+## Fit
+Roles: ["Operations Manager"]
+Level: manager, manages coordinators and dispatchers
+Note: Your current work points toward terminal operations management, with earlier program work in data centers and supply chains. The strongest next revision is to show what the Brightline operation handles alongside the earlier program results.

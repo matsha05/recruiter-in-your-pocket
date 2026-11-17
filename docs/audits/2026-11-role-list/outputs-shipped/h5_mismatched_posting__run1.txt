@@ -1,0 +1,33 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0166; 20.7s
+Case note: Data analyst against a registered nurse posting.
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+The Registered Nurse role is a different track from your data analysis work. Your resume doesn't show the nursing license or clinical experience the posting asks for, so I'd pass for this role as it stands.
+
+## Write-up
+Your resume tells a clear story as a data analyst: you moved from insurance reporting at Piedmont to sales and merchandising analysis at Carolina Home Goods. That work is useful, but it doesn't establish a clinical nursing background for this posting.
+
+The SQL model line is a strong model for the rest: it names what you built and the manual report it replaced. Your dashboard and markdown lines also give a recruiter concrete work to remember.
+
+For analyst roles, start by adding the kinds of questions behind the VP of Sales requests. For this nursing role, add any relevant license, certification or clinical experience only if you have it.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: A recruiter can see the pace and who asks for the work, but not what questions you're answering. One example would show how you support sales decisions.
+   example: Pull ad hoc analyses for the VP of Sales on [business questions], about 10 requests a month
+   question: What kinds of sales questions do those requests cover?
+2. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as a model. It connects your SQL work to a concrete change in how the weekly report gets done.
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, current Data Analyst role following a Junior Analyst role
+Note: Your reporting and data skills are relevant to analyst work, but they don't substitute for patient care qualifications. This position is a night shift with rotating weekends.
+Posting: The role seeks a licensed RN for a medical-surgical unit, with clinical care and EHR experience.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients"]

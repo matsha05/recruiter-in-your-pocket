@@ -1,0 +1,34 @@
+# h3_strong_resume, run 2
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0066; 31.1s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+Your payments and billing work at Northwind is backed by product launches, customer adoption and measurable improvements. I’d want to talk to you.
+
+## Write-up
+This is a strong product resume! Your work at Northwind moves from billing to a payments platform, and you show both what you shipped and what changed for customers and the business.
+
+The invoice-disputes line is a great model: it connects customer interviews to a redesign and a 38% reduction. Your current role also makes the team and customer base easy to grasp, without burying the product work.
+
+Your resume isn’t likely to be the thing holding you back. For a more senior product leadership role, add a decision that shows how you set direction across the work, if you can. The competitiveness of the role will still matter.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Product Manager, Billing, line 2
+   line: "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews"
+   can't tell: Keep this as a model. It names the customer problem, the research behind your decision and the change that followed.
+2. [upgrade] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: For a product leadership role above your current level, the direction you set and a business decision behind it would add to the team and customer numbers already here.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, with [product direction] and [business decision]
+   question: What product direction did you set, and what business decision shaped it?
+3. [upgrade] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: This result is more concrete than the roadmap line above it. Move it to the top of the Northwind payments role.
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
+Level: manager, hired and manages 3 product managers
+Note: Your experience points toward payments and billing product roles, including roles with product managers to lead. The combination of processor integrations, pricing and platform work gives you several relevant stories to bring forward.

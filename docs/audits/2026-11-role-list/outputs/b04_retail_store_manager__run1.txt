@@ -1,0 +1,30 @@
+# b04_retail_store_manager, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0079; 33.9s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+Your Carolina Home & Garden store management work comes through with real results. I’d move this forward for a Store Manager role. I’d still ask what changed at the second store you say you turned around.
+
+## Write-up
+You’ve moved from department supervisor to Store Manager at Carolina Home & Garden. Your current role makes a strong case with sales, turnover and shrink figures. The headline promises turnarounds at two stores, but the Gastonia role doesn’t say what changed there.
+
+The turnover line is a great model: it names the scheduling change and gives the before and after. Your promotions and the store figures also make your progression easy to follow.
+
+Let’s start with the headline. Add what changed at each store if you can back it up, or narrow the claim to the work your resume shows.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your current store has several strong results, but the Gastonia role doesn’t show what changed there. A recruiter can’t yet see the two turnarounds the headline promises.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at each store].
+   question: What changed at each of the two stores?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this line. It connects a decision you made to a measurable change in staffing, without making the reader guess what you did.
+
+## Fit
+Roles: ["Store Manager"]
+Level: manager, runs a store with 42 employees, including 4 department managers
+Note: Your resume points toward retail store management, with particular strength in staffing and inventory. The promotion within Carolina Home & Garden also shows growing responsibility.

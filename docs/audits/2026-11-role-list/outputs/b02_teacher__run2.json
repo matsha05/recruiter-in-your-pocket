@@ -1,0 +1,249 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "roles",
+  "run": 2,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:55:33.099Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8467,
+        "completion_tokens": 1304,
+        "total_tokens": 9771,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 8464,
+        "reasoning_tokens": 589
+      },
+      "cost_usd": 0.017103,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 32868
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "Your 4th Grade Teacher work at Lincoln Heights shows classroom results alongside grade-level leadership. I'd want to talk with you. I'd ask what you did to raise reading growth.",
+    "write_up": [
+      "This is a strong teaching resume: you show your classroom, your students' reading growth and the work you lead with other teachers! A recruiter can see both your teaching and your contribution beyond your own classroom.",
+      "The reading assessment line is the best model: it names the measure, the starting point and the change over three years. Your Washington certification and English Language Learner endorsement are also easy to find.",
+      "Start by adding what you did on the positive behavior support committee. Then consider bringing the reading result to the top of the Lincoln Heights bullets. Your resume isn't likely to be what holds you back; the competition for a particular teaching job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Your work there could show how you contributed beyond your classroom.",
+        "example": "Served on the school's positive behavior support committee and [what you did on the committee]",
+        "question": "What did you do on the committee?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 3",
+        "line": "- Lead the grade-level team of 4 teachers in weekly planning and data meetings",
+        "cannot_tell": "For a role with more schoolwide leadership, a decision you made with the team could show how you set direction.",
+        "example": "Lead the grade-level team of 4 teachers in weekly planning and data meetings, including [a decision you made] about [what the team planned]",
+        "question": "What decision did you make while leading the team's planning or data meetings?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 2",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This is your strongest result. Move it above the classroom description so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher"
+      ],
+      "why": "Your current role combines core-subject teaching with grade-level planning and work with English language learners.",
+      "level": "senior, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with a particular strength in literacy and work with English language learners. Your team leadership also gives you a foundation for roles with broader teaching responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "Your 4th Grade Teacher work at Lincoln Heights shows classroom results alongside grade-level leadership. I'd want to talk with you. I'd ask what you did to raise reading growth.",
+    "write_up": [
+      "This is a strong teaching resume: you show your classroom, your students' reading growth and the work you lead with other teachers! A recruiter can see both your teaching and your contribution beyond your own classroom.",
+      "The reading assessment line is the best model: it names the measure, the starting point and the change over three years. Your Washington certification and English Language Learner endorsement are also easy to find.",
+      "Start by adding what you did on the positive behavior support committee. Then consider bringing the reading result to the top of the Lincoln Heights bullets. Your resume isn't likely to be what holds you back; the competition for a particular teaching job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Your work there could show how you contributed beyond your classroom.",
+        "example": "Served on the school's positive behavior support committee and [what you did on the committee]",
+        "question": "What did you do on the committee?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 3",
+        "line": "Lead the grade-level team of 4 teachers in weekly planning and data meetings",
+        "cannot_tell": "For a role with more schoolwide leadership, a decision you made with the team could show how you set direction.",
+        "example": "Lead the grade-level team of 4 teachers in weekly planning and data meetings, including [a decision you made] about [what the team planned]",
+        "question": "What decision did you make while leading the team's planning or data meetings?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This is your strongest result. Move it above the classroom description so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher"
+      ],
+      "why": "Your current role combines core-subject teaching with grade-level planning and work with English language learners.",
+      "level": "senior, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with a particular strength in literacy and work with English language learners. Your team leadership also gives you a foundation for roles with broader teaching responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "Your 4th Grade Teacher work at Lincoln Heights shows classroom results alongside grade-level leadership. I'd want to talk with you. I'd ask what you did to raise reading growth.",
+    "write_up": [
+      "This is a strong teaching resume: you show your classroom, your students' reading growth and the work you lead with other teachers! A recruiter can see both your teaching and your contribution beyond your own classroom.",
+      "The reading assessment line is the best model: it names the measure, the starting point and the change over three years. Your Washington certification and English Language Learner endorsement are also easy to find.",
+      "Start by adding what you did on the positive behavior support committee. Then consider bringing the reading result to the top of the Lincoln Heights bullets. Your resume isn't likely to be what holds you back; the competition for a particular teaching job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Your work there could show how you contributed beyond your classroom.",
+        "example": "Served on the school's positive behavior support committee and [what you did on the committee]",
+        "question": "What did you do on the committee?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 3",
+        "line": "Lead the grade-level team of 4 teachers in weekly planning and data meetings",
+        "cannot_tell": "For a role with more schoolwide leadership, a decision you made with the team could show how you set direction.",
+        "example": "Lead the grade-level team of 4 teachers in weekly planning and data meetings, including [a decision you made] about [what the team planned]",
+        "question": "What decision did you make while leading the team's planning or data meetings?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This is your strongest result. Move it above the classroom description so a recruiter sees it first.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher"
+      ],
+      "why": "Your current role combines core-subject teaching with grade-level planning and work with English language learners.",
+      "level": "senior, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with a particular strength in literacy and work with English language learners. Your team leadership also gives you a foundation for roles with broader teaching responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "Your 4th Grade Teacher work at Lincoln Heights shows classroom results alongside grade-level leadership. I'd want to talk with you. I'd ask what you did to raise reading growth.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 116,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "blanks": 1,
+        "question": "What did you do on the committee?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 3",
+        "line": "Lead the grade-level team of 4 teachers in weekly planning and data meetings",
+        "blanks": 2,
+        "question": "What decision did you make while leading the team's planning or data meetings?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "4th Grade Teacher"
+      ],
+      "why": "Your current role combines core-subject teaching with grade-level planning and work with English language learners.",
+      "level": "senior, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with a particular strength in literacy and work with English language learners. Your team leadership also gives you a foundation for roles with broader teaching responsibilities.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.017103,
+  "latency_ms": 32897
+}

@@ -1,0 +1,60 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0150; 75.5s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Your product design work at Loop Fitness and Brightpath Studio is the first thing I'd look at. I'd hesitate because the resume names the projects but gives little sense of their reach or what changed. I'd want to know more about your design work since leaving Loop Fitness.
+
+## Write-up
+You designed apps at Loop Fitness and client work at Brightpath Studio, and you're now a barista at Ferry Street Coffee. It's common for a design resume to name projects without showing what happened around them. Here, that makes it hard to compare your product work with other designers' in a pile.
+
+The Loop Fitness design system is your best model: you say you created the first one and name Figma. Your current cafe role accounts for the time after Loop Fitness, but a recruiter will still notice that your last dated design role ended in February 2024.
+
+Let's start with the Loop Fitness booking flow and usability tests. Add what you can substantiate about the people using the work and what you learned. Then give the Brightpath projects a little more shape.
+
+## Cards (8; {"structure":1,"line":6,"keep":1}); severity off; added []
+1. [structure] Experience
+   line: "Loop Fitness and Brightpath Studio have no employer descriptions."
+   can't tell: A recruiter may not know these businesses from their names. A short description of each could put the design work in context.
+   question: Who do Loop Fitness and Brightpath Studio serve?
+2. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: The work is clear, but busy can mean different things. Customer volume would show what a typical shift involves.
+   example: Prepare drinks and serve [number] customers per [time period] at Ferry Street Coffee
+   question: About how many customers do you serve in a typical shift?
+3. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: A recruiter knows what you designed, but not which parts of booking the flow covered or what happened after launch. This is a good project to make more concrete.
+   example: Designed the class booking flow for the iOS and Android apps, covering [booking steps] and [what happened after launch]
+   question: Which booking steps did you design, and what happened after the flow launched?
+4. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are clear. Your contribution to those releases isn't yet.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
+5. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Testing with members is useful product work. The resume doesn't say how many members took part or what you tested.
+   example: Ran usability tests with [number] members before launches to understand [research question]
+   question: How many members took part, and what were you testing?
+6. [line] Junior Product Designer, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: The types of work are named, but the clients and projects remain abstract. One project would give a recruiter something to remember.
+   example: Designed [marketing site or app screens] for [client or client type] at Brightpath Studio
+   question: Which client project can you name or describe, and what did you design for it?
+7. [line] Junior Product Designer, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: A recruiter can't tell what the prototypes showed. Naming one would connect the presentation to the design work.
+   example: Made a prototype of [design or feature] for a client presentation
+   question: What did one of the prototypes show?
+8. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It names your action, the thing you made and the tool, without making a recruiter guess at your part.
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, product design work at Loop Fitness and Brightpath Studio
+Note: Your app and agency work point toward product design roles. Your portfolio is a place to show the booking flow and design system in more depth.

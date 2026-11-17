@@ -1,0 +1,41 @@
+# h5_mismatched_posting, run 2
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0103; 38.7s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+The Registered Nurse role calls for clinical nursing, while your resume shows data analysis. I’d pass for this particular role because the nursing qualifications aren’t shown. Your analyst work, though, is strong and specific.
+
+## Write-up
+This posting is for a medical-surgical nurse, not a data analyst. At Carolina Home Goods, you build reports and analyze sales and merchandising data; at Piedmont Insurance Services, you worked with policy and claims data. That work doesn’t establish the clinical qualifications this job asks for.
+
+For analyst roles, your resume is strong. The markdown line gives a recruiter the size of the analysis and the recommendation the merchandising team adopted. Your experience is easy to follow, and the work leads your education.
+
+For the nursing application, add clinical qualifications only if you actually have them. For analyst applications, start by naming the subjects of your ad hoc work and consider moving the automated sales report higher. Your resume is unlikely to be the thing holding you back for analyst roles; competition for each job matters too.
+
+## Cards (4; {"keep":1,"line":1,"upgrade":2}); severity off; added []
+1. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: Keep this as a model. It names the business problem, how much you analyzed, and what the merchandising team did with your recommendation.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The frequency and audience are clear, but a recruiter can’t tell what the analyses cover. One subject would show what the VP comes to you for.
+   example: Pull ad hoc analyses for the VP of Sales on [analysis subjects], about 10 requests a month
+   question: What subjects do those requests cover?
+3. [upgrade] Data Analyst, line 1
+   line: "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+   can't tell: For a more senior analyst role, a decision about reporting across teams would show more than dashboard ownership.
+   example: Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; made [decision about reporting across teams]
+   question: What decision, if any, have you made about reporting across those teams?
+4. [upgrade] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Move this above the dashboard line. It leads with a concrete change to the reporting process.
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, current Data Analyst role with earlier Junior Analyst experience
+Note: Your insurance work shows experience with policy and claims data, rather than patient care. The nursing role is in Raleigh on nights with rotating weekends.
+Posting: A medical-surgical nursing role requiring a license, clinical credentials, and patient-care experience.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients"]

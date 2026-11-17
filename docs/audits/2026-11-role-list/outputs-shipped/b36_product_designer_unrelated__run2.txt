@@ -1,0 +1,56 @@
+# b36_product_designer_unrelated, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0118; 53.7s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Your product design work at Loop Fitness gives you a clear direction, but your last dated design role ended before your current coffee job. I’d pass for now: the projects are named, but I can’t tell enough about what changed.
+
+## Write-up
+It’s common for a design resume to name the projects but leave out what happened around them. Yours moves from agency work at Brightpath Studio to product design at Loop Fitness, then to Ferry Street Coffee. I read it for Product Designer roles, but the design projects need more detail to stand out in a pile.
+
+The line about creating the app’s first design system in Figma is your best model: it names what you made and the tool you used. Your current role accounts for your time, though a recruiter will notice that Loop Fitness is your last dated design job.
+
+Let’s start with the Loop Fitness booking flow. Add the problem you were designing for and what changed, if you can confirm it. Then give the releases and usability tests the same treatment, and bring in a client project from Brightpath that you can describe.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Loop Fitness
+   line: "Loop Fitness has no company description."
+   can't tell: A recruiter may not know the company. A brief description would give the booking flow and design system some context.
+   example: Loop Fitness, New York, NY | [company type and size]
+   question: What kind of company was Loop Fitness, and how large was it?
+2. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project, but I can’t tell what problem it addressed or what changed. That’s the part a product design recruiter will look for.
+   example: Designed the class booking flow for the iOS and Android apps to address [booking problem], resulting in [what changed]
+   question: What booking problem did you address, and what changed after the design was released?
+3. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and cadence are clear, but your design work on those releases isn’t. What did you contribute?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
+4. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. A recruiter can see your ownership and knows this was the app’s first design system.
+5. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You name the people and the timing, but not how many members took part or what you learned. Those details would show how the testing informed the design.
+   example: Ran usability tests with [number] members before launches, identifying [finding]
+   question: How many members took part in a test, and what did you learn?
+6. [line] Junior Product Designer, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: This names the work, but a recruiter can’t tell what any one project involved. One project you’re able to share would make the agency work more concrete.
+   example: Designed marketing sites and app screens for agency clients, including [project] for [client]
+   question: Which client project can you name, and what did you design for it?
+7. [line] Junior Product Designer, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: I can’t tell what the prototypes showed or which project they were for. That leaves the design work behind the presentations out.
+   example: Made prototypes of [design or feature] for [client project] presentations
+   question: What did you prototype for a client presentation, and which project was it for?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: mid-level, Product Designer role after a Junior Product Designer role
+Note: Your design system, booking flow and agency projects give you material for product design applications. Your current barista role is clear; use the design projects to show what you’d bring back to a product team.

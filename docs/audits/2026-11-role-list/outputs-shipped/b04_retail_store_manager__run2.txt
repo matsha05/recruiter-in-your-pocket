@@ -1,0 +1,30 @@
+# b04_retail_store_manager, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0088; 43.8s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+Your progression at Carolina Home & Garden and the results in your current store make me want to talk with you. I’d still want to know what changed in the second store turnaround named in your headline.
+
+## Write-up
+You’ve moved from Department Supervisor to Store Manager at Carolina Home & Garden, with sales, turnover and shrink results in your current store. That makes a strong case for another Store Manager role. The headline promises two turnarounds, though, and the earlier role doesn’t yet show the second one.
+
+The turnover line is an excellent model: it gives the starting point, the change and the scheduling decision behind it. Your promotions are easy to follow, and Experience is in the right place above Education.
+
+Let’s start with the headline and the Gastonia role. Add what changed at the earlier store and what your part was, if you can substantiate the turnaround claim. The current store’s results can stay front and center.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your Charlotte results show improvement, but the Gastonia bullets don't yet show a turnaround. A recruiter can't tell what changed at the second store or what part you played.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at each store] and [your part in each turnaround]
+   question: What changed at each store, and what part did you play in each turnaround?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It connects a staffing problem to a decision you made and shows the difference in a way a recruiter can compare.
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager"]
+Level: manager, runs a store with 42 employees including 4 department managers
+Note: Your progression at Carolina Home & Garden points to continued store leadership. The current role gives a recruiter several concrete reasons to consider you; the earlier store needs more detail to back up the headline.

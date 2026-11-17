@@ -1,0 +1,281 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "roles",
+  "run": 2,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:57:22.150Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 9335,
+        "completion_tokens": 1781,
+        "total_tokens": 11116,
+        "cached_prompt_tokens": 9332,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 887
+      },
+      "cost_usd": 0.0093746,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 43926
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Your multi-site healthcare work runs from clinic operations to the COO seat at Lakeshore Dental Partners. The growth, margin and operating results back up that progression. I’d want to talk with you about the business you’ve helped build.",
+    "write_up": [
+      "This is a strong COO resume! Your progression through clinic operations to Lakeshore Dental Partners tells a clear story, and the results show how you run and grow healthcare services, not just how many practices you oversee.",
+      "The hygienist turnover line is a model: it pairs the change in turnover with the compensation and career-ladder work behind it. Your current remit, reporting line and board work are also easy to find. The earlier patient wait-time result is worth keeping, though a recruiter can’t see what you changed to achieve it.",
+      "Start with that wait-time line, then consider moving the integration result higher in the Lakeshore role. Your resume isn’t likely to be the thing holding you back; competition for COO roles and the match with a particular organization will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 5",
+        "line": "- Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder",
+        "cannot_tell": "Keep this as a model. A recruiter can see the starting point, the finish and the two changes you made, all in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "- Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The drop in wait time is substantial, but a recruiter can’t tell what you changed to get there. That matters for an operations leader who may face the same problem elsewhere.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time across primary care?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 7",
+        "line": "- Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision within this work could show how you set direction for the business.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, including [enterprise-wide decision] and [what changed]",
+        "question": "What enterprise-wide decision did you make in this work, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 4",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Consider moving this above the regional operating model line. It shows a concrete improvement in a process central to the acquisition work.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role center on leading operations, growth and the P&L for a multi-site dental organization.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, particularly organizations growing through acquisitions and new openings. Your physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Your multi-site healthcare work runs from clinic operations to the COO seat at Lakeshore Dental Partners. The growth, margin and operating results back up that progression. I’d want to talk with you about the business you’ve helped build.",
+    "write_up": [
+      "This is a strong COO resume! Your progression through clinic operations to Lakeshore Dental Partners tells a clear story, and the results show how you run and grow healthcare services, not just how many practices you oversee.",
+      "The hygienist turnover line is a model: it pairs the change in turnover with the compensation and career-ladder work behind it. Your current remit, reporting line and board work are also easy to find. The earlier patient wait-time result is worth keeping, though a recruiter can’t see what you changed to achieve it.",
+      "Start with that wait-time line, then consider moving the integration result higher in the Lakeshore role. Your resume isn’t likely to be the thing holding you back; competition for COO roles and the match with a particular organization will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 5",
+        "line": "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder",
+        "cannot_tell": "Keep this as a model. A recruiter can see the starting point, the finish and the two changes you made, all in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The drop in wait time is substantial, but a recruiter can’t tell what you changed to get there. That matters for an operations leader who may face the same problem elsewhere.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time across primary care?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision within this work could show how you set direction for the business.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, including [enterprise-wide decision] and [what changed]",
+        "question": "What enterprise-wide decision did you make in this work, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Consider moving this above the regional operating model line. It shows a concrete improvement in a process central to the acquisition work.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role center on leading operations, growth and the P&L for a multi-site dental organization.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, particularly organizations growing through acquisitions and new openings. Your physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Your multi-site healthcare work runs from clinic operations to the COO seat at Lakeshore Dental Partners. The growth, margin and operating results back up that progression. I’d want to talk with you about the business you’ve helped build.",
+    "write_up": [
+      "This is a strong COO resume! Your progression through clinic operations to Lakeshore Dental Partners tells a clear story, and the results show how you run and grow healthcare services, not just how many practices you oversee.",
+      "The hygienist turnover line is a model: it pairs the change in turnover with the compensation and career-ladder work behind it. Your current remit, reporting line and board work are also easy to find. The earlier patient wait-time result is worth keeping, though a recruiter can’t see what you changed to achieve it.",
+      "Start with that wait-time line, then consider moving the integration result higher in the Lakeshore role. Your resume isn’t likely to be the thing holding you back; competition for COO roles and the match with a particular organization will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 5",
+        "line": "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder",
+        "cannot_tell": "Keep this as a model. A recruiter can see the starting point, the finish and the two changes you made, all in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The drop in wait time is substantial, but a recruiter can’t tell what you changed to get there. That matters for an operations leader who may face the same problem elsewhere.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time across primary care?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO-level role, an enterprise-wide decision within this work could show how you set direction for the business.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, including [enterprise-wide decision] and [what changed]",
+        "question": "What enterprise-wide decision did you make in this work, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Consider moving this above the regional operating model line. It shows a concrete improvement in a process central to the acquisition work.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role center on leading operations, growth and the P&L for a multi-site dental organization.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, particularly organizations growing through acquisitions and new openings. Your physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Your multi-site healthcare work runs from clinic operations to the COO seat at Lakeshore Dental Partners. The growth, margin and operating results back up that progression. I’d want to talk with you about the business you’ve helped build.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 5",
+        "line": "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, line 3",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "blanks": 1,
+        "question": "What did you change to reduce the wait time across primary care?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 7",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "blanks": 2,
+        "question": "What enterprise-wide decision did you make in this work, and what changed?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, Lakeshore Dental Partners, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role center on leading operations, growth and the P&L for a multi-site dental organization.",
+      "level": "executive, leads operations for 140 practices and reports to the CEO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, particularly organizations growing through acquisitions and new openings. Your physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0093746,
+  "latency_ms": 43929
+}

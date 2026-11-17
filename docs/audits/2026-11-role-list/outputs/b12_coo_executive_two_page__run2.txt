@@ -1,0 +1,39 @@
+# b12_coo_executive_two_page, run 2
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0094; 43.9s
+Case note: Executive, two pages.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+Your multi-site healthcare work runs from clinic operations to the COO seat at Lakeshore Dental Partners. The growth, margin and operating results back up that progression. I’d want to talk with you about the business you’ve helped build.
+
+## Write-up
+This is a strong COO resume! Your progression through clinic operations to Lakeshore Dental Partners tells a clear story, and the results show how you run and grow healthcare services, not just how many practices you oversee.
+
+The hygienist turnover line is a model: it pairs the change in turnover with the compensation and career-ladder work behind it. Your current remit, reporting line and board work are also easy to find. The earlier patient wait-time result is worth keeping, though a recruiter can’t see what you changed to achieve it.
+
+Start with that wait-time line, then consider moving the integration result higher in the Lakeshore role. Your resume isn’t likely to be the thing holding you back; competition for COO roles and the match with a particular organization will matter too.
+
+## Cards (4; {"keep":1,"line":1,"upgrade":2}); severity off; added []
+1. [keep] Chief Operating Officer, Lakeshore Dental Partners, line 5
+   line: "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder"
+   can't tell: Keep this as a model. A recruiter can see the starting point, the finish and the two changes you made, all in one line.
+2. [line] Senior Vice President, Operations, line 3
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The drop in wait time is substantial, but a recruiter can’t tell what you changed to get there. That matters for an operations leader who may face the same problem elsewhere.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait time across primary care?
+3. [upgrade] Chief Operating Officer, Lakeshore Dental Partners, line 7
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO-level role, an enterprise-wide decision within this work could show how you set direction for the business.
+   example: Own the annual operating plan and the $410M P&L with the CFO, including [enterprise-wide decision] and [what changed]
+   question: What enterprise-wide decision did you make in this work, and what changed?
+4. [upgrade] Chief Operating Officer, Lakeshore Dental Partners, line 4
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Consider moving this above the regional operating model line. It shows a concrete improvement in a process central to the acquisition work.
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: executive, leads operations for 140 practices and reports to the CEO
+Note: Your experience points toward COO roles in multi-site healthcare, particularly organizations growing through acquisitions and new openings. Your physician group work also gives you a story beyond dental services.

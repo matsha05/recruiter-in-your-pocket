@@ -1,0 +1,33 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0109; 46.1s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+Your Army logistics and maintenance leadership comes through, and the work backs it up. I’d want to talk with you about an operations supervisor role.
+
+## Write-up
+You’ve built a strong case for a civilian operations supervisor role! Your Army experience shows both the people you led and the equipment and logistics you were accountable for.
+
+The vehicle readiness line is especially good: it gives the starting and ending rates and names the changes you made. Your target job is clear at the top, and your experience sits where a recruiter will reach it first.
+
+Your resume isn’t what I’d focus on if a response doesn’t come. Competition for civilian supervisor jobs matters too. For a step toward a broader management role, add a decision beyond the platoon if you have one to share, and consider moving the vehicle readiness result higher.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Platoon Sergeant, line 2
+   line: "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories"
+   can't tell: Keep this as a model. It names what you were accountable for and gives a recruiter a concrete inventory record to remember.
+2. [upgrade] Platoon Sergeant, line 1
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: For a role above supervisor, a recruiter may look for decisions that reached beyond your platoon. Add one here if you made one.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; made [a decision you made] for [the wider organization]
+   question: What decision did you make beyond your platoon, and who did it affect?
+3. [upgrade] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: This is your strongest result, and it sits below three other lines. Move it closer to the top of the Platoon Sergeant role so a recruiter reaches it sooner.
+
+## Fit
+Roles: ["operations supervisor"]
+Level: manager, led 38 soldiers across maintenance, supply, and fuel sections
+Note: Your maintenance planning, inventory accountability, and team leadership fit civilian operations work. Your supply chain degree in progress and Lean Six Sigma Green Belt also give that transition a clear direction.

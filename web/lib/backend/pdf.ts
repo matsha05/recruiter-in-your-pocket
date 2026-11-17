@@ -10,7 +10,7 @@ import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
 import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
-import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, PART_STATUS_LABEL, PARTS_LABEL, POSTING_COVERED_LABEL, POSTING_TABLE_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, wordingFor, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { cardsHeading, fitListRoles, hasRoleSection, UPGRADES_HEADING, upgradesLead, PART_STATUS_LABEL, PARTS_LABEL, POSTING_COVERED_LABEL, POSTING_TABLE_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, wordingFor, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -87,7 +87,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       <div class="section-kicker">Role fit</div>
       <h2>Roles your experience points toward</h2>
       ${fit.note ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.note)}</p></div>` : ""}
-      ${fit.roles.length ? `<div class="tag-row"><span class="tag-label">Roles to consider</span>${fit.roles.map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
+      ${fitListRoles(worklist).length ? `<div class="tag-row"><span class="tag-label">Roles to consider</span>${fitListRoles(worklist).map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
     </section>` : "";
 
   // The first pass, as on the web report (Nov 7, 2026): a line written to screening software, then which job,

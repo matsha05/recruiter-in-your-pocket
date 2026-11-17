@@ -1,0 +1,474 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "roles",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:56:12.684Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8307,
+        "completion_tokens": 1587,
+        "total_tokens": 9894,
+        "cached_prompt_tokens": 8304,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0083532,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33361
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 9606,
+        "completion_tokens": 1883,
+        "total_tokens": 11489,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 9603,
+        "reasoning_tokens": 705
+      },
+      "cost_usd": 0.02142175,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26043
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "Your move from SDR to mid-market HR software sales comes through clearly, and the sales and referral results back it up. I’d want to talk to you. What was the quota behind your 2025 attainment, and how have you performed in another period?",
+    "write_up": [
+      "You moved from sales development into a mid-market Account Executive role at Crestview HR Cloud. Your resume shows both closed revenue and a referral program that sourced deals. For this kind of sales job, a recruiter will still want the quota behind your 2025 result and another period of attainment.",
+      "The referral program is your best model: you name the partners and the deals they sourced without claiming they all closed. Your promotion, current role and tools are easy to find.",
+      "Let’s start with the 2025 sales line and add the quota and another period of attainment if you have it. Then give the demos and security reviews a little more detail, and show how you measured your SDR work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The revenue and attainment are strong, but the quota itself isn't shown. A recruiter also has only one year of attainment to compare.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota, against a quota of [quota]; achieved [attainment] in [period]",
+        "question": "What was your 2025 quota, and what was your attainment in another period you can document?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "- Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It names what you built, who was involved and what the program sourced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not your part in the demos or security reviews. That matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, [your contribution]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked meetings for three account executives",
+        "cannot_tell": "The three account executives show who you supported, but not how many meetings you booked or over what period.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 2",
+        "line": "- Prospected through cold calls, email, and LinkedIn",
+        "cannot_tell": "The channels are clear, but a recruiter can't tell which prospects you reached or how much outreach you handled.",
+        "example": "Prospected [type of prospects] through cold calls, email, and LinkedIn, making [number] contacts per [period]",
+        "question": "Which prospects did you target, and how many contacts did you make in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "This is a useful distinction, but a recruiter can't tell what the ranking measured or how many SDRs were compared.",
+        "example": "Top SDR among [number] SDRs in two quarters, measured by [ranking measure]",
+        "question": "What was the ranking based on, and how many SDRs were in the comparison?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your current role and headline both point to mid-market HR software sales.",
+      "level": "mid-level, promoted from SDR to a full-cycle account executive role",
+      "note": "Your experience points toward account executive roles selling to mid-market companies. The referral program and work with solutions engineers add to the picture of how you sell.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[5].example: puts a name outside a bracket that the resume doesn't have: \"SDRs\".",
+    "issues": [
+      {
+        "path": "cards[5].example",
+        "message": "puts a name outside a bracket that the resume doesn't have: \"SDRs\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "Your move from SDR to mid-market HR software sales comes through clearly, and the sales and referral results back it up. I’d want to talk to you. What was the quota behind your 2025 attainment, and how have you performed in another period?",
+    "write_up": [
+      "You moved from sales development into a mid-market Account Executive role at Crestview HR Cloud. Your resume shows both closed revenue and a referral program that sourced deals. For a sales role, a recruiter will still want the quota behind your 2025 result and another period of attainment.",
+      "The referral program is your best model: you name the partners and the deals they sourced without claiming they all closed. Your promotion, current role and tools are easy to find.",
+      "Let’s start with the 2025 sales line and add the quota and another period of attainment if you have it. Then give the demos and security reviews a little more detail, and show how you measured your SDR work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The revenue and attainment are strong, but the quota itself isn't shown. A recruiter also has only one year of attainment to compare.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of a quota of [quota]; achieved [attainment] in [period]",
+        "question": "What was your 2025 quota, and what was your attainment in another period you can document?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "- Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It names what you built, who was involved and what the program sourced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not your part in the demos or security reviews. That matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked meetings for three account executives",
+        "cannot_tell": "The three account executives show who you supported, but not how many meetings you booked or over what period.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 2",
+        "line": "- Prospected through cold calls, email, and LinkedIn",
+        "cannot_tell": "The channels are clear, but a recruiter can't tell which prospects you reached or how much outreach you handled.",
+        "example": "Prospected [type of prospects] through cold calls, email, and LinkedIn, making [number] contacts per [period]",
+        "question": "Which prospects did you target, and how many contacts did you make in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "This is a useful distinction, but a recruiter can't tell what the ranking measured or how many people were compared.",
+        "example": "Top SDR in two quarters, measured by [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and how many people were in the comparison?"
+      },
+      {
+        "kind": "line",
+        "where": "Server, line 1",
+        "line": "- Served guests in a high-volume restaurant",
+        "cannot_tell": "A recruiter can see that you served guests, but not what high volume meant in your shifts.",
+        "example": "Served [number] guests per [period] in a high-volume restaurant",
+        "question": "How many guests did you typically serve over a shift or another period you can document?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your current role and headline both point to mid-market HR software sales.",
+      "level": "mid-level, promoted from SDR to a full-cycle account executive role",
+      "note": "Your experience points toward account executive roles selling to mid-market companies. The referral program and work with solutions engineers add to the picture of how you sell.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "Your move from SDR to mid-market HR software sales comes through clearly, and the sales and referral results back it up. I’d want to talk to you. What was the quota behind your 2025 attainment, and how have you performed in another period?",
+    "write_up": [
+      "You moved from sales development into a mid-market Account Executive role at Crestview HR Cloud. Your resume shows both closed revenue and a referral program that sourced deals. For a sales role, a recruiter will still want the quota behind your 2025 result and another period of attainment.",
+      "The referral program is your best model: you name the partners and the deals they sourced without claiming they all closed. Your promotion, current role and tools are easy to find.",
+      "Let’s start with the 2025 sales line and add the quota and another period of attainment if you have it. Then give the demos and security reviews a little more detail, and show how you measured your SDR work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The revenue and attainment are strong, but the quota itself isn't shown. A recruiter also has only one year of attainment to compare.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of a quota of [quota]; achieved [attainment] in [period]",
+        "question": "What was your 2025 quota, and what was your attainment in another period you can document?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It names what you built, who was involved and what the program sourced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not your part in the demos or security reviews. That matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "The three account executives show who you supported, but not how many meetings you booked or over what period.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 2",
+        "line": "Prospected through cold calls, email, and LinkedIn",
+        "cannot_tell": "The channels are clear, but a recruiter can't tell which prospects you reached or how much outreach you handled.",
+        "example": "Prospected [type of prospects] through cold calls, email, and LinkedIn, making [number] contacts per [period]",
+        "question": "Which prospects did you target, and how many contacts did you make in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "This is a useful distinction, but a recruiter can't tell what the ranking measured or how many people were compared.",
+        "example": "Top SDR in two quarters, measured by [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and how many people were in the comparison?"
+      },
+      {
+        "kind": "line",
+        "where": "Server, line 1",
+        "line": "Served guests in a high-volume restaurant",
+        "cannot_tell": "A recruiter can see that you served guests, but not what high volume meant in your shifts.",
+        "example": "Served [number] guests per [period] in a high-volume restaurant",
+        "question": "How many guests did you typically serve over a shift or another period you can document?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your current role and headline both point to mid-market HR software sales.",
+      "level": "mid-level, promoted from SDR to a full-cycle account executive role",
+      "note": "Your experience points toward account executive roles selling to mid-market companies. The referral program and work with solutions engineers add to the picture of how you sell.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "Your move from SDR to mid-market HR software sales comes through clearly, and the sales and referral results back it up. I’d want to talk to you. What was the quota behind your 2025 attainment, and how have you performed in another period?",
+    "write_up": [
+      "You moved from sales development into a mid-market Account Executive role at Crestview HR Cloud. Your resume shows both closed revenue and a referral program that sourced deals. For a sales role, a recruiter will still want the quota behind your 2025 result and another period of attainment.",
+      "The referral program is your best model: you name the partners and the deals they sourced without claiming they all closed. Your promotion, current role and tools are easy to find.",
+      "Let’s start with the 2025 sales line and add the quota and another period of attainment if you have it. Then give the demos and security reviews a little more detail, and show how you measured your SDR work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The revenue and attainment are strong, but the quota itself isn't shown. A recruiter also has only one year of attainment to compare.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of a quota of [quota]; achieved [attainment] in [period]",
+        "question": "What was your 2025 quota, and what was your attainment in another period you can document?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It names what you built, who was involved and what the program sourced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not your part in the demos or security reviews. That matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "The three account executives show who you supported, but not how many meetings you booked or over what period.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 2",
+        "line": "Prospected through cold calls, email, and LinkedIn",
+        "cannot_tell": "The channels are clear, but a recruiter can't tell which prospects you reached or how much outreach you handled.",
+        "example": "Prospected [type of prospects] through cold calls, email, and LinkedIn, making [number] contacts per [period]",
+        "question": "Which prospects did you target, and how many contacts did you make in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "This is a useful distinction, but a recruiter can't tell what the ranking measured or how many people were compared.",
+        "example": "Top SDR in two quarters, measured by [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and how many people were in the comparison?"
+      },
+      {
+        "kind": "line",
+        "where": "Server, line 1",
+        "line": "Served guests in a high-volume restaurant",
+        "cannot_tell": "A recruiter can see that you served guests, but not what high volume meant in your shifts.",
+        "example": "Served [number] guests per [period] in a high-volume restaurant",
+        "question": "How many guests did you typically serve over a shift or another period you can document?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your current role and headline both point to mid-market HR software sales.",
+      "level": "mid-level, promoted from SDR to a full-cycle account executive role",
+      "note": "Your experience points toward account executive roles selling to mid-market companies. The referral program and work with solutions engineers add to the picture of how you sell.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "Your move from SDR to mid-market HR software sales comes through clearly, and the sales and referral results back it up. I’d want to talk to you. What was the quota behind your 2025 attainment, and how have you performed in another period?",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 3,
+        "question": "What was your 2025 quota, and what was your attainment in another period you can document?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "blanks": 1,
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "blanks": 2,
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 2",
+        "line": "Prospected through cold calls, email, and LinkedIn",
+        "blanks": 3,
+        "question": "Which prospects did you target, and how many contacts did you make in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 2,
+        "question": "What was the ranking based on, and how many people were in the comparison?"
+      },
+      {
+        "kind": "line",
+        "where": "Server, line 1",
+        "line": "Served guests in a high-volume restaurant",
+        "blanks": 2,
+        "question": "How many guests did you typically serve over a shift or another period you can document?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 6,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your current role and headline both point to mid-market HR software sales.",
+      "level": "mid-level, promoted from SDR to a full-cycle account executive role",
+      "note": "Your experience points toward account executive roles selling to mid-market companies. The referral program and work with solutions engineers add to the picture of how you sell.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.02977495,
+  "latency_ms": 59415
+}

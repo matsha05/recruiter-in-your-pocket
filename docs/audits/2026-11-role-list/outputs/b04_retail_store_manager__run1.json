@@ -1,0 +1,218 @@
+{
+  "case_id": "b04_retail_store_manager",
+  "batch": "roles",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+  "resume_sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+  "resume_words": 179,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:55:33.099Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8401,
+        "completion_tokens": 1305,
+        "total_tokens": 9706,
+        "cached_prompt_tokens": 7623,
+        "cache_write_prompt_tokens": 775,
+        "reasoning_tokens": 715
+      },
+      "cost_usd": 0.0078779,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33848
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "Your Carolina Home & Garden store management work comes through with real results. I’d move this forward for a Store Manager role. I’d still ask what changed at the second store you say you turned around.",
+    "write_up": [
+      "You’ve moved from department supervisor to Store Manager at Carolina Home & Garden. Your current role makes a strong case with sales, turnover and shrink figures. The headline promises turnarounds at two stores, but the Gastonia role doesn’t say what changed there.",
+      "The turnover line is a great model: it names the scheduling change and gives the before and after. Your promotions and the store figures also make your progression easy to follow.",
+      "Let’s start with the headline. Add what changed at each store if you can back it up, or narrow the claim to the work your resume shows."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "Your current store has several strong results, but the Gastonia role doesn’t show what changed there. A recruiter can’t yet see the two turnarounds the headline promises.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at each store].",
+        "question": "What changed at each of the two stores?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this line. It connects a decision you made to a measurable change in staffing, without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your current role runs a store, and your earlier roles show a progression through store operations and department supervision.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your resume points toward retail store management, with particular strength in staffing and inventory. The promotion within Carolina Home & Garden also shows growing responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "Your Carolina Home & Garden store management work comes through with real results. I’d move this forward for a Store Manager role. I’d still ask what changed at the second store you say you turned around.",
+    "write_up": [
+      "You’ve moved from department supervisor to Store Manager at Carolina Home & Garden. Your current role makes a strong case with sales, turnover and shrink figures. The headline promises turnarounds at two stores, but the Gastonia role doesn’t say what changed there.",
+      "The turnover line is a great model: it names the scheduling change and gives the before and after. Your promotions and the store figures also make your progression easy to follow.",
+      "Let’s start with the headline. Add what changed at each store if you can back it up, or narrow the claim to the work your resume shows."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "Your current store has several strong results, but the Gastonia role doesn’t show what changed there. A recruiter can’t yet see the two turnarounds the headline promises.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at each store].",
+        "question": "What changed at each of the two stores?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this line. It connects a decision you made to a measurable change in staffing, without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your current role runs a store, and your earlier roles show a progression through store operations and department supervision.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your resume points toward retail store management, with particular strength in staffing and inventory. The promotion within Carolina Home & Garden also shows growing responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "Your Carolina Home & Garden store management work comes through with real results. I’d move this forward for a Store Manager role. I’d still ask what changed at the second store you say you turned around.",
+    "write_up": [
+      "You’ve moved from department supervisor to Store Manager at Carolina Home & Garden. Your current role makes a strong case with sales, turnover and shrink figures. The headline promises turnarounds at two stores, but the Gastonia role doesn’t say what changed there.",
+      "The turnover line is a great model: it names the scheduling change and gives the before and after. Your promotions and the store figures also make your progression easy to follow.",
+      "Let’s start with the headline. Add what changed at each store if you can back it up, or narrow the claim to the work your resume shows."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "Your current store has several strong results, but the Gastonia role doesn’t show what changed there. A recruiter can’t yet see the two turnarounds the headline promises.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at each store].",
+        "question": "What changed at each of the two stores?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this line. It connects a decision you made to a measurable change in staffing, without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your current role runs a store, and your earlier roles show a progression through store operations and department supervision.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your resume points toward retail store management, with particular strength in staffing and inventory. The promotion within Carolina Home & Garden also shows growing responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "model_score": 84,
+    "lifted_by_employer": false,
+    "verdict": "Your Carolina Home & Garden store management work comes through with real results. I’d move this forward for a Store Manager role. I’d still ask what changed at the second store you say you turned around.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 100,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "blanks": 1,
+        "question": "What changed at each of the two stores?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your current role runs a store, and your earlier roles show a progression through store operations and department supervision.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your resume points toward retail store management, with particular strength in staffing and inventory. The promotion within Carolina Home & Garden also shows growing responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0078779,
+  "latency_ms": 33867
+}

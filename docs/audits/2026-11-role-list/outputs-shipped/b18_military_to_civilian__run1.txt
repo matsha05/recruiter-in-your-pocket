@@ -1,0 +1,38 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0105; 44.1s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+Your U.S. Army logistics and maintenance leadership gives you a strong foundation for an operations supervisor role. The resume backs it up with team leadership, equipment accountability and improved vehicle readiness. I’d want to talk to you.
+
+## Write-up
+Your resume is strong! It connects leadership across maintenance, supply and fuel to work a civilian operations recruiter can recognize: equipment accountability, field logistics and vehicle readiness.
+
+The line about cutting the non-mission-capable rate is especially good. It shows the starting point, the improvement and the changes you made to get there. Your headline also tells a recruiter where you want to go after the Army.
+
+You don’t need to rebuild this resume. Add the training subject in the mechanic role, then consider moving the vehicle readiness result higher in your most recent role. Your resume itself isn’t likely to be the thing standing between you and a call back; how competitive the role is will matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: Training 9 junior mechanics shows leadership, but a recruiter can’t tell what you taught them.
+   example: Trained 9 junior mechanics in [training topics]
+   question: What did you train the junior mechanics to do?
+2. [keep] Platoon Sergeant, line 2
+   line: "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories"
+   can't tell: Keep this as a model: it names what was under your care, its value and the inventory record.
+3. [upgrade] Platoon Sergeant, line 1
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: For a role above supervisor, a decision you made across the sections would show more of how you directed the work.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections, and made [a decision across the sections]
+   question: What decision did you make across those sections, if any?
+4. [upgrade] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: This is your strongest result. Move it above the leadership line so the improvement and how you made it are seen first.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: manager, led 38 soldiers across three sections and evaluated 6 direct-report sergeants
+Note: Your experience points toward operations and maintenance leadership, with supply chain work supporting both. The inventory and vehicle readiness results give you concrete work to discuss with civilian employers.

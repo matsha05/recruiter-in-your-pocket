@@ -1,0 +1,379 @@
+{
+  "case_id": "b16_career_changer_bad",
+  "batch": "roles",
+  "run": 1,
+  "note": "Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.",
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt",
+  "resume_sha256": "12d7e0e5cf8c013f2914db6c8489b5ecd2eb00d0ec3fc732e6316d80a89deffc",
+  "resume_words": 140,
+  "job_description_file": null,
+  "today": "2026-11-17",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-17T15:58:15.792Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8314,
+        "completion_tokens": 1769,
+        "total_tokens": 10083,
+        "cached_prompt_tokens": 7623,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 683
+      },
+      "cost_usd": 0.01008915,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 41189
+    }
+  ],
+  "resume_prompt_sha256": "9c53d256af7d27e28d7d258633eeefdca46bb24949f47b21e1aa198a791c5d75",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Evening shift supervision at Saguaro Market comes first, but your web work and medical billing point in other directions. I'd pass for now: I can't tell which job you want next or how many people you supervise.",
+    "write_up": [
+      "Your resume brings together shift supervision at Saguaro Market, freelance website work and medical billing. That's a common mix, but without a job named at the top, a recruiter has to guess which direction you're choosing. I read it for Shift Supervisor, your most recent dated role.",
+      "The claims line at Desert Health Partners gives a recruiter a firm picture: you entered insurance claims for a 4-physician practice. Your freelance role has no dates, so it's not clear when that work happened or whether you're still doing it.",
+      "Let's start with the Saguaro Market role. The duties are recognizable, but without the number of people you supervise or registers you reconcile, they won't stand out in a pile. Add what you can confirm, then give the freelance work dates and name the job you want next."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name the job you want next.",
+        "cannot_tell": "Shift supervision, web development and medical billing point toward different jobs. A recruiter can't tell which work you want to lead with.",
+        "example": "",
+        "question": "Which job are you applying for with this resume?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "A recruiter can't tell when you built the websites or whether you're still doing that work.",
+        "example": "[Month Year] - [Month Year]  Freelance Web Developer, Self-employed",
+        "question": "When did your freelance web development work start and end?"
+      },
+      {
+        "kind": "structure",
+        "where": "Saguaro Market",
+        "line": "Saguaro Market has no description beyond its name and location.",
+        "cannot_tell": "A recruiter may not know the business. A short description can give your shift work some context.",
+        "example": "Saguaro Market, Tucson, AZ | [store type and number of locations]",
+        "question": "How would you describe Saguaro Market and its number of locations?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "- Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "The supervision is clear, but a recruiter can't tell how many people you oversee on a shift.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts",
+        "question": "How many cashiers and stockers do you supervise on an evening shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "- Count and reconcile registers at close",
+        "cannot_tell": "Closing registers is a useful responsibility. The line doesn't show how many you handle.",
+        "example": "Count and reconcile [number] registers at close",
+        "question": "How many registers do you count and reconcile at close?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "- Help with weekly ordering and store resets",
+        "cannot_tell": "Helping could cover several different tasks. Your part in ordering and resets is still open.",
+        "example": "Help with weekly ordering and store resets by [your ordering tasks] and [your reset tasks]",
+        "question": "What do you do for weekly ordering and store resets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Medical Billing Assistant, line 1",
+        "line": "- Entered insurance claims for a 4-physician practice",
+        "cannot_tell": "Keep this as a model: it names the work and the practice it served without making the reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer"
+      ],
+      "why": "Your most recent dated role is Shift Supervisor, with responsibility for cashiers, stockers and closing registers.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your current role points toward retail shift supervision. The WordPress, Webflow and booking work gives you a separate web development direction, but its dates are missing.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Evening shift supervision at Saguaro Market comes first, but your web work and medical billing point in other directions. I'd pass for now: I can't tell which job you want next or how many people you supervise.",
+    "write_up": [
+      "Your resume brings together shift supervision at Saguaro Market, freelance website work and medical billing. That's a common mix, but without a job named at the top, a recruiter has to guess which direction you're choosing. I read it for Shift Supervisor, your most recent dated role.",
+      "The claims line at Desert Health Partners gives a recruiter a firm picture: you entered insurance claims for a 4-physician practice. Your freelance role has no dates, so it's not clear when that work happened or whether you're still doing it.",
+      "Let's start with the Saguaro Market role. The duties are recognizable, but without the number of people you supervise or registers you reconcile, they won't stand out in a pile. Add what you can confirm, then give the freelance work dates and name the job you want next."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name the job you want next.",
+        "cannot_tell": "Shift supervision, web development and medical billing point toward different jobs. A recruiter can't tell which work you want to lead with.",
+        "example": "",
+        "question": "Which job are you applying for with this resume?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "A recruiter can't tell when you built the websites or whether you're still doing that work.",
+        "example": "[Month Year] - [Month Year] Freelance Web Developer, Self-employed",
+        "question": "When did your freelance web development work start and end?"
+      },
+      {
+        "kind": "structure",
+        "where": "Saguaro Market",
+        "line": "Saguaro Market has no description beyond its name and location.",
+        "cannot_tell": "A recruiter may not know the business. A short description can give your shift work some context.",
+        "example": "Saguaro Market, Tucson, AZ | [store type and number of locations]",
+        "question": "How would you describe Saguaro Market and its number of locations?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "The supervision is clear, but a recruiter can't tell how many people you oversee on a shift.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts",
+        "question": "How many cashiers and stockers do you supervise on an evening shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Count and reconcile registers at close",
+        "cannot_tell": "Closing registers is a useful responsibility. The line doesn't show how many you handle.",
+        "example": "Count and reconcile [number] registers at close",
+        "question": "How many registers do you count and reconcile at close?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "cannot_tell": "Helping could cover several different tasks. Your part in ordering and resets is still open.",
+        "example": "Help with weekly ordering and store resets by [your ordering tasks] and [your reset tasks]",
+        "question": "What do you do for weekly ordering and store resets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Medical Billing Assistant, line 1",
+        "line": "Entered insurance claims for a 4-physician practice",
+        "cannot_tell": "Keep this as a model: it names the work and the practice it served without making the reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer"
+      ],
+      "why": "Your most recent dated role is Shift Supervisor, with responsibility for cashiers, stockers and closing registers.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your current role points toward retail shift supervision. The WordPress, Webflow and booking work gives you a separate web development direction, but its dates are missing.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Evening shift supervision at Saguaro Market comes first, but your web work and medical billing point in other directions. I'd pass for now: I can't tell which job you want next or how many people you supervise.",
+    "write_up": [
+      "Your resume brings together shift supervision at Saguaro Market, freelance website work and medical billing. That's a common mix, but without a job named at the top, a recruiter has to guess which direction you're choosing. I read it for Shift Supervisor, your most recent dated role.",
+      "The claims line at Desert Health Partners gives a recruiter a firm picture: you entered insurance claims for a 4-physician practice. Your freelance role has no dates, so it's not clear when that work happened or whether you're still doing it.",
+      "Let's start with the Saguaro Market role. The duties are recognizable, but without the number of people you supervise or registers you reconcile, they won't stand out in a pile. Add what you can confirm, then give the freelance work dates and name the job you want next."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name the job you want next.",
+        "cannot_tell": "Shift supervision, web development and medical billing point toward different jobs. A recruiter can't tell which work you want to lead with.",
+        "example": "",
+        "question": "Which job are you applying for with this resume?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "cannot_tell": "A recruiter can't tell when you built the websites or whether you're still doing that work.",
+        "example": "[Month Year] - [Month Year] Freelance Web Developer, Self-employed",
+        "question": "When did your freelance web development work start and end?"
+      },
+      {
+        "kind": "structure",
+        "where": "Saguaro Market",
+        "line": "Saguaro Market has no description beyond its name and location.",
+        "cannot_tell": "A recruiter may not know the business. A short description can give your shift work some context.",
+        "example": "Saguaro Market, Tucson, AZ | [store type and number of locations]",
+        "question": "How would you describe Saguaro Market and its number of locations?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "cannot_tell": "The supervision is clear, but a recruiter can't tell how many people you oversee on a shift.",
+        "example": "Supervise [number] cashiers and stockers on evening shifts",
+        "question": "How many cashiers and stockers do you supervise on an evening shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Count and reconcile registers at close",
+        "cannot_tell": "Closing registers is a useful responsibility. The line doesn't show how many you handle.",
+        "example": "Count and reconcile [number] registers at close",
+        "question": "How many registers do you count and reconcile at close?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "cannot_tell": "Helping could cover several different tasks. Your part in ordering and resets is still open.",
+        "example": "Help with weekly ordering and store resets by [your ordering tasks] and [your reset tasks]",
+        "question": "What do you do for weekly ordering and store resets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Medical Billing Assistant, line 1",
+        "line": "Entered insurance claims for a 4-physician practice",
+        "cannot_tell": "Keep this as a model: it names the work and the practice it served without making the reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer"
+      ],
+      "why": "Your most recent dated role is Shift Supervisor, with responsibility for cashiers, stockers and closing registers.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your current role points toward retail shift supervision. The WordPress, Webflow and booking work gives you a separate web development direction, but its dates are missing.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "model_score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Evening shift supervision at Saguaro Market comes first, but your web work and medical billing point in other directions. I'd pass for now: I can't tell which job you want next or how many people you supervise.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 136,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name the job you want next.",
+        "blanks": 0,
+        "question": "Which job are you applying for with this resume?"
+      },
+      {
+        "kind": "dates",
+        "where": "Freelance Web Developer",
+        "line": "The Freelance Web Developer role has no dates.",
+        "blanks": 2,
+        "question": "When did your freelance web development work start and end?"
+      },
+      {
+        "kind": "structure",
+        "where": "Saguaro Market",
+        "line": "Saguaro Market has no description beyond its name and location.",
+        "blanks": 1,
+        "question": "How would you describe Saguaro Market and its number of locations?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise cashiers and stockers on evening shifts",
+        "blanks": 1,
+        "question": "How many cashiers and stockers do you supervise on an evening shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Count and reconcile registers at close",
+        "blanks": 1,
+        "question": "How many registers do you count and reconcile at close?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 3",
+        "line": "Help with weekly ordering and store resets",
+        "blanks": 2,
+        "question": "What do you do for weekly ordering and store resets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Medical Billing Assistant, line 1",
+        "line": "Entered insurance claims for a 4-physician practice",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "structure": 2,
+      "dates": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 3,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Shift Supervisor",
+        "Freelance Web Developer"
+      ],
+      "why": "Your most recent dated role is Shift Supervisor, with responsibility for cashiers, stockers and closing registers.",
+      "level": "lead, supervises cashiers and stockers on evening shifts",
+      "note": "Your current role points toward retail shift supervision. The WordPress, Webflow and booking work gives you a separate web development direction, but its dates are missing.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01008915,
+  "latency_ms": 41193
+}

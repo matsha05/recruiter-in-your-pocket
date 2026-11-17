@@ -1,0 +1,42 @@
+# b02_teacher, run 2
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0195; 44.5s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+Your Title I teaching and K-8 certification are clear, and the reading growth and grade-level leadership back them up. I’d move your resume forward. I’d want to hear which teaching practices drove that growth.
+
+## Write-up
+Your resume is strong: it shows classroom teaching, reading growth and leadership of a grade-level team at Lincoln Heights. Your resume does its job; the fit of a particular opening and the competition for it will matter too.
+
+The reading growth line is the standout because it gives a district assessment measure before and after your work. Your Washington K-8 certificate and English Language Learner endorsement are easy to find alongside your teaching experience.
+
+Let’s add the teaching practices behind that reading growth, then give the behavior support committee work a little more substance. You can also make the math curriculum pilot work harder by adding what changed after the pilot or training, if you know.
+
+## Cards (4; {"line":2,"upgrade":2}); severity off; added []
+1. [line] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: The reading growth is compelling. A recruiter can’t see which teaching practices you used to achieve it.
+   example: Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years using [instructional practices]
+   question: What teaching practices did you use to raise reading growth?
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Committee service names the group, but not your contribution. A recruiter can’t tell what you worked on with the committee.
+   example: Served on the school's positive behavior support committee, contributing to [committee work]
+   question: What did you contribute to the committee?
+3. [upgrade] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: For a lead role, the decisions or direction you guided would show what your leadership covered beyond the meetings.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings, guiding [team decision or direction]
+   question: What decisions or direction did you guide for the grade-level team?
+4. [upgrade] 4th Grade Teacher, line 4
+   line: "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it"
+   can't tell: The pilot and training already show concrete work. What changed afterward could make this accomplishment even more memorable.
+   example: Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it; [what changed after the pilot or training]
+   question: What changed after the curriculum pilot or training?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: senior, leads the grade-level team of 4 teachers
+Note: Your classroom work, Washington certification and English Language Learner endorsement point toward elementary teaching roles. Your grade-level planning and curriculum training also show leadership alongside classroom teaching.

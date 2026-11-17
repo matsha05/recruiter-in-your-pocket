@@ -1,0 +1,46 @@
+# b40_senior_ic_wei, run 1
+Resume: ../../design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0092; 32.6s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+Your ledger and payments infrastructure work at Brightline is substantial, and the technical leadership backs up your Staff title. I’d move this resume forward. I’d still want to know how large the team and systems you led were.
+
+## Write-up
+You’ve moved from object storage at Nimbus Cloud to fraud, reconciliation, and now the ledger and settlement platform at Brightline Payments. The technical work is easy to follow, but a recruiter hiring for a Staff role will want a better sense of how big the systems and team are.
+
+The idempotency line is a strong model: it names the change across payment services and the duplicate-charge incidents it eliminated. Your progression at Brightline is also easy to follow, with the Staff role leading the experience section.
+
+Let’s start with the Staff role. Add the team’s size and what changed after the ledger redesign, if you can substantiate those details. Then give the earlier reconciliation and storage improvements measures a reader can compare.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see the team’s purpose, but not how many people you led technically. That’s useful context for a Staff role.
+   example: Technical lead for the ledger and settlement platform team of [number] engineers
+   question: How many engineers were on the team while you were its technical lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The old and new architectures are clear. What’s missing is what the redesign changed for the ledger or the people using it.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]
+   question: What changed after the ledger redesign, and what measure can you share?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects your role in adoption to a concrete payment problem that went away.
+4. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both reductions matter in payments, but a recruiter can’t tell how much they changed or what you did to reduce them.
+   example: Reduced reconciliation break rate from [before] to [after] and manual ops effort by [amount] through [work]
+   question: What work reduced the break rate and manual effort, and how did you measure the changes?
+5. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: The techniques are named, but the changes in latency and availability aren’t. Even one measure would show more of what the work achieved.
+   example: Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing
+   question: What were the latency and availability measures before and after the changes?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: senior, technical lead for the ledger and settlement platform team
+Note: Your recent work points toward Staff roles in distributed payments systems. The earlier storage control plane work adds another example of distributed systems experience.

@@ -1,0 +1,45 @@
+# b10_it_support_recent_grad, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0081; 40.8s
+Case note: First job.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+Your school help desk internship and electronics retail work point toward desktop support. I’d pass for now because I can’t tell how much support you handled or what you’ve been doing since May 2025.
+
+## Write-up
+You’re aiming for IT support after a help desk internship at Chattahoochee County Schools and customer-facing work at Peachtree Electronics. It’s common for an early-career resume to list tasks without showing how much work came through. Here, that makes it difficult to distinguish your support experience in a pile.
+
+The Active Directory line is your best model: it names both the account work and the tool. Your education currently comes before your work history, and the resume doesn’t account for time after May 2025.
+
+Let’s start with the internship. Add the ticket volume and laptop setup details you can confirm, then account for the time since it ended. Your A.A.S. and CompTIA A+ can stay prominent while Experience moves above Education.
+
+## Cards (5; {"dates":1,"structure":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after May 2025."
+   can't tell: A recruiter is left wondering what you’ve been doing since the internship ended, instead of focusing on your school support work.
+   example: May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since May 2025?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail work and internship give a recruiter more to look at than the section order suggests. Put Experience first, while keeping your degree and certification easy to find.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: Teachers and staff are named, but the tickets could cover almost anything. The types and volume of requests would show what your help desk work involved.
+   example: Answered [number] help desk tickets [per week or month] from teachers and staff about [types of requests]
+   question: What requests did you handle, and how many tickets did you answer in a typical week or month?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Classroom laptop setup is relevant to desktop support, but a recruiter can’t tell how many laptops you worked on or what setup involved.
+   example: Imaged and set up [number] laptops for classrooms, including [setup tasks]
+   question: How many laptops did you image and set up, and what did the setup include?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model: it tells a recruiter what you handled and where you did the work without making them guess.
+
+## Fit
+Roles: ["IT support specialist","IT Help Desk Intern"]
+Level: entry level, one IT help desk internship
+Note: Your school and retail experience both connect to desktop support. The A.A.S. and CompTIA A+ add a useful foundation for that direction.

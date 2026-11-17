@@ -1,0 +1,36 @@
+# b36_product_designer_unrelated, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0090; 48.5s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Your product design work at Loop Fitness shows what you made, but I’d hesitate to move this resume forward without knowing more about the problems you worked on. What design work, if any, have you done since leaving Loop?
+
+## Write-up
+You designed apps at Loop Fitness and client work at Brightpath Studio, and you’re now working at Ferry Street Coffee. It’s common for a design resume to list what was made without saying what it was meant to solve or what the team learned. For product design roles, that makes it tough to stand out in a pile.
+
+The line about creating Loop’s first design system is your best model: it names the deliverable, the tool and your part in making it. Your current job accounts for the time since Loop, though a recruiter will still look for recent design work.
+
+Let’s start with the Loop role. Add what you contributed to the weekly releases and what you tested with members. If you have more recent design work, bring that into the resume too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your contribution isn’t. A recruiter can’t tell what design work you did with the engineers and product manager.
+   example: Worked with two engineers and a product manager on [your design work] for weekly releases
+   question: What design work did you contribute to the weekly releases?
+2. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter where you built it.
+3. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You say who took part and when the tests happened, but not what you tested or learned. Those details would show how the research informed the work.
+   example: Ran usability tests with members on [what you tested] before launches, learning [what you learned]
+   question: What did you test with members, and what did you learn?
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, a Product Designer role following a Junior Product Designer role
+Note: Your app flows, design system and member testing point toward product design roles. The resume also shows current customer-facing work at Ferry Street Coffee; any recent design projects could help connect that work to your next move.

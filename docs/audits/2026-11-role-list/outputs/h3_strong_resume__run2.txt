@@ -1,0 +1,34 @@
+# h3_strong_resume, run 2
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 9c53d256; severity check off
+Outcome: report; cost $0.0070; 33.7s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+Your payments and billing work at Northwind tells a strong story, from launching products to managing product managers. The results back it up, and I’d want to talk to you.
+
+## Write-up
+This is a strong product resume! Your Northwind roles show both the products you shipped and what changed for customers and the business. The progression from billing to a payments platform and product management team is easy to follow.
+
+The Adyen and Stripe integrations line is a great model: it names what you shipped and how much faster new-market launches became. Your current role also gives a recruiter the team and customer context needed to understand the work.
+
+Your resume isn’t the thing I’d expect to hold you back. The competition for a particular role will still matter. For a move up, you could add a decision that shows how you set direction across teams, if you have one to share.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Senior Product Manager, Payments Platform, line 4
+   line: "Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks"
+   can't tell: Keep this as a model. It pairs your part in the integrations with a before-and-after measure that makes the work memorable.
+2. [upgrade] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: For a role one level up, a decision that set direction across those teams would show how you lead beyond the roadmap itself.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers; set [cross-team direction] through [a decision you made]
+   question: What decision did you make that set direction across the teams?
+3. [upgrade] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: This is your strongest result because it connects the technical move to a customer revenue estimate. Consider moving it above the Northwind Pay launch line.
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform"]
+Level: manager, hires and manages 3 product managers
+Note: Your experience points toward product roles in payments and billing, with both platform and people management work. The progression at Northwind gives a recruiter a clear picture of how your responsibilities grew.

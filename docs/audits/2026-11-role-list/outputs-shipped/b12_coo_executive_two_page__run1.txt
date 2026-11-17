@@ -1,0 +1,39 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-17; prompt 22a90f22; severity check off
+Outcome: report; cost $0.0094; 34.6s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+Your healthcare operations career moves from clinic management to running Lakeshore Dental Partners. The growth, margin and workforce results back up that progression. I’d want to talk to you.
+
+## Write-up
+Your resume is strong because it connects executive decisions to changes in the business! At Lakeshore Dental Partners, a recruiter can see both the reach of your COO role and what changed as the organization grew.
+
+The practice growth line is a model: it names acquisitions and openings alongside the same-store margin change. The earlier roles also show a clear progression from clinics to enterprise operations, and your experience leads your education.
+
+Your resume isn't the likely obstacle to a recruiter moving you forward. Add how you reduced appointment waits, then consider whether an enterprise-wide decision belongs in the operating plan line for CEO-level roles. Competition for those roles will also matter.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Senior Vice President, Operations, line 3
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The wait time change is substantial, but a recruiter can't see what you changed to achieve it. That decision would show how you improved access across primary care.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [operational change]
+   question: What did you change to reduce the wait for an appointment?
+2. [keep] Chief Operating Officer, line 2
+   line: "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%"
+   can't tell: Keep this as the model. It puts the ways you grew the organization next to the margin change, so the growth is more than a practice count.
+3. [upgrade] Chief Operating Officer, line 7
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO-level role, an enterprise-wide decision tied to the operating plan would show more of how you set direction.
+   example: Own the annual operating plan and the $410M P&L with the CFO; [enterprise-wide decision] shaped [business priority]
+   question: What enterprise-wide decision did you make through the operating plan, and what priority did it shape?
+4. [upgrade] Vice President, Clinic Operations, line 2
+   line: "Implemented the centralized call center that replaced 18 front-desk phone trees, cutting abandoned calls from 12% to 3%"
+   can't tell: Move this to the first line under the Vice President role. It shows the operating change and the reduction in abandoned calls before the clinic count.
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points to executive operations roles in multi-site healthcare services. The board reporting and operating plan also give you a base for showing enterprise direction in a CEO-level search.
