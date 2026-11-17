@@ -112,7 +112,7 @@ async function main() {
             repaired = true;
         }
         const report = payload as { score: number; cards: unknown[]; fit: { posting: { lead?: unknown[]; trim?: unknown[] } } };
-        await writeFile(path.join(outputDir, `${item.id}.json`), `${JSON.stringify({ id: item.id, resume: item.resume, posting: item.posting, model, today, repaired, firstError, drafted: { lead: draftPosting?.lead?.length ?? 0, trim: draftPosting?.trim?.length ?? 0 }, usage: { tokens_in: initial.telemetry.tokens_in, tokens_out: initial.telemetry.tokens_out, cost_estimate_usd: initial.telemetry.cost_estimate_usd }, report }, null, 2)}\n`);
+        await writeFile(path.join(outputDir, `${item.id}.json`), `${JSON.stringify({ id: item.id, resume: item.resume, posting: item.posting, model, today, repaired, firstError, drafted: { score: (initial.parsed as { score?: number } | null)?.score ?? null, lead: draftPosting?.lead?.length ?? 0, trim: draftPosting?.trim?.length ?? 0 }, usage: { tokens_in: initial.telemetry.tokens_in, tokens_out: initial.telemetry.tokens_out, cost_estimate_usd: initial.telemetry.cost_estimate_usd }, report }, null, 2)}\n`);
         console.log(`${item.id}: score ${report.score}, ${report.cards.length} cards, lead ${report.fit.posting.lead?.length ?? 0} (drafted ${draftPosting?.lead?.length ?? 0}), trim ${report.fit.posting.trim?.length ?? 0} (drafted ${draftPosting?.trim?.length ?? 0}), ${Math.round((Date.now() - startedAt) / 1000)} s, $${initial.telemetry.cost_estimate_usd ?? "?"} (${initial.telemetry.tokens_in} in, ${initial.telemetry.tokens_out} out)${repaired ? `, repaired (${firstError})` : ""}`);
     }
 }

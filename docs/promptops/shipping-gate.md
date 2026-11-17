@@ -277,6 +277,15 @@ The note on a card about unaccounted time says what the gap does to this person'
 - Later the same day, with no prompt change: the validator drops a note's sentence that repeats its own card's question, and the no-blank check recognises a summary or objective under the names resumes give it. The same golden run replays at 23 pass, 0 warnings.
 - Spend: about $1.00.
 
+### Clear and specific held to the cards in the prompt — November 17
+
+The rule from November 13 (more than three cards that need work never scores above 84; code only, `scoreHeldToCards`) is now also one sentence in the prompt's Clear and specific bullet, so the write-up is written for the band it lands in. Matt approved about $2 of synthetic reads; $1.39 spent. Record: `docs/audits/2026-11-score-reread.md`, "The limit in the prompt".
+
+- Bundled evidence: the ten synthetic golden fixtures on the new prompt, one run (`eval_1794931009733`): 9 pass, 1 warning, 0 failures, 90%, checked in the run itself. This narrows the evidence from the 23-fixture replay to the ten synthetic fixtures: the approved spend is synthetic only.
+- Reads held by the code: 0 of 69 on the new prompt (40 golden, 29 posting), 1 of 34 on the shipped prompt the same day.
+- The strong backend posting pairs read a mean of 89.3 against 90.9 (ten reads each). That is inside re-read noise and not shown elsewhere, but it is recorded so a later run can check it.
+- Not run: the smoke tier and the Critical Miss judge (both send real people's resumes, outside the approved spend).
+
 ### The verdict as an opinion — November 12
 
 The verdict is two or three short sentences, under forty-five words: what a recruiter notices first, by name, whether the work backs it up, and the question still open when there is one. Record: `docs/audits/2026-11-verdict-opinion.md`.
