@@ -50,3 +50,8 @@ export function savedPreviewFor(payload: unknown, resumePreview: string) {
 
 export const NOT_A_LINKEDIN_EXPORT_MESSAGE =
   "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources (or the ⋯ button), then Save to PDF, and upload that file.";
+
+/** The PDF's file name: a LinkedIn review isn't a resume report (live walk, November 17, 2026). */
+export function reportPdfFileName(report: unknown) {
+  return isLinkedInReport(report) ? "linkedin-profile-review.pdf" : "resume-report.pdf";
+}

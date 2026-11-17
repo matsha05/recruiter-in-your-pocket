@@ -1,5 +1,6 @@
 "use client";
 
+import { FILE_UNREADABLE_MESSAGE } from "@/lib/reports/file-read";
 import { useState, useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from "react";
 import { useDropzone, type DropEvent, type FileRejection } from "react-dropzone";
 import { CircleNotch, FilePdf, FileText, WarningCircle, X } from "@phosphor-icons/react";
@@ -121,7 +122,7 @@ export function ResumeDropzone({
                 if (selectionId !== selectionRef.current.id) return;
                 if (accepted === false) {
                     setRejectedFile(file);
-                    setError("We couldn’t read this file. Try another PDF or DOCX.");
+                    setError(FILE_UNREADABLE_MESSAGE);
                     onValidationStateChange?.(true);
                     shouldMoveFocusOnSuccessRef.current = false;
                 } else if (fileName === undefined) {

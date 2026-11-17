@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { htmlToResumeText } from "../lib/backend/docx-text";
+import { rejoinWrappedLines, separateGluedDates, tidyPdfText } from "../lib/backend/pdf-text";
 import { PASS_SPENT_LABEL, accountBalanceLine, isBalanceKnown, isPassSpent, readAuthoritativePassAccess } from "../lib/billing/accountPassStatus";
 import { WorklistReportSchema } from "../lib/llm/worklist-schema";
+import { loadSavedReportRevision } from "../lib/reports/saved-report-revision";
+import { reportPdfFileName } from "../lib/reports/report-document";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { splitVerdict } from "../lib/reports/report-opening";
 import { fileReadFindings } from "../lib/reports/file-read";
 import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitHeading, fitListRoles, hasRoleSection } from "../lib/reports/worklist-presentation";
@@ -29,6 +34,43 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitHeading, fitListRoles, hasR
   assert.equal(fileReadFindings(text.replace("Professional Experience\n", "Professional Experience")).find((finding) => finding.id === "experience")?.state, "missing");
   assert.equal(htmlToResumeText(""), "");
 }
+
+// ---- A PDF's wrapped bullet is one line (live walk, November 17, 2026) ----
+{
+  // pdf-parse's text of a synthetic resume printed to PDF: each bullet the page wrapped is two lines, and the
+  // right-aligned dates run into the title. Every card on it quoted half a bullet.
+  const extracted = readFileSync(path.join(process.cwd(), "tests/fixtures/pdf-extracted-wrapped-resume.txt"), "utf8");
+  const tidy = tidyPdfText(extracted).split("\n");
+  for (const bullet of [
+    "Cut average dock-to-truck time from 52 minutes to 31 minutes by redesigning wave planning and moving carrier check-in to a mobile app",
+    "Run outbound operations for a 420,000 sq ft distribution center shipping 38,000 orders a week to retail and e-commerce customers across the Midwest",
+    "Lead 6 shift supervisors and 140 associates across three shifts; reduced 90-day associate turnover from 48% to 29% with a new onboarding buddy program",
+    "Helped with the rollout of a new warehouse management system and trained associates on handheld scanners",
+  ]) assert.ok(tidy.includes(bullet), `whole again: ${bullet.slice(0, 40)}`);
+  assert.ok(tidy.includes("Senior Operations Manager, Buckeye Freight Logistics, Columbus, OH April 2021 – Present"), "the date gets its space back");
+  assert.ok(tidy.includes("EXPERIENCE") && tidy.includes("EDUCATION") && tidy.includes("SKILLS"), "headings stay on their own lines");
+  assert.ok(tidy.includes("Operations Supervisor, Buckeye Freight Logistics, Columbus, OH June 2017 – March 2021"), "a role line is never joined onto the bullet above it");
+  assert.equal(tidy.filter((line) => line.trim()).length, 17, "seventeen lines, one per thing a reader sees");
+  // What is never joined: a new bullet, a capital, a date, a line after a short one, and a page with no long lines.
+  const long = "Managed onboarding for enterprise customers across three regions and four product lines with";
+  const filler = ["Supported account managers with weekly renewal reports for the largest customers in the book", "Coordinated quarterly reviews with customer leadership teams and product managers each month"];
+  const join = (a: string, b: string) => rejoinWrappedLines([...filler, a, b].join("\n")).split("\n").slice(2);
+  assert.deepEqual(join(long, "partner teams in support"), [`${long} partner teams in support`]);
+  assert.deepEqual(join(long, "• Built the renewal dashboard"), [long, "• Built the renewal dashboard"]);
+  assert.deepEqual(join(long, "Built the renewal dashboard"), [long, "Built the renewal dashboard"]);
+  assert.deepEqual(join(long, "2019 – 2021"), [long, "2019 – 2021"]);
+  assert.deepEqual(join("Short line", "and more"), ["Short line", "and more"]);
+  assert.equal(rejoinWrappedLines("Customer Success Manager\nand more"), "Customer Success Manager\nand more", "too few lines to judge the margin by");
+  assert.equal(separateGluedDates("Analyst, Acme Corp.Jan 2020 – Present"), "Analyst, Acme Corp. Jan 2020 – Present");
+  assert.equal(separateGluedDates("Engineer, Initech2018 – 2021"), "Engineer, Initech 2018 – 2021");
+  assert.equal(separateGluedDates("Windows Server 2019 administration"), "Windows Server 2019 administration", "a year that isn't glued is left alone");
+  assert.equal(tidyPdfText(tidyPdfText(extracted)), tidyPdfText(extracted), "running it twice changes nothing");
+}
+
+// ---- A LinkedIn review's PDF is named for what it is (live walk, November 17, 2026) ----
+assert.equal(reportPdfFileName({ document: "linkedin", cards: [] }), "linkedin-profile-review.pdf");
+assert.equal(reportPdfFileName({ cards: [] }), "resume-report.pdf");
+assert.equal(reportPdfFileName(null), "resume-report.pdf");
 
 // ---- A pass with every report used is not "the free report" ----
 {
@@ -125,3 +167,31 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitHeading, fitListRoles, hasR
 }
 
 console.log("live-test fixes: Word line breaks, spent pass, older report beside a worklist report");
+
+// ---- Compare my revision loads a worklist report (live walk, November 17, 2026) ----
+// The loader checked the older report shape only, so every report since November 6 said "Comparison unavailable".
+void (async () => {
+  const id = "bb93817d-f14d-4081-a39a-b143930f8530";
+  const worklist = { ...JSON.parse(readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8")), report_id: id };
+  // The report endpoint returns the posting fields it stores, without the lists a posting read adds.
+  worklist.fit = { ...worklist.fit, posting: { summary: "", missing: [] } };
+  const originalFetch = global.fetch;
+  const reply = (payload: unknown, status = 200) => { global.fetch = (async () => new Response(JSON.stringify(payload), { status })) as typeof fetch; };
+  try {
+    reply({ ok: true, report: worklist });
+    const loaded = await loadSavedReportRevision(id, new AbortController().signal);
+    assert.equal(loaded.state, "ready", "a worklist report is a baseline");
+    assert.equal(loaded.baseline?.id, id);
+    assert.equal((loaded.baseline as { verdict?: string } | null)?.verdict, worklist.verdict, "every field is kept for the comparison");
+    const profile = { ...worklist, document: "linkedin" };
+    reply({ ok: true, report: profile });
+    assert.equal((await loadSavedReportRevision(id, new AbortController().signal)).state, "ready", "a LinkedIn review is one too");
+    reply({ ok: true, report: { ...worklist, cards: "not a list" } });
+    assert.equal((await loadSavedReportRevision(id, new AbortController().signal)).state, "error", "a malformed report is still refused");
+    reply({ ok: true, report: { ...worklist, report_id: "22222222-2222-4222-8222-222222222222" } });
+    assert.equal((await loadSavedReportRevision(id, new AbortController().signal)).state, "error", "and so is another report's id");
+  } finally {
+    global.fetch = originalFetch;
+  }
+  console.log("live-test fixes: revision baseline from a worklist report");
+})().catch((error) => { console.error(error); process.exit(1); });

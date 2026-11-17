@@ -13,6 +13,7 @@ const {
 } = require("./migration-replay/verify-authenticated-generation-operations.cjs");
 const { verifyRevokedPassAccess } = require("./migration-replay/verify-revoked-pass-access.cjs");
 const { verifyPassLifecycle } = require("./migration-replay/verify-pass-lifecycle.cjs");
+const { verifyLineAnswerMerge } = require("./migration-replay/verify-line-answer-merge.cjs");
 
 const repoRoot = path.resolve(__dirname, "..");
 const migrationsDir = path.join(repoRoot, "web", "database", "migrations");
@@ -52,6 +53,7 @@ const MIGRATIONS = [
   ["024_report_line_answers", "web/database/migrations/024_report_line_answers.sql"],
   ["025_pass_lifecycle", "web/database/migrations/025_pass_lifecycle.sql"],
   ["026_report_revisions", "web/database/migrations/026_report_revisions.sql"],
+  ["027_report_line_answer_merge", "web/database/migrations/027_report_line_answer_merge.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -249,6 +251,7 @@ async function verifyCleanReplay(manifest) {
         "024_report_line_answers",
         "025_pass_lifecycle",
         "026_report_revisions",
+        "027_report_line_answer_merge",
       ],
     );
     for (const migration of upgradeBaseline) {
@@ -282,6 +285,7 @@ async function verifyCleanReplay(manifest) {
     await verifyRevokedPassAccess(db);
     await verifyReportFeedback(db);
     await verifyPassLifecycle(db);
+    await verifyLineAnswerMerge(db);
 
     const token1 = "11111111-1111-4111-8111-111111111111";
     const token2 = "22222222-2222-4222-8222-222222222222";
@@ -355,6 +359,7 @@ async function verifyCleanReplay(manifest) {
     console.log("Durable report receipt replay, grants, owner rename/delete, and deletion safety passed.");
     console.log("Atomic report finalization, rollback, idempotency, finality, and grants passed.");
     console.log("Authenticated operation ownership, denial binding, recovery status, and grants passed.");
+    console.log("Line answers merge one card at a time, keep other cards, refuse other accounts, and grants passed.");
   } finally {
     await db.close();
   }

@@ -11,7 +11,8 @@ import type { GenerationStage } from "@/lib/generation-stage";
 import { REPORT_ACCESS_NOT_USED, REPORT_ACCESS_OUTCOME_UNKNOWN, REPORT_ACCESS_RESTORED, REPORT_ACCESS_USED_CHECK, REPORT_ACCESS_USED_COUNT_UPDATED, forVisitor, hasAccessOutcome } from "@/lib/billing/generationFailureCopy";
 
 type Setter<T> = Dispatch<SetStateAction<T>>;
-export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean };
+/** `quiet`: the caller shows the failure where the file was chosen (the upload box), so no toast repeats it. */
+export type ResumeFileSelectionOptions = { onParsed?: () => void; preserveExisting?: boolean; quiet?: boolean };
 type ReportSaveState = { report: object; status: "saving" | "error"; message: string | null } | null;
 
 export function useResumeReview(input: {
@@ -78,13 +79,13 @@ export function useResumeReview(input: {
         return true;
       }
       console.error("Failed to parse resume:", result.message);
-      toast.error("We couldn’t read this resume", { description: result.message || "Try another PDF or DOCX, or paste the resume text." });
+      if (!options?.quiet) toast.error("We couldn’t read this resume", { description: result.message || "Try another PDF or DOCX, or paste the resume text." });
       if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } catch (error) {
       if (!isCurrent()) return false;
       console.error("File parsing error:", error);
-      toast.error("We couldn’t read this file", { description: "Try another PDF or DOCX, or paste the resume text." });
+      if (!options?.quiet) toast.error("We couldn’t read this file", { description: "Try another PDF or DOCX, or paste the resume text." });
       if (!options?.preserveExisting) input.setResumeText("");
       return false;
     } finally {

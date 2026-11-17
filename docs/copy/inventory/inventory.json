@@ -3,16 +3,16 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3035,
+    "strings": 3036,
     "unique_strings": 2534
   },
   "by_moment": {
     "research": 990,
-    "account": 463,
+    "account": 464,
     "marketing": 411,
-    "report": 334,
+    "report": 335,
     "pricing": 223,
-    "upload": 123,
+    "upload": 122,
     "legal": 113,
     "extension": 98,
     "shared": 73,
@@ -12045,7 +12045,7 @@
     {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
-      "line": 25,
+      "line": 26,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12056,7 +12056,7 @@
     {
       "text": "Sign in to export this report as a PDF.",
       "kind": "key:message",
-      "line": 48,
+      "line": 49,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12067,7 +12067,7 @@
     {
       "text": "Choose a saved report and try exporting again.",
       "kind": "key:message",
-      "line": 59,
+      "line": 60,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12078,7 +12078,7 @@
     {
       "text": "We could not verify this saved report for export. Run a new report while signed in, or contact support.",
       "kind": "key:message",
-      "line": 79,
+      "line": 80,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12089,7 +12089,7 @@
     {
       "text": "PDF took too long to generate. Try again.",
       "kind": "const",
-      "line": 140,
+      "line": 141,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12100,7 +12100,7 @@
     {
       "text": "Could not create your PDF. Try exporting again.",
       "kind": "const",
-      "line": 141,
+      "line": 142,
       "file": "web/app/api/export-pdf/route.ts",
       "routes": [
         "/api/export-pdf"
@@ -12518,7 +12518,7 @@
     {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
-      "line": 57,
+      "line": 59,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12529,7 +12529,7 @@
     {
       "text": "Choose a file to upload.",
       "kind": "key:message",
-      "line": 69,
+      "line": 71,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12540,7 +12540,7 @@
     {
       "text": "This file is too large. Choose a file of 4 MB or less.",
       "kind": "key:message",
-      "line": 77,
+      "line": 79,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12551,7 +12551,7 @@
     {
       "text": "Could not read this file. Try uploading a new PDF or DOCX copy.",
       "kind": "key:message",
-      "line": 99,
+      "line": 101,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12562,18 +12562,7 @@
     {
       "text": "Choose a PDF or DOCX file.",
       "kind": "key:message",
-      "line": 126,
-      "file": "web/app/api/parse-resume/route.ts",
-      "routes": [
-        "/api/parse-resume"
-      ],
-      "moment": "upload",
-      "table": "api"
-    },
-    {
-      "text": "Could not extract enough text from the file. Try pasting your resume text directly.",
-      "kind": "key:message",
-      "line": 143,
+      "line": 129,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12584,7 +12573,7 @@
     {
       "text": "This document exceeds the 30,000-character limit. Upload a shorter file.",
       "kind": "key:message",
-      "line": 157,
+      "line": 160,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12595,7 +12584,7 @@
     {
       "text": "Could not read this file. Try uploading a new PDF or DOCX copy.",
       "kind": "key:message",
-      "line": 183,
+      "line": 186,
       "file": "web/app/api/parse-resume/route.ts",
       "routes": [
         "/api/parse-resume"
@@ -12727,7 +12716,18 @@
     {
       "text": "We couldn't keep that answer. Try again.",
       "kind": "key:message",
-      "line": 67,
+      "line": 73,
+      "file": "web/app/api/reports/[id]/answers/route.ts",
+      "routes": [
+        "/api/reports/[id]/answers"
+      ],
+      "moment": "account",
+      "table": "api"
+    },
+    {
+      "text": "This report isn't in your account.",
+      "kind": "key:message",
+      "line": 75,
       "file": "web/app/api/reports/[id]/answers/route.ts",
       "routes": [
         "/api/reports/[id]/answers"
@@ -32002,7 +32002,7 @@
     {
       "text": "{(bytes / 1024 / 1024).toF…} MB",
       "kind": "return",
-      "line": 33,
+      "line": 34,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32018,7 +32018,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 93,
+      "line": 94,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32034,7 +32034,7 @@
     {
       "text": "This file is {formatMegabytes(rejection…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 105,
+      "line": 106,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32050,23 +32050,7 @@
     {
       "text": "That file type won’t open here. Choose a PDF or DOCX.",
       "kind": "call:setError",
-      "line": 107,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/sample-report/career-break",
-        "/sample-report/career-change",
-        "/sample-report/new-graduate",
-        "/sample-report/staff-engineer",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "shared"
-    },
-    {
-      "text": "We couldn’t read this file. Try another PDF or DOCX.",
-      "kind": "call:setError",
-      "line": 124,
+      "line": 108,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32082,7 +32066,7 @@
     {
       "text": "We couldn’t read this file. Try again or choose another PDF or DOCX.",
       "kind": "call:setError",
-      "line": 133,
+      "line": 134,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32098,7 +32082,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 165,
+      "line": 166,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32114,7 +32098,7 @@
     {
       "text": "Remove {rejectedFile.name}",
       "kind": "attr:aria-label",
-      "line": 237,
+      "line": 238,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32130,7 +32114,7 @@
     {
       "text": "Choose another file",
       "kind": "jsx-text",
-      "line": 259,
+      "line": 260,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32146,7 +32130,7 @@
     {
       "text": "Drop your LinkedIn PDF here.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 277,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32162,7 +32146,7 @@
     {
       "text": "Drop your resume here.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 277,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32178,7 +32162,7 @@
     {
       "text": "Add your LinkedIn PDF.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 278,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32194,7 +32178,7 @@
     {
       "text": "Add your resume.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 278,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32210,7 +32194,7 @@
     {
       "text": "The PDF LinkedIn saves for you, up to 4 MB.",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 280,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32226,7 +32210,7 @@
     {
       "text": "PDF or Word, up to 4 MB.",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 280,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32242,7 +32226,7 @@
     {
       "text": "Choose a file",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -33042,7 +33026,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 150,
+      "line": 152,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33058,7 +33042,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 154,
+      "line": 156,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33074,7 +33058,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 155,
+      "line": 157,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33090,7 +33074,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 161,
+      "line": 163,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33106,7 +33090,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 162,
+      "line": 164,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33122,7 +33106,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 162,
+      "line": 164,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33138,7 +33122,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 182,
+      "line": 185,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33154,7 +33138,7 @@
     {
       "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 189,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33170,7 +33154,7 @@
     {
       "text": "Open your profile",
       "kind": "jsx-text",
-      "line": 187,
+      "line": 190,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33186,7 +33170,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 197,
+      "line": 200,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33202,7 +33186,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 216,
+      "line": 219,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33218,7 +33202,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 221,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33234,7 +33218,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 219,
+      "line": 222,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33250,7 +33234,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 240,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33266,7 +33250,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 247,
+      "line": 250,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33282,7 +33266,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 250,
+      "line": 253,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33298,7 +33282,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 267,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33314,7 +33298,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 267,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33330,7 +33314,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 267,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33346,7 +33330,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 274,
+      "line": 277,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33362,7 +33346,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 284,
+      "line": 287,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33378,7 +33362,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 284,
+      "line": 287,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33394,7 +33378,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 300,
+      "line": 303,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33410,7 +33394,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 303,
+      "line": 306,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33426,7 +33410,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 303,
+      "line": 306,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33442,7 +33426,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 318,
+      "line": 321,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33458,7 +33442,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 322,
+      "line": 325,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33474,7 +33458,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 332,
+      "line": 335,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33490,7 +33474,23 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 336,
+      "line": 339,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "shared"
+    },
+    {
+      "text": "The job posting",
+      "kind": "jsx-text",
+      "line": 370,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33506,7 +33506,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 367,
+      "line": 370,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33522,7 +33522,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 367,
+      "line": 370,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33538,7 +33538,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 375,
+      "line": 378,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33554,7 +33554,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 383,
+      "line": 386,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33570,7 +33570,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 398,
+      "line": 401,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -36023,7 +36023,7 @@
     {
       "text": "We couldn’t read this resume",
       "kind": "call:toast.error",
-      "line": 81,
+      "line": 82,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36039,7 +36039,7 @@
     {
       "text": "We couldn’t read this file",
       "kind": "call:toast.error",
-      "line": 87,
+      "line": 88,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36055,7 +36055,7 @@
     {
       "text": "Try another PDF or DOCX, or paste the resume text.",
       "kind": "key:description",
-      "line": 87,
+      "line": 88,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36071,7 +36071,7 @@
     {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
-      "line": 104,
+      "line": 105,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36087,7 +36087,7 @@
     {
       "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
-      "line": 111,
+      "line": 112,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36103,7 +36103,7 @@
     {
       "text": "Add your resume first",
       "kind": "call:toast.error",
-      "line": 133,
+      "line": 134,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36119,7 +36119,7 @@
     {
       "text": "Upload a file or paste the resume text before creating the report.",
       "kind": "key:description",
-      "line": 134,
+      "line": 135,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36135,7 +36135,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.warning",
-      "line": 186,
+      "line": 187,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36151,7 +36151,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 190,
+      "line": 191,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36167,7 +36167,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 194,
+      "line": 195,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36183,7 +36183,7 @@
     {
       "text": "{REPORT_ACCESS_NOT_USED} Try again whenever you're ready.",
       "kind": "const",
-      "line": 252,
+      "line": 253,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36199,7 +36199,7 @@
     {
       "text": "The connection dropped",
       "kind": "const",
-      "line": 257,
+      "line": 258,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36215,7 +36215,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "const",
-      "line": 257,
+      "line": 258,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36231,7 +36231,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "call:toast.error",
-      "line": 274,
+      "line": 275,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -41697,7 +41697,7 @@
       "table": "help"
     },
     {
-      "text": "Delete individual reports from Reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
+      "text": "Delete individual reports from My reports. A resume you kept on file is removed from the new-report screen, where it is filled in. In Settings, you can export your account data or delete your account entirely.",
       "kind": "key:a",
       "line": 347,
       "file": "web/lib/legal/content.ts",
@@ -42590,6 +42590,7 @@
       "line": 20,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42606,6 +42607,7 @@
       "line": 50,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42622,6 +42624,7 @@
       "line": 50,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42638,6 +42641,7 @@
       "line": 51,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42654,6 +42658,7 @@
       "line": 51,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42670,6 +42675,7 @@
       "line": 52,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42686,6 +42692,7 @@
       "line": 52,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42702,6 +42709,7 @@
       "line": 53,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42718,6 +42726,7 @@
       "line": 53,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42734,6 +42743,7 @@
       "line": 54,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42750,6 +42760,7 @@
       "line": 54,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42766,6 +42777,7 @@
       "line": 58,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42782,6 +42794,7 @@
       "line": 59,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42798,6 +42811,7 @@
       "line": 64,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42814,6 +42828,7 @@
       "line": 65,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42830,6 +42845,7 @@
       "line": 66,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42846,6 +42862,7 @@
       "line": 74,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42862,6 +42879,7 @@
       "line": 77,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42878,6 +42896,7 @@
       "line": 80,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -42894,6 +42913,24 @@
       "line": 83,
       "file": "web/lib/reports/file-read.ts",
       "routes": [
+        "/api/parse-resume",
+        "/sample-report",
+        "/sample-report/career-break",
+        "/sample-report/career-change",
+        "/sample-report/new-graduate",
+        "/sample-report/staff-engineer",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "We couldn’t find text we can read in this file. If it’s a scan or a photo, upload the Word or PDF file you made it from, or paste the text.",
+      "kind": "const",
+      "line": 87,
+      "file": "web/lib/reports/file-read.ts",
+      "routes": [
+        "/api/parse-resume",
         "/sample-report",
         "/sample-report/career-break",
         "/sample-report/career-change",
@@ -44220,7 +44257,7 @@
     {
       "text": "This comparison link is incomplete. Open a saved report and choose Compare my revision.",
       "kind": "return",
-      "line": 44,
+      "line": 49,
       "file": "web/lib/reports/saved-report-revision.ts",
       "routes": [
         "/reports",
@@ -44238,7 +44275,7 @@
     {
       "text": "Sign in to the account that saved this report, then try again.",
       "kind": "return",
-      "line": 45,
+      "line": 50,
       "file": "web/lib/reports/saved-report-revision.ts",
       "routes": [
         "/reports",
@@ -44256,7 +44293,7 @@
     {
       "text": "This report was deleted or is not available to this account. Choose another saved report or start a new one.",
       "kind": "return",
-      "line": 46,
+      "line": 51,
       "file": "web/lib/reports/saved-report-revision.ts",
       "routes": [
         "/reports",
@@ -44274,7 +44311,7 @@
     {
       "text": "This saved report cannot be used for comparison. Start a new report with your current resume.",
       "kind": "return",
-      "line": 47,
+      "line": 52,
       "file": "web/lib/reports/saved-report-revision.ts",
       "routes": [
         "/reports",
@@ -44292,7 +44329,7 @@
     {
       "text": "We could not load the original report for comparison. Try again or start a new report.",
       "kind": "return",
-      "line": 48,
+      "line": 53,
       "file": "web/lib/reports/saved-report-revision.ts",
       "routes": [
         "/reports",

@@ -1,4 +1,5 @@
 import type { ReportData } from "../../components/workspace/report/ReportTypes";
+import { WorklistReportSchema } from "../llm/worklist-schema";
 import { ResumeFeedbackResponseSchema } from "../validation/resume-report-schema";
 
 const REPORT_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -30,7 +31,11 @@ export async function loadSavedReportRevision(reportId: string, signal: AbortSig
 
   const payload = await response.json();
   const report = payload?.report;
-  if (payload?.ok !== true || report?.report_id !== reportId || !ResumeFeedbackResponseSchema.safeParse(report).success) {
+  // A saved report is either the worklist report (every report since November 6, 2026, resume or LinkedIn) or the
+  // older shape. Checking the older shape alone turned every current report away with "Comparison unavailable"
+  // (live walk, November 17, 2026).
+  const knownShape = WorklistReportSchema.safeParse(report).success || ResumeFeedbackResponseSchema.safeParse(report).success;
+  if (payload?.ok !== true || report?.report_id !== reportId || !knownShape) {
     return { state: "error", baseline: null };
   }
 

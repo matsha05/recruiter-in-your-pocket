@@ -13,7 +13,7 @@ import { Analytics } from "@/lib/analytics";
 import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
-import { isLinkedInReport } from "@/lib/reports/report-document";
+import { isLinkedInReport, reportPdfFileName } from "@/lib/reports/report-document";
 import { ReportManageMenu } from "@/components/reports/ReportManageMenu";
 import { getCheckoutPricingHref } from "@/lib/billing/checkoutReturn";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
@@ -124,7 +124,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "resume-report.pdf";
+      a.download = reportPdfFileName(payload);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

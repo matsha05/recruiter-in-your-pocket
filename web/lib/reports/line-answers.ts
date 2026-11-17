@@ -88,12 +88,14 @@ export function parseStoredLineAnswers(value: unknown): StoredLineAnswersByFix |
   return Object.keys(out).length ? out : null;
 }
 
+/** One card's stored entry, as PATCH /api/reports/:id/answers keeps it under the card's position. */
+export function lineAnswerEntry(patch: LineAnswersPatch, now = new Date()): StoredLineAnswers {
+  return { answers: patch.answers, line: patch.line, source: patch.source, updated_at: now.toISOString() };
+}
+
 export function mergeLineAnswers(existing: unknown, patch: LineAnswersPatch, now = new Date()): StoredLineAnswersByFix {
   const current = parseStoredLineAnswers(existing) || {};
-  return {
-    ...current,
-    [String(patch.fix_index)]: { answers: patch.answers, line: patch.line, source: patch.source, updated_at: now.toISOString() },
-  };
+  return { ...current, [String(patch.fix_index)]: lineAnswerEntry(patch, now) };
 }
 
 /** The stored answers for a fix, lined up with the questions the report asks today (by question text). */

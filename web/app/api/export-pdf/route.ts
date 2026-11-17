@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { reportPdfFileName } from "@/lib/reports/report-document";
 import { generatePdfBuffer } from "@/lib/backend/pdf";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
@@ -99,7 +100,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="resume-report.pdf"',
+        "Content-Disposition": `attachment; filename="${reportPdfFileName(trustedReport)}"`,
         "x-request-id": request_id
       }
     });

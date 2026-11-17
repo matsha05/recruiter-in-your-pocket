@@ -21,7 +21,7 @@ import { useWorkspaceInit } from "@/components/workspace/hooks/useWorkspaceInit"
 import { useJobContextFromExtension, type LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
 import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
-import { isLinkedInReport, reportDocumentKind } from "@/lib/reports/report-document";
+import { isLinkedInReport, reportDocumentKind, reportPdfFileName } from "@/lib/reports/report-document";
 import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
 import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
 import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
@@ -481,7 +481,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = "resume-report.pdf";
+            a.download = reportPdfFileName(payload);
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
