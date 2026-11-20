@@ -101,7 +101,7 @@ export function useResumeReview(input: {
     try {
       const saved = await saveReceiptValidatedReport(reportToSave);
       // My reports may have been prefetched before the guest report belonged to this account.
-      router.refresh();
+      if (saved !== reportToSave) router.refresh();
       input.setReport((current: any) => (
         current === reportToSave ? saved : current
       ));

@@ -175,6 +175,25 @@ test.describe("saving an anonymous report after sign-in", () => {
     expect(await page.evaluate((key) => localStorage.getItem(key), ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBeNull();
   });
 
+  test("a timed-out claim releases sign-in and lets the signed-in person retry", async ({ page }) => {
+    let requests = 0;
+    await page.route("**/api/reports/recovery", (route) => {
+      requests += 1;
+      if (requests === 1) return;
+      return route.fulfill({ json: { ok: true, reportId: SAVED_REPORT_ID, recovery_id: RECOVERY_ID } });
+    });
+    await page.goto(`${ORIGIN}/workspace`);
+    const save = page.getByTestId("workspace-keep-report");
+    await save.click();
+    await signInToSave(page);
+    await expect(page.getByRole("alert")).toContainText("We couldn’t save this report to My reports.", { timeout: 25000 });
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(save).toHaveAccessibleName("Try saving again");
+    await save.click();
+    await expect(page.getByTestId("report-kept")).toContainText("Kept in My reports.");
+    expect(requests).toBe(2);
+  });
+
   for (const firstName of [null, "Dana"]) {
     test(`sign-in waits for the report write before allowing navigation (first name: ${firstName})`, async ({ page }) => {
       let claim: Route | undefined;

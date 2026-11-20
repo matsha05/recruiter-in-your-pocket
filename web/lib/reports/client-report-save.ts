@@ -4,6 +4,7 @@ import { ClientActionError } from "../client-action-error";
 
 type FetchLike = typeof fetch;
 const inFlightSaves = new WeakMap<object, Promise<any>>();
+const REPORT_SAVE_TIMEOUT_MS = 15_000;
 
 export function needsReceiptValidatedSave(report: unknown) {
   if (!report || typeof report !== "object" || buildPdfExportRequest(report)) return false;
@@ -17,6 +18,7 @@ async function postReceiptValidatedReport(report: object, fetchImpl: FetchLike) 
     : null;
   const response = await fetchImpl(recoveryId ? "/api/reports/recovery" : "/api/reports", {
     method: "POST",
+    signal: AbortSignal.timeout(REPORT_SAVE_TIMEOUT_MS),
     credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(recoveryId ? { recovery_id: recoveryId } : { report }),
