@@ -5,6 +5,8 @@ import { PASS_SPENT_LABEL, accountBalanceLine, isBalanceKnown, isPassSpent, read
 import { WorklistReportSchema } from "../lib/llm/worklist-schema";
 import { loadSavedReportRevision } from "../lib/reports/saved-report-revision";
 import { reportPdfFileName } from "../lib/reports/report-document";
+import { renderReportHtml } from "../lib/backend/pdf";
+import { normalizeReportForPdf } from "../lib/reports/pdf-export";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { splitVerdict } from "../lib/reports/report-opening";
@@ -71,6 +73,15 @@ import { ACROSS_SHAPES_NOTE, compareAcrossShapes, fitHeading, fitListRoles, hasR
 assert.equal(reportPdfFileName({ document: "linkedin", cards: [] }), "linkedin-profile-review.pdf");
 assert.equal(reportPdfFileName({ cards: [] }), "resume-report.pdf");
 assert.equal(reportPdfFileName(null), "resume-report.pdf");
+
+// ---- The PDF's score band holds its five rungs on one row (new-visitor walk, November 20, 2026) ----
+{
+  // The scale was a four-column grid from the four-band report; the worklist's fifth rung wrapped under the first.
+  const html = renderReportHtml(normalizeReportForPdf(JSON.parse(readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8")), null)!);
+  assert.equal(html.match(/class="band-bar/gu)?.length, 5, "five rungs");
+  assert.ok(/\.band-scale \{[^}]*grid-auto-flow: column/u.test(html), "laid out in one row, however many there are");
+  assert.ok(!/\.band-scale \{[^}]*repeat\(4/u.test(html));
+}
 
 // ---- A pass with every report used is not "the free report" ----
 {

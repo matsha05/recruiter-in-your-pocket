@@ -175,7 +175,8 @@ export default function PaywallModal({
             <Dialog open={isOpen} onOpenChange={handleOpenChange}>
                 <DialogContent className="max-w-md p-7">
                     <DialogHeader className="text-center">
-                        <DialogTitle className="font-display text-heading">
+                        {/* The title keeps clear of the close button in the corner (new-visitor walk, November 20, 2026). */}
+                        <DialogTitle className="px-7 font-display text-heading text-balance">
                             {offerFreeSignIn ? "Your free report needs an account" : "Passes are paused for now"}
                         </DialogTitle>
                         {description ? (
@@ -195,7 +196,7 @@ export default function PaywallModal({
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
-                    <DialogTitle className="font-display text-xl font-bold">
+                    <DialogTitle className="px-7 font-display text-xl font-bold text-balance">
                         {offerFreeSignIn ? "Your free report needs an account" : unlockTitle}
                     </DialogTitle>
                     <DialogDescription className="text-sm">

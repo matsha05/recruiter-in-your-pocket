@@ -47,7 +47,45 @@ function blankWidth(label: string, value: string) {
 /** A blank whose name or answer is a phrase: a field that wraps like text and grows to what it holds. */
 const LONG_BLANK = 28;
 
-function BlankArea({ id, label, value, onChange }: { id: string; label: string; value: string; onChange: (value: string) => void }) {
+/**
+ * One blank: a one-line field for a short answer, a wrapping one for a phrase. The two are different elements, so
+ * the kind is held while the person is typing in it and changes only once they leave. Swapping at the 29th
+ * character dropped the cursor, and the rest of the answer with it; "led weekly dock safety walkthroughs" was
+ * kept as "led weekly dock safety walkth" (new-visitor walk, November 20, 2026).
+ */
+function BlankField({ id, label, value, trailing, onChange }: { id: string; label: string; value: string; trailing: string; onChange: (value: string) => void }) {
+  const wantsLong = Math.max(label.length, value.trim().length) > LONG_BLANK;
+  const [long, setLong] = useState(wantsLong);
+  const focused = useRef(false);
+  useEffect(() => { if (!focused.current) setLong(wantsLong); }, [wantsLong]);
+  const onFocus = () => { focused.current = true; };
+  const onBlur = () => { focused.current = false; setLong(wantsLong); };
+  return (
+    <span className={styles.blankField} data-filled={value.trim() ? "" : undefined} data-long={long ? "" : undefined}>
+      {long ? (
+        <BlankArea id={id} label={label} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+      ) : (
+        <input
+          id={id}
+          type="text"
+          className={styles.blankInput}
+          style={{ width: blankWidth(label, value) }}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={label}
+          aria-label={label}
+          autoComplete="off"
+          maxLength={300}
+          data-testid="worklist-blank"
+        />
+      )}{trailing}
+    </span>
+  );
+}
+
+function BlankArea({ id, label, value, onChange, onFocus, onBlur }: { id: string; label: string; value: string; onChange: (value: string) => void; onFocus?: () => void; onBlur?: () => void }) {
   const ref = useRef<HTMLTextAreaElement>(null);
   const fit = () => {
     const area = ref.current;
@@ -65,6 +103,8 @@ function BlankArea({ id, label, value, onChange }: { id: string; label: string; 
       style={{ width: value.trim() ? `min(${blankWidth(label, value)}, 100%)` : "100%" }}
       value={value}
       onChange={(event) => onChange(event.target.value.replace(/\r?\n/gu, " "))}
+      onFocus={onFocus}
+      onBlur={onBlur}
       placeholder={label}
       aria-label={label}
       autoComplete="off"
@@ -229,27 +269,7 @@ export function WorklistCard({ card, index, cards, resumeText, document = "resum
                     ? <span key={i} className={styles.blankFilled}>{answer.trim()}</span>
                     : <span key={i} className={styles.blank} data-open="">[{segment.label}]</span>;
                 }
-                return (
-                  <span key={i} className={styles.blankField} data-filled={answer.trim() ? "" : undefined} data-long={Math.max(segment.label.length, answer.trim().length) > LONG_BLANK ? "" : undefined}>
-                    {Math.max(segment.label.length, answer.trim().length) > LONG_BLANK ? (
-                      <BlankArea id={`${baseId}-blank-${segment.index}`} label={segment.label} value={answer} onChange={(value) => setAnswer(segment.index, value)} />
-                    ) : (
-                    <input
-                      id={`${baseId}-blank-${segment.index}`}
-                      type="text"
-                      className={styles.blankInput}
-                      style={{ width: blankWidth(segment.label, answer) }}
-                      value={answer}
-                      onChange={(event) => setAnswer(segment.index, event.target.value)}
-                      placeholder={segment.label}
-                      aria-label={segment.label}
-                      autoComplete="off"
-                      maxLength={300}
-                      data-testid="worklist-blank"
-                    />
-                    )}{trailing}
-                  </span>
-                );
+                return <BlankField key={i} id={`${baseId}-blank-${segment.index}`} label={segment.label} value={answer} trailing={trailing} onChange={(value) => setAnswer(segment.index, value)} />;
               })}
             </p>
           )}
