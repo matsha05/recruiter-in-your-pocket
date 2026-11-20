@@ -227,3 +227,32 @@ test.describe("on a phone", () => {
     expect(box!.height).toBeGreaterThanOrEqual(44);
   });
 });
+
+// New-visitor walk, November 20, 2026: a blank turned from a one-line field into a wrapping one at the 29th
+// character, and the swap dropped the cursor: "led weekly dock safety walkthroughs" was kept as "…walkth".
+test("typing a long answer into a short blank keeps every character, and so does replacing it", async ({ page }) => {
+  await runReport(page, { signedIn: false });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  // A short label starts as a one-line field.
+  const shortIndex = lineLabels.findIndex((label) => label.length <= 28);
+  expect(shortIndex).toBeGreaterThanOrEqual(0);
+  const blank = card.getByTestId("worklist-blank").nth(shortIndex);
+  await expect(blank).toHaveJSProperty("tagName", "INPUT");
+  const answer = "led weekly dock safety walkthroughs";
+  await blank.click();
+  await page.keyboard.type(answer, { delay: 15 });
+  await expect(blank).toHaveValue(answer);
+  await expect(blank).toBeFocused();
+  // Leaving the field lets it wrap; the words are all still there.
+  await page.keyboard.press("Tab");
+  await expect(blank).toHaveJSProperty("tagName", "TEXTAREA");
+  await expect(blank).toHaveValue(answer);
+  // Replacing a long answer with a short one, typed key by key, keeps the cursor too.
+  await blank.click();
+  await page.keyboard.press("ControlOrMeta+A");
+  await page.keyboard.type("led the audits", { delay: 15 });
+  await expect(blank).toHaveValue("led the audits");
+  await expect(blank).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(blank).toHaveJSProperty("tagName", "INPUT");
+});
