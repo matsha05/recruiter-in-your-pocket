@@ -71,7 +71,7 @@ function reportTitle(report: ReportHistoryItem) {
 /** Under "Since version 1" when that version is an older kind of report: no bare "Down 2." with nothing behind it. */
 const EARLIER_SHAPE_NOTE = "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.";
 
-export function ReportHistoryList({ initialReports: reports, pass = null, account }: {
+export function ReportHistoryList({ initialReports: reports, pass: pagePass = null, account }: {
   initialReports: ReportHistoryItem[];
   pass?: ReportHistoryPass | null;
   account?: AuthUser | null;
@@ -82,7 +82,9 @@ export function ReportHistoryList({ initialReports: reports, pass = null, accoun
     setPageAccount(account);
     return () => setPageAccount(null);
   }, [account, setPageAccount]);
-  const pageBalance = !user || user.id === account?.id ? accountBalanceLine(account) : null;
+  const differentAccount = user && account && user.id !== account.id;
+  const pageBalance = differentAccount ? null : accountBalanceLine(account);
+  const pass = differentAccount ? null : pagePass;
   const access = accountBalanceLine(user) ?? pageBalance ?? (pass && pass.usesLeft > 0
     ? `${pass.usesLeft} ${pass.usesLeft === 1 ? "report" : "reports"} left on your pass`
     : pass ? PASS_SPENT_LABEL : null);

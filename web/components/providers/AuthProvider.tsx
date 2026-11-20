@@ -295,7 +295,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const account = useMemo(() => {
         if (!pageAccount || (user && user.id !== pageAccount.id)) return user;
         if (!user) return status === "checking" ? pageAccount : null;
-        return isBalanceKnown(user) ? user : { ...user, ...pageAccount };
+        return isBalanceKnown(user) ? user : { ...pageAccount, email: user.email, firstName: user.firstName };
     }, [status, pageAccount, user]);
     const loading = status === "signing-out" || (status === "checking" && !(pageAccount && account?.id === pageAccount.id));
 
