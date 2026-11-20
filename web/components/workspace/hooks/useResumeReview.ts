@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { Analytics } from "@/lib/analytics";
 import { parseResume, streamResumeFeedback } from "@/lib/api";
 import { saveReceiptValidatedReport } from "@/lib/reports/client-report-save";
@@ -49,6 +50,7 @@ export function useResumeReview(input: {
   captureUploadOwner?: () => unknown;
   isUploadOwnerCurrent?: (owner: unknown) => boolean;
 }) {
+  const router = useRouter();
   const [reportSaveState, setReportSaveState] = useState<ReportSaveState>(null);
   const latestUpload = useRef(0);
   useEffect(() => () => { latestUpload.current += 1; }, []);
@@ -98,6 +100,8 @@ export function useResumeReview(input: {
     setReportSaveState({ report: reportToSave, status: "saving", message: null });
     try {
       const saved = await saveReceiptValidatedReport(reportToSave);
+      // My reports may have been prefetched before the guest report belonged to this account.
+      router.refresh();
       input.setReport((current: any) => (
         current === reportToSave ? saved : current
       ));
@@ -113,7 +117,7 @@ export function useResumeReview(input: {
       } : current);
       throw error;
     }
-  }, [input]);
+  }, [input, router]);
 
   const handleRequestSaveAuth = useCallback(() => {
     input.setIsSavePromptOpen(false);

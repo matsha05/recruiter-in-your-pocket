@@ -30,12 +30,13 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 interface DialogContentProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
     /** Optionally disable motion (for nested dialogs or special cases) */
     disableMotion?: boolean;
+    closeDisabled?: boolean;
 }
 
 const DialogContent = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Content>,
     DialogContentProps
->(({ className, children, disableMotion = false, ...props }, ref) => {
+>(({ className, children, disableMotion = false, closeDisabled = false, ...props }, ref) => {
     return (
         <DialogPortal>
             <DialogOverlay />
@@ -49,7 +50,7 @@ const DialogContent = React.forwardRef<
                 {...props}
             >
                 {children}
-                <DialogPrimitive.Close className="absolute right-1.5 top-1.5 inline-flex size-11 items-center justify-center rounded-full text-muted-foreground ring-offset-background riyp-surface-link hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none">
+                <DialogPrimitive.Close disabled={closeDisabled} className="absolute right-1.5 top-1.5 inline-flex size-11 items-center justify-center rounded-full text-muted-foreground ring-offset-background riyp-surface-link hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none">
                     <X className="size-5" />
                     <span className="sr-only">Close</span>
                 </DialogPrimitive.Close>

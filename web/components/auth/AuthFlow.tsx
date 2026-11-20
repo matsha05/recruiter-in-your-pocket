@@ -19,8 +19,8 @@ type AuthStep = "email" | "code" | "name";
 interface AuthFlowProps {
   variant?: "page" | "modal";
   context?: AuthContext;
-  onSuccess?: () => void;
-  onClose?: () => void;
+  onSuccess?: () => void | Promise<void>;
+  isCompleting?: boolean;
   redirectTo?: string;
   /** A plain sign-in with nowhere to go back to: land on My reports when the person has a saved report (lib/auth/landing.ts). */
   landOnSavedReports?: boolean;
@@ -35,7 +35,7 @@ export function AuthFlow({
   variant = "page",
   context = "default",
   onSuccess,
-  onClose,
+  isCompleting = false,
   redirectTo,
   landOnSavedReports = false,
   isOpen = true,
@@ -52,7 +52,8 @@ export function AuthFlow({
   const [firstName, setFirstName] = useState("");
   const [loading, setLoading] = useState(false);
   // After verification, while the landing for a plain sign-in is being decided.
-  const [finishing, setFinishing] = useState(false);
+  const [choosingLanding, setChoosingLanding] = useState(false);
+  const finishing = isCompleting || choosingLanding;
   const [loadingAction, setLoadingAction] = useState<"send" | "verify" | "name" | null>(null);
   const [error, setError] = useState<string | null>(initialError);
   const [resendCooldown, setResendCooldown] = useState(0);
@@ -161,15 +162,13 @@ export function AuthFlow({
       // before opening a protected destination; a router refresh preserves it.
       if (landOnSavedReports) {
         // The button stays busy while we ask whether there is a saved report to open; the answer can't fail the sign-in.
-        setFinishing(true);
+        setChoosingLanding(true);
         void signInLanding().then((landing) => window.location.replace(landing));
         return;
       }
       window.location.replace(safeAuthRedirect(redirectTo ?? null, "/workspace"));
-    } else {
-      onClose?.();
     }
-  }, [landOnSavedReports, onClose, onSuccess, redirectTo, variant]);
+  }, [landOnSavedReports, onSuccess, redirectTo, variant]);
 
   const verifyCode = useCallback(async () => {
     if (!isOpen || step !== "code" || !/^\d{8}$/.test(code) || authRequestRef.current.pending || authRequestRef.current.verified) return;
@@ -246,6 +245,7 @@ export function AuthFlow({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (finishing) return;
     if (step === "email") void handleSendCode();
     if (step === "code") void verifyCode();
     if (step === "name") void handleSaveName();
@@ -365,7 +365,7 @@ export function AuthFlow({
                 <button
                   type="button"
                   className="focus-ring min-h-11 rounded-md text-left transition-colors hover:text-foreground disabled:opacity-60"
-                  disabled={loading}
+                  disabled={loading || finishing}
                   onClick={() => {
                     if (authRequestRef.current.pending) return;
                     setStep("email");
@@ -384,7 +384,7 @@ export function AuthFlow({
                     "focus-ring min-h-11 min-w-[7rem] rounded-md text-left tabular-nums transition-colors hover:text-foreground",
                     resendCooldown > 0 && "cursor-not-allowed opacity-60"
                   )}
-                  disabled={loading || resendCooldown > 0}
+                  disabled={loading || finishing || resendCooldown > 0}
                   onClick={() => handleSendCode()}
                 >
                   {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend code"}
@@ -421,7 +421,7 @@ export function AuthFlow({
                 variant="quiet"
                 className="w-full text-muted-foreground hover:text-foreground"
                 onClick={() => finishAuth()}
-                disabled={finishing}
+                disabled={loading || finishing}
               >
                 Skip for now
               </Button>
