@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, useMemo, ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
 import { identifyUser, resetAnalytics } from "@/lib/analytics";
-import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
+import { isBalanceKnown, readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
 import { readAuthoritativeFreeUses } from "@/lib/billing/freeStatusClient";
 
 export interface AuthUser {
@@ -24,6 +24,7 @@ interface AuthContextType {
     isLoading: boolean;
     signOut: () => Promise<void>;
     refreshUser: () => Promise<void>;
+    setPageAccount: (account: AuthUser | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -67,7 +68,8 @@ function settleWithin<T>(task: PromiseLike<T>, timeoutMs: number, message: strin
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<AuthUser | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [status, setStatus] = useState<"checking" | "ready" | "signing-out">("checking");
+    const [pageAccount, setPageAccount] = useState<AuthUser | null>(null);
     const mountedRef = useRef(false);
     const revisionRef = useRef(0);
     const accountIdRef = useRef<string | null>(null);
@@ -186,7 +188,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             controller.abort();
             if (isCurrent()) {
                 refreshAbortRef.current = null;
-                setIsLoading(false);
+                setStatus("ready");
             }
         }
     }, [invalidateRefresh, mapUser]);
@@ -197,7 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         invalidateRefresh();
         const startingAccount = accountIdRef.current;
         const controller = new AbortController();
-        setIsLoading(true);
+        setStatus("signing-out");
         try {
             const response = await settleWithin(
                 fetch("/api/auth/sign-out", { method: "POST", signal: controller.signal }),
@@ -229,7 +231,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             controller.abort();
             signingOutRef.current = false;
             if (mountedRef.current) {
-                setIsLoading(false);
+                setStatus("ready");
                 if (accountIdRef.current !== null && accountIdRef.current !== startingAccount) {
                     void refreshUser(accountIdRef.current);
                 }
@@ -265,7 +267,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                         : nextUser);
                     if (!session?.user) {
                         resetAnalytics();
-                        setIsLoading(false);
+                        setStatus("ready");
                         return;
                     }
                     deferRefresh();
@@ -288,8 +290,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
     }, [invalidateRefresh, mapUser, refreshUser]);
 
+    // My reports already verified the account on the server. Use its balance while
+    // the browser resolves the same session, including for the header outside the page.
+    const account = useMemo(() => {
+        if (!pageAccount || (user && user.id !== pageAccount.id)) return user;
+        if (!user) return status === "checking" ? pageAccount : null;
+        return isBalanceKnown(user) ? user : { ...user, ...pageAccount };
+    }, [status, pageAccount, user]);
+    const loading = status === "signing-out" || (status === "checking" && !(pageAccount && account?.id === pageAccount.id));
+
     return (
-        <AuthContext.Provider value={{ user, isLoading, signOut, refreshUser }}>
+        <AuthContext.Provider value={{ user: account, isLoading: loading, signOut, refreshUser, setPageAccount }}>
             {children}
         </AuthContext.Provider>
     );

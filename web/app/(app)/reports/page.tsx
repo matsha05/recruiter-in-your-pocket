@@ -10,6 +10,9 @@ import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { splitVerdict } from "@/lib/reports/report-opening";
 import { groupReportVersions, lineProgress, revisionProgress, savedPostingRole, scoreChanges } from "@/lib/reports/report-history";
+import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
+import { accountFreeReportsLeft } from "@/lib/billing/freeStatusClient";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import { isPassActive, isUnlimitedPassTier, passIncludesPostingReads } from "@/lib/billing/entitlements";
 
 /** The verdict as one plain line for a row: trimmed, and cut at a sentence when the stored text runs long. */
@@ -85,13 +88,24 @@ export default async function ReportsPage() {
     }
   }
 
-  // The pass, for the line above the list: how many reports are left and the day it ends. A failed read leaves
-  // the line to what the signed-in session already knows.
-  const { data: passes } = await supabase
-    .from("passes")
-    .select("tier, uses_remaining, expires_at, revoked_at, revocation_reason")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false });
+  // Read the signed-in allowance with the history so the first page and its
+  // account menu have the same balance before the browser's session check.
+  const [passRead, usageRead] = await Promise.all([
+    supabase.from("passes")
+      .select("tier, uses_remaining, expires_at, revoked_at, revocation_reason")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false }),
+    supabase.from("user_usage").select("free_report_used_at").eq("user_id", user.id).maybeSingle(),
+  ]);
+  const passes = passRead.data;
+  const account = !passRead.error && passes ? {
+    id: user.id,
+    email: user.email ?? null,
+    firstName: user.user_metadata?.first_name ?? null,
+    ...readAuthoritativePassAccess(true, { ok: true, passes }),
+    freeUsesLeft: isDevelopmentPaywallBypassEnabled() ? 99
+      : usageRead.error ? undefined : accountFreeReportsLeft(usageRead.data),
+  } : null;
   const countedPasses = (passes || []).filter((pass) => !isUnlimitedPassTier(pass.tier));
   const hasUnlimitedPass = (passes || []).some((pass) => isPassActive(pass) && isUnlimitedPassTier(pass.tier));
   // A pass still in its term with every report used is named as that from the first paint, never as a free report.
@@ -154,6 +168,7 @@ export default async function ReportsPage() {
           </div>
         ) : (
           <ReportHistoryList
+            account={account}
             pass={activePass ? { usesLeft: Number(activePass.uses_remaining || 0), expiresAt: activePass.expires_at } : null}
             initialReports={items.map((report) => ({
               id: report.id,

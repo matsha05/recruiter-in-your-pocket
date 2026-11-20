@@ -30,7 +30,7 @@ type BalanceUser = { membership?: string | null; paidUsesLeft?: number | null; f
  * about a second on every load of My reports (live check, November 13, 2026).
  */
 export function isBalanceKnown(user: BalanceUser | null | undefined): boolean {
-  return Boolean(user) && (user?.membership != null || user?.freeUsesLeft != null);
+  return user?.freeUsesLeft != null || Boolean(user?.membership && user.membership !== "free");
 }
 
 /** What a signed-in account has left, in the words My reports and Settings both use. Null while it isn't known. */
