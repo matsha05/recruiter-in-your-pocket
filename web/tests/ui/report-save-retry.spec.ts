@@ -26,7 +26,7 @@ async function buildSaveHarness() {
       const subscribe = (callback) => { window.addEventListener("popstate", callback); return () => window.removeEventListener("popstate", callback); };
       const snapshot = () => window.location.pathname + window.location.search;
       const navigate = (href, method) => { window.history[method](null, "", href); window.dispatchEvent(new PopStateEvent("popstate")); };
-      const router = { push: (href) => navigate(href, "pushState"), replace: (href) => navigate(href, "replaceState"), refresh() {} };
+      const router = { push: (href) => navigate(href, "pushState"), replace: (href) => navigate(href, "replaceState"), refresh() { window.dispatchEvent(new Event("test-router-refresh")); } };
       export function useRouter() { return router; }
       export function usePathname() { return useSyncExternalStore(subscribe, snapshot).split("?")[0]; }
       export function useSearchParams() { const location = useSyncExternalStore(subscribe, snapshot); return useMemo(() => new URLSearchParams(location.split("?")[1] || ""), [location]); }`,
@@ -40,10 +40,6 @@ async function buildSaveHarness() {
       };
       export function useOptionalAuthUser() { return useAuth()?.user ?? null; }
       export function useAuth() { return {user: useSyncExternalStore(subscribe, snapshot), isLoading: false, refreshUser}; }`,
-    "@/components/shared/AuthModal": `import React from "react";
-      export default function AuthModal({isOpen, onSuccess}) {
-        return isOpen ? <section role="dialog" aria-label="Test sign-in boundary"><button type="button" onClick={() => void onSuccess()}>Complete test sign-in</button></section> : null;
-      }`,
     "@/components/workspace/HistorySidebar": `export default function HistorySidebar() { return null; }`,
     "@/components/workspace/PaywallModal": `export default function PaywallModal() { return null; }`,
     "@/components/workspace/LinkedInModeSection": `export default function LinkedInModeSection() { return null; }`,
@@ -123,6 +119,16 @@ async function installSaveHarness(page: Page) {
   });
 }
 
+async function signInToSave(page: Page, firstName: string | null = null) {
+  await page.route("**/api/auth/send-code", (route) => route.fulfill({ json: { ok: true } }));
+  await page.route("**/api/auth/verify-code", (route) => route.fulfill({ json: { ok: true, user: { firstName } } }));
+  await page.getByRole("button", { name: "Sign in to save", exact: true }).click();
+  await page.getByRole("textbox", { name: "Email address" }).fill("candidate@example.test");
+  await page.getByRole("button", { name: "Send sign-in code" }).click();
+  await page.getByRole("textbox", { name: "Sign-in code" }).fill("12345678");
+  if (!firstName) await page.getByRole("button", { name: "Skip for now" }).click();
+}
+
 test.describe("saving an anonymous report after sign-in", () => {
   let runtimeErrors: string[] = [];
   test.beforeAll(buildSaveHarness);
@@ -169,6 +175,54 @@ test.describe("saving an anonymous report after sign-in", () => {
     expect(await page.evaluate((key) => localStorage.getItem(key), ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBeNull();
   });
 
+  test("a timed-out claim releases sign-in and lets the signed-in person retry", async ({ page }) => {
+    let requests = 0;
+    await page.route("**/api/reports/recovery", (route) => {
+      requests += 1;
+      if (requests === 1) return;
+      return route.fulfill({ json: { ok: true, reportId: SAVED_REPORT_ID, recovery_id: RECOVERY_ID } });
+    });
+    await page.goto(`${ORIGIN}/workspace`);
+    const save = page.getByTestId("workspace-keep-report");
+    await save.click();
+    await signInToSave(page);
+    await expect(page.getByRole("alert")).toContainText("We couldn’t save this report to My reports.", { timeout: 25000 });
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(save).toHaveAccessibleName("Try saving again");
+    await save.click();
+    await expect(page.getByTestId("report-kept")).toContainText("Kept in My reports.");
+    expect(requests).toBe(2);
+  });
+
+  for (const firstName of [null, "Dana"]) {
+    test(`sign-in waits for the report write before allowing navigation (first name: ${firstName})`, async ({ page }) => {
+      let claim: Route | undefined;
+      await page.route("**/api/reports/recovery", (route) => { claim = route; });
+      await page.goto(`${ORIGIN}/workspace`);
+      await page.evaluate(() => {
+        document.documentElement.dataset.routeRefreshes = "0";
+        window.addEventListener("test-router-refresh", () => {
+          const count = Number(document.documentElement.dataset.routeRefreshes);
+          document.documentElement.dataset.routeRefreshes = String(count + 1);
+        });
+      });
+      await page.getByTestId("workspace-keep-report").click();
+      await signInToSave(page, firstName);
+      await expect.poll(() => Boolean(claim)).toBe(true);
+      const dialog = page.getByRole("dialog", { name: "Save this report" });
+      await expect(dialog).toBeVisible();
+      await expect(dialog.getByRole("button", { name: "Close", exact: true })).toBeDisabled();
+      await page.keyboard.press("Escape");
+      await expect(dialog).toBeVisible();
+      await expect(page.locator("html")).toHaveAttribute("data-route-refreshes", "0");
+
+      await claim!.fulfill({ json: { ok: true, reportId: SAVED_REPORT_ID, recovery_id: RECOVERY_ID } });
+      await expect(dialog).toHaveCount(0);
+      await expect(page.getByTestId("report-kept")).toContainText("Kept in My reports.");
+      await expect(page.locator("html")).toHaveAttribute("data-route-refreshes", "1");
+    });
+  }
+
   for (const viewport of [{ label: "desktop", width: 1440, height: 900 }, { label: "mobile", width: 390, height: 844 }]) {
     test(`a failed claim stays visible and can be retried on ${viewport.label}`, async ({ page }, testInfo) => {
       await page.setViewportSize(viewport);
@@ -187,8 +241,7 @@ test.describe("saving an anonymous report after sign-in", () => {
         await page.locator("#section-fixes").evaluate((section) => window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY, behavior: "instant" }));
       }
       await page.getByTestId("workspace-keep-report").click();
-      await page.getByRole("button", { name: "Sign in to save", exact: true }).click();
-      await page.getByRole("button", { name: "Complete test sign-in", exact: true }).click();
+      await signInToSave(page);
 
       const retry = page.getByTestId("workspace-keep-report");
       const error = page.getByRole("alert");
@@ -196,7 +249,7 @@ test.describe("saving an anonymous report after sign-in", () => {
       await expect(retry).toHaveAccessibleName("Try saving again");
       await expect(retry).toBeEnabled();
       await expect(heading).toHaveText(REPORT.first_impression);
-      await expect(page.getByRole("dialog", { name: "Test sign-in boundary" })).toHaveCount(0);
+      await expect(page.getByRole("dialog")).toHaveCount(0);
       expect(attempts).toHaveLength(1);
       expect(await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!).recoveryId, ANONYMOUS_REPORT_RECOVERY_STORAGE_KEY)).toBe(RECOVERY_ID);
       await error.scrollIntoViewIfNeeded();

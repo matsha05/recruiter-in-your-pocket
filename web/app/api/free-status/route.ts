@@ -11,6 +11,7 @@ import {
   parseFreeCookie,
 } from "@/lib/backend/freeCookie";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { accountFreeReportsLeft } from "@/lib/billing/freeStatusClient";
 import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 import {
   anonymousGenerationAccessBackend,
@@ -62,8 +63,7 @@ export async function GET(request: Request) {
         });
         throw new Error("Free status database lookup failed");
       }
-      // If no record or no free_report_used_at, they have 1 free remaining
-      freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
+      freeUsesRemaining = accountFreeReportsLeft(usageData);
 
       return NextResponse.json({
         ok: true,

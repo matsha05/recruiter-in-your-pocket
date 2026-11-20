@@ -73,8 +73,6 @@ export default function WorkspaceOverlays(props: {
             // The report retains a persistent save error and an authenticated retry.
           }
         }
-        props.setIsAuthOpen(false);
-        props.setAuthContext("default");
       }}
     />
     <SaveReportPrompt

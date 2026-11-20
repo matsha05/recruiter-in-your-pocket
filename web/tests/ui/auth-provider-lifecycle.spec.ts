@@ -127,7 +127,7 @@ async function buildProviderHarness() {
         import "@/lib/supabase/browserClient";
         import {AuthProvider, useAuth} from "@/components/providers/AuthProvider";
         function AccountProbe() {
-          const {user, isLoading, refreshUser, signOut} = useAuth();
+          const {user, isLoading, refreshUser, signOut, setPageAccount} = useAuth();
           window.__authProviderHarness.refreshUser = refreshUser;
           window.__authProviderHarness.signOut = signOut;
           useEffect(() => {
@@ -137,6 +137,7 @@ async function buildProviderHarness() {
             <h1>Account lifecycle</h1>
             <pre data-testid="account">{JSON.stringify(user)}</pre>
             <output data-testid="loading">{String(isLoading)}</output>
+            <button onClick={() => setPageAccount({id: "${USER_A}", email: "a@example.test", membership: "free", freeUsesLeft: 1})}>Arrive on verified reports page</button>
             <button onClick={() => void refreshUser()}>Refresh account</button>
             <button onClick={() => void signOut()}>Sign out</button>
           </section>;
@@ -314,6 +315,22 @@ test.describe("account provider lifecycle", () => {
     expect(state.renders.some((render) => render.user?.id === USER_A)).toBe(false);
     expect(state.analytics.filter((event) => event.kind === "identify")).toEqual([]);
     expect(state.requests).toEqual([]);
+  });
+
+  test("a server-verified reports page supplies the immediate account allowance until live status resolves", async ({ page }) => {
+    await installHarness(page);
+    await page.getByRole("button", { name: "Arrive on verified reports page" }).click();
+    await expectAccount(page, { id: USER_A, freeUsesLeft: 1 });
+    await expect(page.getByTestId("loading")).toHaveText("false");
+    const requests = await startStatusRequests(page, 0);
+    await expectAccount(page, { id: USER_A, freeUsesLeft: 1 });
+    await finishStatusRequests(page, requests, 3, 0);
+    await expectAccount(page, { id: USER_A, paidUsesLeft: 3, freeUsesLeft: 0 });
+    await emit(page, "SIGNED_IN", USER_B);
+    await expectAccount(page, { id: USER_B });
+    expect(JSON.parse(await page.getByTestId("account").innerText()).freeUsesLeft).toBeUndefined();
+    await emit(page, "SIGNED_OUT", null);
+    await expectAccount(page, null);
   });
 
   test("a manual refresh can discover a newly signed-in cookie session without an auth event", async ({ page }) => {

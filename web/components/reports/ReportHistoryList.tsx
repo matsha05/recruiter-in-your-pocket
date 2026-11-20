@@ -4,14 +4,14 @@ import { PASS_SPENT_LABEL, accountBalanceLine } from "@/lib/billing/accountPassS
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { scoreBandFor } from "@/lib/reports/score-band";
 import { scoreMoved } from "@/lib/score-utils";
 import { Button } from "@/components/ui/button";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
-import { useAuth } from "@/components/providers/AuthProvider";
+import { type AuthUser, useAuth } from "@/components/providers/AuthProvider";
 import { Pile } from "@/components/materials/Pile";
 import { earlierVersionsLabel, groupReportVersions, lineProgressLabel, reportVersions, revisionProgressLabel, revisionScoreLabel, scoreChangeLabel, versionChangeLabel, type LineProgress, type RevisionProgress, type ScoreChange } from "@/lib/reports/report-history";
 import { VersionComparisonView } from "@/components/workspace/VersionComparisonView";
@@ -71,14 +71,23 @@ function reportTitle(report: ReportHistoryItem) {
 /** Under "Since version 1" when that version is an older kind of report: no bare "Down 2." with nothing behind it. */
 const EARLIER_SHAPE_NOTE = "Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here.";
 
-export function ReportHistoryList({ initialReports: reports, pass = null }: { initialReports: ReportHistoryItem[]; pass?: ReportHistoryPass | null }) {
-  const { user } = useAuth();
-  // The pass the server read wins: it is this page's own data, and it is there before the session hook answers.
-  // A pass with every report used is named as that until the hook answers, never as a free report; once it has,
-  // the hook's line stands, since it also knows about a free report still unused.
-  const access = pass && pass.usesLeft > 0
+export function ReportHistoryList({ initialReports: reports, pass: pagePass = null, account }: {
+  initialReports: ReportHistoryItem[];
+  pass?: ReportHistoryPass | null;
+  account?: AuthUser | null;
+}) {
+  const { user, setPageAccount } = useAuth();
+  useEffect(() => {
+    if (!account) return;
+    setPageAccount(account);
+    return () => setPageAccount(null);
+  }, [account, setPageAccount]);
+  const differentAccount = user && account && user.id !== account.id;
+  const pageBalance = differentAccount ? null : accountBalanceLine(account);
+  const pass = differentAccount ? null : pagePass;
+  const access = accountBalanceLine(user) ?? pageBalance ?? (pass && pass.usesLeft > 0
     ? `${pass.usesLeft} ${pass.usesLeft === 1 ? "report" : "reports"} left on your pass`
-    : accountBalanceLine(user) ?? (pass ? PASS_SPENT_LABEL : null);
+    : pass ? PASS_SPENT_LABEL : null);
   const [comparingId, setComparingId] = useState<string | null>(null);
   const [comparison, setComparison] = useState<Comparison | null>(null);
 

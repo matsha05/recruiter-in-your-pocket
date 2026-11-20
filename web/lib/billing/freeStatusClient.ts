@@ -1,3 +1,8 @@
+/** No usage row means the signed-in account has not spent its free report. */
+export function accountFreeReportsLeft(usage: { free_report_used_at: string | null } | null): number {
+  return usage?.free_report_used_at ? 0 : 1;
+}
+
 export type FreeStatusPayload = {
   ok?: unknown;
   free_uses_left?: unknown;

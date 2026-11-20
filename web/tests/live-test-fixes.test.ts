@@ -105,6 +105,7 @@ assert.equal(reportPdfFileName(null), "resume-report.pdf");
   assert.equal(isBalanceKnown(justSignedIn), false);
   assert.equal(accountBalanceLine(justSignedIn), null, "no line at all, rather than a wrong one");
   assert.equal(accountBalanceLine(null), null);
+  assert.equal(accountBalanceLine({ membership: "free" }), null, "knowing there is no paid pass does not establish the free usage");
   assert.equal(isBalanceKnown({ freeUsesLeft: 0 }), true, "the free-report read alone is an answer");
   assert.equal(accountBalanceLine({ membership: "free", postingReads: false, freeUsesLeft: 1 }), "1 free report left");
   assert.equal(accountBalanceLine({ membership: "free", postingReads: false, freeUsesLeft: 0 }), "0 free reports left");
