@@ -28,6 +28,7 @@ export interface ResearchSource {
 interface AnswerArticleProps {
     /** The article's path. Its question comes from the hub and its dates from PUBLIC_PAGES. */
     path: string;
+    reportHref?: string;
     /** The hub row's verdict, verbatim, then at most two plain sentences: 35 words in all (tests/search-foundation.test.ts). */
     answer: ReactNode;
     /** The study behind the answer, named, with how big it was. */
@@ -44,7 +45,7 @@ interface AnswerArticleProps {
     nextQuestions: string[];
 }
 
-export function AnswerArticle({ path, answer, answerSource, painNote, visualization, visualizationLabel = "Research visualization", children, sources, nextQuestions }: AnswerArticleProps) {
+export function AnswerArticle({ path, reportHref = "/workspace", answer, answerSource, painNote, visualization, visualizationLabel = "Research visualization", children, sources, nextQuestions }: AnswerArticleProps) {
     const entry = hubEntryForHref(path);
     if (!entry) throw new Error(`${path} has no question on the Research hub (ResearchHubData.ts).`);
     const { updated } = publicPage(path);
@@ -149,7 +150,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                     <section className={styles.close} aria-labelledby="research-close-title">
                         <h2 id="research-close-title" className={styles.closeTitle}>Now see what they&rsquo;d make of yours.</h2>
                         <Button asChild size="lg" className="flex-none">
-                            <Link href="/workspace" data-analytics-cta="research_close">
+                            <Link href={reportHref} data-analytics-cta="research_close">
                                 Get your free report <ArrowRight weight="bold" aria-hidden="true" />
                             </Link>
                         </Button>

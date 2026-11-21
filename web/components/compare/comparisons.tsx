@@ -134,7 +134,7 @@ export const comparisons: Comparison[] = [
                 title: "Is TopResume worth it?",
                 paragraphs: [
                     <>
-                        If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it.
+                        If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The $229 Career Evolution package includes a cover letter. If you also want a LinkedIn makeover included, the first package that covers all three is Career Confidence at $349.
                     </>,
                     <>
                         What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because <ResearchLink to="star-method">every line on a resume is a story you may be asked to tell</ResearchLink>.
@@ -682,7 +682,7 @@ export const comparisons: Comparison[] = [
         },
         answer: (
             <>
-                Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything. {OUR_NAME} reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist.
+                Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month for Pro or $149 once for lifetime access to the builder. {OUR_NAME} reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist.
                 If you want a builder that keeps a live score and feeds you keywords from the posting, Rezi is built for that. If you want to know what a person would question on the resume you have, start here.
             </>
         ),
@@ -719,7 +719,7 @@ export const comparisons: Comparison[] = [
             },
             {
                 label: "Renewal",
-                them: "Pro recurs monthly until you cancel; the lifetime plan is one payment. The page’s title says all plans include a 30-day money-back guarantee.",
+                them: "Pro renews monthly until you cancel. Lifetime is a one-time payment. Rezi offers a full refund within 30 days on either plan.",
                 us: ourRows.renewal,
             },
         ],
@@ -756,7 +756,7 @@ export const comparisons: Comparison[] = [
                 title: "What the prices cover",
                 paragraphs: [
                     <>
-                        Rezi’s pricing page listed four plans on {formatChecked()}: Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee.
+                        Rezi’s pricing page listed four plans on {formatChecked()}: Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month. Lifetime costs $149 once for the builder. Expert reviews cost extra on that plan. Enterprise costs $99 a month per 200 users.
                     </>,
                     <>
                         {OUR_NAME}’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. <Link href="/pricing" className="riyp-link">The full pricing page</Link> has the details.

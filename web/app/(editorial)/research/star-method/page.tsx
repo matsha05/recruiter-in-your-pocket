@@ -8,8 +8,8 @@ const PATH = "/research/star-method";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "Is the STAR method worth using on a resume?",
-    description: "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
+    title: "How to use the STAR method on a resume (with an example)",
+    description: "See a customer support resume bullet before and after a STAR rewrite. Then use the same bullet to prepare for an interview, including what you learned.",
     type: "article",
 });
 
@@ -19,24 +19,30 @@ export default function StarMethodPage() {
             path={PATH}
             answer={
                 <>
-                    For the story behind a line, yes. Just don&rsquo;t force every bullet into the formula.
-                    Structured interviews ask everyone the same questions and have proved more predictive of job performance than unstructured ones.
+                    Start with what you did and what changed. Add just enough context for someone outside your team to follow the bullet.
                 </>
             }
             answerSource={{
-                text: <>From a review of the structured interview research (Levashina, Hartwell, Morgeson &amp; Campion, Personnel Psychology, 2014). It doesn&rsquo;t test the STAR acronym itself.</>,
-                href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download",
-                linkLabel: "Read the review",
+                text: <>Our advice, illustrated with a fictional customer support role.</>,
             }}
-            painNote="Every line you write is a story you may be asked to tell."
             nextQuestions={["quantifying-impact", "how-recruiters-read", "referral-advantage", "who-you-are"]}
+            visualizationLabel="Before-and-after resume bullet"
             visualization={
                 <>
-                    <h2 className="research-h2">The four parts of a work story</h2>
-                    <p className="research-body mb-6">
-                        STAR is a way to organize an example from your own work: what was going on, what was yours to do, what you did, and what happened. It&apos;s a checklist, not a template.
+                    <h2 className="research-h2">One resume bullet, before and after</h2>
+                    <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
+                        <ArticleInsight
+                            title="Before"
+                            desc="“Worked on the customer support team handling inquiries.”"
+                        />
+                        <ArticleInsight
+                            title="After"
+                            desc="“Handled billing escalations and wrote the troubleshooting guide the team now uses for repeat issues.”"
+                        />
+                    </div>
+                    <p className="research-body">
+                        The first line gives you a department. The second tells you which problems this person handled, what they wrote, and who uses it. That last detail is a result you can describe without a number.
                     </p>
-                    <StarStructureDiagram />
                 </>
             }
             sources={[
@@ -53,28 +59,31 @@ export default function StarMethodPage() {
                     publisher: "U.S. Office of Personnel Management",
                     year: "Current guidance",
                     href: "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/structured-interviews/"
+                },
+                {
+                    id: "source-3",
+                    title: "Before your interview",
+                    publisher: "University of Edinburgh Careers Service",
+                    href: "https://careers.ed.ac.uk/interviews-and-assessment-centres/before-your-interview"
+                },
+                {
+                    id: "source-4",
+                    title: "Interview tips for all roles",
+                    publisher: "Microsoft Careers",
+                    href: "https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips"
                 }
             ]}
         >
-            <h2 className="research-h2">On the resume: the headline</h2>
+            <h2 className="research-h2">The four parts of a work story</h2>
             <p className="research-body mb-6">
-                Don&apos;t force four labeled parts into a bullet. A strong line names what you did, gives just enough context to follow it, and <ResearchLink to="quantifying-impact">says what changed, and how you measured it, when you know</ResearchLink>. The role title usually covers the situation.
+                STAR stands for situation, task, action, and result. In the example, customer support gives you the situation, billing escalations were the responsibility, writing the guide was the action, and the team using it is the result.
             </p>
-            <p className="text-sm text-muted-foreground mb-4">
-                Fictional examples. Only use details like these if they&apos;re true for you.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 not-prose mb-6">
-                <ArticleInsight
-                    title="Before"
-                    desc="“Worked on the customer support team handling inquiries.”"
-                />
-                <ArticleInsight
-                    title="After"
-                    desc="“Handled billing escalations and wrote the troubleshooting guide the team now uses for repeat issues.”"
-                />
-            </div>
+            <StarStructureDiagram />
             <p className="research-body mb-6">
-                The second line says what was yours and what it left behind. There&apos;s no invented number, and it doesn&apos;t need one. It&apos;s also the start of an interview answer. The wording is worth the care on its own: in one large experiment, <ResearchLink to="writing-quality-hire-probability">grammar fixes alone lifted hires by about 8%</ResearchLink>.
+                Try it on one of your own bullets. If your job title already tells the reader where you worked, spend the space on <ResearchLink to="quantifying-impact">what changed and how you know</ResearchLink>. Use a number when you can back it up.
+            </p>
+            <p className="research-body mb-6">
+                Read the finished line aloud and check it for errors. In one large experiment, <ResearchLink to="writing-quality-hire-probability">grammar fixes alone lifted hires by about 8%</ResearchLink>.
             </p>
 
             <h2 className="research-h2">In the interview: the story</h2>
@@ -97,12 +106,16 @@ export default function StarMethodPage() {
             <p className="research-body mb-6">
                 <strong>Our advice:</strong> go through the job description and pick a few examples from your resume that match it. For each, note the problem, what was yours, the choices you made, and what happened. In the room, pick the example that answers the question they actually asked. Memorize the facts, not a script, so you have room for follow-ups.
             </p>
-            <div className="not-prose mb-6 rounded-inset border border-line bg-card p-5">
-                <p className="mb-2 text-sm font-semibold text-muted-foreground">Example prep notes</p>
-                <p className="text-foreground">
-                    If you&apos;ll talk about a delayed launch, be ready to say what caused the delay, which call was yours, who you brought in, and what happened after you changed the plan.
-                </p>
-            </div>
+            <h2 className="research-h2">When CARL helps in an interview</h2>
+            <p className="research-body mb-6">
+                CARL stands for context, action, result, and learning. The University of Edinburgh teaches both STAR and CARL for interview answers.
+                <Citation id="source-3">3</Citation>
+                {" "}Microsoft asks candidates to reflect on what they learned as part of its STAR(R) approach.
+                <Citation id="source-4">4</Citation>
+            </p>
+            <p className="research-body mb-6">
+                Say an interviewer picks up on the troubleshooting guide and asks, “What would you do differently?” Start with what happened the first time someone tried to use it. If their questions led you to change the guide, explain what you changed and why. That’s the learning in CARL.
+            </p>
 
             <h2 className="research-h2">Check the story before you tell it</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">

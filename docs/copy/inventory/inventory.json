@@ -3,11 +3,11 @@
   "counts": {
     "files_scanned": 440,
     "files_with_copy": 265,
-    "strings": 3038,
-    "unique_strings": 2536
+    "strings": 3040,
+    "unique_strings": 2538
   },
   "by_moment": {
-    "research": 990,
+    "research": 992,
     "account": 464,
     "marketing": 411,
     "report": 337,
@@ -6061,7 +6061,7 @@
     {
       "text": "Why can’t recruiters find me on LinkedIn?",
       "kind": "key:title",
-      "line": 11,
+      "line": 12,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6072,7 +6072,7 @@
     {
       "text": "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
       "kind": "key:description",
-      "line": 12,
+      "line": 13,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6083,7 +6083,7 @@
     {
       "text": "They search titles, skills and the words in your profile. LinkedIn’s Skills filter uses the skills you list and those in your headline, titles and experience. It doesn’t publish how it ranks the results.",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 24,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6094,7 +6094,7 @@
     {
       "text": "From LinkedIn’s own Recruiter help pages, which describe its product rather than hiring outcomes.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 29,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6105,7 +6105,7 @@
     {
       "text": "What affects LinkedIn visibility",
       "kind": "jsx-text",
-      "line": 34,
+      "line": 36,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6116,7 +6116,7 @@
     {
       "text": "LinkedIn Recruiter&apos;s filters include job title, skills, company, location, seniority, and years of experience.",
       "kind": "jsx-text",
-      "line": 36,
+      "line": 38,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6127,7 +6127,7 @@
     {
       "text": "Skills filter in Recruiter and Recruiter Lite",
       "kind": "key:title",
-      "line": 45,
+      "line": 47,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6138,7 +6138,7 @@
     {
       "text": "Recruiter and Recruiter Lite search filters and definitions",
       "kind": "key:title",
-      "line": 52,
+      "line": 54,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6149,7 +6149,7 @@
     {
       "text": "Where skill evidence can come from",
       "kind": "jsx-text",
-      "line": 59,
+      "line": 61,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6160,7 +6160,7 @@
     {
       "text": "Skills you list",
       "kind": "attr:title",
-      "line": 62,
+      "line": 64,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6171,7 +6171,7 @@
     {
       "text": "Standardized skills in the Skills section, sometimes connected to experience, education, or endorsements.",
       "kind": "jsx-text",
-      "line": 65,
+      "line": 67,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6182,7 +6182,7 @@
     {
       "text": "Skills in your profile text",
       "kind": "attr:title",
-      "line": 71,
+      "line": 73,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6193,7 +6193,7 @@
     {
       "text": "Skill terms in your headline, summary, titles, experience descriptions, certificates, and courses.",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 76,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6204,7 +6204,7 @@
     {
       "text": "Skills inferred from experience",
       "kind": "attr:title",
-      "line": 80,
+      "line": 82,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6215,7 +6215,7 @@
     {
       "text": "LinkedIn says it may infer related skills from direct experience. For example, it may treat Tableau experience as evidence of data visualization.",
       "kind": "jsx-text",
-      "line": 83,
+      "line": 85,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6226,7 +6226,7 @@
     {
       "text": "Resume skills, when shared",
       "kind": "attr:title",
-      "line": 89,
+      "line": 91,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6237,7 +6237,7 @@
     {
       "text": "For members who share resume details for discoverability, Recruiter can surface skills found in that resume.",
       "kind": "jsx-text",
-      "line": 92,
+      "line": 94,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6248,7 +6248,7 @@
     {
       "text": "What a useful headline looks like",
       "kind": "jsx-text",
-      "line": 99,
+      "line": 101,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6259,7 +6259,7 @@
     {
       "text": "Easy to search for",
       "kind": "jsx-text",
-      "line": 102,
+      "line": 104,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6270,7 +6270,7 @@
     {
       "text": "Senior product manager · B2B SaaS · onboarding and retention",
       "kind": "jsx-text",
-      "line": 104,
+      "line": 106,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6281,7 +6281,7 @@
     {
       "text": "Data scientist · forecasting · Python and SQL · healthcare",
       "kind": "jsx-text",
-      "line": 105,
+      "line": 107,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6292,7 +6292,7 @@
     {
       "text": "Engineering manager · platform teams · fintech infrastructure",
       "kind": "jsx-text",
-      "line": 106,
+      "line": 108,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6303,7 +6303,7 @@
     {
       "text": "Hard to search for",
       "kind": "jsx-text",
-      "line": 110,
+      "line": 112,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6314,7 +6314,7 @@
     {
       "text": "Product leader building great products",
       "kind": "jsx-text",
-      "line": 112,
+      "line": 114,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6325,7 +6325,7 @@
     {
       "text": "Passionate problem-solver seeking new opportunities",
       "kind": "jsx-text",
-      "line": 113,
+      "line": 115,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6336,7 +6336,7 @@
     {
       "text": "Looking for my next challenge in tech",
       "kind": "jsx-text",
-      "line": 114,
+      "line": 116,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6347,7 +6347,7 @@
     {
       "text": "What LinkedIn does not tell us",
       "kind": "jsx-text",
-      "line": 123,
+      "line": 125,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6358,7 +6358,7 @@
     {
       "text": "The documentation explains usable inputs. It does not reveal a universal recipe for ranking first.",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 127,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6369,7 +6369,7 @@
     {
       "text": "LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic.",
       "kind": "jsx-text",
-      "line": 130,
+      "line": 132,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6380,7 +6380,7 @@
     {
       "text": "Recruiters choose different filters and search strategies across roles, industries, and markets.",
       "kind": "jsx-text",
-      "line": 134,
+      "line": 136,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6391,7 +6391,7 @@
     {
       "text": "A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview.",
       "kind": "jsx-text",
-      "line": 138,
+      "line": 140,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6402,7 +6402,7 @@
     {
       "text": "What you post is read too.",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 144,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6413,7 +6413,7 @@
     {
       "text": "In one experiment, unappealing posts cut candidate ratings by almost two points, and having no profile at all cost more than posts suggesting mental-health problems",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 144,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6424,7 +6424,7 @@
     {
       "text": "The practical rule",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 148,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6435,7 +6435,7 @@
     {
       "text": "Check your title and Skills section, then explain where you used those skills in your experience descriptions. Use the terms that fit your actual work. Repeating a keyword everywhere does not explain what you know how to do.",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 150,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6446,7 +6446,7 @@
     {
       "text": "Name the role plainly.",
       "kind": "jsx-text",
-      "line": 153,
+      "line": 155,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6457,7 +6457,7 @@
     {
       "text": "Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it. The same plain title helps on the resume, where",
       "kind": "jsx-text",
-      "line": 153,
+      "line": 155,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6468,7 +6468,7 @@
     {
       "text": "Put skills in context.",
       "kind": "jsx-text",
-      "line": 154,
+      "line": 156,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6479,7 +6479,7 @@
     {
       "text": "List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong.",
       "kind": "jsx-text",
-      "line": 154,
+      "line": 156,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6490,7 +6490,7 @@
     {
       "text": "A listed skill is a claim; the project behind it is what lets a reader assess it",
       "kind": "jsx-text",
-      "line": 154,
+      "line": 156,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6501,7 +6501,7 @@
     {
       "text": "Explain where you used the skill.",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 157,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6512,7 +6512,7 @@
     {
       "text": "A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience.",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 157,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6521,9 +6521,9 @@
       "table": "research"
     },
     {
-      "text": "Does your resume name the role plainly?",
+      "text": "Which words would a recruiter find in your profile?",
       "kind": "attr:question",
-      "line": 158,
+      "line": 160,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6532,9 +6532,9 @@
       "table": "research"
     },
     {
-      "text": "Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile.",
+      "text": "Save your profile as a PDF on LinkedIn and upload it for a review. See which search terms are already in your profile and where your headline or experience could be clearer.",
       "kind": "jsx-text",
-      "line": 159,
+      "line": 161,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -9304,7 +9304,7 @@
       "table": "research"
     },
     {
-      "text": "Is the STAR method worth using on a resume?",
+      "text": "How to use the STAR method on a resume (with an example)",
       "kind": "key:title",
       "line": 11,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9315,7 +9315,7 @@
       "table": "research"
     },
     {
-      "text": "Situation, task, action, result: how to use STAR on a resume line and in a structured interview without forcing the formula.",
+      "text": "See a customer support resume bullet before and after a STAR rewrite. Then use the same bullet to prepare for an interview, including what you learned.",
       "kind": "key:description",
       "line": 12,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9326,7 +9326,7 @@
       "table": "research"
     },
     {
-      "text": "For the story behind a line, yes. Just don’t force every bullet into the formula. Structured interviews ask everyone the same questions and have proved more predictive of job performance than unstructured ones.",
+      "text": "Start with what you did and what changed. Add just enough context for someone outside your team to follow the bullet.",
       "kind": "jsx-text",
       "line": 22,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9337,9 +9337,9 @@
       "table": "research"
     },
     {
-      "text": "From a review of the structured interview research (Levashina, Hartwell, Morgeson & Campion, Personnel Psychology, 2014). It doesn’t test the STAR acronym itself.",
+      "text": "Our advice, illustrated with a fictional customer support role.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 26,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9348,9 +9348,9 @@
       "table": "research"
     },
     {
-      "text": "The four parts of a work story",
+      "text": "One resume bullet, before and after",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 32,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9359,9 +9359,9 @@
       "table": "research"
     },
     {
-      "text": "STAR is a way to organize an example from your own work: what was going on, what was yours to do, what you did, and what happened. It&apos;s a checklist, not a template.",
+      "text": "The first line gives you a department. The second tells you which problems this person handled, what they wrote, and who uses it. That last detail is a result you can describe without a number.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 44,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9372,7 +9372,7 @@
     {
       "text": "The Structured Employment Interview: Narrative and Quantitative Review of the Research Literature",
       "kind": "key:title",
-      "line": 45,
+      "line": 51,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9383,7 +9383,7 @@
     {
       "text": "Structured Interviews",
       "kind": "key:title",
-      "line": 52,
+      "line": 58,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9392,9 +9392,9 @@
       "table": "research"
     },
     {
-      "text": "On the resume: the headline",
-      "kind": "jsx-text",
-      "line": 59,
+      "text": "Before your interview",
+      "kind": "key:title",
+      "line": 65,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9403,9 +9403,9 @@
       "table": "research"
     },
     {
-      "text": "Don&apos;t force four labeled parts into a bullet. A strong line names what you did, gives just enough context to follow it, and",
-      "kind": "jsx-text",
-      "line": 61,
+      "text": "Interview tips for all roles",
+      "kind": "key:title",
+      "line": 71,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9414,42 +9414,53 @@
       "table": "research"
     },
     {
-      "text": "says what changed, and how you measured it, when you know",
-      "kind": "jsx-text",
-      "line": 61,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": ". The role title usually covers the situation.",
-      "kind": "jsx-text",
-      "line": 61,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Fictional examples. Only use details like these if they&apos;re true for you.",
-      "kind": "jsx-text",
-      "line": 64,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The second line says what was yours and what it left behind. There&apos;s no invented number, and it doesn&apos;t need one. It&apos;s also the start of an interview answer. The wording is worth the care on its own: in one large experiment,",
+      "text": "The four parts of a work story",
       "kind": "jsx-text",
       "line": 77,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "STAR stands for situation, task, action, and result. In the example, customer support gives you the situation, billing escalations were the responsibility, writing the guide was the action, and the team using it is the result.",
+      "kind": "jsx-text",
+      "line": 79,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Try it on one of your own bullets. If your job title already tells the reader where you worked, spend the space on",
+      "kind": "jsx-text",
+      "line": 83,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": ". Use a number when you can back it up.",
+      "kind": "jsx-text",
+      "line": 83,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Read the finished line aloud and check it for errors. In one large experiment,",
+      "kind": "jsx-text",
+      "line": 86,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9460,7 +9471,7 @@
     {
       "text": "grammar fixes alone lifted hires by about 8%",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 86,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9471,7 +9482,7 @@
     {
       "text": "In the interview: the story",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 89,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9482,7 +9493,7 @@
     {
       "text": "In a structured interview, the employer picks the skills that matter for the job and sets the questions and rating standards in advance. Every candidate gets the same test.",
       "kind": "jsx-text",
-      "line": 82,
+      "line": 91,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9493,7 +9504,7 @@
     {
       "text": "Expect two kinds of questions. A recruiter screen often adds a third, what you make now, and",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 94,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9504,7 +9515,7 @@
     {
       "text": "What did you do?",
       "kind": "attr:title",
-      "line": 89,
+      "line": 98,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9515,7 +9526,7 @@
     {
       "text": "What would you do?",
       "kind": "attr:title",
-      "line": 93,
+      "line": 102,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9526,7 +9537,7 @@
     {
       "text": "Our advice:",
       "kind": "jsx-text",
-      "line": 98,
+      "line": 107,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9537,39 +9548,6 @@
     {
       "text": "go through the job description and pick a few examples from your resume that match it. For each, note the problem, what was yours, the choices you made, and what happened. In the room, pick the example that answers the question they actually asked. Memorize the facts, not a script, so you have room for follow-ups.",
       "kind": "jsx-text",
-      "line": 98,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Example prep notes",
-      "kind": "jsx-text",
-      "line": 101,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "If you&apos;ll talk about a delayed launch, be ready to say what caused the delay, which call was yours, who you brought in, and what happened after you changed the plan.",
-      "kind": "jsx-text",
-      "line": 103,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Check the story before you tell it",
-      "kind": "jsx-text",
       "line": 107,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
@@ -9579,7 +9557,7 @@
       "table": "research"
     },
     {
-      "text": "Can someone tell what you did, apart from what the team did?",
+      "text": "When CARL helps in an interview",
       "kind": "jsx-text",
       "line": 109,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9590,18 +9568,7 @@
       "table": "research"
     },
     {
-      "text": "Have you said why you chose that approach?",
-      "kind": "jsx-text",
-      "line": 110,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Can you describe the outcome accurately, including what didn&apos;t work?",
+      "text": "CARL stands for context, action, result, and learning. The University of Edinburgh teaches both STAR and CARL for interview answers.",
       "kind": "jsx-text",
       "line": 111,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9612,20 +9579,9 @@
       "table": "research"
     },
     {
-      "text": "Does each line show what was yours?",
-      "kind": "attr:question",
-      "line": 114,
-      "file": "web/app/(editorial)/research/star-method/page.tsx",
-      "routes": [
-        "/research/star-method"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.",
+      "text": "Microsoft asks candidates to reflect on what they learned as part of its STAR(R) approach.",
       "kind": "jsx-text",
-      "line": 115,
+      "line": 113,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -9634,7 +9590,18 @@
       "table": "research"
     },
     {
-      "text": "The research is about how employers run interviews, not about resumes.",
+      "text": "Say an interviewer picks up on the troubleshooting guide and asks, “What would you do differently?” Start with what happened the first time someone tried to use it. If their questions led you to change the guide, explain what you changed and why. That’s the learning in CARL.",
+      "kind": "jsx-text",
+      "line": 117,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Check the story before you tell it",
       "kind": "jsx-text",
       "line": 120,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
@@ -9645,9 +9612,75 @@
       "table": "research"
     },
     {
+      "text": "Can someone tell what you did, apart from what the team did?",
+      "kind": "jsx-text",
+      "line": 122,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Have you said why you chose that approach?",
+      "kind": "jsx-text",
+      "line": 123,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Can you describe the outcome accurately, including what didn&apos;t work?",
+      "kind": "jsx-text",
+      "line": 124,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Does each line show what was yours?",
+      "kind": "attr:question",
+      "line": 127,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.",
+      "kind": "jsx-text",
+      "line": 128,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The research is about how employers run interviews, not about resumes.",
+      "kind": "jsx-text",
+      "line": 133,
+      "file": "web/app/(editorial)/research/star-method/page.tsx",
+      "routes": [
+        "/research/star-method"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
       "text": "No study cited here tests whether STAR-shaped resume lines get more interviews.",
       "kind": "jsx-text",
-      "line": 121,
+      "line": 134,
       "file": "web/app/(editorial)/research/star-method/page.tsx",
       "routes": [
         "/research/star-method"
@@ -17093,7 +17126,7 @@
       "table": "shared"
     },
     {
-      "text": "If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it.",
+      "text": "If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The $229 Career Evolution package includes a cover letter. If you also want a LinkedIn makeover included, the first package that covers all three is Career Confidence at $349.",
       "kind": "jsx-text",
       "line": 137,
       "file": "web/components/compare/comparisons.tsx",
@@ -19865,7 +19898,7 @@
       "table": "shared"
     },
     {
-      "text": "Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything.",
+      "text": "Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month for Pro or $149 once for lifetime access to the builder.",
       "kind": "jsx-text",
       "line": 685,
       "file": "web/components/compare/comparisons.tsx",
@@ -20327,7 +20360,7 @@
       "table": "shared"
     },
     {
-      "text": ": Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee.",
+      "text": ": Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month. Lifetime costs $149 once for the builder. Expert reviews cost extra on that plan. Enterprise costs $99 a month per 200 users.",
       "kind": "jsx-text",
       "line": 759,
       "file": "web/components/compare/comparisons.tsx",
@@ -28900,7 +28933,7 @@
     {
       "text": "All research",
       "kind": "jsx-text",
-      "line": 73,
+      "line": 74,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28937,7 +28970,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 88,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28974,7 +29007,7 @@
     {
       "text": "How we write these",
       "kind": "jsx-text",
-      "line": 98,
+      "line": 99,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29011,7 +29044,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 123,
+      "line": 124,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29048,7 +29081,7 @@
     {
       "text": "Next questions",
       "kind": "jsx-text",
-      "line": 134,
+      "line": 135,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29085,7 +29118,7 @@
     {
       "text": "How we write these",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 143,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29122,7 +29155,7 @@
     {
       "text": "We link every study we cite and say what it can’t tell you. When something is our advice rather than a finding, we say so. The date above is when the page last changed.",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 145,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29159,7 +29192,7 @@
     {
       "text": "The longer version",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 146,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29196,7 +29229,7 @@
     {
       "text": "Now see what they’d make of yours.",
       "kind": "jsx-text",
-      "line": 150,
+      "line": 151,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29233,7 +29266,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 153,
+      "line": 154,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29270,7 +29303,7 @@
     {
       "text": "Our advice, from what the studies found",
       "kind": "jsx-text",
-      "line": 171,
+      "line": 172,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29307,7 +29340,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 216,
+      "line": 217,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29344,7 +29377,7 @@
     {
       "text": "What it found",
       "kind": "jsx-text",
-      "line": 222,
+      "line": 223,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29381,7 +29414,7 @@
     {
       "text": "How it was done",
       "kind": "jsx-text",
-      "line": 227,
+      "line": 228,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29418,45 +29451,8 @@
     {
       "text": "What it can’t tell you",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 233,
       "file": "web/components/research/AnswerArticle.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/asking-for-a-referral",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "research",
-      "table": "shared"
-    },
-    {
-      "text": "Apply this to your resume",
-      "kind": "attr:aria-label",
-      "line": 19,
-      "file": "web/components/research/ArticleBridge.tsx",
       "routes": [
         "/compare",
         "/compare/enhancv",
@@ -29492,7 +29488,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 26,
+      "line": 30,
       "file": "web/components/research/ArticleBridge.tsx",
       "routes": [
         "/compare",
