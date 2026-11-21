@@ -49,7 +49,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/research/career-breaks", updated: "2026-11-06", published: "2026-11-06", card: "career-breaks" },
   { path: "/research/how-recruiters-read", updated: "2026-11-06", published: "2025-12-10", card: "how-recruiters-read" },
   { path: "/research/human-vs-algorithm", updated: "2026-11-06", published: "2025-12-15", card: "human-vs-algorithm" },
-  { path: "/research/linkedin-visibility", updated: "2026-11-10", published: "2025-12-28", card: "linkedin-visibility" },
+  { path: "/research/linkedin-visibility", updated: "2026-11-21", published: "2025-12-28", card: "linkedin-visibility" },
   { path: "/research/quantifying-impact", updated: "2026-11-10", published: "2025-12-17", card: "quantifying-impact" },
   { path: "/research/referral-advantage", updated: "2026-11-10", published: "2025-12-17", card: "referral-advantage" },
   { path: "/research/asking-for-a-referral", updated: "2026-11-10", published: "2026-11-10", card: "asking-for-a-referral" },
@@ -58,7 +58,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/research/skills-first-promise-reality", updated: "2026-11-06", published: "2026-01-01", card: "skills-first-promise-reality" },
   { path: "/research/social-screening", updated: "2026-11-10", published: "2026-01-01", card: "social-screening" },
   { path: "/research/spelling-errors-impact", updated: "2026-11-10", published: "2025-12-15", card: "spelling-errors-impact" },
-  { path: "/research/star-method", updated: "2026-11-06", published: "2025-12-17", card: "star-method" },
+  { path: "/research/star-method", updated: "2026-11-21", published: "2025-12-17", card: "star-method" },
   { path: "/research/who-you-are", updated: "2026-11-06", published: "2026-10-31", card: "who-you-are" },
   { path: "/research/writing-quality-hire-probability", updated: "2026-11-10", published: "2026-01-01", card: "writing-quality-hire-probability" },
 
@@ -71,12 +71,12 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   // tool's price or plan changes, in the same change as PRICES_CHECKED.
   // The hub and five pages carry what each tool said to one resume on Nov 5, 2026 (SAME_RESUME_DATE in comparisons.tsx).
   { path: "/compare", updated: "2026-11-05" },
-  { path: "/compare/topresume", updated: "2026-11-04", published: "2026-11-03" },
+  { path: "/compare/topresume", updated: "2026-11-21", published: "2026-11-03" },
   { path: "/compare/jobscan", updated: "2026-11-05", published: "2026-11-03" },
   { path: "/compare/resume-worded", updated: "2026-11-05", published: "2026-11-03" },
   { path: "/compare/teal", updated: "2026-11-05", published: "2026-11-03" },
   { path: "/compare/kickresume", updated: "2026-11-05", published: "2026-11-04" },
-  { path: "/compare/rezi", updated: "2026-11-05", published: "2026-11-04" },
+  { path: "/compare/rezi", updated: "2026-11-21", published: "2026-11-04" },
   { path: "/compare/enhancv", updated: "2026-11-04", published: "2026-11-04" },
 
   // /trust and /security redirect to /privacy, /faq and /support to /help (lib/seo/retired-routes.json).

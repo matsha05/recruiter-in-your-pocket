@@ -5,6 +5,7 @@ import { ResearchLink } from "@/components/research/ResearchLink";
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
 const PATH = "/research/linkedin-visibility";
+const REPORT_HREF = "/workspace?mode=linkedin";
 
 export const metadata = pageMetadata({
     path: PATH,
@@ -17,6 +18,7 @@ export default function LinkedInVisibilityPage() {
     return (
         <AnswerArticle
             path={PATH}
+            reportHref={REPORT_HREF}
             answer={
                 <>
                     They search titles, skills and the words in your profile. LinkedIn&rsquo;s Skills filter uses the skills you list and those in your headline, titles and experience.
@@ -155,8 +157,8 @@ export default function LinkedInVisibilityPage() {
                 <li><strong>Explain where you used the skill.</strong> A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience.</li>
             </ul>
 
-            <ArticleBridge question="Does your resume name the role plainly?">
-                Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile.
+            <ArticleBridge question="Which words would a recruiter find in your profile?" reportHref={REPORT_HREF}>
+                Save your profile as a PDF on LinkedIn and upload it for a review. See which search terms are already in your profile and where your headline or experience could be clearer.
             </ArticleBridge>
         </AnswerArticle>
     );

@@ -29,14 +29,14 @@ An article opens the way its row on the Research hub does: the reader's question
 - **One question, three places.** The hub question, the H1, and the search title (`pageMetadata({ title })`) are the same string, 60 characters or fewer. `tests/search-foundation.test.ts` fails if they drift. Write it the way a worried job seeker would type it, and vary the openings across the library so the hub doesn't read like a FAQ farm.
 - **The answer** says what the evidence found, in the reader's terms, from claims the article already sources. No new claims in the answer.
 - **The pain line** names why the question hurts, in the recruiter's margin voice. It is specific to the article's finding, never carries a number we can't source, and never uses a phrase from the voice guide's avoid list. If it doesn't earn its place, leave it out: not every article has one.
-- **One bridge** (`<ArticleBridge question=…>`), inside the body, right after the advice. It asks the article's question of the reader's own resume and names the report part that answers it (the Verdict, the score, or the Critical Miss), including what that part can't do. It is the only report action in the body. Since Nov 4, 2026 it is a note in the margin, the pen's question with the arrow and a text link, not a card with a button; the button belongs to the close.
+- **One bridge** (`<ArticleBridge question=…>`), inside the body, right after the advice. Ask how the finding applies to the reader's resume or LinkedIn profile. Describe something they can see in the current report, such as a quoted line and the question it leaves open. When the article calls for a profile review, link both report actions to the LinkedIn upload. It is the only report action in the body. Since Nov 4, 2026 it is a note in the margin, the pen's question with the arrow and a text link, not a card with a button; the button belongs to the close.
 - **No FAQ block.** A follow-up question that repeats the body is cut; one that adds something becomes body content. Questions a reader asks next go in `nextQuestions`, as hub ids.
 - Every article is listed in `web/lib/seo/public-pages.ts` with its published and updated dates. Bump `updated` when the content changes (a corrected claim, a new section), never for styling.
 - The search description says what the article found and its limit, from the article's own text, in 70 to 160 characters.
 - Say a limit once: in the source line, the evidence, or Limitations, not in every figure and caption. Describe a study once below the opening: where an article has an `EvidenceList`, its entries are the one place for what a study found, how it was done and what it can't tell you, and no body paragraph restates one. The Sources list stays (its anchors serve the citations and the JSON-LD).
 - Figures carry the number and source in the caption only. Draw published numbers; never invent defaults or example rates. When the finding is about the resume, draw the resume (`SectionFindingsFigure`).
 - Label anything that is ours: "Our advice", "Our take".
-- Uppercase labels are reserved for Verdict and Critical Miss (`.riyp-verdict-label`).
+- Use the current report’s wording for visible section labels. The recruiter’s opening assessment has no label.
 
 ## Props
 
@@ -65,7 +65,7 @@ export const metadata = pageMetadata({
 >
     {/* Body: h2 sections with className="research-h2", p with "research-body", and one ArticleBridge */}
     <ArticleBridge question="What does your Experience section say first?">
-        Your report opens with a Verdict: …
+        Your report quotes the lines where a recruiter still needs to know what you did or what changed.
     </ArticleBridge>
 </AnswerArticle>
 ```

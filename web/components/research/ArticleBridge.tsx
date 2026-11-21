@@ -13,16 +13,20 @@ import styles from "./ArticleBridge.module.css";
  * at the article's close, as on the homepage, and a chapter never carries a second one. Matt chose the note
  * over the card from the Nov 4 mocks.
  */
-export function ArticleBridge({ question, children }: { question: string; children: ReactNode }) {
+export function ArticleBridge({ question, children, reportHref = "/workspace" }: {
+    question: string;
+    children: ReactNode;
+    reportHref?: string;
+}) {
     const { ref, seen } = useSeen<HTMLElement>(0.5);
     return (
-        <aside ref={ref} className={`not-prose ${styles.bridge}`} aria-label="Apply this to your resume">
+        <aside ref={ref} className={`not-prose ${styles.bridge}`} aria-label={reportHref === "/workspace" ? "Apply this to your resume" : question}>
             <PenArrow drawn={seen} className={styles.arrow} />
             <PenNote as="div" className={styles.note}>
                 <p className={styles.question}>{question}</p>
                 <div className={styles.body}>{children}</div>
             </PenNote>
-            <Link href="/workspace" className={`riyp-link ${styles.link}`} data-analytics-cta="research_bridge">
+            <Link href={reportHref} className={`riyp-link ${styles.link}`} data-analytics-cta="research_bridge">
                 Get your free report <ArrowRight aria-hidden="true" />
             </Link>
         </aside>

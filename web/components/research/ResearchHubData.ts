@@ -119,12 +119,12 @@ export const categories: ResearchCategory[] = [
             }),
             study({
                 id: "star-method",
-                keywords: ["star", "situation", "task", "action", "result", "format"],
+                keywords: ["star", "carl", "situation", "task", "action", "result", "format"],
                 href: "/research/star-method",
-                question: "Is the STAR method worth using on a resume?",
-                verdict: "For the story behind a line, yes.",
-                finding: "Just don’t force every bullet into the formula.",
-                evidence: { kind: "Research review", cite: "Levashina et al., 2014 · doesn’t test STAR itself" },
+                question: "How to use the STAR method on a resume (with an example)",
+                verdict: "Start with what you did and what changed.",
+                finding: "Add just enough context for someone outside your team to follow the bullet.",
+                evidence: { kind: "Recruiter advice", cite: "Worked example, with interview guidance from Edinburgh and Microsoft" },
             }),
             study({
                 id: "writing-quality-hire-probability",
