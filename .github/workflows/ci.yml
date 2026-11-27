@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [codex/nov27-hosted-checks]
   pull_request:
     branches: [main, master]
 
 jobs:
   web:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       # Browser suites deliberately rebuild the app, so keep the same static-generation
       # environment available to every web step rather than only the first build.
@@ -29,6 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          ref: 219823a1e7477c9d4d429c7f29ee6742ad07415b
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -133,6 +134,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: 219823a1e7477c9d4d429c7f29ee6742ad07415b
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -209,6 +212,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: 219823a1e7477c9d4d429c7f29ee6742ad07415b
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
