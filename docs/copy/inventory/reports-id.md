@@ -9,32 +9,32 @@ Routes: `/reports/[id]`. Strings: 30 (29 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | account | `web/app/(app)/reports/[id]/page.tsx:10` | key:description | Detailed report view with evidence-backed recruiter feedback. |
-| 2 | report | `web/components/reports/ReportDetailClient.tsx:106` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
-| 3 | report | `web/components/reports/ReportDetailClient.tsx:120` | call:ClientActionError | The PDF couldn’t download. Try exporting again. |
-| 4 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | My reports |
-| 5 | report | `web/components/reports/ReportDetailClient.tsx:155` | jsx-text | Read it against a posting |
-| 6 | report | `web/components/reports/ReportDetailClient.tsx:159` | jsx-text | Compare my revision |
-| 7 | report | `web/components/reports/ReportDetailClient.tsx:159` | jsx-text | New report |
-| 8 | report | `web/components/reports/ReportDetailClient.tsx:171` | jsx-text | Loading report… |
-| 9 | report | `web/components/reports/ReportDetailClient.tsx:180` | jsx-text | Report not found |
-| 10 | report | `web/components/reports/ReportDetailClient.tsx:185` | jsx-text | Back to your workspace |
-| 11 | report | `web/components/reports/ReportDetailClient.tsx:196` | jsx-text | Sign in to view this report |
-| 12 | report | `web/components/reports/ReportDetailClient.tsx:199` | jsx-text | Sign in |
-| 13 | report | `web/components/reports/ReportDetailClient.tsx:210` | jsx-text | We couldn’t load this report. |
-| 14 | report | `web/components/reports/ReportDetailClient.tsx:212` | jsx-text | Your report is safe. |
-| 15 | report | `web/components/reports/ReportDetailClient.tsx:219` | jsx-text | Try again |
-| 16 | report | `web/components/reports/ReportDetailClient.tsx:225` | jsx-text | Contact support |
-| 17 | account | `web/components/reports/ReportManageMenu.tsx:43` | call:ClientActionError | Could not rename this report. Try again. |
-| 18 | account | `web/components/reports/ReportManageMenu.tsx:60` | call:ClientActionError | Could not delete this report. Try again. |
-| 19 | account | `web/components/reports/ReportManageMenu.tsx:61` | call:toast.success | Report deleted |
-| 20 | account | `web/components/reports/ReportManageMenu.tsx:74` | attr:aria-label | Rename or delete this report |
-| 21 | account | `web/components/reports/ReportManageMenu.tsx:81` | jsx-text | Name this report |
-| 22 | account | `web/components/reports/ReportManageMenu.tsx:85` | jsx-text | Delete report |
-| 23 | account | `web/components/reports/ReportManageMenu.tsx:93` | jsx-text | Rename this report |
-| 24 | account | `web/components/reports/ReportManageMenu.tsx:93` | jsx-text | Name this report |
-| 25 | account | `web/components/reports/ReportManageMenu.tsx:94` | jsx-text | The name leads its row on My reports. Leave it empty to show the verdict instead. |
-| 26 | account | `web/components/reports/ReportManageMenu.tsx:97` | jsx-text | Report name |
-| 27 | account | `web/components/reports/ReportManageMenu.tsx:98` | attr:placeholder | Name this version |
-| 28 | account | `web/components/reports/ReportManageMenu.tsx:101` | attr:loadingLabel | Saving… |
-| 29 | account | `web/components/reports/ReportManageMenu.tsx:111` | attr:title | Delete this report? |
-| 30 | account | `web/components/reports/ReportManageMenu.tsx:112` | attr:description | {name \|\| "This report"} will be permanently deleted. Your account and any other saved reports will stay intact. |
+| 2 | report | `web/components/reports/ReportDetailClient.tsx:110` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
+| 3 | report | `web/components/reports/ReportDetailClient.tsx:124` | call:ClientActionError | The PDF couldn’t download. Try exporting again. |
+| 4 | report | `web/components/reports/ReportDetailClient.tsx:152` | jsx-text | My reports |
+| 5 | report | `web/components/reports/ReportDetailClient.tsx:159` | jsx-text | Read it against a posting |
+| 6 | report | `web/components/reports/ReportDetailClient.tsx:163` | jsx-text | Compare my revision |
+| 7 | report | `web/components/reports/ReportDetailClient.tsx:163` | jsx-text | New report |
+| 8 | report | `web/components/reports/ReportDetailClient.tsx:175` | jsx-text | Loading report… |
+| 9 | report | `web/components/reports/ReportDetailClient.tsx:184` | jsx-text | Report not found |
+| 10 | report | `web/components/reports/ReportDetailClient.tsx:189` | jsx-text | Back to your workspace |
+| 11 | report | `web/components/reports/ReportDetailClient.tsx:200` | jsx-text | Sign in to view this report |
+| 12 | report | `web/components/reports/ReportDetailClient.tsx:203` | jsx-text | Sign in |
+| 13 | report | `web/components/reports/ReportDetailClient.tsx:214` | jsx-text | We couldn’t load this report. |
+| 14 | report | `web/components/reports/ReportDetailClient.tsx:216` | jsx-text | Your report is safe. |
+| 15 | report | `web/components/reports/ReportDetailClient.tsx:223` | jsx-text | Try again |
+| 16 | report | `web/components/reports/ReportDetailClient.tsx:229` | jsx-text | Contact support |
+| 17 | account | `web/components/reports/ReportManageMenu.tsx:45` | call:ClientActionError | Could not rename this report. Try again. |
+| 18 | account | `web/components/reports/ReportManageMenu.tsx:62` | call:ClientActionError | Could not delete this report. Try again. |
+| 19 | account | `web/components/reports/ReportManageMenu.tsx:64` | call:toast.success | Report deleted |
+| 20 | account | `web/components/reports/ReportManageMenu.tsx:77` | attr:aria-label | Rename or delete this report |
+| 21 | account | `web/components/reports/ReportManageMenu.tsx:84` | jsx-text | Name this report |
+| 22 | account | `web/components/reports/ReportManageMenu.tsx:88` | jsx-text | Delete report |
+| 23 | account | `web/components/reports/ReportManageMenu.tsx:96` | jsx-text | Rename this report |
+| 24 | account | `web/components/reports/ReportManageMenu.tsx:96` | jsx-text | Name this report |
+| 25 | account | `web/components/reports/ReportManageMenu.tsx:97` | jsx-text | The name leads its row on My reports. Leave it empty to show the verdict instead. |
+| 26 | account | `web/components/reports/ReportManageMenu.tsx:100` | jsx-text | Report name |
+| 27 | account | `web/components/reports/ReportManageMenu.tsx:101` | attr:placeholder | Name this version |
+| 28 | account | `web/components/reports/ReportManageMenu.tsx:104` | attr:loadingLabel | Saving… |
+| 29 | account | `web/components/reports/ReportManageMenu.tsx:114` | attr:title | Delete this report? |
+| 30 | account | `web/components/reports/ReportManageMenu.tsx:115` | attr:description | {name \|\| "This report"} will be permanently deleted. Your account and any other saved reports will stay intact. |

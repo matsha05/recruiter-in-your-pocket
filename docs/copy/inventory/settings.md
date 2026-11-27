@@ -51,80 +51,80 @@ Routes: `/settings/account`, `/settings/billing`, `/settings/matching`, `/settin
 | 34 | pricing | `web/components/shared/PricingCard.tsx:87` | const | Opening checkout... |
 | 35 | pricing | `web/components/shared/PricingCard.tsx:99` | jsx-text | Opening checkout... |
 | 36 | pricing | `web/components/shared/PricingCard.tsx:99` | const | Opening checkout... |
-| 37 | account | `web/components/workspace/SettingsClient.tsx:118` | call:ClientActionError | We couldn't load your purchases. Try again. |
-| 38 | account | `web/components/workspace/SettingsClient.tsx:127` | call:ClientActionError | We couldn't load your receipts. Try again. |
-| 39 | account | `web/components/workspace/SettingsClient.tsx:222` | call:toast.success | Profile updated |
-| 40 | account | `web/components/workspace/SettingsClient.tsx:224` | call:toast.error | We couldn't save your name. Try again. |
-| 41 | account | `web/components/workspace/SettingsClient.tsx:235` | call:ClientActionError | We couldn't delete your account. Try again or contact support. |
-| 42 | account | `web/components/workspace/SettingsClient.tsx:247` | call:toast.success | Account deleted |
-| 43 | account | `web/components/workspace/SettingsClient.tsx:264` | call:ClientActionError | We couldn't start your download. Try Export data again. |
-| 44 | account | `web/components/workspace/SettingsClient.tsx:272` | call:toast.message | Preparing export |
-| 45 | account | `web/components/workspace/SettingsClient.tsx:273` | key:description | We're gathering your account data for download. |
-| 46 | account | `web/components/workspace/SettingsClient.tsx:286` | call:ClientActionError | We couldn't check whether your download is ready. Try Export data again. |
-| 47 | account | `web/components/workspace/SettingsClient.tsx:291` | call:ClientActionError | We couldn't prepare your download. Try Export data again. |
-| 48 | account | `web/components/workspace/SettingsClient.tsx:296` | call:ClientActionError | Your export is still processing. Try again in a moment. |
-| 49 | account | `web/components/workspace/SettingsClient.tsx:302` | call:ClientActionError | We couldn't download your account data. Try Export data again. |
-| 50 | account | `web/components/workspace/SettingsClient.tsx:320` | call:toast.success | Export downloaded |
-| 51 | account | `web/components/workspace/SettingsClient.tsx:351` | call:ClientActionError | We couldn't open checkout. Try again. |
-| 52 | account | `web/components/workspace/SettingsClient.tsx:374` | call:ClientActionError | We couldn't open the billing portal. Try again. |
-| 53 | account | `web/components/workspace/SettingsClient.tsx:392` | call:ClientActionError | We couldn't restore your purchase. Try again. |
-| 54 | account | `web/components/workspace/SettingsClient.tsx:400` | call:toast.success | Access check complete |
-| 55 | account | `web/components/workspace/SettingsClient.tsx:426` | const | {Math.max(0, Number(passFo…} remaining |
-| 56 | account | `web/components/workspace/SettingsClient.tsx:432` | const | No renewal |
-| 57 | account | `web/components/workspace/SettingsClient.tsx:435` | const | Renews on {passExpiryDate} |
-| 58 | account | `web/components/workspace/SettingsClient.tsx:438` | const | Expires on {passExpiryDate} |
-| 59 | account | `web/components/workspace/SettingsClient.tsx:449` | attr:title | Opening your settings |
-| 60 | account | `web/components/workspace/SettingsClient.tsx:453` | jsx-text | Loading account settings… |
-| 61 | account | `web/components/workspace/SettingsClient.tsx:472` | jsx-text | Sign in to open settings |
-| 62 | account | `web/components/workspace/SettingsClient.tsx:477` | jsx-text | Sign in |
-| 63 | account | `web/components/workspace/SettingsClient.tsx:484` | jsx-text | Back to workspace |
-| 64 | account | `web/components/workspace/SettingsClient.tsx:525` | jsx-text | How we handle your data |
-| 65 | account | `web/components/workspace/SettingsClient.tsx:533` | attr:aria-label | Settings sections |
-| 66 | account | `web/components/workspace/SettingsClient.tsx:573` | key:label | Saving… |
-| 67 | account | `web/components/workspace/SettingsClient.tsx:583` | jsx-text | Your data |
-| 68 | account | `web/components/workspace/SettingsClient.tsx:584` | jsx-text | Your reports, passes, receipts and profile, as a file. |
-| 69 | account | `web/components/workspace/SettingsClient.tsx:592` | key:label | Preparing export… |
-| 70 | account | `web/components/workspace/SettingsClient.tsx:597` | jsx-text | Delete account |
-| 71 | account | `web/components/workspace/SettingsClient.tsx:598` | jsx-text | Your reports and your account go with it. Nothing comes back. |
-| 72 | account | `web/components/workspace/SettingsClient.tsx:606` | key:label | Deleting… |
-| 73 | account | `web/components/workspace/SettingsClient.tsx:616` | jsx-text | Job matching |
-| 74 | account | `web/components/workspace/SettingsClient.tsx:625` | jsx-text | Your pass |
-| 75 | account | `web/components/workspace/SettingsClient.tsx:628` | attr:label | {Number(activePass.uses_re…} reports left on your pass, one sheet each |
-| 76 | account | `web/components/workspace/SettingsClient.tsx:631` | jsx-text | Purchases are tied to |
-| 77 | account | `web/components/workspace/SettingsClient.tsx:640` | key:label | Restore access |
-| 78 | account | `web/components/workspace/SettingsClient.tsx:640` | key:label | Checking access… |
-| 79 | account | `web/components/workspace/SettingsClient.tsx:648` | key:label | Manage legacy plan |
-| 80 | account | `web/components/workspace/SettingsClient.tsx:648` | key:label | Opening billing… |
-| 81 | account | `web/components/workspace/SettingsClient.tsx:654` | jsx-text | We couldn&apos;t find billing records for this email. If you used a different email at checkout, sign in with that email and choose Restore access. |
-| 82 | account | `web/components/workspace/SettingsClient.tsx:662` | jsx-text | More reports |
-| 83 | account | `web/components/workspace/SettingsClient.tsx:663` | jsx-text | Five more over 90 days, one payment, no renewal. |
-| 84 | account | `web/components/workspace/SettingsClient.tsx:671` | key:label | Get 5 more reports · $29 |
-| 85 | account | `web/components/workspace/SettingsClient.tsx:671` | key:label | Opening checkout… |
-| 86 | account | `web/components/workspace/SettingsClient.tsx:677` | jsx-text | Job Search Pass |
-| 87 | account | `web/components/workspace/SettingsClient.tsx:679` | attr:label | Five sheets of paper: the Job Search Pass |
-| 88 | account | `web/components/workspace/SettingsClient.tsx:684` | key:label | Opening checkout… |
-| 89 | account | `web/components/workspace/SettingsClient.tsx:695` | jsx-text | Loading… |
-| 90 | account | `web/components/workspace/SettingsClient.tsx:699` | jsx-text | Purchase history could not load. |
-| 91 | account | `web/components/workspace/SettingsClient.tsx:700` | jsx-text | We couldn&apos;t retrieve your purchases. Try again to see the list. |
-| 92 | account | `web/components/workspace/SettingsClient.tsx:702` | jsx-text | Try again |
-| 93 | account | `web/components/workspace/SettingsClient.tsx:708` | jsx-text | No purchases yet. If you already paid, choose Restore access above. |
-| 94 | account | `web/components/workspace/SettingsClient.tsx:719` | const | {uses} remaining |
-| 95 | account | `web/components/workspace/SettingsClient.tsx:727` | jsx-text | No renewal |
-| 96 | account | `web/components/workspace/SettingsClient.tsx:745` | jsx-text | Loading… |
-| 97 | account | `web/components/workspace/SettingsClient.tsx:749` | jsx-text | Receipts could not load. |
-| 98 | account | `web/components/workspace/SettingsClient.tsx:750` | jsx-text | Try again. If you need an invoice now, email support@recruiterinyourpocket.com. |
-| 99 | account | `web/components/workspace/SettingsClient.tsx:752` | jsx-text | Try again |
-| 100 | account | `web/components/workspace/SettingsClient.tsx:757` | jsx-text | No receipts found for this account. If you recently paid, try Refresh. |
-| 101 | account | `web/components/workspace/SettingsClient.tsx:768` | jsx-text | (opens in a new tab) |
-| 102 | account | `web/components/workspace/SettingsClient.tsx:769` | jsx-text | (opens in a new tab) |
-| 103 | account | `web/components/workspace/SettingsClient.tsx:778` | key:label | Loading… |
-| 104 | account | `web/components/workspace/SettingsClient.tsx:790` | jsx-text | Where should we send your receipt? |
-| 105 | account | `web/components/workspace/SettingsClient.tsx:791` | jsx-text | We will link access to this email. |
-| 106 | account | `web/components/workspace/SettingsClient.tsx:802` | attr:aria-label | Billing email |
-| 107 | account | `web/components/workspace/SettingsClient.tsx:812` | key:label | Continue to checkout |
-| 108 | account | `web/components/workspace/SettingsClient.tsx:812` | key:label | Opening checkout… |
-| 109 | account | `web/components/workspace/SettingsClient.tsx:825` | attr:title | Delete your account? |
-| 110 | account | `web/components/workspace/SettingsClient.tsx:826` | attr:description | This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone. |
+| 37 | account | `web/components/workspace/SettingsClient.tsx:119` | call:ClientActionError | We couldn't load your purchases. Try again. |
+| 38 | account | `web/components/workspace/SettingsClient.tsx:128` | call:ClientActionError | We couldn't load your receipts. Try again. |
+| 39 | account | `web/components/workspace/SettingsClient.tsx:223` | call:toast.success | Profile updated |
+| 40 | account | `web/components/workspace/SettingsClient.tsx:225` | call:toast.error | We couldn't save your name. Try again. |
+| 41 | account | `web/components/workspace/SettingsClient.tsx:236` | call:ClientActionError | We couldn't delete your account. Try again or contact support. |
+| 42 | account | `web/components/workspace/SettingsClient.tsx:249` | call:toast.success | Account deleted |
+| 43 | account | `web/components/workspace/SettingsClient.tsx:266` | call:ClientActionError | We couldn't start your download. Try Export data again. |
+| 44 | account | `web/components/workspace/SettingsClient.tsx:274` | call:toast.message | Preparing export |
+| 45 | account | `web/components/workspace/SettingsClient.tsx:275` | key:description | We're gathering your account data for download. |
+| 46 | account | `web/components/workspace/SettingsClient.tsx:288` | call:ClientActionError | We couldn't check whether your download is ready. Try Export data again. |
+| 47 | account | `web/components/workspace/SettingsClient.tsx:293` | call:ClientActionError | We couldn't prepare your download. Try Export data again. |
+| 48 | account | `web/components/workspace/SettingsClient.tsx:298` | call:ClientActionError | Your export is still processing. Try again in a moment. |
+| 49 | account | `web/components/workspace/SettingsClient.tsx:304` | call:ClientActionError | We couldn't download your account data. Try Export data again. |
+| 50 | account | `web/components/workspace/SettingsClient.tsx:322` | call:toast.success | Export downloaded |
+| 51 | account | `web/components/workspace/SettingsClient.tsx:353` | call:ClientActionError | We couldn't open checkout. Try again. |
+| 52 | account | `web/components/workspace/SettingsClient.tsx:376` | call:ClientActionError | We couldn't open the billing portal. Try again. |
+| 53 | account | `web/components/workspace/SettingsClient.tsx:394` | call:ClientActionError | We couldn't restore your purchase. Try again. |
+| 54 | account | `web/components/workspace/SettingsClient.tsx:402` | call:toast.success | Access check complete |
+| 55 | account | `web/components/workspace/SettingsClient.tsx:428` | const | {Math.max(0, Number(passFo…} remaining |
+| 56 | account | `web/components/workspace/SettingsClient.tsx:434` | const | No renewal |
+| 57 | account | `web/components/workspace/SettingsClient.tsx:437` | const | Renews on {passExpiryDate} |
+| 58 | account | `web/components/workspace/SettingsClient.tsx:440` | const | Expires on {passExpiryDate} |
+| 59 | account | `web/components/workspace/SettingsClient.tsx:451` | attr:title | Opening your settings |
+| 60 | account | `web/components/workspace/SettingsClient.tsx:455` | jsx-text | Loading account settings… |
+| 61 | account | `web/components/workspace/SettingsClient.tsx:474` | jsx-text | Sign in to open settings |
+| 62 | account | `web/components/workspace/SettingsClient.tsx:479` | jsx-text | Sign in |
+| 63 | account | `web/components/workspace/SettingsClient.tsx:486` | jsx-text | Back to workspace |
+| 64 | account | `web/components/workspace/SettingsClient.tsx:527` | jsx-text | How we handle your data |
+| 65 | account | `web/components/workspace/SettingsClient.tsx:535` | attr:aria-label | Settings sections |
+| 66 | account | `web/components/workspace/SettingsClient.tsx:575` | key:label | Saving… |
+| 67 | account | `web/components/workspace/SettingsClient.tsx:585` | jsx-text | Your data |
+| 68 | account | `web/components/workspace/SettingsClient.tsx:586` | jsx-text | Your reports, passes, receipts and profile, as a file. |
+| 69 | account | `web/components/workspace/SettingsClient.tsx:594` | key:label | Preparing export… |
+| 70 | account | `web/components/workspace/SettingsClient.tsx:599` | jsx-text | Delete account |
+| 71 | account | `web/components/workspace/SettingsClient.tsx:600` | jsx-text | Your reports and your account go with it. Nothing comes back. |
+| 72 | account | `web/components/workspace/SettingsClient.tsx:608` | key:label | Deleting… |
+| 73 | account | `web/components/workspace/SettingsClient.tsx:618` | jsx-text | Job matching |
+| 74 | account | `web/components/workspace/SettingsClient.tsx:627` | jsx-text | Your pass |
+| 75 | account | `web/components/workspace/SettingsClient.tsx:630` | attr:label | {Number(activePass.uses_re…} reports left on your pass, one sheet each |
+| 76 | account | `web/components/workspace/SettingsClient.tsx:633` | jsx-text | Purchases are tied to |
+| 77 | account | `web/components/workspace/SettingsClient.tsx:642` | key:label | Restore access |
+| 78 | account | `web/components/workspace/SettingsClient.tsx:642` | key:label | Checking access… |
+| 79 | account | `web/components/workspace/SettingsClient.tsx:650` | key:label | Manage legacy plan |
+| 80 | account | `web/components/workspace/SettingsClient.tsx:650` | key:label | Opening billing… |
+| 81 | account | `web/components/workspace/SettingsClient.tsx:656` | jsx-text | We couldn&apos;t find billing records for this email. If you used a different email at checkout, sign in with that email and choose Restore access. |
+| 82 | account | `web/components/workspace/SettingsClient.tsx:664` | jsx-text | More reports |
+| 83 | account | `web/components/workspace/SettingsClient.tsx:665` | jsx-text | Five more over 90 days, one payment, no renewal. |
+| 84 | account | `web/components/workspace/SettingsClient.tsx:673` | key:label | Get 5 more reports · $29 |
+| 85 | account | `web/components/workspace/SettingsClient.tsx:673` | key:label | Opening checkout… |
+| 86 | account | `web/components/workspace/SettingsClient.tsx:679` | jsx-text | Job Search Pass |
+| 87 | account | `web/components/workspace/SettingsClient.tsx:681` | attr:label | Five sheets of paper: the Job Search Pass |
+| 88 | account | `web/components/workspace/SettingsClient.tsx:686` | key:label | Opening checkout… |
+| 89 | account | `web/components/workspace/SettingsClient.tsx:697` | jsx-text | Loading… |
+| 90 | account | `web/components/workspace/SettingsClient.tsx:701` | jsx-text | Purchase history could not load. |
+| 91 | account | `web/components/workspace/SettingsClient.tsx:702` | jsx-text | We couldn&apos;t retrieve your purchases. Try again to see the list. |
+| 92 | account | `web/components/workspace/SettingsClient.tsx:704` | jsx-text | Try again |
+| 93 | account | `web/components/workspace/SettingsClient.tsx:710` | jsx-text | No purchases yet. If you already paid, choose Restore access above. |
+| 94 | account | `web/components/workspace/SettingsClient.tsx:721` | const | {uses} remaining |
+| 95 | account | `web/components/workspace/SettingsClient.tsx:729` | jsx-text | No renewal |
+| 96 | account | `web/components/workspace/SettingsClient.tsx:747` | jsx-text | Loading… |
+| 97 | account | `web/components/workspace/SettingsClient.tsx:751` | jsx-text | Receipts could not load. |
+| 98 | account | `web/components/workspace/SettingsClient.tsx:752` | jsx-text | Try again. If you need an invoice now, email support@recruiterinyourpocket.com. |
+| 99 | account | `web/components/workspace/SettingsClient.tsx:754` | jsx-text | Try again |
+| 100 | account | `web/components/workspace/SettingsClient.tsx:759` | jsx-text | No receipts found for this account. If you recently paid, try Refresh. |
+| 101 | account | `web/components/workspace/SettingsClient.tsx:770` | jsx-text | (opens in a new tab) |
+| 102 | account | `web/components/workspace/SettingsClient.tsx:771` | jsx-text | (opens in a new tab) |
+| 103 | account | `web/components/workspace/SettingsClient.tsx:780` | key:label | Loading… |
+| 104 | account | `web/components/workspace/SettingsClient.tsx:792` | jsx-text | Where should we send your receipt? |
+| 105 | account | `web/components/workspace/SettingsClient.tsx:793` | jsx-text | We will link access to this email. |
+| 106 | account | `web/components/workspace/SettingsClient.tsx:804` | attr:aria-label | Billing email |
+| 107 | account | `web/components/workspace/SettingsClient.tsx:814` | key:label | Continue to checkout |
+| 108 | account | `web/components/workspace/SettingsClient.tsx:814` | key:label | Opening checkout… |
+| 109 | account | `web/components/workspace/SettingsClient.tsx:827` | attr:title | Delete your account? |
+| 110 | account | `web/components/workspace/SettingsClient.tsx:828` | attr:description | This permanently removes your account and user-owned product data from Recruiter in Your Pocket. Any verifiable legacy subscription is cancelled first. Stripe may retain payment records, and RIYP keeps limited deletion and billing-reversal records required to prevent restored access, handle disputes, and meet legal obligations. This cannot be undone. |
 
 ## /settings/billing
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { discardPendingLineAnswers } from "@/lib/reports/line-answers";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { DotsThree, PencilSimple, Trash } from "@phosphor-icons/react";
@@ -58,6 +60,7 @@ export function ReportManageMenu({ reportId, initialName }: { reportId: string; 
       const response = await fetch(`/api/reports/${encodeURIComponent(reportId)}`, { method: "DELETE" });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not delete this report. Try again.");
+      discardPendingLineAnswers(reportId);
       toast.success("Report deleted");
       router.push("/reports");
       router.refresh();

@@ -1,4 +1,5 @@
 import { createAppError } from "../backend/errors";
+import { extractSkillsFromText } from "../matching/skill-engine";
 import { reportSentences } from "./report-sentences";
 import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE, scoreHeldToCards } from "../score-utils";
 import {
@@ -150,6 +151,20 @@ const isNotAResumeAsk = (requirement: string) =>
   (!/[a-z]/u.test(requirement) && /\b(?:REQUIREMENTS?|QUALIFICATIONS?|RESPONSIBILITIES|SKILLS)\b/u.test(requirement))
   || /\b(?:citizen(?:ship)?|work authori[sz]ation|authori[sz]ed to work|lawful permanent resident|green card|visa sponsorship|ITAR|export[- ]control)\b/iu.test(requirement);
 
+// Reject a bundled verdict for two distinct tool-specific activities. The repair model
+// judges the evidence for each activity. A tool name alone never earns or denies credit.
+const TOOL_CATEGORIES = new Set(["language", "database", "analytics", "cloud", "framework", "devops"]);
+const ACTIVITY = /\b(?:report(?:ing|s)?|analys(?:is|es)|ownership|develop(?:ment|ing)?|design(?:ing)?|build(?:ing)?|maint(?:ain(?:ing)?|enance)|deploy(?:ment|ing)?|administration|testing|manag(?:ing|ement))\b/iu;
+
+function combinesDistinctToolActivities(requirement: string) {
+  const clauses = requirement.split(/\s+and\s+/iu);
+  if (clauses.length < 2) return false;
+  const tools = clauses.filter(clause => ACTIVITY.test(clause)).map(clause =>
+    [...extractSkillsFromText(clause)].filter(([, skill]) => TOOL_CATEGORIES.has(skill.category)).map(([name]) => name)
+  ).filter(names => names.length > 0);
+  return tools.some((names, i) => tools.slice(i + 1).some(other => !other.some(name => names.includes(name))));
+}
+
 /** Covered requirements: the line must be on the resume, a requirement is listed once, and never also as missing. */
 function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText: string | undefined, missing: string[]): PostingCovered[] {
   const kept: PostingCovered[] = [];
@@ -294,6 +309,13 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
   }
 
   const issues: WorklistValidationIssue[] = [];
+  if (report.fit.posting.summary) {
+    for (const requirement of [...report.fit.posting.missing, ...(report.fit.posting.covered ?? []).map(row => row.requirement)]) {
+      if (combinesDistinctToolActivities(requirement)) {
+        issues.push({ path: "fit.posting", message: `Assess the separate activities in "${requirement}" individually. Quote the resume line for each demonstrated activity and list each unsupported activity separately.` });
+      }
+    }
+  }
   if (sourceTagLeak(JSON.stringify(report))) issues.push({ path: "response", message: "exposes a SOURCE catalog tag" });
   for (const field of proseFields(report)) {
     // The sentence goes into the refusal, so the log says what was written, not only where.

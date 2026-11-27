@@ -59,6 +59,7 @@ async function run() {
   const originalFetch = global.fetch;
   let harness = createHookHarness();
   runtimeModule._load = function loadWithHookRuntime(request, parent, isMain) {
+    if (request === "@/lib/launch/flags") return { requestedLaunchFlags: { extensionSync: true } };
     if (request === "react") return {
       useRef: <T>(value: T) => harness.react.useRef(value),
       useCallback: <T>(value: T) => harness.react.useCallback(value),

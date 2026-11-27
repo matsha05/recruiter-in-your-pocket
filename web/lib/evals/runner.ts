@@ -788,7 +788,9 @@ async function callAnalysisAPI(
 // ============================================
 
 async function saveResults(output: EvalRunOutput, options: EvalOptions): Promise<void> {
-    const resultsDir = path.resolve(process.cwd(), "../tests/fixtures/results");
+    const resultsDir = options.dryRun
+        ? path.resolve(process.cwd(), "output/evals")
+        : path.resolve(process.cwd(), "../tests/fixtures/results");
 
     if (options.outputLabel && !/^[a-z0-9_-]+$/i.test(options.outputLabel)) {
         throw new Error("--output-label may contain only letters, numbers, underscores, and hyphens.");

@@ -8,7 +8,7 @@
 .actions { display: flex; flex: none; align-items: center; gap: 0.25rem; margin-left: auto; }
 /* While the privacy panel is open it covers the bottom of the viewport; the page's last action can scroll above it. */
 :global(html[data-privacy-panel-open="true"]) .shell { padding-bottom: 16rem; }
-.paper { --paper-pad-x: 1.25rem; --paper-pad-y: 1.25rem; min-width: 0; margin-top: 1.25rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: var(--paper-pad-y) var(--paper-pad-x); box-shadow: 0 8px 32px hsl(var(--text-strong) / 0.025); }
+.paper { --paper-pad-x: 1.25rem; --paper-pad-y: 1.25rem; min-width: 0; margin-top: 1.25rem; border: 1px solid hsl(var(--line)); border-radius: 1rem; background: hsl(var(--surface-raised)); padding: var(--paper-pad-y) var(--paper-pad-x); }
 /* The sheet's header row: a quiet strip across the top of the paper, before the Verdict. */
 .head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; margin: calc(-1 * var(--paper-pad-y)) calc(-1 * var(--paper-pad-x)) 1rem; border-bottom: 1px solid hsl(var(--line)); border-radius: inherit; border-end-start-radius: 0; border-end-end-radius: 0; background: hsl(var(--surface-page)); padding: 0.75rem var(--paper-pad-x); }
 @media (max-width: 639px) {

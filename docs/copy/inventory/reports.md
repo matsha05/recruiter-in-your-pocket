@@ -8,38 +8,38 @@ Routes: `/reports`. Strings: 44 (38 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | account | `web/app/(app)/reports/page.tsx:28` | key:title | My reports |
-| 2 | account | `web/app/(app)/reports/page.tsx:29` | key:description | Every report you’ve saved, and what the recruiter took from each. |
-| 3 | account | `web/app/(app)/reports/page.tsx:105` | attr:title | Your saved reports |
-| 4 | account | `web/app/(app)/reports/page.tsx:122` | jsx-text | New report |
-| 5 | account | `web/app/(app)/reports/page.tsx:131` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |
-| 6 | account | `web/app/(app)/reports/page.tsx:137` | jsx-text | We couldn’t load My reports. |
-| 7 | account | `web/app/(app)/reports/page.tsx:143` | jsx-text | Try again |
-| 8 | account | `web/app/(app)/reports/page.tsx:150` | jsx-text | Contact support |
-| 9 | account | `web/components/reports/ReportHistoryList.tsx:54` | return | Saved report |
-| 10 | account | `web/components/reports/ReportHistoryList.tsx:72` | const | Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here. |
-| 11 | account | `web/components/reports/ReportHistoryList.tsx:80` | const | {pass.usesLeft} {pass.usesLeft === 1 ? "re…} left on your pass |
-| 12 | account | `web/components/reports/ReportHistoryList.tsx:96` | call:ClientActionError | We couldn’t open those two reports together. Try again. |
-| 13 | account | `web/components/reports/ReportHistoryList.tsx:113` | jsx-text | Nothing saved yet. |
-| 14 | account | `web/components/reports/ReportHistoryList.tsx:114` | jsx-text | A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it. |
-| 15 | account | `web/components/reports/ReportHistoryList.tsx:117` | jsx-text | Get my report |
-| 16 | account | `web/components/reports/ReportHistoryList.tsx:153` | jsx-text | Since version 1 |
-| 17 | account | `web/components/reports/ReportHistoryList.tsx:175` | jsx-text | Opening both reports… |
-| 18 | account | `web/components/reports/ReportHistoryList.tsx:175` | jsx-text | See what changed |
-| 19 | account | `web/components/reports/ReportHistoryList.tsx:175` | const | Opening both reports… |
-| 20 | account | `web/components/reports/ReportHistoryList.tsx:175` | const | See what changed |
-| 21 | account | `web/components/reports/ReportHistoryList.tsx:178` | attr:loadingLabel | Opening both reports… |
-| 22 | account | `web/components/reports/ReportHistoryList.tsx:179` | jsx-text | See what changed |
-| 23 | account | `web/components/reports/ReportHistoryList.tsx:206` | jsx-text | LinkedIn profile |
-| 24 | account | `web/components/reports/ReportHistoryList.tsx:206` | const | LinkedIn profile |
-| 25 | account | `web/components/reports/ReportHistoryList.tsx:206` | const | Resume against a posting |
-| 26 | account | `web/components/reports/ReportHistoryList.tsx:208` | jsx-text | · Version |
-| 27 | account | `web/components/reports/ReportHistoryList.tsx:254` | attr:label | {pass.usesLeft} {pass.usesLeft === 1 ? "re…} left on your pass |
-| 28 | account | `web/components/reports/ReportHistoryList.tsx:262` | jsx-text | , good until |
-| 29 | account | `web/components/reports/ReportHistoryList.tsx:272` | jsx-text | Your latest report |
-| 30 | account | `web/components/reports/ReportHistoryList.tsx:282` | jsx-text | Open the report |
-| 31 | account | `web/components/reports/ReportHistoryList.tsx:291` | jsx-text | Earlier reports |
-| 32 | account | `web/components/reports/ReportHistoryList.tsx:318` | attr:aria-label | Open {report.name \|\| report.ver…} |
+| 1 | account | `web/app/(app)/reports/page.tsx:32` | key:title | My reports |
+| 2 | account | `web/app/(app)/reports/page.tsx:33` | key:description | Every report you’ve saved, and what the recruiter took from each. |
+| 3 | account | `web/app/(app)/reports/page.tsx:120` | attr:title | Your saved reports |
+| 4 | account | `web/app/(app)/reports/page.tsx:137` | jsx-text | New report |
+| 5 | account | `web/app/(app)/reports/page.tsx:146` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |
+| 6 | account | `web/app/(app)/reports/page.tsx:152` | jsx-text | We couldn’t load My reports. |
+| 7 | account | `web/app/(app)/reports/page.tsx:158` | jsx-text | Try again |
+| 8 | account | `web/app/(app)/reports/page.tsx:165` | jsx-text | Contact support |
+| 9 | account | `web/components/reports/ReportHistoryList.tsx:55` | return | Saved report |
+| 10 | account | `web/components/reports/ReportHistoryList.tsx:73` | const | Version 1 was an earlier kind of report, with a shorter list and a different score, so the two aren't set against each other here. |
+| 11 | account | `web/components/reports/ReportHistoryList.tsx:90` | const | {pass.usesLeft} {pass.usesLeft === 1 ? "re…} left on your pass |
+| 12 | account | `web/components/reports/ReportHistoryList.tsx:106` | call:ClientActionError | We couldn’t open those two reports together. Try again. |
+| 13 | account | `web/components/reports/ReportHistoryList.tsx:123` | jsx-text | Nothing saved yet. |
+| 14 | account | `web/components/reports/ReportHistoryList.tsx:124` | jsx-text | A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it. |
+| 15 | account | `web/components/reports/ReportHistoryList.tsx:127` | jsx-text | Get my report |
+| 16 | account | `web/components/reports/ReportHistoryList.tsx:163` | jsx-text | Since version 1 |
+| 17 | account | `web/components/reports/ReportHistoryList.tsx:185` | jsx-text | Opening both reports… |
+| 18 | account | `web/components/reports/ReportHistoryList.tsx:185` | jsx-text | See what changed |
+| 19 | account | `web/components/reports/ReportHistoryList.tsx:185` | const | Opening both reports… |
+| 20 | account | `web/components/reports/ReportHistoryList.tsx:185` | const | See what changed |
+| 21 | account | `web/components/reports/ReportHistoryList.tsx:188` | attr:loadingLabel | Opening both reports… |
+| 22 | account | `web/components/reports/ReportHistoryList.tsx:189` | jsx-text | See what changed |
+| 23 | account | `web/components/reports/ReportHistoryList.tsx:216` | jsx-text | LinkedIn profile |
+| 24 | account | `web/components/reports/ReportHistoryList.tsx:216` | const | LinkedIn profile |
+| 25 | account | `web/components/reports/ReportHistoryList.tsx:216` | const | Resume against a posting |
+| 26 | account | `web/components/reports/ReportHistoryList.tsx:218` | jsx-text | · Version |
+| 27 | account | `web/components/reports/ReportHistoryList.tsx:264` | attr:label | {pass.usesLeft} {pass.usesLeft === 1 ? "re…} left on your pass |
+| 28 | account | `web/components/reports/ReportHistoryList.tsx:272` | jsx-text | , good until |
+| 29 | account | `web/components/reports/ReportHistoryList.tsx:282` | jsx-text | Your latest report |
+| 30 | account | `web/components/reports/ReportHistoryList.tsx:292` | jsx-text | Open the report |
+| 31 | account | `web/components/reports/ReportHistoryList.tsx:301` | jsx-text | Earlier reports |
+| 32 | account | `web/components/reports/ReportHistoryList.tsx:328` | attr:aria-label | Open {report.name \|\| report.ver…} |
 | 33 | report | `web/lib/reports/report-history.ts:51` | return | {total} {lines} to answer |
 | 34 | report | `web/lib/reports/report-history.ts:53` | return | {answered} of {total} {lines} answered |
 | 35 | report | `web/lib/reports/report-history.ts:115` | return | {aboutTheSame(change.delta)} as {sameDay ? "your earlier r…} |

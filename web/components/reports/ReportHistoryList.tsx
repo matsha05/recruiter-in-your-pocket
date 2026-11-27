@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react";
 import { toast } from "sonner";
-import { scoreBandFor } from "@/lib/reports/score-band";
+import { displayedBand, type ReportBandScale } from "@/lib/reports/score-band";
 import { scoreMoved } from "@/lib/score-utils";
 import { Button } from "@/components/ui/button";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
@@ -24,6 +24,7 @@ export type ReportHistoryItem = {
   score: number | null;
   /** A LinkedIn profile review; otherwise a resume report. */
   isProfile: boolean;
+  bandScale?: ReportBandScale;
   /** The report's one-sentence verdict, the line the report itself opens with. Never the resume's own text. */
   verdict: string | null;
   name: string | null;
@@ -164,7 +165,7 @@ export function ReportHistoryList({ initialReports: reports, pass: pagePass = nu
         {report.earlierShape ? <p className={styles.journeyLines}>{EARLIER_SHAPE_NOTE}</p> : null}
         {delta !== null && !report.earlierShape ? (
           <p className={styles.journeyScore}>
-            <span data-up={(delta > 0 && scoreMoved(delta)) || undefined}>{revisionScoreLabel(delta, scoreBandFor(first.score ?? 0).name, scoreBandFor(report.score ?? 0).name)}</span>
+            <span data-up={(delta > 0 && scoreMoved(delta)) || undefined}>{revisionScoreLabel(delta, displayedBand(first.score ?? 0, first.bandScale).band.name, displayedBand(report.score ?? 0, report.bandScale).band.name)}</span>
             {step ? <span>{step}</span> : null}
           </p>
         ) : null}
@@ -242,7 +243,7 @@ export function ReportHistoryList({ initialReports: reports, pass: pagePass = nu
                   {report.name ? <span className={styles.versionName}>{report.name}</span> : null}
                   <span className={styles.versionVerdict}>{report.verdict || (report.name ? null : reportTitle(report))}</span>
                   <span className={styles.meta}>
-                    {scoreBandFor(report.score ?? 0).name}
+                    {displayedBand(report.score ?? 0, report.bandScale).band.name}
                     {version?.change ? <> · {versionChangeLabel(version.change)}</> : null}
                   </span>
                 </span>
@@ -279,7 +280,7 @@ export function ReportHistoryList({ initialReports: reports, pass: pagePass = nu
       <section className={styles.latest} aria-labelledby="latest-report-title" data-testid="latest-report">
         <p className={styles.latestLabel}>
           <span id="latest-report-title">Your latest report</span>
-          <span className={styles.latestWhen}>{scoreBandFor(latest.score ?? 0).name} · {formatReportDate(latest.createdAt)}</span>
+          <span className={styles.latestWhen}>{displayedBand(latest.score ?? 0, latest.bandScale).band.name} · {formatReportDate(latest.createdAt)}</span>
         </p>
         {latest.name ? <h2 className={styles.name}>{latest.name}</h2> : null}
         {latest.verdict
@@ -308,7 +309,7 @@ export function ReportHistoryList({ initialReports: reports, pass: pagePass = nu
                 <li key={report.id} className={styles.row}>
                   {/* The band, as the report shows it; the score shows only as a change, on a re-check (Nov 6, 2026). */}
                   <div className={styles.when}>
-                    <p className={styles.band} data-testid="report-band">{scoreBandFor(report.score ?? 0).name}</p>
+                    <p className={styles.band} data-testid="report-band">{displayedBand(report.score ?? 0, report.bandScale).band.name}</p>
                     <p className={styles.date}>{formatReportDate(report.createdAt)}</p>
                   </div>
 

@@ -30,3 +30,11 @@ for (const score of [61, 70, 85, 92, 99]) {
 assert.equal(getScoreLabel(99), "Clear and specific", "v2 never says Ready to send");
 assert.equal(new Set(WORKLIST_BANDS.map((band) => band.anchor)).size, 5, "each band has its own anchor");
 console.log("worklist bands passed");
+
+import { displayedBand } from "../lib/reports/score-band";
+for (const score of [59, 60, 61, 69, 70, 71, 84, 85, 86, 92, 93, 94, 95]) {
+  const worklist = worklistBandFor(score);
+  assert.equal(displayedBand(score, "worklist").band.name, worklist.name);
+  assert.equal(displayedBand(score, "report").band.name, scoreBandFor(score).name);
+  assert.equal(displayedBand(score, "profile").band.name, score >= 93 ? "Nothing left to fix" : worklist.name);
+}

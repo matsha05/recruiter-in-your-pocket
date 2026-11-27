@@ -88,6 +88,14 @@ export function worklistBandIndex(score: number) {
   return index;
 }
 
+export type ReportBandScale = "report" | "worklist" | "profile";
+
+export function displayedBand(score: number, kind: ReportBandScale = "report") {
+  const scale = kind === "report" ? SCORE_BANDS : kind === "profile" ? PROFILE_BANDS : WORKLIST_BANDS;
+  const index = Math.max(0, kind === "report" ? scoreBandIndex(score) : worklistBandIndex(score));
+  return { scale, index, band: scale[index] };
+}
+
 export function worklistBandFor(score: number): ScoreBand {
   return WORKLIST_BANDS[Math.max(0, worklistBandIndex(score))];
 }

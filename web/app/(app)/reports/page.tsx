@@ -7,7 +7,8 @@ import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { launchFlags } from "@/lib/launch/flags";
 import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
-import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
+import { isLinkedInReport, LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
+import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { splitVerdict } from "@/lib/reports/report-opening";
 import { groupReportVersions, lineProgress, revisionProgress, savedPostingRole, scoreChanges } from "@/lib/reports/report-history";
 import { readAuthoritativePassAccess } from "@/lib/billing/accountPassStatus";
@@ -46,7 +47,7 @@ export default async function ReportsPage() {
     // The row leads with the report's own one-sentence verdict (Nov 11, 2026), read out of the stored report: the
     // worklist report's `verdict`, or the earlier report's first impression.
     // The cards and the kept answers ride along so a row can say how many lines are answered (lib/reports/report-history.ts).
-    .select("id, score, score_label, resume_preview, name, target_role, created_at, line_answers, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway, cards:report_json->cards, posting_summary:report_json->fit->posting->>summary, roles:report_json->fit->roles")
+    .select("id, score, score_label, resume_preview, name, target_role, created_at, line_answers, verdict:report_json->>verdict, first_impression:report_json->>first_impression, takeaway:report_json->>first_impression_takeaway, contract_version:report_json->>contract_version, document:report_json->>document, cards:report_json->cards, posting_summary:report_json->fit->posting->>summary, roles:report_json->fit->roles")
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(51);
@@ -174,6 +175,7 @@ export default async function ReportsPage() {
               id: report.id,
               score: report.score,
               isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
+              bandScale: isWorklistReport(report) ? (isLinkedInReport(report) ? "profile" : "worklist") : "report",
               progress: lineProgress(report.cards, report.line_answers),
               change: changes.get(report.id) ?? null,
               revises: revises.get(report.id) ?? null,

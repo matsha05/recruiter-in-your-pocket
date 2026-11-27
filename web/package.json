@@ -13,6 +13,7 @@
     "analyze": "ANALYZE=true next build --webpack",
     "postbuild": "node scripts/ensure-next-build-package.cjs",
     "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "assets:chrome-web-store": "node scripts/generate-chrome-web-store-assets.cjs",
     "test:ui": "playwright test",

@@ -65,7 +65,7 @@ export function ReportLayout({ children, toc, actions, head, mobileReading = fal
                     {actions && <div className={styles.actions}>{actions}</div>}
                 </aside>
             )}
-            <article className={styles.paper}>
+            <article className={`shadow-sheet ${styles.paper}`}>
                 {head && <header className={styles.head} data-testid="report-header-row">{head}</header>}
                 {children}
             </article>
