@@ -23,9 +23,14 @@ filters=(--host riyp-production --tag riyp-db --path /riyp.dump)
 case "${1:-}" in
     backup)
         stage=backup
+        schemas=(--schema=public --schema=private --schema=auth --schema=storage --schema=supabase_migrations)
+        dump=(pg_dump --format=custom "${schemas[@]}" --no-password)
+        if [[ -f "$config/linked-project" ]]; then
+            dump=(python3 "$(dirname "$0")/dump-linked.py" "$config" "${schemas[@]}")
+        fi
         # pg_dump uses a single consistent transaction. A failed dump never becomes a snapshot.
         restic backup --host riyp-production --tag riyp-db --stdin-filename riyp.dump --stdin-from-command -- \
-            pg_dump --format=custom --schema=public --schema=auth --schema=storage --no-password >/dev/null 2>&1
+            "${dump[@]}" >/dev/null 2>&1
         stage=retention
         restic forget "${filters[@]}" --keep-daily 7 --prune >/dev/null 2>&1
         ;;

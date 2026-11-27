@@ -400,7 +400,7 @@ const paidEvalCandidateReady = releaseCandidateIsUnchanged(candidate, candidateB
 if (hasLiveEvalKey && paidEvalsAllowed && paidEvalCandidateReady) {
   runCommand("eval_smoke", "Live smoke eval", {
     command: "npm",
-    args: ["run", "eval:smoke", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json"],
+    args: ["run", "eval:smoke", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json", "--output-label", "release_gate_smoke"],
     cwd: webDir,
     passMessage: "Live smoke eval passed.",
     severity: strict ? "critical" : "important",
@@ -418,7 +418,7 @@ if (hasLiveEvalKey && paidEvalsAllowed && paidEvalCandidateReady) {
   if (strict) {
     runCommand("eval_golden", "Live golden eval", {
       command: "npm",
-      args: ["run", "eval:golden", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json"],
+      args: ["run", "eval:golden", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json", "--output-label", "release_gate_golden"],
       cwd: webDir,
       passMessage: "Live golden eval passed.",
     });

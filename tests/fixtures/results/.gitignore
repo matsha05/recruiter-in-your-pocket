@@ -2,3 +2,4 @@
 *_run.json
 !baseline_*.json
 !summary_*.md
+summary_release_gate_*.md
