@@ -277,3 +277,30 @@ for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, PO
 }
 
 console.log("posting tailoring tests passed");
+
+// Real regression: both independent reads of a recruiting resume marked two activities
+// missing together. The original SQL line is the relevant evidence, even though it
+// cannot establish ownership of a production dashboard.
+{
+  const sql = "SQL recruiting-funnel reporting";
+  const looker = "production dashboard ownership in Looker";
+  const sqlLine = "Built a weekly recruiting funnel report in SQL for six hiring managers, reconciling duplicate applicants before publishing.";
+  const lookerLine = "Owned the production dashboard in Looker for our recruiting operations team.";
+  const combined = sql + " and " + looker;
+
+  for (const hasSql of [false, true]) {
+    for (const hasLooker of [false, true]) {
+      const source = [RESUME, hasSql && sqlLine, hasLooker && lookerLine].filter(Boolean).join("\n");
+      const draft = { ...base, fit: { ...base.fit, posting: { ...structuredClone(base.fit.posting), covered: [] as {requirement: string; line: string}[] } } };
+      const validate = () => validateWorklistPayload(draft, source, {forceGrounding: true, jobDescription: combined});
+      const items = [{ requirement: sql, line: sqlLine, present: hasSql }, { requirement: looker, line: lookerLine, present: hasLooker }];
+      draft.fit.posting.missing = [combined];
+      assert.throws(validate, /Assess the separate activities/);
+      draft.fit.posting.missing = items.filter(item => !item.present).map(item => item.requirement);
+      draft.fit.posting.covered = items.filter(item => item.present).map(({requirement, line}) => ({requirement, line}));
+      const { posting } = validate().fit;
+      assert.deepEqual(posting.missing, draft.fit.posting.missing);
+      assert.deepEqual(posting.covered ?? [], draft.fit.posting.covered);
+    }
+  }
+}

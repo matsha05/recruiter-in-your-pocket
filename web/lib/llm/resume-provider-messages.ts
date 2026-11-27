@@ -46,7 +46,12 @@ export function buildResumeProviderMessages(input: {
     : input.systemPrompt;
 
   // The profile prompt carries its own posting rules (WITH A JOB POSTING); the block below is the resume's.
-  if (input.effectiveJobDescription.hasValue && input.document !== "linkedin") systemPrompt += JOB_ALIGNMENT_CONTEXT;
+  if (input.effectiveJobDescription.hasValue && input.document !== "linkedin") {
+    systemPrompt += JOB_ALIGNMENT_CONTEXT;
+    if (input.mode === "resume" && isWorklistReportEnabled()) {
+      systemPrompt += "\nIn fit.posting, assess independently demonstrable qualifications separately, even when the posting joins them in one bullet. Credit each supported activity with its exact resume line. Put only the unsupported activity in missing. Keep qualifiers that define a single activity together (for example, ownership of a production dashboard). Mentioning a tool alone does not demonstrate ownership. Check the table against the write-up before returning it.";
+    }
+  }
   systemPrompt += INJECTION_RESISTANCE_SUFFIX;
 
   let userPrompt: string;

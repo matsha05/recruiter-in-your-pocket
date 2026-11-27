@@ -161,6 +161,7 @@ export function WorklistReport({
                 document={document}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
+                reportId={reportId}
                 onPersist={persist}
                 onStateChange={onStateChange}
                 onLineChange={onLineChange}
@@ -188,6 +189,7 @@ export function WorklistReport({
                 document={document}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
+                reportId={reportId}
                 onPersist={persist}
                 onStateChange={onStateChange}
                 onLineChange={onLineChange}

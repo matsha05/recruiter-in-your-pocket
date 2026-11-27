@@ -299,8 +299,8 @@ runCommand("web_lint", "Web lint", {
 });
 
 runCommand("web_typecheck", "Web typecheck", {
-  command: "npx",
-  args: ["tsc", "--noEmit"],
+  command: "npm",
+  args: ["run", "typecheck"],
   cwd: webDir,
   passMessage: "Web typecheck passed.",
 });

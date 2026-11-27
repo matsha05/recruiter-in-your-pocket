@@ -1,5 +1,6 @@
 "use client";
 
+import { discardPendingLineAnswers } from "@/lib/reports/line-answers";
 import { accountBalanceLine } from "@/lib/billing/accountPassStatus";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -235,6 +236,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 throw new ClientActionError(data.message, "We couldn't delete your account. Try again or contact support.");
             }
 
+            discardPendingLineAnswers();
             // The server clears the SSR cookie and returns Clear-Site-Data.
             // Remove the browser client's in-memory session too before leaving
             // the private app shell.

@@ -1,3 +1,4 @@
+import type { LineAnswersPatch } from "../../lib/reports/line-answers";
 import { expect, test, type Page } from "@playwright/test";
 import { MOCK_WORKLIST_REPORT } from "../../lib/backend/mock-worklist-report";
 import { blankLabels } from "../../lib/reports/worklist-presentation";
@@ -255,4 +256,66 @@ test("typing a long answer into a short blank keeps every character, and so does
   await expect(blank).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(blank).toHaveJSProperty("tagName", "INPUT");
+});
+
+test("a failed answer save can be retried without changing the answer", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  const patches: LineAnswersPatch[] = [];
+  await page.route(`**/api/reports/${REPORT_ID}/answers`, (route) => {
+    patches.push(route.request().postDataJSON() as LineAnswersPatch);
+    return route.fulfill({ status: patches.length === 1 ? 503 : 200, json: { ok: patches.length > 1 } });
+  });
+  await runReport(page, { signedIn: true, reportId: REPORT_ID });
+  const card = page.getByTestId("worklist-card").nth(lineCard);
+  const answer = card.getByTestId("worklist-blank").first();
+  await answer.fill("12");
+  await expect(card.getByTestId("worklist-kept")).toContainText("We couldn't save these changes.");
+  await expect(answer).toHaveValue("12");
+  await card.getByRole("button", { name: "Try saving again", exact: true }).click();
+  await expect(card.getByTestId("worklist-kept")).toHaveText("Kept with this report.");
+  expect(patches).toHaveLength(2);
+  expect(patches[1]).toEqual(patches[0]);
+  await expect(card.getByRole("button", { name: "Try saving again", exact: true })).toHaveCount(0);
+});
+
+test("an immediate departure keeps a cleared answer and preserves the other card after a new sign-in", async ({ page, browser }) => {
+  const other = mock.cards.findIndex((card, index) => index !== lineCard && blankLabels(card.example).length > 0);
+  const answer = (question: string, text: string) => ({
+    answers: [{question, kind: "answered", text}], line: null, source: "literal", updated_at: new Date().toISOString(),
+  });
+  const stored = new Map([
+    [lineCard, answer(lineLabels[0], "old answer")],
+    [other, answer(blankLabels(mock.cards[other].example)[0], "preserve me")],
+  ]);
+  const writes: LineAnswersPatch[] = [];
+  async function openSaved(view: Page) {
+    await installSignedInSession(view);
+    await view.route(`**/api/reports/${REPORT_ID}`, route => route.fulfill({ json: {
+      ok: true, report: { ...mock, report_id: REPORT_ID }, lineAnswers: Object.fromEntries(stored),
+    } }));
+    await view.route(`**/api/reports/${REPORT_ID}/answers`, route => {
+      const patch = route.request().postDataJSON() as LineAnswersPatch;
+      writes.push(patch);
+      if (patch.answers.length === 0) stored.delete(patch.fix_index);
+      return route.fulfill({json: {ok: true}});
+    });
+    await view.goto(`/reports/${REPORT_ID}`);
+  }
+  await openSaved(page);
+  const field = page.getByTestId("worklist-card").nth(lineCard).getByTestId("worklist-blank").first();
+  await expect(field).toHaveValue("old answer");
+  await page.clock.install();
+  await page.clock.pauseAt(new Date(Date.now() + 1000));
+  await field.fill("");
+  await page.getByRole("link", {name:"New report", exact:true}).first().dispatchEvent("click");
+  await expect.poll(() => writes.map(patch => patch.answers)).toEqual([[]]);
+  const returning = await browser.newPage({baseURL: test.info().project.use.baseURL});
+  try {
+    await openSaved(returning);
+    const cards = returning.getByTestId("worklist-card");
+    await expect(cards.nth(lineCard).getByTestId("worklist-blank").first()).toHaveValue("");
+    await expect(cards.nth(other).getByTestId("worklist-blank").first()).toHaveValue("preserve me");
+  } finally {
+    await returning.close();
+  }
 });

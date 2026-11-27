@@ -13,6 +13,7 @@ import {
     Trash2,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { Input } from '@/components/ui/input';
 import ResumeContextCard from './ResumeContextCard';
 import ConfirmModal from '@/components/shared/ConfirmModal';
 import { AppPageIntro } from '@/components/layout/AppPageIntro';
@@ -313,14 +314,14 @@ function JobsContent({ userId, authLoading }: { userId: string | null; authLoadi
                 <div className="relative min-w-0 flex-1 md:max-w-md">
                     <label htmlFor="jobs-search" className="sr-only">{searchLabel}</label>
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                    <input
+                    <Input
                         id="jobs-search"
                         type="text"
                         placeholder={`${searchLabel}…`}
                         aria-describedby={hasMore ? 'jobs-filter-scope' : undefined}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="min-h-12 w-full rounded-md border border-input bg-background pl-10 pr-4 text-base placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                        className="bg-background pl-10"
                     />
                 </div>
 

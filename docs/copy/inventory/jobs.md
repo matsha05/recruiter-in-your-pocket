@@ -12,46 +12,46 @@ Routes: `/jobs`. Strings: 71 (68 unique).
 | 2 | account | `web/app/(app)/jobs/page.tsx:10` | key:description | The requested page is not available. |
 | 3 | account | `web/app/(app)/jobs/page.tsx:16` | key:title | Jobs — Recruiter in Your Pocket |
 | 4 | account | `web/app/(app)/jobs/page.tsx:17` | key:description | Save job descriptions, compare them with your resume, and track your applications. |
-| 5 | account | `web/components/jobs/JobsClient.tsx:245` | call:toast.success | Job removed |
-| 6 | account | `web/components/jobs/JobsClient.tsx:264` | const | Search loaded jobs |
-| 7 | account | `web/components/jobs/JobsClient.tsx:264` | const | Search saved jobs |
-| 8 | account | `web/components/jobs/JobsClient.tsx:266` | const | {jobs.length} job{jobs.length === 1 ? '' : 's'} loaded |
-| 9 | account | `web/components/jobs/JobsClient.tsx:267` | const | {jobs.length} saved job{jobs.length === 1 ? '' : 's'} |
-| 10 | account | `web/components/jobs/JobsClient.tsx:273` | attr:eyebrow | Job search |
-| 11 | account | `web/components/jobs/JobsClient.tsx:275` | attr:description | Keep job descriptions, resume comparisons, and application status together. |
-| 12 | account | `web/components/jobs/JobsClient.tsx:293` | jsx-text | Install extension |
-| 13 | account | `web/components/jobs/JobsClient.tsx:300` | jsx-text | Get report |
-| 14 | account | `web/components/jobs/JobsClient.tsx:340` | jsx-text | All statuses |
-| 15 | account | `web/components/jobs/JobsClient.tsx:352` | jsx-text | Search and status filters apply to the |
-| 16 | account | `web/components/jobs/JobsClient.tsx:352` | jsx-text | . Load more to include older roles. |
-| 17 | account | `web/components/jobs/JobsClient.tsx:357` | jsx-text | Save jobs with the browser extension. Return here to compare each job with your resume and update your application status. |
-| 18 | account | `web/components/jobs/JobsClient.tsx:364` | jsx-text | Loading jobs… |
-| 19 | account | `web/components/jobs/JobsClient.tsx:368` | jsx-text | Saved jobs are unavailable right now. |
-| 20 | account | `web/components/jobs/JobsClient.tsx:375` | jsx-text | Try again |
-| 21 | account | `web/components/jobs/JobsClient.tsx:403` | jsx-text | Loading more jobs… |
-| 22 | account | `web/components/jobs/JobsClient.tsx:417` | attr:title | Delete Job |
-| 23 | account | `web/components/jobs/JobsClient.tsx:449` | attr:aria-label | Open {job.title} at {job.company} |
-| 24 | account | `web/components/jobs/JobsClient.tsx:488` | attr:title | Open original posting |
-| 25 | account | `web/components/jobs/JobsClient.tsx:489` | attr:aria-label | Open the original posting for {job.title} |
-| 26 | account | `web/components/jobs/JobsClient.tsx:496` | attr:title | Delete job |
-| 27 | account | `web/components/jobs/JobsClient.tsx:497` | attr:aria-label | Delete {job.title} |
-| 28 | account | `web/components/jobs/JobsClient.tsx:569` | jsx-text | No loaded jobs match your filters. |
-| 29 | account | `web/components/jobs/JobsClient.tsx:569` | jsx-text | No jobs match your filters. |
-| 30 | account | `web/components/jobs/JobsClient.tsx:581` | jsx-text | Sign in to see saved jobs |
-| 31 | account | `web/components/jobs/JobsClient.tsx:583` | jsx-text | Sign in with the same email you use in the extension to see your saved jobs and resume. |
-| 32 | account | `web/components/jobs/JobsClient.tsx:591` | jsx-text | Sign in |
-| 33 | account | `web/components/jobs/JobsClient.tsx:598` | jsx-text | Get your free report |
-| 34 | account | `web/components/jobs/JobsClient.tsx:605` | jsx-text | Install extension |
-| 35 | account | `web/components/jobs/JobsClient.tsx:623` | jsx-text | No saved jobs yet |
-| 36 | account | `web/components/jobs/JobsClient.tsx:625` | jsx-text | Use the RIYP extension to save a job from LinkedIn or Indeed. Add your default resume to compare it with the job description. |
-| 37 | account | `web/components/jobs/JobsClient.tsx:633` | jsx-text | Install extension |
-| 38 | account | `web/components/jobs/JobsClient.tsx:640` | jsx-text | New report |
-| 39 | account | `web/components/jobs/JobsClient.tsx:647` | jsx-text | Match scoring |
-| 40 | account | `web/components/jobs/JobsClient.tsx:651` | jsx-text | Gap analysis |
-| 41 | account | `web/components/jobs/JobsClient.tsx:655` | jsx-text | Tailored suggestions |
-| 42 | account | `web/components/jobs/JobsClient.tsx:676` | return | {minutes}m ago |
-| 43 | account | `web/components/jobs/JobsClient.tsx:678` | return | {hours}h ago |
-| 44 | account | `web/components/jobs/JobsClient.tsx:680` | return | {days}d ago |
+| 5 | account | `web/components/jobs/JobsClient.tsx:246` | call:toast.success | Job removed |
+| 6 | account | `web/components/jobs/JobsClient.tsx:265` | const | Search loaded jobs |
+| 7 | account | `web/components/jobs/JobsClient.tsx:265` | const | Search saved jobs |
+| 8 | account | `web/components/jobs/JobsClient.tsx:267` | const | {jobs.length} job{jobs.length === 1 ? '' : 's'} loaded |
+| 9 | account | `web/components/jobs/JobsClient.tsx:268` | const | {jobs.length} saved job{jobs.length === 1 ? '' : 's'} |
+| 10 | account | `web/components/jobs/JobsClient.tsx:274` | attr:eyebrow | Job search |
+| 11 | account | `web/components/jobs/JobsClient.tsx:276` | attr:description | Keep job descriptions, resume comparisons, and application status together. |
+| 12 | account | `web/components/jobs/JobsClient.tsx:294` | jsx-text | Install extension |
+| 13 | account | `web/components/jobs/JobsClient.tsx:301` | jsx-text | Get report |
+| 14 | account | `web/components/jobs/JobsClient.tsx:341` | jsx-text | All statuses |
+| 15 | account | `web/components/jobs/JobsClient.tsx:353` | jsx-text | Search and status filters apply to the |
+| 16 | account | `web/components/jobs/JobsClient.tsx:353` | jsx-text | . Load more to include older roles. |
+| 17 | account | `web/components/jobs/JobsClient.tsx:358` | jsx-text | Save jobs with the browser extension. Return here to compare each job with your resume and update your application status. |
+| 18 | account | `web/components/jobs/JobsClient.tsx:365` | jsx-text | Loading jobs… |
+| 19 | account | `web/components/jobs/JobsClient.tsx:369` | jsx-text | Saved jobs are unavailable right now. |
+| 20 | account | `web/components/jobs/JobsClient.tsx:376` | jsx-text | Try again |
+| 21 | account | `web/components/jobs/JobsClient.tsx:404` | jsx-text | Loading more jobs… |
+| 22 | account | `web/components/jobs/JobsClient.tsx:418` | attr:title | Delete Job |
+| 23 | account | `web/components/jobs/JobsClient.tsx:450` | attr:aria-label | Open {job.title} at {job.company} |
+| 24 | account | `web/components/jobs/JobsClient.tsx:489` | attr:title | Open original posting |
+| 25 | account | `web/components/jobs/JobsClient.tsx:490` | attr:aria-label | Open the original posting for {job.title} |
+| 26 | account | `web/components/jobs/JobsClient.tsx:497` | attr:title | Delete job |
+| 27 | account | `web/components/jobs/JobsClient.tsx:498` | attr:aria-label | Delete {job.title} |
+| 28 | account | `web/components/jobs/JobsClient.tsx:570` | jsx-text | No loaded jobs match your filters. |
+| 29 | account | `web/components/jobs/JobsClient.tsx:570` | jsx-text | No jobs match your filters. |
+| 30 | account | `web/components/jobs/JobsClient.tsx:582` | jsx-text | Sign in to see saved jobs |
+| 31 | account | `web/components/jobs/JobsClient.tsx:584` | jsx-text | Sign in with the same email you use in the extension to see your saved jobs and resume. |
+| 32 | account | `web/components/jobs/JobsClient.tsx:592` | jsx-text | Sign in |
+| 33 | account | `web/components/jobs/JobsClient.tsx:599` | jsx-text | Get your free report |
+| 34 | account | `web/components/jobs/JobsClient.tsx:606` | jsx-text | Install extension |
+| 35 | account | `web/components/jobs/JobsClient.tsx:624` | jsx-text | No saved jobs yet |
+| 36 | account | `web/components/jobs/JobsClient.tsx:626` | jsx-text | Use the RIYP extension to save a job from LinkedIn or Indeed. Add your default resume to compare it with the job description. |
+| 37 | account | `web/components/jobs/JobsClient.tsx:634` | jsx-text | Install extension |
+| 38 | account | `web/components/jobs/JobsClient.tsx:641` | jsx-text | New report |
+| 39 | account | `web/components/jobs/JobsClient.tsx:648` | jsx-text | Match scoring |
+| 40 | account | `web/components/jobs/JobsClient.tsx:652` | jsx-text | Gap analysis |
+| 41 | account | `web/components/jobs/JobsClient.tsx:656` | jsx-text | Tailored suggestions |
+| 42 | account | `web/components/jobs/JobsClient.tsx:677` | return | {minutes}m ago |
+| 43 | account | `web/components/jobs/JobsClient.tsx:679` | return | {hours}h ago |
+| 44 | account | `web/components/jobs/JobsClient.tsx:681` | return | {days}d ago |
 | 45 | account | `web/components/jobs/ResumeContextCard.tsx:75` | call:ClientActionError | Could not load your matching resume. Please try again. |
 | 46 | account | `web/components/jobs/ResumeContextCard.tsx:98` | call:toast.error | Sign in to save a default resume for job matching. |
 | 47 | account | `web/components/jobs/ResumeContextCard.tsx:103` | call:toast.error | File too large. Max 4 MB. |
